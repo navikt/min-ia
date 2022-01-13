@@ -28,11 +28,3 @@ jobs:
       - name: Build application
         run: |
           yarn run build
-      - name: Build tag and push Docker container
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          docker build . -t ${IMAGE}
-          echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
-          echo ${IMAGE}
-          docker push ${IMAGE}
