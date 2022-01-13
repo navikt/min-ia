@@ -1,0 +1,15 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: min-ia
+  namespace: teamia
+  labels:
+    team: teamia
+spec:
+  image: {{image}}
+  replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+  ingresses:
+  - https://min-ia.nav.no
