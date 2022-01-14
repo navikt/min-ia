@@ -33,3 +33,12 @@ jobs:
           eslint: true
           eslint_dir: client/
           eslint_extensions: js,jsx,ts,tsx
+
+      - name: "Login to GitHub Docker Registry"
+        uses: "docker/login-action@v1"
+        with:
+          "registry": "ghcr.io"
+          "username": "${{ github.actor }}"
+          "password": "${{ secrets.GITHUB_TOKEN }}"
+      - name: "Build and push the Docker image"
+        run: "docker-compose build --pull && docker push ${IMAGE}"
