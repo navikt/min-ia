@@ -1,7 +1,7 @@
 name: Build and deploy min-ia
 on: [push]
 env:
-  "IMAGE": "ghcr.io/${{ github.repository }}/min-ia:${{ github.sha }}"
+  "IMAGE": "ghcr.io/${{ github.repository }}:${{ github.sha }}"
 
 concurrency:
   group: build-deploy-on-${{ github.ref }}
