@@ -12,4 +12,6 @@ spec:
     max: 2
     cpuThresholdPercentage: 50
   ingresses:
-  - https://min-ia.nav.no
+  {{#each ingresses as |url|}}
+    - {{url}}
+  {{/each}}
