@@ -4,7 +4,7 @@ metadata:
   name: min-ia
   namespace: teamia
   labels:
-    team: teamia
+    team: arbeidsgiver
 spec:
   image: {{image}}
   replicas:
