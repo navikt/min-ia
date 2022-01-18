@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 const basePath = "/min-ia";
-const buildPath = path.resolve(__dirname, "../../client/dist");
+const buildPath = path.resolve(__dirname, "../client/dist");
 const server = express();
 const port = process.env.PORT || 8080;
 
