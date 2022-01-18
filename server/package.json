@@ -2,7 +2,7 @@
   "name": "server",
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon server.ts",
+    "dev": "NODE_ENV=development nodemon server.ts",
     "start": "node build/server.js",
     "build": "tsc -p ."
   },
