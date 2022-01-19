@@ -9,6 +9,9 @@
   "dependencies": {
     "@types/node": "^17.0.8",
     "express": "^4.17.2",
+    "jose": "^4.3.8",
+    "node-fetch": "^3.1.1",
+    "openid-client": "^5.1.2",
     "typescript": "^4.5.4"
   },
   "devDependencies": {

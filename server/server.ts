@@ -13,6 +13,22 @@ const port = process.env.PORT || 8080;
 server.use(basePath, express.static(buildPath));
 server.use("/assets", express.static(`${buildPath}/assets`));
 
+server.get(`${basePath}/redirect-til-login`, (req, res) => {
+    const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${req.query.redirect}`;
+    res.redirect(basePath + `/oauth2/login?redirect=${referrerUrl}`);
+});
+
+server.get(`${basePath}/success`, (req, res) => {
+    const loginserviceToken = req.cookies['selvbetjening-idtoken'];
+    const redirectString=req.query.redirect as string;
+    if (loginserviceToken && redirectString.startsWith(process.env.APP_INGRESS)) {
+        res.redirect(redirectString);
+    } else if (redirectString.startsWith(process.env.APP_INGRESS)) {
+        res.redirect(`${process.env.LOGIN_URL}${req.query.redirect}`);
+    } else {
+        res.redirect(`${process.env.LOGIN_URL}${process.env.APP_INGRESS}`);
+    }
+});
 server.get(`${basePath}/internal/isAlive`, (req, res) => {
     res.sendStatus(200);
 });
