@@ -7,6 +7,12 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
+  liveness:
+    path: "/internal/isAlive"
+    initialDelay: 20
+  readiness:
+    path: "/internal/isReady"
+    initialDelay: 20
   replicas:
     min: 2
     max: 2
