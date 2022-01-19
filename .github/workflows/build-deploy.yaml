@@ -19,11 +19,11 @@ jobs:
         with:
           node-version: '16'
 
-      - name: "Install deps client"
+      - name: "Install client dependencies"
         working-directory: client
         run: "yarn install --immutable"
 
-      - name: "Install deps server"
+      - name: "Install server dependencies"
         working-directory: server
         run: "yarn install --immutable"
 

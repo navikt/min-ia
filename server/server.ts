@@ -10,12 +10,6 @@ console.log("buildPath", buildPath);
 const server = express();
 const port = process.env.PORT || 8080;
 
-server.use((req, res, next) => {
-    const {rawHeaders, httpVersion, method, socket, url} = req;
-    console.log(`Mottatt følgende request: ${method} : ${url}`);
-    next();
-})
-
 server.use(basePath, express.static(buildPath));
 server.use("/assets", express.static(`${buildPath}/assets`));
 
