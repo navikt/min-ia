@@ -1,5 +1,6 @@
 {
   "name": "server",
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "NODE_ENV=development nodemon server.ts",

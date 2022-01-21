@@ -1,9 +1,23 @@
-import {TokenSet} from "openid-client";
+import {Issuer, TokenSet} from "openid-client";
 import fetch from "node-fetch";
 import {getMockTokenFromIdporten, verifiserAccessToken} from "./idporten";
 let tokenxClient;
 //const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
+export async function initTokenX() {
+    if (process.env.NODE_ENV === 'not-local') {
+        const tokenxIssuer = await Issuer.discover(process.env.TOKEN_X_WELL_KNOWN_URL);
+        tokenxClient = new tokenxIssuer.Client(
+            {
+                client_id: process.env.TOKEN_X_CLIENT_ID,
+                token_endpoint_auth_method: 'private_key_jwt',
+            },
+            {
+                keys: [JSON.parse(process.env.TOKEN_X_PRIVATE_JWK)],
+            }
+        );
+    }
+}
 
 async function getMockTokenXToken() {
     const tokenXToken = await (
@@ -46,8 +60,8 @@ async function getTokenXToken(token, additionalClaims) {
     return tokenSet;
 }
 
-async function exchangeToken(req) {
-    let token = req.headers.authorization?.split(' ')[1];
+export async function exchangeToken(request) {
+    let token = request.headers.authorization?.split(' ')[1];
     if (!token) {
         if (process.env.NODE_ENV !== 'not-local') {
             token = await getMockTokenFromIdporten();
