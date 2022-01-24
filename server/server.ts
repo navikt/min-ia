@@ -4,7 +4,10 @@ import {initTokenX} from "./tokenx";
 import {initIdporten} from "./idporten"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr'
+
 import 'dotenv/config'
+import {Params} from "@navikt/nav-dekoratoren-moduler";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -57,5 +60,6 @@ const startServer = async (html) => {
         console.log("Server listening on port ", port)
     })
 }
+
 
 startServer("")
