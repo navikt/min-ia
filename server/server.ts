@@ -2,6 +2,12 @@ import express from "express";
 import path from "path";
 import {initTokenX} from "./tokenx";
 import {initIdporten} from "./idporten"
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const basePath = "/min-ia";
 const buildPath = process.env.NODE_ENV === 'development' ?

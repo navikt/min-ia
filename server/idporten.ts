@@ -8,12 +8,14 @@ const acceptedSigningAlgorithm = 'RS256';
 let idportenIssuer;
 let _remoteJWKSet;
 
+const IDPORTEN_WELL_KNOWN_URL="https://fakedings.dev-gcp.nais.io/fake/.well-known/openid-configuration"
+
 export async function initIdporten() {
     if (process.env.NODE_ENV === 'labs-gcp') {
         // I labs så returnerer vi mock uansett
         return;
     }
-    idportenIssuer = await Issuer.discover(process.env.IDPORTEN_WELL_KNOWN_URL);
+    idportenIssuer = await Issuer.discover(IDPORTEN_WELL_KNOWN_URL);
     _remoteJWKSet = createRemoteJWKSet(new URL(idportenIssuer.metadata.jwks_uri));
 }
 

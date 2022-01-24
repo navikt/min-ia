@@ -3,7 +3,10 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon server.ts",
+    "dev": "NODE_ENV=development nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
+    "dev2": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
+    "dev3": "tsc-watch --onSuccess \"yarn run dev\"",
+
     "start": "node build/server.js",
     "build": "tsc -p ."
   },
@@ -13,6 +16,7 @@
     "jose": "^4.3.8",
     "node-fetch": "^3.1.1",
     "openid-client": "^5.1.2",
+    "tsc-watch": "^4.6.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
