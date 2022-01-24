@@ -2,7 +2,6 @@ import {Issuer, TokenSet} from "openid-client";
 import fetch from "node-fetch";
 import {getMockTokenFromIdporten, verifiserAccessToken} from "./idporten";
 let tokenxClient;
-//const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 export async function initTokenX() {
     if (process.env.NODE_ENV === 'not-local') {
