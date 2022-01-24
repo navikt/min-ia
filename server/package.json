@@ -3,12 +3,13 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
+    "dev": "nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
     "start": "node build/server.js",
     "build": "tsc -p ."
   },
   "dependencies": {
     "@types/node": "^17.0.8",
+    "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "jose": "^4.3.8",
     "node-fetch": "^3.1.1",
