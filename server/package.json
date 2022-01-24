@@ -4,9 +4,6 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "NODE_ENV=development nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
-    "dev2": "nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
-    "dev3": "tsc-watch --onSuccess \"yarn run dev\"",
-
     "start": "node build/server.js",
     "build": "tsc -p ."
   },
