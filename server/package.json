@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
-    "start": "node build/server.js",
+    "start": "node --es-module-specifier-resolution=node build/server.js",
     "build": "tsc -p ."
   },
   "dependencies": {
