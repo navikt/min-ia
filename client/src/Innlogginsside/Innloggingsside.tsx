@@ -1,26 +1,27 @@
 import React from 'react';
 import illustrasjonSvg from './statistikk-ikon.svg';
 import './Innloggingsside.less';
-import {BodyLong, Button, Heading, Link} from "@navikt/ds-react";
 import "@navikt/ds-css";
+import {BodyLong, Button, Heading, Link} from "@navikt/ds-react";
 
 interface Props {
     redirectUrl: string;
 }
-export const Innloggingsside: React.FunctionComponent<Props> = ({ redirectUrl }) => {
+
+export const Innloggingsside: React.FunctionComponent<Props> = ({redirectUrl}) => {
     const redirectTilLogin = () => {
-        window.location.href = `/sykefravarsstatistikk/redirect-til-login?redirect=${redirectUrl}`;
+        window.location.href = `/min-ia/redirect-til-login?redirect=${redirectUrl}`;
     };
 
     return (
         <div className="innloggingsside__wrapper">
             <div className="innloggingsside">
-                <img src={illustrasjonSvg} className="innloggingsside__illustrasjon" alt="" />
+                <img src={illustrasjonSvg} className="innloggingsside__illustrasjon" alt=""/>
 
-                <Heading size="2xlarge">Sykefraværsstatistikk</Heading>
+                <Heading size="2xlarge">Forebygge fravær</Heading>
 
                 <BodyLong spacing>
-                    TODO  hente riktig tekst til min-ia innloggingsside .....Tilgangstyringen skjer
+                    TODO hente riktig tekst til min-ia innloggingsside .....Tilgangstyringen skjer
                     gjennom Altinn.
                 </BodyLong>
 
