@@ -5,20 +5,16 @@ import App from './App'
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler'
 
 const init = async () => {
-    console.log(import.meta.env)
-    console.log(import.meta.env.NODE_ENV)
-    if (import.meta.env.dev) {
-        await injectDecoratorClientSide({
-            env: "localhost",
-            port: 8088,
-            breadcrumbs: [
-                {
-                    title: "Korona - hva gjelder i min situasjon?",
-                    url: "https://www.nav.no/person/koronaveiviser/"
-                }
-            ]
-        });
-    }
+    await injectDecoratorClientSide({
+        env: "localhost",
+        port: 8080,
+        breadcrumbs: [
+            {
+                title: "Korona - hva gjelder i min situasjon?",
+                url: "https://www.nav.no/person/koronaveiviser/"
+            }
+        ]
+    });
 
     ReactDOM.render(
         <React.StrictMode>
