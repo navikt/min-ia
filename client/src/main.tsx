@@ -6,8 +6,8 @@ import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler'
 
 const init = async () => {
     await injectDecoratorClientSide({
-        env: "localhost",
-        port: 8080,
+        env: "dev", // TODO: hent miljø variabel dev eller prod
+        //port: 8080,
         breadcrumbs: [
             {
                 title: "Korona - hva gjelder i min situasjon?",
