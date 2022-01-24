@@ -7,6 +7,12 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
+  tokenx:
+    enabled: true
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
   liveness:
     path: "/min-ia/internal/isAlive"
     port: 8080

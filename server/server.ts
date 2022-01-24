@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
-import {initTokenX} from "./tokenx.js";
-import {initIdporten} from "./idporten.js"
+import {initTokenX} from "./tokenx";
+import {initIdporten} from "./idporten"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import 'dotenv/config'
