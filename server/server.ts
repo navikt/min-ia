@@ -9,7 +9,7 @@ import "dotenv/config";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const basePath = "";
+const basePath = "/min-ia";
 const buildPath =
   process.env.NODE_ENV === "development"
     ? path.resolve(__dirname, "../client/dist")
@@ -25,7 +25,7 @@ const startServer = async (html) => {
 
   await Promise.all([initIdporten(), initTokenX()]);
 
-  server.use(basePath, express.static(buildPath));
+  server.use(basePath+"/", express.static(buildPath));
   server.use("/assets", express.static(`${buildPath}/assets`));
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
