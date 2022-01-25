@@ -8,7 +8,6 @@
     "build": "tsc -p ."
   },
   "dependencies": {
-    "@navikt/nav-dekoratoren-moduler": "^1.6.9",
     "@types/node": "^17.0.8",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
