@@ -1,13 +1,10 @@
 import express from "express";
-import path from "path";
-import { initTokenX } from "./tokenx";
-import { initIdporten } from "./idporten"
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import path, {dirname} from "path";
+import {initTokenX} from "./tokenx";
+import {initIdporten} from "./idporten"
+import {fileURLToPath} from 'url';
 
 import 'dotenv/config'
-import {Params} from "@navikt/nav-dekoratoren-moduler";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,15 +20,6 @@ console.log("buildPath", buildPath);
 const server = express();
 const port = process.env.PORT || 8080;
 
-const proxyConfig = {
-    target: "https://www.nav.no/",
-    changeOrigin: true,
-    pathRewrite: (path) => {
-        return path.replace("http://localhost:8080/dekoratoren/", "https://www.nav.no/dekoratoren/");
-    },
-};
-const proxy = createProxyMiddleware("http://localhost:8080/dekoratoren/", proxyConfig);
-
 const startServer = async (html) => {
     console.log('Starting server: server.js');
 
@@ -40,7 +28,6 @@ const startServer = async (html) => {
     server.use(basePath, express.static(buildPath));
     server.use("/assets", express.static(`${buildPath}/assets`));
 
-    server.use(proxy);
 
     server.get(`${basePath}/redirect-til-login`, (request, response) => {
         const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
