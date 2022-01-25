@@ -1,9 +1,9 @@
 import express from "express";
-import path from "path";
-import {initTokenX} from "./tokenx";
-import {initIdporten} from "./idporten"
+import path, { dirname } from "path";
+import { initTokenX } from "./tokenx";
+import { initIdporten } from "./idporten"
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+
 import 'dotenv/config'
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +27,7 @@ const startServer = async (html) => {
 
     server.use(basePath, express.static(buildPath));
     server.use("/assets", express.static(`${buildPath}/assets`));
+
 
     server.get(`${basePath}/redirect-til-login`, (request, response) => {
         const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
@@ -57,5 +58,6 @@ const startServer = async (html) => {
         console.log("Server listening on port ", port)
     })
 }
+
 
 startServer("")
