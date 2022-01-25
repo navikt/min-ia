@@ -2,23 +2,31 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import {injectDecoratorClientSide, setBreadcrumbs} from '@navikt/nav-dekoratoren-moduler'
+import { injectDecoratorClientSide, setBreadcrumbs, setParams } from '@navikt/nav-dekoratoren-moduler'
 
 
 const init = async () => {
     await injectDecoratorClientSide({
-        env: import.meta.env.prod ? "prod" : "dev", // TODO: dobbelt teste i produksjon
+        env: import.meta.env.prod ? "prod" : "dev",
     });
 
-    setBreadcrumbs([{
-        title: "min side arbeidsgiver",
-        url: "https://arbeidsgiver.nav.no/min-side-arbeidsgiver",
-    },
+    setBreadcrumbs([
         {
-            title: "Forebygge sykefravær ", // TODO sjek tekst med Monica
+            title: "Min side arbeidsgiver",
+            url: "https://arbeidsgiver.nav.no/min-side-arbeidsgiver",
+        },
+        {
+            title: "Forebygge sykefravær ",
             url: "https://arbeidsgiver.nav.no/min-ia/"
         }
     ]);
+
+    setParams({
+        context: "arbeidsgiver",
+        simple: false,
+        chatbot: false,
+    });
+
     ReactDOM.render(
         <React.StrictMode>
             <App/>
