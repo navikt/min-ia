@@ -2,6 +2,7 @@
   "name": "server",
   "type": "module",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
     "start": "node --es-module-specifier-resolution=node build/server.js",
