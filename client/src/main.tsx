@@ -10,7 +10,7 @@ const init = async () => {
         env: import.meta.env.prod ? "prod" : "dev",
     });
 
-    setBreadcrumbs([
+    await setBreadcrumbs([
         {
             title: "Min side arbeidsgiver",
             url: "https://arbeidsgiver.nav.no/min-side-arbeidsgiver",
@@ -21,7 +21,7 @@ const init = async () => {
         }
     ]);
 
-    setParams({
+    await setParams({
         context: "arbeidsgiver",
         simple: false,
         chatbot: false,
@@ -34,4 +34,5 @@ const init = async () => {
         document.getElementById('root')
     )
 };
+
 init()

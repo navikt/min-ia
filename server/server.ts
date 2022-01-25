@@ -9,7 +9,7 @@ import "dotenv/config";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const basePath = "/min-ia";
+const basePath = "";
 const buildPath =
   process.env.NODE_ENV === "development"
     ? path.resolve(__dirname, "../client/dist")
