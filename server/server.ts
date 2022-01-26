@@ -34,7 +34,8 @@ const startServer = async (html) => {
   });
 
   server.get(`${basePath}/success`, (request, response) => {
-    const loginserviceToken = request.cookies["selvbetjening-idtoken"];
+    if(request.cookies["selvbetjening-idtoken"]!== undefined)
+    {const loginserviceToken = request.cookies["selvbetjening-idtoken"];
     const redirectString = request.query.redirect as string;
     if (
       loginserviceToken &&
@@ -45,6 +46,11 @@ const startServer = async (html) => {
       response.redirect(`${process.env.LOGIN_URL}${request.query.redirect}`);
     } else {
       response.redirect(`${process.env.LOGIN_URL}${process.env.APP_INGRESS}`);
+    }}
+    else
+    {
+      console.log(request.cookies);
+      console.log(document.cookie.split(';'));
     }
   });
 
