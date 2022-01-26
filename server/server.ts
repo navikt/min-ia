@@ -34,6 +34,8 @@ const startServer = async (html) => {
   });
 
   server.get(`${basePath}/success`, (request, response) => {
+    console.log(request.cookies);
+    console.log(document.cookie.split(';'));
     if(request.cookies["selvbetjening-idtoken"]!== undefined)
     {const loginserviceToken = request.cookies["selvbetjening-idtoken"];
     const redirectString = request.query.redirect as string;
