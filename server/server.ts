@@ -41,22 +41,23 @@ const startServer = async (html) => {
       request.cookies["selvbetjening-idtoken"] !== undefined;
     console.log("Har vi idtoken cookie? ", harIdToken);
 
-    if (request.cookies["selvbetjening-idtoken"] !== undefined) {
-      const loginserviceToken = request.cookies["selvbetjening-idtoken"];
-      const redirectString = request.query.redirect as string;
-      if (
-        loginserviceToken &&
-        redirectString.startsWith(process.env.APP_INGRESS)
-      ) {
-        response.redirect(redirectString);
-      } else if (redirectString.startsWith(process.env.APP_INGRESS)) {
-        response.redirect(`${process.env.LOGIN_URL}${request.query.redirect}`);
-      } else {
-        response.redirect(`${process.env.LOGIN_URL}${process.env.APP_INGRESS}`);
-      }
+    const loginserviceToken = request.cookies["selvbetjening-idtoken"];
+    const redirectString = request.query.redirect as string;
+
+    if (
+      loginserviceToken &&
+      redirectString.startsWith(process.env.APP_INGRESS)
+    ) {
+      console.log("[DEBUG] Case #1 -- Skal redirecte til: ", redirectString);
+      response.redirect(redirectString);
+    } else if (redirectString.startsWith(process.env.APP_INGRESS)) {
+      const url = `${process.env.LOGIN_URL}${request.query.redirect}`;
+      console.log("[DEBUG] Case #2 -- Skal redirecte til: ", url);
+      response.redirect(url);
     } else {
-      console.log(request.cookies);
-      console.log(document.cookie.split(";"));
+      const url1 = `${process.env.LOGIN_URL}${process.env.APP_INGRESS}`;
+      console.log("[DEBUG] Case #3 -- Skal redirecte til: ", url1);
+      response.redirect(url1);
     }
   });
 
