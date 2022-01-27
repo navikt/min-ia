@@ -3,8 +3,7 @@ import path, { dirname } from "path";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import { fileURLToPath } from "url";
-import { cookieParser } from "cookie-parser";
-
+import cookieParser from "cookie-parser";
 import "dotenv/config";
 
 const __filename = fileURLToPath(import.meta.url);
