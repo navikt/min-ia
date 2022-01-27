@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/node": "^17.0.8",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "jose": "^4.3.8",
