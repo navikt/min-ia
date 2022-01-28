@@ -18,7 +18,7 @@ console.log("NODE_ENV", process.env.NODE_ENV);
 console.log("buildPath", buildPath);
 
 const server = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3010;
 
 const startServer = async (html) => {
   server.use(cookieParser());
@@ -68,6 +68,10 @@ const startServer = async (html) => {
   server.get(`${basePath}/internal/isReady`, (request, response) => {
     response.sendStatus(200);
   });
+
+  server.get(`${basePath}/api/organisasjoner`, (request, response) => {
+    // TODO (din tur thomas)
+  })
 
   server.listen(port, () => {
     console.log("Server listening on port ", port);
