@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev": "REACT_APP_MOCK=true vite",
     "build": "vite build --base=min-ia/",
     "preview": "vite preview --port 3000",
     "lint": "eslint ."
@@ -25,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
     "eslint-plugin-react": "^7.28.0",
+    "fetch-mock": "^9.11.0",
     "less": "^4.1.2",
     "prettier": "^2.5.1"
   }
