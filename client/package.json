@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "REACT_APP_MOCK=true vite",
-    "build": "vite build --base=min-ia/",
+    "build": "vite build --base=/min-ia/",
     "preview": "vite preview --port 3000",
     "lint": "eslint ."
   },

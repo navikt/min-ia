@@ -5,6 +5,7 @@ import fetchMock, {
   MockResponse,
   MockResponseFunction,
 } from "fetch-mock";
+
 import { AltinnOrganisasjon } from "../api/altinnorganisasjon-api";
 
 let delayfaktor = 0;
@@ -45,8 +46,11 @@ const mockGetAndLog = (
   return fetchMock.get(matcher, responseFunction, options);
 };
 
-mockGetAndLog("/min-ia/api/organisasjoner", fleskOgFisk, {
-  delay: 1000 * delayfaktor,
-});
+export const startMock = () => {
+  (window as any).global = window;
+  mockGetAndLog("/min-ia/api/organisasjoner", fleskOgFisk, {
+    delay: 1000 * delayfaktor,
+  });
 
-fetchMock.spy();
+  fetchMock.spy();
+};
