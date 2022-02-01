@@ -1,11 +1,11 @@
 import express from "express";
-import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import path, { dirname } from "path";
 import { exchangeToken, initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
+import { backendApiProxy } from "./backendApiProxy";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,19 +26,35 @@ const envProperties = {
   PORT: process.env.PORT || 3010,
 };
 
-const BASE_PATH = "/min-ia";
-const FRONTEND_API_PATH = BASE_PATH + "/api";
-const BACKEND_API_BASE_URL = `${envProperties.BACKEND_API_BASE_URL}`;
-const BACKEND_API_PATH = "/sykefravarsstatistikk-api";
-
 const startServer = async () => {
   server.use(cookieParser());
   console.log("Starting server: server.js");
 
-  await Promise.all([initIdporten(), initTokenX()]);
+  if (process.env.NODE_ENV === "not-local") {
+    await Promise.all([initIdporten(), initTokenX()]);
+  }
 
   server.use(basePath + "/", express.static(buildPath));
   server.use("/assets", express.static(`${buildPath}/assets`));
+
+  if (process.env.NODE_ENV === "not-local") {
+    server.use(backendApiProxy);
+  } else {
+    console.log("========================================");
+    console.log("========== Mock Backend API ============");
+    console.log("===DETTE SKAL DU IKKE SE I PRODUKSJON===");
+    console.log("========================================");
+    server.get(`${basePath}/api/organisasjoner`, (request, response) => {
+      response.send({
+        Name: "FLESK OG FISK AS",
+        Type: "Enterprise",
+        OrganizationNumber: "111111111",
+        OrganizationForm: "AS",
+        Status: "Active",
+        ParentOrganizationNumber: "",
+      });
+    });
+  }
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
     const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
@@ -79,32 +95,6 @@ const startServer = async () => {
   server.get(`${basePath}/internal/isReady`, (request, response) => {
     response.sendStatus(200);
   });
-
-  const proxyOptions: Options = {
-    target: BACKEND_API_BASE_URL,
-    changeOrigin: true,
-    pathRewrite: (path) => {
-      return path.replace(FRONTEND_API_PATH, BACKEND_API_PATH);
-    },
-    router: async (req) => {
-      if (process.env.NODE_ENV === "labs-gcp") {
-        // I labs så returnerer vi mock uansett
-        return undefined;
-      }
-      const tokenSet = await exchangeToken(req);
-      if (!tokenSet?.expired() && tokenSet?.access_token) {
-        req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
-      }
-      return undefined;
-    },
-    secure: true,
-    xfwd: true,
-    logLevel: "debug",
-  };
-
-  const proxy = createProxyMiddleware(FRONTEND_API_PATH, proxyOptions);
-
-  server.use(proxy);
 
   server.listen(envProperties.PORT, () => {
     console.log("Server listening on port ", envProperties.PORT);
