@@ -8,6 +8,7 @@ import {
   setParams,
 } from "@navikt/nav-dekoratoren-moduler";
 import { startMock } from "./mock/mock";
+import fetch from "node-fetch";
 
 const init = async () => {
   // TODO: ikke start i dev/prod
