@@ -12,7 +12,6 @@ function App() {
   const restAltinnOrganisasjoner = useAltinnOrganisasjoner();
 
   let innhold;
-  console.log("RestStatus er: ", restAltinnOrganisasjoner.status);
   if (restAltinnOrganisasjoner.status === RestStatus.Suksess) {
     innhold = <Forside />;
   } else {
