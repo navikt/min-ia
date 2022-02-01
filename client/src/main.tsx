@@ -7,13 +7,8 @@ import {
   setBreadcrumbs,
   setParams,
 } from "@navikt/nav-dekoratoren-moduler";
-import { startMock } from "./mock/mock";
-import fetch from "node-fetch";
 
 const init = async () => {
-  // TODO: ikke start i dev/prod
-  startMock();
-
   await injectDecoratorClientSide({
     env: import.meta.env.prod ? "prod" : "dev",
   });

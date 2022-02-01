@@ -1,19 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { viteCommonjs } from "@originjs/vite-plugin-commonjs";
-import { esbuildCommonjs } from "@originjs/vite-plugin-commonjs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), viteCommonjs()],
+  plugins: [react()],
   server: {
     host: true,
-  },
-
-  optimizeDeps: {
-    esbuildOptions: {
-      plugins: [esbuildCommonjs(["fetch-mock", "node-fetch"])],
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
     },
-    include: ["encoding"],
   },
 });
