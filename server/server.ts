@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
+import { backendApiProxyMock } from "./backendApiProxyMock";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -40,20 +41,7 @@ const startServer = async () => {
   if (process.env.NODE_ENV === "not-local") {
     server.use(backendApiProxy);
   } else {
-    console.log("========================================");
-    console.log("========== Mock Backend API ============");
-    console.log("===DETTE SKAL DU IKKE SE I PRODUKSJON===");
-    console.log("========================================");
-    server.get(`${basePath}/api/organisasjoner`, (request, response) => {
-      response.send({
-        Name: "FLESK OG FISK AS",
-        Type: "Enterprise",
-        OrganizationNumber: "111111111",
-        OrganizationForm: "AS",
-        Status: "Active",
-        ParentOrganizationNumber: "",
-      });
-    });
+    backendApiProxyMock(server);
   }
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
