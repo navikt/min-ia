@@ -55,3 +55,16 @@ jobs:
           "APIKEY": "${{ secrets.NAIS_DEPLOY_APIKEY }}"
           "CLUSTER": "dev-gcp"
           "RESOURCE": ".nais/dev.yaml"
+
+  "deployAppToLabs":
+    name: "Deploy app to labs"
+    needs: "build"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v2"
+      - name: "Deploy to DEV"
+        uses: "nais/deploy/actions/deploy@v1"
+        env:
+          "APIKEY": "${{ secrets.NAIS_DEPLOY_APIKEY }}"
+          "CLUSTER": "labs-gcp"
+          "RESOURCE": ".nais/labs.yaml"
