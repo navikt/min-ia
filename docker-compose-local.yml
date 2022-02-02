@@ -10,9 +10,9 @@ services:
     volumes: # For hot reloading av server-ressurser
       - ./server:/home/node/app/server/
     expose:
-      - 8080
+      - 3010
     ports:
-      - "8080:8080"
+      - "3010:3010"
 
   frontend:
     build:

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build --base=min-ia/",
+    "dev": "REACT_APP_MOCK=true vite",
+    "build": "vite build --base=/min-ia/",
     "preview": "vite preview --port 3000",
     "lint": "eslint ."
   },

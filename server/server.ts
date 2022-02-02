@@ -1,10 +1,12 @@
 import express from "express";
-import path, { dirname } from "path";
-import { initTokenX } from "./tokenx";
-import { initIdporten } from "./idporten";
-import { fileURLToPath } from "url";
+import path, {dirname} from "path";
+import {initTokenX} from "./tokenx";
+import {initIdporten} from "./idporten";
+import {fileURLToPath} from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
+import {backendApiProxy} from "./backendApiProxy";
+import {backendApiProxyMock} from "./backendApiProxyMock";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,16 +20,29 @@ console.log("NODE_ENV", process.env.NODE_ENV);
 console.log("buildPath", buildPath);
 
 const server = express();
-const port = process.env.PORT || 8080;
 
-const startServer = async (html) => {
+const envProperties = {
+  BACKEND_API_BASE_URL:
+    process.env.BACKEND_API_BASE_URL || "http://localhost:8080",
+  PORT: process.env.PORT || 3010,
+};
+
+const startServer = async () => {
   server.use(cookieParser());
   console.log("Starting server: server.js");
 
-  await Promise.all([initIdporten(), initTokenX()]);
+  if (process.env.NODE_ENV === "not-local") {
+    await Promise.all([initIdporten(), initTokenX()]);
+  }
 
   server.use(basePath + "/", express.static(buildPath));
   server.use("/assets", express.static(`${buildPath}/assets`));
+
+  if (process.env.NODE_ENV === "not-local") {
+    server.use(backendApiProxy);
+  } else {
+    backendApiProxyMock(server);
+  }
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
     const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
@@ -69,9 +84,9 @@ const startServer = async (html) => {
     response.sendStatus(200);
   });
 
-  server.listen(port, () => {
-    console.log("Server listening on port ", port);
+  server.listen(envProperties.PORT, () => {
+    console.log("Server listening on port ", envProperties.PORT);
   });
 };
 
-startServer("");
+startServer();

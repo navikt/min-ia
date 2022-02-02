@@ -13,7 +13,7 @@ Landingsside for selvbetjente IA-tjenester
 - Naviger til `/server` og oppdater avhengigheter: `yarn`
 - Rename filen `.env.example` -> `.env`
 - Kjør opp applikasjon: `yarn run dev`
-- Åpna allikasjonen på `http://localhost:8080/min-ia/`
+- Åpna allikasjonen på `http://localhost:3010/min-ia/`
 
 # TODO: Finne en måte å få hot-reload på både client og server :)
 
