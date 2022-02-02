@@ -7,6 +7,7 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
+  port: 3010
   env:
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
@@ -14,12 +15,10 @@ spec:
       value: labs
   liveness:
     path: /min-ia/internal/isAlive
-    port: 8080
     initialDelay: 20
     timeout: 60
   readiness:
     path: /min-ia/internal/isReady
-    port: 8080
     initialDelay: 20
     timeout: 60
   replicas:
