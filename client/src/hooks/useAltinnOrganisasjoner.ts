@@ -11,9 +11,9 @@ export function useAltinnOrganisasjoner() {
       status: RestStatus.LasterInn,
     });
 
-  const BACKEND_API_BASE_URL = "/min-ia";
+  const API_BASE_URL = "/min-ia/api";
   useEffect(() => {
-    hentAltinnOrganisasjoner(`${BACKEND_API_BASE_URL}/api/organisasjoner`).then(
+    hentAltinnOrganisasjoner(`${API_BASE_URL}/organisasjoner`).then(
       setRestAltinnOrganisasjoner
     );
   }, []);

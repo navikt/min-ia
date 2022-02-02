@@ -1,12 +1,12 @@
 import express from "express";
-import path, { dirname } from "path";
-import { exchangeToken, initTokenX } from "./tokenx";
-import { initIdporten } from "./idporten";
-import { fileURLToPath } from "url";
+import path, {dirname} from "path";
+import {initTokenX} from "./tokenx";
+import {initIdporten} from "./idporten";
+import {fileURLToPath} from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import { backendApiProxy } from "./backendApiProxy";
-import { backendApiProxyMock } from "./backendApiProxyMock";
+import {backendApiProxy} from "./backendApiProxy";
+import {backendApiProxyMock} from "./backendApiProxyMock";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
