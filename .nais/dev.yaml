@@ -7,6 +7,7 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
+  port: 3010
   env:
     - name: SYKEFRAVARSSTATISTIKK_API_BASE_URL
       value: https://sykefravarsstatistikk-api.dev-fss-pub.nais.io
@@ -28,12 +29,10 @@ spec:
       enabled: true
   liveness:
     path: /min-ia/internal/isAlive
-    port: 8080
     initialDelay: 20
     timeout: 60
   readiness:
     path: /min-ia/internal/isReady
-    port: 8080
     initialDelay: 20
     timeout: 60
   replicas:
