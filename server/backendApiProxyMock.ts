@@ -1,4 +1,4 @@
-import {BASE_PATH} from "./backendApiProxy";
+import { BASE_PATH } from "./backendApiProxy";
 
 export const backendApiProxyMock = (app) => {
   console.log("========================================");
@@ -7,13 +7,23 @@ export const backendApiProxyMock = (app) => {
   console.log("========================================");
 
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
-    response.send({
-      Name: "FLESK OG FISK AS",
-      Type: "Enterprise",
-      OrganizationNumber: "111111111",
-      OrganizationForm: "AS",
-      Status: "Active",
-      ParentOrganizationNumber: "",
-    });
+    response.send([
+      {
+        Name: "FLESK OG FISK AS",
+        Type: "Enterprise",
+        OrganizationNumber: "111111111",
+        OrganizationForm: "AS",
+        Status: "Active",
+        ParentOrganizationNumber: "",
+      },
+      {
+        Name: "FLESK OG FISK OSLO",
+        Type: "Business",
+        OrganizationNumber: "910969439",
+        OrganizationForm: "BEDR",
+        Status: "Active",
+        ParentOrganizationNumber: "111111111",
+      },
+    ]);
   });
 };
