@@ -9,11 +9,12 @@ COPY client client
 
 WORKDIR /home/node/app/client
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
-FROM base as production
-
-RUN yarn run build
+##
+##FROM base as production
+##
+##RUN yarn run build
 
 FROM base as dev
 

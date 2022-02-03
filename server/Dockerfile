@@ -10,13 +10,14 @@ COPY client client
 
 WORKDIR /home/node/app/server
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
+## 'production' gjelder både dev og prod miljø
 FROM base as production
 
 WORKDIR /home/node/app/client
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 RUN yarn run build
 
@@ -26,6 +27,7 @@ RUN yarn run build
 
 ENTRYPOINT ["yarn", "run", "start"]
 
+## 'dev' er lokalt
 FROM base as dev
 
 CMD ["yarn", "run", "dev"]
