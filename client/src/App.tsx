@@ -20,9 +20,10 @@ function App() {
         innhold = <Innloggingsside redirectUrl={window.location.href}/>;
     }
     return <div className="App">
-            {<Banner tittel={"min-ia"} restOrganisasjoner={restAltinnOrganisasjoner}/>}
+        {<Banner tittel={"Forebygge sykefravær"} restOrganisasjoner={restAltinnOrganisasjoner}/>}
         <Route path={'/'}>
-            {innhold}</Route>
+            {innhold}
+        </Route>
     </div>;
 }
 
