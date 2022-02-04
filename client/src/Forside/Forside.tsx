@@ -1,10 +1,12 @@
 import {useAltinnOrganisasjoner} from "../hooks/useAltinnOrganisasjoner";
 import {RestStatus} from "../api/rest-status";
+import {sendSidevisningEvent} from "../amplitude/events";
 
 
 export const Forside = () => {
 
     const altinnOrganisasjoner = useAltinnOrganisasjoner();
+    sendSidevisningEvent()
 
 
     return (

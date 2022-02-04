@@ -7,6 +7,7 @@ import {
   setBreadcrumbs,
   setParams,
 } from "@navikt/nav-dekoratoren-moduler";
+import {navDefaultAmplitudeClient} from "./amplitude/client";
 
 const init = async () => {
   await injectDecoratorClientSide({
@@ -32,7 +33,7 @@ const init = async () => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <App amplitudeClient={navDefaultAmplitudeClient} />
     </React.StrictMode>,
     document.getElementById("root")
   );
