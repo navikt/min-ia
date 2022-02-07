@@ -5,7 +5,6 @@ import styles from "./forside.module.scss";
 
 export const Forside = () => {
   const altinnOrganisasjoner = useAltinnOrganisasjoner();
-    console.log("Forside skal kalle sidevisningevent")
     sendSidevisningEvent()
 
   return (
