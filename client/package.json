@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "REACT_APP_MOCK=true vite",
+    "dev": "yarn lint && REACT_APP_MOCK=true vite",
     "build": "vite build --base=/min-ia/",
     "preview": "vite preview --port 3000",
     "lint": "eslint ."
@@ -16,6 +16,7 @@
     "@vitejs/plugin-react": "^1.1.4",
     "amplitude-js": "^8.16.1",
     "eslint": "^8.6.0",
+    "nav-frontend-core": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.1",
@@ -30,6 +31,7 @@
     "@typescript-eslint/parser": "^5.9.1",
     "eslint-plugin-react": "^7.28.0",
     "less": "^4.1.2",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "sass": "^1.49.7"
   }
 }

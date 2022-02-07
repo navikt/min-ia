@@ -8,6 +8,7 @@ import {
   setParams,
 } from "@navikt/nav-dekoratoren-moduler";
 import {navDefaultAmplitudeClient} from "./amplitude/client";
+import {BrowserRouter} from "react-router-dom";
 
 const init = async () => {
   await injectDecoratorClientSide({
@@ -32,9 +33,9 @@ const init = async () => {
   });
 
   ReactDOM.render(
-    <React.StrictMode>
+    <BrowserRouter basename={'/min-ia'}>
       <App amplitudeClient={navDefaultAmplitudeClient} />
-    </React.StrictMode>,
+    </BrowserRouter>,
     document.getElementById("root")
   );
 };
