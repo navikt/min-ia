@@ -5,7 +5,6 @@ import {useAltinnOrganisasjoner} from "./hooks/useAltinnOrganisasjoner";
 import {Forside} from "./Forside/Forside";
 import {RestStatus} from "./api/rest-status";
 import Banner from "./Banner/Banner";
-import {Route} from "react-router-dom";
 import {AmplitudeClient} from "./amplitude/client";
 import {useAmplitude} from "./amplitude/useAmplitude";
 import {sendSidevisningEvent} from "./amplitude/events";
@@ -31,9 +30,9 @@ export const App: FunctionComponent<Props> = ({amplitudeClient}) => {
         innhold = <Innloggingsside redirectUrl={window.location.href}/>;
     }
     return <div className="App">
-        {<Banner tittel={"min-ia"} restOrganisasjoner={restAltinnOrganisasjoner}/>}
-        <Route path={'/'}>
-            {innhold}</Route>
+        {/*<Banner tittel={"min-ia"} restOrganisasjoner={restAltinnOrganisasjoner}/>*/}
+
+        {innhold}
     </div>;
 }
 
