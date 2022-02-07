@@ -6,7 +6,6 @@ import {sendSidevisningEvent} from "../amplitude/events";
 export const Forside = () => {
 
     const altinnOrganisasjoner = useAltinnOrganisasjoner();
-    console.log("Forside skal kalle sidevisningevent")
     sendSidevisningEvent()
 
 
