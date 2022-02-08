@@ -21,6 +21,8 @@ spec:
       value: "dev-fss:arbeidsgiver:sykefravarsstatistikk-api"
     - name: APP_INGRESS
       value: https://min-ia.dev.nav.no/min-ia
+    - name: DECORATOR_URL
+      value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
   tokenx:
     enabled: true
   idporten:

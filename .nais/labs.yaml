@@ -13,6 +13,8 @@ spec:
       value: /etc/ssl/ca-bundle.pem
     - name: NODE_ENV
       value: labs
+    - name: DECORATOR_URL
+      value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
   liveness:
     path: /min-ia/internal/isAlive
     initialDelay: 20
