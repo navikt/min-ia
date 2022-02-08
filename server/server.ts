@@ -1,12 +1,12 @@
 import express from "express";
-import path, {dirname} from "path";
-import {initTokenX} from "./tokenx";
-import {initIdporten} from "./idporten";
-import {fileURLToPath} from "url";
+import path, { dirname } from "path";
+import { initTokenX } from "./tokenx";
+import { initIdporten } from "./idporten";
+import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import {backendApiProxy} from "./backendApiProxy";
-import {backendApiProxyMock} from "./backendApiProxyMock";
+import { backendApiProxy } from "./backendApiProxy";
+import { backendApiProxyMock } from "./backendApiProxyMock";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,8 +14,8 @@ const __dirname = dirname(__filename);
 const basePath = "/min-ia";
 const buildPath =
   process.env.NODE_ENV === "development"
-    ? path.resolve(__dirname, "../client/dist")
-    : path.resolve(__dirname, "../../client/dist");
+    ? path.resolve(__dirname, "../client/out")
+    : path.resolve(__dirname, "../../client/out");
 console.log("NODE_ENV", process.env.NODE_ENV);
 console.log("buildPath", buildPath);
 
