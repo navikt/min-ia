@@ -6,7 +6,8 @@
     "dev": "yarn lint && next dev",
     "start": "next start",
     "build": "next build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "export": "next export"
   },
   "dependencies": {
     "@navikt/bedriftsmeny": "^3.5.2",
