@@ -1,9 +1,11 @@
-import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
-import { RestStatus } from "../api/rest-status";
+import {useAltinnOrganisasjoner} from "../hooks/useAltinnOrganisasjoner";
+import {RestStatus} from "../api/rest-status";
+import {sendSidevisningEvent} from "../amplitude/events";
 import styles from "./forside.module.scss";
 
 export const Forside = () => {
   const altinnOrganisasjoner = useAltinnOrganisasjoner();
+    sendSidevisningEvent()
 
   return (
     <div className={styles.forside}>

@@ -14,6 +14,7 @@
     "@navikt/ds-react": "^0.14.11",
     "@navikt/nav-dekoratoren-moduler": "^1.6.9",
     "@vitejs/plugin-react": "^1.1.4",
+    "amplitude-js": "^8.16.1",
     "eslint": "^8.6.0",
     "nav-frontend-core": "^6.0.1",
     "react": "^17.0.2",

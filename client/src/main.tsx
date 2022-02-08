@@ -7,6 +7,7 @@ import {
   setBreadcrumbs,
   setParams,
 } from "@navikt/nav-dekoratoren-moduler";
+import {navDefaultAmplitudeClient} from "./amplitude/client";
 import {BrowserRouter} from "react-router-dom";
 
 const init = async () => {
@@ -33,7 +34,7 @@ const init = async () => {
 
   ReactDOM.render(
     <BrowserRouter basename={'/min-ia'}>
-      <App />
+      <App amplitudeClient={navDefaultAmplitudeClient} />
     </BrowserRouter>,
     document.getElementById("root")
   );
