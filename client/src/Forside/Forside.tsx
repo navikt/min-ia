@@ -4,7 +4,7 @@ import { sendSidevisningEvent } from "../amplitude/events";
 import styles from "./forside.module.scss";
 import Banner from "../Banner/Banner";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
-import { Route } from "react-router";
+import {Route, Switch} from "react-router";
 
 export const Forside = () => {
   const altinnOrganisasjoner = useAltinnOrganisasjoner();
@@ -24,16 +24,17 @@ export const Forside = () => {
   }
   return (
     <>
+     <Switch> <Route><Banner
+          tittel={"Forebygge sykefravær"}
+          restOrganisasjoner={restAltinnOrganisasjoner}
+      /></Route>
       <Route>
         <div className="App">
-          Here's the banner
-          <Banner
-            tittel={"Forebygge sykefravær"}
-            restOrganisasjoner={restAltinnOrganisasjoner}
-          />
+          Heres the banner
           {innhold}
         </div>
       </Route>
+     </Switch>
     </>
   );
 
