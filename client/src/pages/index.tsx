@@ -1,9 +1,7 @@
 import Head from "next/head";
 import { getPageProps, PageProps } from "../pageProps";
 import { Layout } from "../komponenter/Layout/Layout";
-import { DumKomponent } from "../komponenter/DumKomponent";
 import { Forside } from "../Forside/Forside";
-import {Switch} from "react-router";
 
 const Home = (props: { page: PageProps }) => {
   return (

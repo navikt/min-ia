@@ -1,13 +1,12 @@
-import { PageBanner } from "../PageBanner/PageBanner";
 import { DecoratorHeader } from "../decorator/DecoratorHeader";
 import { DecoratorFooter } from "../decorator/DecoratorFooter";
 import Head from "next/head";
 import { DecoratorParts } from "../../utils/dekorator";
 import { DecoratorEnv } from "../decorator/DecoratorEnv";
 import React, { useRef } from "react";
-import { SCREEN_SM_MIN } from "../../utils/konstanter";
-import { PageBannerSVG } from "../PageBanner/PageBannerSVG";
-import classNames from "classnames";
+import Banner from "../../Banner/Banner";
+import { Route, Switch } from "react-router";
+import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
 
 export const Layout = (props: {
   title: string;
@@ -32,6 +31,8 @@ export const Layout = (props: {
     );
   });
 
+  const restAltinnOrganisasjoner = useAltinnOrganisasjoner();
+
   return (
     <div>
       <Head>{headerLinks}</Head>
@@ -43,19 +44,18 @@ export const Layout = (props: {
         }
       />
       <div id="app" className="app">
-        <PageBanner
-          isFrontPage={true}
-          title={props.title}
-          iconUrl={props.bannerIconUrl === undefined ? "" : props.bannerIconUrl}
-          kontekst={"Min IA pageBanner"}
-        />
+        <Switch>
+          {" "}
+          <Route>
+            <Banner
+              tittel={"Forebygge sykefravær"}
+              restOrganisasjoner={restAltinnOrganisasjoner}
+            />
+          </Route>
+        </Switch>
+
         <div>
-          <div ref={layoutContentRef}>
-            <div>
-              <PageBannerSVG />
-            </div>
-            {props.children}
-          </div>
+          <div ref={layoutContentRef}>{props.children}</div>
         </div>
       </div>
       <DecoratorFooter
