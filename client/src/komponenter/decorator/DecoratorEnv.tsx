@@ -18,7 +18,7 @@ export const DecoratorEnv = (props: { env?: { dataSrc: string; scriptUrl: string
 
             document.body.removeChild(script);
         };
-    }, []);
+    }, [props.env?.scriptUrl]);
 
     return (
         <div id="scripts">

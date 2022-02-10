@@ -1,21 +1,10 @@
-import {useAltinnOrganisasjoner} from "../hooks/useAltinnOrganisasjoner";
-import {RestStatus} from "../api/rest-status";
-import {sendSidevisningEvent} from "../amplitude/events";
 import styles from "./forside.module.scss";
+import { Heading } from "@navikt/ds-react";
 
 export const Forside = () => {
-  const altinnOrganisasjoner = useAltinnOrganisasjoner();
-    sendSidevisningEvent()
-
   return (
     <div className={styles.forside}>
-      <p>
-        Welcome to Min-IA, Du har tilgang til{" "}
-        {altinnOrganisasjoner.status === RestStatus.Suksess
-          ? altinnOrganisasjoner.data?.length
-          : 0}
-        organisasjoner{}
-      </p>
+      <Heading size={"small"}>Welkommen til Forsiden!</Heading>
     </div>
   );
 };

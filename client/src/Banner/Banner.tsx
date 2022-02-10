@@ -22,15 +22,17 @@ const Banner: React.FunctionComponent<Props & RouteComponentProps> = (
       ? restOrganisasjoner.data
       : [];
   return (
-    <Bedriftsmeny
-      organisasjoner={altinnOrganisasjoner}
-      sidetittel={tittel}
-      history={history}
-      onOrganisasjonChange={() => {
-        // TODO: sett amplitude
-        return;
-      }}
-    />
+    <div>
+      <Bedriftsmeny
+        organisasjoner={altinnOrganisasjoner}
+        sidetittel={tittel}
+        history={history}
+        onOrganisasjonChange={() => {
+          // TODO: sett amplitude
+          return;
+        }}
+      />
+    </div>
   );
 };
 

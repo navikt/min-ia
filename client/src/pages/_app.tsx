@@ -1,8 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import {BrowserRouter, Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+    const history = createMemoryHistory();
+
+    return (
+    <Router history={history}>
+      <Component {...pageProps} />
+    </Router>
+  );
 }
 
-export default MyApp
+export default MyApp;
