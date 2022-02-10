@@ -2,6 +2,7 @@ import React from "react";
 import illustrasjonSvg from "./statistikk-ikon.svg";
 //import './Innloggingsside.less';
 import "@navikt/ds-css";
+import Image from 'next/image'
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";
 
 interface Props {
@@ -18,7 +19,7 @@ export const Innloggingsside: React.FunctionComponent<Props> = ({
   return (
     <div className="innloggingsside__wrapper">
       <div className="innloggingsside">
-        <img
+        <Image
           src={illustrasjonSvg}
           className="innloggingsside__illustrasjon"
           alt=""
