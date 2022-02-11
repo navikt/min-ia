@@ -97,6 +97,55 @@ export const Forside = () => {
             </div>
           </LinkPanel>
         </div>
+
+        <LinkPanel className={styles.panelRow} href="#">
+          <div
+            style={{
+              display: "grid",
+              gridAutoFlow: "row",
+              gap: "var(--navds-spacing-8)",
+              alignItems: "center",
+            }}
+          >
+            <div className={styles.ikonOgTekstWrapper}>
+              <DummyIkonSVG className={styles.ikon} />
+
+              <div>
+                <LinkPanel.Title>
+                  Har du utfordringer med høyt korttidsfravær i din virksomhet?
+                </LinkPanel.Title>
+                <LinkPanel.Description>
+                  Har du utfordringer med høyt korttidsfravær i din virksomhet?
+                </LinkPanel.Description>
+              </div>
+            </div>
+          </div>
+        </LinkPanel>
+        <LinkPanel className={styles.panelRow} href="#">
+          <div
+            style={{
+              display: "grid",
+              gridAutoFlow: "row",
+              gap: "var(--navds-spacing-8)",
+              alignItems: "center",
+            }}
+          >
+            <div className={styles.ikonOgTekstWrapper}>
+              <DummyIkonSVG className={styles.ikon} />
+
+              <div>
+                <LinkPanel.Title>
+                  Er du på leting etter gode verktøy innen inkluderende
+                  arbeidsliv?
+                </LinkPanel.Title>
+                <LinkPanel.Description>
+                  På arbeidsmiljøportalen.no finner du skreddersydde verktøy for
+                  alle bransjer!
+                </LinkPanel.Description>
+              </div>
+            </div>
+          </div>
+        </LinkPanel>
       </div>
     </div>
   );
