@@ -1,11 +1,12 @@
 
 .forside {
-  background-color: var(--navds-global-color-gray-400);
-  border-bottom: 0.2rem solid var(--navds-global-color-blue-600);
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+
 
 
   .ikonOgTekstWrapper {
@@ -24,6 +25,8 @@
     margin: 2rem;
     min-width: 8rem;
     width: 32rem;
+    height: 12rem;
+    min-height: 12rem;
   }
 
   .panelRow {
