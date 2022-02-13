@@ -823,10 +823,15 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-jose@^4.1.4, jose@^4.3.8:
+jose@^4.1.4:
   version "4.3.8"
   resolved "https://registry.yarnpkg.com/jose/-/jose-4.3.8.tgz#149cb6a318689d5dbf469b40ac48c3f82276f4e6"
   integrity sha512-dFiqN5FPLNWa/v+J3ShFjV/9sRGickxMbGUbqBrYr+BkrqLOieACaavSi9XmLJXe0Uzd7Cgs1oYtDvDrOyWLgw==
+
+jose@^4.3.9:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-4.5.0.tgz#92829d8cf846351eb55aaaf94f252fb1d191f2d5"
+  integrity sha512-GFcVFQwYQKbQTUOo2JlpFGXTkgBw26uzDsRMD2q1WgSKNSnpKS9Ug7bdQ8dS+p4sZHNH6iRPu6WK2jLIjspaMA==
 
 json-buffer@3.0.0:
   version "3.0.0"
