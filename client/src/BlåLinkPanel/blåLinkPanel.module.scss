@@ -1,0 +1,17 @@
+.panel {
+  max-width: 28rem;
+  height: 12rem;
+  min-height: 12rem;
+}
+
+.ikonOgTekstWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ikon {
+  height: 6rem;
+  width: 6rem;
+  margin-right: 1.5rem;
+}
