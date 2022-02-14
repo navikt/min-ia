@@ -1,19 +1,15 @@
 .panel {
   width: 28rem;
-  //height: 12rem;
-  //min-height: 12rem;
-  background-color: blue;
   display: flex;
   flex-direction: row;
-  padding: 0;
+  padding: 0 1rem 0 0;
   margin: 0;
 }
 
 .ikonOgTekstWrapper {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  background-color: crimson;
+  flex-direction: row; // todo design mobile-first --> column
+  align-items: center;
   height: 12rem;
   min-height: 10rem;
   min-width: 20rem;
@@ -21,11 +17,18 @@
 
 .ikon {
   height: 100%;
-  width: 10rem;
   padding-left: 1rem;
   padding-right: 1rem;
   margin-right: 1.5rem;
   display: flex;
   align-items: center;
-  background-color: darkviolet;
+  background-color: var(--navds-global-color-blue-100);
+}
+
+// Stor skjerm
+@media (min-width: 992px) {
+  .ikonOgTekstWrapper {
+    display: flex;
+    flex-direction: row;
+  }
 }

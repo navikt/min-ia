@@ -1,50 +1,18 @@
 export const StatistikkIkonSVG = (props: { className?: string }) => {
   return (
     <svg
-      className={props.className}
-      width="80px"
-      height="80px"
-      viewBox="0 0 80 80"
-      version="1.1"
+      width="40"
+      height="40"
+      viewBox="0 0 40 40"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <title>statistikk-ikon</title>
-      <desc>Created with Sketch.</desc>
-      <g
-        id="statistikk-ikon"
-        stroke="none"
-        strokeWidth="1"
-        fill="none"
+      <path
         fillRule="evenodd"
-      >
-        <circle id="Oval" fill="#CCE1F3" cx="40" cy="40" r="40"></circle>
-        <g id="Group" transform="translate(23.000000, 14.000000)">
-          <rect
-            id="Rectangle"
-            fill="#561D5B"
-            x="0"
-            y="0"
-            width="8"
-            height="50"
-          ></rect>
-          <rect
-            id="Rectangle-Copy"
-            fill="#97AB48"
-            x="13"
-            y="26"
-            width="8"
-            height="24"
-          ></rect>
-          <rect
-            id="Rectangle-Copy-2"
-            fill="#0C576F"
-            x="26"
-            y="18"
-            width="8"
-            height="32"
-          ></rect>
-        </g>
-      </g>
+        clipRule="evenodd"
+        d="M18.3333 3.33333V36.6667H21.6667V3.33333H18.3333ZM15 1.66667V36.6667H11.6667V21.6667C11.6667 20.7462 10.9205 20 10 20H3.33333C2.41286 20 1.66667 20.7462 1.66667 21.6667V36.6667H0V40H1.66667H11.6667H15H25H28.3333H38.3333H40V36.6667H38.3333V11.6667C38.3333 10.7462 37.5871 10 36.6667 10H30C29.0795 10 28.3333 10.7462 28.3333 11.6667V36.6667H25V1.66667C25 0.746192 24.2538 0 23.3333 0H16.6667C15.7462 0 15 0.746193 15 1.66667ZM31.6667 36.6667H35V13.3333H31.6667V36.6667ZM5 36.6667V23.3333H8.33333V36.6667H5Z"
+        fill="#262626"
+      />
     </svg>
   );
 };

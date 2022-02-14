@@ -4,6 +4,8 @@ import { StatistikkIkonSVG } from "./StatistikkIkonSVG";
 import { SamtalestøtteSVG } from "./SamtalestøtteSVG";
 import { DummyIkonSVG } from "./DummyIkonSVG";
 import { BlåLinkPanel } from "../BlåLinkPanel/BlåLinkPanel";
+import { HvaGjørDeSomLykkesSVG } from "./HvaGjørDeSomLykkesSVG";
+import { KursOgWebinarerSVG } from "./KursOgWebinarerSVG";
 
 export const Forside = () => {
   return (
@@ -34,7 +36,7 @@ export const Forside = () => {
               "Lær av de som forebygger sykefravær på en god, strukturert måte."
             }
           >
-            <DummyIkonSVG />
+            <HvaGjørDeSomLykkesSVG />
           </BlåLinkPanel>
           <BlåLinkPanel
             tittel={"Kurs og webinarer"}
@@ -42,7 +44,7 @@ export const Forside = () => {
               "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
             }
           >
-            <DummyIkonSVG />
+            <KursOgWebinarerSVG />
           </BlåLinkPanel>
         </div>
 
