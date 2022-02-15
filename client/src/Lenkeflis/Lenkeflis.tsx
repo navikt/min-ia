@@ -1,15 +1,12 @@
-import { LinkPanel } from "@navikt/ds-react";
-import styles from "./blåLinkPanel.module.scss";
-import { SamtalestøtteSVG } from "../Forside/SamtalestøtteSVG";
-import { ReactChild } from "react";
+import {LinkPanel} from "@navikt/ds-react";
+import styles from "./Lenkeflis.module.scss";
+import React from "react";
 
-export interface BlåLinkPanelProps {
-  tittel: string;
-  brødtekst: string;
-}
-
-export const BlåLinkPanel: React.FunctionComponent<BlåLinkPanelProps> = ({
-  tittel,
+export const Lenkeflis: React.FunctionComponent<{
+    overskrift: string;
+    brødtekst: string;
+}> = ({
+  overskrift,
   brødtekst,
   children,
 }) => {
@@ -26,7 +23,7 @@ export const BlåLinkPanel: React.FunctionComponent<BlåLinkPanelProps> = ({
         <div className={styles.ikonOgTekstWrapper}>
           <div className={styles.ikon}>{children}</div>
           <div>
-            <LinkPanel.Title>{tittel}</LinkPanel.Title>
+            <LinkPanel.Title>{overskrift}</LinkPanel.Title>
             <LinkPanel.Description>{brødtekst}</LinkPanel.Description>
           </div>
         </div>

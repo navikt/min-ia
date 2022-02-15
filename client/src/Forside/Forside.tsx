@@ -3,7 +3,7 @@ import { LinkPanel } from "@navikt/ds-react";
 import { StatistikkIkonSVG } from "./StatistikkIkonSVG";
 import { SamtalestøtteSVG } from "./SamtalestøtteSVG";
 import { DummyIkonSVG } from "./DummyIkonSVG";
-import { BlåLinkPanel } from "../BlåLinkPanel/BlåLinkPanel";
+import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { HvaGjørDeSomLykkesSVG } from "./HvaGjørDeSomLykkesSVG";
 import { KursOgWebinarerSVG } from "./KursOgWebinarerSVG";
 
@@ -12,40 +12,40 @@ export const Forside = () => {
     <div className={styles.forside}>
       <div className={styles.panelGrid}>
         <div className={styles.panelRow}>
-          <BlåLinkPanel
-            tittel={"Samtalestøtten"}
+          <Lenkeflis
+            overskrift={"Samtalestøtten"}
             brødtekst={
               "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
             }
           >
             <SamtalestøtteSVG />
-          </BlåLinkPanel>
-          <BlåLinkPanel
-            tittel={"Din statistikk"}
+          </Lenkeflis>
+          <Lenkeflis
+            overskrift={"Din statistikk"}
             brødtekst={
               "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
             }
           >
             <StatistikkIkonSVG />
-          </BlåLinkPanel>
+          </Lenkeflis>
         </div>
         <div className={styles.panelRow}>
-          <BlåLinkPanel
-            tittel={"Hva gjør de som lykkes"}
+          <Lenkeflis
+            overskrift={"Hva gjør de som lykkes"}
             brødtekst={
               "Lær av de som forebygger sykefravær på en god, strukturert måte."
             }
           >
             <HvaGjørDeSomLykkesSVG />
-          </BlåLinkPanel>
-          <BlåLinkPanel
-            tittel={"Kurs og webinarer"}
+          </Lenkeflis>
+          <Lenkeflis
+            overskrift={"Kurs og webinarer"}
             brødtekst={
               "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
             }
           >
             <KursOgWebinarerSVG />
-          </BlåLinkPanel>
+          </Lenkeflis>
         </div>
 
         <LinkPanel className={styles.panelRow} href="#">
