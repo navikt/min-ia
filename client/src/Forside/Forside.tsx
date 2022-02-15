@@ -6,7 +6,6 @@ import { DummyIkonSVG } from "./DummyIkonSVG";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { HvaGjørDeSomLykkesSVG } from "./HvaGjørDeSomLykkesSVG";
 import { KursOgWebinarerSVG } from "./KursOgWebinarerSVG";
-import classNames from "classnames";
 
 export const Forside = () => {
   return (
