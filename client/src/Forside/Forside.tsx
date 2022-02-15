@@ -6,6 +6,7 @@ import { DummyIkonSVG } from "./DummyIkonSVG";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { HvaGjørDeSomLykkesSVG } from "./HvaGjørDeSomLykkesSVG";
 import { KursOgWebinarerSVG } from "./KursOgWebinarerSVG";
+import classNames from "classnames";
 
 export const Forside = () => {
   return (
@@ -16,6 +17,7 @@ export const Forside = () => {
           brødtekst={
             "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
           }
+          className={styles.panelMargin}
         >
           <SamtalestøtteSVG />
         </Lenkeflis>
@@ -24,6 +26,7 @@ export const Forside = () => {
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
           }
+          className={styles.panelMargin}
         >
           <StatistikkIkonSVG />
         </Lenkeflis>
@@ -32,6 +35,7 @@ export const Forside = () => {
           brødtekst={
             "Lær av de som forebygger sykefravær på en god, strukturert måte."
           }
+          className={styles.panelMargin}
         >
           <HvaGjørDeSomLykkesSVG />
         </Lenkeflis>
@@ -40,11 +44,12 @@ export const Forside = () => {
           brødtekst={
             "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
+          className={styles.panelMargin}
         >
           <KursOgWebinarerSVG />
         </Lenkeflis>
 
-        <LinkPanel className={styles.panelRow} href="#">
+        <LinkPanel className={classNames( styles.linkpanel, styles.panelMargin)} href="#">
           <div
             style={{
               display: "grid",
@@ -67,7 +72,7 @@ export const Forside = () => {
             </div>
           </div>
         </LinkPanel>
-        <LinkPanel className={styles.panelRow} href="#">
+        <LinkPanel className={classNames( styles.linkpanel, styles.panelMargin)} href="#">
           <div
             style={{
               display: "grid",

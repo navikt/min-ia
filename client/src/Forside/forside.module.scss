@@ -16,11 +16,14 @@
     margin-right: 1.5rem;
   }
 
-  .panel {
-    max-width: 28rem;
-    height: 12rem;
-    min-height: 12rem;
+  .linkpanel {
+    width: 100%;
   }
+
+  .panelMargin{
+    margin-bottom: 1.5rem;
+  }
+
 
   .panelGrid {
     display: flex;
