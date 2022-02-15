@@ -20,15 +20,11 @@
     width: 100%;
   }
 
-  .panelMargin{
-    margin-bottom: 1.5rem;
-  }
-
-
   .panelGrid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 1.5rem;
     width: 100%;
     padding: 2rem 0;
   }
