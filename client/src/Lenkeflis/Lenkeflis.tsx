@@ -1,15 +1,11 @@
-import {LinkPanel} from "@navikt/ds-react";
+import { LinkPanel } from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
 
 export const Lenkeflis: React.FunctionComponent<{
-    overskrift: string;
-    brødtekst: string;
-}> = ({
-  overskrift,
-  brødtekst,
-  children,
-}) => {
+  overskrift: string;
+  brødtekst: string;
+}> = ({ overskrift, brødtekst, children }) => {
   return (
     <LinkPanel href="#" className={styles.panel}>
       <div

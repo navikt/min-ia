@@ -24,11 +24,3 @@
   align-items: center;
   background-color: var(--navds-global-color-blue-100);
 }
-
-// Stor skjerm
-@media (min-width: 992px) {
-  .ikonOgTekstWrapper {
-    display: flex;
-    flex-direction: row;
-  }
-}
