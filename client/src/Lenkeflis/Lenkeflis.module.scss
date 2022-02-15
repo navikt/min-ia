@@ -8,11 +8,10 @@
 
 .ikonOgTekstWrapper {
   display: flex;
-  flex-direction: row; // todo design mobile-first --> column
+  flex-direction: row;
   align-items: center;
   height: 12rem;
   min-height: 10rem;
-  min-width: 20rem;
 }
 
 .ikon {

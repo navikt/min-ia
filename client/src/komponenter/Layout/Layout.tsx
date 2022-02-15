@@ -48,7 +48,7 @@ export const Layout = (props: {
           {" "}
           <Route>
             <Banner
-              tittel={"Forebygge sykefravær"}
+              tittel={"Mitt inkluderende arbeidsliv"}
               restOrganisasjoner={restAltinnOrganisasjoner}
             />
           </Route>
