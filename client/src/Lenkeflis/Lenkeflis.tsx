@@ -13,7 +13,7 @@ export const Lenkeflis: React.FunctionComponent<{
   return (
     <LinkPanel href="#" className={styles.lenkeflis}>
       <div className={styles.ikonOgTekstWrapper}>
-        <div className={styles.ikon}>{ikon}</div>
+        <div className={styles.ikonWrapper}>{ikon}</div>
         <div>
           <LinkPanel.Title>{overskrift}</LinkPanel.Title>
           <Beskrivelse tekst={brødtekst} />
