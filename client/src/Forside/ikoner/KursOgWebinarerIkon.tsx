@@ -1,4 +1,4 @@
-export const KursOgWebinarerSVG = (props: { className?: string }) => {
+export const KursOgWebinarerIkon = () => {
   return (
     <svg
       width="40"

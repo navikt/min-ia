@@ -1,4 +1,4 @@
-export const DummyIkonSVG = (props: { className?: string }) => {
+export const DummyIkon = (props: { className?: string }) => {
   return (
     <svg
       className={props.className}

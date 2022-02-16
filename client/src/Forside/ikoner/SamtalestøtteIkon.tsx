@@ -1,4 +1,4 @@
-export const SamtalestøtteSVG = (props: { className?: string }) => {
+export const SamtalestøtteIkon = () => {
   return (
     <svg
       width="40"
