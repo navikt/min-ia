@@ -13,36 +13,32 @@ export const Forside = () => {
       <div className={styles.panelGrid}>
         <Lenkeflis
           overskrift={"Samtalestøtten"}
+          ikon={<SamtalestøtteSVG />}
           brødtekst={
             "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
           }
-        >
-          <SamtalestøtteSVG />
-        </Lenkeflis>
+        />
         <Lenkeflis
           overskrift={"Din statistikk"}
+          ikon={<StatistikkIkonSVG />}
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
           }
-        >
-          <StatistikkIkonSVG />
-        </Lenkeflis>
+        />
         <Lenkeflis
           overskrift={"Hva gjør de som lykkes"}
+          ikon={<HvaGjørDeSomLykkesSVG />}
           brødtekst={
             "Lær av de som forebygger sykefravær på en god, strukturert måte."
           }
-        >
-          <HvaGjørDeSomLykkesSVG />
-        </Lenkeflis>
+        />
         <Lenkeflis
           overskrift={"Kurs og webinarer"}
+          ikon={<KursOgWebinarerSVG />}
           brødtekst={
             "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
-        >
-          <KursOgWebinarerSVG />
-        </Lenkeflis>
+        />
 
         <LinkPanel className={styles.linkpanel} href="#">
           <div
