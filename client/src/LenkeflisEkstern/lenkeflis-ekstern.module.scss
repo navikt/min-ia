@@ -2,8 +2,9 @@
   width: 100%;
 }
 
-.ikonOgTekstWrapper {
-  display: flex;
-  flex-direction: row;
+.panel {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--navds-spacing-8);
   align-items: center;
 }

@@ -153,6 +153,13 @@
   dependencies:
     uuid "^8.3.2"
 
+"@navikt/ds-icons@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.8.4.tgz#82ba73cbc5704132ec2dd6e6faace3a2b9d6abff"
+  integrity sha512-yIBYeJrkO3pEL2qcR5DGtQQ6mfs9Bb8iueMdmj1sa0JBPuDmPLLW5SJ/2HH4tcQciDZ3erp7k4CemJkbtob5AQ==
+  dependencies:
+    uuid "^8.3.2"
+
 "@navikt/ds-react@^0.14.11":
   version "0.14.15"
   resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.14.15.tgz#687184525f01182790d85922b3e3f22d81811243"

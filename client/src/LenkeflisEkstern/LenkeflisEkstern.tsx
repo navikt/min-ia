@@ -1,6 +1,7 @@
 import React from "react";
 import { LinkPanel } from "@navikt/ds-react";
 import styles from "./Lenkeflis-ekstern.module.scss";
+import { ExternalLink } from "@navikt/ds-icons";
 
 export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
@@ -8,23 +9,23 @@ export const LenkeflisEkstern: React.FunctionComponent<{
   brødtekst: string;
 }> = ({ overskrift, ikon, brødtekst }) => {
   return (
-    <LinkPanel className={styles.linkpanel} href="#">
-      <div
-        style={{
-          display: "grid",
-          gridAutoFlow: "row",
-          gap: "var(--navds-spacing-8)",
-          alignItems: "center",
-        }}
-      >
-        <div className={styles.ikonOgTekstWrapper}>
-          {ikon}
-          <div>
-            <LinkPanel.Title>{overskrift}</LinkPanel.Title>
-            <LinkPanel.Description>{brødtekst}</LinkPanel.Description>
+    <div className={styles.linkpanel}>
+      <a className="navds-panel navds-link-panel navds-panel--border" href="#">
+        <div className="navds-link-panel__content">
+          <div className={styles.panel}>
+            {ikon}
+            <div>
+              <div className="navds-link-panel__title navds-heading navds-heading--medium">
+                {overskrift}
+              </div>
+              <div className="navds-link-panel__description navds-body-long">
+                {brødtekst}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </LinkPanel>
+        <ExternalLink />
+      </a>
+    </div>
   );
 };
