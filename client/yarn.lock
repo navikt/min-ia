@@ -141,10 +141,10 @@
     "@types/amplitude-js" "^8.0.1"
     fuzzysort "^1.1.4"
 
-"@navikt/ds-css@^0.12.11":
-  version "0.12.14"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.12.14.tgz#aca0a842945776c3215722cf1030d63f09cbdba3"
-  integrity sha512-ew7ROTVVR1W6DS2hhHv2bQ/FBUD6/d0scjq7io/bhTfhNv/SdqIpJmfjdXW5aQHScLHxx/nfEaIufpVorxrQ0w==
+"@navikt/ds-css@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.13.0.tgz#1d26b044c5a482952bd9863118939d66221054c0"
+  integrity sha512-q4uuU37uC9EmCmN0gVvNmTnFNOcHzhkEWgyOOHTUy1kUyqgVP0kA+tJCh0wqeYyXLre0oAJWmQoWXAaF7JVXTA==
 
 "@navikt/ds-icons@^0.7.3":
   version "0.7.3"
