@@ -12,7 +12,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
     <div className={styles.panelWrapper}>
       <a className="navds-panel navds-link-panel navds-panel--border" href="#">
         <div className={styles.ikonOgTekstWrapper}>
-          <div className="ikon">{ikon}</div>
+          {ikon}
           <div>
             <div className="navds-link-panel__title navds-heading navds-heading--medium">
               {overskrift}
@@ -20,7 +20,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
             <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
           </div>
         </div>
-        <ExternalLink />
+        <ExternalLink className={styles.linkSymbol} />
       </a>
     </div>
   );
