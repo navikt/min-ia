@@ -36,13 +36,15 @@ export const Layout = (props: {
   return (
     <div>
       <Head>{headerLinks}</Head>
-      <DecoratorHeader
-        html={
-          props.decoratorParts?.decoratorHeader === undefined
-            ? ""
-            : props.decoratorParts?.decoratorHeader
-        }
-      />
+      <div style={{ backgroundColor: "white" }}>
+        <DecoratorHeader
+          html={
+            props.decoratorParts?.decoratorHeader === undefined
+              ? ""
+              : props.decoratorParts?.decoratorHeader
+          }
+        />
+      </div>
       <div id="app" className="app">
         <Switch>
           {" "}
