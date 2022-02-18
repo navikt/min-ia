@@ -48,21 +48,17 @@ export const Forside = () => {
           }
         />
         <LenkeflisEkstern
-          overskrift={
-            "Har du utfordringer med høyt korttidsfravær i din virksomhet?"
-          }
+          overskrift={"Idébanken"}
           ikon={<DummyIkon />}
           brødtekst={
-            "Har du utfordringer med høyt korttidsfravær i din virksomhet?"
+            "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
           }
         />
         <LenkeflisEkstern
-          overskrift={
-            "Er du på leting etter gode verktøy innen inkluderende arbeidsliv?"
-          }
+          overskrift={"Arbeidsmiljøportalen"}
           ikon={<DummyIkon />}
           brødtekst={
-            "På arbeidsmiljøportalen.no finner du skreddersydde verktøy for alle bransjer!"
+            "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
           }
         />
       </div>

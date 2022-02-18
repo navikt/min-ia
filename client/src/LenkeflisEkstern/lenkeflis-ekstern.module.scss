@@ -1,8 +1,8 @@
-.linkpanel {
+.panelWrapper {
   width: 100%;
 }
 
-.panel {
+.ikonOgTekstWrapper {
   display: grid;
   grid-auto-flow: column;
   gap: var(--navds-spacing-8);

@@ -1,6 +1,5 @@
 @use "src/utils/screen-sizes";
 
-
 .lenkeflis {
   width: 100%;
   display: flex;
@@ -25,11 +24,6 @@
   align-items: center;
   font-size: 2.5rem;
   background-color: var(--navds-global-color-blue-100);
-}
-
-.ikon {
-  height: 40px;
-  width: 40px;
 }
 
 @media (min-width: screen-sizes.$screen-md) {
