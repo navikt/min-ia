@@ -1,6 +1,6 @@
 import React from "react";
 import illustrasjonSvg from "./statistikk-ikon.svg";
-//import './Innloggingsside.less';
+//import './Innloggingsside.scss';
 import "@navikt/ds-css";
 import Image from 'next/image'
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";

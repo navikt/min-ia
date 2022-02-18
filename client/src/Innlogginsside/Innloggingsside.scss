@@ -1,4 +1,4 @@
-@import '../utils/konstanter';
+@use 'src/utils/screen-sizes.scss';
 
 .innloggingsside {
   max-width: 40rem;
@@ -31,7 +31,7 @@
     margin-top: 2.5rem;
   }
 
-  @media (min-width: @screen-sm) {
+  @media (min-width: screen-sizes.$screen-md) {
     padding: 4rem;
   }
 }

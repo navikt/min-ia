@@ -1,3 +1,6 @@
+@use "src/utils/screen-sizes";
+
+
 .lenkeflis {
   width: 100%;
   display: flex;
@@ -29,13 +32,13 @@
   width: 40px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: screen-sizes.$screen-md) {
   .lenkeflis {
     width: 48.5%;
   }
 }
 
-@media (min-width: 480px) {
+@media (min-width: screen-sizes.$screen-sm) {
   .ikonOgTekstWrapper {
     height: 12rem;
   }

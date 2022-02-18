@@ -1,7 +1,7 @@
 import React from "react";
-import { LinkPanel } from "@navikt/ds-react";
 import styles from "./Lenkeflis-ekstern.module.scss";
 import { ExternalLink } from "@navikt/ds-icons";
+import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 
 export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
@@ -18,9 +18,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
               <div className="navds-link-panel__title navds-heading navds-heading--medium">
                 {overskrift}
               </div>
-              <div className="navds-link-panel__description navds-body-long">
-                {brødtekst}
-              </div>
+              <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
             </div>
           </div>
         </div>
