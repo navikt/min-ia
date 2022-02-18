@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Lenkeflis-ekstern.module.scss";
+import styles from "./lenkeflis-ekstern.module.scss";
 import { ExternalLink } from "@navikt/ds-icons";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 
