@@ -146,27 +146,20 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.12.14.tgz#aca0a842945776c3215722cf1030d63f09cbdba3"
   integrity sha512-ew7ROTVVR1W6DS2hhHv2bQ/FBUD6/d0scjq7io/bhTfhNv/SdqIpJmfjdXW5aQHScLHxx/nfEaIufpVorxrQ0w==
 
-"@navikt/ds-icons@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.7.3.tgz#ffe37e32cc5a0b3e640b9db0f95ff4c5f18c4002"
-  integrity sha512-fixTpRhYWB+DGG7LGsnNeIvHuO95uubaAH9YkSW3AsaoNQMaYtIKRCbGzqNcDTvfYiJvGQe++wIZCLAarCZfMA==
-  dependencies:
-    uuid "^8.3.2"
-
-"@navikt/ds-icons@^0.8.4":
+"@navikt/ds-icons@^0.8.1", "@navikt/ds-icons@^0.8.4":
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.8.4.tgz#82ba73cbc5704132ec2dd6e6faace3a2b9d6abff"
   integrity sha512-yIBYeJrkO3pEL2qcR5DGtQQ6mfs9Bb8iueMdmj1sa0JBPuDmPLLW5SJ/2HH4tcQciDZ3erp7k4CemJkbtob5AQ==
   dependencies:
     uuid "^8.3.2"
 
-"@navikt/ds-react@^0.14.11":
-  version "0.14.15"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.14.15.tgz#687184525f01182790d85922b3e3f22d81811243"
-  integrity sha512-LNsBQwAU+DOv70SZuV9gP3avUUgF3XBarbIRDqpJBUR8N1zQeIW91otsCniyHsbISLM29NLdEyfR7VACS7g/YQ==
+"@navikt/ds-react@^0.15.1":
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.15.3.tgz#70e35610ce7ea41359d4a359e84b96435ea1ab64"
+  integrity sha512-SZaD6w+kTKPxjRLqib2qWM/VrUvrjURr0oulwungEIx1MJyLm7zcQfuvqXoVNSsBh9vjrr3SW50bmE0Eskvy2Q==
   dependencies:
     "@material-ui/core" "^4.12.3"
-    "@navikt/ds-icons" "^0.7.3"
+    "@navikt/ds-icons" "^0.8.1"
     "@popperjs/core" "^2.10.1"
     classnames "^2.2.6"
     react-collapse "^5.1.0"
