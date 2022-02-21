@@ -1,14 +1,13 @@
 import styles from "./forside.module.scss";
 import { StatistikkIkonIkon } from "./ikoner/StatistikkIkonIkon";
 import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
-import { DummyIkon } from "./ikoner/DummyIkon";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { HvaGjørDeSomLykkesIkon } from "./ikoner/HvaGjørDeSomLykkesIkon";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
 import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
-import { ArbeidsmiljPrtalenIkon } from "./ikoner/ArbeidsmiljøprtalenIkon";
+import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React from "react";
 
 export const Forside = () => {
@@ -62,7 +61,7 @@ export const Forside = () => {
         <LenkeflisEkstern
           overskrift={"Arbeidsmiljø&shy;portalen"}
           ikon={
-            <ArbeidsmiljPrtalenIkon width={ikonWidth} height={ikonHeight} />
+            <ArbeidsmiljøPortalenIkon width={ikonWidth} height={ikonHeight} />
           }
           brødtekst={
             "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"

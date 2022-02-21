@@ -1,4 +1,4 @@
-export const ArbeidsmiljPrtalenIkon = (props: {
+export const ArbeidsmiljøPortalenIkon = (props: {
   width: number;
   height: number;
 }) => {
