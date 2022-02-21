@@ -60,7 +60,6 @@ export const Forside = () => {
           }
         />
         <LenkeflisEkstern
-          overskriftSomElement={<p>Arbeidsmiljø&shy;portalen</p>}
           overskrift={"Arbeidsmiljø&shy;portalen"}
           ikon={
             <ArbeidsmiljPrtalenIkon width={ikonWidth} height={ikonHeight} />
