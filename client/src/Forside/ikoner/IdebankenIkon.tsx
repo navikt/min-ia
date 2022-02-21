@@ -1,8 +1,8 @@
-export const IdebankenIkon = (width?: number, height?: number) => {
+export const IdebankenIkon = (props: { width: number; height: number }) => {
   return (
     <svg
-      width={width ? width : "60"}
-      height={height ? height : "60"}
+      width={props.width}
+      height={props.height}
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

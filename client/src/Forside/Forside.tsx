@@ -7,10 +7,13 @@ import { HvaGjørDeSomLykkesIkon } from "./ikoner/HvaGjørDeSomLykkesIkon";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
 import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
-import {IdebankenIkon} from "./ikoner/IdebankenIkon";
-import {ArbeidsmiljPrtalenIkon} from "./ikoner/ArbeidsmiljøprtalenIkon";
+import { IdebankenIkon } from "./ikoner/IdebankenIkon";
+import { ArbeidsmiljPrtalenIkon } from "./ikoner/ArbeidsmiljøprtalenIkon";
+import React from "react";
 
 export const Forside = () => {
+  const ikonWidth = 60;
+  const ikonHeight = 60;
   return (
     <div className={styles.forside}>
       <div className={styles.panelGrid}>
@@ -51,14 +54,17 @@ export const Forside = () => {
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
-          ikon={<IdebankenIkon />}
+          ikon={<IdebankenIkon width={ikonWidth} height={ikonHeight} />}
           brødtekst={
             "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
           }
         />
         <LenkeflisEkstern
-          overskrift={"Arbeidsmiljøportalen"}
-          ikon={<ArbeidsmiljPrtalenIkon />}
+          overskriftSomElement={<p>Arbeidsmiljø&shy;portalen</p>}
+          overskrift={"Arbeidsmiljø&shy;portalen"}
+          ikon={
+            <ArbeidsmiljPrtalenIkon width={ikonWidth} height={ikonHeight} />
+          }
           brødtekst={
             "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
           }
