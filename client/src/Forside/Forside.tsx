@@ -7,6 +7,8 @@ import { HvaGjørDeSomLykkesIkon } from "./ikoner/HvaGjørDeSomLykkesIkon";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
 import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
+import {IdebankenIkon} from "./ikoner/IdebankenIkon";
+import {ArbeidsmiljPrtalenIkon} from "./ikoner/ArbeidsmiljøprtalenIkon";
 
 export const Forside = () => {
   return (
@@ -49,14 +51,14 @@ export const Forside = () => {
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
-          ikon={<DummyIkon />}
+          ikon={<IdebankenIkon />}
           brødtekst={
             "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
           }
         />
         <LenkeflisEkstern
           overskrift={"Arbeidsmiljøportalen"}
-          ikon={<DummyIkon />}
+          ikon={<ArbeidsmiljPrtalenIkon />}
           brødtekst={
             "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
           }
