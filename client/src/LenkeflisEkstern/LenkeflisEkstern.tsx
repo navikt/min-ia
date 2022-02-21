@@ -13,9 +13,9 @@ export const LenkeflisEkstern: React.FunctionComponent<{
       <a className="navds-panel navds-link-panel navds-panel--border" href="#">
         <div className={styles.ikonOgTekstWrapper}>
           {ikon}
-          <div>
+          <div className={styles.tekstWrap}>
             <div className="navds-link-panel__title navds-heading navds-heading--medium">
-              {overskrift}
+              <div dangerouslySetInnerHTML={{ __html: overskrift }} />
             </div>
             <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
           </div>

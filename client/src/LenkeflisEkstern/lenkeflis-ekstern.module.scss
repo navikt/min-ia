@@ -12,7 +12,10 @@
 .linkSymbol {
   transition: transform 200ms;
 }
-
+.tekstWrap{
+  word-break: break-word;
+  word-wrap: break-word;
+}
 .panelWrapper:hover .linkSymbol,
 .panelWrapper:focus-within .linkSymbol {
   transform: translateX(4px);
