@@ -11,8 +11,8 @@ import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React from "react";
 
 export const Forside = () => {
-  const ikonWidth = 60;
-  const ikonHeight = 60;
+  const bredde = 60;
+  const høyde = 60;
   return (
     <div className={styles.forside}>
       <div className={styles.panelGrid}>
@@ -53,16 +53,14 @@ export const Forside = () => {
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
-          ikon={<IdebankenIkon width={ikonWidth} height={ikonHeight} />}
+          ikon={<IdebankenIkon width={bredde} height={høyde} />}
           brødtekst={
             "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
           }
         />
         <LenkeflisEkstern
           overskrift={"Arbeidsmiljø&shy;portalen"}
-          ikon={
-            <ArbeidsmiljøPortalenIkon width={ikonWidth} height={ikonHeight} />
-          }
+          ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
           brødtekst={
             "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
           }
