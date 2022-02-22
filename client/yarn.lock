@@ -149,9 +149,9 @@
     fuzzysort "^1.1.4"
 
 "@navikt/ds-css@^0.15.5":
-  version "0.15.5"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.15.5.tgz#f6b93a6ab4cfdb98a9726aee87032a71dbcb11de"
-  integrity sha512-90PGHBkXmV6Q3lDa7e2387AmZCrcFHs4VX1V3AfWQBgypLrW4ebs7+vUeuqEuyZBz2dOM8E8TqjfLPFYLUWHwg==
+  version "0.15.6"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.15.6.tgz#4f8fe6422502d362651f8a4c68ad7dc8552c05c7"
+  integrity sha512-natm6TvhKmvrEXrsXZQL/KLNXEr4cEhuxaH87JtGcaEevTEhtsM1LQE2HLGftbsmiK1Zg8QPStAEN6pcKTFgIQ==
 
 "@navikt/ds-icons@^0.8.4":
   version "0.8.4"
@@ -161,9 +161,9 @@
     uuid "^8.3.2"
 
 "@navikt/ds-react@^0.16.10":
-  version "0.16.10"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.16.10.tgz#849e18ca352752e666df71a6b9b4cf3926cc711c"
-  integrity sha512-y78AXUDFZLhNBnAFyUFw2+BBBlkC+AHYZn6UxNxNS3E4hjdB1x8ZvMoK7F3AZ/FboJumWl6bW9UVZTEjXZZi3g==
+  version "0.16.11"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.16.11.tgz#9af54773beb28353d1e64380f89f508ef3fa62c8"
+  integrity sha512-1QpsuaADKEpsG6wc+FIpr2Z6zC+OEzv+Yz+f3U3zgIZk1DuWrGcnFNVhPjUsDBHULqs7ASs/PWH6IFWyV9Ljyw==
   dependencies:
     "@material-ui/core" "^4.12.3"
     "@navikt/ds-icons" "^0.8.4"
