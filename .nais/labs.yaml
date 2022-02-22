@@ -15,6 +15,16 @@ spec:
       value: labs
     - name: DECORATOR_URL
       value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
+    - name: SAMTALESTOTTE_URL
+      value: https://arbeidsgiver.labs.nais.io/samtalestotte
+    - name: SYKEFRAVARSSTATISTIKK
+      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+    - name: KALKULATOR
+      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
+    - name: IDEBANKEN
+      VALUE: https://www.idebanken.org/
+    - name: ARBEIDSMILJOPORTALEN
+      VALUE: https://www.arbeidsmiljoportalen.no/
   liveness:
     path: /min-ia/internal/isAlive
     initialDelay: 20

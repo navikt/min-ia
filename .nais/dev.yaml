@@ -23,6 +23,16 @@ spec:
       value: https://min-ia.dev.nav.no/min-ia
     - name: DECORATOR_URL
       value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
+    - name: SAMTALESTOTTE_URL
+      value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
+    - name: SYKEFRAVARSSTATISTIKK
+      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+    - name: KALKULATOR
+      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/KALKULATOR
+    - name: IDEBANKEN
+      VALUE: https://www.idebanken.org/
+    - name: ARBEIDSMILJOPORTALEN
+      VALUE: https://www.arbeidsmiljoportalen.no/
   tokenx:
     enabled: true
   idporten:
