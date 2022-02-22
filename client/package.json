@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@navikt/bedriftsmeny": "^3.5.3",
-    "@navikt/ds-css": "^0.12.11",
+    "@navikt/ds-css": "^0.15.5",
     "@navikt/ds-icons": "^0.8.4",
-    "@navikt/ds-react": "^0.14.11",
+    "@navikt/ds-react": "^0.16.10",
     "@navikt/nav-dekoratoren-moduler": "^1.6.9",
     "@types/cheerio": "^0.22.31",
     "@types/node-fetch": "^3.0.3",
