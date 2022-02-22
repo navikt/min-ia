@@ -2,7 +2,7 @@ import React from "react";
 import illustrasjonSvg from "./statistikk-ikon.svg";
 //import './Innloggingsside.scss';
 import "@navikt/ds-css";
-import Image from 'next/image'
+import Image from "next/image";
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";
 
 interface Props {
@@ -25,7 +25,7 @@ export const Innloggingsside: React.FunctionComponent<Props> = ({
           alt=""
         />
 
-        <Heading size="2xlarge">Forebygge fravær</Heading>
+        <Heading size="xlarge">Forebygge fravær</Heading>
 
         <BodyLong spacing>
           TODO hente riktig tekst til min-ia innloggingsside
