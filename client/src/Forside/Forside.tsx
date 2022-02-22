@@ -8,7 +8,8 @@ import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { string } from "prop-types";
 
 export const Forside = () => {
   const bredde = 60;
@@ -22,6 +23,7 @@ export const Forside = () => {
           brødtekst={
             "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
           }
+          href={process.env.SAMTALESTOTTE_URL}
         />
         <Lenkeflis
           overskrift={"Din statistikk"}
@@ -29,6 +31,7 @@ export const Forside = () => {
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
           }
+          href={process.env.SYKEFRAVARSSTATISTIKK}
         />
         <Lenkeflis
           overskrift={"Hva gjør de som lykkes"}
@@ -36,6 +39,7 @@ export const Forside = () => {
           brødtekst={
             "Lær av de som forebygger sykefravær på en god, strukturert måte."
           }
+          href={"/hva_gjor_de_som_lykkes"}
         />
         <Lenkeflis
           overskrift={"Kurs og webinarer"}
@@ -43,6 +47,7 @@ export const Forside = () => {
           brødtekst={
             "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
+          href={"/kurs_og_webinar"}
         />
         <Lenkeflis
           overskrift={"Kalkulator"}
@@ -50,6 +55,7 @@ export const Forside = () => {
           brødtekst={
             "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
+          href={process.env.KALKULATOR}
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
@@ -57,6 +63,7 @@ export const Forside = () => {
           brødtekst={
             "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
           }
+          href={process.env.IDEBANKEN}
         />
         <LenkeflisEkstern
           overskrift={"Arbeidsmiljø&shy;portalen"}
@@ -64,6 +71,7 @@ export const Forside = () => {
           brødtekst={
             "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
           }
+          href={process.env.ARBEIDSMILJOPORTALEN}
         />
       </div>
     </div>
