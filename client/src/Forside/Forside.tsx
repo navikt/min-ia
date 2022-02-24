@@ -15,6 +15,7 @@ export const Forside = () => {
   const høyde = 60;
   return (
     <div className={styles.forside}>
+        Hallo
       <div className={styles.panelGrid}>
         <Lenkeflis
           overskrift={"Samtalestøtten"}
