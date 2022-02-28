@@ -1,19 +1,13 @@
-import {FunctionComponent, useEffect} from "react";
-import fetch from "node-fetch";
+import { FunctionComponent } from "react";
+import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
+import { RestStatus } from "../integrasjoner/rest-status";
 
 export const Infographic: FunctionComponent = () => {
+  const sykefraværshistorikk = useSykefraværshistorikk();
 
-    useEffect(() => {
-        // fetch kvartalsvis sykefraværshistorikk
-        // regn ut de verdiene vi trenger:
-        //      trend, fravær i bransjen,
-        //      fravær i næringen (finnes i min-ia endepunkt),
-        //      fravær i Norge (finnes i min-ia endepunkt)
+  if (sykefraværshistorikk.status === RestStatus.Suksess) {
+    return <p>{sykefraværshistorikk.data.length}</p>;
+  }
 
-        const kvartalsvis = await fetch()
-
-    }, [])
-    return (
-        <p>Hallo</p>
-    );
-}
+  return <p>hellu</p>;
+};

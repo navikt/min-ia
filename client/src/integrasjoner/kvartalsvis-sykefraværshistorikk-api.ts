@@ -1,4 +1,6 @@
 import {BASE_PATH} from "../utils/konstanter";
+import {RestRessurs, RestStatus} from "./rest-status";
+import {fetchMedFeilhåndtering} from "./api-utils";
 
 export enum SykefraværshistorikkType {
     LAND = 'LAND',
@@ -8,6 +10,8 @@ export enum SykefraværshistorikkType {
     VIRKSOMHET = 'VIRKSOMHET',
     OVERORDNET_ENHET = 'OVERORDNET_ENHET',
 }
+
+export type RestSykefraværshistorikk = RestRessurs<KvartalsvisSykefraværshistorikk[]>;
 
 export type KvartalsvisSykefraværsprosent = {
     kvartal: number;
@@ -37,5 +41,23 @@ export interface KvartalsvisSykefraværshistorikk {
 const sykefraværshistorikkPath = (orgnr: string) =>
     `${BASE_PATH}/api/${orgnr}/sykefravarshistorikk/kvartalsvis`;
 
-
+export const hentRestSykefraværshistorikk = async (
+    orgnr: string,
+): Promise<RestSykefraværshistorikk> => {
+    const response = await fetchMedFeilhåndtering<KvartalsvisSykefraværshistorikk[]>(
+        sykefraværshistorikkPath(orgnr),
+        {
+            method: 'GET',
+            credentials: 'include',
+        },
+    );
+    if (response.status === RestStatus.Suksess) {
+        return {
+            status: RestStatus.Suksess,
+            data: response.data,
+        };
+    } else {
+        return response;
+    }
+};
 

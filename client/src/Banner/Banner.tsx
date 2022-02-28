@@ -4,8 +4,8 @@ import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import {
   AltinnOrganisasjon,
   RestAltinnOrganisasjoner,
-} from "../api/altinnorganisasjon-api";
-import { RestStatus } from "../api/rest-status";
+} from "../integrasjoner/altinnorganisasjon-api";
+import { RestStatus } from "../integrasjoner/rest-status";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 interface Props {

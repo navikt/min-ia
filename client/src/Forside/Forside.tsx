@@ -9,13 +9,14 @@ import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React from "react";
+import { Infographic } from "../Infographic/Infographic";
 
 export const Forside = () => {
   const bredde = 60;
   const høyde = 60;
   return (
     <div className={styles.forside}>
-        Hallo
+      <Infographic />
       <div className={styles.panelGrid}>
         <Lenkeflis
           overskrift={"Samtalestøtten"}
