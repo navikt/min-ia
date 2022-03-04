@@ -27,7 +27,7 @@ export const backendApiProxyMock = (app) => {
     ]);
   });
 
-  app.get(`${BASE_PATH}/api/sykefravarshistorikk/kvartalsvis`, (request, response) => {
+  app.get(`${BASE_PATH}/api/910969439/sykefravarshistorikk/kvartalsvis`, (request, response) => {
     response.send([
       kvartalsvisSykefraværsprosentMock
     ]);
