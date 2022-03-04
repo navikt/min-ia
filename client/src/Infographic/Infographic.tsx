@@ -7,6 +7,9 @@ import {
 import styles from "./Infographic.module.scss";
 import {InfographicSnippet} from "../InfographicSnippet/InfographicSnippet";
 import {NorwegianFlag} from "@navikt/ds-icons";
+import { Bag } from "@navikt/ds-icons";
+import { HealthCase } from "@navikt/ds-icons";
+import { Up } from "@navikt/ds-icons";
 
 export const Infographic: FunctionComponent<{
   historikk: KvartalsvisSykefraværshistorikk[];
@@ -24,7 +27,7 @@ export const Infographic: FunctionComponent<{
 
   return (
       <div className={styles.infographicWrapper}>
-        <div className={styles.snippetWrapper}>
+
           <InfographicSnippet
               ikon={<NorwegianFlag width="55px" height="55px"/>}
               tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
@@ -32,23 +35,22 @@ export const Infographic: FunctionComponent<{
           />
 
           <InfographicSnippet
-              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              ikon={<Bag width="55px" height="55px"/>}
               tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
               verdi={sisteFraværsprosentNæring + "%"}
           />
 
           <InfographicSnippet
-              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              ikon={<HealthCase width="55px" height="55px"/>}
               tekst={"Viktigste årsak til sykemelding er: "}
               verdi={"Muskel- og skjelettplager"}
           />
 
           <InfographicSnippet
-              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              ikon={<Up width="55px" height="55px"/>}
               tekst={"Sykefraværsprosenten i din bransje akkurat nå er "}
               verdi={trendSomTekst}
           />
-        </div>
       </div>
   );
 };

@@ -1,7 +1,21 @@
-.snippetWrapper {
-  width: 350px;
-}
+@use "src/utils/screen-sizes";
+
 
 .ikonWrapper {
   width: 50px;
+}
+.tekst{
+  width: 60%;
+}
+.infographicSnippet {
+  width: 98%;
+}
+
+@media (min-width: screen-sizes.$screen-md) {
+  .infographicSnippet {
+    display: flex;
+    justify-content: space-between;
+    width: 48.5%;
+    padding-left: 3rem;
+  }
 }
