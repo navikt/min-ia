@@ -59,7 +59,7 @@ jobs:
 
   "deployAppToLabs":
     name: "Deploy app to labs"
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/deps_jan22'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/infographic'
     needs: "build"
     runs-on: "ubuntu-latest"
     steps:
