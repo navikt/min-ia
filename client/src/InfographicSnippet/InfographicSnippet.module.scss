@@ -14,8 +14,8 @@
 @media (min-width: screen-sizes.$screen-md) {
   .infographicSnippet {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 48.5%;
-    padding-left: 3rem;
+    padding: 0 2rem 0 3rem;
   }
 }
