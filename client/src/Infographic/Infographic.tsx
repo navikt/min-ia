@@ -4,26 +4,51 @@ import {
   KvartalsvisSykefraværsprosent,
   SykefraværshistorikkType,
 } from "../integrasjoner/kvartalsvis-sykefraværshistorikk-api";
+import styles from "./Infographic.module.scss";
+import {InfographicSnippet} from "../InfographicSnippet/InfographicSnippet";
+import {NorwegianFlag} from "@navikt/ds-icons";
 
 export const Infographic: FunctionComponent<{
   historikk: KvartalsvisSykefraværshistorikk[];
 }> = ({historikk}) => {
   let sisteFraværsprosentNorge = sisteTilgjengelige(
       sykefraværINorge(historikk)
-  ).prosent;
+  )?.prosent;
 
   let sisteFraværsprosentNæring = sisteTilgjengelige(
       getSykefraværForNæring(historikk)
-  ).prosent;
+  )?.prosent;
 
   let trend = kalkulerTrend(getSykefraværForNæring(historikk));
+  let trendSomTekst = stigningskurveTilTekst(trend);
 
   return (
-      <div>
-        <p>{sisteFraværsprosentNorge}</p>
-        <p>{sisteFraværsprosentNæring}</p>
-        <p>Viktigste årsak til sykemelding er: [årsak]</p>
-        <p>{trend}</p>
+      <div className={styles.infographicWrapper}>
+        <div className={styles.snippetWrapper}>
+          <InfographicSnippet
+              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
+              verdi={sisteFraværsprosentNorge + "%"}
+          />
+
+          <InfographicSnippet
+              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
+              verdi={sisteFraværsprosentNæring + "%"}
+          />
+
+          <InfographicSnippet
+              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              tekst={"Viktigste årsak til sykemelding er: "}
+              verdi={"Muskel- og skjelettplager"}
+          />
+
+          <InfographicSnippet
+              ikon={<NorwegianFlag width="55px" height="55px"/>}
+              tekst={"Sykefraværsprosenten i din bransje akkurat nå er "}
+              verdi={trendSomTekst}
+          />
+        </div>
       </div>
   );
 };
@@ -42,9 +67,14 @@ function sykefraværINorge(
   return historikkForNorge;
 }
 
-function sisteTilgjengelige(historikk: KvartalsvisSykefraværshistorikk) {
-  const sortert = sorterKronologisk(historikk)
-  return sortert[sortert.length - 1]
+function sisteTilgjengelige(
+    historikk: KvartalsvisSykefraværshistorikk
+): KvartalsvisSykefraværsprosent | null {
+  if (!historikk?.kvartalsvisSykefraværsprosent) {
+    return null;
+  }
+  const sortert = sorterKronologisk(historikk);
+  return sortert[sortert.length - 1];
 }
 
 function getSykefraværForNæring(
@@ -72,12 +102,15 @@ function getDataForEnkeltkvartal(
 
 function kalkulerTrend(
     fraværsistorikk: KvartalsvisSykefraværshistorikk
-): number | null {
-  const sortert = sorterKronologisk(fraværsistorikk)
-  const nyesteDatapunkt = sortert[sortert.length - 1]
-  const sisteTilgjengeligeÅrstall = nyesteDatapunkt.årstall
-  const sisteTilgjengeligeKvartal = nyesteDatapunkt.kvartal
-  const prosentSisteKvartal = nyesteDatapunkt.prosent
+): number | undefined {
+  if (!fraværsistorikk?.kvartalsvisSykefraværsprosent) {
+    return undefined;
+  }
+  const sortert = sorterKronologisk(fraværsistorikk);
+  const nyesteDatapunkt = sortert[sortert.length - 1];
+  const sisteTilgjengeligeÅrstall = nyesteDatapunkt.årstall;
+  const sisteTilgjengeligeKvartal = nyesteDatapunkt.kvartal;
+  const prosentSisteKvartal = nyesteDatapunkt.prosent;
 
   const prosentSammeKvartalIFjor = getDataForEnkeltkvartal(
       fraværsistorikk.kvartalsvisSykefraværsprosent,
@@ -88,13 +121,23 @@ function kalkulerTrend(
   if (prosentSisteKvartal && prosentSammeKvartalIFjor) {
     return prosentSisteKvartal - prosentSammeKvartalIFjor;
   }
+  return undefined;
+}
 
-  return null;
+function stigningskurveTilTekst(stigning: number | undefined): string {
+  if (stigning === undefined) {
+    return "-";
+  } else if (stigning > 0) {
+    return "stigende";
+  } else if (stigning < 0) {
+    return "synkende";
+  } else {
+    return "uendret";
+  }
 }
 
 function sorterKronologisk(historikk: KvartalsvisSykefraværshistorikk) {
   return historikk.kvartalsvisSykefraværsprosent.sort(
-      (e1, e2) => e2.årstall - e1.årstall || e2.kvartal - e1.kvartal
+      (e1, e2) => e1.årstall - e2.årstall || e1.kvartal - e2.kvartal
   );
-
 }
