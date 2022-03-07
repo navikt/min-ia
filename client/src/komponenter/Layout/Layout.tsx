@@ -7,6 +7,7 @@ import React, { useRef } from "react";
 import Banner from "../../Banner/Banner";
 import { Route, Switch } from "react-router";
 import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
+import {Heading, Ingress} from "@navikt/ds-react";
 
 export const Layout = (props: {
   title: string;
@@ -32,7 +33,14 @@ export const Layout = (props: {
   });
 
   const restAltinnOrganisasjoner = useAltinnOrganisasjoner();
-
+    const tittelMedUndertittel = (
+        <div>
+            <Heading size="large" level="3">
+                Forebygge fravær
+            </Heading>
+            <Ingress> Inkluderende arbeidsliv</Ingress>
+        </div>
+    );
   return (
     <div>
       <Head>{headerLinks}</Head>
@@ -50,7 +58,7 @@ export const Layout = (props: {
           {" "}
           <Route>
             <Banner
-              tittel={"Mitt inkluderende arbeidsliv"}
+              tittelMedUnderTittel={tittelMedUndertittel}
               restOrganisasjoner={restAltinnOrganisasjoner}
             />
           </Route>
