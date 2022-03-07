@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import  "@testing-library/jest-dom";
 import { Infographic } from "../src/Infographic/Infographic";
 import {
   KvartalsvisSykefraværshistorikk,
@@ -6,21 +7,25 @@ import {
 } from "../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
 
 it("viser sykefraværsprosent for Norge fra siste tilgjengelige kvartal", async () => {
-  //render(<Infographic historikk={mockSykefraværNorge} />);
-  //TODO: Fix så denne testen kjører
-  //const hei = await screen.getByRole("paragraph", {
-  //  name: /Sykefraværsprosenten i Norge akkurat nå er:/i,
-  // });
-  //expect(hei).toBeInDcument();
+  render(<Infographic historikk={mockSykefraværNorge} />);
+  const hei = await screen.getByText("4.9%");
+
+  expect(hei).toBeInTheDocument();
+
+});
+
+it("viser sykefraværsprosent for trenden i bransje", async () => {
+  render(<Infographic historikk={mockSykefraværBransje} />);
+  const hei = await screen.getByText("stigende");
+
+  expect(hei).toBeInTheDocument();
+
 });
 
 it("viser sykefraværsprosent for Bransje fra siste tilgjengelige kvartal", async () => {
-  // render(<Infographic historikk={mockSykefraværBransje} />);
-  // //TODO: Fix så denne testen kjører
-  // const hei = await screen.getByRole("paragraph", {
-  //   name: /Sykefraværsprosenten i Norge akkurat nå er:/i,
-  // });
-  //expect(hei).toBeInDcument();
+   render(<Infographic historikk={mockSykefraværBransje} />);
+  const hei = await screen.getByText("5.1%");
+  expect(hei).toBeInTheDocument();
 });
 
 const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
