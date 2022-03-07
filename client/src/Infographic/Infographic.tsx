@@ -42,13 +42,13 @@ export const Infographic: FunctionComponent<{
 
       <InfographicSnippet
         ikon={<HealthCase width="55px" height="55px" />}
-        tekst={"Viktigste årsak til sykemelding er: "}
+        tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
       />
 
       <InfographicSnippet
         ikon={<Up width="55px" height="55px" />}
-        tekst={"Sykefraværsprosenten i din bransje akkurat nå er "}
+        tekst={"Sykefraværet i din bransje akkurat nå er "}
         verdi={trendSomTekst}
       />
       <BodyLong size="medium">

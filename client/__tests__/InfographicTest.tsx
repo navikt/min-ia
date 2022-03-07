@@ -1,31 +1,40 @@
 import { render, screen } from "@testing-library/react";
-import  "@testing-library/jest-dom";
+import "@testing-library/jest-dom";
 import { Infographic } from "../src/Infographic/Infographic";
 import {
   KvartalsvisSykefraværshistorikk,
   SykefraværshistorikkType,
 } from "../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
 
-it("viser sykefraværsprosent for Norge fra siste tilgjengelige kvartal", async () => {
+it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
   render(<Infographic historikk={mockSykefraværNorge} />);
-  const hei = await screen.getByText("4.9%");
-
-  expect(hei).toBeInTheDocument();
-
-});
-
-it("viser sykefraværsprosent for trenden i bransje", async () => {
-  render(<Infographic historikk={mockSykefraværBransje} />);
-  const hei = await screen.getByText("stigende");
-
-  expect(hei).toBeInTheDocument();
-
+  const infobolk = await screen.getByText(/Sykefraværsprosenten i Norge/);
+  expect(infobolk.textContent).toBe(
+    "Sykefraværsprosenten i Norge akkurat nå er: 4.9%"
+  );
 });
 
 it("viser sykefraværsprosent for Bransje fra siste tilgjengelige kvartal", async () => {
-   render(<Infographic historikk={mockSykefraværBransje} />);
-  const hei = await screen.getByText("5.1%");
-  expect(hei).toBeInTheDocument();
+  render(<Infographic historikk={mockSykefraværNæring} />);
+  const infobolk = await screen.getByText(/Sykefraværsprosenten i din bransje/);
+  expect(infobolk.textContent).toBe(
+    "Sykefraværsprosenten i din bransje akkurat nå er: 5.1%"
+  );
+});
+
+it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () => {
+  render(<Infographic historikk={mockSykefraværNæring} />);
+  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  expect(infobolk.textContent).toBe(
+    "Sykefraværet i din bransje akkurat nå er stigende"
+  );
+});
+
+it("viser årsak til sykemelding", async () => {
+  render(<Infographic historikk={mockSykefraværNæring} />);
+  const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
+  expect(infobolk.textContent).toBe("Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
+  );
 });
 
 const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
@@ -61,7 +70,7 @@ const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
   },
 ];
 
-const mockSykefraværBransje: KvartalsvisSykefraværshistorikk[] = [
+const mockSykefraværNæring: KvartalsvisSykefraværshistorikk[] = [
   {
     type: SykefraværshistorikkType.NÆRING,
     label: "En næring",
