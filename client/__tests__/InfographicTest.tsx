@@ -33,9 +33,37 @@ it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () =
 it("viser årsak til sykemelding", async () => {
   render(<Infographic historikk={mockSykefraværNæring} />);
   const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
-  expect(infobolk.textContent).toBe("Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
+  expect(infobolk.textContent).toBe(
+    "Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
   );
 });
+
+it("viser årsak til sykemelding", async () => {
+  render(<Infographic historikk={mockSykefraværNæring} />);
+  const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
+  expect(infobolk.textContent).toBe(
+    "Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
+  );
+});
+
+it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
+  render(<Infographic historikk={mockTomHistorikk} />);
+  const infobolk = await screen.getByText(
+    /Synes du denne informasjonen var bra?/
+  );
+  expect(infobolk.textContent).toBe(
+    "Synes du denne informasjonen var bra? På statistikksiden får du oversikt over sykefraværet over tid."
+  );
+});
+
+it("lenker riktig til sykefraværsstatistikken", async () => {
+  render(<Infographic historikk={mockTomHistorikk} />);
+  const lenke = await screen.getByRole("link", { name: /statistikksiden/ });
+
+  expect(lenke).toHaveAttribute("href", "https://arbeidsgiver.nav.no/sykefravarsstatistikk/")
+});
+
+const mockTomHistorikk: KvartalsvisSykefraværshistorikk[] = [];
 
 const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
   {

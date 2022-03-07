@@ -53,7 +53,7 @@ export const Infographic: FunctionComponent<{
       />
       <BodyLong size="medium">
         Synes du denne informasjonen var bra? På{" "}
-        <Link href={"#"}>statistikksiden</Link> får du oversikt over
+        <Link href={"https://arbeidsgiver.nav.no/sykefravarsstatistikk/"}>statistikksiden</Link> får du oversikt over
         sykefraværet over tid.
       </BodyLong>
     </div>
