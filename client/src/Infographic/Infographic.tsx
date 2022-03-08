@@ -15,6 +15,7 @@ import { BodyLong, Link } from "@navikt/ds-react";
 export const Infographic: FunctionComponent<{
   historikk: KvartalsvisSykefraværshistorikk[];
 }> = ({ historikk }) => {
+  const ikonstorrelse = { width: '50px', height: '50px' };
   let sisteFraværsprosentNorge = sisteTilgjengelige(
     sykefraværINorge(historikk)
   )?.prosent;
@@ -29,32 +30,34 @@ export const Infographic: FunctionComponent<{
   return (
     <div className={styles.infographicWrapper}>
       <InfographicSnippet
-        ikon={<NorwegianFlag width="55px" height="55px" />}
+        ikon={<NorwegianFlag width={ikonstorrelse.width} height={ikonstorrelse.height} />}
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
         verdi={sisteFraværsprosentNorge + "%"}
       />
 
       <InfographicSnippet
-        ikon={<Bag width="55px" height="55px" />}
+        ikon={<Bag width={ikonstorrelse.width} height={ikonstorrelse.height} />}
         tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
         verdi={sisteFraværsprosentNæring + "%"}
       />
 
       <InfographicSnippet
-        ikon={<HealthCase width="55px" height="55px" />}
+        ikon={<HealthCase width={ikonstorrelse.width} height={ikonstorrelse.height} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
       />
 
       <InfographicSnippet
-        ikon={<Up width="55px" height="55px" />}
+        ikon={<Up width={ikonstorrelse.width} height={ikonstorrelse.height} />}
         tekst={"Sykefraværet i din bransje akkurat nå er "}
         verdi={trendSomTekst}
       />
       <BodyLong size="medium">
         Synes du denne informasjonen var bra? På{" "}
-        <Link href={"https://arbeidsgiver.nav.no/sykefravarsstatistikk/"}>statistikksiden</Link> får du oversikt over
-        sykefraværet over tid.
+        <Link href={"https://arbeidsgiver.nav.no/sykefravarsstatistikk/"}>
+          statistikksiden
+        </Link>{" "}
+        får du oversikt over sykefraværet over tid.
       </BodyLong>
     </div>
   );

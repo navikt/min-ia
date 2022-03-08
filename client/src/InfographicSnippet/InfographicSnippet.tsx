@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import styles from "./InfographicSnippet.module.scss";
-import { Label } from "@navikt/ds-react";
+import { HelpText, Label } from "@navikt/ds-react";
 
 export const InfographicSnippet = (props: {
   ikon: ReactNode;
@@ -14,6 +14,9 @@ export const InfographicSnippet = (props: {
         {props.tekst}
         <span style={{ fontWeight: 700 }}>{props.verdi}</span>
       </Label>
+      <HelpText title="Hvor kommer dette fra?">
+        Informasjonen er hentet fra X sin statistikk fra 2021
+      </HelpText>
     </div>
   );
 };
