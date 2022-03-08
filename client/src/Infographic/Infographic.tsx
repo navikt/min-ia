@@ -52,7 +52,7 @@ export const Infographic: FunctionComponent<{
         tekst={"Sykefraværet i din bransje akkurat nå er "}
         verdi={trendSomTekst}
       />
-      <BodyLong size="medium">
+      <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
         <Link href={"https://arbeidsgiver.nav.no/sykefravarsstatistikk/"}>
           statistikksiden
