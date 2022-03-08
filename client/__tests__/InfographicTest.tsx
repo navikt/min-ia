@@ -30,6 +30,30 @@ it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () =
   );
 });
 
+it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () => {
+  render(<Infographic historikk={mockSykefraværNæringSynkendeTrend} />);
+  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  expect(infobolk.textContent).toBe(
+      "Sykefraværet i din bransje akkurat nå er synkende"
+  );
+});
+
+it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async () => {
+  render(<Infographic historikk={mockSykefraværNæringIngenTrend} />);
+  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  expect(infobolk.textContent).toBe(
+      "Sykefraværet i din bransje akkurat nå er -"
+  );
+});
+
+it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
+  render(<Infographic historikk={mockSykefraværNæringUendretTrend} />);
+  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  expect(infobolk.textContent).toBe(
+      "Sykefraværet i din bransje akkurat nå er uendret"
+  );
+});
+
 it("viser årsak til sykemelding", async () => {
   render(<Infographic historikk={mockSykefraværNæring} />);
   const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
@@ -153,6 +177,81 @@ const mockSykefraværNæring: KvartalsvisSykefraværshistorikk[] = [
         erMaskert: false,
         kvartal: 2,
         årstall: 2019,
+      },
+    ],
+  },
+];
+
+const mockSykefraværNæringSynkendeTrend: KvartalsvisSykefraværshistorikk[] = [
+  {
+    type: SykefraværshistorikkType.NÆRING,
+    label: "En næring",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 5.7,
+        tapteDagsverk: 141083.9,
+        muligeDagsverk: 2478321.1,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2018,
+      },
+      {
+        prosent: 5.6,
+        tapteDagsverk: 139625.1,
+        muligeDagsverk: 2483134.2,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+    ],
+  },
+];
+
+const mockSykefraværNæringIngenTrend: KvartalsvisSykefraværshistorikk[] = [
+  {
+    type: SykefraværshistorikkType.NÆRING,
+    label: "En næring",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 5.7,
+        tapteDagsverk: 141083.9,
+        muligeDagsverk: 2478321.1,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2018,
+      },
+      {
+        prosent: 5.6,
+        tapteDagsverk: 139625.1,
+        muligeDagsverk: 2483134.2,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+    ],
+  },
+];
+
+const mockSykefraværNæringUendretTrend: KvartalsvisSykefraværshistorikk[] = [
+  {
+    type: SykefraværshistorikkType.NÆRING,
+    label: "En næring",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 5.6,
+        tapteDagsverk: 141083.9,
+        muligeDagsverk: 2478321.1,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2020,
+      },
+      {
+        prosent: 5.6,
+        tapteDagsverk: 139625.1,
+        muligeDagsverk: 2483134.2,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2021,
       },
     ],
   },
