@@ -15,8 +15,6 @@ export const Infographic: FunctionComponent<{
 }> = ({ data }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
 
-  let trendSomTekst = stigningskurveTilTekst(data.trendStigningstall);
-
   return (
     <div className={styles.infographicWrapper}>
       <InfographicFlis
@@ -40,7 +38,7 @@ export const Infographic: FunctionComponent<{
       <InfographicFlis
         ikon={<Up {...ikonstorrelse} />}
         tekst={"Sykefraværet i din bransje akkurat nå er "}
-        verdi={trendSomTekst}
+        verdi={stigningstallTilTekst(data.trendStigningstall)}
       />
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
@@ -53,7 +51,7 @@ export const Infographic: FunctionComponent<{
   );
 };
 
-function stigningskurveTilTekst(stigning: number | undefined): string {
+function stigningstallTilTekst(stigning: number | undefined): string {
   if (stigning === undefined) {
     return "-";
   } else if (stigning > 0) {
