@@ -12,6 +12,7 @@ import React from "react";
 import {useSykefraværshistorikk} from "../hooks/useSykefraværshistorikk";
 import {RestStatus} from "../integrasjoner/rest-status";
 import {Infographic} from "../Infographic/Infographic";
+import {kalkulerInfographicData} from "../Infographic/datatransformasjon";
 
 export const Forside = () => {
     const bredde = 60;
@@ -20,7 +21,7 @@ export const Forside = () => {
 
     const infographicHvisDataOk =
         sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
-            <Infographic historikk={sykefraværshistorikk.data}/>
+            <Infographic data={{...kalkulerInfographicData(sykefraværshistorikk.data)}}/>
         );
 
     return (
