@@ -63,14 +63,6 @@ it("viser årsak til sykemelding", async () => {
   );
 });
 
-it("viser årsak til sykemelding", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæring)}} />);
-  const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
-  expect(infobolk.textContent).toBe(
-    "Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
-  );
-});
-
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   render(<Infographic data={{...kalkulerInfographicData(mockTomHistorikk)}} />);
   const infobolk = await screen.getByText(
