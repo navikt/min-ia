@@ -10,9 +10,11 @@ export interface InfographicData {
   trendStigningstall: number | undefined;
 }
 
-export const Infographic: FunctionComponent<{
-  data: InfographicData;
-}> = ({ data = null }) => {
+export const Infographic: FunctionComponent<InfographicData> = ({
+  sykefraværNorge ,
+  sykefraværNæring ,
+  trendStigningstall ,
+}) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
 
   return (
@@ -20,13 +22,13 @@ export const Infographic: FunctionComponent<{
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
-        verdi={data?.sykefraværNorge + "%"}
+        verdi={sykefraværNorge + "%"}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
-        verdi={data?.sykefraværNæring + "%"}
+        verdi={sykefraværNæring + "%"}
       />
 
       <InfographicFlis
@@ -38,7 +40,7 @@ export const Infographic: FunctionComponent<{
       <InfographicFlis
         ikon={<Up {...ikonstorrelse} />}
         tekst={"Sykefraværet i din bransje akkurat nå er "}
-        verdi={stigningstallTilTekst(data?.trendStigningstall)}
+        verdi={stigningstallTilTekst(trendStigningstall)}
       />
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}

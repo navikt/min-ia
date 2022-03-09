@@ -21,7 +21,7 @@ export const Forside = () => {
 
     const infographicHvisDataOk =
         sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
-            <Infographic data={{...kalkulerInfographicData(sykefraværshistorikk.data)}}/>
+            <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)}/>
         );
 
     return (
