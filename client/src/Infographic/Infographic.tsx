@@ -12,7 +12,7 @@ export interface InfographicData {
 
 export const Infographic: FunctionComponent<{
   data: InfographicData;
-}> = ({ data }) => {
+}> = ({ data = null }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
 
   return (
