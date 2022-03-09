@@ -7,7 +7,6 @@ import {
 } from "../integrasjoner/altinnorganisasjon-api";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { Heading, Ingress } from "@navikt/ds-react";
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
