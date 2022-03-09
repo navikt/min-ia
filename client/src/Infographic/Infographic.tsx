@@ -20,13 +20,13 @@ export const Infographic: FunctionComponent<{
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
-        verdi={data.sykefraværNorge + "%"}
+        verdi={data?.sykefraværNorge + "%"}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
-        verdi={data.sykefraværNæring + "%"}
+        verdi={data?.sykefraværNæring + "%"}
       />
 
       <InfographicFlis
@@ -38,7 +38,7 @@ export const Infographic: FunctionComponent<{
       <InfographicFlis
         ikon={<Up {...ikonstorrelse} />}
         tekst={"Sykefraværet i din bransje akkurat nå er "}
-        verdi={stigningstallTilTekst(data.trendStigningstall)}
+        verdi={stigningstallTilTekst(data?.trendStigningstall)}
       />
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
