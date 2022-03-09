@@ -1,11 +1,12 @@
+@use "src/utils/screen-sizes";
+
 .infographicWrapper {
   background-color: white;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem 0;
+  gap: 2.5rem 0;
+  padding: 3rem 2rem;
 }
 
 .snippetWrapper {
@@ -16,13 +17,7 @@
 .text {
   float: left;
 }
-
-.panelGrid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  width: 100%;
-  padding: 2rem 0;
+.oversiktTekst{
+  padding: 0 3rem;
 }
 

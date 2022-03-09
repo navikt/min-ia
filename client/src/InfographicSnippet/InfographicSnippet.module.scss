@@ -2,20 +2,26 @@
 
 
 .ikonWrapper {
-  width: 50px;
+  margin-right: 1rem;
 }
 .tekst{
-  width: 60%;
+  width: 70%;
+  line-height: 1.6;
+
 }
 .infographicSnippet {
   width: 98%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 @media (min-width: screen-sizes.$screen-md) {
   .infographicSnippet {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     width: 48.5%;
     padding: 0 2rem 0 3rem;
   }
+
 }
