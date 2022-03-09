@@ -8,7 +8,7 @@ import {
 import {kalkulerInfographicData} from "../src/Infographic/datatransformasjon";
 
 it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNorge)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNorge)} />);
   const infobolk = await screen.getByText(/Sykefraværsprosenten i Norge/);
   expect(infobolk.textContent).toBe(
     "Sykefraværsprosenten i Norge akkurat nå er: 4.9%"
@@ -16,7 +16,7 @@ it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async 
 });
 
 it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæring)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
   const infobolk = await screen.getByText(/Sykefraværsprosenten i din bransje/);
   expect(infobolk.textContent).toBe(
     "Sykefraværsprosenten i din bransje akkurat nå er: 5.1%"
@@ -24,7 +24,7 @@ it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", asyn
 });
 
 it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæring)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
   const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
   expect(infobolk.textContent).toBe(
     "Sykefraværet i din bransje akkurat nå er stigende"
@@ -32,7 +32,7 @@ it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () =
 });
 
 it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)} />);
   const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
   expect(infobolk.textContent).toBe(
       "Sykefraværet i din bransje akkurat nå er synkende"
@@ -40,7 +40,7 @@ it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () =
 });
 
 it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæringIngenTrend)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringIngenTrend)} />);
   const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
   expect(infobolk.textContent).toBe(
       "Sykefraværet i din bransje akkurat nå er -"
@@ -48,7 +48,7 @@ it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async 
 });
 
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæringUendretTrend)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringUendretTrend)} />);
   const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
   expect(infobolk.textContent).toBe(
       "Sykefraværet i din bransje akkurat nå er uendret"
@@ -56,7 +56,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
 });
 
 it("viser årsak til sykemelding", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockSykefraværNæring)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
   const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
   expect(infobolk.textContent).toBe(
     "Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
@@ -64,7 +64,7 @@ it("viser årsak til sykemelding", async () => {
 });
 
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockTomHistorikk)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   const infobolk = await screen.getByText(
     /Synes du denne informasjonen var bra?/
   );
@@ -74,7 +74,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
 });
 
 it("lenker riktig til sykefraværsstatistikken", async () => {
-  render(<Infographic data={{...kalkulerInfographicData(mockTomHistorikk)}} />);
+  render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   const lenke = await screen.getByRole("link", { name: /statistikksiden/ });
 
   expect(lenke).toHaveAttribute(

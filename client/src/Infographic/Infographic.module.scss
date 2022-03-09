@@ -20,4 +20,13 @@
 .oversiktTekst{
   padding: 0 3rem;
 }
+.rotateOpp{
+  transform: rotate(45deg);
+}
+.rotateNed{
+  transform: rotate(135deg);
+}
+.rotateUendret{
+  transform: rotate(90deg);
+}
 

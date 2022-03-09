@@ -11,11 +11,19 @@ export interface InfographicData {
 }
 
 export const Infographic: FunctionComponent<InfographicData> = ({
-  sykefraværNorge ,
-  sykefraværNæring ,
-  trendStigningstall ,
+  sykefraværNorge,
+  sykefraværNæring,
+  trendStigningstall,
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
+    function switchResult(a: string){
+        switch(a){
+            case "stigende": return styles.rotateOpp;
+            case "synkende": return styles.rotateNed;
+            default:
+                return styles.rotateUendret;
+        }
+    }
 
   return (
     <div className={styles.infographicWrapper}>
@@ -38,7 +46,12 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       />
 
       <InfographicFlis
-        ikon={<Up {...ikonstorrelse} />}
+        ikon={
+          <Up
+            className={switchResult(stigningstallTilTekst(trendStigningstall))}
+            {...ikonstorrelse}
+          />
+        }
         tekst={"Sykefraværet i din bransje akkurat nå er "}
         verdi={stigningstallTilTekst(trendStigningstall)}
       />
