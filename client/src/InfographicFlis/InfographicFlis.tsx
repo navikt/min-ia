@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
-import styles from "./InfographicSnippet.module.scss";
+import styles from "./InfographicFlis.module.scss";
 import { HelpText, Label } from "@navikt/ds-react";
 
-export const InfographicSnippet = (props: {
+export const InfographicFlis = (props: {
   ikon: ReactNode;
   tekst: string;
   verdi: string;
 }) => {
   return (
-    <div className={styles.infographicSnippet}>
+    <div className={styles.infographicFlis}>
       <div className={styles.ikonWrapper}>{props.ikon}</div>
       <Label size="small" className={styles.tekst}>
         {props.tekst}

@@ -1,51 +1,43 @@
 import { FunctionComponent } from "react";
-import {
-  KvartalsvisSykefraværshistorikk,
-  KvartalsvisSykefraværsprosent,
-  SykefraværshistorikkType,
-} from "../integrasjoner/kvartalsvis-sykefraværshistorikk-api";
 import styles from "./Infographic.module.scss";
-import { InfographicSnippet } from "../InfographicSnippet/InfographicSnippet";
-import { NorwegianFlag } from "@navikt/ds-icons";
-import { Bag } from "@navikt/ds-icons";
-import { HealthCase } from "@navikt/ds-icons";
-import { Up } from "@navikt/ds-icons";
+import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
+import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
 import { BodyLong, Link } from "@navikt/ds-react";
 
 export interface InfographicData {
-  sykefraværNorge: number | null | undefined,
-  sykefraværNæring: number | null | undefined,
-  trendStigningstall: number | undefined,
+  sykefraværNorge: number | null | undefined;
+  sykefraværNæring: number | null | undefined;
+  trendStigningstall: number | undefined;
 }
 
 export const Infographic: FunctionComponent<{
   data: InfographicData;
 }> = ({ data }) => {
-  const ikonstorrelse = { width: '50px', height: '50px' };
+  const ikonstorrelse = { width: "50px", height: "50px" };
 
   let trendSomTekst = stigningskurveTilTekst(data.trendStigningstall);
 
   return (
     <div className={styles.infographicWrapper}>
-      <InfographicSnippet
+      <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
         verdi={data.sykefraværNorge + "%"}
       />
 
-      <InfographicSnippet
+      <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
         verdi={data.sykefraværNæring + "%"}
       />
 
-      <InfographicSnippet
+      <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
       />
 
-      <InfographicSnippet
+      <InfographicFlis
         ikon={<Up {...ikonstorrelse} />}
         tekst={"Sykefraværet i din bransje akkurat nå er "}
         verdi={trendSomTekst}
@@ -60,8 +52,6 @@ export const Infographic: FunctionComponent<{
     </div>
   );
 };
-
-
 
 function stigningskurveTilTekst(stigning: number | undefined): string {
   if (stigning === undefined) {
