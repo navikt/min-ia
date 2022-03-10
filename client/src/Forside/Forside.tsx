@@ -1,83 +1,83 @@
 import styles from "./forside.module.scss";
-import {StatistikkIkonIkon} from "./ikoner/StatistikkIkonIkon";
-import {SamtalestøtteIkon} from "./ikoner/SamtalestøtteIkon";
-import {Lenkeflis} from "../Lenkeflis/Lenkeflis";
-import {HvaGjørDeSomLykkesIkon} from "./ikoner/HvaGjørDeSomLykkesIkon";
-import {KursOgWebinarerIkon} from "./ikoner/KursOgWebinarerIkon";
-import {Calculator} from "@navikt/ds-icons";
-import {LenkeflisEkstern} from "../LenkeflisEkstern/LenkeflisEkstern";
-import {IdebankenIkon} from "./ikoner/IdebankenIkon";
-import {ArbeidsmiljøPortalenIkon} from "./ikoner/ArbeidsmiljøportalenIkon";
+import { StatistikkIkonIkon } from "./ikoner/StatistikkIkonIkon";
+import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
+import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
+import { HvaGjørDeSomLykkesIkon } from "./ikoner/HvaGjørDeSomLykkesIkon";
+import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
+import { Calculator } from "@navikt/ds-icons";
+import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
+import { IdebankenIkon } from "./ikoner/IdebankenIkon";
+import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React from "react";
-import {useSykefraværshistorikk} from "../hooks/useSykefraværshistorikk";
-import {RestStatus} from "../integrasjoner/rest-status";
-import {Infographic} from "../Infographic/Infographic";
-import {kalkulerInfographicData} from "../Infographic/datatransformasjon";
+import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
+import { RestStatus } from "../integrasjoner/rest-status";
+import { Infographic } from "../Infographic/Infographic";
+import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
 
 export const Forside = () => {
-    const bredde = 60;
-    const høyde = 60;
-    const sykefraværshistorikk = useSykefraværshistorikk();
+  const bredde = 60;
+  const høyde = 60;
+  const sykefraværshistorikk = useSykefraværshistorikk();
 
-    const infographicHvisDataOk =
-        sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
-            <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)}/>
-        );
-
-    return (
-        <div className={styles.forside}>
-            {infographicHvisDataOk}
-            <div className={styles.panelGrid}>
-                <Lenkeflis
-                    overskrift={"Samtalestøtten"}
-                    ikon={<SamtalestøtteIkon/>}
-                    brødtekst={
-                        "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
-                    }
-                />
-                <Lenkeflis
-                    overskrift={"Din statistikk"}
-                    ikon={<StatistikkIkonIkon/>}
-                    brødtekst={
-                        "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
-                    }
-                />
-                <Lenkeflis
-                    overskrift={"Hva gjør de som lykkes"}
-                    ikon={<HvaGjørDeSomLykkesIkon/>}
-                    brødtekst={
-                        "Lær av de som forebygger sykefravær på en god, strukturert måte."
-                    }
-                />
-                <Lenkeflis
-                    overskrift={"Kurs og webinarer"}
-                    ikon={<KursOgWebinarerIkon/>}
-                    brødtekst={
-                        "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
-                    }
-                />
-                <Lenkeflis
-                    overskrift={"Kalkulator"}
-                    ikon={<Calculator/>}
-                    brødtekst={
-                        "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
-                    }
-                />
-                <LenkeflisEkstern
-                    overskrift={"Idébanken"}
-                    ikon={<IdebankenIkon width={bredde} height={høyde}/>}
-                    brødtekst={
-                        "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
-                    }
-                />
-                <LenkeflisEkstern
-                    overskrift={"Arbeidsmiljø&shy;portalen"}
-                    ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde}/>}
-                    brødtekst={
-                        "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
-                    }
-                />
-            </div>
-        </div>
+  const infographicHvisDataOk =
+    sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
+      <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)} />
     );
+
+  return (
+    <div className={styles.forside}>
+      {infographicHvisDataOk}
+      <div className={styles.panelGrid}>
+        <Lenkeflis
+          overskrift={"Samtalestøtten"}
+          ikon={<SamtalestøtteIkon />}
+          brødtekst={
+            "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
+          }
+        />
+        <Lenkeflis
+          overskrift={"Statistikk"}
+          ikon={<StatistikkIkonIkon />}
+          brødtekst={
+            "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
+          }
+        />
+        <Lenkeflis
+          overskrift={"Hva gjør de som lykkes"}
+          ikon={<HvaGjørDeSomLykkesIkon />}
+          brødtekst={
+            "Lær av de som forebygger sykefravær på en god, strukturert måte."
+          }
+        />
+        <Lenkeflis
+          overskrift={"Kurs og webinarer"}
+          ikon={<KursOgWebinarerIkon />}
+          brødtekst={
+            "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+          }
+        />
+        <Lenkeflis
+          overskrift={"Kalkulator"}
+          ikon={<Calculator />}
+          brødtekst={
+            "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
+          }
+        />
+        <LenkeflisEkstern
+          overskrift={"Idébanken"}
+          ikon={<IdebankenIkon width={bredde} height={høyde} />}
+          brødtekst={
+            "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
+          }
+        />
+        <LenkeflisEkstern
+          overskrift={"Arbeidsmiljø&shy;portalen"}
+          ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
+          brødtekst={
+            "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
+          }
+        />
+      </div>
+    </div>
+  );
 };
