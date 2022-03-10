@@ -16,14 +16,6 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   trendStigningstall,
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
-    function switchResult(a: string){
-        switch(a){
-            case "stigende": return styles.rotateOpp;
-            case "synkende": return styles.rotateNed;
-            default:
-                return styles.rotateUendret;
-        }
-    }
 
   return (
     <div className={styles.infographicWrapper}>
@@ -48,7 +40,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       <InfographicFlis
         ikon={
           <Up
-            className={switchResult(stigningstallTilTekst(trendStigningstall))}
+            className={roterTrendpil(stigningstallTilTekst(trendStigningstall))}
             {...ikonstorrelse}
           />
         }
@@ -65,6 +57,17 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     </div>
   );
 };
+
+function roterTrendpil(a: string) {
+    switch (a) {
+        case "stigende":
+            return styles.rotateOpp;
+        case "synkende":
+            return styles.rotateNed;
+        default:
+            return styles.rotateUendret;
+    }
+}
 
 function stigningstallTilTekst(stigning: number | undefined): string {
   if (stigning === undefined) {
