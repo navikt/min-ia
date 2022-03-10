@@ -9,12 +9,24 @@ import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React from "react";
+import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
+import { RestStatus } from "../integrasjoner/rest-status";
+import { Infographic } from "../Infographic/Infographic";
+import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
 
 export const Forside = () => {
   const bredde = 60;
   const høyde = 60;
+  const sykefraværshistorikk = useSykefraværshistorikk();
+
+  const infographicHvisDataOk =
+    sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
+      <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)} />
+    );
+
   return (
     <div className={styles.forside}>
+      {infographicHvisDataOk}
       <div className={styles.panelGrid}>
         <Lenkeflis
           overskrift={"Samtalestøtten"}
@@ -24,7 +36,7 @@ export const Forside = () => {
           }
         />
         <Lenkeflis
-          overskrift={"Din statistikk"}
+          overskrift={"Statistikk"}
           ikon={<StatistikkIkonIkon />}
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
@@ -41,14 +53,14 @@ export const Forside = () => {
           overskrift={"Kurs og webinarer"}
           ikon={<KursOgWebinarerIkon />}
           brødtekst={
-            "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+            "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
         />
         <Lenkeflis
           overskrift={"Kalkulator"}
           ikon={<Calculator />}
           brødtekst={
-            "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+            "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
           }
         />
         <LenkeflisEkstern

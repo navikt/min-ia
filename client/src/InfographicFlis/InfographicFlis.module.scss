@@ -1,0 +1,24 @@
+@use "src/utils/screen-sizes";
+
+.ikonWrapper {
+  margin-right: 1rem;
+}
+.tekst {
+  width: 70%;
+  line-height: 1.6;
+}
+.infographicFlis {
+  width: 98%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (min-width: screen-sizes.$screen-md) {
+  .infographicFlis {
+    display: flex;
+    justify-content: flex-start;
+    width: 48.5%;
+    padding: 0 2rem 0 3rem;
+  }
+}

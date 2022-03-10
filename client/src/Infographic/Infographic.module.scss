@@ -1,0 +1,32 @@
+@use "src/utils/screen-sizes";
+
+.infographicWrapper {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem 0;
+  padding: 3rem 2rem;
+}
+
+.snippetWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.text {
+  float: left;
+}
+.oversiktTekst{
+  padding: 0 3rem;
+}
+.rotateOpp{
+  transform: rotate(45deg);
+}
+.rotateNed{
+  transform: rotate(135deg);
+}
+.rotateUendret{
+  transform: rotate(90deg);
+}
+
