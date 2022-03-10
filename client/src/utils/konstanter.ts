@@ -1,6 +1,9 @@
 const ARBEIDSGIVER_URL = "https://arbeidsgiver.nav.no";
 
-export const BASE_PATH = "/samtalestotte";
+export const BASE_PATH = "/min-ia";
+
+export const API_BASE_URL = "/min-ia/api";
+
 export const PROD_URL = ARBEIDSGIVER_URL + BASE_PATH;
 export const METRIKKER_API_PATH = BASE_PATH + "/metrikker";
 

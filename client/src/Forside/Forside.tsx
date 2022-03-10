@@ -8,14 +8,30 @@ import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
+<<<<<<< sette-opp-lenker
 import React, { useEffect, useState } from "react";
 import { string } from "prop-types";
+=======
+import React from "react";
+import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
+import { RestStatus } from "../integrasjoner/rest-status";
+import { Infographic } from "../Infographic/Infographic";
+import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
+>>>>>>> main
 
 export const Forside = () => {
   const bredde = 60;
   const høyde = 60;
+  const sykefraværshistorikk = useSykefraværshistorikk();
+
+  const infographicHvisDataOk =
+    sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
+      <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)} />
+    );
+
   return (
     <div className={styles.forside}>
+      {infographicHvisDataOk}
       <div className={styles.panelGrid}>
         <Lenkeflis
           overskrift={"Samtalestøtten"}
@@ -26,7 +42,7 @@ export const Forside = () => {
           href={process.env.SAMTALESTOTTE_URL}
         />
         <Lenkeflis
-          overskrift={"Din statistikk"}
+          overskrift={"Statistikk"}
           ikon={<StatistikkIkonIkon />}
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
@@ -45,7 +61,7 @@ export const Forside = () => {
           overskrift={"Kurs og webinarer"}
           ikon={<KursOgWebinarerIkon />}
           brødtekst={
-            "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+            "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
           href={"/kurs_og_webinar"}
         />
@@ -53,7 +69,7 @@ export const Forside = () => {
           overskrift={"Kalkulator"}
           ikon={<Calculator />}
           brødtekst={
-            "er finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+            "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
           }
           href={process.env.KALKULATOR}
         />
