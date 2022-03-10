@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { AltinnOrganisasjon } from "../../api/altinnorganisasjon-api";
+import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 
 export default function handler(
   req: NextApiRequest,
