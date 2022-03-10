@@ -7,9 +7,10 @@ export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
   ikon: React.ReactElement;
   brødtekst: string;
-}> = ({ overskrift, brødtekst, ikon }) => {
+  href: string | undefined;
+}> = ({ overskrift, brødtekst, ikon, href }) => {
   return (
-    <LinkPanel href="#" className={styles.lenkeflis}>
+    <LinkPanel href={href ? href : "#"} className={styles.lenkeflis}>
       <div className={styles.ikonOgTekstWrapper}>
         <div className={styles.ikonWrapper}>{ikon}</div>
         <div>

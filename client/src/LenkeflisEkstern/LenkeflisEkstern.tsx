@@ -7,10 +7,14 @@ export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
   ikon: React.ReactElement;
   brødtekst: string;
-}> = ({ overskrift, ikon, brødtekst }) => {
+  href: string | undefined;
+}> = ({ overskrift, ikon, brødtekst, href }) => {
   return (
     <div className={styles.panelWrapper}>
-      <a className="navds-panel navds-link-panel navds-panel--border" href="#">
+      <a
+        className="navds-panel navds-link-panel navds-panel--border"
+        href={href ? href : "#"}
+      >
         <div className={styles.ikonOgTekstWrapper}>
           {ikon}
           <div className={styles.tekstWrap}>
