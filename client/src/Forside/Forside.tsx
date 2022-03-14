@@ -8,16 +8,25 @@ import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
-import React, { useEffect, useState } from "react";
-import { string } from "prop-types";
+import React, { useEffect } from "react";
 import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../Infographic/Infographic";
 import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
+import { useAmplitude } from "../amplitude/useAmplitude";
+import { AmplitudeClient } from "../amplitude/client";
+import { sendSidevisningEvent } from "../amplitude/events";
 
-export const Forside = () => {
+export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
   const bredde = 60;
   const høyde = 60;
+
+  useAmplitude(props.amplitudeClient);
+
+  useEffect(() => {
+    sendSidevisningEvent();
+  }, []);
+
   const sykefraværshistorikk = useSykefraværshistorikk();
 
   const infographicHvisDataOk =

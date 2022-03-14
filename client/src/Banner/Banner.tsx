@@ -7,6 +7,7 @@ import {
 } from "../integrasjoner/altinnorganisasjon-api";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { sendBedriftValgtEvent } from "../amplitude/events";
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
@@ -29,7 +30,7 @@ const Banner: React.FunctionComponent<Props & RouteComponentProps> = (
         sidetittel={tittelMedUnderTittel}
         history={history}
         onOrganisasjonChange={() => {
-          // TODO: sett amplitude
+          sendBedriftValgtEvent();
           return;
         }}
       />

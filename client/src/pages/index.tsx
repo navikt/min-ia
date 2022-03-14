@@ -2,6 +2,7 @@ import Head from "next/head";
 import { getPageProps, PageProps } from "../pageProps";
 import { Layout } from "../komponenter/Layout/Layout";
 import { Forside } from "../Forside/Forside";
+import { navDefaultAmplitudeClient } from "../amplitude/client";
 
 const Home = (props: { page: PageProps }) => {
   return (
@@ -17,7 +18,7 @@ const Home = (props: { page: PageProps }) => {
           isFrontPage={true}
           decoratorParts={props.page.decorator}
         >
-          <Forside />
+          <Forside amplitudeClient={navDefaultAmplitudeClient} />
         </Layout>
       </main>
       <footer />
