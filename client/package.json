@@ -16,6 +16,7 @@
     "@navikt/ds-icons": "^0.8.4",
     "@navikt/ds-react": "^0.16.10",
     "@navikt/nav-dekoratoren-moduler": "^1.6.9",
+    "@sentry/browser": "^6.18.2",
     "@types/cheerio": "^0.22.31",
     "@types/node-fetch": "^3.0.3",
     "@types/react-router-dom": "^5.3.3",
