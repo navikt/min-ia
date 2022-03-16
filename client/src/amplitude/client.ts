@@ -1,30 +1,27 @@
-import amplitude from 'amplitude-js'
+import amplitude from "amplitude-js";
 
-export type EventProperties = { app: string, url: string, [key: string]: any }
+export type EventProperties = { app: string; url: string; [key: string]: any };
 
-function initializeNavDefaultAmplitudeClient(): AmplitudeClient {
+function initializeNavDefaultAmplitudeClient(): AmplitudeClient | undefined {
+  if (typeof window != "undefined") {
     const amplitudeConfig = {
-        apiEndpoint: 'amplitude.nav.no/collect-auto',
-        saveEvents: false,
-        includeUtm: true,
-        includeReferrer: false,
-        platform: window.location.toString(),
-    }
+      apiEndpoint: "amplitude.nav.no/collect-auto",
+      saveEvents: false,
+      includeUtm: true,
+      includeReferrer: false,
+      platform: window.location.toString(),
+    };
 
     const amplitudeInstance = amplitude.getInstance();
-
-    amplitudeInstance.init(
-        'default', undefined, amplitudeConfig
-    )
-
-    return amplitudeInstance
+    amplitudeInstance.init("default", undefined, amplitudeConfig);
+    return amplitudeInstance;
+  }
 }
 
-export const navDefaultAmplitudeClient = initializeNavDefaultAmplitudeClient()
+export const navDefaultAmplitudeClient = initializeNavDefaultAmplitudeClient();
 
 export interface AmplitudeClient {
-    logEvent(eventName: string, eventProperties: EventProperties): void
+  logEvent(eventName: string, eventProperties: EventProperties): void;
 
-    setUserProperties(properties: any): void
+  setUserProperties(properties: any): void;
 }
-
