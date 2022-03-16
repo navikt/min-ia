@@ -1,8 +1,6 @@
 import React from "react";
-import illustrasjonSvg from "./statistikk-ikon.svg";
-//import './Innloggingsside.scss';
+import { InnloggingssideIkon } from "./InnloggingssideIkon";
 import "@navikt/ds-css";
-import Image from "next/image";
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";
 
 interface Props {
@@ -19,12 +17,9 @@ export const Innloggingsside: React.FunctionComponent<Props> = ({
   return (
     <div className="innloggingsside__wrapper">
       <div className="innloggingsside">
-        <Image
-          src={illustrasjonSvg}
-          className="innloggingsside__illustrasjon"
-          alt=""
-        />
-
+        <div className="innloggingsside__illustrasjon">
+          <InnloggingssideIkon height={60} width={60} />
+        </div>
         <Heading size="xlarge">Forebygge fravær</Heading>
 
         <BodyLong spacing>
