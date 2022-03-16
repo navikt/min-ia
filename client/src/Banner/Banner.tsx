@@ -31,7 +31,6 @@ const Banner: React.FunctionComponent<Props & RouteComponentProps> = (
         history={history}
         onOrganisasjonChange={() => {
           sendBedriftValgtEvent();
-          return;
         }}
       />
     </div>
