@@ -22,9 +22,6 @@ jobs:
         working-directory: client
         run: "yarn install --immutable"
 
-      - name: Run tests
-        run: yarn test
-
       - name: "Install server dependencies"
         working-directory: server
         run: "yarn install --immutable"
