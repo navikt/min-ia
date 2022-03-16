@@ -3,6 +3,7 @@ import { getPageProps, PageProps } from "../pageProps";
 import { Layout } from "../komponenter/Layout/Layout";
 import { Forside } from "../Forside/Forside";
 import * as Sentry from '@sentry/browser';
+import { navDefaultAmplitudeClient } from "../amplitude/client";
 
 const Home = (props: { page: PageProps }) => {
     Sentry.init({
@@ -24,7 +25,7 @@ const Home = (props: { page: PageProps }) => {
           isFrontPage={true}
           decoratorParts={props.page.decorator}
         >
-          <Forside />
+          <Forside amplitudeClient={navDefaultAmplitudeClient!!} />
         </Layout>
       </main>
       <footer />

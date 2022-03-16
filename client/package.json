@@ -7,7 +7,8 @@
     "start": "next start",
     "build": "next build",
     "lint": "eslint .",
-    "test": "jest --watch",
+    "test": "TZ=CET jest",
+    "watch": "jest --watch",
     "export": "next export"
   },
   "dependencies": {
@@ -45,6 +46,7 @@
     "eslint-plugin-react": "^7.28.0",
     "jest-cli": "^27.5.1",
     "prettier": "^2.5.1",
-    "sass": "^1.49.8"
+    "sass": "^1.49.8",
+    "whatwg-fetch": "^3.6.2"
   }
 }
