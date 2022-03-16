@@ -22,8 +22,6 @@ console.log("buildPath", buildPath);
 const server = express();
 
 const envProperties = {
-  BACKEND_API_BASE_URL:
-    process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL || "http://localhost:8080",
   PORT: process.env.PORT || 3010,
 };
 
