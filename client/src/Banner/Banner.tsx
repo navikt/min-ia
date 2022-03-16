@@ -11,17 +11,13 @@ import { sendBedriftValgtEvent } from "../amplitude/events";
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
-  restOrganisasjoner: RestAltinnOrganisasjoner;
+  altinnOrganisasjoner: AltinnOrganisasjon[];
 }
 
 const Banner: React.FunctionComponent<Props & RouteComponentProps> = (
   props
 ) => {
-  const { history, tittelMedUnderTittel, restOrganisasjoner } = props;
-  const altinnOrganisasjoner: AltinnOrganisasjon[] =
-    restOrganisasjoner.status === RestStatus.Suksess
-      ? restOrganisasjoner.data
-      : [];
+  const { history, tittelMedUnderTittel, altinnOrganisasjoner } = props;
 
   return (
     <div>
