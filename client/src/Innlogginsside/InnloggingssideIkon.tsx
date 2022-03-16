@@ -16,9 +16,9 @@ export const InnloggingssideIkon = (props: {
         <g
           id="statistikk-ikon"
           stroke="none"
-          stroke-width="1"
+          strokeWidth="1"
           fill="none"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         >
           <circle id="Oval" fill="#CCE1F3" cx="40" cy="40" r="40"></circle>
           <g id="Group" transform="translate(23.000000, 14.000000)">
