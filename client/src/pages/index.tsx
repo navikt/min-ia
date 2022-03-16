@@ -18,7 +18,7 @@ const Home = (props: { page: PageProps }) => {
           isFrontPage={true}
           decoratorParts={props.page.decorator}
         >
-          <Forside amplitudeClient={navDefaultAmplitudeClient} />
+          <Forside amplitudeClient={navDefaultAmplitudeClient!!} />
         </Layout>
       </main>
       <footer />
