@@ -44,7 +44,7 @@ jobs:
 
   "deployAppToDev":
     name: "Deploy app to dev"
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innføre-csp'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innloggin-uten-loginservice'
     needs: "build"
     runs-on: "ubuntu-latest"
     steps:
