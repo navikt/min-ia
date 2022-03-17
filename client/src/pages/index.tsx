@@ -52,13 +52,6 @@ const Home = (props: { page: PageProps }) => {
   );
 };
 
-interface StaticProps {
-  props: {
-    page: PageProps;
-  };
-  revalidate: number;
-}
-
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps: GetServerSideProps = async () => {
   const page = await getPageProps(
