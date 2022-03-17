@@ -59,7 +59,7 @@ interface StaticProps {
 }
 
 // NextJS kaller denne
-export const getStaticProps = async (): Promise<StaticProps> => {
+export const getServerSideProps = async (): Promise<StaticProps> => {
   const page = await getPageProps(
     "Forebygge sykefravær",
     "SLUG: Du får hjelp til å forebygge sykefravær"
