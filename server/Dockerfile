@@ -20,7 +20,7 @@ WORKDIR /home/node/app/client
 RUN yarn install --frozen-lockfile
 
 RUN yarn run build
-RUN yarn run export
+##RUN yarn run export --> kan ikke kjøre eksport
 
 WORKDIR /home/node/app/server
 
