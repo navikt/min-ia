@@ -7,6 +7,7 @@ import { navDefaultAmplitudeClient } from "../amplitude/client";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
+import { GetServerSideProps, GetStaticProps } from "next";
 
 const Home = (props: { page: PageProps }) => {
   Sentry.init({
@@ -58,17 +59,14 @@ interface StaticProps {
   revalidate: number;
 }
 
-// NextJS kaller denne
-export const getStaticProps = async (): Promise<StaticProps> => {
+// NextJS kaller denne ved Server Side Rendering (SSR)
+export const getServerSideProps: GetServerSideProps = async () => {
   const page = await getPageProps(
     "Forebygge sykefravær",
     "SLUG: Du får hjelp til å forebygge sykefravær"
   );
 
-  return {
-    props: { page },
-    revalidate: 60,
-  };
+  return { props: { page } };
 };
 
 export default Home;
