@@ -8,16 +8,16 @@ import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 const basePath = "/min-ia";
-const buildPath =
-  process.env.NODE_ENV === "development"
-    ? path.resolve(__dirname, "../client/out")
-    : path.resolve(__dirname, "../../client/out");
+// const buildPath =
+//   process.env.NODE_ENV === "development"
+//     ? path.resolve(__dirname, "../client/out")
+//     : path.resolve(__dirname, "../../client/out");
 console.log("NODE_ENV", process.env.NODE_ENV);
-console.log("buildPath", buildPath);
+// console.log("buildPath", buildPath);
 
 const server = express();
 
@@ -33,8 +33,8 @@ const startServer = async () => {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
-  server.use(basePath + "/", express.static(buildPath));
-  server.use("/assets", express.static(`${buildPath}/assets`));
+  // server.use(basePath + "/", express.static(buildPath));
+  // server.use("/assets", express.static(`${buildPath}/assets`));
 
   if (process.env.NODE_ENV === "not-local") {
     server.use(backendApiProxy);
@@ -74,13 +74,13 @@ const startServer = async () => {
     }
   });
 
-  server.get(`${basePath}/internal/isAlive`, (request, response) => {
-    response.sendStatus(200);
-  });
-
-  server.get(`${basePath}/internal/isReady`, (request, response) => {
-    response.sendStatus(200);
-  });
+  // server.get(`${basePath}/internal/isAlive`, (request, response) => {
+  //   response.sendStatus(200);
+  // });
+  //
+  // server.get(`${basePath}/internal/isReady`, (request, response) => {
+  //   response.sendStatus(200);
+  // });
 
   server.listen(envProperties.PORT, () => {
     console.log("Server listening on port ", envProperties.PORT);
