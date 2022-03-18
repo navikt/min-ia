@@ -9,7 +9,7 @@ Landingsside for selvbetjente IA-tjenester
 - Åpna applikasjonen på `http://localhost:3000/`
 
 # Kjøre opp lokalt med hot-reload på server
-- Naviger til `client`, kjør `yarn && yarn build && yarn export`
+- Naviger til `client`, kjør `yarn && yarn build //Det jobbes med å endre hvordan appen kjører, no lenger behov for det && yarn export`
 - Naviger til `/server` og oppdater avhengigheter: `yarn`
 - Rename filen `.env.example` -> `.env`
 - Kjør opp applikasjon: `yarn run dev`
