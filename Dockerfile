@@ -12,7 +12,6 @@ COPY client/next.config.js client/next.config.js
 COPY client/next-env.d.ts client/next-env.d.ts
 COPY client/tsconfig.json client/tsconfig.json
 
-COPY server server
 
 
 WORKDIR /home/node/app/client
