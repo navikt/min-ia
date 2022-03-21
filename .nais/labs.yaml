@@ -7,7 +7,7 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
-  port: 3010
+  port: 3000
   env:
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
