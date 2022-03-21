@@ -14,9 +14,9 @@ COPY client/next-env.d.ts client/next-env.d.ts
 COPY client/tsconfig.json client/tsconfig.json
 
 # Gi rettigheter til client/ mappen for apprunner
-USER root
-RUN chown -R apprunner /home/node/app/client
-USER apprunner
+# USER root
+# RUN chown -R apprunner /home/node/app/client
+# USER apprunner
 
 WORKDIR /home/node/app/client
 RUN yarn install --frozen-lockfile
