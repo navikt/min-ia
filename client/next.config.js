@@ -8,6 +8,18 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/internal/isAlive",
+        destination: "http://localhost:3010/min-ia/internal/isAlive",
+      },
+      {
+        source: "/api/internal/isReady",
+        destination: "http://localhost:3010/min-ia/internal/isReady",
+      },
+    ];
+  },
   async headers() {
     return [
       {
