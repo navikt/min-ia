@@ -41,10 +41,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push the Docker image
         run: |
-          docker build . -t ${IMAGE}
-          echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
-          echo ${IMAGE}
-          docker push ${IMAGE}
+          docker build . -t ${IMAGE} && docker push ${IMAGE}
 
   deployAppToDev:
     name: Deploy app to dev
