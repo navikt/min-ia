@@ -19,7 +19,7 @@ const proxyOptions: Options = {
     return path.replace(FRONTEND_API_PATH, BACKEND_API_PATH);
   },
   router: async (req) => {
-    if (process.env.NODE_ENV === "labs-gcp") {
+    if (process.env.NODE_ENV === "development") {
       // I labs så returnerer vi mock uansett
       return undefined;
     }
