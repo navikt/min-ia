@@ -15,8 +15,10 @@ spec:
       value: /etc/ssl/ca-bundle.pem
     - name: LOGIN_URL
       value: https://loginservice.dev.nav.no/login?redirect=
+      ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
+      ## Derfor overskriver vi NODE_ENV i dev-gcp og prod-gcp til 'production'
     - name: NODE_ENV
-      value: not-local
+      value: production
     - name: TOKENX_AUDIENCE
       value: "dev-fss:arbeidsgiver:sykefravarsstatistikk-api"
     - name: APP_INGRESS
