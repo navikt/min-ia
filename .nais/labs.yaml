@@ -28,11 +28,11 @@ spec:
     - name: ARBEIDSMILJOPORTALEN
       VALUE: https://www.arbeidsmiljoportalen.no/
   liveness:
-    path: /min-ia/internal/isAlive
+    path: /min-ia/api/internal/isAlive
     initialDelay: 20
     timeout: 60
   readiness:
-    path: /min-ia/internal/isReady
+    path: /min-ia/api/internal/isReady
     initialDelay: 20
     timeout: 60
   replicas:
