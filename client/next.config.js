@@ -22,6 +22,14 @@ const nextConfig = {
         source: "/api/:slug*",
         destination: "http://localhost:3010/min-ia/api/:slug*",
       },
+      {
+        source: "/redirect-til-login:slug*",
+        destination: "http://localhost:3010/min-ia/redirect-til-login:slug*",
+      },
+      {
+        source: "/success:slug*",
+        destination: "http://localhost:3010/min-ia/success:slug*",
+      },
     ];
   },
   async headers() {

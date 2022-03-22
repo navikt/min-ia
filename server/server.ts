@@ -35,6 +35,7 @@ const startServer = async () => {
   }
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
+    console.log("Kommer inn til /redirect-til-login");
     const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
     response.redirect(basePath + `/oauth2/login?redirect=${referrerUrl}`);
   });

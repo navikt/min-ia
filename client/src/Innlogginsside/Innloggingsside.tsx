@@ -2,7 +2,7 @@ import React from "react";
 import { InnloggingssideIkon } from "./InnloggingssideIkon";
 import "@navikt/ds-css";
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";
-import { API_BASE_URL } from "../utils/konstanter";
+import { API_BASE_URL, BASE_PATH } from "../utils/konstanter";
 import styles from "./Innloggingsside.module.scss";
 
 interface Props {
@@ -13,7 +13,7 @@ export const Innloggingsside: React.FunctionComponent<Props> = ({
   redirectUrl,
 }) => {
   const redirectTilLogin = () => {
-    window.location.href = `${API_BASE_URL}/redirect-til-login?redirect=${redirectUrl}`;
+    window.location.href = `${BASE_PATH}/redirect-til-login?redirect=${redirectUrl}`;
   };
 
   return (
