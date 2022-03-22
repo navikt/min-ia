@@ -21,7 +21,7 @@ const startServer = async () => {
   server.use(cookieParser());
   console.log("Starting server: server.js");
 
-  if (process.env.NODE_ENV === "not-local") {
+  if (process.env.NODE_ENV === "production") {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
