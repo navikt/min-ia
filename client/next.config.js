@@ -11,11 +11,11 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/internal/isAlive",
+        source: "/internal/isAlive",
         destination: "http://localhost:3010/min-ia/internal/isAlive",
       },
       {
-        source: "/api/internal/isReady",
+        source: "/internal/isReady",
         destination: "http://localhost:3010/min-ia/internal/isReady",
       },
     ];
