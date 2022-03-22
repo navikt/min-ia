@@ -26,6 +26,10 @@ jobs:
         working-directory: server
         run: yarn install --immutable
 
+      - name: Run tester
+        working-directory: client
+        run: yarn test
+
       - name: Lint client
         uses: wearerequired/lint-action@v1
         with:
