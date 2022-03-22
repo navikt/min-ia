@@ -7,24 +7,24 @@ export const backendApiProxyMock = (app) => {
   console.log("========================================");
 
   /*
-    app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
-      response.status(401).json({});
-    });
-  */
+  app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
+    response.status(401).json({});
+  });
+*/
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
     response.send([
       {
-        Name: "FLESK OG FISK AS",
+        Name: "Kommune med kommunenummer 1142 (mock)",
         Type: "Enterprise",
-        OrganizationNumber: "111111111",
+        OrganizationNumber: "910562223",
         OrganizationForm: "AS",
         Status: "Active",
         ParentOrganizationNumber: "",
       },
       {
-        Name: "FLESK OG FISK OSLO",
+        Name: "Orkanger og Bremnes (mock)",
         Type: "Business",
-        OrganizationNumber: "910969439",
+        OrganizationNumber: "910562452",
         OrganizationForm: "BEDR",
         Status: "Active",
         ParentOrganizationNumber: "111111111",
@@ -33,7 +33,7 @@ export const backendApiProxyMock = (app) => {
   });
 
   app.get(
-    `${BASE_PATH}/api/910562223/sykefravarshistorikk/kvartalsvis`,
+    `${BASE_PATH}/api/910562452/sykefravarshistorikk/kvartalsvis`,
     (request, response) => {
       response.send(kvartalsvisSykefraværsprosentMock);
     }

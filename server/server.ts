@@ -26,7 +26,7 @@ const startServer = async () => {
   }
 
   console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
-  if (process.env.NODE_ENV !== "development") {
+  if (process.env.NODE_ENV === "production") {
     console.log("Starter backendProxy");
     server.use(backendApiProxy);
   } else {

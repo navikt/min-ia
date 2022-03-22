@@ -6,7 +6,7 @@ import {
 } from "../integrasjoner/kvartalsvis-sykefraværshistorikk-api";
 
 export function useSykefraværshistorikk() {
-  const orgnr = "910562223"; // TODO: Hent ut faktisk orgnr
+  const orgnr = "910562452"; // TODO: Hent ut faktisk orgnr
 
   const [restSykefraværshistorikk, setRestSykefraværshistorikk] =
     useState<RestSykefraværshistorikk>({ status: RestStatus.IkkeLastet });
