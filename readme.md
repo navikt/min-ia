@@ -2,18 +2,16 @@
 
 Landingsside for selvbetjente IA-tjenester
 
-# Kjøre lokalt med hot-reload på client
-- Naviger til `/client`
+# Kjøre lokalt med hot-reload
+- Rename filen `.env.example` -> `.env`
+- Naviger til `/server`
 - Installer avhengigheter: `yarn`
 - Kjør opp applikasjon: `yarn dev`
-- Åpna applikasjonen på `http://localhost:3000/`
+- Naviger til `../client`
+- Installer avhengigheter: `yarn`
+- Kjør opp applikasjon: `yarn dev`
+- Åpne applikasjonen på `http://localhost:3000/min-ia`
 
-# Kjøre opp lokalt med hot-reload på server
-- Naviger til `client`, kjør `yarn && yarn build //Det jobbes med å endre hvordan appen kjører, no lenger behov for det && yarn export`
-- Naviger til `/server` og oppdater avhengigheter: `yarn`
-- Rename filen `.env.example` -> `.env`
-- Kjør opp applikasjon: `yarn run dev`
-- Åpna allikasjonen på `http://localhost:3010/min-ia/`
 
 # TODO: Finne en måte å få hot-reload på både client og server :)
 
