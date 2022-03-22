@@ -16,7 +16,7 @@ spec:
     - name: NODE_ENV
       value: development
     - name: DECORATOR_URL
-      value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
+      value: https://www.nav.no/dekoratoren/?context=arbeidsgiver
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
