@@ -42,16 +42,28 @@ const startServer = async () => {
 
   server.get(`${basePath}/success`, (request, response) => {
     console.log("Håndterer /success");
-    const harIdToken: boolean =
+    const harGyldigeCookies: boolean =
       request.cookies !== undefined &&
-      request.cookies["selvbetjening-idtoken"] !== undefined;
-    console.log("Har vi idtoken cookie? ", harIdToken);
+      request.cookies["innloggingsstatus-token"] !== undefined &&
+      request.cookies["io.nais.wonderwall.session"] !== undefined;
+    console.log("Har vi gyldige cookies? ", harGyldigeCookies);
 
-    const loginserviceToken = request.cookies["selvbetjening-idtoken"];
+    const harAuthorizationHeader: boolean =
+      request.header("authorization") &&
+      request.header("authorization") !== undefined;
+
+    if (harAuthorizationHeader) {
+      const idportenToken = request.headers["authorization"]?.split(" ")[1];
+      console.log("Har auth header, length=", idportenToken!.length);
+    } else {
+      console.log("Har ingen auth header");
+    }
+
+    //const loginserviceToken = request.cookies["selvbetjening-idtoken"];
     const redirectString = request.query.redirect as string;
 
     if (
-      loginserviceToken &&
+      harGyldigeCookies &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
       console.log("[DEBUG] Case #1 -- Skal redirecte til: ", redirectString);
