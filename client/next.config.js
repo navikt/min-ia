@@ -18,6 +18,10 @@ const nextConfig = {
         source: "/internal/isReady",
         destination: "http://localhost:3010/min-ia/internal/isReady",
       },
+      {
+        source: "/api/:slug*",
+        destination: "http://localhost:3010/min-ia/api/:slug*",
+      },
     ];
   },
   async headers() {

@@ -8,16 +8,8 @@ import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 const basePath = "/min-ia";
-const buildPath =
-  process.env.NODE_ENV === "development"
-    ? path.resolve(__dirname, "../client/out")
-    : path.resolve(__dirname, "../../client/out");
 console.log("NODE_ENV", process.env.NODE_ENV);
-console.log("buildPath", buildPath);
 
 const server = express();
 
@@ -33,12 +25,12 @@ const startServer = async () => {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
-  // server.use(basePath + "/", express.static(buildPath));
-  // server.use("/assets", express.static(`${buildPath}/assets`));
-
-  if (process.env.NODE_ENV === "not-local") {
+  console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
+  if (process.env.NODE_ENV !== "development") {
+    console.log("Starter backendProxy");
     server.use(backendApiProxy);
   } else {
+    console.log("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
 
