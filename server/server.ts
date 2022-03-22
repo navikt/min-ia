@@ -14,7 +14,14 @@ console.log("NODE_ENV", process.env.NODE_ENV);
 const server = express();
 
 const envProperties = {
+  APP_INGRESS: process.env.APP_INGRESS || "http://localhost:3000/min-ia",
   PORT: process.env.PORT || 3010,
+};
+
+const getLoginTilOauth2 = (redirectUrl: string): string => {
+  const referrerUrl = `${envProperties.APP_INGRESS}/success?redirect=${redirectUrl}`;
+  const loginTilOAuth2 = basePath + `/oauth2/login?redirect=${referrerUrl}`;
+  return loginTilOAuth2;
 };
 
 const startServer = async () => {
@@ -35,18 +42,39 @@ const startServer = async () => {
   }
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
+    let redirect: string = request.query.redirect
+      ? (request.query.redirect as string)
+      : envProperties.APP_INGRESS;
+
+    if (!redirect.startsWith(envProperties.APP_INGRESS)) {
+      console.log(
+        "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til ",
+        envProperties.APP_INGRESS
+      );
+      redirect = envProperties.APP_INGRESS;
+    }
+
     console.log("Kommer inn til /redirect-til-login");
-    const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
-    response.redirect(basePath + `/oauth2/login?redirect=${referrerUrl}`);
+    const loginTilOauth2 = getLoginTilOauth2(redirect);
+    console.log("[DEBUG] redirect til: ", loginTilOauth2);
+    response.redirect(loginTilOauth2);
   });
 
   server.get(`${basePath}/success`, (request, response) => {
+    /*
+     Bruker kommer til /success etter innlogging flow er fullført
+     I følge dokumentasjon skal Auth header blitt satt med en gyldig token
+     -> hva med Cookie?
+     -> skal vi sjekke denne Auth header her eller la backend håndtere det?
+     -> hvis ingen cookie eller auth header ... hva gjør vi ?
+     */
+
     console.log("Håndterer /success");
-    const harGyldigeCookies: boolean =
+    const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
       request.cookies["innloggingsstatus-token"] !== undefined &&
       request.cookies["io.nais.wonderwall.session"] !== undefined;
-    console.log("Har vi gyldige cookies? ", harGyldigeCookies);
+    console.log("Har vi gyldige cookies? ", harNødvendigeCookies);
 
     const harAuthorizationHeader: boolean =
       request.header("authorization") &&
@@ -59,23 +87,21 @@ const startServer = async () => {
       console.log("Har ingen auth header");
     }
 
-    //const loginserviceToken = request.cookies["selvbetjening-idtoken"];
     const redirectString = request.query.redirect as string;
 
     if (
-      harGyldigeCookies &&
+      harNødvendigeCookies &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
-      console.log("[DEBUG] Case #1 -- Skal redirecte til: ", redirectString);
+      console.log(
+        "[DEBUG] Innlogging fullført, skal redirecte til: ",
+        redirectString
+      );
       response.redirect(redirectString);
-    } else if (redirectString.startsWith(process.env.APP_INGRESS)) {
-      const url = `${process.env.LOGIN_URL}${request.query.redirect}`;
-      console.log("[DEBUG] Case #2 -- Skal redirecte til: ", url);
-      response.redirect(url);
     } else {
-      const url1 = `${process.env.LOGIN_URL}${process.env.APP_INGRESS}`;
-      console.log("[DEBUG] Case #3 -- Skal redirecte til: ", url1);
-      response.redirect(url1);
+      const url = getLoginTilOauth2(envProperties.APP_INGRESS);
+      console.log("[DEBUG] Ingen gyldig cookie, redirecter til: ", url);
+      response.redirect(url);
     }
   });
 
