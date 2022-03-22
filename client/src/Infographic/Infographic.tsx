@@ -6,12 +6,14 @@ import { BodyLong, Link } from "@navikt/ds-react";
 
 export interface InfographicData {
   sykefraværNorge: number | null | undefined;
+  sykefraværBransje: number | null | undefined;
   sykefraværNæring: number | null | undefined;
   trendStigningstall: number | undefined;
 }
 
 export const Infographic: FunctionComponent<InfographicData> = ({
   sykefraværNorge,
+  sykefraværBransje,
   sykefraværNæring,
   trendStigningstall,
 }) => {
@@ -27,8 +29,12 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={"Sykefraværsprosenten i din bransje akkurat nå er: "}
-        verdi={sykefraværNæring + "%"}
+        tekst={
+          sykefraværBransje
+            ? "Sykefraværsprosenten i din bransje akkurat nå er: "
+            : "Sykefraværsprosenten i din næring akkurat nå er: "
+        }
+        verdi={(sykefraværBransje?sykefraværBransje: sykefraværNæring) + "%"}
       />
 
       <InfographicFlis
@@ -44,7 +50,11 @@ export const Infographic: FunctionComponent<InfographicData> = ({
             {...ikonstorrelse}
           />
         }
-        tekst={"Sykefraværet i din bransje akkurat nå er "}
+        tekst={
+          sykefraværBransje
+            ? "Sykefraværet i din bransje akkurat nå er "
+            : "Sykefraværet i din næring akkurat nå er "
+        }
         verdi={stigningstallTilTekst(trendStigningstall)}
       />
       <BodyLong className={styles.oversiktTekst} size="medium">
@@ -59,14 +69,14 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 };
 
 function roterTrendpil(a: string) {
-    switch (a) {
-        case "stigende":
-            return styles.rotateOpp;
-        case "synkende":
-            return styles.rotateNed;
-        default:
-            return styles.rotateUendret;
-    }
+  switch (a) {
+    case "stigende":
+      return styles.rotateOpp;
+    case "synkende":
+      return styles.rotateNed;
+    default:
+      return styles.rotateUendret;
+  }
 }
 
 function stigningstallTilTekst(stigning: number | undefined): string {
