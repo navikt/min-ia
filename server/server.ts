@@ -1,8 +1,6 @@
 import express from "express";
-import path, { dirname } from "path";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
-import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";

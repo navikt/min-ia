@@ -59,7 +59,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innføre-csp'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innloggin-uten-loginservice'
     needs: build
     runs-on: ubuntu-latest
     steps:
