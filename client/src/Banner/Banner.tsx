@@ -8,6 +8,7 @@ import {
 import { RestStatus } from "../integrasjoner/rest-status";
 import {createBrowserHistory, createMemoryHistory, History} from "history";
 import LocationState = History.LocationState;
+import { sendBedriftValgtEvent } from "../amplitude/events";
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
@@ -38,8 +39,7 @@ const Banner: React.FunctionComponent<Props> = (
         sidetittel={tittelMedUnderTittel}
         history={history}
         onOrganisasjonChange={() => {
-          // TODO: sett amplitude
-          return;
+          sendBedriftValgtEvent();
         }}
       />
     </div>
