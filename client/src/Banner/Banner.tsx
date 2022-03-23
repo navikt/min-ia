@@ -30,7 +30,7 @@ const Banner: React.FunctionComponent<Props> = (
       : [];
 
 
-    const [history, setHistory] = useState<History<LocationState>>(getHistory())
+    const [history] = useState<History<LocationState>>(getHistory())
 
     return (
     <div>
