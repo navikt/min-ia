@@ -26,7 +26,7 @@ jobs:
         working-directory: server
         run: yarn install --immutable
 
-      - name: Run tester
+      - name: Run tests
         working-directory: client
         run: yarn test
 
