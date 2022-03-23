@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Bedriftsmeny from "@navikt/bedriftsmeny";
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import {
@@ -6,23 +6,32 @@ import {
   RestAltinnOrganisasjoner,
 } from "../integrasjoner/altinnorganisasjon-api";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { RouteComponentProps, withRouter } from "react-router-dom";
+import {createBrowserHistory, createMemoryHistory, History} from "history";
+import LocationState = History.LocationState;
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
   restOrganisasjoner: RestAltinnOrganisasjoner;
 }
 
-const Banner: React.FunctionComponent<Props & RouteComponentProps> = (
+const getHistory = () => {
+    if (typeof window === "undefined") return createMemoryHistory();
+    return createBrowserHistory();
+}
+
+const Banner: React.FunctionComponent<Props> = (
   props
 ) => {
-  const { history, tittelMedUnderTittel, restOrganisasjoner } = props;
+  const { tittelMedUnderTittel, restOrganisasjoner } = props;
   const altinnOrganisasjoner: AltinnOrganisasjon[] =
     restOrganisasjoner.status === RestStatus.Suksess
       ? restOrganisasjoner.data
       : [];
 
-  return (
+
+    const [history, setHistory] = useState<History<LocationState>>(getHistory())
+
+    return (
     <div>
       <Bedriftsmeny
         organisasjoner={altinnOrganisasjoner}
@@ -37,4 +46,4 @@ const Banner: React.FunctionComponent<Props & RouteComponentProps> = (
   );
 };
 
-export default withRouter(Banner);
+export default Banner;
