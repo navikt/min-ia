@@ -23,6 +23,8 @@ spec:
       value: https://min-ia.dev.nav.no/min-ia
     - name: DECORATOR_URL
       value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
+    - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
+      value: https://min-ia.dev.nav.no/min-ia
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
