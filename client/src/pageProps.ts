@@ -13,7 +13,10 @@ export const getPageProps = async (
   slug: string
 ): Promise<PageProps> => {
   const breadcrumbs = [
-    { title: encodeURIComponent(title), url: `${process.env.APP_INGRESS}` },
+    {
+      title: encodeURIComponent(title),
+      url: `${process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL}`,
+    },
   ];
   const cacheKey = "index";
 
