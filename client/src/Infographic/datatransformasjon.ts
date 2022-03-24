@@ -63,17 +63,14 @@ function getSykefraværForNæring(
 function getSykefraværForBransjeEllerNæring(
   fraværshistorikk: KvartalsvisSykefraværshistorikk[]
 ): KvartalsvisSykefraværshistorikk {
-  const [historikkForBransje] = fraværshistorikk.filter(
-    (historikk) => historikk.type === SykefraværshistorikkType.BRANSJE
-  );
+  const historikkForBransje: KvartalsvisSykefraværshistorikk =
+    getSykefraværForBransje(fraværshistorikk);
 
   if (historikkForBransje?.kvartalsvisSykefraværsprosent.length > 0) {
     return historikkForBransje;
   }
-  const [historikkForNæring] = fraværshistorikk.filter(
-    (historikk) => historikk.type === SykefraværshistorikkType.NÆRING
-  );
-  return historikkForNæring;
+
+  return getSykefraværForNæring(fraværshistorikk);
 }
 
 function getDataForEnkeltkvartal(
