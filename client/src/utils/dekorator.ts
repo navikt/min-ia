@@ -80,11 +80,6 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
   });
 };
 
-const objHash = (obj: any): string => {
-  const str = JSON.stringify(obj);
-  return createHash("md5").update(str).digest("hex");
-};
-
 export const fetchDecoratorParts = async (
   decoratorParams: DecoratorParams
 ): Promise<DecoratorParts> => {
