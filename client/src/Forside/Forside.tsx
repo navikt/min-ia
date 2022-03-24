@@ -16,19 +16,20 @@ import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
 import { useAmplitude } from "../amplitude/useAmplitude";
 import { AmplitudeClient } from "../amplitude/client";
 import { sendSidevisningEvent } from "../amplitude/events";
+import { useOrgnr } from "../hooks/useOrgnr";
 
 export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
   const bredde = 60;
   const høyde = 60;
 
   useAmplitude(props.amplitudeClient);
+  const orgnr = useOrgnr();
 
   useEffect(() => {
     sendSidevisningEvent();
-  }, []);
+  }, [orgnr]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();
-
   const infographicHvisDataOk =
     sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
       <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)} />
