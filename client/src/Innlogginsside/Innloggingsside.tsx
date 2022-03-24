@@ -20,7 +20,7 @@ export const Innloggingsside: React.FunctionComponent<Props> = ({
     <div className={styles.innloggingsside__wrapper}>
       <div className={styles.innloggingsside}>
         <div className={styles.innloggingsside__illustrasjon}>
-          <InnloggingssideIkon height={60} width={60} />
+          <InnloggingssideIkon height={100} width={100} />
         </div>
         <Heading size="xlarge">Forebygge fravær</Heading>
 
