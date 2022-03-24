@@ -128,7 +128,7 @@ export const fetchDecoratorParts = async (
     addToLinkTags(index, element as cheerio.TagElement, pageLinkTags);
   });
 
-  pageScriptTags.map((attrib) => {
+  pageScriptTags.forEach((attrib) => {
     if (attrib.id === "google-tag-manager-props") {
       attrib.defer = String(true);
       attrib.async = String(true);

@@ -22,11 +22,11 @@ const getLoginTilOauth2 = (redirectUrl: string): string => {
 };
 
 const harAuthorizationHeader = (request: Request) => {
-  const harAuthorizationHeader: boolean =
+  return (
     request.headers["authorization"] &&
     request.headers["authorization"] !== undefined &&
-    request.headers["authorization"]?.split(" ")[1]!.length > 0;
-  return harAuthorizationHeader;
+    request.headers["authorization"]?.split(" ")[1]!.length > 0
+  );
 };
 
 const startServer = async () => {
