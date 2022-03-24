@@ -5,8 +5,6 @@ import { DecoratorParts } from "../../utils/dekorator";
 import { DecoratorEnv } from "../decorator/DecoratorEnv";
 import React, { useRef } from "react";
 import Banner from "../../Banner/Banner";
-import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
-import { Route, Switch } from "react-router";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 
@@ -55,15 +53,10 @@ export const Layout = (props: {
         />
       </div>
       <div id="app" className="app">
-        <Switch>
-          {" "}
-          <Route>
-            <Banner
-              tittelMedUnderTittel={tittelMedUndertittel}
-              altinnOrganisasjoner={props.altinnOrganisasjoner}
-            />
-          </Route>
-        </Switch>
+        <Banner
+          tittelMedUnderTittel={tittelMedUndertittel}
+          altinnOrganisasjoner={props.altinnOrganisasjoner}
+        />
 
         <div>
           <div ref={layoutContentRef}>{props.children}</div>
