@@ -4,9 +4,10 @@ import {
   hentRestSykefraværshistorikk,
   RestSykefraværshistorikk,
 } from "../integrasjoner/kvartalsvis-sykefraværshistorikk-api";
+import { useOrgnr } from "./useOrgnr";
 
 export function useSykefraværshistorikk() {
-  const orgnr = "910969439"; // TODO: Hent ut faktisk orgnr
+  const orgnr = useOrgnr();
 
   const [restSykefraværshistorikk, setRestSykefraværshistorikk] =
     useState<RestSykefraværshistorikk>({ status: RestStatus.IkkeLastet });

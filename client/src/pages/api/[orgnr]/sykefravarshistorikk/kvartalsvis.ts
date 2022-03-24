@@ -8,7 +8,11 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<KvartalsvisSykefraværshistorikk[]>
 ) {
-  res.status(200).json(kvartalsvisSykefraværsprosentMock);
+  if (req.query.orgnr as string === "910969439") {
+    res.status(200).json(kvartalsvisSykefraværsprosentMock);
+  } else {
+    res.status(200).json([]);
+  }
 }
 
 const kvartalsvisSykefraværsprosentMock: KvartalsvisSykefraværshistorikk[] = [

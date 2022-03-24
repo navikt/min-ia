@@ -23,5 +23,21 @@ export default function handler(
       Status: "Active",
       ParentOrganizationNumber: "111111111",
     },
+    {
+      Name: "Trøndelag Tømmerere",
+      Type: "Enterprise",
+      OrganizationNumber: "211111111",
+      OrganizationForm: "AS",
+      Status: "Active",
+      ParentOrganizationNumber: "",
+    },
+    {
+      Name: "Trøndelag Tømmerere avd. OSLO",
+      Type: "Business",
+      OrganizationNumber: "810969439",
+      OrganizationForm: "BEDR",
+      Status: "Active",
+      ParentOrganizationNumber: "211111111",
+    },
   ]);
 }
