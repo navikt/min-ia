@@ -66,6 +66,7 @@ async function getTokenXToken(token: any, additionalClaims: any) {
 
 export async function exchangeToken(request: IncomingMessage) {
   let token = request.headers.authorization?.split(" ")[1];
+
   if (!token) {
     if (process.env.NODE_ENV !== "production") {
       token = await getMockTokenFromIdporten();

@@ -38,6 +38,10 @@ export async function verifiserAccessToken(token: any) {
     issuer: idportenIssuer.metadata.issuer,
   });
 
+  if (payload.client_id !== process.env.IDPORTEN_CLIENT_ID) {
+    throw new Error("Invalid client ID in token");
+  }
+
   if (payload.acr !== acceptedAcrLevel) {
     throw new Error("Invalid ACR-level");
   }
