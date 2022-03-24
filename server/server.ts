@@ -59,14 +59,6 @@ const startServer = async () => {
   });
 
   server.get(`${basePath}/success`, (request, response) => {
-    /*
-     Bruker kommer til /success etter innlogging flow er fullført
-     I følge dokumentasjon skal Auth header blitt satt med en gyldig token
-     -> hva med Cookie?
-     -> skal vi sjekke denne Auth header her eller la backend håndtere det?
-     -> hvis ingen cookie eller auth header ... hva gjør vi ?
-     */
-
     console.log("Håndterer /success");
     const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
@@ -75,8 +67,9 @@ const startServer = async () => {
     console.log("Har vi gyldige cookies? ", harNødvendigeCookies);
 
     const harAuthorizationHeader: boolean =
-      request.header("authorization") &&
-      request.header("authorization") !== undefined;
+      request.headers["authorization"] &&
+      request.headers["authorization"] !== undefined &&
+      request.headers["authorization"]?.split(" ")[1]!.length > 0;
 
     if (harAuthorizationHeader) {
       const idportenToken = request.headers["authorization"]?.split(" ")[1];
@@ -88,7 +81,7 @@ const startServer = async () => {
     const redirectString = request.query.redirect as string;
 
     if (
-      harNødvendigeCookies &&
+      harAuthorizationHeader &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
       console.log(
@@ -98,7 +91,10 @@ const startServer = async () => {
       response.redirect(redirectString);
     } else {
       const url = getLoginTilOauth2(envProperties.APP_INGRESS);
-      console.log("[DEBUG] Ingen gyldig cookie, redirecter til: ", url);
+      console.log(
+        "[DEBUG] Ingen gyldig Auth header, redirect til innlogging: ",
+        url
+      );
       response.redirect(url);
     }
   });
