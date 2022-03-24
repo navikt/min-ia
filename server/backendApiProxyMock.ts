@@ -12,6 +12,7 @@ export const backendApiProxyMock = (app) => {
 
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
+    //response.status(401).json("");
     response.send([
       {
         Name: "FLESK OG FISK AS [Local server]",
@@ -45,6 +46,22 @@ export const backendApiProxyMock = (app) => {
         Status: "Active",
         ParentOrganizationNumber: "211111111",
       },
+      {
+        Name: "Test innlogging [Local server]",
+        Type: "Enterprise",
+        OrganizationNumber: "311111111",
+        OrganizationForm: "AS",
+        Status: "Active",
+        ParentOrganizationNumber: "",
+      },
+      {
+        Name: "Her må vi logge inn [Local server]",
+        Type: "Business",
+        OrganizationNumber: "999999998",
+        OrganizationForm: "BEDR",
+        Status: "Active",
+        ParentOrganizationNumber: "311111111",
+      },
     ]);
   });
 
@@ -64,6 +81,10 @@ export const backendApiProxyMock = (app) => {
         case "910969439": {
           kvartalsvisSykefraværsprosent =
             bransjeKvartalsvisSykefraværsprosentMock;
+          break;
+        }
+        case "999999998": {
+          response.status(401).json([]);
           break;
         }
         default: {
