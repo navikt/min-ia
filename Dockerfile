@@ -11,7 +11,9 @@ COPY server/package.json server/package.json
 COPY server/yarn.lock server/yarn.lock
 COPY server/server.ts server/server.ts
 COPY server/backendApiProxy.ts server/backendApiProxy.ts
+## TODO: unngå å ha med backendApiProxyMock og testdata på image
 COPY server/backendApiProxyMock.ts server/backendApiProxyMock.ts
+COPY server/local/testdata.ts server/local/testdata.ts
 COPY server/idporten.ts server/idporten.ts
 COPY server/tokenx.ts server/tokenx.ts
 
