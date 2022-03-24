@@ -46,8 +46,10 @@ export async function verifiserAccessToken(token: any) {
     throw new Error("Invalid ACR-level");
   }
 }
+
 export async function getMockTokenFromIdporten() {
-  return await (
-    await fetch(process.env.FAKEDINGS_URL_IDPORTEN + "?acr=Level=4")
-  ).text();
+  const response = await fetch(
+    process.env.FAKEDINGS_URL_IDPORTEN + "?acr=Level=4"
+  );
+  return response.text();
 }

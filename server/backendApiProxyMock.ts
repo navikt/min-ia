@@ -12,7 +12,6 @@ export const backendApiProxyMock = (app) => {
 
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
-    //response.status(401).json("");
     response.send([
       {
         Name: "FLESK OG FISK AS [Local server]",

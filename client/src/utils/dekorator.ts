@@ -86,32 +86,32 @@ export const fetchDecoratorParts = async (
 
   const $ = cheerio.load(decoratorSrc);
 
-  const scriptTags: { [attr: string]: string }[] = [];
+  const pageScriptTags: { [attr: string]: string }[] = [];
 
   const addToScriptTags = (
     index: number,
     element: cheerio.TagElement,
     scriptTags: { [p: string]: string }[]
   ) => {
-    const tagElement: cheerio.TagElement = element as cheerio.TagElement;
+    const tagElement: cheerio.TagElement = element;
     tagElement.attribs.key = uuidv4();
     scriptTags.push({ ...tagElement.attribs });
   };
 
   $("#scripts script").each((index, element) => {
-    addToScriptTags(index, element as cheerio.TagElement, scriptTags);
+    addToScriptTags(index, element as cheerio.TagElement, pageScriptTags);
   });
   $("#megamenu-resources script").each((index, element) => {
-    addToScriptTags(index, element as cheerio.TagElement, scriptTags);
+    addToScriptTags(index, element as cheerio.TagElement, pageScriptTags);
   });
 
-  const linkTags: LinkAttributes[] = [];
+  const pageLinkTags: LinkAttributes[] = [];
   const addToLinkTags = (
     index: number,
     element: cheerio.TagElement,
     linkTags: LinkAttributes[]
   ) => {
-    const tagElement: cheerio.TagElement = element as cheerio.TagElement;
+    const tagElement: cheerio.TagElement = element;
     linkTags.push({
       key: uuidv4(),
       rel: tagElement.attribs.rel ? tagElement.attribs.rel : null,
@@ -122,13 +122,13 @@ export const fetchDecoratorParts = async (
   };
 
   $("#styles link").each((index, element) => {
-    addToLinkTags(index, element as cheerio.TagElement, linkTags);
+    addToLinkTags(index, element as cheerio.TagElement, pageLinkTags);
   });
   $("#megamenu-resources link").each((index, element) => {
-    addToLinkTags(index, element as cheerio.TagElement, linkTags);
+    addToLinkTags(index, element as cheerio.TagElement, pageLinkTags);
   });
 
-  scriptTags.map((attrib) => {
+  pageScriptTags.map((attrib) => {
     if (attrib.id === "google-tag-manager-props") {
       attrib.defer = String(true);
       attrib.async = String(true);
@@ -147,7 +147,7 @@ export const fetchDecoratorParts = async (
       //@ts-ignore
       scriptUrl: $("#scripts script").attr("src"),
     },
-    scriptTags: scriptTags,
-    linkTags: linkTags,
+    scriptTags: pageScriptTags,
+    linkTags: pageLinkTags,
   };
 };

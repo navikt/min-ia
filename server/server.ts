@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request } from "express";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
@@ -18,8 +18,15 @@ const envProperties = {
 
 const getLoginTilOauth2 = (redirectUrl: string): string => {
   const referrerUrl = `${envProperties.APP_INGRESS}/success?redirect=${redirectUrl}`;
-  const loginTilOAuth2 = basePath + `/oauth2/login?redirect=${referrerUrl}`;
-  return loginTilOAuth2;
+  return `${basePath}/oauth2/login?redirect=${referrerUrl}`;
+};
+
+const harAuthorizationHeader = (request: Request) => {
+  const harAuthorizationHeader: boolean =
+    request.headers["authorization"] &&
+    request.headers["authorization"] !== undefined &&
+    request.headers["authorization"]?.split(" ")[1]!.length > 0;
+  return harAuthorizationHeader;
 };
 
 const startServer = async () => {
@@ -66,14 +73,9 @@ const startServer = async () => {
       request.cookies["io.nais.wonderwall.session"] !== undefined;
     console.log("Har vi gyldige cookies? ", harNødvendigeCookies);
 
-    const harAuthorizationHeader: boolean =
-      request.headers["authorization"] &&
-      request.headers["authorization"] !== undefined &&
-      request.headers["authorization"]?.split(" ")[1]!.length > 0;
-
-    if (harAuthorizationHeader) {
+    if (harAuthorizationHeader(request)) {
       const idportenToken = request.headers["authorization"]?.split(" ")[1];
-      console.log("Har auth header, length=", idportenToken!.length);
+      console.log("Har auth header, length=", idportenToken.length);
     } else {
       console.log("Har ingen auth header");
     }
@@ -81,7 +83,7 @@ const startServer = async () => {
     const redirectString = request.query.redirect as string;
 
     if (
-      harAuthorizationHeader &&
+      harAuthorizationHeader(request) &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
       console.log(
