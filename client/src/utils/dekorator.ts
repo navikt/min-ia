@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import * as cheerio from "cheerio";
-import { createHash } from "crypto";
 import { cache } from "./cache";
 import { v4 as uuidv4 } from "uuid";
 
@@ -88,19 +87,30 @@ export const fetchDecoratorParts = async (
   const $ = cheerio.load(decoratorSrc);
 
   const scriptTags: { [attr: string]: string }[] = [];
-  $("#scripts script").each((index, element) => {
+
+  const addToScriptTags = (
+    index: number,
+    element: cheerio.TagElement,
+    scriptTags: { [p: string]: string }[]
+  ) => {
     const tagElement: cheerio.TagElement = element as cheerio.TagElement;
     tagElement.attribs.key = uuidv4();
     scriptTags.push({ ...tagElement.attribs });
+  };
+
+  $("#scripts script").each((index, element) => {
+    addToScriptTags(index, element as cheerio.TagElement, scriptTags);
   });
   $("#megamenu-resources script").each((index, element) => {
-    const tagElement: cheerio.TagElement = element as cheerio.TagElement;
-    tagElement.attribs.key = uuidv4();
-    scriptTags.push({ ...tagElement.attribs });
+    addToScriptTags(index, element as cheerio.TagElement, scriptTags);
   });
 
   const linkTags: LinkAttributes[] = [];
-  $("#styles link").each((index, element) => {
+  const addToLinkTags = (
+    index: number,
+    element: cheerio.TagElement,
+    linkTags: LinkAttributes[]
+  ) => {
     const tagElement: cheerio.TagElement = element as cheerio.TagElement;
     linkTags.push({
       key: uuidv4(),
@@ -109,16 +119,13 @@ export const fetchDecoratorParts = async (
       sizes: tagElement.attribs.sizes ? tagElement.attribs.sizes : null,
       type: tagElement.attribs.type ? tagElement.attribs.type : null,
     });
+  };
+
+  $("#styles link").each((index, element) => {
+    addToLinkTags(index, element as cheerio.TagElement, linkTags);
   });
   $("#megamenu-resources link").each((index, element) => {
-    const tagElement: cheerio.TagElement = element as cheerio.TagElement;
-    linkTags.push({
-      key: uuidv4(),
-      rel: tagElement.attribs.rel ? tagElement.attribs.rel : null,
-      href: tagElement.attribs.href ? tagElement.attribs.href : null,
-      sizes: tagElement.attribs.sizes ? tagElement.attribs.sizes : null,
-      type: tagElement.attribs.type ? tagElement.attribs.type : null,
-    });
+    addToLinkTags(index, element as cheerio.TagElement, linkTags);
   });
 
   scriptTags.map((attrib) => {

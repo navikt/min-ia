@@ -10,10 +10,10 @@ export function kalkulerInfographicData(
 ): InfographicData {
   return {
     sykefraværNorge: sisteTilgjengelige(sykefraværINorge(historikk))?.prosent,
-    sykefraværBransje:sisteTilgjengelige( getSykefraværForBransje(historikk))?.prosent,
-    sykefraværNæring: sisteTilgjengelige(
-      getSykefraværForNæring(historikk)
-    )?.prosent,
+    sykefraværBransje: sisteTilgjengelige(getSykefraværForBransje(historikk))
+      ?.prosent,
+    sykefraværNæring: sisteTilgjengelige(getSykefraværForNæring(historikk))
+      ?.prosent,
     trendStigningstall: kalkulerTrend(
       getSykefraværForBransjeEllerNæring(historikk)
     ),

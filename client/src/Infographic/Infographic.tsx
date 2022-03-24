@@ -4,11 +4,14 @@ import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
 import { BodyLong, Link } from "@navikt/ds-react";
 
+export type MuligSykefravær = number | null | undefined;
+export type MuligTall = number | undefined;
+
 export interface InfographicData {
-  sykefraværNorge: number | null | undefined;
-  sykefraværBransje: number | null | undefined;
-  sykefraværNæring: number | null | undefined;
-  trendStigningstall: number | undefined;
+  sykefraværNorge: MuligSykefravær;
+  sykefraværBransje: MuligSykefravær;
+  sykefraværNæring: MuligSykefravær;
+  trendStigningstall: MuligTall;
 }
 
 export const Infographic: FunctionComponent<InfographicData> = ({
@@ -34,7 +37,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
             ? "Sykefraværsprosenten i din bransje akkurat nå er: "
             : "Sykefraværsprosenten i din næring akkurat nå er: "
         }
-        verdi={(sykefraværBransje?sykefraværBransje: sykefraværNæring) + "%"}
+        verdi={(sykefraværBransje ? sykefraværBransje : sykefraværNæring) + "%"}
       />
 
       <InfographicFlis
@@ -79,7 +82,7 @@ function roterTrendpil(a: string) {
   }
 }
 
-function stigningstallTilTekst(stigning: number | undefined): string {
+function stigningstallTilTekst(stigning: MuligTall): string {
   if (stigning === undefined) {
     return "-";
   } else if (stigning > 0) {

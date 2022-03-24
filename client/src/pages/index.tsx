@@ -7,7 +7,7 @@ import { navDefaultAmplitudeClient } from "../amplitude/client";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 
 const Home = (props: { page: PageProps }) => {
   Sentry.init({

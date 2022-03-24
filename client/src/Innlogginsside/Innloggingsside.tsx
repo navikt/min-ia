@@ -2,7 +2,7 @@ import React from "react";
 import { InnloggingssideIkon } from "./InnloggingssideIkon";
 import "@navikt/ds-css";
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";
-import { API_BASE_URL, BASE_PATH } from "../utils/konstanter";
+import { BASE_PATH } from "../utils/konstanter";
 import styles from "./Innloggingsside.module.scss";
 
 interface Props {
