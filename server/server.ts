@@ -1,78 +1,103 @@
-import express from "express";
-import path, { dirname } from "path";
+import express, { Request } from "express";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
-import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 const basePath = "/min-ia";
-const buildPath =
-  process.env.NODE_ENV === "development"
-    ? path.resolve(__dirname, "../client/out")
-    : path.resolve(__dirname, "../../client/out");
 console.log("NODE_ENV", process.env.NODE_ENV);
-console.log("buildPath", buildPath);
 
 const server = express();
 
 const envProperties = {
-  BACKEND_API_BASE_URL:
-    process.env.BACKEND_API_BASE_URL || "http://localhost:8080",
+  APP_INGRESS: process.env.APP_INGRESS || "http://localhost:3000/min-ia",
   PORT: process.env.PORT || 3010,
+};
+
+const getLoginTilOauth2 = (redirectUrl: string): string => {
+  const referrerUrl = `${envProperties.APP_INGRESS}/success?redirect=${redirectUrl}`;
+  return `${basePath}/oauth2/login?redirect=${referrerUrl}`;
+};
+
+const harAuthorizationHeader = (request: Request) => {
+  return (
+    request.headers["authorization"] &&
+    request.headers["authorization"] !== undefined &&
+    request.headers["authorization"]?.split(" ")[1]!.length > 0
+  );
 };
 
 const startServer = async () => {
   server.use(cookieParser());
   console.log("Starting server: server.js");
 
-  if (process.env.NODE_ENV === "not-local") {
+  if (process.env.NODE_ENV === "production") {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
-  server.use(basePath + "/", express.static(buildPath));
-  server.use("/assets", express.static(`${buildPath}/assets`));
-
-  if (process.env.NODE_ENV === "not-local") {
+  console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
+  if (process.env.NODE_ENV === "production") {
+    console.log("Starter backendProxy");
     server.use(backendApiProxy);
   } else {
+    console.log("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
-    const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${request.query.redirect}`;
-    response.redirect(basePath + `/oauth2/login?redirect=${referrerUrl}`);
+    let redirect: string = request.query.redirect
+      ? (request.query.redirect as string)
+      : envProperties.APP_INGRESS;
+
+    if (!redirect.startsWith(envProperties.APP_INGRESS)) {
+      console.log(
+        "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til ",
+        envProperties.APP_INGRESS
+      );
+      redirect = envProperties.APP_INGRESS;
+    }
+
+    console.log("Kommer inn til /redirect-til-login");
+    const loginTilOauth2 = getLoginTilOauth2(redirect);
+    console.log("[DEBUG] redirect til: ", loginTilOauth2);
+    response.redirect(loginTilOauth2);
   });
 
   server.get(`${basePath}/success`, (request, response) => {
     console.log("Håndterer /success");
-    const harIdToken: boolean =
+    const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
-      request.cookies["selvbetjening-idtoken"] !== undefined;
-    console.log("Har vi idtoken cookie? ", harIdToken);
+      request.cookies["innloggingsstatus-token"] !== undefined &&
+      request.cookies["io.nais.wonderwall.session"] !== undefined;
+    console.log("Har vi gyldige cookies? ", harNødvendigeCookies);
 
-    const loginserviceToken = request.cookies["selvbetjening-idtoken"];
+    if (harAuthorizationHeader(request)) {
+      const idportenToken = request.headers["authorization"]?.split(" ")[1];
+      console.log("Har auth header, length=", idportenToken.length);
+    } else {
+      console.log("Har ingen auth header");
+    }
+
     const redirectString = request.query.redirect as string;
 
     if (
-      loginserviceToken &&
+      harAuthorizationHeader(request) &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
-      console.log("[DEBUG] Case #1 -- Skal redirecte til: ", redirectString);
+      console.log(
+        "[DEBUG] Innlogging fullført, skal redirecte til: ",
+        redirectString
+      );
       response.redirect(redirectString);
-    } else if (redirectString.startsWith(process.env.APP_INGRESS)) {
-      const url = `${process.env.LOGIN_URL}${request.query.redirect}`;
-      console.log("[DEBUG] Case #2 -- Skal redirecte til: ", url);
-      response.redirect(url);
     } else {
-      const url1 = `${process.env.LOGIN_URL}${process.env.APP_INGRESS}`;
-      console.log("[DEBUG] Case #3 -- Skal redirecte til: ", url1);
-      response.redirect(url1);
+      const url = getLoginTilOauth2(envProperties.APP_INGRESS);
+      console.log(
+        "[DEBUG] Ingen gyldig Auth header, redirect til innlogging: ",
+        url
+      );
+      response.redirect(url);
     }
   });
 

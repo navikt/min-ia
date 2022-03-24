@@ -7,22 +7,24 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
-  port: 3010
+  port: 3000
   env:
     - name: SYKEFRAVARSSTATISTIKK_API_BASE_URL
       value: https://sykefravarsstatistikk-api.dev-fss-pub.nais.io
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
-    - name: LOGIN_URL
-      value: https://loginservice.dev.nav.no/login?redirect=
+      ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
+      ## Derfor overskriver vi NODE_ENV i dev-gcp og prod-gcp til 'production'
     - name: NODE_ENV
-      value: not-local
+      value: production
     - name: TOKENX_AUDIENCE
       value: "dev-fss:arbeidsgiver:sykefravarsstatistikk-api"
     - name: APP_INGRESS
       value: https://min-ia.dev.nav.no/min-ia
     - name: DECORATOR_URL
       value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
+    - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
+      value: https://min-ia.dev.nav.no/min-ia
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
@@ -62,4 +64,3 @@ spec:
       external:
         - host: dekoratoren.dev.nav.no
         - host: sykefravarsstatistikk-api.dev-fss-pub.nais.io
-        - host: loginservice.dev.nav.no

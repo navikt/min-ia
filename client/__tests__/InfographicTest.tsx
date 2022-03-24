@@ -17,41 +17,41 @@ it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async 
 
 it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", async () => {
   render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
-  const infobolk = await screen.getByText(/Sykefraværsprosenten i din bransje/);
+  const infobolk = await screen.getByText(/Sykefraværsprosenten i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i din bransje akkurat nå er: 5.1%"
+    "Sykefraværsprosenten i din næring akkurat nå er: 5.1%"
   );
 });
 
 it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () => {
   render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
-  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din bransje akkurat nå er stigende"
+    "Sykefraværet i din næring akkurat nå er stigende"
   );
 });
 
 it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () => {
   render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)} />);
-  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-      "Sykefraværet i din bransje akkurat nå er synkende"
+      "Sykefraværet i din næring akkurat nå er synkende"
   );
 });
 
 it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async () => {
   render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringIngenTrend)} />);
-  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-      "Sykefraværet i din bransje akkurat nå er -"
+      "Sykefraværet i din næring akkurat nå er -"
   );
 });
 
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringUendretTrend)} />);
-  const infobolk = await screen.getByText(/Sykefraværet i din bransje/);
+  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-      "Sykefraværet i din bransje akkurat nå er uendret"
+      "Sykefraværet i din næring akkurat nå er uendret"
   );
 });
 

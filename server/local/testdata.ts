@@ -1,23 +1,159 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import {
-  KvartalsvisSykefraværshistorikk,
-  SykefraværshistorikkType,
-} from "../../../../integrasjoner/kvartalsvis-sykefraværshistorikk-api";
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<KvartalsvisSykefraværshistorikk[]>
-) {
-  if (req.query.orgnr as string === "910969439") {
-    res.status(200).json(kvartalsvisSykefraværsprosentMock);
-  } else {
-    res.status(200).json([]);
-  }
-}
-
-const kvartalsvisSykefraværsprosentMock: KvartalsvisSykefraværshistorikk[] = [
+export const næringKvartalsvisSykefraværsprosentMock = [
   {
-    type: SykefraværshistorikkType.LAND,
+    type: "LAND",
+    label: "Norge",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 5.5,
+        tapteDagsverk: 7605099.2,
+        muligeDagsverk: 138978910.7,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+      {
+        prosent: 4.5,
+        tapteDagsverk: 6548546.8,
+        muligeDagsverk: 145788910.5,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2019,
+      },
+    ],
+  },
+  {
+    type: "SEKTOR",
+    label: "Statlig forvaltning",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 5.2,
+        tapteDagsverk: 890575,
+        muligeDagsverk: 17196245.2,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+      {
+        prosent: 5.2,
+        tapteDagsverk: 890575,
+        muligeDagsverk: 17196245.2,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2019,
+      },
+    ],
+  },
+  {
+    type: "NÆRING",
+    label: "Produksjon av nærings- og nytelsesmidler",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 5.6,
+        tapteDagsverk: 139625.1,
+        muligeDagsverk: 2483134.2,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+      {
+        prosent: 5.1,
+        tapteDagsverk: 118666.1,
+        muligeDagsverk: 2305817.2,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2019,
+      },
+    ],
+  },
+  {
+    type: "VIRKSOMHET",
+    label: "NAV ARBEID OG YTELSER AVD OSLO",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 12.8,
+        tapteDagsverk: 251.4,
+        muligeDagsverk: 1964.4,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+      {
+        prosent: 9.6,
+        tapteDagsverk: 191.7,
+        muligeDagsverk: 2001.1,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2019,
+      },
+      {
+        prosent: 3.3,
+        tapteDagsverk: 65.7,
+        muligeDagsverk: 1989.3,
+        erMaskert: false,
+        kvartal: 3,
+        årstall: 2019,
+      },
+      {
+        prosent: 10.3,
+        tapteDagsverk: 204.5,
+        muligeDagsverk: 1990.3,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2020,
+      },
+      {
+        prosent: 8.3,
+        tapteDagsverk: 166,
+        muligeDagsverk: 1990.3,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2020,
+      },
+      {
+        prosent: 8.3,
+        tapteDagsverk: 166,
+        muligeDagsverk: 1990.3,
+        erMaskert: false,
+        kvartal: 3,
+        årstall: 2020,
+      },
+      {
+        prosent: 8.3,
+        tapteDagsverk: 166,
+        muligeDagsverk: 1990.3,
+        erMaskert: false,
+        kvartal: 4,
+        årstall: 2020,
+      },
+    ],
+  },
+  {
+    type: "OVERORDNET_ENHET",
+    label: "NAV ARBEID OG YTELSER",
+    kvartalsvisSykefraværsprosent: [
+      {
+        prosent: 11.7,
+        tapteDagsverk: 2300.4,
+        muligeDagsverk: 19640.4,
+        erMaskert: false,
+        kvartal: 1,
+        årstall: 2019,
+      },
+      {
+        prosent: 11.5,
+        tapteDagsverk: 2300.3,
+        muligeDagsverk: 20010.1,
+        erMaskert: false,
+        kvartal: 2,
+        årstall: 2019,
+      },
+    ],
+  },
+];
+
+export const bransjeKvartalsvisSykefraværsprosentMock = [
+  {
+    type: "LAND",
     label: "Norge",
     kvartalsvisSykefraværsprosent: [
       {
@@ -191,7 +327,7 @@ const kvartalsvisSykefraværsprosentMock: KvartalsvisSykefraværshistorikk[] = [
     ],
   },
   {
-    type: SykefraværshistorikkType.SEKTOR,
+    type: "SEKTOR",
     label: "Statlig forvaltning",
     kvartalsvisSykefraværsprosent: [
       {
@@ -365,8 +501,8 @@ const kvartalsvisSykefraværsprosentMock: KvartalsvisSykefraværshistorikk[] = [
     ],
   },
   {
-    type: SykefraværshistorikkType.NÆRING,
-    label: "Produksjon av nærings- og nytelsesmidler",
+    type: "BRANSJE",
+    label: "Barnehager",
     kvartalsvisSykefraværsprosent: [
       {
         prosent: 5.6,
@@ -451,7 +587,7 @@ const kvartalsvisSykefraværsprosentMock: KvartalsvisSykefraværshistorikk[] = [
     ],
   },
   {
-    type: SykefraværshistorikkType.VIRKSOMHET,
+    type: "VIRKSOMHET",
     label: "NAV ARBEID OG YTELSER AVD OSLO",
     kvartalsvisSykefraværsprosent: [
       {
@@ -665,7 +801,7 @@ const kvartalsvisSykefraværsprosentMock: KvartalsvisSykefraværshistorikk[] = [
     ],
   },
   {
-    type: SykefraværshistorikkType.OVERORDNET_ENHET,
+    type: "OVERORDNET_ENHET",
     label: "NAV ARBEID OG YTELSER",
     kvartalsvisSykefraværsprosent: [
       {

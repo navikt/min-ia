@@ -1,71 +1,76 @@
 name: Build and deploy min-ia
 on: [ push ]
 env:
-  "IMAGE": "ghcr.io/${{ github.repository }}:${{ github.sha }}"
+  IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
 
 concurrency:
   group: build-deploy-on-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  "build":
-    name: "Build, lint, test and push docker image"
-    runs-on: "ubuntu-latest"
+  build:
+    name: Build, lint, test and push docker image
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v2"
-      - name: "Setup node"
-        uses: "actions/setup-node@v2"
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
           node-version: '16'
 
-      - name: "Install client dependencies"
+      - name: Install client dependencies
         working-directory: client
-        run: "yarn install --immutable"
+        run: yarn install --immutable
 
-      - name: "Install server dependencies"
+      - name: Install server dependencies
         working-directory: server
-        run: "yarn install --immutable"
+        run: yarn install --immutable
 
-      - name: "Lint client"
-        uses: "wearerequired/lint-action@v1"
+      - name: Run tests
+        working-directory: client
+        run: yarn test
+
+      - name: Lint client
+        uses: wearerequired/lint-action@v1
         with:
           eslint: true
           eslint_dir: client/
           eslint_extensions: js,jsx,ts,tsx
 
-      - name: "Login to GitHub Docker Registry"
-        uses: "docker/login-action@v1"
+      - name: Login to GitHub Docker Registry
+        uses: docker/login-action@v1
         with:
-          "registry": "ghcr.io"
-          "username": "${{ github.actor }}"
-          "password": "${{ secrets.GITHUB_TOKEN }}"
-      - name: "Build and push the Docker image"
-        run: "docker-compose build --pull && docker push ${IMAGE}"
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push the Docker image
+        run: |
+          docker build . -t ${IMAGE} && docker push ${IMAGE}
 
-  "deployAppToDev":
-    name: "Deploy app to dev"
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innføre-csp'
-    needs: "build"
-    runs-on: "ubuntu-latest"
+  deployAppToDev:
+    name: Deploy app to dev
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innloggin-uten-loginservice'
+    needs: build
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v2"
-      - name: "Deploy to DEV"
-        uses: "nais/deploy/actions/deploy@v1"
+      - uses: actions/checkout@v2
+      - name: Deploy to DEV
+        uses: nais/deploy/actions/deploy@v1
         env:
-          "APIKEY": "${{ secrets.NAIS_DEPLOY_APIKEY }}"
-          "CLUSTER": "dev-gcp"
-          "RESOURCE": ".nais/dev.yaml"
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/dev.yaml
 
-  "deployAppToLabs":
-    name: "Deploy app to labs"
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innføre-csp'
-    needs: "build"
-    runs-on: "ubuntu-latest"
+  deployAppToLabs:
+    name: Deploy app to labs
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innloggin-uten-loginservice'
+    needs: build
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v2"
-      - name: "Deploy to DEV"
-        uses: "nais/deploy/actions/deploy@v1"
+      - uses: actions/checkout@v2
+      - name: Deploy to DEV
+        uses: nais/deploy/actions/deploy@v1
         env:
-          "APIKEY": "${{ secrets.NAIS_DEPLOY_APIKEY }}"
-          "CLUSTER": "labs-gcp"
-          "RESOURCE": ".nais/labs.yaml"
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: labs-gcp
+          RESOURCE: .nais/labs.yaml

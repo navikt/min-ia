@@ -1,4 +1,4 @@
-@use 'src/utils/screen-sizes.scss';
+@use "src/utils/screen-sizes.scss";
 
 .innloggingsside {
   max-width: 40rem;
@@ -18,9 +18,11 @@
   &__illustrasjon {
     margin-bottom: 2.5rem;
   }
-  &__link{
+
+  &__link {
     margin-bottom: 2rem;
   }
+
   .ikke-innlogget-side {
     &__overskrift {
       margin-top: 2.5rem;

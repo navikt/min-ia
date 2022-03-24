@@ -7,14 +7,20 @@ metadata:
     team: teamia
 spec:
   image: {{image}}
-  port: 3010
+  port: 3000
   env:
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
+      ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
+      ## Derfor overskriver vi NODE_ENV i labs-gcp 'development'
     - name: NODE_ENV
-      value: labs
+      value: development
+    - name: APP_INGRESS
+      value: https://arbeidsgiver.labs.nais.io/min-ia
     - name: DECORATOR_URL
-      value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
+      value: https://www.nav.no/dekoratoren/?context=arbeidsgiver
+    - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
+      value: https://arbeidsgiver.nav.no/min-ia
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK

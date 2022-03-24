@@ -5,14 +5,15 @@ import { DecoratorParts } from "../../utils/dekorator";
 import { DecoratorEnv } from "../decorator/DecoratorEnv";
 import React, { useRef } from "react";
 import Banner from "../../Banner/Banner";
-import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
 import { Heading, Ingress } from "@navikt/ds-react";
+import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 
 export const Layout = (props: {
   title: string;
   isFrontPage: boolean;
   bannerIconUrl?: string;
   decoratorParts?: DecoratorParts;
+  altinnOrganisasjoner: AltinnOrganisasjon[];
   children: React.ReactChild;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,6 @@ export const Layout = (props: {
     );
   });
 
-  const restAltinnOrganisasjoner = useAltinnOrganisasjoner();
   const tittelMedUndertittel = (
     <div>
       <Heading size="large" level="3">
@@ -55,8 +55,9 @@ export const Layout = (props: {
       <div id="app" className="app">
         <Banner
           tittelMedUnderTittel={tittelMedUndertittel}
-          restOrganisasjoner={restAltinnOrganisasjoner}
+          altinnOrganisasjoner={props.altinnOrganisasjoner}
         />
+
         <div>
           <div ref={layoutContentRef}>{props.children}</div>
         </div>

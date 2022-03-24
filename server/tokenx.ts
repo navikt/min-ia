@@ -1,20 +1,22 @@
 import { Issuer, TokenSet } from "openid-client";
 import fetch from "node-fetch";
 import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten";
-let tokenxClient;
+import { IncomingMessage } from "http";
+
+let tokenxClient: any;
 
 export async function initTokenX() {
-  if (process.env.NODE_ENV === "not-local") {
+  if (process.env.NODE_ENV === "production") {
     const tokenxIssuer = await Issuer.discover(
-      process.env.TOKEN_X_WELL_KNOWN_URL
+      process.env.TOKEN_X_WELL_KNOWN_URL!
     );
     tokenxClient = new tokenxIssuer.Client(
       {
-        client_id: process.env.TOKEN_X_CLIENT_ID,
+        client_id: process.env.TOKEN_X_CLIENT_ID!,
         token_endpoint_auth_method: "private_key_jwt",
       },
       {
-        keys: [JSON.parse(process.env.TOKEN_X_PRIVATE_JWK)],
+        keys: [JSON.parse(process.env.TOKEN_X_PRIVATE_JWK!)],
       }
     );
   }
@@ -32,7 +34,7 @@ async function getMockTokenXToken() {
   });
 }
 
-async function getTokenXToken(token, additionalClaims) {
+async function getTokenXToken(token: any, additionalClaims: any) {
   let tokenSet;
   try {
     tokenSet = await tokenxClient?.grant(
@@ -46,7 +48,7 @@ async function getTokenXToken(token, additionalClaims) {
       },
       additionalClaims
     );
-  } catch (err) {
+  } catch (err: any) {
     console.error(
       `Noe gikk galt med token exchange mot TokenX.
             Feilmelding fra openid-client: (${err}).
@@ -55,17 +57,18 @@ async function getTokenXToken(token, additionalClaims) {
       err.response.body
     );
   }
-  if (!tokenSet && process.env.NODE_ENV !== "not-local") {
+  if (!tokenSet && process.env.NODE_ENV !== "production") {
     // Dette skjer kun i lokalt miljø - siden tokenxClient kun blir initialisert i GCP env
     tokenSet = await getMockTokenXToken();
   }
   return tokenSet;
 }
 
-export async function exchangeToken(request) {
+export async function exchangeToken(request: IncomingMessage) {
   let token = request.headers.authorization?.split(" ")[1];
+
   if (!token) {
-    if (process.env.NODE_ENV !== "not-local") {
+    if (process.env.NODE_ENV !== "production") {
       token = await getMockTokenFromIdporten();
     } else {
       // Brukeren er ikke autorisert
