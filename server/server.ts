@@ -5,11 +5,19 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
+import RateLimit from "express-rate-limit";
 
 const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
 
 const server = express();
+
+// set up rate limiter: maximum of 20 000 requests per minute
+const limiter = RateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 20000,
+});
+server.use(limiter);
 
 const envProperties = {
   APP_INGRESS: process.env.APP_INGRESS || "http://localhost:3000/min-ia",
