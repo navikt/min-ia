@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { Forside } from "./Forside";
-import { mockAmplitudeClient } from "../amplitude/amplitude-mock";
+import { Forside } from "../../src/Forside/Forside";
+import { mockAmplitudeClient } from "../../src/amplitude/amplitude-mock";
 
 beforeEach(() => {
   jest.spyOn(mockAmplitudeClient, "logEvent");

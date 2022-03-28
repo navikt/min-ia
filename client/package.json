@@ -7,7 +7,7 @@
     "start": "next start",
     "build": "next build",
     "lint": "eslint .",
-    "test": "TZ=CET jest",
+    "test": "jest",
     "watch": "jest --watch",
     "export": "next export"
   },
