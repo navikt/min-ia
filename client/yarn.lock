@@ -647,21 +647,22 @@
   resolved "https://registry.yarnpkg.com/@navikt/ds-css/-/ds-css-0.15.12.tgz#dae50463663c72e40dd84a5d24dc6c71dfecabe2"
   integrity sha512-WbYAWsy/rFhCzp+zbZwy1+JqxxgKPx7mEqdI/qtr6dbYoDtHwF0eDBFYOHxUuihgGd5Dm+gANhnY5PdIMpymHw==
 
-"@navikt/ds-icons@^0.8.4":
+"@navikt/ds-icons@^0.8.4", "@navikt/ds-icons@^0.8.6":
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.8.6.tgz#d5237b20a086c83291d5fcb02d6d5206c93bde45"
   integrity sha512-3s3fLI2Pg3xRdeiZdIePZoOoEIK/UuMzafZQHrSg57VhupPlZmf1jLYbR+i0bXmkeRuq7kT3hKdoakRMzDEYLw==
   dependencies:
     uuid "^8.3.2"
 
-"@navikt/ds-react@^0.16.10":
-  version "0.16.20"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.16.20.tgz#2d7f9d04e10ba28b4e8a762540b62bce588973a9"
-  integrity sha512-FU3O+xYIID2r8+jFfTxCcVrAOXzsVHb9vHQJSF/gg4wNObRocJncNjgWp0b87QElvhVllFlOmUZj/S3nIDb/+A==
+"@navikt/ds-react@^0.17.14":
+  version "0.17.14"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-react/-/ds-react-0.17.14.tgz#7a6e35226057d042da9707bd0759458c678ad783"
+  integrity sha512-v7lTuZPKc3k+dVTxQb+aBlFEmBzPRd08RDrM+diZSCrZkcVcQOsfi09y336Vd1zahoJYirdxfUmDrcSrXclnyQ==
   dependencies:
     "@material-ui/core" "^4.12.3"
-    "@navikt/ds-icons" "^0.8.4"
+    "@navikt/ds-icons" "^0.8.6"
     "@popperjs/core" "^2.10.1"
+    "@radix-ui/react-tabs" "0.1.5"
     "@radix-ui/react-toggle-group" "0.1.5"
     classnames "^2.2.6"
     react-collapse "^5.1.0"
@@ -845,6 +846,19 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "0.1.0"
+
+"@radix-ui/react-tabs@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-0.1.5.tgz#ddcf860cc32e186d76477ae767dbb216d1944252"
+  integrity sha512-ieVQS1TFr0dX1XA8B+CsSFKOE7kcgEaNWWEfItxj9D1GZjn1o3WqPkW+FhQWDAWZLSKCH2PezYF3MNyO41lgJg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "0.1.0"
+    "@radix-ui/react-context" "0.1.1"
+    "@radix-ui/react-id" "0.1.5"
+    "@radix-ui/react-primitive" "0.1.4"
+    "@radix-ui/react-roving-focus" "0.1.5"
+    "@radix-ui/react-use-controllable-state" "0.1.0"
 
 "@radix-ui/react-toggle-group@0.1.5":
   version "0.1.5"
