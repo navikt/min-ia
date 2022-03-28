@@ -17,6 +17,7 @@ import { useAmplitude } from "../amplitude/useAmplitude";
 import { AmplitudeClient } from "../amplitude/client";
 import { sendSidevisningEvent } from "../amplitude/events";
 import { useOrgnr } from "../hooks/useOrgnr";
+import { Alert } from "@navikt/ds-react";
 
 export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
   const bredde = 60;
@@ -37,6 +38,9 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
 
   return (
     <div className={styles.forside}>
+      <Alert variant={"info"} className={styles.fullwidth}>
+        Vi jobber med å oppdatere sidene våre.
+      </Alert>
       {infographicHvisDataOk}
       <div className={styles.panelGrid}>
         <Lenkeflis
