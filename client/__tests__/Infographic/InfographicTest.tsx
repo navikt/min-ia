@@ -1,11 +1,11 @@
 import {act, render, screen} from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Infographic } from "../src/Infographic/Infographic";
+import { Infographic } from "../../src/Infographic/Infographic";
 import {
   KvartalsvisSykefraværshistorikk,
   SykefraværshistorikkType,
-} from "../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
-import {kalkulerInfographicData} from "../src/Infographic/datatransformasjon";
+} from "../../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
+import {kalkulerInfographicData} from "../../src/Infographic/datatransformasjon";
 
 it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
   await act(async () => {
