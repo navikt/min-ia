@@ -30,7 +30,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
         verdi={sykefraværNorge + "%"}
         hjelpetekst={
-          "Gjennomsnittlig sykefraværsprosent for hele Norge i siste tilgjenglelige kvartal"
+          "Gjennomsnittlig sykefraværsprosent for hele Norge i siste tilgjengelige kvartal"
         }
       />
 
