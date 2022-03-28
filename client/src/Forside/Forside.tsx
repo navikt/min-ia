@@ -2,7 +2,6 @@ import styles from "./forside.module.scss";
 import { StatistikkIkonIkon } from "./ikoner/StatistikkIkonIkon";
 import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
-import { HvaGjørDeSomLykkesIkon } from "./ikoner/HvaGjørDeSomLykkesIkon";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
 import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
@@ -59,6 +58,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           }
           href={process.env.SYKEFRAVARSSTATISTIKK}
         />
+        {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
           overskrift={"Hva gjør de som lykkes"}
           ikon={<HvaGjørDeSomLykkesIkon />}
@@ -66,7 +66,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
             "Lær av de som forebygger sykefravær på en god, strukturert måte."
           }
           href={"/hva_gjor_de_som_lykkes"}
-        />
+        />*/}
         <Lenkeflis
           overskrift={"Kurs og webinarer"}
           ikon={<KursOgWebinarerIkon />}
