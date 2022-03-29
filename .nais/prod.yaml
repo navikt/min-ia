@@ -28,15 +28,15 @@ spec:
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
-      VALUE: https://arbeidsgiver.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk
+      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk
     - name: NETTKURS
       value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: KALKULATOR
-      VALUE: https://arbeidsgiver.nav.no/sykefravarsstatistikk/kalkulator
+      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN
-      VALUE: https://www.idebanken.org/
+      value: https://www.idebanken.org/
     - name: ARBEIDSMILJOPORTALEN
-      VALUE: https://www.arbeidsmiljoportalen.no/
+      value: https://www.arbeidsmiljoportalen.no/
   tokenx:
     enabled: true
   idporten:

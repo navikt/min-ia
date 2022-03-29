@@ -28,15 +28,15 @@ spec:
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: NETTKURS
-      value: https://arbeidsgiver-gcp.dev.nav.no/forebygge-sykefravaer/
+      value: https://arbeidsgiver-gcp.dev.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: SYKEFRAVARSSTATISTIKK
-      VALUE: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
+      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
     - name: KALKULATOR
-      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/KALKULATOR
+      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN
-      VALUE: https://www.idebanken.org/
+      value: https://www.idebanken.org
     - name: ARBEIDSMILJOPORTALEN
-      VALUE: https://www.arbeidsmiljoportalen.no/
+      value: https://www.arbeidsmiljoportalen.no
   tokenx:
     enabled: true
   idporten:

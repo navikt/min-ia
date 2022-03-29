@@ -24,15 +24,15 @@ spec:
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
-      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
     - name: NETTKURS
       value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: KALKULATOR
-      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
+      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN
-      VALUE: https://www.idebanken.org/
+      value: https://www.idebanken.org/
     - name: ARBEIDSMILJOPORTALEN
-      VALUE: https://www.arbeidsmiljoportalen.no/
+      value: https://www.arbeidsmiljoportalen.no/
   liveness:
     path: /min-ia/internal/isAlive
     initialDelay: 20
