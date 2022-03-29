@@ -25,6 +25,8 @@ spec:
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
       VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+    - name: NETTKURS
+      value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: KALKULATOR
       VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN

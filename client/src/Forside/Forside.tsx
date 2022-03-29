@@ -73,7 +73,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
-          href={"/kurs_og_webinar"}
+          href={process.env.NETTKURS}
         />
         <Lenkeflis
           overskrift={"Kalkulator"}

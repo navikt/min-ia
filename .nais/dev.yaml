@@ -27,8 +27,10 @@ spec:
       value: https://min-ia.dev.nav.no/min-ia
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
+    - name: NETTKURS
+      value: https://arbeidsgiver-gcp.dev.nav.no/forebygge-sykefravaer/
     - name: SYKEFRAVARSSTATISTIKK
-      VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+      VALUE: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
     - name: KALKULATOR
       VALUE: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/KALKULATOR
     - name: IDEBANKEN

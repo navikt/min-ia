@@ -28,7 +28,9 @@ spec:
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK
-      VALUE: https://arbeidsgiver.nav.no/sykefravarsstatistikk
+      VALUE: https://arbeidsgiver.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk
+    - name: NETTKURS
+      value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: KALKULATOR
       VALUE: https://arbeidsgiver.nav.no/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN
