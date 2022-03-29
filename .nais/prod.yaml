@@ -32,11 +32,11 @@ spec:
     - name: NETTKURS
       value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: KALKULATOR
-      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/kalkulator
+      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN
-      value: https://www.idebanken.org/
+      value: https://www.idebanken.org
     - name: ARBEIDSMILJOPORTALEN
-      value: https://www.arbeidsmiljoportalen.no/
+      value: https://www.arbeidsmiljoportalen.no
   tokenx:
     enabled: true
   idporten:

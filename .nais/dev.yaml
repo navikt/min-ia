@@ -32,7 +32,7 @@ spec:
     - name: SYKEFRAVARSSTATISTIKK
       value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
     - name: KALKULATOR
-      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
+      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/kalkulator
     - name: IDEBANKEN
       value: https://www.idebanken.org
     - name: ARBEIDSMILJOPORTALEN
