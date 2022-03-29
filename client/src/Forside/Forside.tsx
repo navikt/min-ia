@@ -56,7 +56,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
           }
-          href={process.env.SYKEFRAVARSSTATISTIKK}
+          href={`${process.env.SYKEFRAVARSSTATISTIKK}?bedrift=${orgnr}`}
         />
         {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
@@ -81,7 +81,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
           }
-          href={process.env.KALKULATOR}
+          href={`${process.env.KALKULATOR}?bedrift=${orgnr}`}
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
