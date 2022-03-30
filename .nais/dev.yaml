@@ -26,13 +26,13 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://min-ia.dev.nav.no/min-ia
     - name: NEXT_PUBLIC_KALKULATOR_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/kalkulator
+      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/kalkulator
     - name: NEXT_PUBLIC_NETTKURS_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: NEXT_PUBLIC_SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/success?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
+      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
   tokenx:
     enabled: true
   idporten:
