@@ -64,38 +64,6 @@ export const backendApiProxyMock = (app) => {
     ]);
   });
 
-  /*app.get(
-    `${BASE_PATH}/api/:orgnr/sykefravarshistorikk/kvartalsvis`,
-    (request, response) => {
-      const orgnr = request.params.orgnr;
-      console.log(`[DEBUG] GET /api/${orgnr}/sykefravarshistorikk/kvartalsvis`);
-
-      let kvartalsvisSykefraværsprosent: any[];
-      switch (orgnr) {
-        case "810969439": {
-          kvartalsvisSykefraværsprosent =
-            næringKvartalsvisSykefraværsprosentMock;
-          break;
-        }
-        case "910969439": {
-          kvartalsvisSykefraværsprosent =
-            bransjeKvartalsvisSykefraværsprosentMock;
-          break;
-        }
-        case "999999998": {
-          response.status(401).json([]);
-          break;
-        }
-        default: {
-          kvartalsvisSykefraværsprosent = [];
-        }
-      }
-
-      response.send(kvartalsvisSykefraværsprosent);
-    }
-  );
-
-*/
   app.get(
     `${BASE_PATH}/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis`,
     (request, response) => {
