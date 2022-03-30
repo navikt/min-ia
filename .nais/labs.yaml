@@ -21,18 +21,14 @@ spec:
       value: https://www.nav.no/dekoratoren/?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/min-ia
-    - name: SAMTALESTOTTE_URL
-      value: https://arbeidsgiver.labs.nais.io/samtalestotte
-    - name: SYKEFRAVARSSTATISTIKK
-      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
-    - name: NETTKURS
-      value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
-    - name: KALKULATOR
+    - name: NEXT_PUBLIC_KALKULATOR_URL
       value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
-    - name: IDEBANKEN
-      value: https://www.idebanken.org/
-    - name: ARBEIDSMILJOPORTALEN
-      value: https://www.arbeidsmiljoportalen.no/
+    - name: NEXT_PUBLIC_NETTKURS_URL
+      value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
+    - name: NEXT_PUBLIC_SAMTALESTOTTE_URL
+      value: https://arbeidsgiver.labs.nais.io/samtalestotte
+    - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
+      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
   liveness:
     path: /min-ia/internal/isAlive
     initialDelay: 20

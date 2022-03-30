@@ -48,7 +48,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
           }
-          href={process.env.SAMTALESTOTTE_URL}
+          href={`${process.env.NEXT_PUBLIC_SAMTALESTOTTE_URL}?bedrift=${orgnr}`}
         />
         <Lenkeflis
           overskrift={"Statistikk"}
@@ -56,7 +56,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
           }
-          href={`${process.env.SYKEFRAVARSSTATISTIKK}?bedrift=${orgnr}`}
+          href={`${process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL}?bedrift=${orgnr}`}
         />
         {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
@@ -73,7 +73,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
           }
-          href={process.env.NETTKURS}
+          href={process.env.NEXT_PUBLIC_NETTKURS_URL}
         />
         <Lenkeflis
           overskrift={"Kalkulator"}
@@ -81,7 +81,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
           }
-          href={`${process.env.KALKULATOR}?bedrift=${orgnr}`}
+          href={`${process.env.NEXT_PUBLIC_KALKULATOR_URL}?bedrift=${orgnr}`}
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
@@ -89,7 +89,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
           }
-          href={process.env.IDEBANKEN}
+          href={"https://www.idebanken.org"}
         />
         <LenkeflisEkstern
           overskrift={"Arbeidsmiljø&shy;portalen"}
@@ -97,7 +97,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
           }
-          href={process.env.ARBEIDSMILJOPORTALEN}
+          href={"https://www.arbeidsmiljoportalen.no"}
         />
       </div>
     </div>
