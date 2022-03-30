@@ -41,7 +41,7 @@ export interface KvartalsvisSykefraværshistorikk {
 }
 
 const sykefraværshistorikkPath = (orgnr: string) =>
-  `${BASE_PATH}/api/${orgnr}/sykefravarshistorikk/kvartalsvis`;
+  `${BASE_PATH}/api/${orgnr}/v1/offentlig/sykefravarshistorikk/kvartalsvis`;
 
 export const hentRestSykefraværshistorikk = async (
   orgnr: string

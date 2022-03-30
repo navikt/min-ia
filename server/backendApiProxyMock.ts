@@ -1,6 +1,6 @@
 import { BASE_PATH } from "./backendApiProxy";
 import {
-  bransjeKvartalsvisSykefraværsprosentMock,
+  bransjeKvartalsvisSykefraværsprosentMock, bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentMock,
 } from "./local/testdata";
 
@@ -80,6 +80,38 @@ export const backendApiProxyMock = (app) => {
         case "910969439": {
           kvartalsvisSykefraværsprosent =
             bransjeKvartalsvisSykefraværsprosentMock;
+          break;
+        }
+        case "999999998": {
+          response.status(401).json([]);
+          break;
+        }
+        default: {
+          kvartalsvisSykefraværsprosent = [];
+        }
+      }
+
+      response.send(kvartalsvisSykefraværsprosent);
+    }
+  );
+
+
+app.get(
+    `${BASE_PATH}/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis`,
+    (request, response) => {
+      const orgnr = request.params.orgnr;
+      console.log(`[DEBUG] GET /api/${orgnr}/v1/offentlig/sykefravarshistorikk/kvartalsvis`);
+
+      let kvartalsvisSykefraværsprosent: any[];
+      switch (orgnr) {
+        case "810969439": {
+          kvartalsvisSykefraværsprosent =
+            næringKvartalsvisSykefraværsprosentMock;
+          break;
+        }
+        case "910969439": {
+          kvartalsvisSykefraværsprosent =
+            bransjeKvartalsvisSykefraværsprosentV1OffentligMock;
           break;
         }
         case "999999998": {
