@@ -3,6 +3,7 @@ import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
 import { BodyLong, Link } from "@navikt/ds-react";
+import { useOrgnr } from "../hooks/useOrgnr";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -21,6 +22,9 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   trendStigningstall,
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
+  const orgnr = useOrgnr();
+  const sykefravarsstatistikkUrl =
+    process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL;
 
   return (
     <div className={styles.infographicWrapper}>
@@ -62,7 +66,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       />
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
-        <Link href={"https://arbeidsgiver.nav.no/sykefravarsstatistikk/"}>
+        <Link href={`${sykefravarsstatistikkUrl}?bedrift=${orgnr}`}>
           statistikksiden
         </Link>{" "}
         får du oversikt over sykefraværet over tid.
