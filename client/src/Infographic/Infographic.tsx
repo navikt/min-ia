@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
@@ -23,8 +23,15 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
-  const sykefravarsstatistikkUrl =
-    process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL;
+  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState(
+    process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
+  );
+
+  useEffect(() => {
+    setSykefravarsstatistikkUrl(
+      `${process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL}?bedrift=${orgnr}`
+    );
+  }, [orgnr]);
 
   return (
     <div className={styles.infographicWrapper}>
@@ -66,10 +73,8 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       />
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
-        <Link href={`${sykefravarsstatistikkUrl}?bedrift=${orgnr}`}>
-          statistikksiden
-        </Link>{" "}
-        får du oversikt over sykefraværet over tid.
+        <Link href={sykefravarsstatistikkUrl}>statistikksiden</Link> får du
+        oversikt over sykefraværet over tid.
       </BodyLong>
     </div>
   );
