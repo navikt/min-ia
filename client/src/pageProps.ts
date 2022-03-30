@@ -1,16 +1,14 @@
 import { DecoratorParts, fetchDecoratorParts } from "./utils/dekorator";
 
 export interface PageProps {
-  appTitle: string;
   title: string;
-  metaDescription: string;
-  slug: string;
+  description: string;
   decorator: DecoratorParts;
 }
 
 export const getPageProps = async (
   title: string,
-  slug: string
+  description: string
 ): Promise<PageProps> => {
   const breadcrumbs = [
     {
@@ -27,10 +25,8 @@ export const getPageProps = async (
   });
 
   return {
-    appTitle: title,
     title,
-    metaDescription: "Forebygge sykefravær",
-    slug,
+    description,
     decorator,
   };
 };
