@@ -1,11 +1,11 @@
-import {act, render, screen} from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Infographic } from "../../src/Infographic/Infographic";
 import {
   KvartalsvisSykefraværshistorikk,
   SykefraværshistorikkType,
 } from "../../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
-import {kalkulerInfographicData} from "../../src/Infographic/datatransformasjon";
+import { kalkulerInfographicData } from "../../src/Infographic/datatransformasjon";
 
 it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
   await act(async () => {
@@ -39,31 +39,43 @@ it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () =
 
 it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)} />);
+    render(
+      <Infographic
+        {...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)}
+      />
+    );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-      "Sykefraværet i din næring akkurat nå er synkende"
+    "Sykefraværet i din næring akkurat nå er synkende"
   );
 });
 
 it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringIngenTrend)} />);
+    render(
+      <Infographic
+        {...kalkulerInfographicData(mockSykefraværNæringIngenTrend)}
+      />
+    );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-      "Sykefraværet i din næring akkurat nå er -"
+    "Sykefraværet i din næring akkurat nå er -"
   );
 });
 
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæringUendretTrend)} />);
+    render(
+      <Infographic
+        {...kalkulerInfographicData(mockSykefraværNæringUendretTrend)}
+      />
+    );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-      "Sykefraværet i din næring akkurat nå er uendret"
+    "Sykefraværet i din næring akkurat nå er uendret"
   );
 });
 
@@ -97,7 +109,9 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
 
   expect(lenke).toHaveAttribute(
     "href",
-    "https://arbeidsgiver.nav.no/sykefravarsstatistikk/"
+    expect.stringContaining(
+      "http://localhost:8080/sykefravarsstatistikk?bedrift="
+    )
   );
 });
 
