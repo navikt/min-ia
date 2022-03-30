@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { getPageProps, PageProps } from "../pageProps";
 import { Layout } from "../komponenter/Layout/Layout";
 import { Forside } from "../Forside/Forside";
@@ -16,34 +15,25 @@ const Home = (props: { page: PageProps }) => {
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
 
-  const innhold = trengerInnlogging ? (
+  const forsideEllerInnloggingsside = trengerInnlogging ? (
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (
     <Forside amplitudeClient={navDefaultAmplitudeClient!!} />
   );
 
   return (
-    <>
-      <Head>
-        <title>{props.page.title}</title>
-        <meta name="description" content={props.page.description} />
-      </Head>
-
-      <main>
-        <Layout
-          isFrontPage={true}
-          decoratorParts={props.page.decorator}
-          altinnOrganisasjoner={
-            organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
-              ? organisasjonerBrukerHarTilgangTil.data
-              : []
-          }
-        >
-          {innhold}
-        </Layout>
-      </main>
-      <footer />
-    </>
+    <Layout
+      title={props.page.title}
+      description={props.page.description}
+      decoratorParts={props.page.decorator}
+      altinnOrganisasjoner={
+        organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
+          ? organisasjonerBrukerHarTilgangTil.data
+          : []
+      }
+    >
+      {forsideEllerInnloggingsside}
+    </Layout>
   );
 };
 
