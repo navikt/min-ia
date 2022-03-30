@@ -6,6 +6,7 @@ export const InfographicFlis = (props: {
   ikon: ReactNode;
   tekst: string;
   verdi: string;
+  hjelpetekst: string;
 }) => {
   return (
     <div className={styles.infographicFlis}>
@@ -14,9 +15,7 @@ export const InfographicFlis = (props: {
         {props.tekst}
         <span style={{ fontWeight: 700 }}>{props.verdi}</span>
       </Label>
-      <HelpText title="Hvor kommer dette fra?">
-        Informasjonen er hentet fra X sin statistikk fra 2021
-      </HelpText>
+      <HelpText title="Hvor kommer tallet fra?">{props.hjelpetekst}</HelpText>
     </div>
   );
 };
