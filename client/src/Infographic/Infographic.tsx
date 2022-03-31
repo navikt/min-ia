@@ -4,6 +4,12 @@ import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
 import { BodyLong, Link } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
+import { getMiljø } from "../utils/miljøUtils";
+import {
+  Applikasjon,
+  getUrlForApplikasjon,
+  utledUrlForBedrift,
+} from "../utils/urlUtils";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -23,15 +29,18 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
-  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState(
-    process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
-  );
+  const miljø = getMiljø();
+
+  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
 
   useEffect(() => {
     setSykefravarsstatistikkUrl(
-      `${process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL}?bedrift=${orgnr}`
+      utledUrlForBedrift(
+        getUrlForApplikasjon(Applikasjon.Sykefraværsstatistikk, miljø),
+        orgnr
+      )
     );
-  }, [orgnr]);
+  }, [orgnr, miljø]);
 
   return (
     <div className={styles.infographicWrapper}>
