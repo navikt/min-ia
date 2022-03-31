@@ -18,36 +18,29 @@ import { sendSidevisningEvent } from "../amplitude/events";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 
+const utleddUrlForBedrift = (
+  baseUrl: string | undefined,
+  orgnr: string | undefined
+): string => {
+  if (!baseUrl) {
+    return "#";
+  }
+
+  if (!orgnr) {
+    return baseUrl;
+  }
+  return `${baseUrl}?bedrift=${orgnr}`;
+};
+
 export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
   const bredde = 60;
   const høyde = 60;
-
-  const [samtalestotteUrl, setSamtalestotteUrl] = useState(
-    process.env.NEXT_PUBLIC_SAMTALESTOTTE_URL
-  );
-
-  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState(
-    process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
-  );
-
-  const [kalkulatorUrl, setKalkulatorUrl] = useState(
-    process.env.NEXT_PUBLIC_KALKULATOR_URL
-  );
 
   useAmplitude(props.amplitudeClient);
   const orgnr = useOrgnr();
 
   useEffect(() => {
     sendSidevisningEvent();
-    setSamtalestotteUrl(
-      `${process.env.NEXT_PUBLIC_SAMTALESTOTTE_URL}?bedrift=${orgnr}`
-    );
-    setSykefravarsstatistikkUrl(
-      `${process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL}?bedrift=${orgnr}`
-    );
-    setKalkulatorUrl(
-      `${process.env.NEXT_PUBLIC_KALKULATOR_URL}?bedrift=${orgnr}`
-    );
   }, [orgnr]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();
@@ -69,7 +62,10 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
           }
-          href={samtalestotteUrl}
+          href={utleddUrlForBedrift(
+            process.env.NEXT_PUBLIC_SAMTALESTOTTE_URL,
+            orgnr
+          )}
         />
         <Lenkeflis
           overskrift={"Statistikk"}
@@ -77,7 +73,10 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
           }
-          href={sykefravarsstatistikkUrl}
+          href={utleddUrlForBedrift(
+            process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL,
+            orgnr
+          )}
         />
         {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
@@ -102,7 +101,10 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
           brødtekst={
             "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
           }
-          href={kalkulatorUrl}
+          href={utleddUrlForBedrift(
+            process.env.NEXT_PUBLIC_KALKULATOR_URL,
+            orgnr
+          )}
         />
         <LenkeflisEkstern
           overskrift={"Idébanken"}
