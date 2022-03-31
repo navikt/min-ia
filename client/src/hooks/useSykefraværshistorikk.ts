@@ -17,10 +17,9 @@ export function useSykefraværshistorikk() {
       setRestSykefraværshistorikk({
         status: RestStatus.IkkeLastet,
       });
-      const hentRestSykefraværshistorikkOgSettState = async () => {
+      (async () => {
         setRestSykefraværshistorikk(await hentRestSykefraværshistorikk(orgnr));
-      };
-      hentRestSykefraværshistorikkOgSettState();
+      })();
     }
   }, [orgnr]);
   return restSykefraværshistorikk;
