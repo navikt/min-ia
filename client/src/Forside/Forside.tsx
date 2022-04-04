@@ -24,7 +24,10 @@ import {
   utledUrlForBedrift,
 } from "../utils/urlUtils";
 
-export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
+export const Forside = (props: {
+  amplitudeClient: AmplitudeClient;
+  harNoenOrganisasjoner: boolean;
+}) => {
   const bredde = 60;
   const høyde = 60;
 
@@ -59,17 +62,24 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
   }, [orgnr, miljø]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();
-  const infographicHvisDataOk =
-    sykefraværshistorikk.status !== RestStatus.Suksess ? null : (
-      <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)} />
+  const infographicEllerBannerHvisError =
+    sykefraværshistorikk.status !== RestStatus.Suksess ||
+    !props.harNoenOrganisasjoner ? (
+      <Alert variant={"error"} className={styles.forsideAlert}>
+        Det har skjedd en feil. Vennligst prøv igjen senere.
+      </Alert>
+    ) : (
+      <>
+        <Alert variant={"info"} className={styles.forsideAlert}>
+          Vi jobber med å oppdatere sidene våre.
+        </Alert>
+        <Infographic {...kalkulerInfographicData(sykefraværshistorikk.data)} />
+      </>
     );
 
   return (
     <div className={styles.forside}>
-      <Alert variant={"info"} className={styles.forsideAlert}>
-        Vi jobber med å oppdatere sidene våre.
-      </Alert>
-      {infographicHvisDataOk}
+      {infographicEllerBannerHvisError}
       <div className={styles.panelGrid}>
         <Lenkeflis
           overskrift={"Samtalestøtten"}
