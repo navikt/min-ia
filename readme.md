@@ -6,7 +6,7 @@ Landingsside for selvbetjente IA-tjenester
 - Rename filen `.env.example` -> `.env`
 - Naviger til `/server`
 - Installer avhengigheter: `yarn`
-- Kjør opp applikasjon: `yarn dev`
+- Kjør opp applikasjon: `yarn dev` eller `TEST_MODE=KREVER_INNLOGGING yarn dev` (se `package.json` for flere opsjoner)
 - Naviger til `../client`
 - Installer avhengigheter: `yarn`
 - Kjør opp applikasjon: `yarn dev`

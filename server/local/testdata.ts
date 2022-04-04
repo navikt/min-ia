@@ -1,3 +1,54 @@
+export const organisasjoner = [
+  {
+    Name: "FLESK OG FISK AS [Local server]",
+    Type: "Enterprise",
+    OrganizationNumber: "111111111",
+    OrganizationForm: "AS",
+    Status: "Active",
+    ParentOrganizationNumber: "",
+  },
+  {
+    Name: "FLESK OG FISK OSLO [Local server]",
+    Type: "Business",
+    OrganizationNumber: "910969439",
+    OrganizationForm: "BEDR",
+    Status: "Active",
+    ParentOrganizationNumber: "111111111",
+  },
+  {
+    Name: "Trøndelag Tømmerere [Local server]",
+    Type: "Enterprise",
+    OrganizationNumber: "211111111",
+    OrganizationForm: "AS",
+    Status: "Active",
+    ParentOrganizationNumber: "",
+  },
+  {
+    Name: "Trøndelag Tømmerere avd. OSLO [Local server]",
+    Type: "Business",
+    OrganizationNumber: "810969439",
+    OrganizationForm: "BEDR",
+    Status: "Active",
+    ParentOrganizationNumber: "211111111",
+  },
+  {
+    Name: "Test innlogging [Local server]",
+    Type: "Enterprise",
+    OrganizationNumber: "311111111",
+    OrganizationForm: "AS",
+    Status: "Active",
+    ParentOrganizationNumber: "",
+  },
+  {
+    Name: "Her må vi logge inn [Local server]",
+    Type: "Business",
+    OrganizationNumber: "999999998",
+    OrganizationForm: "BEDR",
+    Status: "Active",
+    ParentOrganizationNumber: "311111111",
+  },
+];
+
 export const bransjeKvartalsvisSykefraværsprosentV1OffentligMock = [
   {
     type: "LAND",
@@ -751,7 +802,8 @@ export const næringKvartalsvisSykefraværsprosentV1OffentligMock = [
         erMaskert: false,
         kvartal: 2,
         årstall: 2019,
-      },{
+      },
+      {
         prosent: 13.3,
         tapteDagsverk: 118666.1,
         muligeDagsverk: 2305817.2,

@@ -2,6 +2,7 @@ import { BASE_PATH } from "./backendApiProxy";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
+  organisasjoner,
 } from "./local/testdata";
 
 export const backendApiProxyMock = (app) => {
@@ -10,58 +11,30 @@ export const backendApiProxyMock = (app) => {
   console.log("===DETTE SKAL DU IKKE SE I PRODUKSJON===");
   console.log("========================================");
 
+  enum TEST_MODE {
+    NORMAL = "NORMAL",
+    KREVER_INNLOGGING = "KREVER_INNLOGGING",
+    GENERELL_FEIL = "GENERELL_FEIL",
+  }
+
+  const testMode: string = process.env.TEST_MODE
+    ? process.env.TEST_MODE
+    : "NORMAL";
+
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
-    response.send([
-      {
-        Name: "FLESK OG FISK AS [Local server]",
-        Type: "Enterprise",
-        OrganizationNumber: "111111111",
-        OrganizationForm: "AS",
-        Status: "Active",
-        ParentOrganizationNumber: "",
-      },
-      {
-        Name: "FLESK OG FISK OSLO [Local server]",
-        Type: "Business",
-        OrganizationNumber: "910969439",
-        OrganizationForm: "BEDR",
-        Status: "Active",
-        ParentOrganizationNumber: "111111111",
-      },
-      {
-        Name: "Trøndelag Tømmerere [Local server]",
-        Type: "Enterprise",
-        OrganizationNumber: "211111111",
-        OrganizationForm: "AS",
-        Status: "Active",
-        ParentOrganizationNumber: "",
-      },
-      {
-        Name: "Trøndelag Tømmerere avd. OSLO [Local server]",
-        Type: "Business",
-        OrganizationNumber: "810969439",
-        OrganizationForm: "BEDR",
-        Status: "Active",
-        ParentOrganizationNumber: "211111111",
-      },
-      {
-        Name: "Test innlogging [Local server]",
-        Type: "Enterprise",
-        OrganizationNumber: "311111111",
-        OrganizationForm: "AS",
-        Status: "Active",
-        ParentOrganizationNumber: "",
-      },
-      {
-        Name: "Her må vi logge inn [Local server]",
-        Type: "Business",
-        OrganizationNumber: "999999998",
-        OrganizationForm: "BEDR",
-        Status: "Active",
-        ParentOrganizationNumber: "311111111",
-      },
-    ]);
+
+    switch (testMode) {
+      case "GENERELL_FEIL":
+        response.status(500).json([]);
+        break;
+      case "KREVER_INNLOGGING":
+        response.status(401).json([]);
+        break;
+      default:
+        response.send(organisasjoner);
+        break;
+    }
   });
 
   app.get(
