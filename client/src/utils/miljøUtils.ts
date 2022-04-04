@@ -10,13 +10,13 @@ export const getMiljø = (): Miljø => {
     return Miljø.Lokal;
   }
   const hostname = window.location.hostname;
-  if (hostname.includes("arbeidsgiver.nav.no")) {
+  if (hostname === "arbeidsgiver.nav.no") {
     return Miljø.Prod;
   }
-  if (hostname.includes("arbeidsgiver-gcp.dev.nav.no/")) {
+  if (hostname === "min-ia.dev.nav.no") {
     return Miljø.Dev;
   }
-  if (hostname.includes("arbeidsgiver.labs.nais.io")) {
+  if (hostname === "arbeidsgiver.labs.nais.io") {
     return Miljø.Labs;
   }
   return Miljø.Lokal;
