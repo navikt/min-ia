@@ -23,6 +23,7 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
+import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 
 export const Forside = (props: {
   amplitudeClient: AmplitudeClient;
@@ -78,26 +79,30 @@ export const Forside = (props: {
     );
 
   return (
-    <div className={styles.forside}>
-      {infographicEllerBannerHvisError}
-      <div className={styles.panelGrid}>
-        <Lenkeflis
-          overskrift={"Samtalestøtten"}
-          ikon={<SamtalestøtteIkon />}
-          brødtekst={
-            "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
-          }
-          href={samtalestotteUrl}
-        />
-        <Lenkeflis
-          overskrift={"Statistikk"}
-          ikon={<StatistikkIkonIkon />}
-          brødtekst={
-            "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
-          }
-          href={sykefravarsstatistikkUrl}
-        />
-        {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
+    <>
+      {sykefraværshistorikk.status === RestStatus.IkkeInnlogget ? (
+        <Innloggingsside redirectUrl={window.location.href} />
+      ) : (
+        <div className={styles.forside}>
+          {infographicEllerBannerHvisError}
+          <div className={styles.panelGrid}>
+            <Lenkeflis
+              overskrift={"Samtalestøtten"}
+              ikon={<SamtalestøtteIkon />}
+              brødtekst={
+                "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
+              }
+              href={samtalestotteUrl}
+            />
+            <Lenkeflis
+              overskrift={"Statistikk"}
+              ikon={<StatistikkIkonIkon />}
+              brødtekst={
+                "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
+              }
+              href={sykefravarsstatistikkUrl}
+            />
+            {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
           overskrift={"Hva gjør de som lykkes"}
           ikon={<HvaGjørDeSomLykkesIkon />}
@@ -106,39 +111,41 @@ export const Forside = (props: {
           }
           href={"/hva_gjor_de_som_lykkes"}
         />*/}
-        <Lenkeflis
-          overskrift={"Kurs og webinarer"}
-          ikon={<KursOgWebinarerIkon />}
-          brødtekst={
-            "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
-          }
-          href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
-        />
-        <Lenkeflis
-          overskrift={"Kalkulator"}
-          ikon={<Calculator />}
-          brødtekst={
-            "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
-          }
-          href={kalkulatorUrl}
-        />
-        <LenkeflisEkstern
-          overskrift={"Idébanken"}
-          ikon={<IdebankenIkon width={bredde} height={høyde} />}
-          brødtekst={
-            "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
-          }
-          href={"https://www.idebanken.org"}
-        />
-        <LenkeflisEkstern
-          overskrift={"Arbeidsmiljø&shy;portalen"}
-          ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
-          brødtekst={
-            "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
-          }
-          href={"https://www.arbeidsmiljoportalen.no"}
-        />
-      </div>
-    </div>
+            <Lenkeflis
+              overskrift={"Kurs og webinarer"}
+              ikon={<KursOgWebinarerIkon />}
+              brødtekst={
+                "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+              }
+              href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
+            />
+            <Lenkeflis
+              overskrift={"Kalkulator"}
+              ikon={<Calculator />}
+              brødtekst={
+                "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
+              }
+              href={kalkulatorUrl}
+            />
+            <LenkeflisEkstern
+              overskrift={"Idébanken"}
+              ikon={<IdebankenIkon width={bredde} height={høyde} />}
+              brødtekst={
+                "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
+              }
+              href={"https://www.idebanken.org"}
+            />
+            <LenkeflisEkstern
+              overskrift={"Arbeidsmiljø&shy;portalen"}
+              ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
+              brødtekst={
+                "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
+              }
+              href={"https://www.arbeidsmiljoportalen.no"}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };

@@ -61,6 +61,10 @@ export const backendApiProxyMock = (app) => {
           response.status(401).json([]);
           break;
         }
+        case "999999997": {
+          response.status(500).json([]);
+          break;
+        }
         default: {
           kvartalsvisSykefraværsprosent = [];
         }
