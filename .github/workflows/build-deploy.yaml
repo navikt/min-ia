@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/innloggin-uten-loginservice'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fjerne_flis'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -63,7 +63,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/cleanup'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fjerne_flis'
     needs: build
     runs-on: ubuntu-latest
     steps:

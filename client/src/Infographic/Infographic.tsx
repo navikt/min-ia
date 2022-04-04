@@ -1,8 +1,15 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
 import { BodyLong, Link } from "@navikt/ds-react";
+import { useOrgnr } from "../hooks/useOrgnr";
+import { getMiljø } from "../utils/miljøUtils";
+import {
+  Applikasjon,
+  getUrlForApplikasjon,
+  utledUrlForBedrift,
+} from "../utils/urlUtils";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -21,6 +28,20 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   trendStigningstall,
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
+  const orgnr = useOrgnr();
+  const miljø = getMiljø();
+
+  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
+
+  useEffect(() => {
+    setSykefravarsstatistikkUrl(
+      utledUrlForBedrift(
+        getUrlForApplikasjon(Applikasjon.Sykefraværsstatistikk, miljø),
+        orgnr
+      )
+    );
+  }, [orgnr, miljø]);
+
   const bransjeEllerNæring = sykefraværBransje ? "bransje" : "næring";
 
   return (
@@ -64,10 +85,8 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
-        <Link href={"https://arbeidsgiver.nav.no/sykefravarsstatistikk/"}>
-          statistikksiden
-        </Link>{" "}
-        får du oversikt over sykefraværet over tid.
+        <Link href={sykefravarsstatistikkUrl}>statistikksiden</Link> får du
+        oversikt over sykefraværet over tid.
       </BodyLong>
     </div>
   );
