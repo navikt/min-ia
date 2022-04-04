@@ -7,10 +7,11 @@ import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
-import React, { useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../Infographic/Infographic";
+import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
 import { useAmplitude } from "../amplitude/useAmplitude";
 import { AmplitudeClient } from "../amplitude/client";
@@ -23,16 +24,20 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
-import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 
-export const Forside = (props: {
+interface ForsideProps {
   amplitudeClient: AmplitudeClient;
   harNoenOrganisasjoner: boolean;
+}
+
+export const Forside: FunctionComponent<ForsideProps> = ({
+  amplitudeClient,
+  harNoenOrganisasjoner,
 }) => {
   const bredde = 60;
   const høyde = 60;
 
-  useAmplitude(props.amplitudeClient);
+  useAmplitude(amplitudeClient);
   const orgnr = useOrgnr();
   const miljø = getMiljø();
 
@@ -65,7 +70,7 @@ export const Forside = (props: {
   const sykefraværshistorikk = useSykefraværshistorikk();
   const infographicEllerBannerHvisError =
     sykefraværshistorikk.status !== RestStatus.Suksess ||
-    !props.harNoenOrganisasjoner ? (
+    !harNoenOrganisasjoner ? (
       <Alert variant={"error"} className={styles.forsideAlert}>
         Det har skjedd en feil. Vennligst prøv igjen senere.
       </Alert>

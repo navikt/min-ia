@@ -11,7 +11,12 @@ it("trigger sidevisning-event", async () => {
     app: "min-ia",
     url: "/",
   };
-  render(<Forside amplitudeClient={mockAmplitudeClient} />);
+  render(
+    <Forside
+      amplitudeClient={mockAmplitudeClient}
+      harNoenOrganisasjoner={true}
+    />
+  );
   expect(mockAmplitudeClient.logEvent).toHaveBeenCalledWith(
     "sidevisning",
     sidevisningEventParams
