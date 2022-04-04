@@ -7,6 +7,10 @@ import {
 } from "../../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
 import { kalkulerInfographicData } from "../../src/Infographic/datatransformasjon";
 
+jest.mock("../../src/hooks/useOrgnr", () => ({
+  useOrgnr: () => "999999999",
+}));
+
 it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
   await act(async () => {
     render(<Infographic {...kalkulerInfographicData(mockSykefraværNorge)} />);
