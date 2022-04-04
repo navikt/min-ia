@@ -66,7 +66,7 @@ export const Forside = (props: { amplitudeClient: AmplitudeClient }) => {
 
   return (
     <div className={styles.forside}>
-      <Alert variant={"info"} className={styles.fullwidth}>
+      <Alert variant={"info"} className={styles.forsideAlert}>
         Vi jobber med å oppdatere sidene våre.
       </Alert>
       {infographicHvisDataOk}

@@ -42,28 +42,31 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     );
   }, [orgnr, miljø]);
 
+  const bransjeEllerNæring = sykefraværBransje ? "bransje" : "næring";
+
   return (
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
         verdi={sykefraværNorge + "%"}
+        hjelpetekst={
+          "Gjennomsnittlig sykefraværsprosent for hele Norge i siste tilgjengelige kvartal"
+        }
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={
-          sykefraværBransje
-            ? "Sykefraværsprosenten i din bransje akkurat nå er: "
-            : "Sykefraværsprosenten i din næring akkurat nå er: "
-        }
-        verdi={(sykefraværBransje ? sykefraværBransje : sykefraværNæring) + "%"}
+        tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} akkurat nå er: `}
+        verdi={(sykefraværBransje ?? sykefraværNæring) + "%"}
+        hjelpetekst={`Gjennomsnittlig sykefraværsprosent for din ${bransjeEllerNæring} i siste tilgjengelige kvartal`}
       />
 
       <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
+        hjelpetekst={"Tallene kommer fra Statens Arbeidsmiljøinstitutt (Stami)"}
       />
 
       <InfographicFlis
@@ -73,13 +76,13 @@ export const Infographic: FunctionComponent<InfographicData> = ({
             {...ikonstorrelse}
           />
         }
-        tekst={
-          sykefraværBransje
-            ? "Sykefraværet i din bransje akkurat nå er "
-            : "Sykefraværet i din næring akkurat nå er "
-        }
+        tekst={`Sykefraværet i din ${bransjeEllerNæring} akkurat nå er `}
         verdi={stigningstallTilTekst(trendStigningstall)}
+        hjelpetekst={
+          "Trenden er regnet ut ved å sammenlikne ditt sykefravær i siste tilgjengelige kvartal med tilsvarende kvartal året før"
+        }
       />
+
       <BodyLong className={styles.oversiktTekst} size="medium">
         Synes du denne informasjonen var bra? På{" "}
         <Link href={sykefravarsstatistikkUrl}>statistikksiden</Link> får du
