@@ -49,7 +49,7 @@ export const Layout = (props: {
     <>
       <Head>
         {headerLinks}
-        <title>props.title</title>
+        <title>{props.title}</title>
         <meta name="description" content={props.description} />
       </Head>
       <main>
