@@ -15,10 +15,15 @@ const Home = (props: { page: PageProps }) => {
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
 
+  const harNoenOrganisasjoner =
+    organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess;
   const forsideEllerInnloggingsside = trengerInnlogging ? (
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (
-    <Forside amplitudeClient={navDefaultAmplitudeClient!!} />
+    <Forside
+      amplitudeClient={navDefaultAmplitudeClient!!}
+      harNoenOrganisasjoner={harNoenOrganisasjoner}
+    />
   );
 
   return (
