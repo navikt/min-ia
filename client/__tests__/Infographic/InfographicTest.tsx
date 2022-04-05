@@ -17,7 +17,7 @@ it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async 
   });
   const infobolk = await screen.getByText(/Sykefraværsprosenten i Norge/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i Norge akkurat nå er: 4.9%"
+    "Sykefraværsprosenten i Norge det siste kvartalet er: 4.9%"
   );
 });
 
@@ -27,7 +27,7 @@ it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", asyn
   });
   const infobolk = await screen.getByText(/Sykefraværsprosenten i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i din næring akkurat nå er: 5.1%"
+    "Sykefraværsprosenten i din næring det siste kvartalet er: 5.1%"
   );
 });
 
@@ -37,7 +37,7 @@ it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () =
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring akkurat nå er stigende"
+    "Sykefraværet i din næring de to siste kvartalene er stigende"
   );
 });
 
@@ -51,7 +51,7 @@ it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () =
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring akkurat nå er synkende"
+    "Sykefraværet i din næring de to siste kvartalene er synkende"
   );
 });
 
@@ -65,7 +65,7 @@ it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async 
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring akkurat nå er -"
+    "Sykefraværet i din næring de to siste kvartalene er -"
   );
 });
 
@@ -79,7 +79,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring akkurat nå er uendret"
+    "Sykefraværet i din næring de to siste kvartalene er uendret"
   );
 });
 
@@ -97,9 +97,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   await act(async () => {
     render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   });
-  const infobolk = await screen.getByText(
-    /Trenger du en større oversikt?/
-  );
+  const infobolk = await screen.getByText(/Trenger du en større oversikt?/);
   expect(infobolk.textContent).toBe(
     "Trenger du en større oversikt? Klikk her for å gå til tatistikksiden."
   );
@@ -109,7 +107,9 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
     render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   });
-  const lenke = await screen.getByRole("link", { name: /Klikk her for å gå til tatistikksiden./ });
+  const lenke = await screen.getByRole("link", {
+    name: /Klikk her for å gå til tatistikksiden./,
+  });
 
   expect(lenke).toHaveAttribute(
     "href",
