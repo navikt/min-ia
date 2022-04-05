@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2.5rem 0;
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 1.5rem 2rem;
 }
 
 .snippetWrapper {
@@ -20,6 +20,9 @@
 .oversiktTekst {
   padding: 0 3rem;
 }
+.hjelpetekstWrapper {
+  margin-left: auto;
+}
 .rotateOpp {
   transform: rotate(45deg);
 }
@@ -28,4 +31,9 @@
 }
 .rotateUendret {
   transform: rotate(90deg);
+}
+@media (min-width: screen-sizes.$screen-md) {
+  .hjelpetekstWrapper {
+    padding-top: 2rem;
+  }
 }
