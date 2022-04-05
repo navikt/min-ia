@@ -1,4 +1,5 @@
 import { getRestStatus, RestRessurs, RestStatus } from "./rest-status";
+//import * as Sentry from '@sentry/browser';
 
 export type RestAltinnOrganisasjoner = RestRessurs<AltinnOrganisasjon[]>;
 
@@ -41,6 +42,7 @@ export const hentAltinnOrganisasjoner = async (
     // eslint-disable-next-line
   } catch (error: any) {
     if (error.status === RestStatus.Feil || !error.status) {
+      //Sentry.captureException(new Error('Feil ved kall til ' + url)); TODO: Sentry
       return { status: RestStatus.Feil };
     }
     return { status: error.status };
