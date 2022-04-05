@@ -11,15 +11,10 @@ export const backendApiProxyMock = (app) => {
   console.log("===DETTE SKAL DU IKKE SE I PRODUKSJON===");
   console.log("========================================");
 
-  enum TEST_MODE {
-    NORMAL = "NORMAL",
-    KREVER_INNLOGGING = "KREVER_INNLOGGING",
-    GENERELL_FEIL = "GENERELL_FEIL",
-  }
-
   const testMode: string = process.env.TEST_MODE
     ? process.env.TEST_MODE
     : "NORMAL";
+  const delayFaktorIMillis = 500;
 
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
@@ -70,7 +65,9 @@ export const backendApiProxyMock = (app) => {
         }
       }
 
-      response.send(kvartalsvisSykefraværsprosent);
+      setTimeout(function () {
+        response.send(kvartalsvisSykefraværsprosent);
+      }, delayFaktorIMillis);
     }
   );
 };
