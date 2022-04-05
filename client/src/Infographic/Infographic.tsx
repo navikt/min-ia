@@ -48,13 +48,13 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
-        tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
+        tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
         verdi={sykefraværNorge + "%"}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} akkurat nå er: `}
+        tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} det siste kvartalet er: `}
         verdi={(sykefraværBransje ?? sykefraværNæring) + "%"}
       />
 
@@ -71,18 +71,19 @@ export const Infographic: FunctionComponent<InfographicData> = ({
             {...ikonstorrelse}
           />
         }
-        tekst={`Sykefraværet i din ${bransjeEllerNæring} akkurat nå er `}
+        tekst={`Sykefraværet i din ${bransjeEllerNæring} de to siste kvartalene er `}
         verdi={stigningstallTilTekst(trendStigningstall)}
       />
 
       <BodyLong className={styles.oversiktTekst} size="medium">
-          Trenger du en større oversikt?{" "}
-        <Link href={sykefravarsstatistikkUrl}>Klikk her for å gå til tatistikksiden.</Link>
+        Trenger du en større oversikt?{" "}
+        <Link href={sykefravarsstatistikkUrl}>
+          Klikk her for å gå til tatistikksiden.
+        </Link>
       </BodyLong>
       <div className={styles.hjelpetekstWrapper}>
-        <HelpText title="Hvor kommer tallene fra?" strategy={'fixed'}>
-          Tallene viser de siste tilgjengelige 12 månedene. For flere
-          definisjoner gå til sykefraværsstatistikk.
+        <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
+          For flere definisjoner gå til sykefraværsstatistikk.
         </HelpText>
       </div>
     </div>
