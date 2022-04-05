@@ -98,10 +98,10 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
     render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   });
   const infobolk = await screen.getByText(
-    /Synes du denne informasjonen var bra?/
+    /Trenger du en større oversikt?/
   );
   expect(infobolk.textContent).toBe(
-    "Synes du denne informasjonen var bra? På statistikksiden får du oversikt over sykefraværet over tid."
+    "Trenger du en større oversikt? Klikk her for å gå til tatistikksiden."
   );
 });
 
@@ -109,7 +109,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
     render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   });
-  const lenke = await screen.getByRole("link", { name: /statistikksiden/ });
+  const lenke = await screen.getByRole("link", { name: /Klikk her for å gå til tatistikksiden./ });
 
   expect(lenke).toHaveAttribute(
     "href",

@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import { BodyLong, Link } from "@navikt/ds-react";
+import { BodyLong, HelpText, Link } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
@@ -50,23 +50,18 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge akkurat nå er: "}
         verdi={sykefraværNorge + "%"}
-        hjelpetekst={
-          "Gjennomsnittlig sykefraværsprosent for hele Norge i siste tilgjengelige kvartal"
-        }
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} akkurat nå er: `}
         verdi={(sykefraværBransje ?? sykefraværNæring) + "%"}
-        hjelpetekst={`Gjennomsnittlig sykefraværsprosent for din ${bransjeEllerNæring} i siste tilgjengelige kvartal`}
       />
 
       <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
-        hjelpetekst={"Tallene kommer fra Statens Arbeidsmiljøinstitutt (Stami)"}
       />
 
       <InfographicFlis
@@ -78,16 +73,18 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         }
         tekst={`Sykefraværet i din ${bransjeEllerNæring} akkurat nå er `}
         verdi={stigningstallTilTekst(trendStigningstall)}
-        hjelpetekst={
-          "Trenden er regnet ut ved å sammenlikne ditt sykefravær i siste tilgjengelige kvartal med tilsvarende kvartal året før"
-        }
       />
 
       <BodyLong className={styles.oversiktTekst} size="medium">
-        Synes du denne informasjonen var bra? På{" "}
-        <Link href={sykefravarsstatistikkUrl}>statistikksiden</Link> får du
-        oversikt over sykefraværet over tid.
+          Trenger du en større oversikt?{" "}
+        <Link href={sykefravarsstatistikkUrl}>Klikk her for å gå til tatistikksiden.</Link>
       </BodyLong>
+      <div className={styles.hjelpetekstWrapper}>
+        <HelpText title="Hvor kommer tallene fra?" strategy={'fixed'}>
+          Tallene viser de siste tilgjengelige 12 månedene. For flere
+          definisjoner gå til sykefraværsstatistikk.
+        </HelpText>
+      </div>
     </div>
   );
 };
