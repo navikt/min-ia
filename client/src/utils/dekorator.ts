@@ -28,7 +28,7 @@ interface QueryParam {
   breadcrumbs: Breadcrumb[];
 }
 
-interface LinkAttributes {
+export interface LinkAttributes {
   rel: string | null;
   href: string | null;
   sizes: string | null;
@@ -81,7 +81,13 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
 
 export const fetchDecoratorParts = async (
   decoratorParams: DecoratorParams
-): Promise<DecoratorParts> => {
+): Promise<{
+  decoratorHeader: string;
+  decoratorFooter: string;
+  decoratorEnv: { scriptUrl: string | undefined; dataSrc: string | undefined };
+  scriptTags: { [p: string]: string }[];
+  linkTags: LinkAttributes[];
+}> => {
   const decoratorSrc = (await getDecoratorCached(decoratorParams)) as string;
 
   const $ = cheerio.load(decoratorSrc);

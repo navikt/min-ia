@@ -1,4 +1,8 @@
-import { DecoratorParts, fetchDecoratorParts } from "./utils/dekorator";
+import {
+  DecoratorParts,
+  fetchDecoratorParts,
+  LinkAttributes,
+} from "./utils/dekorator";
 
 export interface PageProps {
   title: string;
@@ -9,7 +13,20 @@ export interface PageProps {
 export const getPageProps = async (
   title: string,
   description: string
-): Promise<PageProps> => {
+): Promise<{
+  decorator: {
+    decoratorHeader: string;
+    decoratorFooter: string;
+    decoratorEnv: {
+      scriptUrl: string | undefined;
+      dataSrc: string | undefined;
+    };
+    scriptTags: { [p: string]: string }[];
+    linkTags: LinkAttributes[];
+  };
+  description: string;
+  title: string;
+}> => {
   const breadcrumbs = [
     {
       title: encodeURIComponent(title),
