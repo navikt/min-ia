@@ -80,11 +80,18 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         <Alert variant={"info"} className={styles.forsideAlert}>
           Vi jobber med å oppdatere sidene våre.
         </Alert>
-        {sykefraværshistorikk.status === RestStatus.Suksess && (
-          <Infographic
-            {...kalkulerInfographicData(sykefraværshistorikk.data)}
-          />
-        )}
+
+        <Infographic
+          {...kalkulerInfographicData(
+            sykefraværshistorikk.status === RestStatus.Suksess
+              ? sykefraværshistorikk.data
+              : []
+          )}
+          nedlastingPågår={
+            sykefraværshistorikk.status === RestStatus.IkkeLastet ||
+            sykefraværshistorikk.status === RestStatus.LasterInn
+          }
+        />
       </>
     );
 

@@ -19,6 +19,7 @@ export interface InfographicData {
   sykefraværBransje: MuligSykefravær;
   sykefraværNæring: MuligSykefravær;
   trendStigningstall: MuligTall;
+  nedlastingPågår?: boolean;
 }
 
 export const Infographic: FunctionComponent<InfographicData> = ({
@@ -26,6 +27,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   sykefraværBransje,
   sykefraværNæring,
   trendStigningstall,
+    nedlastingPågår
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
@@ -50,18 +52,21 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
         verdi={sykefraværNorge + "%"}
+        nedlastingPågår={nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} det siste kvartalet er: `}
         verdi={(sykefraværBransje ?? sykefraværNæring) + "%"}
+        nedlastingPågår={nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
+        nedlastingPågår={nedlastingPågår}
       />
 
       <InfographicFlis
@@ -73,6 +78,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         }
         tekst={`Sykefraværet i din ${bransjeEllerNæring} de to siste kvartalene er `}
         verdi={stigningstallTilTekst(trendStigningstall)}
+        nedlastingPågår={nedlastingPågår}
       />
 
       <BodyLong className={styles.oversiktTekst} size="medium">
