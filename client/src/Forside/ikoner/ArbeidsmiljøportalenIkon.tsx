@@ -9,7 +9,7 @@ export const ArbeidsmiljøPortalenIkon = (props: {
         fill="none"
         viewBox="0 0 40 40"
         height="100%"
-        width="auto"
+        width="100%"
       >
         <path
           fill="#FFDD88"

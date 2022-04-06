@@ -67,9 +67,8 @@ const startServer = async () => {
       redirect = envProperties.APP_INGRESS;
     }
 
-    console.log("Kommer inn til /redirect-til-login");
     const loginTilOauth2 = getLoginTilOauth2(redirect);
-    console.log("[DEBUG] redirect til: ", loginTilOauth2);
+    console.log("[INFO] redirect til: ", loginTilOauth2);
     response.redirect(loginTilOauth2);
   });
 
@@ -95,14 +94,14 @@ const startServer = async () => {
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
       console.log(
-        "[DEBUG] Innlogging fullført, skal redirecte til: ",
+        "[INFO] Innlogging fullført, skal redirecte til: ",
         redirectString
       );
       response.redirect(redirectString);
     } else {
       const url = getLoginTilOauth2(envProperties.APP_INGRESS);
       console.log(
-        "[DEBUG] Ingen gyldig Auth header, redirect til innlogging: ",
+        "[INFO] Ingen gyldig Auth header, redirect til innlogging: ",
         url
       );
       response.redirect(url);

@@ -5,7 +5,6 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { createBrowserHistory, createMemoryHistory, History } from "history";
 import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
-import LocationState = History.LocationState;
 
 export interface Organisasjon {
   Name: string;
@@ -29,7 +28,7 @@ const getHistory = () => {
 const Banner: React.FunctionComponent<Props> = (props) => {
   const { tittelMedUnderTittel, altinnOrganisasjoner } = props;
   const router = useRouter();
-  const [history] = useState<History<LocationState>>(getHistory());
+  const [history] = useState<History>(getHistory());
 
   const onOrganisasjonChange = (organisasjon?: Organisasjon) => {
     if (organisasjon) {

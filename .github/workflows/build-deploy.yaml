@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/håndtere-generell-feil'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/diverse-opprydning'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -63,7 +63,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/håndtere-generell-feil'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/diverse-opprydning'
     needs: build
     runs-on: ubuntu-latest
     steps:
