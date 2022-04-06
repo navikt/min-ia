@@ -105,7 +105,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               href={samtalestotteUrl}
             />
             <Lenkeflis
-              overskrift={"Sykefraværsstatistikk"}
+              overskrift={"Sykefraværs&shy;statistikk"}
               ikon={<StatistikkIkonIkon />}
               brødtekst={
                 "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
