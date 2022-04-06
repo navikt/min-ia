@@ -14,7 +14,7 @@ export const backendApiProxyMock = (app) => {
   const testMode: string = process.env.TEST_MODE
     ? process.env.TEST_MODE
     : "NORMAL";
-  const delayFaktorIMillis = 500;
+  const delayFaktorIMillis = 0;
 
   app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);

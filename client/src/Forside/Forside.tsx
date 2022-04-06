@@ -69,8 +69,9 @@ export const Forside: FunctionComponent<ForsideProps> = ({
 
   const sykefraværshistorikk = useSykefraværshistorikk();
   const infographicEllerBannerHvisError =
-      sykefraværshistorikk.status === RestStatus.Feil ||
-    !harNoenOrganisasjoner ? (
+    sykefraværshistorikk.status === RestStatus.Feil ||
+    (!harNoenOrganisasjoner &&
+      sykefraværshistorikk.status !== RestStatus.IkkeLastet) ? (
       <Alert variant={"error"} className={styles.forsideAlert}>
         Det har skjedd en feil. Vennligst prøv igjen senere.
       </Alert>
