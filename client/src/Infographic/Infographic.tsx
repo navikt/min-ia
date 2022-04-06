@@ -78,7 +78,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       <BodyLong className={styles.oversiktTekst} size="medium">
         Trenger du en større oversikt?{" "}
         <Link href={sykefravarsstatistikkUrl}>
-          Klikk her for å gå til tatistikksiden.
+          Klikk her for å gå til statistikksiden.
         </Link>
       </BodyLong>
       <div className={styles.hjelpetekstWrapper}>
