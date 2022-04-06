@@ -100,12 +100,12 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               overskrift={"Samtalestøtten"}
               ikon={<SamtalestøtteIkon />}
               brødtekst={
-                "Dette verktøyet hjelper deg å strukturere de litt vanskeligere samtalene med medarbeider."
+                "Dette verktøyet hjelper deg å strukturere samtaler med medarbeider."
               }
               href={samtalestotteUrl}
             />
             <Lenkeflis
-              overskrift={"Statistikk"}
+              overskrift={"Sykefraværsstatistikk"}
               ikon={<StatistikkIkonIkon />}
               brødtekst={
                 "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
@@ -122,15 +122,15 @@ export const Forside: FunctionComponent<ForsideProps> = ({
           href={"/hva_gjor_de_som_lykkes"}
         />*/}
             <Lenkeflis
-              overskrift={"Kurs og webinarer"}
+              overskrift={"Nettkurs"}
               ikon={<KursOgWebinarerIkon />}
               brødtekst={
-                "Her finner du kurs Nav tilbyr til arbeidsgivere som vil bli bedre i inkluderende arbeidsliv."
+                "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
               }
               href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
             />
             <Lenkeflis
-              overskrift={"Kalkulator"}
+              overskrift={"Fraværskalkulator"}
               ikon={<Calculator />}
               brødtekst={
                 "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
@@ -141,7 +141,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               overskrift={"Idébanken"}
               ikon={<IdebankenIkon width={bredde} height={høyde} />}
               brødtekst={
-                "Idébanken har flere nyttige verktøy man kan anvende for å få kontroll over fraværet og arbeidsmiljø."
+                "På idébanken finner du ideer, erfaringer og verktøy som kan bidra til bedre arbeidsmiljø og lavere sykefravær."
               }
               href={"https://www.idebanken.org"}
             />
@@ -149,7 +149,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               overskrift={"Arbeidsmiljø&shy;portalen"}
               ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
               brødtekst={
-                "På arbeidsmiljøportalen finner du skreddersydde verktøy for alle bransjer!"
+                "Leter du etter flere gode verktøy for å bedre arbeidsmiljøet? Her finner du kunnskap og digitale verktøy."
               }
               href={"https://www.arbeidsmiljoportalen.no"}
             />
