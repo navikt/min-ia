@@ -35,7 +35,7 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
 
         <Button
           onClick={redirectTilLogin}
-          className={styles.innloggingsside__loginKnappWrapper}
+          style={{paddingLeft:40, paddingRight:40 }}
         >
           Logg inn
         </Button>
