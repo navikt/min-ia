@@ -99,7 +99,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   });
   const infobolk = await screen.getByText(/Trenger du en større oversikt?/);
   expect(infobolk.textContent).toBe(
-    "Trenger du en større oversikt? Klikk her for å gå til tatistikksiden."
+    "Trenger du en større oversikt? Klikk her for å gå til statistikksiden."
   );
 });
 
@@ -108,7 +108,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
     render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
   });
   const lenke = await screen.getByRole("link", {
-    name: /Klikk her for å gå til tatistikksiden./,
+    name: /Klikk her for å gå til statistikksiden./,
   });
 
   expect(lenke).toHaveAttribute(
