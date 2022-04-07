@@ -53,6 +53,9 @@ spec:
     cpuThresholdPercentage: 50
   ingresses:
     - https://min-ia.dev.nav.no/min-ia
+  prometheus:
+    enabled: true
+    path: /min-ia/internal/metrics
   accessPolicy:
     outbound:
       rules:
