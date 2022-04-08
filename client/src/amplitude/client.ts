@@ -1,6 +1,7 @@
 import amplitude from "amplitude-js";
 
 export type EventProperties = { app: string; url: string; [key: string]: any };
+let initiated=false;
 
 function initializeNavDefaultAmplitudeClient(): AmplitudeClient | undefined {
   if (typeof window != "undefined") {
@@ -25,3 +26,22 @@ export interface AmplitudeClient {
 
   setUserProperties(properties: any): void;
 }
+
+export default function logEvent(eventName: string, data?:any): Promise<any> {
+  if(!initiated){
+    amplitude.getInstance().init("default", '', {
+      apiEndpoint: 'amplitude.nav.no/collect-auto',
+      saveEvents: false,
+      includeUtm: true,
+      includeReferrer: false,
+      platform: window.location.toString(),
+    });
+    initiated = true;
+  }
+  return new Promise(function (resolve) {
+    amplitude
+        .getInstance()
+        .logEvent(eventName,{app:'min-ia', ...data}, resolve);
+  })
+
+      }

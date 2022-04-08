@@ -1,10 +1,9 @@
-import { sendAmplitudeEvent } from "./useAmplitude";
+import logEvent from "./client";
 
 export const APP = "min-ia";
 
 export const sendSidevisningEvent = () => {
-  sendAmplitudeEvent({
-    eventName: "sidevisning",
+  logEvent("sidevisning",{
     eventProperties: {
       app: APP,
       url: window.location.pathname,
@@ -13,8 +12,7 @@ export const sendSidevisningEvent = () => {
 };
 
 export const sendBedriftValgtEvent = () => {
-  sendAmplitudeEvent({
-    eventName: "bedrift-valgt",
+  logEvent("bedrift-valgt",{
     eventProperties: {
       app: APP,
       url: window.location.pathname,
