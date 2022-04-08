@@ -68,6 +68,10 @@ export const Forside: FunctionComponent<ForsideProps> = ({
   }, [orgnr, miljø]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();
+  const kvartalsvisSykefraværshistorikkData = sykefraværshistorikk.status === RestStatus.Suksess
+      ? sykefraværshistorikk.data
+      : [];
+
   const infographicEllerBannerHvisError =
     sykefraværshistorikk.status === RestStatus.Feil ||
     (!harNoenOrganisasjoner &&
@@ -83,9 +87,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
 
         <Infographic
           {...kalkulerInfographicData(
-            sykefraværshistorikk.status === RestStatus.Suksess
-              ? sykefraværshistorikk.data
-              : []
+            kvartalsvisSykefraværshistorikkData
           )}
           nedlastingPågår={
             sykefraværshistorikk.status === RestStatus.IkkeLastet ||
