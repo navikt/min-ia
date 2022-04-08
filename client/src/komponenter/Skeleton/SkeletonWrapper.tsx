@@ -4,11 +4,9 @@ export function SkeltonWrapper({ children }: PropsWithChildren<unknown>) {
     return (
         <div
             style={{
-                border: '1px solid #ccc',
                 display: 'block',
-                lineHeight: 2,
-                padding: '1rem',
-                marginBottom: '1rem',
+                lineHeight: 1.2,
+                padding: '0.5rem',
                 width: '100%'
             }}
         >
