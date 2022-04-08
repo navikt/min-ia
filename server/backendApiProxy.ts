@@ -31,7 +31,7 @@ const proxyOptions: Options = {
   },
   secure: true,
   xfwd: true,
-  logLevel: "debug",
+  logLevel: "info",
 };
 
 export const backendApiProxy = createProxyMiddleware(

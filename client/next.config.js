@@ -19,6 +19,10 @@ const nextConfig = {
         destination: "http://localhost:3010/min-ia/internal/isReady",
       },
       {
+        source: "/internal/metrics",
+        destination: "http://localhost:3010/min-ia/internal/metrics",
+      },
+      {
         source: "/api/:slug*",
         destination: "http://localhost:3010/min-ia/api/:slug*",
       },

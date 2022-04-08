@@ -1,4 +1,5 @@
 import express, { Request } from "express";
+import promBundle from "express-prom-bundle";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
@@ -11,6 +12,10 @@ const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
 
 const server = express();
+const prometheus = promBundle({
+  includePath: true,
+  metricsPath: `${basePath}/internal/metrics`,
+});
 
 // set up rate limiter: maximum of 20 000 requests per minute
 const limiter = RateLimit({
@@ -39,6 +44,7 @@ const harAuthorizationHeader = (request: Request) => {
 
 const startServer = async () => {
   server.use(cookieParser());
+  server.use(prometheus);
   console.log("Starting server: server.js");
 
   if (process.env.NODE_ENV === "production") {
