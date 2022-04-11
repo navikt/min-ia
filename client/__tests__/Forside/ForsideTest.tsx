@@ -1,15 +1,19 @@
 import { render } from "@testing-library/react";
 import { Forside } from "../../src/Forside/Forside";
 import { mockAmplitudeClient } from "../../src/amplitude/amplitude-mock";
+import logEvent from "../../src/amplitude/client";
+
+jest.mock("../../src/amplitude/client", () => jest.fn());
 
 beforeEach(() => {
-  jest.spyOn(mockAmplitudeClient, "logEvent");
+ // jest.spyOn(mockAmplitudeClient, "logEvent");
 });
 
 it("trigger sidevisning-event", async () => {
-  const sidevisningEventParams = {
-    app: "min-ia",
-    url: "/",
+  const sidevisningEventParams ={eventProperties: {
+      app: "min-ia",
+      url: "/",
+    }
   };
   render(
     <Forside
@@ -17,8 +21,13 @@ it("trigger sidevisning-event", async () => {
       harNoenOrganisasjoner={true}
     />
   );
-  expect(mockAmplitudeClient.logEvent).toHaveBeenCalledWith(
+  /*expect(logEvent("sidevisning", { app: "min-ia" })).toHaveBeenCalledWith(
     "sidevisning",
-    sidevisningEventParams
+    { app: "min-ia" }
+  );*/
+expect(logEvent).toBeCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledWith(
+    "sidevisning",
+      sidevisningEventParams
   );
 });

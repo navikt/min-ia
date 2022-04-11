@@ -1,13 +1,15 @@
-import { AmplitudeClient, EventProperties } from "./client";
-import { useEffect } from "react";
 
+//import { AmplitudeClient, EventProperties } from "./client";
+import { useEffect } from "react";
+/*
 interface AmplitudeData {
   eventName: string;
   eventProperties: EventProperties;
 }
+*/
+//const AMPLITUDE_EVENT = "amplitude";
 
-const AMPLITUDE_EVENT = "amplitude";
-
+/*
 export const useAmplitude = <T extends AmplitudeData>(
   client: AmplitudeClient
 ) => {
@@ -26,6 +28,8 @@ export const useAmplitude = <T extends AmplitudeData>(
     };
   }, [client]);
 };
+*/
+/*
 
 export const sendAmplitudeEvent = (eventData: AmplitudeData) => {
   const amplitudeEvent = new CustomEvent<AmplitudeData>(AMPLITUDE_EVENT, {
@@ -33,3 +37,4 @@ export const sendAmplitudeEvent = (eventData: AmplitudeData) => {
   });
   document.dispatchEvent(amplitudeEvent);
 };
+*/

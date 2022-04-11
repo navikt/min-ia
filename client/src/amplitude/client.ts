@@ -2,6 +2,7 @@ import amplitude from "amplitude-js";
 
 export type EventProperties = { app: string; url: string; [key: string]: any };
 let initiated=false;
+/*
 
 function initializeNavDefaultAmplitudeClient(): AmplitudeClient | undefined {
   if (typeof window != "undefined") {
@@ -20,7 +21,7 @@ function initializeNavDefaultAmplitudeClient(): AmplitudeClient | undefined {
 }
 
 export const navDefaultAmplitudeClient = initializeNavDefaultAmplitudeClient();
-
+*/
 export interface AmplitudeClient {
   logEvent(eventName: string, eventProperties: EventProperties): void;
 

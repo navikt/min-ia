@@ -13,8 +13,8 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
-import { useAmplitude } from "../amplitude/useAmplitude";
-import { AmplitudeClient } from "../amplitude/client";
+//import { useAmplitude } from "../amplitude/useAmplitude";
+//import { AmplitudeClient } from "../amplitude/client";
 import { sendSidevisningEvent } from "../amplitude/events";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
@@ -24,20 +24,19 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
+import {AmplitudeClient} from "../amplitude/client";
 
 interface ForsideProps {
-  amplitudeClient: AmplitudeClient;
   harNoenOrganisasjoner: boolean;
 }
 
 export const Forside: FunctionComponent<ForsideProps> = ({
-  amplitudeClient,
   harNoenOrganisasjoner,
 }) => {
   const bredde = 60;
   const høyde = 60;
 
-  useAmplitude(amplitudeClient);
+  //useAmplitude(amplitudeClient);
   const orgnr = useOrgnr();
   const miljø = getMiljø();
 
