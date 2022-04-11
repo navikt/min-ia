@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/legge-til-skeleton-ved-nedlasting'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/sende-med-bedrift-valgt'
     needs: build
     runs-on: ubuntu-latest
     steps:

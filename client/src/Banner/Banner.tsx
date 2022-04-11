@@ -34,7 +34,7 @@ const Banner: React.FunctionComponent<Props> = (props) => {
     if (organisasjon) {
       router.push(`?bedrift=${organisasjon.OrganizationNumber}`);
     }
-    //sendBedriftValgtEvent();
+    sendBedriftValgtEvent();
   };
 
   return (
