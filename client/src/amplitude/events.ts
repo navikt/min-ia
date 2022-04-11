@@ -1,4 +1,4 @@
-import logEvent from "./client";
+import logEvent from "./logEvent";
 
 export const APP = "min-ia";
 

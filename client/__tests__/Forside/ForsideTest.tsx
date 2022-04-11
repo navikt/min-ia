@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { Forside } from "../../src/Forside/Forside";
-import logEvent from "../../src/amplitude/client";
+import logEvent from "../../src/amplitude/logEvent";
 
 jest.mock("../../src/amplitude/client", () => jest.fn());
 
