@@ -2,7 +2,6 @@ import { getPageProps, PageProps } from "../pageProps";
 import { Layout } from "../komponenter/Layout/Layout";
 import { Forside } from "../Forside/Forside";
 import * as Sentry from "@sentry/browser";
-import { navDefaultAmplitudeClient } from "../amplitude/client";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
@@ -21,7 +20,6 @@ const Home = (props: { page: PageProps }) => {
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (
     <Forside
-      amplitudeClient={navDefaultAmplitudeClient!!}
       harNoenOrganisasjoner={harNoenOrganisasjoner}
     />
   );
