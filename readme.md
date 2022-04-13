@@ -3,8 +3,9 @@
 Landingsside for selvbetjente IA-tjenester
 
 # Kjøre lokalt med hot-reload
-- Rename filen `.env.example` -> `.env`
+- Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 - Naviger til `/server`
+- Rename filen `.env.example` -> `.env`
 - Installer avhengigheter: `yarn`
 - Kjør opp applikasjon: `yarn dev` eller `TEST_MODE=KREVER_INNLOGGING yarn dev` (se `package.json` for flere opsjoner)
 - Naviger til `../client`
@@ -16,6 +17,8 @@ Landingsside for selvbetjente IA-tjenester
 # TODO: Finne en måte å få hot-reload på både client og server :)
 
 # Kjøre applikasjonen med Docker:
+0. Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 1. Start container runtime (f.eks docker desktop eller colima)
-2. Kjør `docker-compose -f docker-compose.yml -f docker-compose-local.yml up` fra rotmappa
-5. For å stoppe, kjør `docker stop <id>`, hvor id-en kan finner ved å kjøre `docker list`
+2. Kjør `docker build . -t min-ia` fra rotmappen
+3. Kjør `docker run -p 3000:3000 --env-file=./server/.env.example --env-file=./client/.env.local min-ia` fra rotmappen.
+4. For å stoppe, kjør `docker kill <id>`, hvor id-en hentes ved å kjøre `docker ps`
