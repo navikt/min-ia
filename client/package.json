@@ -15,7 +15,7 @@
     "@navikt/bedriftsmeny": "^3.5.3",
     "@navikt/ds-css": "^0.15.5",
     "@navikt/ds-icons": "^0.8.4",
-    "@navikt/ds-react": "^0.17.14",
+    "@navikt/ds-react": "^0.17.16",
     "@navikt/nav-dekoratoren-moduler": "^1.6.9",
     "@sentry/browser": "^6.18.2",
     "@types/cheerio": "^0.22.31",
