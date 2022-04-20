@@ -12,6 +12,9 @@
       font-weight: bold;
     }
   }
+  &__lenke{
+    margin-bottom: var(--navds-spacing-4);
+  }
   &__lenkepanel {
     background-color: var(--navds-global-color-blue-100);
     color: var(--navds-global-color-blue-500);
@@ -27,10 +30,24 @@
     background-color: var(--navds-global-color-white);
     width: 100%;
     &__header {
-      padding-left: 3rem;
+      padding-left: var(--navds-spacing-12);
     }
     &__avsnitt {
-      padding: 3rem 3rem;
+      padding-left: var(--navds-spacing-9) ;
+      padding-top: var(--navds-spacing-5) ;
+    }
+
+    &__lenkepanel{
+      width: 48.5%;
+      height: var(--navds-spacing-20);
+      margin-top: 0;
+    }
+    &__lenkepanel__gruppe{
+      margin-top: var(--navds-spacing-8);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1rem;
+      justify-content: space-between;
     }
   }
 }

@@ -7,6 +7,7 @@ import {
 } from "@navikt/ds-react";
 import { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
+import classNames from "classnames";
 
 export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
   return (
@@ -19,13 +20,20 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             Inkluderende arbeidsliv (IA)
           </Accordion.Header>
           <Accordion.Content>
-            <BodyLong
-              spacing
+            <BodyShort
+              className={classNames(
+                styles.inkluderendeArbeidslivPanel__avsnitt,
+                styles.inkluderendeArbeidslivPanel__avsnitt__tittel
+              )}
+            >
+              Hva er Inkulderende Arbeidsliv (IA)?
+            </BodyShort>
+            <BodyShort
               className={styles.inkluderendeArbeidslivPanel__avsnitt}
             >
               Partene i arbeidslivet har laget en intensjonsavtale om et mer
               inkluderende arbeidsliv.
-            </BodyLong>
+            </BodyShort>
             <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>
               <BodyShort
                 className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
@@ -35,9 +43,9 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               <ul>
                 <li>
                   Sykefraværsprosenten skal reduseres med 10 prosent
-                  sammenlignet med årsgjennomsnittet for 2018.
+                  sammenlignet med årsgjennomsnittet for 2018
                 </li>
-                <li>Frafallet fra arbeidslivet skal reduseres.</li>
+                <li>Frafallet fra arbeidslivet skal reduseres</li>
               </ul>
             </div>
             <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>
@@ -55,7 +63,8 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             </div>
             <Link
               href={"#"}
-              className={styles.inkluderendeArbeidslivPanel__avsnitt}
+              className={classNames(styles.inkluderendeArbeidslivPanel__avsnitt,
+              styles.inkluderendeArbeidslivPanel__lenke)}
             >
               Les mer om IA-avtalen på sidene til regjeringen
             </Link>
@@ -65,58 +74,59 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               >
                 Virkemidler som NAV leverer i IA-avtalen:
               </BodyShort>
-              <LinkPanel
-                className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                href={"#"}
+              <div className={styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe}><LinkPanel
+                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                  href={"#"}
               >
                 <LinkPanel.Title
-                  className={
-                    styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                  }
+                    className={
+                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                    }
                 >
                   Tilskudd til ekspertbistand
                 </LinkPanel.Title>
               </LinkPanel>
-              <LinkPanel
-                className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                href={"#"}
-              >
-                <LinkPanel.Title
-                  className={
-                    styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                  }
+                <LinkPanel
+                    className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                    href={"#"}
                 >
-                  Kompetansetiltak for sykmeldte
-                </LinkPanel.Title>
-              </LinkPanel>
-              <LinkPanel
-                className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                href={"#"}
-              >
-                <LinkPanel.Title
-                  className={
-                    styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                  }
+                  <LinkPanel.Title
+                      className={
+                        styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                      }
+                  >
+                    Kompetansetiltak for sykmeldte
+                  </LinkPanel.Title>
+                </LinkPanel>
+                <LinkPanel
+                    className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                    href={"#"}
                 >
-                  HelseIArbeid
-                </LinkPanel.Title>
-              </LinkPanel>
-              <LinkPanel
-                className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                href={"#"}
-              >
-                <LinkPanel.Title
-                  className={
-                    styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                  }
+                  <LinkPanel.Title
+                      className={
+                        styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                      }
+                  >
+                    HelseIArbeid
+                  </LinkPanel.Title>
+                </LinkPanel>
+                <LinkPanel
+                    className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                    href={"#"}
                 >
-                  Tjenester fra NAV Arbeidslivssenter
-                </LinkPanel.Title>
-              </LinkPanel>
+                  <LinkPanel.Title
+                      className={
+                        styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                      }
+                  >
+                    Tjenester fra NAV Arbeidslivssenter
+                  </LinkPanel.Title>
+                </LinkPanel></div>
             </div>
-            <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>
-              <Link href={'#'}>Se fullstendig oversikt over NAVs tilbud her</Link>
-            </div>
+              <Link className={classNames(styles.inkluderendeArbeidslivPanel__avsnitt,
+                  styles.inkluderendeArbeidslivPanel__lenke)} href={"#"}>
+                Se fullstendig oversikt over NAVs tilbud her
+              </Link>
           </Accordion.Content>
         </Accordion.Item>
       </Accordion>
