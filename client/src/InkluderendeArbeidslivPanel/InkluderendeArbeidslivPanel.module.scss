@@ -1,3 +1,36 @@
-.inkluderendeArbeidsliv{
-background-color: var(--navds-global-color-white);
+@use "src/utils/screen-sizes";
+
+.inkluderendeArbeidslivPanel {
+  background-color: var(--navds-global-color-white);
+  width: 100%;
+  &__header {
+    padding: 2rem 1rem;
+  }
+  &__avsnitt {
+    padding: 1rem 0.5rem 0 0.5rem;
+    &__tittel {
+      font-weight: bold;
+    }
+  }
+  &__lenkepanel {
+    background-color: var(--navds-global-color-blue-100);
+    color: var(--navds-global-color-blue-500);
+    margin-top: 1rem ;
+    &__tittel {
+      padding-left: 0.5rem;
+      font-size: var(--navds-font-size-heading-small);
+    }
+  }
+}
+@media (min-width: screen-sizes.$screen-md) {
+  .inkluderendeArbeidslivPanel {
+    background-color: var(--navds-global-color-white);
+    width: 100%;
+    &__header {
+      padding-left: 3rem;
+    }
+    &__avsnitt {
+      padding: 3rem 3rem;
+    }
+  }
 }
