@@ -17,7 +17,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
           <Accordion.Header
             className={styles.inkluderendeArbeidslivPanel__header}
           >
-            Inkluderende arbeidsliv (IA)
+            Inkluderende arbeidsliv IA
           </Accordion.Header>
           <Accordion.Content>
             <BodyShort
@@ -28,9 +28,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             >
               Hva er Inkulderende Arbeidsliv (IA)?
             </BodyShort>
-            <BodyShort
-              className={styles.inkluderendeArbeidslivPanel__avsnitt}
-            >
+            <BodyShort className={styles.inkluderendeArbeidslivPanel__avsnitt}>
               Partene i arbeidslivet har laget en intensjonsavtale om et mer
               inkluderende arbeidsliv.
             </BodyShort>
@@ -62,9 +60,13 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               </ul>
             </div>
             <Link
-              href={"#"}
-              className={classNames(styles.inkluderendeArbeidslivPanel__avsnitt,
-              styles.inkluderendeArbeidslivPanel__lenke)}
+              href={
+                "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/ia-avtalen-20192022/ia-avtalen-20192022/id2623741/"
+              }
+              className={classNames(
+                styles.inkluderendeArbeidslivPanel__avsnitt,
+                styles.inkluderendeArbeidslivPanel__lenke
+              )}
             >
               Les mer om IA-avtalen på sidene til regjeringen
             </Link>
@@ -74,59 +76,78 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               >
                 Virkemidler som NAV leverer i IA-avtalen:
               </BodyShort>
-              <div className={styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe}><LinkPanel
-                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                  href={"#"}
+              <div
+                className={
+                  styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe
+                }
               >
-                <LinkPanel.Title
+                <LinkPanel
+                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                  href={
+                    "https://arbeidsgiver.nav.no/veiviserarbeidsgiver/tiltak/ekspertbistand"
+                  }
+                >
+                  <LinkPanel.Title
                     className={
                       styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
                     }
-                >
-                  Tilskudd til ekspertbistand
-                </LinkPanel.Title>
-              </LinkPanel>
+                  >
+                    Tilskudd til ekspertbistand
+                  </LinkPanel.Title>
+                </LinkPanel>
                 <LinkPanel
-                    className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                    href={"#"}
+                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                  href={
+                    "https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/nyttig-a-vite/delta-i-prosjekt-med-kompetansetiltak-for-sykmeldte"
+                  }
                 >
                   <LinkPanel.Title
-                      className={
-                        styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                      }
+                    className={
+                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                    }
                   >
                     Kompetansetiltak for sykmeldte
                   </LinkPanel.Title>
                 </LinkPanel>
                 <LinkPanel
-                    className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                    href={"#"}
+                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                  href={
+                    "https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/relatert-informasjon/nav-anbefaler-nytt-nasjonalt-konsept-helseiarbeid"
+                  }
                 >
                   <LinkPanel.Title
-                      className={
-                        styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                      }
+                    className={
+                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                    }
                   >
                     HelseIArbeid
                   </LinkPanel.Title>
                 </LinkPanel>
                 <LinkPanel
-                    className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                    href={"#"}
+                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+                  href={
+                    "https://arbeidsgiver.nav.no/forebygge-sykefravaer/#oppfolging-fra-nav-arbeidslivssenter"
+                  }
                 >
                   <LinkPanel.Title
-                      className={
-                        styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                      }
+                    className={
+                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
+                    }
                   >
                     Tjenester fra NAV Arbeidslivssenter
                   </LinkPanel.Title>
-                </LinkPanel></div>
+                </LinkPanel>
+              </div>
             </div>
-              <Link className={classNames(styles.inkluderendeArbeidslivPanel__avsnitt,
-                  styles.inkluderendeArbeidslivPanel__lenke)} href={"#"}>
-                Se fullstendig oversikt over NAVs tilbud her
-              </Link>
+            <Link
+              className={classNames(
+                styles.inkluderendeArbeidslivPanel__avsnitt,
+                styles.inkluderendeArbeidslivPanel__lenke
+              )}
+              href={"https://arbeidsgiver.nav.no/forebygge-sykefravaer"}
+            >
+              Se fullstendig oversikt over NAVs tilbud her
+            </Link>
           </Accordion.Content>
         </Accordion.Item>
       </Accordion>
