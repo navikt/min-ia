@@ -1,4 +1,4 @@
-@use "src/utils/screen-sizes";
+@use "src/styles/konstanter";
 
 .inkluderendeArbeidslivPanel {
   background-color: var(--navds-global-color-white);
@@ -16,6 +16,7 @@
     margin-bottom: var(--navds-spacing-4);
   }
   &__lenkepanel {
+    height: konstanter.$lenke-panel-height;
     background-color: var(--navds-global-color-blue-100);
     color: var(--navds-global-color-blue-500);
     margin-top: 1rem ;
@@ -25,7 +26,7 @@
     }
   }
 }
-@media (min-width: screen-sizes.$screen-md) {
+@media (min-width: konstanter.$screen-md) {
   .inkluderendeArbeidslivPanel {
     background-color: var(--navds-global-color-white);
     width: 100%;

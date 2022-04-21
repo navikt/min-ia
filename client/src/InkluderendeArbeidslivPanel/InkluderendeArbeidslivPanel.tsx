@@ -1,10 +1,4 @@
-import {
-  Accordion,
-  BodyLong,
-  BodyShort,
-  Link,
-  LinkPanel,
-} from "@navikt/ds-react";
+import { Accordion, BodyShort, Link, LinkPanel } from "@navikt/ds-react";
 import { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
@@ -17,7 +11,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
           <Accordion.Header
             className={styles.inkluderendeArbeidslivPanel__header}
           >
-            Inkluderende arbeidsliv IA
+            Inkluderende arbeidsliv
           </Accordion.Header>
           <Accordion.Content>
             <BodyShort
