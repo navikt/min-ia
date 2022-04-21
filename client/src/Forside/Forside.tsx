@@ -22,6 +22,7 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
+import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
@@ -134,13 +135,14 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
             />
             <Lenkeflis
-              overskrift={"Fraværskalkulator"}
+              overskrift={"Fraværs&shy;kalkulator"}
               ikon={<Calculator />}
               brødtekst={
                 "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
               }
               href={kalkulatorUrl}
             />
+            <InkluderendeArbeidslivPanel/>
             <LenkeflisEkstern
               overskrift={"Idébanken"}
               ikon={<IdebankenIkon width={bredde} height={høyde} />}

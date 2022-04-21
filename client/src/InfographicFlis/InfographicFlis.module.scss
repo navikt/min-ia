@@ -1,4 +1,4 @@
-@use "src/utils/screen-sizes";
+@use "src/styles/konstanter";
 
 .ikonWrapper {
   margin-right: 1rem;
@@ -14,7 +14,7 @@
   align-items: center;
 }
 
-@media (min-width: screen-sizes.$screen-md) {
+@media (min-width: konstanter.$screen-md) {
   .tekst {
     width: 100%;
   }

@@ -1,4 +1,4 @@
-@use "src/utils/screen-sizes";
+@use "src/styles/konstanter";
 
 .lenkeflis {
   width: 100%;
@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 7rem;
+  height: konstanter.$lenke-panel-height;
 }
 
 .ikonWrapper {
@@ -26,13 +26,13 @@
   background-color: var(--navds-global-color-blue-100);
 }
 
-@media (min-width: screen-sizes.$screen-md) {
+@media (min-width: konstanter.$screen-md) {
   .lenkeflis {
     width: 48.5%;
   }
 }
 
-@media (min-width: screen-sizes.$screen-sm) {
+@media (min-width: konstanter.$screen-sm) {
   .ikonOgTekstWrapper {
     height: 12rem;
   }

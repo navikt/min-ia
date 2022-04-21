@@ -1,4 +1,4 @@
-@use "src/utils/screen-sizes";
+@use "src/styles/konstanter";
 
 .infographicWrapper {
   background-color: white;
@@ -33,7 +33,7 @@
 .rotateUendret {
   transform: rotate(90deg);
 }
-@media (min-width: screen-sizes.$screen-md) {
+@media (min-width: konstanter.$screen-md) {
   .hjelpetekstWrapper {
     padding-top: 2rem;
   }
