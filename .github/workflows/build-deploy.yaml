@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fikse-amplitude'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/inkluderende-arbeidsliv-panel'
     needs: build
     runs-on: ubuntu-latest
     steps:
