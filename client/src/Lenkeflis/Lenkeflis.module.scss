@@ -6,6 +6,9 @@
   flex-direction: row;
   padding: 0 1rem 0 0;
   margin: 0;
+  &__fyltoppBakgrunn {
+    background-color: var(--navds-global-color-blue-100);
+  }
 }
 
 .ikonOgTekstWrapper {
@@ -13,6 +16,9 @@
   flex-direction: row;
   align-items: center;
   height: konstanter.$lenke-panel-height;
+  &__fyltoppBakgrunn {
+    height: konstanter.$lenke-panel-height-small;
+  }
 }
 
 .ikonWrapper {

@@ -4,6 +4,7 @@ import React from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 import { sendLenkeKlikketPåEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
+import classNames from "classnames";
 
 export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
@@ -30,7 +31,10 @@ export const Lenkeflis: React.FunctionComponent<{
   return (
     <LinkPanel
       href={"#"}
-      className={styles.lenkeflis}
+      className={classNames(
+          styles.lenkeflis,
+          fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
+      )}
       onClick={() => {
         håndtereOnClickMedTimeout(
           href ? href : "#",
@@ -40,6 +44,38 @@ export const Lenkeflis: React.FunctionComponent<{
       }}
     >
       <div className={styles.ikonOgTekstWrapper}>
+        <div className={styles.ikonWrapper}>{ikon}</div>
+        <div>
+          <LinkPanel.Title>
+            <div dangerouslySetInnerHTML={{ __html: overskrift }} />
+          </LinkPanel.Title>
+          <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
+        </div>
+      </div>
+    </LinkPanel>
+  );
+  overskrift: string;
+  ikon: React.ReactElement;
+  brødtekst: string;
+  href: string | undefined;
+  fyltoppBakgrunn?: boolean;
+}> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
+  return (
+    <LinkPanel
+      href={href ? href : "#"}
+      className={classNames(
+        styles.lenkeflis,
+        fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
+      )}
+    >
+      <div
+        className={classNames(
+          styles.ikonOgTekstWrapper,
+          fyltoppBakgrunn
+            ? styles.ikonOgTekstWrapper__fyltoppBakgrunn
+            : ''
+        )}
+      >
         <div className={styles.ikonWrapper}>{ikon}</div>
         <div>
           <LinkPanel.Title>

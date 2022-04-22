@@ -38,3 +38,7 @@
     padding-top: 2rem;
   }
 }
+
+:export {
+  screenSm: konstanter.$screen-sm;
+}
