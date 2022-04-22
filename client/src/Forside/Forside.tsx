@@ -22,7 +22,7 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
-import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
+import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
@@ -64,7 +64,8 @@ export const Forside: FunctionComponent<ForsideProps> = ({
   }, [orgnr, miljø]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();
-  const kvartalsvisSykefraværshistorikkData = sykefraværshistorikk.status === RestStatus.Suksess
+  const kvartalsvisSykefraværshistorikkData =
+    sykefraværshistorikk.status === RestStatus.Suksess
       ? sykefraværshistorikk.data
       : [];
 
@@ -82,9 +83,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         </Alert>
 
         <Infographic
-          {...kalkulerInfographicData(
-            kvartalsvisSykefraværshistorikkData
-          )}
+          {...kalkulerInfographicData(kvartalsvisSykefraværshistorikkData)}
           nedlastingPågår={
             sykefraværshistorikk.status === RestStatus.IkkeLastet ||
             sykefraværshistorikk.status === RestStatus.LasterInn
@@ -142,7 +141,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               }
               href={kalkulatorUrl}
             />
-            <InkluderendeArbeidslivPanel/>
+            <InkluderendeArbeidslivPanel />
             <LenkeflisEkstern
               overskrift={"Idébanken"}
               ikon={<IdebankenIkon width={bredde} height={høyde} />}

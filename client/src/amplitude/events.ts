@@ -15,3 +15,15 @@ export const sendBedriftValgtEvent = () => {
     url: window.location.pathname,
   });
 };
+
+export const sendLenkeKlikketPåEvent = (
+  destinasjon: string,
+  lenketekst: string
+): Promise<any> => {
+  return logEvent("navigere", {
+    app: APP,
+    url: window.location.pathname,
+    destinasjon: destinasjon,
+    lenketekst: lenketekst,
+  });
+};
