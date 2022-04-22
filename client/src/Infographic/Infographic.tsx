@@ -10,6 +10,9 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
+import { useWindowSize } from "../hooks/useWindowSize";
+import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
+import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -27,14 +30,40 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   sykefraværBransje,
   sykefraværNæring,
   trendStigningstall,
-    nedlastingPågår
+  nedlastingPågår,
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
   const miljø = getMiljø();
+  const windowSize = useWindowSize();
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
+  const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
 
+  const DesktopEllerMobilVersjon = () => {
+    if (
+      windowSize.width === undefined ||
+      windowSize.width < screenSmAsNumeric
+    ) {
+      return (
+        <Lenkeflis
+          overskrift={"Sykefraværs&shy;statistikk"}
+          ikon={<StatistikkIkonIkon />}
+          brødtekst={""}
+          href={sykefravarsstatistikkUrl}
+          fyltoppBakgrunn={true}
+        />
+      );
+    }
+    return (
+      <BodyLong className={styles.oversiktTekst} size="medium">
+        Trenger du en større oversikt?{" "}
+        <Link href={sykefravarsstatistikkUrl}>
+          Klikk her for å gå til statistikksiden.
+        </Link>
+      </BodyLong>
+    );
+  };
   useEffect(() => {
     setSykefravarsstatistikkUrl(
       utledUrlForBedrift(
@@ -81,17 +110,15 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         nedlastingPågår={nedlastingPågår}
       />
 
-      <BodyLong className={styles.oversiktTekst} size="medium">
-        Trenger du en større oversikt?{" "}
-        <Link href={sykefravarsstatistikkUrl}>
-          Klikk her for å gå til statistikksiden.
-        </Link>
-      </BodyLong>
-      <div className={styles.hjelpetekstWrapper}>
-        <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
-          For flere definisjoner gå til sykefraværsstatistikk.
-        </HelpText>
-      </div>
+      <DesktopEllerMobilVersjon />
+      {windowSize.width !== undefined &&
+      windowSize.width > screenSmAsNumeric && (
+        <div className={styles.hjelpetekstWrapper}>
+          <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
+            For flere definisjoner gå til sykefraværsstatistikk.
+          </HelpText>
+        </div>
+      )}
     </div>
   );
 };
