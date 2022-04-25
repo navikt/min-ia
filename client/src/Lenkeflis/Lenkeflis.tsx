@@ -31,7 +31,10 @@ export const Lenkeflis: React.FunctionComponent<{
 
   return (
     <LinkPanel
-      href={"#"}
+      href={href ? href : "#"}
+      onClickCapture={(e) => {
+        e.preventDefault();
+      }}
       className={classNames(
         styles.lenkeflis,
         fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
