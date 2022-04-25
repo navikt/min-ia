@@ -1,6 +1,6 @@
-import { LinkPanel } from "@navikt/ds-react";
+import { LinkPanel, Loader } from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
-import React from "react";
+import React, { useState } from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 import { sendLenkeKlikketPåEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
@@ -16,11 +16,14 @@ export const Lenkeflis: React.FunctionComponent<{
   const router = useRouter();
   const TIMEOUT_IN_MILLIS = 750;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const håndtereOnClickMedTimeout = (
     destinasjon: string,
     lenketekst: string,
     timeout: number
   ) => {
+    setIsLoading(true);
     setTimeout(() => {
       router.push(destinasjon);
     }, timeout);
@@ -30,37 +33,47 @@ export const Lenkeflis: React.FunctionComponent<{
   };
 
   return (
-    <LinkPanel
-      href={href ? href : "#"}
-      onClickCapture={(e) => {
-        e.preventDefault();
-      }}
-      className={classNames(
-        styles.lenkeflis,
-        fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
+    <div className={styles.loaderOgLinkPanelWrapper}>
+      {isLoading && (
+        <Loader
+          className={styles.loaderRight}
+          variant="interaction"
+          size="medium"
+          title="venter..."
+        />
       )}
-      onClick={() => {
-        håndtereOnClickMedTimeout(
-          href ? href : "#",
-          overskrift,
-          TIMEOUT_IN_MILLIS
-        );
-      }}
-    >
-      <div
+      <LinkPanel
+        href={href ? href : "#"}
+        onClickCapture={(e) => {
+          e.preventDefault();
+        }}
         className={classNames(
-          styles.ikonOgTekstWrapper,
-          fyltoppBakgrunn ? styles.ikonOgTekstWrapper__fyltoppBakgrunn : ""
+          styles.lenkeflis,
+          fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
         )}
+        onClick={() => {
+          håndtereOnClickMedTimeout(
+            href ? href : "#",
+            overskrift,
+            TIMEOUT_IN_MILLIS
+          );
+        }}
       >
-        <div className={styles.ikonWrapper}>{ikon}</div>
-        <div>
-          <LinkPanel.Title>
-            <div dangerouslySetInnerHTML={{ __html: overskrift }} />
-          </LinkPanel.Title>
-          <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
+        <div
+          className={classNames(
+            styles.ikonOgTekstWrapper,
+            fyltoppBakgrunn ? styles.ikonOgTekstWrapper__fyltoppBakgrunn : ""
+          )}
+        >
+          <div className={styles.ikonWrapper}>{ikon}</div>
+          <div>
+            <LinkPanel.Title>
+              <div dangerouslySetInnerHTML={{ __html: overskrift }} />
+            </LinkPanel.Title>
+            <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
+          </div>
         </div>
-      </div>
-    </LinkPanel>
+      </LinkPanel>
+    </div>
   );
 };
