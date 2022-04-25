@@ -18,13 +18,13 @@ export const Lenkeflis: React.FunctionComponent<{
 
   const håndtereOnClickMedTimeout = (
     destinasjon: string,
-    overskrift: string,
+    lenketekst: string,
     timeout: number
   ) => {
     setTimeout(() => {
       router.push(destinasjon);
     }, timeout);
-    sendLenkeKlikketPåEvent(destinasjon, overskrift).then(() => {
+    sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
       router.push(destinasjon);
     });
   };
