@@ -1,26 +1,11 @@
 @use "src/styles/konstanter";
 
-.loaderOgLinkPanelWrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-}
-
-.loaderRight {
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  position: absolute;
-  z-index: 1000;
-}
-
 .lenkeflis {
   width: 100%;
   display: flex;
   flex-direction: row;
   padding: 0 1rem 0 0;
   margin: 0;
-
   &__fyltoppBakgrunn {
     background-color: var(--navds-global-color-blue-100);
   }
@@ -31,7 +16,6 @@
   flex-direction: row;
   align-items: center;
   height: konstanter.$lenke-panel-height;
-
   &__fyltoppBakgrunn {
     height: konstanter.$lenke-panel-height-small;
   }
@@ -49,22 +33,13 @@
 }
 
 @media (min-width: konstanter.$screen-md) {
-  .loaderOgLinkPanelWrapper {
-    width: 48.5%;
-  }
-
   .lenkeflis {
     width: 48.5%;
-    min-width: 100%;
   }
 }
 
 @media (min-width: konstanter.$screen-sm) {
   .ikonOgTekstWrapper {
     height: 12rem;
-  }
-  .loaderRight {
-    margin-top: 1rem;
-    margin-left: 1rem;
   }
 }
