@@ -9,7 +9,10 @@ import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
-import { RestStatus } from "../integrasjoner/rest-status";
+import {
+  erSykefraværsstatistikkLastetNed,
+  RestStatus,
+} from "../integrasjoner/rest-status";
 import { Infographic } from "../Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
@@ -22,7 +25,7 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/urlUtils";
-import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
+import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
@@ -64,9 +67,11 @@ export const Forside: FunctionComponent<ForsideProps> = ({
   }, [orgnr, miljø]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();
-  const kvartalsvisSykefraværshistorikkData = sykefraværshistorikk.status === RestStatus.Suksess
-      ? sykefraværshistorikk.data
-      : [];
+  const kvartalsvisSykefraværshistorikkData = erSykefraværsstatistikkLastetNed(
+    sykefraværshistorikk
+  )
+    ? sykefraværshistorikk.data
+    : [];
 
   const infographicEllerBannerHvisError =
     sykefraværshistorikk.status === RestStatus.Feil ||
@@ -82,9 +87,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         </Alert>
 
         <Infographic
-          {...kalkulerInfographicData(
-            kvartalsvisSykefraværshistorikkData
-          )}
+          {...kalkulerInfographicData(kvartalsvisSykefraværshistorikkData)}
           nedlastingPågår={
             sykefraværshistorikk.status === RestStatus.IkkeLastet ||
             sykefraværshistorikk.status === RestStatus.LasterInn
@@ -142,7 +145,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               }
               href={kalkulatorUrl}
             />
-            <InkluderendeArbeidslivPanel/>
+            <InkluderendeArbeidslivPanel />
             <LenkeflisEkstern
               overskrift={"Idébanken"}
               ikon={<IdebankenIkon width={bredde} height={høyde} />}

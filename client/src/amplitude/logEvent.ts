@@ -1,8 +1,7 @@
 import amplitude from "amplitude-js";
 
 let initiated = false;
-
-export default function logEvent(eventName: string, data?: any): Promise<any> {
+const initClient = () => {
   if (!initiated) {
     amplitude.getInstance().init("default", "", {
       apiEndpoint: "amplitude.nav.no/collect-auto",
@@ -13,9 +12,11 @@ export default function logEvent(eventName: string, data?: any): Promise<any> {
     });
     initiated = true;
   }
+};
+
+export default function logEvent(eventName: string, data?: any): Promise<any> {
+  initClient();
   return new Promise(function (resolve) {
-    amplitude
-      .getInstance()
-      .logEvent(eventName,  {...data} , resolve);
+    amplitude.getInstance().logEvent(eventName, { ...data }, resolve);
   });
 }

@@ -1,3 +1,8 @@
+import {
+  KvartalsvisSykefraværshistorikk,
+  RestSykefraværshistorikk,
+} from "./kvartalsvis-sykefraværshistorikk-api";
+
 export enum RestStatus {
   IkkeLastet = "IkkeLastet",
   LasterInn = "LasterInn",
@@ -44,6 +49,12 @@ export type RestRessurs<T> =
   | IkkeInnlogget
   | Feil
   | IngenTilgang;
+
+export const erSykefraværsstatistikkLastetNed = (
+  restSykefraværshistorikk: RestSykefraværshistorikk
+): restSykefraværshistorikk is Suksess<KvartalsvisSykefraværshistorikk[]> => {
+  return restSykefraværshistorikk.status === RestStatus.Suksess;
+};
 
 export const getRestStatus = (responseStatus: number): RestStatus => {
   switch (responseStatus) {

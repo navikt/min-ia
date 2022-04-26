@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/mobil-versjon-for-statistikk'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/sende-amplitude-events-ved-click-på-lenke'
     needs: build
     runs-on: ubuntu-latest
     steps:
