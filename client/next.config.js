@@ -5,6 +5,10 @@ const csp = require("./src/csp");
 const nextConfig = {
   reactStrictMode: true,
   basePath: "/min-ia",
+  i18n: {
+    locales: ['no'],
+    defaultLocale: 'no',
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
