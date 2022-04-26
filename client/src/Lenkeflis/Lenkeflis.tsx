@@ -16,14 +16,15 @@ export const Lenkeflis: React.FunctionComponent<{
   const router = useRouter();
   const TIMEOUT_IN_MILLIS = 750;
 
-  const håndtereOnClickMedTimeout = (
+  // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
+  const sendEventOgNaviger = (
     destinasjon: string,
     lenketekst: string,
-    timeout: number
+    maksVentetid: number
   ) => {
     setTimeout(() => {
       router.push(destinasjon);
-    }, timeout);
+    }, maksVentetid);
     sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
       router.push(destinasjon);
     });
@@ -40,11 +41,7 @@ export const Lenkeflis: React.FunctionComponent<{
         fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
       )}
       onClick={() => {
-        håndtereOnClickMedTimeout(
-          href ? href : "#",
-          overskrift,
-          TIMEOUT_IN_MILLIS
-        );
+        sendEventOgNaviger(href ? href : "#", overskrift, TIMEOUT_IN_MILLIS);
       }}
     >
       <div
