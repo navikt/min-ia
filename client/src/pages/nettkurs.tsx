@@ -28,7 +28,11 @@ export default function Nettkurs(props: { page: PageProps }) {
     { key: "Kortest", tekst: "Kortest" },
     { key: "Nyeste", tekst: "Nyeste" },
   ];
-
+  const onClickFunction = (key:string) => {
+    //e.preventDefault();
+    alert(key)
+    // Her kan vi filtrere eller sortere med switch case on key.
+  }
   const filterButtomList:Function =(liste:ListeElement[]) => (
     <div className={styles.nettkurs}>
       {liste.map((filter) => (
@@ -36,6 +40,7 @@ export default function Nettkurs(props: { page: PageProps }) {
           variant="tertiary"
           key={filter.key}
           className={styles.nettkurs__knapp}
+          onClick={e=>{ onClickFunction( filter.key); }}
         >
           {filter.tekst}
         </Button>

@@ -1,33 +1,46 @@
 @use "src/styles/konstanter";
-.nettkurs{
-
+.nettkurs {
   margin: 0 auto;
-  padding: .5rem;
-//display: flex;
+  padding: 0.5rem;
+  //display: flex;
   //flex-wrap: wrap;
   max-width: 60rem;
 
-  &__knapp{
-    border:2px solid var(--navds-global-color-gray-400);
+  &__knapp {
+    border: 2px solid var(--navds-global-color-gray-400);
     border-radius: 2rem;
     margin: 0.5rem 0.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    width:152px ;
+    width: 152px;
   }
-  &__filter_rad{
+  &__filter_rad {
     display: flex;
     justify-content: space-between;
-
   }
-  &__sortering_rad{
-  //display: flex;
+  &__sortering_rad {
+    //display: flex;
     //justify-content: flex-start;
   }
 
   @media (min-width: konstanter.$screen-md) {
-    margin: 0 0.5rem;
-    width:198px ;
-
+    //flex-wrap: wrap;
+    &__filter_rad {
+      display: flex;
+      //justify-content: start;
+      background-color: #6a1204;
+    }
+    &__sortering_rad{
+      display: flex;
+      margin-left: auto;
+      align-items: flex-start;
+      //justify-content: start;
+      background-color: #003b0f;
+    }
+    &__knapp {
+      margin: 0 0.5rem;
+      width: 198px;
+    }
+    //display: flex;
   }
 }
