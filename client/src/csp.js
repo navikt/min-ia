@@ -12,6 +12,9 @@ const csp = {
     "*.psplugin.com",
     "*.nav.no",
     "*.taskanalytics.com/tm.js",
+    "play2.qbrick.com",
+    "video.qbrick.com",
+    "httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/controls.min.js",
   ],
   "style-src": [
     "'self'",
@@ -39,6 +42,11 @@ const csp = {
     "sentry.gc.nav.no",
     "www.google-analytics.com",
     "ta-survey-v2.herokuapp.com",
+    "video.qbrick.com",
+    "play2.qbrick.com",
+    "httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/views/default.html",
+    "https://httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/assets/css/default.min.css",
+    "http://b2444cdd01b2df7a9350faf6a09afaef-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2022-02-21/bc3d3292-00015227/cupturedThumbnail746.png",
   ],
   "font-src": [
     "data:",

@@ -44,3 +44,24 @@
     //display: flex;
   }
 }
+.videoer {
+  display: flex;
+  //flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.video {
+  width: 80%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  //    flex-direction: row;
+  padding: 0 1rem 0 0;
+  margin: 0;
+}
+

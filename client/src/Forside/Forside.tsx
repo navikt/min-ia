@@ -27,6 +27,8 @@ import {
 } from "../utils/urlUtils";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 import Link from 'next/link';
+import {QbrickVideoPlayerContainer} from "../EmbeddedVideoPlayer/QbrickVideoPlayerContainer";
+import {QbrickVideoPlayer} from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
@@ -163,6 +165,9 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               }
               href={"https://www.arbeidsmiljoportalen.no"}
             />
+          </div>
+          <div className={styles.video}>
+            <QbrickVideoPlayer videoId={"bc3d3292-00015227-90d08ad0"} />
           </div>
         </div>
       )}
