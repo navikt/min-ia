@@ -27,7 +27,7 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
   const player = () => {
     const videoId: string = "bc3d3292-00015227-90d08ad0";
     return {
-      __html: `<div data-gobrain-widgetId="player" 
+      __html: `<div data-gobrain-widgetId="${videoId}" 
         data-gobrain-autoplay="false"  
         data-gobrain-repeat="false" 
         data-gobrain-moduleSettings="{&quot;TopControls&quot;:{&quot;download&quot;:{&quot;enabled&quot;:false},&quot;sharing&quot;:{&quot;enabled&quot;:false}},&quot;MobileControls&quot;:{&quot;download&quot;:{&quot;enabled&quot;:false},&quot;sharing&quot;:{&quot;enabled&quot;:false}}}" 
@@ -37,8 +37,8 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
     };
   };
   return (
-      <>
-        <div dangerouslySetInnerHTML={player()} />
-      </>
+    <>
+      <div dangerouslySetInnerHTML={player()} />
+    </>
   );
 };

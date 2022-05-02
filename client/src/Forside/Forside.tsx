@@ -26,9 +26,6 @@ import {
   utledUrlForBedrift,
 } from "../utils/urlUtils";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
-import Link from 'next/link';
-import {QbrickVideoPlayerContainer} from "../EmbeddedVideoPlayer/QbrickVideoPlayerContainer";
-import {QbrickVideoPlayer} from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
@@ -138,7 +135,8 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               brødtekst={
                 "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
               }
-              href="/app-sider/nettkurs"
+              //              href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
+              href="/nettkurs"
             />
             <Lenkeflis
               overskrift={"Fraværs&shy;kalkulator"}
@@ -165,9 +163,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               }
               href={"https://www.arbeidsmiljoportalen.no"}
             />
-          </div>
-          <div className={styles.video}>
-            <QbrickVideoPlayer videoId={"bc3d3292-00015227-90d08ad0"} />
           </div>
         </div>
       )}

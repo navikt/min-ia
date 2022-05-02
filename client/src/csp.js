@@ -1,5 +1,5 @@
 const csp = {
-  "default-src": ["'self'", "arbeidsgiver.nav.no"],
+  "default-src": ["'self'", "arbeidsgiver.nav.no", "http://localhost:3000"],
   "script-src": [
     "'self'",
     "'report-sample'",
@@ -15,6 +15,7 @@ const csp = {
     "play2.qbrick.com",
     "video.qbrick.com",
     "httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/controls.min.js",
+    "*.dna.ip-only.net",
   ],
   "style-src": [
     "'self'",
@@ -44,9 +45,7 @@ const csp = {
     "ta-survey-v2.herokuapp.com",
     "video.qbrick.com",
     "play2.qbrick.com",
-    "httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/views/default.html",
-    "https://httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/assets/css/default.min.css",
-    "http://b2444cdd01b2df7a9350faf6a09afaef-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2022-02-21/bc3d3292-00015227/cupturedThumbnail746.png",
+    "*.dna.ip-only.net",
   ],
   "font-src": [
     "data:",
@@ -65,7 +64,9 @@ const csp = {
     "*.nav.no",
     "data:",
     "www.googletagmanager.com",
+    "*.dna.ip-only.net",
   ],
+  "media-src": ["'self'", "http://localhost:3000"],
   "report-uri": [
     "https://sentry.gc.nav.no/api/77/security/?sentry_key=97af8a51172e4f9bb74ac9c05920b1d2",
   ],
