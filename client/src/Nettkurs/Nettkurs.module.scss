@@ -1,9 +1,8 @@
 @use "src/styles/konstanter";
+
 .nettkurs {
   margin: 0 auto;
   padding: 0.5rem;
-  //display: flex;
-  //flex-wrap: wrap;
   max-width: 60rem;
 
   &__knapp {
@@ -14,54 +13,39 @@
     padding-bottom: 0.5rem;
     width: 152px;
   }
+
   &__filter_rad {
     display: flex;
     justify-content: space-between;
   }
+
   &__sortering_rad {
-    //display: flex;
-    //justify-content: flex-start;
   }
 
   @media (min-width: konstanter.$screen-md) {
-    //flex-wrap: wrap;
     &__filter_rad {
       display: flex;
-      //justify-content: start;
       background-color: #6a1204;
     }
-    &__sortering_rad{
+    &__sortering_rad {
       display: flex;
       margin-left: auto;
       align-items: flex-start;
-      //justify-content: start;
       background-color: #003b0f;
     }
     &__knapp {
       margin: 0 0.5rem;
       width: 198px;
     }
-    //display: flex;
   }
 }
+
 .videoer {
   display: flex;
-  //flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
   padding: 2rem 0;
-}
-
-.video {
-  width: 80%;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  //    flex-direction: row;
-  padding: 0 1rem 0 0;
-  margin: 0;
 }
 

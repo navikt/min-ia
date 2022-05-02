@@ -1,0 +1,33 @@
+.videoContainer {
+  height: 240px;
+  padding: 0 1rem 0 0;
+  margin-bottom: .5rem;
+  position: relative;
+}
+
+.video {
+  // ref. https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
+  div[data-gobrain-widgetid] {
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    height: 100%;
+  }
+
+  div[data-gobrain-widgetid] > div:first-of-type {
+    bottom: 0;
+    left: 0;
+    position: absolute !important;
+    right: 0;
+    top: 0;
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  left: 0;
+  right: 0;
+  max-height: inherit;
+  position: absolute;
+  margin-bottom: 2rem;
+  box-sizing:border-box;
+}
+

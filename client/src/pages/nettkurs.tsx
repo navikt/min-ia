@@ -15,6 +15,7 @@ interface ListeElement {
   key: string;
   tekst: string;
 }
+
 export default function Nettkurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const sykefraværshistorikk = useSykefraværshistorikk();
@@ -63,8 +64,9 @@ export default function Nettkurs(props: { page: PageProps }) {
           <div className={styles.nettkurs__sortering_rad}>
             {filterButtomList(sorteringListe)}
           </div>
-          <div className={styles.video}>
+          <div className={styles.videoer}>
             <QbrickVideoPlayer videoId={"bc3d3292-00015227-90d08ad0"} />
+            <QbrickVideoPlayer videoId={"702ed6e6-00015227-76bc0ebe"} />
           </div>
         </div>
       )}
