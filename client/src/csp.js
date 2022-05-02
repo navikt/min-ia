@@ -1,5 +1,5 @@
 const csp = {
-  "default-src": ["'self'", "arbeidsgiver.nav.no", "http://localhost:3000"],
+  "default-src": ["'self'", "arbeidsgiver.nav.no"],
   "script-src": [
     "'self'",
     "'report-sample'",
@@ -66,7 +66,8 @@ const csp = {
     "www.googletagmanager.com",
     "*.dna.ip-only.net",
   ],
-  "media-src": ["'self'", "http://localhost:3000"],
+  "media-src": ["'self'", "blob:"],
+  "object-src": ["'self'", "blob:"],
   "report-uri": [
     "https://sentry.gc.nav.no/api/77/security/?sentry_key=97af8a51172e4f9bb74ac9c05920b1d2",
   ],
