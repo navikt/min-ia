@@ -10,6 +10,7 @@ import styles from "../Nettkurs/Nettkurs.module.scss";
 import { Button } from "@navikt/ds-react";
 import { QbrickVideoPlayerContainer } from "../EmbeddedVideoPlayer/QbrickVideoPlayerContainer";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
+import { IAVideoer } from "../utils/nettkurs-utils";
 
 interface ListeElement {
   key: string;
@@ -33,7 +34,7 @@ export default function Nettkurs(props: { page: PageProps }) {
   ];
   const onClickFunction = (key: string) => {
     //e.preventDefault();
-    alert(key);
+    //alert(key);
     // Her kan vi filtrere eller sortere med switch case on key.
   };
   const filterButtomList: Function = (liste: ListeElement[]) => (
@@ -65,8 +66,9 @@ export default function Nettkurs(props: { page: PageProps }) {
             {filterButtomList(sorteringListe)}
           </div>
           <div className={styles.videoer}>
-            <QbrickVideoPlayer videoId={"bc3d3292-00015227-90d08ad0"} />
-            <QbrickVideoPlayer videoId={"702ed6e6-00015227-76bc0ebe"} />
+            {IAVideoer.map((video) => {
+              return <QbrickVideoPlayer videoId={video.id} key={video.id} />;
+            })}
           </div>
         </div>
       )}
