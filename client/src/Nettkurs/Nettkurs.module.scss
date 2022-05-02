@@ -25,13 +25,11 @@
   @media (min-width: konstanter.$screen-md) {
     &__filter_rad {
       display: flex;
-      background-color: #6a1204;
     }
     &__sortering_rad {
       display: flex;
       margin-left: auto;
       align-items: flex-start;
-      background-color: #003b0f;
     }
     &__knapp {
       margin: 0 0.5rem;
