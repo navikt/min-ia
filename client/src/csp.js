@@ -16,6 +16,7 @@ const csp = {
     "video.qbrick.com",
     "httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/controls.min.js",
     "*.dna.ip-only.net",
+    "imasdk.googleapis.com/js/sdkloader/ima3.js",
   ],
   "style-src": [
     "'self'",
