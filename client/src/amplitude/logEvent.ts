@@ -7,7 +7,7 @@ const initClient = () => {
       apiEndpoint: "amplitude.nav.no/collect-auto",
       saveEvents: false,
       includeUtm: true,
-      includeReferrer: false,
+      includeReferrer: true,
       platform: window.location.toString(),
     });
     initiated = true;
