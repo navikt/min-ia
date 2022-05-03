@@ -12,6 +12,11 @@ const csp = {
     "*.psplugin.com",
     "*.nav.no",
     "*.taskanalytics.com/tm.js",
+    "play2.qbrick.com",
+    "video.qbrick.com",
+    "httpcache0-80659-cachedown0.dna.ip-only.net/80659-cachedown0/custom/modules/WCAG/controls.min.js",
+    "*.dna.ip-only.net",
+    "imasdk.googleapis.com/js/sdkloader/ima3.js",
   ],
   "style-src": [
     "'self'",
@@ -39,6 +44,9 @@ const csp = {
     "sentry.gc.nav.no",
     "www.google-analytics.com",
     "ta-survey-v2.herokuapp.com",
+    "video.qbrick.com",
+    "play2.qbrick.com",
+    "*.dna.ip-only.net",
   ],
   "font-src": [
     "data:",
@@ -57,7 +65,10 @@ const csp = {
     "*.nav.no",
     "data:",
     "www.googletagmanager.com",
+    "*.dna.ip-only.net",
   ],
+  "media-src": ["'self'", "blob:"],
+  "object-src": ["'self'", "blob:"],
   "report-uri": [
     "https://sentry.gc.nav.no/api/77/security/?sentry_key=97af8a51172e4f9bb74ac9c05920b1d2",
   ],
