@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/breadcrumbs-på-nettkurs-side'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/amplitude-fix2'
     needs: build
     runs-on: ubuntu-latest
     steps:
