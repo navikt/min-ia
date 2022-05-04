@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import { getPageProps, PageProps } from "../pageProps";
@@ -8,9 +8,9 @@ import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import styles from "../Nettkurs/Nettkurs.module.scss";
 import { Button } from "@navikt/ds-react";
-import { QbrickVideoPlayerContainer } from "../EmbeddedVideoPlayer/QbrickVideoPlayerContainer";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { IAVideoer } from "../utils/nettkurs-utils";
+import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 
 interface ListeElement {
   key: string;
@@ -74,6 +74,20 @@ export default function Nettkurs(props: { page: PageProps }) {
       )}
     </>
   );
+
+  useEffect(() => {
+    setBreadcrumbs([
+      {
+        title: "Forebygge fravær",
+        url: "/min-ia",
+      },
+      {
+        title: "Nettkurs",
+        url: "/min-ia/nettkurs",
+      },
+    ]);
+  }, []);
+
   return (
     <Layout
       title={props.page.title}
