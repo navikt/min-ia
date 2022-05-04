@@ -9,6 +9,7 @@ const initClient = () => {
       includeUtm: true,
       includeReferrer: false,
       platform: window.location.toString(),
+      headers: { "Cross-Origin-Resource-Policy": "" },
     });
     initiated = true;
   }
