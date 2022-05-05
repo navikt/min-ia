@@ -24,7 +24,7 @@ import {
   Applikasjon,
   getUrlForApplikasjon,
   utledUrlForBedrift,
-} from "../utils/urlUtils";
+} from "../utils/environments";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 
 interface ForsideProps {
