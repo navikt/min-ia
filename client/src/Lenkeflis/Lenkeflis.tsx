@@ -23,10 +23,10 @@ export const Lenkeflis: React.FunctionComponent<{
     maksVentetid: number
   ) => {
     setTimeout(() => {
-      router.push(destinasjon);
+      window.location.href = destinasjon;
     }, maksVentetid);
     sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
-      router.push(destinasjon);
+      window.location.href = destinasjon;
     });
   };
 
