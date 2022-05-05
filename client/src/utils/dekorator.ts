@@ -23,6 +23,7 @@ export interface DecoratorParams {
 }
 
 interface QueryParam {
+  urlLookupTable: boolean;
   feedback: boolean;
   chatbot: boolean;
   breadcrumbs: Breadcrumb[];
@@ -43,6 +44,7 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
       resolve(decorator);
     } else {
       const queryParams: QueryParam = {
+        urlLookupTable: false,
         feedback: false,
         chatbot: false,
         breadcrumbs:
