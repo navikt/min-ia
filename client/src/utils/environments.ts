@@ -32,7 +32,7 @@ const getIaTjenestemetrikkerUrl = () => {
   }
 };
 
-export const iaTjenesterMetrikkerAPI = `${getIaTjenestemetrikkerUrl()}/innlogget/mottatt-iatjeneste`;
+export const iaTjenesterMetrikkerApiEndpoint = `${getIaTjenestemetrikkerUrl()}/innlogget/mottatt-iatjeneste`;
 
 export const getUrlForApplikasjon = (
   applikasjon: Applikasjon,
