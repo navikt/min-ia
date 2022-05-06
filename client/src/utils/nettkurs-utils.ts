@@ -10,8 +10,8 @@ export interface QbrickVideo {
   };
 }
 
-enum Tags {
-  IA = "IA",
+export enum Tags {
+  IA = "Inkluderende arbeidsliv",
   ARBEIDSMILJØ = "Arbeidsmiljø",
   DIALOGMØTE = "Dialogmøte",
   MEDVIRKNING = "Medvirkning",
