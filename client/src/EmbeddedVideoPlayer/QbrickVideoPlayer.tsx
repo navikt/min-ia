@@ -1,7 +1,7 @@
 import styles from "./QbrickVideoPlayer.module.scss";
 import { IAVideoer } from "../utils/nettkurs-utils";
 import React, { useEffect, useState } from "react";
-import {Button} from "@navikt/ds-react";
+import { Button } from "@navikt/ds-react";
 
 interface QbrickVideo {
   id: string;
@@ -29,21 +29,10 @@ export interface QbrickVideoPlayerProps {
   videoId: string;
   video?: QbrickVideo;
 }
+
 export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
   const [videoId, setVideoId] = useState(props.videoId);
-  /*function rerenderAttempt(video:QbrickVideo){
-  //  setVideo(video)
-  }
-  const[,updateVideo]=React.useState();
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
-  useEffect(() => {
-    setVideoId(props.videoId);
-  }, [videoId]);
-  setVideoId(props.videoId);
-*/
 
-  let widgetStopFunksjon:()=>{};
   const player2 = () => {
     return {
       __html: `<script src="https://play2.qbrick.com/framework/GoBrain.min.js"></script>
@@ -59,12 +48,20 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
    
         GoBrain.create(document.getElementById('divPlayerContainer'), embedSettings)
             .on('initialized', function () {
-                   console.log("mottatt pause signal");
-                   console.log("this er:",this);
-            //this.pause();
-  });
-    </script>
-               </script>`,
+                   console.log("mottatt initialized event");
+               })
+            .on('loaded', function () {
+                   var goBrainWidget = this;
+                   document.addEventListener('forcePausePlayer', function (evt) { 
+                       console.log("Mottok event 'forcePausePlayer', event: ", evt);
+                       goBrainWidget.pause();
+                    })
+               })
+            .on('pause', function (e) {
+                   console.log("I received PAUSE", e);
+               });
+               </script>
+      </script>`,
     };
   };
 
@@ -81,7 +78,14 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
   };
   return (
     <>
-      <Button onClick={()=>{}}>Pause </Button>
+      <Button
+        onClick={() => {
+          console.log("SENDING !!!!");
+          document.dispatchEvent(new CustomEvent("forcePausePlayer"));
+        }}
+      >
+        Pause{" "}
+      </Button>
       <div>Dette er video: ${props.videoId}</div>
       <div className={styles.videoContainer}>
         <div className={styles.video} dangerouslySetInnerHTML={player2()} />

@@ -102,7 +102,7 @@ export default function Nettkurs(props: { page: PageProps }) {
       })}
     </div>
   );
-  const IVideo1: QbrickVideo[]=[IAVideoer[0]];
+  const IVideo1: QbrickVideo[] = [IAVideoer[0]];
   const skalVideoVises = (video: QbrickVideo) => {
     return getFilteredListOfVideos(filters, IAVideoer).includes(video);
   };
@@ -120,13 +120,16 @@ export default function Nettkurs(props: { page: PageProps }) {
           </div>
           <div className={styles.videoer}>
             {/*TODO sort the returned videos by sortingOrder*/}
-            {IVideo1.map((video) => {
-              console.log("IAVideoer",IAVideoer)
-              console.log("videoId",video.id)
-              console.log("skalVideoVises", skalVideoVises(video))
+            {IVideo1.map((video, index) => {
+              //console.log("IAVideoer", IAVideoer);
+              //console.log("videoId", video.id);
+              console.log("skalVideoVises", skalVideoVises(video));
               //TODO ensure that QbrickVideoPlayer can get re-rendered
               return (
-                <div style={{ display: skalVideoVises(video) ? "" : "none" }}>
+                <div
+                  style={{ display: skalVideoVises(video) ? "" : "none" }}
+                  key={index}
+                >
                   <QbrickVideoPlayer videoId={video.id} key={video.id} />
                 </div>
               );
