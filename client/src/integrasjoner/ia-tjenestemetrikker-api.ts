@@ -1,5 +1,3 @@
-import { iaTjenesterMetrikkerApiEndpoint } from "../utils/environments";
-
 interface IaTjenesteMetrikk {
   orgnr: String;
   altinnRettighet: String;
@@ -7,8 +5,9 @@ interface IaTjenesteMetrikk {
   kilde: String;
   tjenesteMottakkelsesdato: String;
 }
+export const innloggetIaTjenestemetrikkPath = `metrikker/innlogget/mottatt-iatjeneste`;
 
-enum IaTjeneste {
+export enum IaTjeneste {
   FOREBYGGE_FRAVÆR = "FOREBYGGE_FRAVÆR",
   KALKULATOR = "KALKULATOR",
   NETTKURS = "NETTKURS",
@@ -34,7 +33,7 @@ const iaTjenesterSendtForBedrift: {
   mottattTjeneste: IaTjeneste;
 }[] = [];
 
-const alleredeRegistrerteIaTjenester = (
+const harAlleredeRegistrerteIaTjeneste = (
   orgnr: string,
   tjeneste: IaTjeneste
 ): boolean => {
@@ -47,12 +46,14 @@ const alleredeRegistrerteIaTjenester = (
 };
 
 export const registrerLevertIaTjeneste = async (
-  orgnr: string,
+  orgnr: string | undefined,
   tjeneste: IaTjeneste
 ): Promise<boolean> => {
-  if (alleredeRegistrerteIaTjenester(orgnr, tjeneste)) {
+  if (orgnr == undefined || harAlleredeRegistrerteIaTjeneste(orgnr, tjeneste)) {
+    console.log("Levert IA-tjeneste allerede registrert, sender ikke ut ny");
     return false;
   }
+
   const metrikk = byggIaTjenesteMottattMetrikk(orgnr, tjeneste);
 
   const isSent = await sendIaTjenesteMetrikk(metrikk);
@@ -64,7 +65,6 @@ export const registrerLevertIaTjeneste = async (
     );
     iaTjenesterSendtForBedrift.push({ orgnr, mottattTjeneste: tjeneste });
   }
-
   console.error(
     "Klarte ikke sende ut IA-tjenestemetrikk med orgnr/tjeneste = ",
     orgnr,
@@ -87,7 +87,7 @@ export const sendIaTjenesteMetrikk = async (
   };
   try {
     // @ts-ignore
-    const res = await fetch(`${iaTjenesterMetrikkerApiEndpoint}`, settings);
+    const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
     const data = await res.json();
     return data.status === "created";
   } catch (e) {

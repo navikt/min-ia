@@ -33,6 +33,17 @@ export const backendApiProxyMock = (app) => {
   });
 
   app.get(
+    `${BASE_PATH}/metrikker/innlogget/mottatt-iatjeneste`,
+    (request, response) => {
+      console.log("[DEBUG] GET /metrikker/innlogget/mottatt-iatjeneste");
+
+      setTimeout(function () {
+        response.sendStatus(201);
+      }, delayFaktorIMillis);
+    }
+  );
+
+  app.get(
     `${BASE_PATH}/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis`,
     (request, response) => {
       const orgnr = request.params.orgnr;
