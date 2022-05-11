@@ -1,18 +1,6 @@
 import styles from "./QbrickVideoPlayer.module.scss";
-import React, { useEffect, useState } from "react";
-
-interface QbrickVideo {
-  id: string;
-  tags: string[];
-  created: Date;
-  updated: Date;
-  nbOfViews: number; // via API-et?
-  //thumbnailUrl: string;
-  metadata: {
-    title: string;
-    description: string;
-  };
-}
+import React, { useEffect } from "react";
+import { QbrickVideo } from "../utils/nettkurs-utils";
 
 export interface QbrickVideoPlayerProps {
   video: QbrickVideo;

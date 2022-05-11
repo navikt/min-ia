@@ -17,6 +17,7 @@ export enum Tags {
   MEDVIRKNING = "Medvirkning",
   OPPFØLGING = "Oppfølging",
   PSYKISK_HELSE = "Psykisk helse",
+  ALLE= "Alle"
 }
 
 export const IAVideoer: QbrickVideo[] = [

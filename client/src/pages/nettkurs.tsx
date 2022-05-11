@@ -18,21 +18,22 @@ interface ListeElement {
   tekst: string;
 }
 
-type Filters = Tags[];
+type Filter = Tags;
 
 export default function Nettkurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const sykefraværshistorikk = useSykefraværshistorikk();
 
-  const [filters, setFilters] = useState<Filters>([]);
+  const [filter, setFilter] = useState<Filter>(Tags.ALLE);
 
   const filterListe: ListeElement[] = [
-    { key: Tags.PSYKISK_HELSE, tekst: "Psykisk helse (2)" },
-    { key: Tags.ARBEIDSMILJØ, tekst: "Arbeidsmiljø (7)" },
-    { key: Tags.OPPFØLGING, tekst: "Oppfølging (3)" },
-    { key: Tags.MEDVIRKNING, tekst: "Medvirkning (1)" },
-    { key: Tags.DIALOGMØTE, tekst: "Dialogmøte (2)" },
-    { key: Tags.IA, tekst: "Inkluderende arbeidsliv (3)" },
+    { key: Tags.PSYKISK_HELSE, tekst: "Psykisk helse" },
+    { key: Tags.ARBEIDSMILJØ, tekst: "Arbeidsmiljø" },
+    { key: Tags.OPPFØLGING, tekst: "Oppfølging" },
+    { key: Tags.MEDVIRKNING, tekst: "Medvirkning" },
+    { key: Tags.DIALOGMØTE, tekst: "Dialogmøte" },
+    { key: Tags.IA, tekst: "Inkluderende arbeidsliv" },
+    { key: Tags.ALLE, tekst: "Alle" },
   ];
 
   const sorteringListe = [
@@ -42,42 +43,39 @@ export default function Nettkurs(props: { page: PageProps }) {
   ];
 
   const getFilteredListOfVideos = (
-    filters: Filters,
+    filter: Filter,
     videoList: QbrickVideo[]
   ): QbrickVideo[] => {
-    if (filters.length === 0) return videoList;
-
-    const [firstFilter, ...restFilters] = filters;
-    const filteredVideos = videoList.filter((video) =>
-      video.tags.includes(firstFilter)
-    );
-    return getFilteredListOfVideos(restFilters, filteredVideos);
+    if (filter === Tags.ALLE) {
+      return videoList;
+    }
+    return videoList.filter((video) => video.tags.includes(filter));
   };
 
   const toggleFilters = (key: Tags) => {
-    if (filters.includes(key)) {
-      setFilters(filters.filter((e) => e !== key));
+    if (filter === key) {
+      setFilter(Tags.ALLE);
     } else {
-      setFilters([...filters, key]);
+      setFilter(key);
     }
   };
 
   const filterButtomList: Function = (liste: ListeElement[]) => (
     <div className={styles.nettkurs}>
-      {liste.map((filter) => {
-        const buttonPressed = filters.includes(filter.key);
+      {liste.map((toggleFilter) => {
+        const buttonPressed = filter === toggleFilter.key;
         return (
           <Button
             variant={buttonPressed ? "primary" : "tertiary"}
             aria-pressed={buttonPressed}
-            key={filter.key}
+            key={toggleFilter.key}
             className={styles.nettkurs__knapp}
             onClick={(e) => {
               document.dispatchEvent(new CustomEvent("forcePausePlayer"));
-              toggleFilters(filter.key);
+              toggleFilters(toggleFilter.key);
             }}
           >
-            {filter.tekst}
+            {toggleFilter.tekst}
           </Button>
         );
       })}
@@ -104,7 +102,7 @@ export default function Nettkurs(props: { page: PageProps }) {
     </div>
   );
   const skalVideoVises = (video: QbrickVideo) => {
-    return getFilteredListOfVideos(filters, IAVideoer).includes(video);
+    return getFilteredListOfVideos(filter, IAVideoer).includes(video);
   };
   const innhold = (
     <>
