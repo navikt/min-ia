@@ -3,8 +3,12 @@ import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 import { sendLenkeKlikketPåEvent } from "../amplitude/events";
-import { useRouter } from "next/router";
 import classNames from "classnames";
+import {
+  IaTjeneste,
+  registrerLevertIaTjeneste,
+} from "../integrasjoner/ia-tjenestemetrikker-api";
+import { useOrgnr } from "../hooks/useOrgnr";
 
 export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
@@ -13,8 +17,8 @@ export const Lenkeflis: React.FunctionComponent<{
   href: string | undefined;
   fyltoppBakgrunn?: boolean;
 }> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
-  const router = useRouter();
   const TIMEOUT_IN_MILLIS = 750;
+  const orgnr = useOrgnr();
 
   // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
   const sendEventOgNaviger = (
@@ -25,6 +29,9 @@ export const Lenkeflis: React.FunctionComponent<{
     setTimeout(() => {
       window.location.href = destinasjon;
     }, maksVentetid);
+    registrerLevertIaTjeneste(orgnr, IaTjeneste.FOREBYGGE_FRAVÆR).then(
+      (isSent) => console.log("metrikker sendt? ", isSent)
+    );
     sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
       window.location.href = destinasjon;
     });
