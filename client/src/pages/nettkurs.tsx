@@ -11,6 +11,7 @@ import { Button } from "@navikt/ds-react";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { IAVideoer, QbrickVideo, Tags } from "../utils/nettkurs-utils";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
+import Script from "next/script";
 
 interface ListeElement {
   key: Tags;
@@ -73,6 +74,7 @@ export default function Nettkurs(props: { page: PageProps }) {
             key={filter.key}
             className={styles.nettkurs__knapp}
             onClick={(e) => {
+              document.dispatchEvent(new CustomEvent("forcePausePlayer"));
               toggleFilters(filter.key);
             }}
           >
@@ -102,7 +104,6 @@ export default function Nettkurs(props: { page: PageProps }) {
       })}
     </div>
   );
-  const IVideo1: QbrickVideo[] = [IAVideoer[0]];
   const skalVideoVises = (video: QbrickVideo) => {
     return getFilteredListOfVideos(filters, IAVideoer).includes(video);
   };
@@ -120,20 +121,19 @@ export default function Nettkurs(props: { page: PageProps }) {
           </div>
           <div className={styles.videoer}>
             {/*TODO sort the returned videos by sortingOrder*/}
-            {IVideo1.map((video, index) => {
-              //console.log("IAVideoer", IAVideoer);
-              //console.log("videoId", video.id);
-              console.log("skalVideoVises", skalVideoVises(video));
-              //TODO ensure that QbrickVideoPlayer can get re-rendered
+            {IAVideoer.map((video, index) => {
               return (
                 <div
                   style={{ display: skalVideoVises(video) ? "" : "none" }}
                   key={index}
                 >
-                  <QbrickVideoPlayer videoId={video.id} key={video.id} />
+                  <QbrickVideoPlayer
+                    videoId={video.id}
+                    key={video.id}
+                    video={video}
+                  />
                 </div>
               );
-              //return <div key={video.id}><p>{video.id}</p><p>{video.tags.join(", ")}</p></div>
             })}
           </div>
         </div>
@@ -155,18 +155,25 @@ export default function Nettkurs(props: { page: PageProps }) {
   }, []);
 
   return (
-    <Layout
-      title={props.page.title}
-      description={props.page.description}
-      decoratorParts={props.page.decorator}
-      altinnOrganisasjoner={
-        organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
-          ? organisasjonerBrukerHarTilgangTil.data
-          : []
-      }
-    >
-      {innhold}
-    </Layout>
+    <>
+      <Script
+        src="https://play2.qbrick.com/framework/GoBrain.min.js"
+        strategy="beforeInteractive"
+      />
+
+      <Layout
+        title={props.page.title}
+        description={props.page.description}
+        decoratorParts={props.page.decorator}
+        altinnOrganisasjoner={
+          organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
+            ? organisasjonerBrukerHarTilgangTil.data
+            : []
+        }
+      >
+        {innhold}
+      </Layout>
+    </>
   );
 }
 // NextJS kaller denne ved Server Side Rendering (SSR)
