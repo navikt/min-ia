@@ -1,7 +1,10 @@
 @use "src/styles/konstanter";
+.videoOgTittelContainer{
+  //display: flex;
+}
 
 .videoContainer {
-  height: 240px;
+  height: 210px;
   padding: 0 1rem 0 0;
   margin-bottom: 0.5rem;
   position: relative;
@@ -33,12 +36,27 @@
   position: absolute;
   margin-bottom: 2rem;
   box-sizing: border-box;
+  &__ikon_og_tittel{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__ikon{
+    display: flex;
+    min-width: 33px;
+  }
+  &__tittel{
+    padding-left: 1rem;
+  }
 }
 
 @media (min-width: konstanter.$screen-sm) {
   .videoContainer {
     max-width: 540px;
-    min-height: 360px;
+    min-height: 320px;
   }
 }
 

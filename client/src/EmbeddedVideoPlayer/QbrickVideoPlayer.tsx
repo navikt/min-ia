@@ -1,6 +1,7 @@
 import styles from "./QbrickVideoPlayer.module.scss";
 import React, { useEffect } from "react";
 import { QbrickVideo } from "../utils/nettkurs-utils";
+import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 
 export interface QbrickVideoPlayerProps {
   video: QbrickVideo;
@@ -32,11 +33,16 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
     };
   };
   return (
-    <>
-      <div>{props.video?.metadata.title}</div>
+    <div className={styles.videoOgTittelContainer}>
       <div className={styles.videoContainer}>
         <div className={styles.video} dangerouslySetInnerHTML={player()} />
       </div>
-    </>
+      <div className={styles.video__ikon_og_tittel}>
+        <div className={styles.video__ikon}><NavIkon width={33} height={21}/></div>
+        <div className={styles.video__tittel}>
+          {props.video?.metadata.title}
+        </div>
+      </div>
+    </div>
   );
 };

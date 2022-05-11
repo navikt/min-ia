@@ -33,9 +33,8 @@ export const IAVideoer: QbrickVideo[] = [
     id: "bf6d8ad7-00015227-1228dfef",
     tags: [Tags.IA, Tags.PSYKISK_HELSE,Tags.MEST_SETT],
     metadata: {
-      title: "Gode grep i krisetider - Arbeid og psykisk helse",
-      description:
-        "Gode grep i krisetider. Koronapandemien har satt oss i en krevende og spesiell situasjon. Hva kan du som leder gjøre for dine ansatte og deg selv? Mer informasjon: For arbeidsgivere: https://arbeidsgiver.nav.no/kontakt-oss/ For personbrukere: https://www.nav.no/person/koronaveiviser",
+      title: "Få den sjukmelde raskare tilbake i jobb",
+      description: "Få den sjukemelde raskare tilbake i jobb. Videopresentasjon om sykefraværsoppfølging i praksis.",
     },
   },
   {
