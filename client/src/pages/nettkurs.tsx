@@ -51,7 +51,6 @@ export default function Nettkurs(props: { page: PageProps }) {
     const filteredVideos = videoList.filter((video) =>
       video.tags.includes(firstFilter)
     );
-    console.log("filtersliste", filters);
     return getFilteredListOfVideos(restFilters, filteredVideos);
   };
 
@@ -127,11 +126,7 @@ export default function Nettkurs(props: { page: PageProps }) {
                   style={{ display: skalVideoVises(video) ? "" : "none" }}
                   key={index}
                 >
-                  <QbrickVideoPlayer
-                    videoId={video.id}
-                    key={video.id}
-                    video={video}
-                  />
+                  <QbrickVideoPlayer key={video.id} video={video} />
                 </div>
               );
             })}
@@ -160,7 +155,6 @@ export default function Nettkurs(props: { page: PageProps }) {
         src="https://play2.qbrick.com/framework/GoBrain.min.js"
         strategy="beforeInteractive"
       />
-
       <Layout
         title={props.page.title}
         description={props.page.description}

@@ -15,18 +15,15 @@ interface QbrickVideo {
 }
 
 export interface QbrickVideoPlayerProps {
-  videoId: string;
-  video?: QbrickVideo;
+  video: QbrickVideo;
 }
 
 export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
-  const [videoId, setVideoId] = useState(props.videoId);
-
   useEffect(() => {
     // @ts-ignore
     if (window && window.GoBrain) {
       // @ts-ignore
-      window.GoBrain.widgets(props.videoId).on("play", function () {
+      window.GoBrain.widgets(props.video.id).on("play", function () {
         // @ts-ignore
         const goBrainWidget = this;
         document.addEventListener("forcePausePlayer", function (evt) {
@@ -34,17 +31,16 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
         });
       });
     }
-  }, []);
+  }, [props.video.id]);
 
   const player = () => {
     return {
-      __html: `<div data-gobrain-widgetId="${videoId}"
+      __html: `<div data-gobrain-widgetId="${props.video.id}"
         data-gobrain-autoplay="false"  
         data-gobrain-repeat="false" 
         data-gobrain-moduleSettings="{&quot;TopControls&quot;:{&quot;download&quot;:{&quot;enabled&quot;:false},&quot;sharing&quot;:{&quot;enabled&quot;:false}},&quot;MobileControls&quot;:{&quot;download&quot;:{&quot;enabled&quot;:false},&quot;sharing&quot;:{&quot;enabled&quot;:false}}}" 
         data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/wcag2" 
-        data-gobrain-data="https://video.qbrick.com/api/v1/public/accounts/763558/medias/${videoId}"></div>
-        <script src="https://play2.qbrick.com/framework/GoBrain.min.js"></script>`,
+        data-gobrain-data="https://video.qbrick.com/api/v1/public/accounts/763558/medias/${props.video.id}"></div>`,
     };
   };
   return (
