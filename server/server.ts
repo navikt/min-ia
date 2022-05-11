@@ -4,7 +4,7 @@ import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import { backendApiProxy } from "./backendApiProxy";
+import { backendApiProxy, metrikkerProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 import RateLimit from "express-rate-limit";
 
@@ -42,6 +42,17 @@ const harAuthorizationHeader = (request: Request) => {
   );
 };
 
+function settOppProxy() {
+  if (process.env.NODE_ENV === "production") {
+    console.log("Setter opp backendApiProxy og metrikkerProxy");
+    server.use(backendApiProxy);
+    server.use(metrikkerProxy);
+  } else {
+    console.log("Starter backendProxyMock");
+    backendApiProxyMock(server);
+  }
+}
+
 const startServer = async () => {
   server.use(cookieParser());
   server.use(prometheus);
@@ -52,13 +63,8 @@ const startServer = async () => {
   }
 
   console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
-  if (process.env.NODE_ENV === "production") {
-    console.log("Starter backendProxy");
-    server.use(backendApiProxy);
-  } else {
-    console.log("Starter backendProxyMock");
-    backendApiProxyMock(server);
-  }
+
+  settOppProxy();
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
     let redirect: string = request.query.redirect
