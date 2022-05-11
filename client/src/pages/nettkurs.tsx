@@ -24,7 +24,7 @@ export default function Nettkurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const sykefraværshistorikk = useSykefraværshistorikk();
 
-  const [filter, setFilter] = useState<Filter>(Tags.ALLE);
+  const [filter, setFilter] = useState<Filter>(Tags.MEST_SETT);
 
   const filterListe: ListeElement[] = [
     { key: Tags.PSYKISK_HELSE, tekst: "Psykisk helse" },
@@ -32,21 +32,17 @@ export default function Nettkurs(props: { page: PageProps }) {
     { key: Tags.OPPFØLGING, tekst: "Oppfølging" },
     { key: Tags.MEDVIRKNING, tekst: "Medvirkning" },
     { key: Tags.DIALOGMØTE, tekst: "Dialogmøte" },
-    { key: Tags.IA, tekst: "Inkluderende arbeidsliv" },
+    { key: Tags.IA, tekst: "IA" },
     { key: Tags.ALLE, tekst: "Alle" },
-  ];
-
-  const sorteringListe = [
-    { key: "Mest sett", tekst: "Mest sett" },
-    { key: "Kortest", tekst: "Kortest" },
-    { key: "Nyeste", tekst: "Nyeste" },
+    { key: Tags.MEST_SETT, tekst: "Mest sett" },
+    { key: Tags.NYESTE, tekst: "Nyeste" },
   ];
 
   const getFilteredListOfVideos = (
     filter: Filter,
     videoList: QbrickVideo[]
   ): QbrickVideo[] => {
-    if (filter === Tags.ALLE) {
+    if (filter === Tags.ALLE ) {
       return videoList;
     }
     return videoList.filter((video) => video.tags.includes(filter));
@@ -54,7 +50,7 @@ export default function Nettkurs(props: { page: PageProps }) {
 
   const toggleFilters = (key: Tags) => {
     if (filter === key) {
-      setFilter(Tags.ALLE);
+      setFilter(Tags.MEST_SETT);
     } else {
       setFilter(key);
     }
@@ -82,25 +78,6 @@ export default function Nettkurs(props: { page: PageProps }) {
     </div>
   );
 
-  const sortingButtomList: Function = (liste: ListeElement[]) => (
-    <div className={styles.nettkurs}>
-      {liste.map((sortingOrder) => {
-        return (
-          <Button
-            variant={"tertiary"}
-            aria-pressed={false}
-            key={sortingOrder.key}
-            className={styles.nettkurs__knapp}
-            onClick={(e) => {
-              //TODO implement sorting of videos
-            }}
-          >
-            {sortingOrder.tekst}
-          </Button>
-        );
-      })}
-    </div>
-  );
   const skalVideoVises = (video: QbrickVideo) => {
     return getFilteredListOfVideos(filter, IAVideoer).includes(video);
   };
@@ -113,11 +90,7 @@ export default function Nettkurs(props: { page: PageProps }) {
           <div className={styles.nettkurs__filter_rad}>
             {filterButtomList(filterListe)}
           </div>
-          <div className={styles.nettkurs__sortering_rad}>
-            {sortingButtomList(sorteringListe)}
-          </div>
           <div className={styles.videoer}>
-            {/*TODO sort the returned videos by sortingOrder*/}
             {IAVideoer.map((video, index) => {
               return (
                 <div

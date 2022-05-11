@@ -1,9 +1,6 @@
 export interface QbrickVideo {
   id: string;
   tags: string[];
-  created: Date;
-  updated: Date;
-  nbOfViews: number; // via API-et?
   metadata: {
     title: string;
     description: string;
@@ -17,16 +14,15 @@ export enum Tags {
   MEDVIRKNING = "Medvirkning",
   OPPFØLGING = "Oppfølging",
   PSYKISK_HELSE = "Psykisk helse",
-  ALLE= "Alle"
+  ALLE= "Alle",
+  MEST_SETT= "Mest sett",
+  NYESTE= "Nyeste"
 }
 
 export const IAVideoer: QbrickVideo[] = [
   {
     id: "702ed6e6-00015227-76bc0ebe",
-    created: new Date("2022-04-11T08:00:00+00:00"),
-    updated: new Date("2022-04-11T08:00:00+00:00"),
-    tags: [Tags.IA, Tags.PSYKISK_HELSE],
-    nbOfViews: 3, // spør Monica
+    tags: [Tags.IA, Tags.PSYKISK_HELSE, Tags.MEST_SETT],
     metadata: {
       title: "Gode grep i krisetider - Arbeid og psykisk helse",
       description:
@@ -35,10 +31,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "bf6d8ad7-00015227-1228dfef",
-    created: new Date("2022-04-11T08:00:00+00:00"),
-    updated: new Date("2022-04-11T08:00:00+00:00"),
-    tags: [Tags.IA, Tags.PSYKISK_HELSE],
-    nbOfViews: 1, // spør Monica
+    tags: [Tags.IA, Tags.PSYKISK_HELSE,Tags.MEST_SETT],
     metadata: {
       title: "Gode grep i krisetider - Arbeid og psykisk helse",
       description:
@@ -47,10 +40,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "32361286-00015227-be0a3394",
-    created: new Date("2022-04-11T09:55:14+00:00"),
-    updated: new Date("2022-04-11T10:02:30+00:00"),
     tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE],
-    nbOfViews: 5, // spør Monica
     metadata: {
       title: "Dialogmøte som fungerer",
       description:
@@ -59,10 +49,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "fc48a9e8-00015227-e728460d",
-    created: new Date("2022-04-11T09:55:14+00:00"),
-    updated: new Date("2022-04-11T10:02:30+00:00"),
-    tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE],
-    nbOfViews: 5, // spør Monica
+    tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE, Tags.NYESTE],
     metadata: {
       title: "Oppfølgingsplan som fungerer",
       description:
@@ -71,10 +58,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "62f13221-00015227-0618cd4a",
-    created: new Date("2022-04-11T09:55:14+00:00"),
-    updated: new Date("2022-04-11T10:02:30+00:00"),
     tags: [Tags.IA, Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING],
-    nbOfViews: 5, // spør Monica
     metadata: {
       title: "Tilrettelegging og medvirkning",
       description:
@@ -83,10 +67,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "43914204-00015227-666b62d3",
-    created: new Date("2022-04-11T09:55:14+00:00"),
-    updated: new Date("2022-04-11T10:02:30+00:00"),
     tags: [Tags.IA, Tags.ARBEIDSMILJØ],
-    nbOfViews: 5, // spør Monica
     metadata: {
       title: "Tilsette har ulike behov i ulike livsfasar",
       description:
@@ -95,10 +76,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "db3653cd-00015227-7015da5d",
-    created: new Date("2022-04-11T09:55:14+00:00"),
-    updated: new Date("2022-04-11T10:02:30+00:00"),
     tags: [Tags.IA, Tags.ARBEIDSMILJØ],
-    nbOfViews: 5, // spør Monica
     metadata: {
       title:
         "Arbeidsmiljø skaper du best i samarbeid med tillitsvald og verneombod",
@@ -108,10 +86,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "1acd36bc-00015227-4d8594c2",
-    created: new Date("2022-04-11T09:55:14+00:00"),
-    updated: new Date("2022-04-11T10:02:30+00:00"),
     tags: [Tags.IA, Tags.ARBEIDSMILJØ],
-    nbOfViews: 5, // spør Monica
     metadata: {
       title: "Godt arbeidsmiljø er ikkje berre kaker på fredag...",
       description:
