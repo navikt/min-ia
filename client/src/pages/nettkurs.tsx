@@ -12,6 +12,7 @@ import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { IAVideoer, QbrickVideo, Tags } from "../utils/nettkurs-utils";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Script from "next/script";
+import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 
 interface ListeElement {
   key: Tags;
@@ -42,7 +43,7 @@ export default function Nettkurs(props: { page: PageProps }) {
     filter: Filter,
     videoList: QbrickVideo[]
   ): QbrickVideo[] => {
-    if (filter === Tags.ALLE ) {
+    if (filter === Tags.ALLE) {
       return videoList;
     }
     return videoList.filter((video) => video.tags.includes(filter));
@@ -94,10 +95,25 @@ export default function Nettkurs(props: { page: PageProps }) {
             {IAVideoer.map((video, index) => {
               return (
                 <div
-                  style={{ display: skalVideoVises(video) ? "" : "none" }}
+                  style={{
+                    width: "100%",
+                    display: skalVideoVises(video) ? "flex" : "none",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
                   key={index}
                 >
-                  <QbrickVideoPlayer key={video.id} video={video} />
+                  <div style={{ display: "initial", width: "100%" }}>
+                    <QbrickVideoPlayer key={video.id} video={video} />
+                  </div>
+                  <div className={styles.nettkurs__ikon_og_tittel}>
+                    <div className={styles.nettkurs__ikon}>
+                      <NavIkon width={33} height={21} />
+                    </div>
+                    <div className={styles.nettkurs__tittel}>
+                      {video.metadata.title}
+                    </div>
+                  </div>
                 </div>
               );
             })}

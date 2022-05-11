@@ -22,6 +22,23 @@
   &__sortering_rad {
   }
 
+  &__ikon_og_tittel{
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  &__ikon{
+    display: flex;
+    min-width: 33px;
+  }
+
+  &__tittel{
+    padding-left: 1rem;
+  }
+
   @media (min-width: konstanter.$screen-md) {
     &__filter_rad {
       display: flex;
@@ -40,7 +57,7 @@
 
 .videoer {
   display: flex;
-  justify-content: center;
+//  justify-content: center;
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;

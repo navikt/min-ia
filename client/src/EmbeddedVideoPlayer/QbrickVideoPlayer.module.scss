@@ -36,21 +36,6 @@
   position: absolute;
   margin-bottom: 2rem;
   box-sizing: border-box;
-  &__ikon_og_tittel{
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  &__ikon{
-    display: flex;
-    min-width: 33px;
-  }
-  &__tittel{
-    padding-left: 1rem;
-  }
 }
 
 @media (min-width: konstanter.$screen-sm) {
