@@ -14,15 +14,15 @@ export enum Tags {
   MEDVIRKNING = "Medvirkning",
   OPPFØLGING = "Oppfølging",
   PSYKISK_HELSE = "Psykisk helse",
-  ALLE= "Alle",
-  MEST_SETT= "Mest sett",
-  NYESTE= "Nyeste"
+  ALLE = "Alle",
+  MEST_SETT = "Mest sett",
+  NYESTE = "Nyeste",
 }
 
 export const IAVideoer: QbrickVideo[] = [
   {
     id: "702ed6e6-00015227-76bc0ebe",
-    tags: [Tags.IA, Tags.PSYKISK_HELSE, Tags.MEST_SETT],
+    tags: [Tags.IA, Tags.PSYKISK_HELSE],
     metadata: {
       title: "Gode grep i krisetider - Arbeid og psykisk helse",
       description:
@@ -31,10 +31,11 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "bf6d8ad7-00015227-1228dfef",
-    tags: [Tags.IA, Tags.PSYKISK_HELSE,Tags.MEST_SETT],
+    tags: [Tags.IA, Tags.PSYKISK_HELSE, Tags.NYESTE],
     metadata: {
       title: "Få den sjukmelde raskare tilbake i jobb",
-      description: "Få den sjukemelde raskare tilbake i jobb. Videopresentasjon om sykefraværsoppfølging i praksis.",
+      description:
+        "Få den sjukemelde raskare tilbake i jobb. Videopresentasjon om sykefraværsoppfølging i praksis.",
     },
   },
   {
@@ -48,7 +49,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "fc48a9e8-00015227-e728460d",
-    tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE, Tags.NYESTE],
+    tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE, Tags.MEST_SETT],
     metadata: {
       title: "Oppfølgingsplan som fungerer",
       description:
@@ -57,7 +58,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "62f13221-00015227-0618cd4a",
-    tags: [Tags.IA, Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING],
+    tags: [Tags.IA, Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING, Tags.MEST_SETT],
     metadata: {
       title: "Tilrettelegging og medvirkning",
       description:

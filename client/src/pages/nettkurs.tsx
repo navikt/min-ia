@@ -57,7 +57,7 @@ export default function Nettkurs(props: { page: PageProps }) {
     }
   };
 
-  const filterButtomList: Function = (liste: ListeElement[]) => (
+  const filterButtonList: Function = (liste: ListeElement[]) => (
     <>
       {liste.map((toggleFilter) => {
         const buttonPressed = filter === toggleFilter.key;
@@ -89,7 +89,7 @@ export default function Nettkurs(props: { page: PageProps }) {
       ) : (
         <div className={styles.nettkurs}>
           <div className={styles.nettkurs__filter_rad}>
-            {filterButtomList(filterListe)}
+            {filterButtonList(filterListe)}
           </div>
           <div className={styles.videoer}>
             {IAVideoer.map((video, index) => {
