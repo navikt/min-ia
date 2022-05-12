@@ -1,11 +1,12 @@
-import { BASE_PATH } from "./backendApiProxy";
+import { FRONTEND_METRIKKER_PATH } from "./backendApiProxy";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
   organisasjoner,
 } from "./local/testdata";
+import { Express } from "express";
 
-export const backendApiProxyMock = (app) => {
+export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
   console.log("========== Mock Backend API ============");
   console.log("===DETTE SKAL DU IKKE SE I PRODUKSJON===");
@@ -16,7 +17,7 @@ export const backendApiProxyMock = (app) => {
     : "NORMAL";
   const delayFaktorIMillis = 500;
 
-  app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
+  server.get("/min-ia/api/organisasjoner", (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
 
     switch (testMode) {
@@ -32,19 +33,8 @@ export const backendApiProxyMock = (app) => {
     }
   });
 
-  app.get(
-    `${BASE_PATH}/metrikker/innlogget/mottatt-iatjeneste`,
-    (request, response) => {
-      console.log("[DEBUG] GET /metrikker/innlogget/mottatt-iatjeneste");
-
-      setTimeout(function () {
-        response.sendStatus(201);
-      }, delayFaktorIMillis);
-    }
-  );
-
-  app.get(
-    `${BASE_PATH}/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis`,
+  server.get(
+    "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
     (request, response) => {
       const orgnr = request.params.orgnr;
       console.log(
@@ -78,6 +68,22 @@ export const backendApiProxyMock = (app) => {
 
       setTimeout(function () {
         response.send(kvartalsvisSykefraværsprosent);
+      }, delayFaktorIMillis);
+    }
+  );
+
+  console.debug(
+    `Setter opp mock POST-endepunkt for ${FRONTEND_METRIKKER_PATH}/innlogget/mottatt-iatjeneste`
+  );
+  server.post(
+    `/min-ia/metrikker/innlogget/mottatt-iatjeneste`,
+    (request, response) => {
+      console.log("[DEBUG] POST /metrikker/innlogget/mottatt-iatjeneste");
+
+      setTimeout(function () {
+        response.send({
+          status: "created",
+        });
       }, delayFaktorIMillis);
     }
   );

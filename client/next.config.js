@@ -6,8 +6,8 @@ const nextConfig = {
   reactStrictMode: true,
   basePath: "/min-ia",
   i18n: {
-    locales: ['no'],
-    defaultLocale: 'no',
+    locales: ["no"],
+    defaultLocale: "no",
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
@@ -37,6 +37,10 @@ const nextConfig = {
       {
         source: "/success:slug*",
         destination: "http://localhost:3010/min-ia/success:slug*",
+      },
+      {
+        source: "/metrikker/:slug*",
+        destination: "http://localhost:3010/min-ia/metrikker/:slug*",
       },
     ];
   },

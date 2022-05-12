@@ -42,7 +42,18 @@ const harAuthorizationHeader = (request: Request) => {
   );
 };
 
-function settOppProxy() {
+const startServer = async () => {
+  server.use(cookieParser());
+  server.use(prometheus);
+  console.log("Starting server: server.js");
+  // TODO: Samle alle kodesnutter som krever process.env.NODE_ENV === "production"
+
+  if (process.env.NODE_ENV === "production") {
+    await Promise.all([initIdporten(), initTokenX()]);
+  }
+
+  console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
+
   if (process.env.NODE_ENV === "production") {
     console.log("Setter opp backendApiProxy og metrikkerProxy");
     server.use(backendApiProxy);
@@ -51,20 +62,6 @@ function settOppProxy() {
     console.log("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
-}
-
-const startServer = async () => {
-  server.use(cookieParser());
-  server.use(prometheus);
-  console.log("Starting server: server.js");
-
-  if (process.env.NODE_ENV === "production") {
-    await Promise.all([initIdporten(), initTokenX()]);
-  }
-
-  console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
-
-  settOppProxy();
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
     let redirect: string = request.query.redirect

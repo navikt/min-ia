@@ -1,17 +1,16 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { exchangeToken } from "./tokenx";
-import { create } from "domain";
 
+// TODO: Dette objektet kan sanns. fjernes
 const envProperties = {
   BACKEND_API_BASE_URL:
     process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL || "http://localhost:8080",
-  METIRKKER_API_BASE_URL:
-    process.env.IA_TJENESTEMERTIKKER_BASE_URL || "http://localhost:8080", // Samme host som sfs-api, ikke helt bra kanskje
+  METRIKKER_API_BASE_URL:
+    process.env.IA_TJENESTEMERTIKKER_BASE_URL ||
+    "http://localhost:8080/ia-tjenester-metrikker", // Samme host som sfs-api, ikke helt bra kanskje
   PORT: process.env.PORT || 3010,
 };
 
-export const BASE_PATH = "/min-ia";
-const FRONTEND_API_PATH = BASE_PATH + "/api";
 const BACKEND_API_BASE_URL = `${envProperties.BACKEND_API_BASE_URL}`;
 const BACKEND_API_PATH = "/sykefravarsstatistikk-api";
 
@@ -19,9 +18,10 @@ const backendApiProxyOptions: Options = {
   target: BACKEND_API_BASE_URL,
   changeOrigin: true,
   pathRewrite: (path) => {
-    return path.replace(FRONTEND_API_PATH, BACKEND_API_PATH);
+    return path.replace("/min-ia" + "/api", BACKEND_API_PATH);
   },
   router: async (req) => {
+    console.log("[DEBUG] Proxyer kall til backend api");
     if (process.env.NODE_ENV === "development") {
       // I labs så returnerer vi mock uansett
       return undefined;
@@ -37,18 +37,15 @@ const backendApiProxyOptions: Options = {
   logLevel: "info",
 };
 
-const FRONTEND_METRIKKER_PATH = BASE_PATH + "/metrikker";
-const METRIKKER_PATH = "/ia-tjenester-metrikker";
-const METRIKKER_BASE_URL = `${envProperties.METIRKKER_API_BASE_URL}`;
+export const FRONTEND_METRIKKER_PATH = "/min-ia" + "/metrikker";
 
 // TODO: Fjern duplikat kode
 const iaTjenestemetrikkerProxyOptions: Options = {
-  target: METRIKKER_BASE_URL,
+  target: `${envProperties.METRIKKER_API_BASE_URL}`,
   changeOrigin: true,
-  pathRewrite: (path) => {
-    return path.replace(FRONTEND_METRIKKER_PATH, METRIKKER_PATH);
-  },
+  pathRewrite: { FRONTEND_METRIKKER_PATH: "/" },
   router: async (req) => {
+    console.log("[DEBUG] Proxyer kall til metrikker");
     if (process.env.NODE_ENV === "development") {
       // I labs så returnerer vi mock uansett
       return undefined;
@@ -65,11 +62,11 @@ const iaTjenestemetrikkerProxyOptions: Options = {
 };
 
 export const metrikkerProxy = createProxyMiddleware(
-  METRIKKER_PATH,
+  FRONTEND_METRIKKER_PATH,
   iaTjenestemetrikkerProxyOptions
 );
 
 export const backendApiProxy = createProxyMiddleware(
-  FRONTEND_API_PATH,
+  "/min-ia" + "/api",
   backendApiProxyOptions
 );

@@ -1,3 +1,5 @@
+import { METRIKKER_BASE_PATH } from "../utils/konstanter";
+
 interface IaTjenesteMetrikk {
   orgnr: String;
   altinnRettighet: String;
@@ -5,7 +7,7 @@ interface IaTjenesteMetrikk {
   kilde: String;
   tjenesteMottakkelsesdato: String;
 }
-export const innloggetIaTjenestemetrikkPath = `metrikker/innlogget/mottatt-iatjeneste`;
+export const innloggetIaTjenestemetrikkPath = `${METRIKKER_BASE_PATH}/innlogget/mottatt-iatjeneste`;
 
 export enum IaTjeneste {
   FOREBYGGE_FRAVÆR = "FOREBYGGE_FRAVÆR",
@@ -28,31 +30,31 @@ const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
   return dato.toISOString().split(".")[0] + "Z";
 };
 
-const iaTjenesterSendtForBedrift: {
-  orgnr: string;
-  mottattTjeneste: IaTjeneste;
-}[] = [];
+// const iaTjenesterSendtForBedrift: {
+//   orgnr: string;
+//   mottattTjeneste: IaTjeneste;
+// }[] = [];
 
-const harAlleredeRegistrerteIaTjeneste = (
-  orgnr: string,
-  tjeneste: IaTjeneste
-): boolean => {
-  return (
-    iaTjenesterSendtForBedrift.find(
-      (bedrift) =>
-        bedrift.orgnr === orgnr && bedrift.mottattTjeneste === tjeneste
-    ) != undefined
-  );
-};
+// const harAlleredeRegistrerteIaTjeneste = (
+//   orgnr: string,
+//   tjeneste: IaTjeneste
+// ): boolean => {
+//   return (
+//     iaTjenesterSendtForBedrift.find(
+//       (bedrift) =>
+//         bedrift.orgnr === orgnr && bedrift.mottattTjeneste === tjeneste
+//     ) != undefined
+//   );
+// };
 
 export const registrerLevertIaTjeneste = async (
-  orgnr: string | undefined,
+  orgnr: string,
   tjeneste: IaTjeneste
 ): Promise<boolean> => {
-  if (orgnr == undefined || harAlleredeRegistrerteIaTjeneste(orgnr, tjeneste)) {
-    console.log("Levert IA-tjeneste allerede registrert, sender ikke ut ny");
-    return false;
-  }
+  // if (orgnr == undefined || harAlleredeRegistrerteIaTjeneste(orgnr, tjeneste)) {
+  //   console.log("Levert IA-tjeneste allerede registrert, sender ikke ut ny");
+  //   return false;
+  // }
 
   const metrikk = byggIaTjenesteMottattMetrikk(orgnr, tjeneste);
 
@@ -63,7 +65,7 @@ export const registrerLevertIaTjeneste = async (
       orgnr,
       tjeneste
     );
-    iaTjenesterSendtForBedrift.push({ orgnr, mottattTjeneste: tjeneste });
+    // iaTjenesterSendtForBedrift.push({ orgnr, mottattTjeneste: tjeneste });
   }
   console.error(
     "Klarte ikke sende ut IA-tjenestemetrikk med orgnr/tjeneste = ",
@@ -76,21 +78,33 @@ export const registrerLevertIaTjeneste = async (
 export const sendIaTjenesteMetrikk = async (
   levertIaTjeneste: IaTjenesteMetrikk
 ): Promise<boolean> => {
+  console.log(`Sender levertIaTjeneste: ${JSON.stringify(levertIaTjeneste)}`);
   const settings = {
     method: "POST",
     credentials: "include",
     body: JSON.stringify(levertIaTjeneste),
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
     },
   };
   try {
+    console.log(
+      `sendIaTjenesteMetrikk: Kjører fetch mot ${innloggetIaTjenestemetrikkPath} med ${JSON.stringify(
+        settings
+      )}`
+    );
+    console.log("Dette er LIKE FØR FETCH");
     // @ts-ignore
     const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
+    console.log("Dette er LIKE ETTER FETCH");
     const data = await res.json();
     return data.status === "created";
-  } catch (e) {
+  } catch (error) {
+    console.log("Inne i catch(error) i sendIaTjenesteMetrikk");
+    let message = "Unknown Error";
+    if (error instanceof Error) message = error.message;
+    // we'll proceed, but let's report it
+    reportError({ message });
     return false;
   }
 };

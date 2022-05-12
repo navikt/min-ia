@@ -1,4 +1,4 @@
-import { BASE_PATH } from "../utils/konstanter";
+import { API_BASE_PATH, BASE_PATH } from "../utils/konstanter";
 import { RestRessurs, RestStatus } from "./rest-status";
 import { fetchMedFeilhåndtering } from "./api-utils";
 
@@ -41,7 +41,7 @@ export interface KvartalsvisSykefraværshistorikk {
 }
 
 const sykefraværshistorikkPath = (orgnr: string) =>
-  `${BASE_PATH}/api/${orgnr}/v1/offentlig/sykefravarshistorikk/kvartalsvis`;
+  `${API_BASE_PATH}/${orgnr}/v1/offentlig/sykefravarshistorikk/kvartalsvis`;
 
 export const hentRestSykefraværshistorikk = async (
   orgnr: string
