@@ -1,7 +1,4 @@
 @use "src/styles/konstanter";
-.videoOgTittelContainer{
-  //display: flex;
-}
 
 .videoContainer {
   height: 210px;
@@ -10,6 +7,7 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  min-height: 220px;
 }
 
 .video {
@@ -38,15 +36,17 @@
   box-sizing: border-box;
 }
 
-@media (min-width: konstanter.$screen-sm) {
+@media (min-width: 420px) {
+  .videoContainer {
+    min-height: 280px;
+  }
+}
+
+@media (min-width: 520px) {
   .videoContainer {
     max-width: 540px;
     min-height: 320px;
   }
 }
 
-@media (min-width: konstanter.$screen-md) {
-  .videoContainer {
-    //min-height: 550px;
-  }
-}
+

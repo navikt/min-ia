@@ -100,6 +100,7 @@ export default function Nettkurs(props: { page: PageProps }) {
                     display: skalVideoVises(video) ? "flex" : "none",
                     flexDirection: "column",
                     alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                   key={index}
                 >

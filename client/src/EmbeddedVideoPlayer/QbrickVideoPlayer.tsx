@@ -33,10 +33,8 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
     };
   };
   return (
-    <div className={styles.videoOgTittelContainer}>
-      <div className={styles.videoContainer}>
-        <div className={styles.video} dangerouslySetInnerHTML={player()} />
-      </div>
+    <div className={styles.videoContainer}>
+      <div className={styles.video} dangerouslySetInnerHTML={player()} />
     </div>
   );
 };
