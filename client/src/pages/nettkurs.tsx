@@ -58,7 +58,7 @@ export default function Nettkurs(props: { page: PageProps }) {
   };
 
   const filterButtomList: Function = (liste: ListeElement[]) => (
-    <div className={styles.nettkurs}>
+    <>
       {liste.map((toggleFilter) => {
         const buttonPressed = filter === toggleFilter.key;
         return (
@@ -76,7 +76,7 @@ export default function Nettkurs(props: { page: PageProps }) {
           </Button>
         );
       })}
-    </div>
+    </>
   );
 
   const skalVideoVises = (video: QbrickVideo) => {
