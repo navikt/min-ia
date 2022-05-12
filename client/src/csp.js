@@ -47,7 +47,6 @@ const csp = {
     "video.qbrick.com",
     "play2.qbrick.com",
     "*.dna.ip-only.net",
-    "ws://localhost:3000", // Safari
   ],
   "font-src": [
     "data:",
