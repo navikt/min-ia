@@ -15,7 +15,7 @@ export const backendApiProxyMock = (server: Express) => {
   const testMode: string = process.env.TEST_MODE
     ? process.env.TEST_MODE
     : "NORMAL";
-  const delayFaktorIMillis = 500;
+  const delayInMillis = 500;
 
   server.get("/min-ia/api/organisasjoner", (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
@@ -33,6 +33,9 @@ export const backendApiProxyMock = (server: Express) => {
     }
   });
 
+  console.debug(
+    `Setter opp mock for GET-endepunkt med path ${FRONTEND_METRIKKER_PATH}/innlogget/mottatt-iatjeneste`
+  );
   server.get(
     "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
     (request, response) => {
@@ -68,23 +71,19 @@ export const backendApiProxyMock = (server: Express) => {
 
       setTimeout(function () {
         response.send(kvartalsvisSykefraværsprosent);
-      }, delayFaktorIMillis);
+      }, delayInMillis);
     }
   );
 
-  console.debug(
-    `Setter opp mock POST-endepunkt for ${FRONTEND_METRIKKER_PATH}/innlogget/mottatt-iatjeneste`
-  );
   server.post(
     `/min-ia/metrikker/innlogget/mottatt-iatjeneste`,
     (request, response) => {
       console.log("[DEBUG] POST /metrikker/innlogget/mottatt-iatjeneste");
-
       setTimeout(function () {
         response.send({
           status: "created",
         });
-      }, delayFaktorIMillis);
+      }, delayInMillis);
     }
   );
 };

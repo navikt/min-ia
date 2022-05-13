@@ -11,7 +11,7 @@ spec:
   env:
     - name: SYKEFRAVARSSTATISTIKK_API_BASE_URL
       value: https://sykefravarsstatistikk-api.prod-fss-pub.nais.io
-    - name: IA_TJENESTEMERTIKKER_BASE_URL
+    - name: IA_TJENESTER_METRIKKER_BASE_URL
       value: https://arbeidsgiver.nav.no/ia-tjenester-metrikker
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
