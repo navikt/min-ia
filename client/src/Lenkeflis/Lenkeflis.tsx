@@ -6,7 +6,7 @@ import { sendLenkeKlikketPåEvent } from "../amplitude/events";
 import classNames from "classnames";
 import {
   IaTjeneste,
-  registrerLevertIaTjeneste,
+  registrerLevertInnloggetIaTjeneste,
 } from "../integrasjoner/ia-tjenestemetrikker-api";
 import { useOrgnr } from "../hooks/useOrgnr";
 
@@ -30,9 +30,10 @@ export const Lenkeflis: React.FunctionComponent<{
       window.location.href = destinasjon;
     }, maksVentetid);
     if (orgnr) {
-      registrerLevertIaTjeneste(orgnr, IaTjeneste.FOREBYGGE_FRAVÆR).then(
-        (isSent) => console.log("metrikker sendt? ", isSent)
-      );
+      registrerLevertInnloggetIaTjeneste(
+        orgnr,
+        IaTjeneste.FOREBYGGE_FRAVÆR
+      ).then((isSent) => console.log("metrikker sendt? ", isSent));
     }
     // else
     //   registrerUinnloggetIaTjeneste(...)

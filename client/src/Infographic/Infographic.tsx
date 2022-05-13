@@ -9,7 +9,7 @@ import {
   Applikasjon,
   getUrlForApplikasjon,
   utledUrlForBedrift,
-} from "../utils/environments";
+} from "../utils/urlUtils";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
