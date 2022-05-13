@@ -14,7 +14,7 @@ export const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
 const backendApiProxyOptions: Options = {
   target: backendApiBaseUrl,
   changeOrigin: true,
-  pathRewrite: { FRONTEND_API_PATH: "/sykefravarsstatistikk-api" },
+  pathRewrite: { [FRONTEND_API_PATH]: "/sykefravarsstatistikk-api" },
   router: async (req) => {
     console.log("[DEBUG] Proxyer kall til backend api");
     const tokenSet = await exchangeToken(req);
@@ -32,7 +32,7 @@ const backendApiProxyOptions: Options = {
 const iaTjenestemetrikkerProxyOptions: Options = {
   target: iaTjenestemetrikkerBaseUrl,
   changeOrigin: true,
-  pathRewrite: { FRONTEND_METRIKKER_PATH: "/" },
+  pathRewrite: { [FRONTEND_METRIKKER_PATH]: "/" },
   router: async (req) => {
     console.log("[DEBUG] Proxyer kall til metrikker api"); // TODO; Ta i bruk exchangeTokenAndAddHeader
     const tokenSet = await exchangeToken(req);
