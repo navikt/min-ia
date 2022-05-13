@@ -29,9 +29,13 @@ export const Lenkeflis: React.FunctionComponent<{
     setTimeout(() => {
       window.location.href = destinasjon;
     }, maksVentetid);
-    registrerLevertIaTjeneste(orgnr, IaTjeneste.FOREBYGGE_FRAVÆR).then(
-      (isSent) => console.log("metrikker sendt? ", isSent)
-    );
+    if (orgnr) {
+      registrerLevertIaTjeneste(orgnr, IaTjeneste.FOREBYGGE_FRAVÆR).then(
+        (isSent) => console.log("metrikker sendt? ", isSent)
+      );
+    }
+    // else
+    //   registrerUinnloggetIaTjeneste(...)
     sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
       window.location.href = destinasjon;
     });
