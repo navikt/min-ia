@@ -11,7 +11,7 @@ Landingsside for selvbetjente IA-tjenester
 - Naviger til `../client`
 - Installer avhengigheter: `yarn`
 - Kjør opp applikasjon: `yarn dev`
-- Åpne applikasjonen på `http://localhost:3000/min-ia`
+- Åpne applikasjonen på `http://localhost:3000/min-ia` (for Safari browser, legg til `"ws://localhost:3000",` i `connect-src` variabel i `sp.js` fil.
 
 
 # TODO: Finne en måte å få hot-reload på både client og server :)

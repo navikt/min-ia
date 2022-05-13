@@ -1,12 +1,13 @@
 @use "src/styles/konstanter";
 
 .videoContainer {
-  height: 240px;
+  height: 210px;
   padding: 0 1rem 0 0;
   margin-bottom: 0.5rem;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  min-height: 220px;
 }
 
 .video {
@@ -35,15 +36,17 @@
   box-sizing: border-box;
 }
 
-@media (min-width: konstanter.$screen-sm) {
+@media (min-width: 420px) {
   .videoContainer {
-    max-width: 540px;
-    min-height: 360px;
+    min-height: 280px;
   }
 }
 
-@media (min-width: konstanter.$screen-md) {
+@media (min-width: 520px) {
   .videoContainer {
-    //min-height: 550px;
+    max-width: 540px;
+    min-height: 320px;
   }
 }
+
+
