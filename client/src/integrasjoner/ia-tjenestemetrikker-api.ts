@@ -7,6 +7,7 @@ interface IaTjenesteMetrikk {
   kilde: String;
   tjenesteMottakkelsesdato: String;
 }
+
 export const innloggetIaTjenestemetrikkPath = `${METRIKKER_BASE_PATH}/innlogget/mottatt-iatjeneste`;
 
 export enum IaTjeneste {
@@ -21,7 +22,7 @@ function byggIaTjenesteMottattMetrikk(orgnr: string, forTjeneste: IaTjeneste) {
     kilde: forTjeneste,
     type: "DIGITAL_IA_TJENESTE",
     tjenesteMottakkelsesdato: tilIsoDatoMedUtcTimezoneUtenMillis(new Date()),
-    altinnRettighet: "IKKE_SATT",
+    altinnRettighet: "UKJENT",
   };
   return iaTjenesteMetrikk;
 }
@@ -30,31 +31,31 @@ const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
   return dato.toISOString().split(".")[0] + "Z";
 };
 
-// const iaTjenesterSendtForBedrift: {
-//   orgnr: string;
-//   mottattTjeneste: IaTjeneste;
-// }[] = [];
+const iaTjenesterSendtForBedrift: {
+  orgnr: string;
+  mottattTjeneste: IaTjeneste;
+}[] = [];
 
-// const harAlleredeRegistrerteIaTjeneste = (
-//   orgnr: string,
-//   tjeneste: IaTjeneste
-// ): boolean => {
-//   return (
-//     iaTjenesterSendtForBedrift.find(
-//       (bedrift) =>
-//         bedrift.orgnr === orgnr && bedrift.mottattTjeneste === tjeneste
-//     ) != undefined
-//   );
-// };
+const harAlleredeRegistrerteIaTjeneste = (
+  orgnr: string,
+  tjeneste: IaTjeneste
+): boolean => {
+  return (
+    iaTjenesterSendtForBedrift.find(
+      (bedrift) =>
+        bedrift.orgnr === orgnr && bedrift.mottattTjeneste === tjeneste
+    ) != undefined
+  );
+};
 
-export const registrerLevertIaTjeneste = async (
+export const registrerLevertInnloggetIaTjeneste = async (
   orgnr: string,
   tjeneste: IaTjeneste
 ): Promise<boolean> => {
-  // if (orgnr == undefined || harAlleredeRegistrerteIaTjeneste(orgnr, tjeneste)) {
-  //   console.log("Levert IA-tjeneste allerede registrert, sender ikke ut ny");
-  //   return false;
-  // }
+  if (orgnr == undefined || harAlleredeRegistrerteIaTjeneste(orgnr, tjeneste)) {
+    console.log("Levert IA-tjeneste allerede registrert, sender ikke ut ny");
+    return false;
+  }
 
   const metrikk = byggIaTjenesteMottattMetrikk(orgnr, tjeneste);
 
@@ -65,17 +66,19 @@ export const registrerLevertIaTjeneste = async (
       orgnr,
       tjeneste
     );
+    return true;
     // iaTjenesterSendtForBedrift.push({ orgnr, mottattTjeneste: tjeneste });
+  } else {
+    console.error(
+      "Klarte ikke sende ut IA-tjenestemetrikk med orgnr/tjeneste = ",
+      orgnr,
+      tjeneste
+    );
   }
-  console.error(
-    "Klarte ikke sende ut IA-tjenestemetrikk med orgnr/tjeneste = ",
-    orgnr,
-    tjeneste
-  );
   return false;
 };
 
-export const sendIaTjenesteMetrikk = async (
+const sendIaTjenesteMetrikk = async (
   levertIaTjeneste: IaTjenesteMetrikk
 ): Promise<boolean> => {
   console.log(`Sender levertIaTjeneste: ${JSON.stringify(levertIaTjeneste)}`);
