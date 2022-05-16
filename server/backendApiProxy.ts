@@ -1,6 +1,5 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { exchangeToken } from "./tokenx";
-import { Request } from "express";
 
 const backendApiBaseUrl =
   process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL ?? "http://localhost:8080";
@@ -45,6 +44,7 @@ const iaTjenestemetrikkerProxyOptions: Options = {
     if (!tokenSet?.expired() && tokenSet?.access_token) {
       req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
     }
+    console.log("Lengden på access token: ", tokenSet.access_token.length);
     return undefined;
   },
   secure: true,
