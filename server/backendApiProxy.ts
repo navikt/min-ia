@@ -34,7 +34,7 @@ const backendApiProxyOptions: Options = {
 const iaTjenestemetrikkerProxyOptions: Options = {
   target: iaTjenestemetrikkerBaseUrl,
   changeOrigin: true,
-  pathRewrite: { [FRONTEND_METRIKKER_PATH]: "/" },
+  pathRewrite: { [FRONTEND_METRIKKER_PATH]: "" },
   router: async (req) => {
     console.log("[DEBUG] Proxyer kall til metrikker api"); // TODO; Ta i bruk exchangeTokenAndAddHeader
     const tokenSet = await exchangeToken(
