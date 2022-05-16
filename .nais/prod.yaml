@@ -66,6 +66,9 @@ spec:
         - application: sykefravarsstatistikk-api
           namespace: arbeidsgiver
           cluster: prod-fss
+        - application: ia-tjenester-metrikker
+          namespace: arbeidsgiver
+          cluster: prod-gcp
       external:
         - host: dekoratoren.nav.no
         - host: sykefravarsstatistikk-api.prod-fss-pub.nais.io
