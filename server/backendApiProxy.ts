@@ -47,6 +47,9 @@ const iaTjenestemetrikkerProxyOptions: Options = {
     }
     console.log("Token set expired? ", tokenSet?.expired());
     console.log("Lengden på access token: ", tokenSet.access_token.length);
+
+    console.log("Path er: ", req.path);
+    console.log("Headers er ", req.headers);
     return undefined;
   },
   secure: true,
