@@ -42,14 +42,16 @@ const iaTjenestemetrikkerProxyOptions: Options = {
       process.env.IA_TJENESTER_METRIKKER_AUDIENCE
     );
     if (!tokenSet?.expired() && tokenSet?.access_token) {
+      console.log("Setter authorization header");
       req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
     }
+    console.log("Token set expired? ", tokenSet?.expired());
     console.log("Lengden på access token: ", tokenSet.access_token.length);
     return undefined;
   },
   secure: true,
   xfwd: true,
-  logLevel: "info",
+  logLevel: "debug",
 };
 
 export const backendApiProxy = createProxyMiddleware(
