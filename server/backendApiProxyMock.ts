@@ -4,6 +4,7 @@ import {
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
   organisasjoner,
 } from "./local/testdata";
+import {kurslisteMock} from "./local/testdata-kurs";
 
 export const backendApiProxyMock = (app) => {
   console.log("========================================");
@@ -70,4 +71,11 @@ export const backendApiProxyMock = (app) => {
       }, delayFaktorIMillis);
     }
   );
+  app.get(`${BASE_PATH}/kursoversikt/api/kurs`,(request, response)=>{
+    console.log(
+        `[DEBUG] GET kursoversikt/api/kurs`
+    );
+
+    response.send(kurslisteMock);
+  })
 };
