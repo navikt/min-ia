@@ -19,8 +19,10 @@ spec:
       ## Derfor overskriver vi NODE_ENV i dev-gcp og prod-gcp til 'production'
     - name: NODE_ENV
       value: production
-    - name: TOKENX_AUDIENCE
+    - name: SYKEFRAVARSSTATISTIKK_API_AUDIENCE
       value: "prod-fss:arbeidsgiver:sykefravarsstatistikk-api"
+    - name: IA_TJENESTER_METRIKKER_AUDIENCE
+      value: "prod-gcp:arbeidsgiver:ia-tjenester-metrikker"
     - name: APP_INGRESS
       value: https://arbeidsgiver.nav.no/min-ia
     - name: DECORATOR_URL

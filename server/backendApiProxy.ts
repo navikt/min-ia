@@ -17,7 +17,10 @@ const backendApiProxyOptions: Options = {
   pathRewrite: { [FRONTEND_API_PATH]: "/sykefravarsstatistikk-api" },
   router: async (req) => {
     console.log("[DEBUG] Proxyer kall til backend api");
-    const tokenSet = await exchangeToken(req);
+    const tokenSet = await exchangeToken(
+      req,
+      process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
+    );
     if (!tokenSet?.expired() && tokenSet?.access_token) {
       req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
     }
@@ -35,7 +38,10 @@ const iaTjenestemetrikkerProxyOptions: Options = {
   pathRewrite: { [FRONTEND_METRIKKER_PATH]: "/" },
   router: async (req) => {
     console.log("[DEBUG] Proxyer kall til metrikker api"); // TODO; Ta i bruk exchangeTokenAndAddHeader
-    const tokenSet = await exchangeToken(req);
+    const tokenSet = await exchangeToken(
+      req,
+      process.env.IA_TJENESTER_METRIKKER_AUDIENCE
+    );
     if (!tokenSet?.expired() && tokenSet?.access_token) {
       req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
     }
@@ -56,12 +62,12 @@ export const metrikkerProxy = createProxyMiddleware(
   iaTjenestemetrikkerProxyOptions
 );
 
-const exchangeTokenAndAddToHeader = async (req: Request) => {
-  const tokenSet = await exchangeToken(req);
-  if (!tokenSet?.expired() && tokenSet?.access_token) {
-    req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
-  }
-};
+// const exchangeTokenAndAddToHeader = async (req: Request) => {
+//   const tokenSet = await exchangeToken(req, );
+//   if (!tokenSet?.expired() && tokenSet?.access_token) {
+//     req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
+//   }
+// };
 
 const getProxySettings = (
   targetHost: string,

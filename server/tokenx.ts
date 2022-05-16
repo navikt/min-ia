@@ -26,7 +26,7 @@ async function getMockTokenXToken() {
   const tokenXToken = await (
     await fetch(
       process.env.FAKEDINGS_URL_TOKENX +
-        `?aud=${process.env.TOKENX_AUDIENCE}&acr=Level4&pid=01065500791`
+        `?aud=${process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE}&acr=Level4&pid=01065500791`
     )
   ).text();
   return new TokenSet({
@@ -34,7 +34,11 @@ async function getMockTokenXToken() {
   });
 }
 
-async function getTokenXToken(token: any, additionalClaims: any) {
+async function getTokenXToken(
+  token: any,
+  additionalClaims: any,
+  audience: string
+) {
   let tokenSet;
   try {
     tokenSet = await tokenxClient?.grant(
@@ -43,7 +47,7 @@ async function getTokenXToken(token: any, additionalClaims: any) {
         client_assertion_type:
           "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
         subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
-        audience: process.env.TOKENX_AUDIENCE,
+        audience: audience,
         subject_token: token,
       },
       additionalClaims
@@ -64,7 +68,10 @@ async function getTokenXToken(token: any, additionalClaims: any) {
   return tokenSet;
 }
 
-export async function exchangeToken(request: IncomingMessage) {
+export async function exchangeToken(
+  request: IncomingMessage,
+  audience: string
+) {
   let token = request.headers.authorization?.split(" ")[1];
 
   if (!token) {
@@ -84,5 +91,5 @@ export async function exchangeToken(request: IncomingMessage) {
     },
   };
 
-  return await getTokenXToken(token, additionalClaims);
+  return await getTokenXToken(token, additionalClaims, audience);
 }
