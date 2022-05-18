@@ -22,7 +22,7 @@ function byggIaTjenesteMottattMetrikk(orgnr: string, forTjeneste: IaTjeneste) {
     kilde: forTjeneste,
     type: "DIGITAL_IA_TJENESTE",
     tjenesteMottakkelsesdato: tilIsoDatoMedUtcTimezoneUtenMillis(new Date()),
-    altinnRettighet: "UKJENT",
+    altinnRettighet: "SYKEFRAVÆRSSTATISTIKK_FOR_VIRKSOMHETER",
   };
   return iaTjenesteMetrikk;
 }
