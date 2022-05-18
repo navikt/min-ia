@@ -36,7 +36,7 @@ const iaTjenesterSendtForBedrift: {
   mottattTjeneste: IaTjeneste;
 }[] = [];
 
-const harAlleredeRegistrerteIaTjeneste = (
+const harAlleredeRegistrertIaTjeneste = (
   orgnr: string,
   tjeneste: IaTjeneste
 ): boolean => {
@@ -52,7 +52,7 @@ export const registrerLevertInnloggetIaTjeneste = async (
   orgnr: string,
   tjeneste: IaTjeneste
 ): Promise<boolean> => {
-  if (orgnr == undefined || harAlleredeRegistrerteIaTjeneste(orgnr, tjeneste)) {
+  if (orgnr == undefined || harAlleredeRegistrertIaTjeneste(orgnr, tjeneste)) {
     console.log("Levert IA-tjeneste allerede registrert, sender ikke ut ny");
     return false;
   }

@@ -12,15 +12,17 @@ spec:
     - name: SYKEFRAVARSSTATISTIKK_API_BASE_URL
       value: https://sykefravarsstatistikk-api.dev-fss-pub.nais.io
     - name: IA_TJENESTER_METRIKKER_BASE_URL
-      value: https://ia-tjenester-metrikker.dev.intern.nav.no
+      value: https://ia-tjenester-metrikker.dev.nav.no/ia-tjenester-metrikker
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
       ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
       ## Derfor overskriver vi NODE_ENV i dev-gcp og prod-gcp til 'production'
     - name: NODE_ENV
       value: production
-    - name: TOKENX_AUDIENCE
+    - name: SYKEFRAVARSSTATISTIKK_API_AUDIENCE
       value: "dev-fss:arbeidsgiver:sykefravarsstatistikk-api"
+    - name: IA_TJENESTER_METRIKKER_AUDIENCE
+      value: "dev-gcp:arbeidsgiver:ia-tjenester-metrikker"
     - name: APP_INGRESS
       value: https://min-ia.dev.nav.no/min-ia
     - name: DECORATOR_URL
@@ -64,6 +66,9 @@ spec:
         - application: sykefravarsstatistikk-api
           namespace: arbeidsgiver
           cluster: dev-fss
+        - application: ia-tjenester-metrikker
+          namespace: arbeidsgiver
+          cluster: dev-gcp
       external:
         - host: dekoratoren.dev.nav.no
         - host: sykefravarsstatistikk-api.dev-fss-pub.nais.io
