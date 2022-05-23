@@ -1,16 +1,17 @@
 import { LinkPanel } from "@navikt/ds-react";
 
-interface Props {
+export interface LenkepanelProps {
   tittel: string;
   tekst?: string;
+  href:string;
   ikon?: any;
 }
 
-export const Lenkepanel = ({ tittel, tekst, ikon }: Props) => {
+export const Lenkepanel = ({ tittel, tekst,href, ikon }: LenkepanelProps) => {
   return (
     <>
 
-      <LinkPanel href="#">
+      <LinkPanel href={href}>
         <div
           style={{
             display: "grid",
