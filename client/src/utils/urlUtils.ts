@@ -33,7 +33,7 @@ export const getUrlForApplikasjon = (
     case Applikasjon.Kalkulator:
       return getUrlForKalkulator(miljø);
     case Applikasjon.Nettkurs:
-      return getUrlForNettkurs();
+      return getUrlForNettkurs(miljø);
     default:
       return "";
   }
@@ -84,6 +84,17 @@ const getUrlForSamtalestøtte = (miljø: Miljø): string => {
   }
 };
 
-const getUrlForNettkurs = (): string => {
-  return "/min-ia/nettkurs";
+const getUrlForNettkurs = (miljø:Miljø): string => {
+  switch (miljø) {
+    case Miljø.Lokal:
+      return "https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs";
+    case Miljø.Labs:
+      return "https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs";
+    case Miljø.Dev:
+      return "https://arbeidsgiver-gcp.dev.nav.no/forebygge-sykefravaer/#webinar-og-kurs";
+    case Miljø.Prod:
+      return "https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs";
+    default:
+      return "";
+  }
 };
