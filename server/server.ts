@@ -7,6 +7,7 @@ import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 import RateLimit from "express-rate-limit";
+import { QbrickNoPreloadConfig } from "./qbrick-config-no-preload";
 
 const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
@@ -112,6 +113,11 @@ const startServer = async () => {
       );
       response.redirect(url);
     }
+  });
+
+  server.get(`${basePath}/qbrick/config/no-preload`, (request, response) => {
+    response.setHeader("Content-Type", "application/json");
+    response.send(QbrickNoPreloadConfig);
   });
 
   server.get(`${basePath}/internal/isAlive`, (request, response) => {
