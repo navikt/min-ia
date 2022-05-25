@@ -28,7 +28,7 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
         data-gobrain-autoplay="false"  
         data-gobrain-repeat="false" 
         data-gobrain-moduleSettings="{&quot;TopControls&quot;:{&quot;download&quot;:{&quot;enabled&quot;:false},&quot;sharing&quot;:{&quot;enabled&quot;:false}},&quot;MobileControls&quot;:{&quot;download&quot;:{&quot;enabled&quot;:false},&quot;sharing&quot;:{&quot;enabled&quot;:false}}}" 
-        data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/wcag2" 
+        data-gobrain-config="/qbrick/config/no-preload" 
         data-gobrain-data="https://video.qbrick.com/api/v1/public/accounts/763558/medias/${props.video.id}"></div>`,
     };
   };
