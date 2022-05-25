@@ -7,7 +7,7 @@ import "dotenv/config";
 import { backendApiProxy } from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 import RateLimit from "express-rate-limit";
-import { QbrickNoPreloadConfig } from "./qbrick-config-no-preload";
+import { QbrickNoPreloadConfig } from "./qbrickConfigNoPreload";
 
 const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
