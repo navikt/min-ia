@@ -32,8 +32,6 @@ export default function Nettkurs(props: { page: PageProps }) {
     { key: Tags.ARBEIDSMILJØ, tekst: "Arbeidsmiljø" },
     { key: Tags.OPPFØLGING, tekst: "Oppfølging" },
     { key: Tags.MEDVIRKNING, tekst: "Medvirkning" },
-    { key: Tags.DIALOGMØTE, tekst: "Dialogmøte" },
-    { key: Tags.IA, tekst: "IA" },
     { key: Tags.ALLE, tekst: "Alle" },
     { key: Tags.MEST_SETT, tekst: "Mest sett" },
     { key: Tags.NYESTE, tekst: "Nyeste" },

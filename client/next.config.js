@@ -15,6 +15,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/qbrick/config/no-preload",
+        destination: "http://localhost:3010/min-ia/qbrick/config/no-preload",
+      },
+      {
         source: "/internal/isAlive",
         destination: "http://localhost:3010/min-ia/internal/isAlive",
       },

@@ -8,9 +8,7 @@ export interface QbrickVideo {
 }
 
 export enum Tags {
-  IA = "Inkluderende arbeidsliv",
   ARBEIDSMILJØ = "Arbeidsmiljø",
-  DIALOGMØTE = "Dialogmøte",
   MEDVIRKNING = "Medvirkning",
   OPPFØLGING = "Oppfølging",
   PSYKISK_HELSE = "Psykisk helse",
@@ -22,7 +20,7 @@ export enum Tags {
 export const IAVideoer: QbrickVideo[] = [
   {
     id: "702ed6e6-00015227-76bc0ebe",
-    tags: [Tags.IA, Tags.PSYKISK_HELSE],
+    tags: [Tags.PSYKISK_HELSE],
     metadata: {
       title: "Gode grep i krisetider - Arbeid og psykisk helse",
       description:
@@ -31,7 +29,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "bf6d8ad7-00015227-1228dfef",
-    tags: [Tags.IA, Tags.PSYKISK_HELSE, Tags.NYESTE],
+    tags: [Tags.PSYKISK_HELSE, Tags.NYESTE],
     metadata: {
       title: "Få den sjukmelde raskare tilbake i jobb",
       description:
@@ -40,7 +38,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "32361286-00015227-be0a3394",
-    tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE],
+    tags: [Tags.OPPFØLGING],
     metadata: {
       title: "Dialogmøte som fungerer",
       description:
@@ -49,7 +47,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "fc48a9e8-00015227-e728460d",
-    tags: [Tags.IA, Tags.OPPFØLGING, Tags.DIALOGMØTE, Tags.MEST_SETT],
+    tags: [Tags.OPPFØLGING, Tags.MEST_SETT],
     metadata: {
       title: "Oppfølgingsplan som fungerer",
       description:
@@ -58,7 +56,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "62f13221-00015227-0618cd4a",
-    tags: [Tags.IA, Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING, Tags.MEST_SETT],
+    tags: [Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING, Tags.MEST_SETT],
     metadata: {
       title: "Tilrettelegging og medvirkning",
       description:
@@ -67,7 +65,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "43914204-00015227-666b62d3",
-    tags: [Tags.IA, Tags.ARBEIDSMILJØ],
+    tags: [Tags.ARBEIDSMILJØ],
     metadata: {
       title: "Tilsette har ulike behov i ulike livsfasar",
       description:
@@ -76,7 +74,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "db3653cd-00015227-7015da5d",
-    tags: [Tags.IA, Tags.ARBEIDSMILJØ],
+    tags: [Tags.ARBEIDSMILJØ],
     metadata: {
       title:
         "Arbeidsmiljø skaper du best i samarbeid med tillitsvald og verneombod",
@@ -86,7 +84,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "1acd36bc-00015227-4d8594c2",
-    tags: [Tags.IA, Tags.ARBEIDSMILJØ],
+    tags: [Tags.ARBEIDSMILJØ],
     metadata: {
       title: "Godt arbeidsmiljø er ikkje berre kaker på fredag...",
       description:

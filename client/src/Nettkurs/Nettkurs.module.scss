@@ -39,7 +39,7 @@
     padding-left: 1rem;
   }
 
-  @media (min-width: konstanter.$screen-md) {
+  @media (min-width: konstanter.$screen-sm) {
 
     &__filter_rad {
       display: flex;

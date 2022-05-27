@@ -1,19 +1,11 @@
 import logEvent from "./logEvent";
 
-export const APP = "min-ia";
-
 export const sendSidevisningEvent = () => {
-  logEvent("sidevisning", {
-    app: APP,
-    url: window.location.pathname,
-  });
+  logEvent("sidevisning");
 };
 
 export const sendBedriftValgtEvent = () => {
-  logEvent("bedrift-valgt", {
-    app: APP,
-    url: window.location.pathname,
-  });
+  logEvent("bedrift-valgt");
 };
 
 export const sendLenkeKlikketPåEvent = (
@@ -21,8 +13,6 @@ export const sendLenkeKlikketPåEvent = (
   lenketekst: string
 ): Promise<any> => {
   return logEvent("navigere", {
-    app: APP,
-    url: window.location.pathname,
     destinasjon: destinasjon,
     lenketekst: lenketekst,
   });
