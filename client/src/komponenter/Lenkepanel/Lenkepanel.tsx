@@ -5,13 +5,13 @@ export interface LenkepanelProps {
   tekst?: string;
   href:string;
   ikon?: any;
+  className?:string;
 }
 
-export const Lenkepanel = ({ tittel, tekst,href, ikon }: LenkepanelProps) => {
+export const Lenkepanel = ({ tittel, tekst,href, ikon,className }: LenkepanelProps) => {
   return (
     <>
-
-      <LinkPanel href={href}>
+      <LinkPanel href={href} className={className}>
         <div
           style={{
             display: "grid",

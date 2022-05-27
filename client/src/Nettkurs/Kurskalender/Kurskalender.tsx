@@ -5,6 +5,7 @@ import { getNesteNettkurs } from "../../utils/kurs-utils";
 import { NesteNettkurs } from "../NesteNettkurs/NesteNettkurs";
 import { Kurspåmelding } from "../Kurspåmelding/Kurspåmelding";
 import {Heading} from "@navikt/ds-react";
+import styles from "./kurskalender.module.scss";
 
 const Kurskalender = () => {
   const [restKursliste, setRestKursliste] = useState<RestKursliste>({
@@ -34,8 +35,8 @@ const Kurskalender = () => {
     },
   };
   return (
-    <div style={{margin:"auto"}}>
-      <Heading size={"large"} style={{marginTop:32}} >Vil du delta på kurs?</Heading>
+    <div className={styles.kurskalender}>
+      <Heading size={"large"} className={styles.kurskalender__tittel}>Vil du delta på kurs?</Heading>
       <NesteNettkurs nesteNettkurs={nesteNettkurs} />
       <Kurspåmelding
         kurspåmelding={kurspåmelding}

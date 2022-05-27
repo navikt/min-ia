@@ -1,0 +1,8 @@
+@use "src/styles/konstanter";
+
+.kurspåmelding{
+  &_tekst{margin-top: 1rem;}
+  &__folger{
+    margin-top: 0.5rem;
+  }
+}
