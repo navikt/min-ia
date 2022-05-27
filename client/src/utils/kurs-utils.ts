@@ -4,7 +4,6 @@ export const getNesteNettkurs = (kursliste: Kurs[]): Kurs | undefined => {
     const today = new Date();
     return kursliste
         .filter((kurs) => kurs.tema === 'Inkluderende arbeidsliv (IA)')
-        .filter((kurs) => kurs.type === 'Webinar')
         .filter((kurs) => kurs.start.getTime() >= today.getTime())
         .sort(
             (kurs1, kurs2) => new Date(kurs1.start).getTime() - new Date(kurs2.start).getTime()

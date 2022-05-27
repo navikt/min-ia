@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Lenkepanel } from "../../komponenter/Lenkepanel/Lenkepanel";
-import { KursKalenderIkon } from "../ikoner/KursKalenderIkon";
 import { hentRestKurs, RestKursliste } from "../../utils/kurs-api";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { getNesteNettkurs } from "../../utils/kurs-utils";
 import { NesteNettkurs } from "../NesteNettkurs/NesteNettkurs";
-import {Kurspåmelding} from "../Kurspåmelding/Kurspåmelding";
+import { Kurspåmelding } from "../Kurspåmelding/Kurspåmelding";
+import {Heading} from "@navikt/ds-react";
 
 const Kurskalender = () => {
   const [restKursliste, setRestKursliste] = useState<RestKursliste>({
@@ -22,22 +21,27 @@ const Kurskalender = () => {
   const nesteNettkurs = getNesteNettkurs(
     restKursliste.status === RestStatus.Suksess ? restKursliste.data : []
   );
-const kurspåmelding:Kurspåmelding={
-    tittel:"Ønsker du å delta på kurs?",
-    undertekst:"Kursene er gratis. Du kan stille spørsmål og få svar når du deltar på kursene.",
-    undertekstUtenKurs:`Kursene er gratis. Du kan stille spørsmål og få svar når du deltar på kursene. Det er foreløpig ikke satt opp nye kurs. Når nye kurs er tilgjengelig, vil du se dem her.`,
-    lenke:{
-        tekst:'',
-        tittel:'Finn et kurs som passer for deg her',
-        href:'https://arbeidsgiver.nav.no/kursoversikt/?type=Webinar&tema=Inkluderende%20arbeidsliv%20(IA)'
-    }
-}
+  const kurspåmelding: Kurspåmelding = {
+    tittel: "Ønsker du å delta på kurs?",
+    undertekst:
+      "Kursene er gratis. Du kan stille spørsmål og få svar når du deltar på kursene.",
+    undertekstUtenKurs: `Det er foreløpig ikke satt opp nye kurs. Du ser kurs her når de settes opp.`,
+    undertekstUtenKursDel2: `Kursene er gratis. Du kan stille spørsmål og få svar når du deltar på kursene. `,
+    lenke: {
+      tekst: "",
+      tittel: "Finn et kurs som passer for deg her",
+      href: "https://arbeidsgiver.nav.no/kursoversikt/?type=Webinar&tema=Inkluderende%20arbeidsliv%20(IA)",
+    },
+  };
   return (
-    <>
+    <div style={{margin:"auto"}}>
+      <Heading size={"large"} style={{marginTop:32}} >Vil du delta på kurs?</Heading>
       <NesteNettkurs nesteNettkurs={nesteNettkurs} />
-      <Kurspåmelding kurspåmelding={kurspåmelding}
-                     nesteNettkurs={nesteNettkurs}/>
-        {/*<div>{kurspåmelding.tittel}</div>
+      <Kurspåmelding
+        kurspåmelding={kurspåmelding}
+        nesteNettkurs={nesteNettkurs}
+      />
+      {/*<div>{kurspåmelding.tittel}</div>
       <div>
           {kurspåmelding.undertekst}</div>
       <Lenkepanel
@@ -45,7 +49,7 @@ const kurspåmelding:Kurspåmelding={
         ikon={KursKalenderIkon}
         href={kurspåmelding.lenke.href}
       />*/}
-    </>
+    </div>
   );
 };
 export default Kurskalender;

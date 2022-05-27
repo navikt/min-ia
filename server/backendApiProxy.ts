@@ -7,7 +7,7 @@ const envProperties = {
   PORT: process.env.PORT || 3010,
 };
 const kursoversiktBaseUrl =
-  "https://arbeidsgiver.nav.no/kursoversikt/api/kurs";
+  "https://arbeidsgiver.nav.no";
 
 export const BASE_PATH = "/min-ia";
 const FRONTEND_API_PATH = BASE_PATH + "/api";
@@ -46,10 +46,7 @@ export const backendApiProxy = createProxyMiddleware(
 const kursoveriktProxyOptions: Options = {
   target: kursoversiktBaseUrl,
   changeOrigin: true,
-  pathRewrite: (path) => {
-    console.log("[DEBUG],path.replace(FRONTEND_KURSOVERSIKT_PATH, KURSOVERSIKT_API_PATH);")
-    return path.replace(FRONTEND_KURSOVERSIKT_PATH, KURSOVERSIKT_API_PATH);
-  },
+      pathRewrite: { [FRONTEND_KURSOVERSIKT_PATH]: KURSOVERSIKT_API_PATH },
   router: async (req) => {
     return undefined;
   },

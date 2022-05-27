@@ -8,6 +8,7 @@ export interface Kurspåmelding  {
     tittel: string;
     undertekst: string;
     undertekstUtenKurs: string;
+    undertekstUtenKursDel2: string;
     lenke: LenkepanelProps;
 }
 interface Props{
@@ -18,13 +19,14 @@ export const Kurspåmelding: FunctionComponent<Props> = ({ kurspåmelding,nesteN
   return <>{
       nesteNettkurs&&kurspåmelding!==null?
       <>
-          <div>{kurspåmelding.tittel}</div>
+          {/*<div>{kurspåmelding.tittel}</div>*/}
           <div>
               {kurspåmelding.undertekst}</div>
           <Lenkepanel
               tittel={kurspåmelding.lenke.tittel}
               ikon={KursKalenderIkon}
               href={kurspåmelding.lenke.href}
-          /></>:<div>{kurspåmelding?.undertekstUtenKurs}</div>
+          /></>:<><div>{kurspåmelding?.undertekstUtenKurs}</div>
+              <div>{kurspåmelding?.undertekstUtenKursDel2}</div></>
   }</>;
 };

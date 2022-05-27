@@ -16,7 +16,7 @@ export const NesteNettkurs:FunctionComponent<Props> = ({nesteNettkurs}) => {
     return (
         <div className={styles.nesteNettkurs}>
             <NesteNettkursIkon className={styles.nesteNettkurs__ikon}/>
-            <BodyLong>Neste nettkurs er: {formatterKursdato(nesteNettkurs?.start)}</BodyLong>
+            <BodyLong>Neste kurs er: {formatterKursdato(nesteNettkurs?.start)}</BodyLong>
         </div>
     );
 }
