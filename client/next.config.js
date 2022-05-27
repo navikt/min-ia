@@ -6,14 +6,18 @@ const nextConfig = {
   reactStrictMode: true,
   basePath: "/min-ia",
   i18n: {
-    locales: ['no'],
-    defaultLocale: 'no',
+    locales: ["no"],
+    defaultLocale: "no",
   },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
   async rewrites() {
     return [
+      {
+        source: "/qbrick/config/no-preload",
+        destination: "http://localhost:3010/min-ia/qbrick/config/no-preload",
+      },
       {
         source: "/internal/isAlive",
         destination: "http://localhost:3010/min-ia/internal/isAlive",
