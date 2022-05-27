@@ -4,7 +4,7 @@ import {
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
   organisasjoner,
 } from "./local/testdata";
-import { kurslisteMock } from "./local/testdataKurs";
+import { kurslisteMock } from "./local/testdata-kurs";
 
 export const backendApiProxyMock = (app) => {
   console.log("========================================");
