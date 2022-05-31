@@ -26,10 +26,6 @@ import {
   utledUrlForBedrift,
 } from "../utils/urlUtils";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
-import {
-  IaTjeneste,
-  registrerLevertInnloggetIaTjeneste,
-} from "../integrasjoner/ia-tjenestemetrikker-api";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
