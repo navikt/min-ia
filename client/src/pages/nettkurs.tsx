@@ -13,6 +13,7 @@ import { IAVideoer, QbrickVideo, Tags } from "../utils/nettkurs-utils";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Script from "next/script";
 import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
+import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
 
 interface ListeElement {
   key: Tags;
@@ -32,8 +33,6 @@ export default function Nettkurs(props: { page: PageProps }) {
     { key: Tags.ARBEIDSMILJØ, tekst: "Arbeidsmiljø" },
     { key: Tags.OPPFØLGING, tekst: "Oppfølging" },
     { key: Tags.MEDVIRKNING, tekst: "Medvirkning" },
-    { key: Tags.DIALOGMØTE, tekst: "Dialogmøte" },
-    { key: Tags.IA, tekst: "IA" },
     { key: Tags.ALLE, tekst: "Alle" },
     { key: Tags.MEST_SETT, tekst: "Mest sett" },
     { key: Tags.NYESTE, tekst: "Nyeste" },
@@ -119,6 +118,7 @@ export default function Nettkurs(props: { page: PageProps }) {
               );
             })}
           </div>
+          <Kurskalender />
         </div>
       )}
     </>

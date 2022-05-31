@@ -15,6 +15,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/qbrick/config/no-preload",
+        destination: "http://localhost:3010/min-ia/qbrick/config/no-preload",
+      },
+      {
         source: "/internal/isAlive",
         destination: "http://localhost:3010/min-ia/internal/isAlive",
       },
@@ -37,6 +41,10 @@ const nextConfig = {
       {
         source: "/success:slug*",
         destination: "http://localhost:3010/min-ia/success:slug*",
+      },
+      {
+        source: "/kursoversikt/api/kurs/:slug*",
+        destination: "http://localhost:3010/min-ia/kursoversikt/api/kurs/:slug*",
       },
       {
         source: "/metrikker/:slug*",

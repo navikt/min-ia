@@ -5,6 +5,7 @@ import {
   organisasjoner,
 } from "./local/testdata";
 import { Express } from "express";
+import {kurslisteMock, kurslisteMockTomt} from "./local/testdata-kurs";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
@@ -86,4 +87,11 @@ export const backendApiProxyMock = (server: Express) => {
       }, delayInMillis);
     }
   );
+
+  server.get(`/min-ia/kursoversikt/api/kurs`, (request, response) => {
+    console.log(`[DEBUG] GET /kursoversikt/api/kurs`);
+
+    //response.send(kurslisteMock);
+    response.send(kurslisteMockTomt);
+  });
 };
