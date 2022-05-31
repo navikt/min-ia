@@ -5,6 +5,7 @@ import {
   organisasjoner,
 } from "./local/testdata";
 import { Express } from "express";
+import { kurslisteMock } from "./local/testdata-kurs";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
@@ -78,7 +79,6 @@ export const backendApiProxyMock = (server: Express) => {
   server.post(
     `/min-ia/metrikker/innlogget/mottatt-iatjeneste`,
     (request, response) => {
-      console.log("[DEBUG] POST /metrikker/innlogget/mottatt-iatjeneste");
       setTimeout(function () {
         response.send({
           status: "created",
@@ -86,4 +86,8 @@ export const backendApiProxyMock = (server: Express) => {
       }, delayInMillis);
     }
   );
+
+  server.get(`/min-ia/kursoversikt/api/kurs`, (request, response) => {
+    response.send(kurslisteMock);
+  });
 };

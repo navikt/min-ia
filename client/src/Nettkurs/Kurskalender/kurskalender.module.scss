@@ -1,0 +1,13 @@
+@use "src/styles/konstanter";
+
+.kurskalender{
+  //margin: auto;
+margin: 1rem;
+  &__tittel{
+    margin-top: 0rem;
+  }
+
+  @media (min-width: konstanter.$screen-sm) {
+    margin: 3rem;
+  }
+}

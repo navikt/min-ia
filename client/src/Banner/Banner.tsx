@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Banner.module.scss";
 import Bedriftsmeny from "@navikt/bedriftsmeny";
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
@@ -44,7 +45,7 @@ const Banner: React.FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <div>
+    <div className={styles.banner}>
       <Bedriftsmeny
         organisasjoner={altinnOrganisasjoner}
         sidetittel={tittelMedUnderTittel}

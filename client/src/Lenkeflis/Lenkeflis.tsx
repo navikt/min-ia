@@ -30,13 +30,8 @@ export const Lenkeflis: React.FunctionComponent<{
       window.location.href = destinasjon;
     }, maksVentetid);
     if (orgnr) {
-      registrerLevertInnloggetIaTjeneste(
-        orgnr,
-        IaTjeneste.FOREBYGGE_FRAVÆR
-      ).then((isSent) => console.log("metrikker sendt? ", isSent));
+      registrerLevertInnloggetIaTjeneste(orgnr, IaTjeneste.FOREBYGGE_FRAVÆR);
     }
-    // else
-    //   registrerUinnloggetIaTjeneste(...)
     sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
       window.location.href = destinasjon;
     });
