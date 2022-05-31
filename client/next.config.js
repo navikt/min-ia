@@ -42,6 +42,10 @@ const nextConfig = {
         source: "/success:slug*",
         destination: "http://localhost:3010/min-ia/success:slug*",
       },
+      {
+        source: "/kursoversikt/api/kurs/:slug*",
+        destination: "http://localhost:3010/min-ia/kursoversikt/api/kurs/:slug*",
+      },
     ];
   },
   async headers() {

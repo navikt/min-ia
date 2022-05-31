@@ -4,7 +4,7 @@ import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import { backendApiProxy } from "./backendApiProxy";
+import {backendApiProxy, kursoversiktApiProxy} from "./backendApiProxy";
 import { backendApiProxyMock } from "./backendApiProxyMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./qbrickConfigNoPreload";
@@ -56,6 +56,7 @@ const startServer = async () => {
   if (process.env.NODE_ENV === "production") {
     console.log("Starter backendProxy");
     server.use(backendApiProxy);
+    server.use(kursoversiktApiProxy);
   } else {
     console.log("Starter backendProxyMock");
     backendApiProxyMock(server);
