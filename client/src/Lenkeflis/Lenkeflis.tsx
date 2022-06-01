@@ -21,7 +21,7 @@ export const Lenkeflis: React.FunctionComponent<{
   const orgnr = useOrgnr();
 
   // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
-  const sendEventOgNaviger = (
+  const sendEventOgNaviger = async (
     destinasjon: string,
     lenketekst: string,
     maksVentetid: number
@@ -29,12 +29,16 @@ export const Lenkeflis: React.FunctionComponent<{
     setTimeout(() => {
       window.location.href = destinasjon;
     }, maksVentetid);
-    if (orgnr) {
-      registrerLevertInnloggetIaTjeneste(orgnr, IaTjeneste.FOREBYGGE_FRAVÆR);
-    }
-    sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
-      window.location.href = destinasjon;
-    });
+
+    const metrikkutsendelse = registrerLevertInnloggetIaTjeneste(
+      IaTjeneste.FOREBYGGE_FRAVÆR,
+      orgnr
+    );
+    const amplitudekall = sendLenkeKlikketPåEvent(destinasjon, lenketekst);
+
+    await Promise.allSettled([metrikkutsendelse, amplitudekall]).then(
+      () => (window.location.href = destinasjon)
+    );
   };
 
   return (

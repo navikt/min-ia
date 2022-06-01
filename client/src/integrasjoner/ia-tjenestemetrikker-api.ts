@@ -1,4 +1,5 @@
 import { METRIKKER_BASE_PATH } from "../utils/konstanter";
+import { SentryError } from "@sentry/utils";
 
 interface IaTjenesteMetrikk {
   orgnr: String;
@@ -32,13 +33,12 @@ const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
 };
 
 export const registrerLevertInnloggetIaTjeneste = async (
-  orgnr: string,
-  tjeneste: IaTjeneste
+  tjeneste: IaTjeneste,
+  orgnr?: string,
 ): Promise<boolean> => {
-  if (orgnr === undefined) {
-    return false;
+  if (!orgnr) {
+    return Promise.reject("Orgnr er udefinert");
   }
-
   const metrikk = byggIaTjenesteMottattMetrikk(orgnr, tjeneste);
   return await sendIaTjenesteMetrikk(metrikk);
 };
@@ -54,14 +54,8 @@ const sendIaTjenesteMetrikk = async (
       "Content-Type": "application/json",
     },
   };
-  try {
-    // @ts-ignore
-    const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
-    const data = await res.json();
-    return data.status === "created";
-  } catch (error) {
-    let message = "Unknown Error";
-    if (error instanceof Error) message = error.message;
-    return false;
-  }
+  // @ts-ignore
+  const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
+  const data = await res.json();
+  return data.status === "created";
 };

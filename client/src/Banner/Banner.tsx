@@ -31,17 +31,17 @@ const Banner: React.FunctionComponent<Props> = (props) => {
   const router = useRouter();
   const [history] = useState<History>(getHistory());
 
-  const [bedriftVelgesManueltFraLista, setBedriftVelgesManueltFraLista] =
+  const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
 
   const onOrganisasjonChange = (organisasjon?: Organisasjon) => {
     if (organisasjon) {
       router.push(`?bedrift=${organisasjon.OrganizationNumber}`);
     }
-    if (bedriftVelgesManueltFraLista) {
+    if (bedriftValgtManueltFraLista) {
       sendBedriftValgtEvent();
     }
-    setBedriftVelgesManueltFraLista(true);
+    setBedriftValgtManueltFraLista(true);
   };
 
   return (

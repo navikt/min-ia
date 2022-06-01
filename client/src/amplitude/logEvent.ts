@@ -13,7 +13,7 @@ const getAmplitudeBucket = () => {
 };
 
 let initiated = false;
-const initClient = () => {
+const initClientIfNeeded = () => {
   if (!initiated) {
     amplitude.getInstance().init(getAmplitudeBucket(), "", {
       apiEndpoint: "amplitude.nav.no/collect",
@@ -35,7 +35,7 @@ export default function logEvent(
   eventName: string,
   additionalEventData: any = {}
 ): Promise<any> {
-  initClient();
+  initClientIfNeeded();
   return new Promise(function (resolve) {
     amplitude
       .getInstance()
