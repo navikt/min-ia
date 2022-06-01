@@ -1,5 +1,4 @@
 import { METRIKKER_BASE_PATH } from "../utils/konstanter";
-import { SentryError } from "@sentry/utils";
 
 interface IaTjenesteMetrikk {
   orgnr: String;
@@ -34,7 +33,7 @@ const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
 
 export const registrerLevertInnloggetIaTjeneste = async (
   tjeneste: IaTjeneste,
-  orgnr?: string,
+  orgnr?: string
 ): Promise<boolean> => {
   if (!orgnr) {
     return Promise.reject("Orgnr er udefinert");

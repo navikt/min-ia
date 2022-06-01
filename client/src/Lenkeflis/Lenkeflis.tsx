@@ -17,7 +17,7 @@ export const Lenkeflis: React.FunctionComponent<{
   href: string | undefined;
   fyltoppBakgrunn?: boolean;
 }> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
-  const TIMEOUT_IN_MILLIS = 750;
+  const TIMEOUT_IN_MILLIS = 3000;
   const orgnr = useOrgnr();
 
   // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
