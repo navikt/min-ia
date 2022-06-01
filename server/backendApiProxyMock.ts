@@ -1,12 +1,13 @@
-import { BASE_PATH } from "./backendApiProxy";
+import { FRONTEND_METRIKKER_PATH } from "./backendApiProxy";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
   organisasjoner,
 } from "./local/testdata";
-import {kurslisteMock, kurslisteMockTomt} from "./local/testdata-kurs";
+import { Express } from "express";
+import { kurslisteMock } from "./local/testdata-kurs";
 
-export const backendApiProxyMock = (app) => {
+export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
   console.log("========== Mock Backend API ============");
   console.log("===DETTE SKAL DU IKKE SE I PRODUKSJON===");
@@ -15,9 +16,9 @@ export const backendApiProxyMock = (app) => {
   const testMode: string = process.env.TEST_MODE
     ? process.env.TEST_MODE
     : "NORMAL";
-  const delayFaktorIMillis = 500;
+  const delayInMillis = 500;
 
-  app.get(`${BASE_PATH}/api/organisasjoner`, (request, response) => {
+  server.get("/min-ia/api/organisasjoner", (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
 
     switch (testMode) {
@@ -33,8 +34,11 @@ export const backendApiProxyMock = (app) => {
     }
   });
 
-  app.get(
-    `${BASE_PATH}/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis`,
+  console.debug(
+    `Setter opp mock for GET-endepunkt med path ${FRONTEND_METRIKKER_PATH}/innlogget/mottatt-iatjeneste`
+  );
+  server.get(
+    "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
     (request, response) => {
       const orgnr = request.params.orgnr;
       console.log(
@@ -68,13 +72,22 @@ export const backendApiProxyMock = (app) => {
 
       setTimeout(function () {
         response.send(kvartalsvisSykefraværsprosent);
-      }, delayFaktorIMillis);
+      }, delayInMillis);
     }
   );
-  app.get(`${BASE_PATH}/kursoversikt/api/kurs`, (request, response) => {
-    console.log(`[DEBUG] GET /kursoversikt/api/kurs`);
 
-    //response.send(kurslisteMock);
-    response.send(kurslisteMockTomt);
+  server.post(
+    `/min-ia/metrikker/innlogget/mottatt-iatjeneste`,
+    (request, response) => {
+      setTimeout(function () {
+        response.send({
+          status: "created",
+        });
+      }, delayInMillis);
+    }
+  );
+
+  server.get(`/min-ia/kursoversikt/api/kurs`, (request, response) => {
+    response.send(kurslisteMock);
   });
 };

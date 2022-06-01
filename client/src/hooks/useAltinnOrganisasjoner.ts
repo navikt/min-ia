@@ -4,7 +4,7 @@ import {
   RestAltinnOrganisasjoner,
 } from "../integrasjoner/altinnorganisasjon-api";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { API_BASE_URL } from "../utils/konstanter";
+import { API_BASE_PATH } from "../utils/konstanter";
 
 export function useAltinnOrganisasjoner() {
   const [restAltinnOrganisasjoner, setRestAltinnOrganisasjoner] =
@@ -13,7 +13,7 @@ export function useAltinnOrganisasjoner() {
     });
 
   useEffect(() => {
-    hentAltinnOrganisasjoner(`${API_BASE_URL}/organisasjoner`).then(
+    hentAltinnOrganisasjoner(`${API_BASE_PATH}/organisasjoner`).then(
       setRestAltinnOrganisasjoner
     );
   }, []);

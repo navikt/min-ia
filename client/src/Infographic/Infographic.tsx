@@ -111,8 +111,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       />
 
       <DesktopEllerMobilVersjon />
-      {windowSize.width !== undefined &&
-      windowSize.width > screenSmAsNumeric && (
+      {windowSize.width !== undefined && windowSize.width > screenSmAsNumeric && (
         <div className={styles.hjelpetekstWrapper}>
           <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
             For flere definisjoner gå til sykefraværsstatistikk.

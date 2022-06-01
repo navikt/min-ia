@@ -3,8 +3,12 @@ import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 import { sendLenkeKlikketPåEvent } from "../amplitude/events";
-import { useRouter } from "next/router";
 import classNames from "classnames";
+import {
+  IaTjeneste,
+  registrerLevertInnloggetIaTjeneste,
+} from "../integrasjoner/ia-tjenestemetrikker-api";
+import { useOrgnr } from "../hooks/useOrgnr";
 
 export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
@@ -13,11 +17,11 @@ export const Lenkeflis: React.FunctionComponent<{
   href: string | undefined;
   fyltoppBakgrunn?: boolean;
 }> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
-  const router = useRouter();
-  const TIMEOUT_IN_MILLIS = 750;
+  const TIMEOUT_IN_MILLIS = 1000;
+  const orgnr = useOrgnr();
 
   // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
-  const sendEventOgNaviger = (
+  const sendEventOgNaviger = async (
     destinasjon: string,
     lenketekst: string,
     maksVentetid: number
@@ -25,9 +29,16 @@ export const Lenkeflis: React.FunctionComponent<{
     setTimeout(() => {
       window.location.href = destinasjon;
     }, maksVentetid);
-    sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
-      window.location.href = destinasjon;
-    });
+
+    const metrikkutsendelse = registrerLevertInnloggetIaTjeneste(
+      IaTjeneste.FOREBYGGE_FRAVÆR,
+      orgnr
+    );
+    const amplitudekall = sendLenkeKlikketPåEvent(destinasjon, lenketekst);
+
+    await Promise.allSettled([metrikkutsendelse, amplitudekall]).then(
+      () => (window.location.href = destinasjon)
+    );
   };
 
   return (

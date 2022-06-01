@@ -46,6 +46,10 @@ const nextConfig = {
         source: "/kursoversikt/api/kurs/:slug*",
         destination: "http://localhost:3010/min-ia/kursoversikt/api/kurs/:slug*",
       },
+      {
+        source: "/metrikker/:slug*",
+        destination: "http://localhost:3010/min-ia/metrikker/:slug*",
+      },
     ];
   },
   async headers() {
