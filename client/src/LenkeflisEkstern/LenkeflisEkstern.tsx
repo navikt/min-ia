@@ -4,6 +4,7 @@ import { ExternalLink } from "@navikt/ds-icons";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 import { sendNavigereEvent } from "../amplitude/events";
 import { navigerEtterCallbacks } from "../utils/navigasjon";
+import { Link } from "@navikt/ds-react";
 
 export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
@@ -15,7 +16,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
   const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
   return (
     <div className={styles.panelWrapper}>
-      <a
+      <Link
         className="navds-panel navds-link-panel navds-panel--border"
         href={destinasjon}
         onClickCapture={(e) => {
@@ -35,7 +36,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
           </div>
         </div>
         <ExternalLink className={styles.linkSymbol} />
-      </a>
+      </Link>
     </div>
   );
 };
