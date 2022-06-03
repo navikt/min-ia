@@ -119,7 +119,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
                   "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
                 }
                 href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
-                //href="/nettkurs"
             />
             {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
