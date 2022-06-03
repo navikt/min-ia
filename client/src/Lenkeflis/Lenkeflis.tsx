@@ -28,13 +28,13 @@ export const Lenkeflis: React.FunctionComponent<{
   return (
     <LinkPanel
       href={destinasjon}
-      onClickCapture={(e) => {
-        e.preventDefault();
-      }}
       className={classNames(
         styles.lenkeflis,
         fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
       )}
+      onClickCapture={(e) => {
+        e.preventDefault();
+      }}
       onClick={() => {
         navigerEtterCallbacks(destinasjon, [
           metrikkutsendelse,

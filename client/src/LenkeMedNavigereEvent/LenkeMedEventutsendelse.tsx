@@ -2,7 +2,7 @@ import { Link } from "@navikt/ds-react";
 import React from "react";
 import { sendNavigereEvent } from "../amplitude/events";
 
-export const LenkeMedEvent: React.FunctionComponent<{
+export const LenkeMedEventutsendelse: React.FunctionComponent<{
   href: string;
   lenketekst: string;
   className?: any;

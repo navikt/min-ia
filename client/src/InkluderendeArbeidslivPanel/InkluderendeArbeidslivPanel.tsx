@@ -2,7 +2,34 @@ import { Accordion, BodyShort, LinkPanel } from "@navikt/ds-react";
 import { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
-import { LenkeMedEvent } from "../LenkeMedNavigereEvent/LenkeMedEvent";
+import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
+import { navigerEtterCallbacks } from "../utils/navigasjon";
+import { sendNavigereEvent } from "../amplitude/events";
+
+const Lenkepanel: React.FunctionComponent<{
+  lenketekst: string;
+  destinasjon: string;
+}> = ({ destinasjon, lenketekst }) => {
+  const eventutsendelse = () => sendNavigereEvent(destinasjon, lenketekst);
+  return (
+    <LinkPanel
+      className={styles.inkluderendeArbeidslivPanel__lenkepanel}
+      href={destinasjon}
+      onClickCapture={(e) => {
+        e.preventDefault();
+      }}
+      onClick={() => {
+        navigerEtterCallbacks(destinasjon, [eventutsendelse]);
+      }}
+    >
+      <LinkPanel.Title
+        className={styles.inkluderendeArbeidslivPanel__lenkepanel__tittel}
+      >
+        {lenketekst}
+      </LinkPanel.Title>
+    </LinkPanel>
+  );
+};
 
 export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
   return (
@@ -54,7 +81,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                 </li>
               </ul>
             </div>
-            <LenkeMedEvent
+            <LenkeMedEventutsendelse
               href={
                 "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/ia-avtalen-20192022/ia-avtalen-20192022/id2623741/"
               }
@@ -75,65 +102,25 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                   styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe
                 }
               >
-                <LinkPanel
-                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                  href={
-                    "https://arbeidsgiver.nav.no/veiviserarbeidsgiver/tiltak/ekspertbistand"
-                  }
-                >
-                  <LinkPanel.Title
-                    className={
-                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                    }
-                  >
-                    Tilskudd til ekspertbistand
-                  </LinkPanel.Title>
-                </LinkPanel>
-                <LinkPanel
-                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                  href={
-                    "https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/nyttig-a-vite/delta-i-prosjekt-med-kompetansetiltak-for-sykmeldte"
-                  }
-                >
-                  <LinkPanel.Title
-                    className={
-                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                    }
-                  >
-                    Kompetansetiltak for sykmeldte
-                  </LinkPanel.Title>
-                </LinkPanel>
-                <LinkPanel
-                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                  href={
-                    "https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/relatert-informasjon/nav-anbefaler-nytt-nasjonalt-konsept-helseiarbeid"
-                  }
-                >
-                  <LinkPanel.Title
-                    className={
-                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                    }
-                  >
-                    HelseIArbeid
-                  </LinkPanel.Title>
-                </LinkPanel>
-                <LinkPanel
-                  className={styles.inkluderendeArbeidslivPanel__lenkepanel}
-                  href={
-                    "https://arbeidsgiver.nav.no/forebygge-sykefravaer/#oppfolging-fra-nav-arbeidslivssenter"
-                  }
-                >
-                  <LinkPanel.Title
-                    className={
-                      styles.inkluderendeArbeidslivPanel__lenkepanel__tittel
-                    }
-                  >
-                    Tjenester fra NAV Arbeidslivssenter
-                  </LinkPanel.Title>
-                </LinkPanel>
+                <Lenkepanel
+                  lenketekst="Tilskudd til ekspertbistand"
+                  destinasjon="https://arbeidsgiver.nav.no/veiviserarbeidsgiver/tiltak/ekspertbistand"
+                />
+                <Lenkepanel
+                  lenketekst="Kompetansetiltak for sykmeldte"
+                  destinasjon="https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/nyttig-a-vite/delta-i-prosjekt-med-kompetansetiltak-for-sykmeldte"
+                />
+                <Lenkepanel
+                  lenketekst="HelseIArbeid"
+                  destinasjon="https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/relatert-informasjon/nav-anbefaler-nytt-nasjonalt-konsept-helseiarbeid"
+                />
+                <Lenkepanel
+                  lenketekst="Tjenester fra NAV Arbeidslivssenter"
+                  destinasjon="https://arbeidsgiver.nav.no/forebygge-sykefravaer/#oppfolging-fra-nav-arbeidslivssenter"
+                />
               </div>
             </div>
-            <LenkeMedEvent
+            <LenkeMedEventutsendelse
               href={"https://arbeidsgiver.nav.no/forebygge-sykefravaer"}
               lenketekst="Se fullstendig oversikt over NAVs tilbud her"
               className={classNames(

@@ -13,7 +13,7 @@ import {
 import { useWindowSize } from "../hooks/useWindowSize";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
-import { LenkeMedEvent } from "../LenkeMedNavigereEvent/LenkeMedEvent";
+import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -59,7 +59,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     return (
       <BodyLong className={styles.oversiktTekst} size="medium">
         Trenger du en større oversikt?{" "}
-        <LenkeMedEvent
+        <LenkeMedEventutsendelse
           href={sykefravarsstatistikkUrl}
           lenketekst="Klikk her for å gå til statistikksiden."
         />
