@@ -16,7 +16,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
   const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
   return (
     <div className={styles.panelWrapper}>
-      <Link
+      <a
         className="navds-panel navds-link-panel navds-panel--border"
         href={destinasjon}
         onClickCapture={(e) => {
@@ -36,7 +36,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
           </div>
         </div>
         <ExternalLink className={styles.linkSymbol} />
-      </Link>
+      </a>
     </div>
   );
 };
