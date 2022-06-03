@@ -2,9 +2,8 @@ import { LinkPanel } from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
-import { sendNavigereEvent } from "../amplitude/events";
-import { useRouter } from "next/router";
 import classNames from "classnames";
+import { sendEventOgNaviger } from "../amplitude/events";
 
 export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
@@ -13,23 +12,6 @@ export const Lenkeflis: React.FunctionComponent<{
   href: string | undefined;
   fyltoppBakgrunn?: boolean;
 }> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
-  const router = useRouter();
-  const TIMEOUT_IN_MILLIS = 750;
-
-  // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
-  const sendEventOgNaviger = (
-    destinasjon: string,
-    lenketekst: string,
-    maksVentetid: number
-  ) => {
-    setTimeout(() => {
-      window.location.href = destinasjon;
-    }, maksVentetid);
-    sendNavigereEvent(destinasjon, lenketekst).then(() => {
-      window.location.href = destinasjon;
-    });
-  };
-
   return (
     <LinkPanel
       href={href ? href : "#"}
@@ -41,7 +23,7 @@ export const Lenkeflis: React.FunctionComponent<{
         fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
       )}
       onClick={() => {
-        sendEventOgNaviger(href ? href : "#", overskrift, TIMEOUT_IN_MILLIS);
+        sendEventOgNaviger(href ? href : "#", overskrift);
       }}
     >
       <div

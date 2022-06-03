@@ -24,6 +24,6 @@ it("sender navigere-event ved klikk på lenke til statistikksiden", async () => 
   expect(logEvent).toBeCalledTimes(2);
   expect(logEvent).toHaveBeenCalledWith("navigere", {
     destinasjon: "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk",
-    lenketekst: lenketekst,
+    lenketekst,
   });
 });

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./lenkeflis-ekstern.module.scss";
 import { ExternalLink } from "@navikt/ds-icons";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
+import { sendEventOgNaviger, sendNavigereEvent } from "../amplitude/events";
 
 export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
@@ -9,11 +10,12 @@ export const LenkeflisEkstern: React.FunctionComponent<{
   brødtekst: string;
   href: string | undefined;
 }> = ({ overskrift, ikon, brødtekst, href }) => {
+  const destinasjon = href ?? "#";
   return (
     <div className={styles.panelWrapper}>
       <a
         className="navds-panel navds-link-panel navds-panel--border"
-        href={href ? href : "#"}
+        href={destinasjon}
       >
         <div className={styles.ikonOgTekstWrapper}>
           {ikon}
@@ -24,7 +26,15 @@ export const LenkeflisEkstern: React.FunctionComponent<{
             <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
           </div>
         </div>
-        <ExternalLink className={styles.linkSymbol} />
+        <ExternalLink
+          className={styles.linkSymbol}
+          onClickCapture={(e) => {
+            e.preventDefault();
+          }}
+          onClick={() => {
+            sendEventOgNaviger(destinasjon, overskrift);
+          }}
+        />
       </a>
     </div>
   );
