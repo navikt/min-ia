@@ -19,8 +19,16 @@ export enum Tags {
 
 export const IAVideoer: QbrickVideo[] = [
   {
+    id: "bdd038ea-00015227-44a44546",
+    tags: [Tags.MEST_SETT, Tags.NYESTE, Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.ARBEIDSMILJØ],
+    metadata: {
+      title: "Hvorfor klare kjøreregler er viktig når fraværet oppstår",
+      description: "",
+    },
+  },
+  {
     id: "702ed6e6-00015227-76bc0ebe",
-    tags: [Tags.PSYKISK_HELSE],
+    tags: [Tags.PSYKISK_HELSE, Tags.NYESTE],
     metadata: {
       title: "Gode grep i krisetider - Arbeid og psykisk helse",
       description:
@@ -29,7 +37,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "bf6d8ad7-00015227-1228dfef",
-    tags: [Tags.PSYKISK_HELSE, Tags.NYESTE],
+    tags: [Tags.OPPFØLGING],
     metadata: {
       title: "Få den sjukmelde raskare tilbake i jobb",
       description:
@@ -56,7 +64,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "62f13221-00015227-0618cd4a",
-    tags: [Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING, Tags.MEST_SETT],
+    tags: [Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.MEST_SETT],
     metadata: {
       title: "Tilrettelegging og medvirkning",
       description:
@@ -74,7 +82,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "db3653cd-00015227-7015da5d",
-    tags: [Tags.ARBEIDSMILJØ],
+    tags: [Tags.ARBEIDSMILJØ, Tags.MEDVIRKNING],
     metadata: {
       title:
         "Arbeidsmiljø skaper du best i samarbeid med tillitsvald og verneombod",
