@@ -1,5 +1,5 @@
 import { Accordion, BodyShort, LinkPanel } from "@navikt/ds-react";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
 import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
