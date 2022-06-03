@@ -19,6 +19,14 @@ export enum Tags {
 
 export const IAVideoer: QbrickVideo[] = [
   {
+    id: "bdd038ea-00015227-44a44546",
+    tags: [Tags.MEST_SETT, Tags.NYESTE, Tags.OPPFØLGING, Tags.MEDVIRKNING],
+    metadata: {
+      title: "Hvorfor klare kjøreregler er viktig når fraværet oppstår",
+      description: "",
+    },
+  },
+  {
     id: "702ed6e6-00015227-76bc0ebe",
     tags: [Tags.PSYKISK_HELSE],
     metadata: {
