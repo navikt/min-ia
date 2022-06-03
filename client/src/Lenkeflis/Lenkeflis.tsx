@@ -2,7 +2,7 @@ import { LinkPanel } from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
-import { sendLenkeKlikketPåEvent } from "../amplitude/events";
+import { sendNavigereEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
 import classNames from "classnames";
 
@@ -25,7 +25,7 @@ export const Lenkeflis: React.FunctionComponent<{
     setTimeout(() => {
       window.location.href = destinasjon;
     }, maksVentetid);
-    sendLenkeKlikketPåEvent(destinasjon, lenketekst).then(() => {
+    sendNavigereEvent(destinasjon, lenketekst).then(() => {
       window.location.href = destinasjon;
     });
   };

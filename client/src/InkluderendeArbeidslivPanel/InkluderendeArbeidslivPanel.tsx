@@ -1,7 +1,8 @@
-import { Accordion, BodyShort, Link, LinkPanel } from "@navikt/ds-react";
+import { Accordion, BodyShort, LinkPanel } from "@navikt/ds-react";
 import { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
+import { LenkeMedEvent } from "../LenkeMedNavigereEvent/LenkeMedEvent";
 
 export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
   return (
@@ -53,17 +54,16 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                 </li>
               </ul>
             </div>
-            <Link
+            <LenkeMedEvent
               href={
                 "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/ia-avtalen-20192022/ia-avtalen-20192022/id2623741/"
               }
+              lenketekst="Les mer om IA-avtalen på sidene til regjeringen"
               className={classNames(
                 styles.inkluderendeArbeidslivPanel__avsnitt,
                 styles.inkluderendeArbeidslivPanel__lenke
               )}
-            >
-              Les mer om IA-avtalen på sidene til regjeringen
-            </Link>
+            />
             <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>
               <BodyShort
                 className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
@@ -133,15 +133,14 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                 </LinkPanel>
               </div>
             </div>
-            <Link
+            <LenkeMedEvent
+              href={"https://arbeidsgiver.nav.no/forebygge-sykefravaer"}
+              lenketekst="Se fullstendig oversikt over NAVs tilbud her"
               className={classNames(
                 styles.inkluderendeArbeidslivPanel__avsnitt,
                 styles.inkluderendeArbeidslivPanel__lenke
               )}
-              href={"https://arbeidsgiver.nav.no/forebygge-sykefravaer"}
-            >
-              Se fullstendig oversikt over NAVs tilbud her
-            </Link>
+            />
           </Accordion.Content>
         </Accordion.Item>
       </Accordion>

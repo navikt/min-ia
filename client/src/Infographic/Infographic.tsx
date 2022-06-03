@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import { BodyLong, HelpText, Link } from "@navikt/ds-react";
+import { BodyLong, HelpText } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
@@ -13,6 +13,7 @@ import {
 import { useWindowSize } from "../hooks/useWindowSize";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
+import { LenkeMedEvent } from "../LenkeMedNavigereEvent/LenkeMedEvent";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -58,9 +59,10 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     return (
       <BodyLong className={styles.oversiktTekst} size="medium">
         Trenger du en større oversikt?{" "}
-        <Link href={sykefravarsstatistikkUrl}>
-          Klikk her for å gå til statistikksiden.
-        </Link>
+        <LenkeMedEvent
+          href={sykefravarsstatistikkUrl}
+          lenketekst="Klikk her for å gå til statistikksiden."
+        />
       </BodyLong>
     );
   };
@@ -111,8 +113,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       />
 
       <DesktopEllerMobilVersjon />
-      {windowSize.width !== undefined &&
-      windowSize.width > screenSmAsNumeric && (
+      {windowSize.width !== undefined && windowSize.width > screenSmAsNumeric && (
         <div className={styles.hjelpetekstWrapper}>
           <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
             For flere definisjoner gå til sykefraværsstatistikk.
