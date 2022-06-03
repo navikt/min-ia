@@ -113,12 +113,12 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               href={samtalestotteUrl}
             />
             <Lenkeflis
-              overskrift={"Sykefraværs&shy;statistikk"}
-              ikon={<StatistikkIkonIkon />}
-              brødtekst={
-                "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
-              }
-              href={sykefravarsstatistikkUrl}
+                overskrift={"Nettkurs"}
+                ikon={<KursOgWebinarerIkon />}
+                brødtekst={
+                  "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
+                }
+                href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
             />
             {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
@@ -130,21 +130,20 @@ export const Forside: FunctionComponent<ForsideProps> = ({
           href={"/hva_gjor_de_som_lykkes"}
         />*/}
             <Lenkeflis
-              overskrift={"Nettkurs"}
-              ikon={<KursOgWebinarerIkon />}
-              brødtekst={
-                "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
-              }
-              href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
-              //href="/nettkurs"
-            />
-            <Lenkeflis
               overskrift={"Fraværs&shy;kalkulator"}
               ikon={<Calculator />}
               brødtekst={
                 "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
               }
               href={kalkulatorUrl}
+            />
+            <Lenkeflis
+                overskrift={"Sykefraværs&shy;statistikk"}
+                ikon={<StatistikkIkonIkon />}
+                brødtekst={
+                  "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
+                }
+                href={sykefravarsstatistikkUrl}
             />
             <InkluderendeArbeidslivPanel />
             <LenkeflisEkstern
