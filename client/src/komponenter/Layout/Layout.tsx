@@ -49,7 +49,8 @@ export const Layout = (props: {
     <>
       <Head>
         {headerLinks}
-        <title>{props.title}</title>
+          <link rel="icon" href="../public/favicon.ico" />
+          <title>{props.title}</title>
         <meta name="description" content={props.description} />
       </Head>
       <main>
