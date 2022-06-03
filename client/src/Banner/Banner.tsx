@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Banner.module.scss";
 import Bedriftsmeny from "@navikt/bedriftsmeny";
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
@@ -30,21 +31,21 @@ const Banner: React.FunctionComponent<Props> = (props) => {
   const router = useRouter();
   const [history] = useState<History>(getHistory());
 
-  const [bedriftVelgesManueltFraLista, setBedriftVelgesManueltFraLista] =
+  const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
 
   const onOrganisasjonChange = (organisasjon?: Organisasjon) => {
     if (organisasjon) {
       router.push(`?bedrift=${organisasjon.OrganizationNumber}`);
     }
-    if (bedriftVelgesManueltFraLista) {
+    if (bedriftValgtManueltFraLista) {
       sendBedriftValgtEvent();
     }
-    setBedriftVelgesManueltFraLista(true);
+    setBedriftValgtManueltFraLista(true);
   };
 
   return (
-    <div>
+    <div className={styles.banner}>
       <Bedriftsmeny
         organisasjoner={altinnOrganisasjoner}
         sidetittel={tittelMedUnderTittel}

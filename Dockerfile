@@ -15,6 +15,7 @@ COPY server/qbrickConfigNoPreload.ts server/qbrickConfigNoPreload.ts
 ## TODO: unngå å ha med backendApiProxyMock og testdata på image
 COPY server/backendApiProxyMock.ts server/backendApiProxyMock.ts
 COPY server/local/testdata.ts server/local/testdata.ts
+COPY server/local/testdata-kurs.ts server/local/testdata-kurs.ts
 COPY server/idporten.ts server/idporten.ts
 COPY server/tokenx.ts server/tokenx.ts
 
