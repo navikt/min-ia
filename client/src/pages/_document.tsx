@@ -26,10 +26,7 @@ const getDocumentParameter = (
         ?.props?.content
 }
 
-interface Page{
-    title:string
-    description: string
-}
+
 interface Props {
     Decorator: Components
     language: string

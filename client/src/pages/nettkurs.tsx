@@ -22,10 +22,14 @@ interface ListeElement {
 
 type Filter = Tags;
 
-export default function Nettkurs(props: { page: PageProps }) {
+export default function Nettkurs() {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const sykefraværshistorikk = useSykefraværshistorikk();
-
+  const page = {
+    title: "Nettkurs",
+    description:
+        "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+  };
   const [filter, setFilter] = useState<Filter>(Tags.MEST_SETT);
 
   const filterListe: ListeElement[] = [
@@ -144,8 +148,8 @@ export default function Nettkurs(props: { page: PageProps }) {
         strategy="beforeInteractive"
       />
       <Layout
-        title={props.page.title}
-        description={props.page.description}
+        title={page.title}
+        description={page.description}
         altinnOrganisasjoner={
           organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
             ? organisasjonerBrukerHarTilgangTil.data
@@ -158,12 +162,10 @@ export default function Nettkurs(props: { page: PageProps }) {
   );
 }
 // NextJS kaller denne ved Server Side Rendering (SSR)
+/*
 export const getServerSideProps: GetServerSideProps = async () => {
-  const page = {
-    title: "Nettkurs",
-    description:
-      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
-  };
+
 
   return { props: { page } };
 };
+*/
