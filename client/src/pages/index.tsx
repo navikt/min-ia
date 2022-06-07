@@ -1,19 +1,18 @@
-import { getPageProps, PageProps } from "../pageProps";
-import { Layout } from "../komponenter/Layout/Layout";
+import { PageProps } from "../pageProps";
 import { Forside } from "../Forside/Forside";
 import * as Sentry from "@sentry/browser";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { GetServerSideProps } from "next";
-import {Layout2} from "../komponenter/Layout/Layout2";
+import { Layout } from "../komponenter/Layout/Layout";
 
 const Home = (props: { page: PageProps }) => {
   initialiserSentry();
-  const page={
-    title:"Forebygge fravær",
-    description:"Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen"
-  }
+  const page = {
+    title: "Forebygge fravær",
+    description:
+      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+  };
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
@@ -23,15 +22,13 @@ const Home = (props: { page: PageProps }) => {
   const forsideEllerInnloggingsside = trengerInnlogging ? (
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (
-    <Forside
-      harNoenOrganisasjoner={harNoenOrganisasjoner}
-    />
+    <Forside harNoenOrganisasjoner={harNoenOrganisasjoner} />
   );
 
   return (
-    <Layout2
-        title={page.title}
-        description={page.description}
+    <Layout
+      title={page.title}
+      description={page.description}
       altinnOrganisasjoner={
         organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
           ? organisasjonerBrukerHarTilgangTil.data
@@ -39,7 +36,7 @@ const Home = (props: { page: PageProps }) => {
       }
     >
       {forsideEllerInnloggingsside}
-    </Layout2>
+    </Layout>
   );
 };
 
@@ -55,7 +52,7 @@ function initialiserSentry() {
 export const getServerSideProps = async () => {
   return {
     props: {},
-  }
+  };
 };
 
 export default Home;

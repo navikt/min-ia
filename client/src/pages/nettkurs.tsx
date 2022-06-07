@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { Layout } from "../komponenter/Layout/Layout";
-import { getPageProps, PageProps } from "../pageProps";
+import { PageProps } from "../pageProps";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { GetServerSideProps } from "next";
 import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
@@ -14,7 +13,7 @@ import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Script from "next/script";
 import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
-import { Layout2 } from "../komponenter/Layout/Layout2";
+import { Layout } from "../komponenter/Layout/Layout";
 
 interface ListeElement {
   key: Tags;
@@ -144,7 +143,7 @@ export default function Nettkurs(props: { page: PageProps }) {
         src="https://play2.qbrick.com/framework/GoBrain.min.js"
         strategy="beforeInteractive"
       />
-      <Layout2
+      <Layout
         title={props.page.title}
         description={props.page.description}
         altinnOrganisasjoner={
@@ -154,7 +153,7 @@ export default function Nettkurs(props: { page: PageProps }) {
         }
       >
         {innhold}
-      </Layout2>
+      </Layout>
     </>
   );
 }
