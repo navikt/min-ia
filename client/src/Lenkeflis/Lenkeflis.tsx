@@ -2,13 +2,14 @@ import { LinkPanel } from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
-import { sendLenkeKlikketPåEvent } from "../amplitude/events";
+import { sendNavigereEvent } from "../amplitude/events";
 import classNames from "classnames";
 import {
   IaTjeneste,
   registrerLevertInnloggetIaTjeneste,
 } from "../integrasjoner/ia-tjenestemetrikker-api";
 import { useOrgnr } from "../hooks/useOrgnr";
+import { navigerEtterCallbacks } from "../utils/navigasjon";
 
 export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
@@ -17,42 +18,28 @@ export const Lenkeflis: React.FunctionComponent<{
   href: string | undefined;
   fyltoppBakgrunn?: boolean;
 }> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
-  const TIMEOUT_IN_MILLIS = 1000;
   const orgnr = useOrgnr();
+  const destinasjon = href ?? "#";
 
-  // Amplitude trenger litt tid for å sende ut event når vi navigerer til ekstern side/app.
-  const sendEventOgNaviger = async (
-    destinasjon: string,
-    lenketekst: string,
-    maksVentetid: number
-  ) => {
-    setTimeout(() => {
-      window.location.href = destinasjon;
-    }, maksVentetid);
-
-    const metrikkutsendelse = registrerLevertInnloggetIaTjeneste(
-      IaTjeneste.FOREBYGGE_FRAVÆR,
-      orgnr
-    );
-    const amplitudekall = sendLenkeKlikketPåEvent(destinasjon, lenketekst);
-
-    await Promise.allSettled([metrikkutsendelse, amplitudekall]).then(
-      () => (window.location.href = destinasjon)
-    );
-  };
+  const metrikkutsendelse = () =>
+    registrerLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
+  const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
 
   return (
     <LinkPanel
-      href={href ? href : "#"}
-      onClickCapture={(e) => {
-        e.preventDefault();
-      }}
+      href={destinasjon}
       className={classNames(
         styles.lenkeflis,
         fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
       )}
+      onClickCapture={(e) => {
+        e.preventDefault();
+      }}
       onClick={() => {
-        sendEventOgNaviger(href ? href : "#", overskrift, TIMEOUT_IN_MILLIS);
+        navigerEtterCallbacks(destinasjon, [
+          metrikkutsendelse,
+          eventutsendelse,
+        ]);
       }}
     >
       <div

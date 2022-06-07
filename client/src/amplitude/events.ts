@@ -8,7 +8,7 @@ export const sendBedriftValgtEvent = () => {
   logEvent("bedrift-valgt");
 };
 
-export const sendLenkeKlikketPåEvent = (
+export const sendNavigereEvent = (
   destinasjon: string,
   lenketekst: string
 ): Promise<any> => {
