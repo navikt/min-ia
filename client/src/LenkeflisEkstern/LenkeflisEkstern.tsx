@@ -4,7 +4,6 @@ import { ExternalLink } from "@navikt/ds-icons";
 import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
 import { sendNavigereEvent } from "../amplitude/events";
 import { navigerEtterCallbacks } from "../utils/navigasjon";
-import { Link } from "@navikt/ds-react";
 
 export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
