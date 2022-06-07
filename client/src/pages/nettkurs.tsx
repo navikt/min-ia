@@ -14,6 +14,7 @@ import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Script from "next/script";
 import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
+import { Layout2 } from "../komponenter/Layout/Layout2";
 
 interface ListeElement {
   key: Tags;
@@ -143,10 +144,9 @@ export default function Nettkurs(props: { page: PageProps }) {
         src="https://play2.qbrick.com/framework/GoBrain.min.js"
         strategy="beforeInteractive"
       />
-      <Layout
+      <Layout2
         title={props.page.title}
         description={props.page.description}
-        decoratorParts={props.page.decorator}
         altinnOrganisasjoner={
           organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
             ? organisasjonerBrukerHarTilgangTil.data
@@ -154,16 +154,17 @@ export default function Nettkurs(props: { page: PageProps }) {
         }
       >
         {innhold}
-      </Layout>
+      </Layout2>
     </>
   );
 }
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps: GetServerSideProps = async () => {
-  const page = await getPageProps(
-    "Nettkurs",
-    "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen"
-  );
+  const page = {
+    title: "Nettkurs",
+    description:
+      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+  };
 
   return { props: { page } };
 };
