@@ -9,6 +9,8 @@ import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 
 export const Layout2 = (props: {
+  title: string;
+  description: string;
   altinnOrganisasjoner: AltinnOrganisasjon[];
   children: React.ReactChild;
 }) => {
@@ -19,7 +21,8 @@ export const Layout2 = (props: {
       tittelMedUnderTittel={
         <div>
           <Heading size="large" level="3">
-            Dett er en test
+            {props.title}
+            <meta name="description" content={props.description} />
           </Heading>
           <Ingress>Inkluderende arbeidsliv</Ingress>
         </div>

@@ -26,6 +26,10 @@ const getDocumentParameter = (
         ?.props?.content
 }
 
+interface Page{
+    title:string
+    description: string
+}
 interface Props {
     Decorator: Components
     language: string
@@ -36,7 +40,12 @@ class MyDocument extends Document<Props> {
         ctx: DocumentContext
     ): Promise<DocumentInitialProps & Props> {
         const initialProps = await Document.getInitialProps(ctx)
-
+        const breadcrumbs = [
+            {
+                title: 'Forebygge fravær',
+                url: `${process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL}`,
+            },
+        ];
         const Decorator = await fetchDecoratorReact({
             dekoratorenUrl: serverRuntimeConfig.decoratorUrl,
             env: serverRuntimeConfig.decoratorEnv,
@@ -44,6 +53,7 @@ class MyDocument extends Document<Props> {
             chatbot: false,
             feedback: false,
             urlLookupTable: false,
+            breadcrumbs: breadcrumbs
         })
 
         const language = getDocumentParameter(initialProps, 'lang')

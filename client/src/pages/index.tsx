@@ -10,7 +10,10 @@ import {Layout2} from "../komponenter/Layout/Layout2";
 
 const Home = (props: { page: PageProps }) => {
   initialiserSentry();
-
+  const page={
+    title:"Forebygge fravær",
+    description:"Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen"
+  }
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
@@ -27,6 +30,8 @@ const Home = (props: { page: PageProps }) => {
 
   return (
     <Layout2
+        title={page.title}
+        description={page.description}
       altinnOrganisasjoner={
         organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
           ? organisasjonerBrukerHarTilgangTil.data
