@@ -6,16 +6,12 @@ import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 
-const Home = () => {
+const Home = (props: { page: PageProps }) => {
   initialiserSentry();
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
-  const page = {
-    title: "Forebygge fravær",
-    description:
-        "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
-  };
+
   const harNoenOrganisasjoner =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess;
   const forsideEllerInnloggingsside = trengerInnlogging ? (
@@ -26,8 +22,8 @@ const Home = () => {
 
   return (
     <Layout
-      title={page.title}
-      description={page.description}
+      title={props.page.title}
+      description={props.page.description}
       altinnOrganisasjoner={
         organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
           ? organisasjonerBrukerHarTilgangTil.data
@@ -48,14 +44,16 @@ function initialiserSentry() {
 }
 
 // NextJS kaller denne ved Server Side Rendering (SSR)
-/*
 export const getServerSideProps = async () => {
-
+  const page = {
+    title: "Forebygge fravær",
+    description:
+      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+  };
 
   return {
     props: { page },
   };
 };
-*/
 
 export default Home;
