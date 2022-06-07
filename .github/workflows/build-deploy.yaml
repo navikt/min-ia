@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/more_events'
+    if: github.ref == 'refs/heads/correlation-id'
     needs: build
     runs-on: ubuntu-latest
     steps:
