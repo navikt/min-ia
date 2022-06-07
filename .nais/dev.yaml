@@ -14,7 +14,7 @@ spec:
     - name: IA_TJENESTER_METRIKKER_BASE_URL
       value: https://ia-tjenester-metrikker.dev.nav.no/ia-tjenester-metrikker
     - name: KURSOVERSIKT_BASE_URL
-      value: https://arbeidsgiver.nav.no
+      value: https://www.dev.nav.no/no/bedrift
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
       ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
