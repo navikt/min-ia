@@ -48,7 +48,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                 styles.inkluderendeArbeidslivPanel__avsnitt__tittel
               )}
             >
-              Hva er Inkulderende Arbeidsliv (IA)?
+              Hva er Inkluderende Arbeidsliv (IA)?
             </BodyShort>
             <BodyShort className={styles.inkluderendeArbeidslivPanel__avsnitt}>
               Partene i arbeidslivet har laget en intensjonsavtale om et mer
