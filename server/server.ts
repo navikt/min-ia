@@ -4,10 +4,14 @@ import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import { backendApiProxy, metrikkerProxy, kursoversiktApiProxy } from "./backendApiProxy";
-import { backendApiProxyMock } from "./backendApiProxyMock";
+import {
+  backendApiProxy,
+  metrikkerProxy,
+  kursoversiktApiProxy,
+} from "./proxyMiddlewares";
+import { backendApiProxyMock } from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
-import { QbrickNoPreloadConfig } from "./qbrickConfigNoPreload";
+import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
 
 const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
@@ -56,7 +60,6 @@ const startServer = async () => {
   console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
 
   if (process.env.NODE_ENV === "production") {
-    console.log("Setter opp backendApiProxy, kursoversiktApiProxy og metrikkerProxy");
     server.use(backendApiProxy);
     server.use(metrikkerProxy);
     server.use(kursoversiktApiProxy);

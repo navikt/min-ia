@@ -1,4 +1,4 @@
-import { FRONTEND_METRIKKER_PATH } from "./backendApiProxy";
+import { FRONTEND_METRIKKER_PATH } from "./proxyMiddlewares";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
