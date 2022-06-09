@@ -1,7 +1,7 @@
-import express, { Request } from "express";
+import express, {Request} from "express";
 import promBundle from "express-prom-bundle";
-import { initTokenX } from "./tokenx";
-import { initIdporten } from "./idporten";
+import {initTokenX} from "./tokenx";
+import {initIdporten} from "./idporten";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import {
@@ -9,20 +9,18 @@ import {
   kursoversiktApiProxy,
   metrikkerProxy,
 } from "./proxyMiddlewares";
-import { backendApiProxyMock } from "./proxyMiddlewareMock";
+import {backendApiProxyMock} from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
-import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
-import { randomUUID } from "crypto";
+import {QbrickNoPreloadConfig} from "./config/qbrickConfigNoPreload";
+import {randomUUID} from "crypto";
 
 const createLogger = (correlationId?: string) => {
   return {
     log(message: string) {
-      console.log(
-        JSON.stringify({
-          log: message,
-          x_correlationId: correlationId ?? randomUUID(), // get correlation ID from local storage
-        })
-      );
+      console.log({
+        log: message,
+        x_correlationId: correlationId ?? randomUUID(), // get correlation ID from local storage
+      });
     },
   };
 };
@@ -57,9 +55,9 @@ const getLoginTilOauth2 = (redirectUrl: string): string => {
 
 const harAuthorizationHeader = (request: Request) => {
   return (
-    request.headers["authorization"] &&
-    request.headers["authorization"] !== undefined &&
-    request.headers["authorization"]?.split(" ")[1]!.length > 0
+      request.headers["authorization"] &&
+      request.headers["authorization"] !== undefined &&
+      request.headers["authorization"]?.split(" ")[1]!.length > 0
   );
 };
 
@@ -94,12 +92,12 @@ const startServer = async () => {
 
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
     let redirect: string = request.query.redirect
-      ? (request.query.redirect as string)
-      : envProperties.APP_INGRESS;
+        ? (request.query.redirect as string)
+        : envProperties.APP_INGRESS;
 
     if (!redirect.startsWith(envProperties.APP_INGRESS)) {
       logger.log(
-        "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
+          "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
           envProperties.APP_INGRESS
       );
       redirect = envProperties.APP_INGRESS;
@@ -113,9 +111,9 @@ const startServer = async () => {
   server.get(`${basePath}/success`, (request, response) => {
     logger.log("Håndterer /success");
     const harNødvendigeCookies: boolean =
-      request.cookies !== undefined &&
-      request.cookies["innloggingsstatus-token"] !== undefined &&
-      request.cookies["io.nais.wonderwall.session"] !== undefined;
+        request.cookies !== undefined &&
+        request.cookies["innloggingsstatus-token"] !== undefined &&
+        request.cookies["io.nais.wonderwall.session"] !== undefined;
     logger.log("Har vi gyldige cookies? " + harNødvendigeCookies);
 
     if (harAuthorizationHeader(request)) {
@@ -128,17 +126,17 @@ const startServer = async () => {
     const redirectString = request.query.redirect as string;
 
     if (
-      harAuthorizationHeader(request) &&
-      redirectString.startsWith(process.env.APP_INGRESS)
+        harAuthorizationHeader(request) &&
+        redirectString.startsWith(process.env.APP_INGRESS)
     ) {
       logger.log(
-        "[INFO] Innlogging fullført, skal redirecte til: " + redirectString
+          "[INFO] Innlogging fullført, skal redirecte til: " + redirectString
       );
       response.redirect(redirectString);
     } else {
       const url = getLoginTilOauth2(envProperties.APP_INGRESS);
       logger.log(
-        "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
+          "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
       );
       response.redirect(url);
     }
