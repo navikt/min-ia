@@ -6,16 +6,31 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import {
   backendApiProxy,
-  metrikkerProxy,
   kursoversiktApiProxy,
+  metrikkerProxy,
 } from "./proxyMiddlewares";
 import { backendApiProxyMock } from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
 import { randomUUID } from "crypto";
 
+const createLogger = (correlationId?: string) => {
+  return {
+    log(message: string) {
+      console.log(
+        JSON.stringify({
+          log: message,
+          x_correlationId: correlationId ?? randomUUID(), // get correlation ID from local storage
+        })
+      );
+    },
+  };
+};
+
+const logger = createLogger();
+
 const basePath = "/min-ia";
-console.log("NODE_ENV", process.env.NODE_ENV);
+logger.log("NODE_ENV" + process.env.NODE_ENV);
 
 const server = express();
 const prometheus = promBundle({
@@ -55,38 +70,25 @@ const loggingMiddleware = async (req: Request, res, next) => {
   next();
 };
 
-const createLogger = (correlationId?: string) => {
-  return {
-    log(message: string) {
-      console.log(
-        JSON.stringify({
-          log: message,
-          x_correlationId: correlationId ?? randomUUID(),
-        })
-      );
-    },
-  };
-};
-
 const startServer = async () => {
   server.use(loggingMiddleware);
   server.use(cookieParser());
   server.use(prometheus);
-  console.log("Starting server: server.js");
+  logger.log("Starting server: server.js");
   // TODO: Samle alle kodesnutter som krever process.env.NODE_ENV === "production"
 
   if (process.env.NODE_ENV === "production") {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
-  console.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
+  logger.log(`NODE_ENV er '${process.env.NODE_ENV}'`);
 
   if (process.env.NODE_ENV === "production") {
     server.use(backendApiProxy);
     server.use(metrikkerProxy);
     server.use(kursoversiktApiProxy);
   } else {
-    console.log("Starter backendProxyMock");
+    logger.log("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
 
@@ -96,31 +98,31 @@ const startServer = async () => {
       : envProperties.APP_INGRESS;
 
     if (!redirect.startsWith(envProperties.APP_INGRESS)) {
-      console.log(
-        "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til ",
-        envProperties.APP_INGRESS
+      logger.log(
+        "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
+          envProperties.APP_INGRESS
       );
       redirect = envProperties.APP_INGRESS;
     }
 
     const loginTilOauth2 = getLoginTilOauth2(redirect);
-    console.log("[INFO] redirect til: ", loginTilOauth2);
+    logger.log("[INFO] redirect til: " + loginTilOauth2);
     response.redirect(loginTilOauth2);
   });
 
   server.get(`${basePath}/success`, (request, response) => {
-    console.log("Håndterer /success");
+    logger.log("Håndterer /success");
     const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
       request.cookies["innloggingsstatus-token"] !== undefined &&
       request.cookies["io.nais.wonderwall.session"] !== undefined;
-    console.log("Har vi gyldige cookies? ", harNødvendigeCookies);
+    logger.log("Har vi gyldige cookies? " + harNødvendigeCookies);
 
     if (harAuthorizationHeader(request)) {
       const idportenToken = request.headers["authorization"]?.split(" ")[1];
-      console.log("Har auth header, length=", idportenToken.length);
+      logger.log("Har auth header, length=" + idportenToken.length);
     } else {
-      console.log("Har ingen auth header");
+      logger.log("Har ingen auth header");
     }
 
     const redirectString = request.query.redirect as string;
@@ -129,16 +131,14 @@ const startServer = async () => {
       harAuthorizationHeader(request) &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
-      console.log(
-        "[INFO] Innlogging fullført, skal redirecte til: ",
-        redirectString
+      logger.log(
+        "[INFO] Innlogging fullført, skal redirecte til: " + redirectString
       );
       response.redirect(redirectString);
     } else {
       const url = getLoginTilOauth2(envProperties.APP_INGRESS);
-      console.log(
-        "[INFO] Ingen gyldig Auth header, redirect til innlogging: ",
-        url
+      logger.log(
+        "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
       );
       response.redirect(url);
     }
@@ -158,7 +158,7 @@ const startServer = async () => {
   });
 
   server.listen(envProperties.PORT, () => {
-    console.log("Server listening on port ", envProperties.PORT);
+    logger.log("Server listening on port " + envProperties.PORT);
   });
 };
 
