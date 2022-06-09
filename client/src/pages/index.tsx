@@ -1,15 +1,13 @@
-import { getPageProps, PageProps } from "../pageProps";
-import { Layout } from "../komponenter/Layout/Layout";
+import { PageProps } from "../pageProps";
 import { Forside } from "../Forside/Forside";
 import * as Sentry from "@sentry/browser";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { GetServerSideProps } from "next";
+import { Layout } from "../komponenter/Layout/Layout";
 
 const Home = (props: { page: PageProps }) => {
   initialiserSentry();
-
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
@@ -19,16 +17,13 @@ const Home = (props: { page: PageProps }) => {
   const forsideEllerInnloggingsside = trengerInnlogging ? (
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (
-    <Forside
-      harNoenOrganisasjoner={harNoenOrganisasjoner}
-    />
+    <Forside harNoenOrganisasjoner={harNoenOrganisasjoner} />
   );
 
   return (
     <Layout
       title={props.page.title}
       description={props.page.description}
-      decoratorParts={props.page.decorator}
       altinnOrganisasjoner={
         organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
           ? organisasjonerBrukerHarTilgangTil.data
@@ -49,13 +44,16 @@ function initialiserSentry() {
 }
 
 // NextJS kaller denne ved Server Side Rendering (SSR)
-export const getServerSideProps: GetServerSideProps = async () => {
-  const page = await getPageProps(
-    "Forebygge fravær",
-    "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen"
-  );
+export const getServerSideProps = async () => {
+  const page = {
+    title: "Forebygge fravær",
+    description:
+      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+  };
 
-  return { props: { page } };
+  return {
+    props: { page },
+  };
 };
 
 export default Home;
