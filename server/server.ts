@@ -12,7 +12,7 @@ import {
 import { backendApiProxyMock } from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
-import { createLogger } from "./logging";
+import { randomUUID } from "crypto";
 
 const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
@@ -53,6 +53,19 @@ const loggingMiddleware = async (req: Request, res, next) => {
   const logger = createLogger(correlationId);
   logger.log("***************************** HALLO");
   next();
+};
+
+const createLogger = (correlationId?: string) => {
+  return {
+    log(message: string) {
+      console.log(
+        JSON.stringify({
+          log: message,
+          x_correlationId: correlationId ?? randomUUID(),
+        })
+      );
+    },
+  };
 };
 
 const startServer = async () => {

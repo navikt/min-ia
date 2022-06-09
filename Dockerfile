@@ -11,7 +11,7 @@ COPY server/package.json server/package.json
 COPY server/yarn.lock server/yarn.lock
 COPY server/server.ts server/server.ts
 COPY server/proxyMiddlewares.ts server/proxyMiddlewares.ts
-COPY server/config/qbrickConfigNoPreload.ts server/qbrickConfigNoPreload.ts
+COPY server/config/qbrickConfigNoPreload.ts server/config/qbrickConfigNoPreload.ts
 ## TODO: unngå å ha med backendApiProxyMock og testdata på image
 COPY server/proxyMiddlewareMock.ts server/proxyMiddlewareMock.ts
 COPY server/local/testdata.ts server/local/testdata.ts
