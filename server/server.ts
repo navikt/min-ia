@@ -13,6 +13,7 @@ import {
 import { backendApiProxyMock } from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
+import { randomUUID } from "crypto";
 
 const logConfiguration = {
   transports: [new winston.transports.Console()],
@@ -23,18 +24,27 @@ const logConfiguration = {
   },
 };
 
-// const createLogger = (correlationId?: string) => {
-//   return {
-//     info(message: string) {
-//       console.info({
-//         log: message,
-//         x_correlationId: correlationId ?? randomUUID(), // get correlation ID from local storage
-//       });
-//     },
-//   };
-// };
+interface LoggingMetadata {
+  level: string;
+  message: string;
+  correlationId: string;
+}
 
-const logger = winston.createLogger(logConfiguration);
+const createLogger = (correlationId?: string) => {
+  return {
+    info(message: string) {
+      console.info(
+        JSON.stringify({
+          level: "info",
+          message: message,
+          correlationId: correlationId ?? randomUUID(), // get correlation ID from local storage
+        })
+      );
+    },
+  };
+};
+
+const logger = createLogger();
 
 const basePath = "/min-ia";
 logger.info("NODE_ENV" + process.env.NODE_ENV);
