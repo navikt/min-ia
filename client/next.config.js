@@ -5,6 +5,18 @@ const csp = require("./src/csp");
 const nextConfig = {
   reactStrictMode: true,
   basePath: "/min-ia",
+  serverRuntimeConfig: {
+    decoratorUrl: process.env.DECORATOR_URL,
+    decoratorBreadcrumbThisPageUrl:
+      process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL,
+    decoratorEnv: process.env.DECORATOR_ENV,
+  },
+  env: {
+    decoratorUrl: process.env.DECORATOR_URL,
+    decoratorBreadcrumbThisPageUrl:
+      process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL,
+    decoratorEnv: process.env.DECORATOR_ENV,
+  },
   i18n: {
     locales: ["no"],
     defaultLocale: "no",
@@ -44,7 +56,8 @@ const nextConfig = {
       },
       {
         source: "/kursoversikt/api/kurs/:slug*",
-        destination: "http://localhost:3010/min-ia/kursoversikt/api/kurs/:slug*",
+        destination:
+          "http://localhost:3010/min-ia/kursoversikt/api/kurs/:slug*",
       },
       {
         source: "/metrikker/:slug*",
