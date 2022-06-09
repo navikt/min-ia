@@ -35,18 +35,6 @@ class MyDocument extends Document<Props> {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps & Props> {
-    console.log(
-      "[DEBUG] serverRuntimeConfig.decoratorUrl: ",
-      serverRuntimeConfig.decoratorUrl
-    );
-    console.log(
-      "[DEBUG] serverRuntimeConfig.decoratorEnv: ",
-      serverRuntimeConfig.decoratorEnv
-    );
-    console.log(
-      "[DEBUG] process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL: ",
-      process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL
-    );
     const initialProps = await Document.getInitialProps(ctx);
     const breadcrumbs = [
       {
