@@ -12,6 +12,7 @@ import {
 import { backendApiProxyMock } from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
+import { createLogger } from "./logging";
 
 const basePath = "/min-ia";
 console.log("NODE_ENV", process.env.NODE_ENV);
@@ -47,7 +48,15 @@ const harAuthorizationHeader = (request: Request) => {
   );
 };
 
+const loggingMiddleware = async (req: Request, res, next) => {
+  const correlationId = req.headers["X-Correlation-ID"].toString();
+  const logger = createLogger(correlationId);
+  logger.log("***************************** HALLO");
+  next();
+};
+
 const startServer = async () => {
+  server.use(loggingMiddleware);
   server.use(cookieParser());
   server.use(prometheus);
   console.log("Starting server: server.js");
