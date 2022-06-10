@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import { BodyLong, HelpText } from "@navikt/ds-react";
+import {BodyLong, Button, Heading, HelpText, Modal} from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
@@ -40,6 +40,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
+  const [open, setOpen]=useState(false);
 
   const DesktopEllerMobilVersjon = () => {
     if (
@@ -66,6 +67,10 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       </BodyLong>
     );
   };
+  useEffect(() => {
+    //Modal?.setAppElement("modalButton");
+  },[])
+
   useEffect(() => {
     setSykefravarsstatistikkUrl(
       utledUrlForBedrift(
@@ -115,9 +120,36 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       <DesktopEllerMobilVersjon />
       {windowSize.width !== undefined && windowSize.width > screenSmAsNumeric && (
         <div className={styles.hjelpetekstWrapper}>
-          <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
-            For flere definisjoner gå til sykefraværsstatistikk.
-          </HelpText>
+          <Button id={'modalButton'} variant={'tertiary'} onClick={()=>{setOpen((open)=>!open)}}>
+            <HelpText>?</HelpText>
+          </Button>
+          <Modal
+              aria-label="Modal for mer informasjon"
+              onClose={()=>{setOpen(false)}}
+              open={open}
+              shouldCloseOnOverlayClick={true}
+          >
+            <Modal.Content>
+              <Heading
+                  level="1"
+                  size="large"
+                  spacing={true}
+              >
+                Informasjon
+              </Heading>
+              <Heading
+                  level="2"
+                  size="medium"
+                  spacing={true}
+              >
+                Din {bransjeEllerNæring}:
+              </Heading>
+              <BodyLong spacing={true}>
+                Utregningene på dette panelet blir gjort fortløpende, basert på<br/>
+                et større statistisk grunnlag, hentet fra SSB.
+              </BodyLong>
+            </Modal.Content>
+          </Modal>
         </div>
       )}
     </div>
