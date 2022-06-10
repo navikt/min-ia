@@ -1,8 +1,7 @@
-import express, { Request } from "express";
+import express, { Express, Request } from "express";
 import promBundle from "express-prom-bundle";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
-import winston from "winston";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import {
@@ -13,36 +12,53 @@ import {
 import { backendApiProxyMock } from "./proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
-import { randomUUID } from "crypto";
+import morgan from "morgan";
 
-const logConfiguration = {
-  transports: [new winston.transports.Console()],
-  defaultMeta: {
-    get correlationId() {
-      return "CORRELATION ID";
-    },
-  },
+const logKibanaFriendly = (
+  level: string,
+  message: string,
+  correlationId: string
+) => {
+  console.log(
+    JSON.stringify({
+      level,
+      message,
+      correlationId,
+    })
+  );
 };
-
-interface LoggingMetadata {
-  level: string;
-  message: string;
-  correlationId: string;
-}
 
 const createLogger = (correlationId?: string) => {
   return {
+    warning(message: string) {
+      logKibanaFriendly("Warning", message, correlationId);
+    },
     info(message: string) {
-      console.info(
-        JSON.stringify({
-          level: "info",
-          message: message,
-          correlationId: correlationId ?? randomUUID(), // get correlation ID from local storage
-        })
-      );
+      logKibanaFriendly("Info", message, correlationId);
+    },
+    debug(message: string) {
+      logKibanaFriendly("Debug", message, correlationId);
     },
   };
 };
+
+function skipRequestLogging(req: Request) {
+  const url = req.originalUrl;
+  return url?.includes("internal");
+}
+
+const isProduction = () => {
+  return process.env.NODE_ENV === "production";
+};
+
+function setupRequestLogging(server: Express): void {
+  server.use(
+    morgan(isProduction() ? "tiny" : "dev", {
+      skip: skipRequestLogging,
+      stream: { write: (message) => logger.info(message) },
+    })
+  );
+}
 
 const logger = createLogger();
 
@@ -54,6 +70,8 @@ const prometheus = promBundle({
   includePath: true,
   metricsPath: `${basePath}/internal/metrics`,
 });
+
+server.use(setupRequestLogging);
 
 // set up rate limiter: maximum of 20 000 requests per minute
 const limiter = RateLimit({
