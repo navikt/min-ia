@@ -1,11 +1,11 @@
-import { FRONTEND_METRIKKER_PATH } from "./proxyMiddlewares";
+import { FRONTEND_METRIKKER_PATH } from "../proxyMiddlewares";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
   organisasjoner,
-} from "./local/testdata";
+} from "./testdata";
 import { Express } from "express";
-import { kurslisteMock } from "./local/testdata-kurs";
+import { kurslisteMock } from "./testdata-kurs";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");

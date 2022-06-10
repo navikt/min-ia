@@ -13,7 +13,7 @@ COPY server/server.ts server/server.ts
 COPY server/proxyMiddlewares.ts server/proxyMiddlewares.ts
 COPY server/config/qbrickConfigNoPreload.ts server/config/qbrickConfigNoPreload.ts
 ## TODO: unngå å ha med backendApiProxyMock og testdata på image
-COPY server/proxyMiddlewareMock.ts server/proxyMiddlewareMock.ts
+COPY server/local/proxyMiddlewareMock.ts server/local/proxyMiddlewareMock.ts
 COPY server/local/testdata.ts server/local/testdata.ts
 COPY server/local/testdata-kurs.ts server/local/testdata-kurs.ts
 COPY server/idporten.ts server/idporten.ts

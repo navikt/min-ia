@@ -9,17 +9,18 @@ import {
   kursoversiktApiProxy,
   metrikkerProxy,
 } from "./proxyMiddlewares";
-import { backendApiProxyMock } from "./proxyMiddlewareMock";
+import { backendApiProxyMock } from "./local/proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
 import morgan from "morgan";
+import { randomUUID } from "crypto";
 
 const logKibanaFriendly = (
   level: string,
   message: string,
-  correlationId: string
+  correlationId?: string
 ) => {
-  console.log(
+  process.stdout.write(
     JSON.stringify({
       level,
       message,
@@ -41,6 +42,7 @@ const createLogger = (correlationId?: string) => {
     },
   };
 };
+const kibanaLogger = createLogger();
 
 function skipRequestLogging(req: Request) {
   const url = req.originalUrl;
@@ -51,27 +53,60 @@ const isProduction = () => {
   return process.env.NODE_ENV === "production";
 };
 
-function setupRequestLogging(server: Express): void {
-  server.use(
-    morgan(isProduction() ? "tiny" : "dev", {
-      skip: skipRequestLogging,
-      stream: { write: (message) => logger.info(message) },
-    })
-  );
-}
-
-const logger = createLogger();
+morgan.token("kibana-friendly", (req, res) => {
+  return JSON.stringify({
+    level: "",
+  });
+});
 
 const basePath = "/min-ia";
-logger.info("NODE_ENV" + process.env.NODE_ENV);
+kibanaLogger.info("NODE_ENV" + process.env.NODE_ENV);
 
 const server = express();
+
+const getCorrelationIdHeader = (req: Request) => {
+  return req.headers["X-Correlation-ID"];
+};
+
+const addCorrelationIdHeader = (req: Request) => {
+  req.headers["X-Correlation-ID"] = randomUUID();
+};
+
+const noCorrelationIdHeaderExists = (req): boolean => {
+  return getCorrelationIdHeader(req) === undefined;
+};
+
+const correlationIdMiddleware = (req: Request, res, next) => {
+  if (noCorrelationIdHeaderExists(req)) {
+    addCorrelationIdHeader(req);
+  }
+  console.log("HALLLOOOOO");
+  next();
+};
+
+server.use(correlationIdMiddleware);
+server.use(
+  morgan((tokens, req, res) => {
+    return JSON.stringify({
+      level: "info",
+      message: [
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res),
+        tokens.res(req, res, "content-length"),
+        "-",
+        tokens["response-time"](req, res),
+        "ms",
+      ].join(" "),
+      correlationId: getCorrelationIdHeader(req),
+    });
+  })
+);
+
 const prometheus = promBundle({
   includePath: true,
   metricsPath: `${basePath}/internal/metrics`,
 });
-
-setupRequestLogging(server)
 
 // set up rate limiter: maximum of 20 000 requests per minute
 const limiter = RateLimit({
@@ -98,32 +133,25 @@ const harAuthorizationHeader = (request: Request) => {
   );
 };
 
-// const loggingMiddleware = async (req: Request, res, next) => {
-//   const correlationId = req.headers["X-Correlation-ID"].toString();
-//   const logger = createLogger(correlationId);
-//   logger.info("***************************** HALLO");
-//   next();
-// };
-
 const startServer = async () => {
   // server.use(loggingMiddleware);
   server.use(cookieParser());
   server.use(prometheus);
-  logger.info("Starting server: server.js");
+  kibanaLogger.info("Starting server: server.js");
   // TODO: Samle alle kodesnutter som krever process.env.NODE_ENV === "production"
 
   if (process.env.NODE_ENV === "production") {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
-  logger.info(`NODE_ENV er '${process.env.NODE_ENV}'`);
+  kibanaLogger.info(`NODE_ENV er '${process.env.NODE_ENV}'`);
 
   if (process.env.NODE_ENV === "production") {
     server.use(backendApiProxy);
     server.use(metrikkerProxy);
     server.use(kursoversiktApiProxy);
   } else {
-    logger.info("Starter backendProxyMock");
+    kibanaLogger.info("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
 
@@ -133,7 +161,7 @@ const startServer = async () => {
       : envProperties.APP_INGRESS;
 
     if (!redirect.startsWith(envProperties.APP_INGRESS)) {
-      logger.info(
+      kibanaLogger.info(
         "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
           envProperties.APP_INGRESS
       );
@@ -141,23 +169,23 @@ const startServer = async () => {
     }
 
     const loginTilOauth2 = getLoginTilOauth2(redirect);
-    logger.info("[INFO] redirect til: " + loginTilOauth2);
+    kibanaLogger.info("[INFO] redirect til: " + loginTilOauth2);
     response.redirect(loginTilOauth2);
   });
 
   server.get(`${basePath}/success`, (request, response) => {
-    logger.info("Håndterer /success");
+    kibanaLogger.info("Håndterer /success");
     const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
       request.cookies["innloggingsstatus-token"] !== undefined &&
       request.cookies["io.nais.wonderwall.session"] !== undefined;
-    logger.info("Har vi gyldige cookies? " + harNødvendigeCookies);
+    kibanaLogger.info("Har vi gyldige cookies? " + harNødvendigeCookies);
 
     if (harAuthorizationHeader(request)) {
       const idportenToken = request.headers["authorization"]?.split(" ")[1];
-      logger.info("Har auth header, length=" + idportenToken.length);
+      kibanaLogger.info("Har auth header, length=" + idportenToken.length);
     } else {
-      logger.info("Har ingen auth header");
+      kibanaLogger.info("Har ingen auth header");
     }
 
     const redirectString = request.query.redirect as string;
@@ -166,13 +194,13 @@ const startServer = async () => {
       harAuthorizationHeader(request) &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
-      logger.info(
+      kibanaLogger.info(
         "[INFO] Innlogging fullført, skal redirecte til: " + redirectString
       );
       response.redirect(redirectString);
     } else {
       const url = getLoginTilOauth2(envProperties.APP_INGRESS);
-      logger.info(
+      kibanaLogger.info(
         "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
       );
       response.redirect(url);
@@ -193,7 +221,7 @@ const startServer = async () => {
   });
 
   server.listen(envProperties.PORT, () => {
-    logger.info("Server listening on port " + envProperties.PORT);
+    kibanaLogger.info("Server listening on port " + envProperties.PORT);
   });
 };
 
