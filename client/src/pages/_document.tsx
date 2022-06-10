@@ -50,6 +50,7 @@ class MyDocument extends Document<Props> {
       feedback: false,
       urlLookupTable: false,
       breadcrumbs: breadcrumbs,
+      context: "arbeidsgiver",
     });
 
     const language = getDocumentParameter(initialProps, "lang");
