@@ -71,7 +71,7 @@ const prometheus = promBundle({
   metricsPath: `${basePath}/internal/metrics`,
 });
 
-server.use(setupRequestLogging);
+setupRequestLogging(server)
 
 // set up rate limiter: maximum of 20 000 requests per minute
 const limiter = RateLimit({
