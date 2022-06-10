@@ -27,6 +27,8 @@ spec:
       value: "dev-gcp:arbeidsgiver:ia-tjenester-metrikker"
     - name: APP_INGRESS
       value: https://min-ia.dev.nav.no/min-ia
+    - name: DECORATOR_ENV
+      value: dev
     - name: DECORATOR_URL
       value: https://dekoratoren.dev.nav.no?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL

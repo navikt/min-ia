@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
-import { Layout } from "../komponenter/Layout/Layout";
-import { getPageProps, PageProps } from "../pageProps";
+import { PageProps } from "../pageProps";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { GetServerSideProps } from "next";
 import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
@@ -14,6 +13,7 @@ import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Script from "next/script";
 import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
+import { Layout } from "../komponenter/Layout/Layout";
 
 interface ListeElement {
   key: Tags;
@@ -146,7 +146,6 @@ export default function Nettkurs(props: { page: PageProps }) {
       <Layout
         title={props.page.title}
         description={props.page.description}
-        decoratorParts={props.page.decorator}
         altinnOrganisasjoner={
           organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
             ? organisasjonerBrukerHarTilgangTil.data
@@ -160,10 +159,11 @@ export default function Nettkurs(props: { page: PageProps }) {
 }
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps: GetServerSideProps = async () => {
-  const page = await getPageProps(
-    "Nettkurs",
-    "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen"
-  );
+  const page = {
+    title: "Nettkurs",
+    description:
+      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+  };
 
   return { props: { page } };
 };
