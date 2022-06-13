@@ -95,8 +95,6 @@ export function getBransjeEllerNæringLabel(
   const [historikkForNæring] = fraværshistorikk.filter(
     (historikk) => historikk.type === SykefraværshistorikkType.NÆRING
   );
-  console.log("historikkForBransje:",historikkForBransje)
-  console.log("historikkForNæring:",historikkForNæring)
   return historikkForBransje !== undefined
     ? historikkForBransje?.label
     : historikkForNæring?.label;
