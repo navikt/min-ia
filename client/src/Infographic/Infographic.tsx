@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
-import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import {BodyLong, Button, Heading, HelpText, Modal} from "@navikt/ds-react";
+import {Bag, HealthCase, Information, NorwegianFlag, Up} from "@navikt/ds-icons";
+import { BodyLong, Button, Heading, HelpText, Modal } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
@@ -24,6 +24,7 @@ export interface InfographicData {
   sykefraværNæring: MuligSykefravær;
   trendStigningstall: MuligTall;
   nedlastingPågår?: boolean;
+  bransjeEllerNæringLabel?: string;
 }
 
 export const Infographic: FunctionComponent<InfographicData> = ({
@@ -32,6 +33,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   sykefraværNæring,
   trendStigningstall,
   nedlastingPågår,
+    bransjeEllerNæringLabel
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
@@ -40,7 +42,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
-  const [open, setOpen]=useState(false);
+  const [open, setOpen] = useState(false);
 
   const DesktopEllerMobilVersjon = () => {
     if (
@@ -68,8 +70,10 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     );
   };
   useEffect(() => {
-    //Modal?.setAppElement("modalButton");
-  },[])
+    if (Modal !== undefined)  { // @ts-ignore
+      Modal?.setAppElement("#__next");
+    }
+  }, []);
 
   useEffect(() => {
     setSykefravarsstatistikkUrl(
@@ -120,32 +124,33 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       <DesktopEllerMobilVersjon />
       {windowSize.width !== undefined && windowSize.width > screenSmAsNumeric && (
         <div className={styles.hjelpetekstWrapper}>
-          <Button id={'modalButton'} variant={'tertiary'} onClick={()=>{setOpen((open)=>!open)}}>
-            <HelpText>?</HelpText>
+          <Button
+            id={"modalButton"}
+            variant={"tertiary"}
+            onClick={() => {
+              setOpen((open) => !open);
+            }}
+          >
+            <Information/>
           </Button>
           <Modal
-              aria-label="Modal for mer informasjon"
-              onClose={()=>{setOpen(false)}}
-              open={open}
-              shouldCloseOnOverlayClick={true}
+            aria-label="Modal for mer informasjon"
+            onClose={() => {
+              setOpen(false);
+            }}
+            open={open}
+            shouldCloseOnOverlayClick={true}
           >
             <Modal.Content>
-              <Heading
-                  level="1"
-                  size="large"
-                  spacing={true}
-              >
+              <Heading level="1" size="large" spacing={true}>
                 Informasjon
               </Heading>
-              <Heading
-                  level="2"
-                  size="medium"
-                  spacing={true}
-              >
-                Din {bransjeEllerNæring}:
-              </Heading>
+              {bransjeEllerNæringLabel&&<Heading level="2" size="medium" spacing={true}>
+                Din {bransjeEllerNæring}: {bransjeEllerNæringLabel}
+              </Heading>}
               <BodyLong spacing={true}>
-                Utregningene på dette panelet blir gjort fortløpende, basert på<br/>
+                Utregningene på dette panelet blir gjort fortløpende, basert på
+                <br />
                 et større statistisk grunnlag, hentet fra SSB.
               </BodyLong>
             </Modal.Content>
