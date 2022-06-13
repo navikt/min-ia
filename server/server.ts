@@ -1,4 +1,4 @@
-import express, { Express, Request } from "express";
+import express, { Request } from "express";
 import promBundle from "express-prom-bundle";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
@@ -46,7 +46,7 @@ const kibanaLogger = createLogger();
 
 function skipRequestLogging(req: Request) {
   const url = req.originalUrl;
-  return url?.includes("internal");
+  return url?.includes("/internal/");
 }
 
 const isProduction = () => {
@@ -69,6 +69,7 @@ const getCorrelationIdHeader = (req: Request) => {
 };
 
 const addCorrelationIdHeader = (req: Request) => {
+  console.log("LOGGING SKIPPES")
   req.headers["X-Correlation-ID"] = randomUUID();
 };
 
@@ -80,27 +81,29 @@ const correlationIdMiddleware = (req: Request, res, next) => {
   if (noCorrelationIdHeaderExists(req)) {
     addCorrelationIdHeader(req);
   }
-  console.log("HALLLOOOOO");
   next();
 };
 
 server.use(correlationIdMiddleware);
 server.use(
-  morgan((tokens, req, res) => {
-    return JSON.stringify({
-      level: "info",
-      message: [
-        tokens.method(req, res),
-        tokens.url(req, res),
-        tokens.status(req, res),
-        tokens.res(req, res, "content-length"),
-        "-",
-        tokens["response-time"](req, res),
-        "ms",
-      ].join(" "),
-      correlationId: getCorrelationIdHeader(req),
-    });
-  })
+  morgan(
+    (tokens, req, res) => {
+      return JSON.stringify({
+        level: "info",
+        message: [
+          tokens.method(req, res),
+          tokens.url(req, res),
+          tokens.status(req, res),
+          tokens.res(req, res, "content-length"),
+          "-",
+          tokens["response-time"](req, res),
+          "ms",
+        ].join(" "),
+        correlationId: getCorrelationIdHeader(req),
+      });
+    },
+    { skip: skipRequestLogging }
+  )
 );
 
 const prometheus = promBundle({
