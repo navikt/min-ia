@@ -3,7 +3,7 @@ const logKibanaFriendly = (
   message: string,
   correlationId?: string
 ) => {
-  process.stdout.write(
+  console.log(
     JSON.stringify({
       level,
       message,

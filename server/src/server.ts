@@ -10,41 +10,16 @@ import {
   metrikkerProxy,
 } from "./proxyMiddlewares";
 import { backendApiProxyMock } from "./local/proxyMiddlewareMock";
-import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
 import { requestLoggingMiddleware } from "./middleware/requestLogging";
 import { correlationIdMiddleware } from "./middleware/correlationId";
 import { logger } from "./logger";
-
-const isProduction = () => {
-  return process.env.NODE_ENV === "production";
-};
-
-const basePath = "/min-ia";
-logger.info("NODE_ENV" + process.env.NODE_ENV);
-
-const server = express();
-server.use(correlationIdMiddleware);
-server.use(requestLoggingMiddleware);
-const prometheus = promBundle({
-  includePath: true,
-  metricsPath: `${basePath}/internal/metrics`,
-});
-
-// set up rate limiter: maximum of 20 000 requests per minute
-const limiter = RateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 20000,
-});
-server.use(limiter);
-
-const envProperties = {
-  APP_INGRESS: process.env.APP_INGRESS || "http://localhost:3000/min-ia",
-  PORT: process.env.PORT || 3010,
-};
+import { requestRateLimiter } from "./middleware/requestRateLimiter";
+import { basePath } from "./config/meta";
+import { prometheus } from "./middleware/prometheus";
 
 const getLoginTilOauth2 = (redirectUrl: string): string => {
-  const referrerUrl = `${envProperties.APP_INGRESS}/success?redirect=${redirectUrl}`;
+  const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${redirectUrl}`;
   return `${basePath}/oauth2/login?redirect=${referrerUrl}`;
 };
 
@@ -57,10 +32,15 @@ const harAuthorizationHeader = (request: Request) => {
 };
 
 const startServer = async () => {
-  // server.use(loggingMiddleware);
-  server.use(cookieParser());
+  logger.info("Starting server: server.ts");
+  const server = express();
+
+  server.use(correlationIdMiddleware);
+  server.use(requestLoggingMiddleware);
   server.use(prometheus);
-  logger.info("Starting server: server.js");
+  server.use(requestRateLimiter);
+  server.use(cookieParser());
+
   // TODO: Samle alle kodesnutter som krever process.env.NODE_ENV === "production"
 
   if (process.env.NODE_ENV === "production") {
@@ -81,14 +61,14 @@ const startServer = async () => {
   server.get(`${basePath}/redirect-til-login`, (request, response) => {
     let redirect: string = request.query.redirect
       ? (request.query.redirect as string)
-      : envProperties.APP_INGRESS;
+      : process.env.APP_INGRESS;
 
-    if (!redirect.startsWith(envProperties.APP_INGRESS)) {
+    if (!redirect.startsWith(process.env.APP_INGRESS)) {
       logger.info(
         "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
-          envProperties.APP_INGRESS
+          process.env.APP_INGRESS
       );
-      redirect = envProperties.APP_INGRESS;
+      redirect = process.env.APP_INGRESS;
     }
 
     const loginTilOauth2 = getLoginTilOauth2(redirect);
@@ -122,7 +102,7 @@ const startServer = async () => {
       );
       response.redirect(redirectString);
     } else {
-      const url = getLoginTilOauth2(envProperties.APP_INGRESS);
+      const url = getLoginTilOauth2(process.env.APP_INGRESS);
       logger.info(
         "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
       );
@@ -143,8 +123,8 @@ const startServer = async () => {
     response.sendStatus(200);
   });
 
-  server.listen(envProperties.PORT, () => {
-    logger.info("Server listening on port " + envProperties.PORT);
+  server.listen(process.env.PORT, () => {
+    logger.info("Server listening on port " + process.env.PORT);
   });
 };
 
