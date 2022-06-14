@@ -3,9 +3,9 @@ import { logger } from "../logger";
 import { Express, Request } from "express";
 
 export const setuploginRoutes = (server: Express) => {
-  redirectTilLogin(server)
-  success(server)
-}
+  redirectTilLogin(server);
+  success(server);
+};
 
 const redirectTilLogin = (server: Express) => {
   server.get(`${APP_BASE_PATH}/redirect-til-login`, (request, response) => {

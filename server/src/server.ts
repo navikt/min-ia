@@ -1,4 +1,4 @@
-import express, {Express} from "express";
+import express, { Express } from "express";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
@@ -17,7 +17,7 @@ import { SERVER_PORT } from "./config/meta";
 import { prometheus } from "./config/middleware/prometheus";
 import { isProduction } from "./environment";
 import { isAlive, isReady } from "./healthcheck";
-import {setuploginRoutes} from "./login/login";
+import { setuploginRoutes } from "./login/login";
 
 const initServer = () => {
   logger.info("Starting server: server.ts");
@@ -38,7 +38,6 @@ const initServer = () => {
       throw new ServerInitError(e.stack);
     });
   } else {
-    logger.info("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
 
@@ -46,16 +45,16 @@ const initServer = () => {
     logger.info("Server listening on port " + SERVER_PORT);
   });
 
+  setupRoutes(server);
   isReady(server);
   return server;
 };
 
 const setupRoutes = (server: Express) => {
-  setuploginRoutes(server)
-}
+  setuploginRoutes(server);
+};
 
-
-const server = initServer();
+initServer();
 
 class ServerInitError extends Error {
   constructor(stack: string) {
