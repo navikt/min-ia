@@ -31,7 +31,7 @@ const Kurskalender = () => {
     lenke: {
       tekst: "",
       tittel: "Finn et kurs som passer for deg her",
-      href: "https://arbeidsgiver.nav.no/kursoversikt/?type=Webinar&tema=Inkluderende%20arbeidsliv%20(IA)",
+      href: "https://arbeidsgiver.nav.no/kursoversikt/?tema=Inkluderende%20arbeidsliv%20(IA)",
     },
   };
   return (
