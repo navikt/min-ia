@@ -2,11 +2,12 @@ import { Issuer, TokenSet } from "openid-client";
 import fetch from "node-fetch";
 import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten";
 import { IncomingMessage } from "http";
+import { isProduction } from "./environment";
 
 let tokenxClient: any;
 
 export async function initTokenX() {
-  if (process.env.NODE_ENV === "production") {
+  if (isProduction()) {
     const tokenxIssuer = await Issuer.discover(
       process.env.TOKEN_X_WELL_KNOWN_URL!
     );
@@ -61,7 +62,7 @@ async function getTokenXToken(
       err.response.body
     );
   }
-  if (!tokenSet && process.env.NODE_ENV !== "production") {
+  if (!tokenSet && !isProduction()) {
     // Dette skjer kun i lokalt miljø - siden tokenxClient kun blir initialisert i GCP env
     tokenSet = await getMockTokenXToken();
   }
@@ -75,7 +76,7 @@ export async function exchangeToken(
   let token = request.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    if (process.env.NODE_ENV !== "production") {
+    if (!isProduction()) {
       token = await getMockTokenFromIdporten();
     } else {
       // Brukeren er ikke autorisert

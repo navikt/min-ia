@@ -17,7 +17,7 @@ server.get(`${APP_BASE_PATH}/redirect-til-login`, (request, response) => {
   }
 
   const loginTilOauth2 = getLoginTilOauth2(redirect);
-  logger.info("[INFO] redirect til: " + loginTilOauth2);
+  logger.info("Redirect til: " + loginTilOauth2);
   response.redirect(loginTilOauth2);
 });
 
@@ -42,15 +42,11 @@ server.get(`${APP_BASE_PATH}/success`, (request, response) => {
     harAuthorizationHeader(request) &&
     redirectString.startsWith(process.env.APP_INGRESS)
   ) {
-    logger.info(
-      "[INFO] Innlogging fullført, skal redirecte til: " + redirectString
-    );
+    logger.info("Innlogging fullført, skal redirecte til: " + redirectString);
     response.redirect(redirectString);
   } else {
     const url = getLoginTilOauth2(process.env.APP_INGRESS);
-    logger.info(
-      "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
-    );
+    logger.info("Ingen gyldig Auth header, redirect til innlogging: " + url);
     response.redirect(url);
   }
 });

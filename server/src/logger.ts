@@ -1,27 +1,22 @@
-const logKibanaFriendly = (
-  level: string,
-  message: string,
-  correlationId?: string
-) => {
+const logKibanaFriendly = (level: string, message: string) => {
   console.log(
     JSON.stringify({
       level,
       message,
-      correlationId,
     })
   );
 };
 
-const createKibanaFriendlyLogger = (correlationId?: string) => {
+const createKibanaFriendlyLogger = () => {
   return {
     warning(message: string) {
-      logKibanaFriendly("Warning", message, correlationId);
+      logKibanaFriendly("Warning", message);
     },
     info(message: string) {
-      logKibanaFriendly("Info", message, correlationId);
+      logKibanaFriendly("Info", message);
     },
     debug(message: string) {
-      logKibanaFriendly("Debug", message, correlationId);
+      logKibanaFriendly("Debug", message);
     },
   };
 };
