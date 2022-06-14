@@ -1,4 +1,3 @@
-import { FRONTEND_METRIKKER_PATH } from "../proxyMiddlewares";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
@@ -34,9 +33,6 @@ export const backendApiProxyMock = (server: Express) => {
     }
   });
 
-  console.debug(
-    `Setter opp mock for GET-endepunkt med path ${FRONTEND_METRIKKER_PATH}/innlogget/mottatt-iatjeneste`
-  );
   server.get(
     "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
     (request, response) => {

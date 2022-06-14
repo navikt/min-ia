@@ -2,29 +2,32 @@ import { APP_BASE_PATH } from "../config/meta";
 import { logger } from "../logger";
 import { Express, Request } from "express";
 
-export const setuploginRoutes = (server: Express) => {
+export const setupLoginRoutes = (server: Express) => {
   redirectTilLogin(server);
   success(server);
 };
 
 const redirectTilLogin = (server: Express) => {
   server.get(`${APP_BASE_PATH}/redirect-til-login`, (request, response) => {
-    let redirect: string = request.query.redirect
-      ? (request.query.redirect as string)
-      : process.env.APP_INGRESS;
-
-    if (!redirect.startsWith(process.env.APP_INGRESS)) {
-      logger.warning(
-        "Redirect starter ikke med APP_INGRESS, oppdaterer til " +
-          process.env.APP_INGRESS
-      );
-      redirect = process.env.APP_INGRESS;
-    }
-
-    const loginTilOauth2 = getLoginTilOauth2(redirect);
+    const loginTilOauth2 = getLoginTilOauth2(makeRedirectString(request));
     logger.info("Redirect til: " + loginTilOauth2);
     response.redirect(loginTilOauth2);
   });
+};
+
+const makeRedirectString = (request: Request) => {
+  let redirect: string = request.query.redirect
+    ? (request.query.redirect as string)
+    : process.env.APP_INGRESS;
+
+  if (!redirect.startsWith(process.env.APP_INGRESS)) {
+    logger.warning(
+      "Redirect starter ikke med APP_INGRESS, oppdaterer til " +
+        process.env.APP_INGRESS
+    );
+    redirect = process.env.APP_INGRESS;
+  }
+  return redirect;
 };
 
 const success = (server: Express) => {

@@ -1,10 +1,11 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { exchangeToken } from "./tokenx";
+import { Express } from "express";
 
-export const FRONTEND_API_PATH = "/min-ia/api";
-export const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
-export const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt/api/kurs";
-export const KURSOVERSIKT_API_PATH = "/kursoversikt/api/kurs";
+const FRONTEND_API_PATH = "/min-ia/api";
+const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
+const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt/api/kurs";
+const KURSOVERSIKT_API_PATH = "/kursoversikt/api/kurs";
 
 const backendApiProxyOptions: Options = {
   target: process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL,
@@ -25,7 +26,7 @@ const backendApiProxyOptions: Options = {
   logLevel: "info",
 };
 
-// TODO: Fjern duplikat kode
+// TODO: Bli kvitt duplikat kode
 const iaTjenestemetrikkerProxyOptions: Options = {
   target: process.env.IA_TJENESTER_METRIKKER_BASE_URL,
   changeOrigin: true,
@@ -42,7 +43,7 @@ const iaTjenestemetrikkerProxyOptions: Options = {
   },
   secure: true,
   xfwd: true,
-  logLevel: "debug",
+  logLevel: "info",
 };
 
 const kursoveriktProxyOptions: Options = {
@@ -57,17 +58,21 @@ const kursoveriktProxyOptions: Options = {
   logLevel: "info",
 };
 
-export const backendApiProxy = createProxyMiddleware(
-  FRONTEND_API_PATH,
-  backendApiProxyOptions
-);
+export const setupBackendApiProxy = (server: Express) => {
+  server.use(createProxyMiddleware(FRONTEND_API_PATH, backendApiProxyOptions));
+};
 
-export const kursoversiktApiProxy = createProxyMiddleware(
-  FRONTEND_KURSOVERSIKT_PATH,
-  kursoveriktProxyOptions
-);
+export const setupKursoversiktApiProxy = (server: Express) => {
+  server.use(
+    createProxyMiddleware(FRONTEND_KURSOVERSIKT_PATH, kursoveriktProxyOptions)
+  );
+};
 
-export const metrikkerProxy = createProxyMiddleware(
-  FRONTEND_METRIKKER_PATH,
-  iaTjenestemetrikkerProxyOptions
-);
+export const setupIaTjenestermetrikkerProxy = (server: Express) => {
+  server.use(
+    createProxyMiddleware(
+      FRONTEND_METRIKKER_PATH,
+      iaTjenestemetrikkerProxyOptions
+    )
+  );
+};

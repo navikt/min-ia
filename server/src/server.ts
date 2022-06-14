@@ -4,9 +4,9 @@ import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import {
-  backendApiProxy,
-  kursoversiktApiProxy,
-  metrikkerProxy,
+  setupBackendApiProxy,
+  setupKursoversiktApiProxy,
+  setupIaTjenestermetrikkerProxy,
 } from "./proxyMiddlewares";
 import { backendApiProxyMock } from "./local/proxyMiddlewareMock";
 import { requestLoggingMiddleware } from "./config/middleware/requestLogging";
@@ -17,10 +17,10 @@ import { SERVER_PORT } from "./config/meta";
 import { prometheus } from "./config/middleware/prometheus";
 import { isProduction } from "./environment";
 import { isAlive, isReady } from "./healthcheck";
-import { setuploginRoutes } from "./login/login";
+import { setupLoginRoutes } from "./login/login";
 import { setupQbrickConfigRoute } from "./config/setupQbrickConfigRoute";
 
-const initServer = () => {
+const initServer = async () => {
   logger.info("Starting server: server.ts");
   const server = express();
   isAlive(server);
@@ -29,34 +29,35 @@ const initServer = () => {
   server.use(requestLoggingMiddleware);
   server.use(prometheus);
   server.use(requestRateLimiter);
-  server.use(cookieParser()); // Hva bruker vi cookieParser til?
+  server.use(cookieParser()); // Bruker vi cookieParseren lenger?
 
-  if (isProduction()) {
-    server.use(backendApiProxy);
-    server.use(metrikkerProxy);
-    server.use(kursoversiktApiProxy);
-    Promise.all([initIdporten(), initTokenX()]).catch((e: Error) => {
-      throw new ServerInitError(e.stack);
-    });
-  } else {
-    backendApiProxyMock(server);
-  }
+  await initIdporten();
+  await initTokenX();
 
   server.listen(SERVER_PORT, () => {
     logger.info("Server listening on port " + SERVER_PORT);
   });
 
   setupApiRoutes(server);
-
   isReady(server);
 };
 
+initServer().catch((e: Error) => {
+  throw new ServerInitError(e.stack);
+});
+
 const setupApiRoutes = (server: Express) => {
   setupQbrickConfigRoute(server);
-  setuploginRoutes(server);
-};
+  setupLoginRoutes(server);
 
-initServer();
+  if (isProduction()) {
+    server.use(setupBackendApiProxy);
+    server.use(setupKursoversiktApiProxy);
+    server.use(setupIaTjenestermetrikkerProxy);
+  } else {
+    backendApiProxyMock(server);
+  }
+};
 
 class ServerInitError extends Error {
   constructor(stack: string) {
