@@ -6,18 +6,11 @@ ENV NODE_ENV $NODE_ENV
 WORKDIR /home/node/app
 
 ## Server side
+COPY server/src server/src
 COPY server/tsconfig.json server/tsconfig.json
 COPY server/package.json server/package.json
 COPY server/yarn.lock server/yarn.lock
-COPY server/server.ts server/server.ts
-COPY server/proxyMiddlewares.ts server/proxyMiddlewares.ts
-COPY server/config/qbrickConfigNoPreload.ts server/config/qbrickConfigNoPreload.ts
 ## TODO: unngå å ha med backendApiProxyMock og testdata på image
-COPY server/local/proxyMiddlewareMock.ts server/local/proxyMiddlewareMock.ts
-COPY server/local/testdata.ts server/local/testdata.ts
-COPY server/local/testdata-kurs.ts server/local/testdata-kurs.ts
-COPY server/idporten.ts server/idporten.ts
-COPY server/tokenx.ts server/tokenx.ts
 
 WORKDIR /home/node/app/server
 RUN yarn install --frozen-lockfile

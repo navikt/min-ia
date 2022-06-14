@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev-debug": "DEBUG=express:* nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
-    "dev": "nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' server.ts",
+    "dev-debug": "DEBUG=express:* nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/server.ts",
+    "dev": "nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/server.ts",
     "start": "node --es-module-specifier-resolution=node build/server.js",
     "build": "tsc -p ."
   },
