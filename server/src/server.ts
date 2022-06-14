@@ -18,6 +18,7 @@ import { prometheus } from "./config/middleware/prometheus";
 import { isProduction } from "./environment";
 import { isAlive, isReady } from "./healthcheck";
 import { setuploginRoutes } from "./login/login";
+import { setupQbrickConfigRoute } from "./config/setupQbrickConfigRoute";
 
 const initServer = () => {
   logger.info("Starting server: server.ts");
@@ -45,12 +46,13 @@ const initServer = () => {
     logger.info("Server listening on port " + SERVER_PORT);
   });
 
-  setupRoutes(server);
+  setupApiRoutes(server);
+
   isReady(server);
-  return server;
 };
 
-const setupRoutes = (server: Express) => {
+const setupApiRoutes = (server: Express) => {
+  setupQbrickConfigRoute(server);
   setuploginRoutes(server);
 };
 
