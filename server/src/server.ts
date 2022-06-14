@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Express} from "express";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
@@ -16,10 +16,13 @@ import { requestRateLimiter } from "./config/middleware/requestRateLimiter";
 import { SERVER_PORT } from "./config/meta";
 import { prometheus } from "./config/middleware/prometheus";
 import { isProduction } from "./environment";
+import { isAlive, isReady } from "./healthcheck";
+import {setuploginRoutes} from "./login/login";
 
 const initServer = () => {
   logger.info("Starting server: server.ts");
   const server = express();
+  isAlive(server);
 
   server.use(correlationIdMiddleware);
   server.use(requestLoggingMiddleware);
@@ -43,10 +46,16 @@ const initServer = () => {
     logger.info("Server listening on port " + SERVER_PORT);
   });
 
+  isReady(server);
   return server;
 };
 
-export const server = initServer();
+const setupRoutes = (server: Express) => {
+  setuploginRoutes(server)
+}
+
+
+const server = initServer();
 
 class ServerInitError extends Error {
   constructor(stack: string) {
