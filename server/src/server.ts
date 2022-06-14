@@ -16,6 +16,7 @@ import { logger } from "./logger";
 import { requestRateLimiter } from "./middleware/requestRateLimiter";
 import { APP_BASE_PATH, SERVER_PORT } from "./config/meta";
 import { prometheus } from "./middleware/prometheus";
+import { isProduction } from "./environment";
 
 const getLoginTilOauth2 = (redirectUrl: string): string => {
   const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${redirectUrl}`;
