@@ -1,5 +1,5 @@
 import promBundle from "express-prom-bundle";
-import { APP_BASE_PATH } from "../config/meta";
+import { APP_BASE_PATH } from "../meta";
 
 export const prometheus = promBundle({
   includePath: true,
