@@ -12,100 +12,20 @@ import {
 import { backendApiProxyMock } from "./local/proxyMiddlewareMock";
 import RateLimit from "express-rate-limit";
 import { QbrickNoPreloadConfig } from "./config/qbrickConfigNoPreload";
-import morgan from "morgan";
-import { randomUUID } from "crypto";
-
-const logKibanaFriendly = (
-  level: string,
-  message: string,
-  correlationId?: string
-) => {
-  process.stdout.write(
-    JSON.stringify({
-      level,
-      message,
-      correlationId,
-    })
-  );
-};
-
-const createLogger = (correlationId?: string) => {
-  return {
-    warning(message: string) {
-      logKibanaFriendly("Warning", message, correlationId);
-    },
-    info(message: string) {
-      logKibanaFriendly("Info", message, correlationId);
-    },
-    debug(message: string) {
-      logKibanaFriendly("Debug", message, correlationId);
-    },
-  };
-};
-const kibanaLogger = createLogger();
-
-function skipRequestLogging(req: Request) {
-  const url = req.originalUrl;
-  return url?.includes("/internal/");
-}
+import { requestLoggingMiddleware } from "./middleware/requestLogging";
+import { correlationIdMiddleware } from "./middleware/correlationId";
+import { logger } from "./logger";
 
 const isProduction = () => {
   return process.env.NODE_ENV === "production";
 };
 
-morgan.token("kibana-friendly", (req, res) => {
-  return JSON.stringify({
-    level: "",
-  });
-});
-
 const basePath = "/min-ia";
-kibanaLogger.info("NODE_ENV" + process.env.NODE_ENV);
+logger.info("NODE_ENV" + process.env.NODE_ENV);
 
 const server = express();
-
-const getCorrelationIdHeader = (req: Request) => {
-  return req.headers["X-Correlation-ID"];
-};
-
-const addCorrelationIdHeader = (req: Request) => {
-  console.log("LOGGING SKIPPES")
-  req.headers["X-Correlation-ID"] = randomUUID();
-};
-
-const noCorrelationIdHeaderExists = (req): boolean => {
-  return getCorrelationIdHeader(req) === undefined;
-};
-
-const correlationIdMiddleware = (req: Request, res, next) => {
-  if (noCorrelationIdHeaderExists(req)) {
-    addCorrelationIdHeader(req);
-  }
-  next();
-};
-
 server.use(correlationIdMiddleware);
-server.use(
-  morgan(
-    (tokens, req, res) => {
-      return JSON.stringify({
-        level: "info",
-        message: [
-          tokens.method(req, res),
-          tokens.url(req, res),
-          tokens.status(req, res),
-          tokens.res(req, res, "content-length"),
-          "-",
-          tokens["response-time"](req, res),
-          "ms",
-        ].join(" "),
-        correlationId: getCorrelationIdHeader(req),
-      });
-    },
-    { skip: skipRequestLogging }
-  )
-);
-
+server.use(requestLoggingMiddleware);
 const prometheus = promBundle({
   includePath: true,
   metricsPath: `${basePath}/internal/metrics`,
@@ -140,21 +60,21 @@ const startServer = async () => {
   // server.use(loggingMiddleware);
   server.use(cookieParser());
   server.use(prometheus);
-  kibanaLogger.info("Starting server: server.js");
+  logger.info("Starting server: server.js");
   // TODO: Samle alle kodesnutter som krever process.env.NODE_ENV === "production"
 
   if (process.env.NODE_ENV === "production") {
     await Promise.all([initIdporten(), initTokenX()]);
   }
 
-  kibanaLogger.info(`NODE_ENV er '${process.env.NODE_ENV}'`);
+  logger.info(`NODE_ENV er '${process.env.NODE_ENV}'`);
 
   if (process.env.NODE_ENV === "production") {
     server.use(backendApiProxy);
     server.use(metrikkerProxy);
     server.use(kursoversiktApiProxy);
   } else {
-    kibanaLogger.info("Starter backendProxyMock");
+    logger.info("Starter backendProxyMock");
     backendApiProxyMock(server);
   }
 
@@ -164,7 +84,7 @@ const startServer = async () => {
       : envProperties.APP_INGRESS;
 
     if (!redirect.startsWith(envProperties.APP_INGRESS)) {
-      kibanaLogger.info(
+      logger.info(
         "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
           envProperties.APP_INGRESS
       );
@@ -172,23 +92,23 @@ const startServer = async () => {
     }
 
     const loginTilOauth2 = getLoginTilOauth2(redirect);
-    kibanaLogger.info("[INFO] redirect til: " + loginTilOauth2);
+    logger.info("[INFO] redirect til: " + loginTilOauth2);
     response.redirect(loginTilOauth2);
   });
 
   server.get(`${basePath}/success`, (request, response) => {
-    kibanaLogger.info("Håndterer /success");
+    logger.info("Håndterer /success");
     const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
       request.cookies["innloggingsstatus-token"] !== undefined &&
       request.cookies["io.nais.wonderwall.session"] !== undefined;
-    kibanaLogger.info("Har vi gyldige cookies? " + harNødvendigeCookies);
+    logger.info("Har vi gyldige cookies? " + harNødvendigeCookies);
 
     if (harAuthorizationHeader(request)) {
       const idportenToken = request.headers["authorization"]?.split(" ")[1];
-      kibanaLogger.info("Har auth header, length=" + idportenToken.length);
+      logger.info("Har auth header, length=" + idportenToken.length);
     } else {
-      kibanaLogger.info("Har ingen auth header");
+      logger.info("Har ingen auth header");
     }
 
     const redirectString = request.query.redirect as string;
@@ -197,13 +117,13 @@ const startServer = async () => {
       harAuthorizationHeader(request) &&
       redirectString.startsWith(process.env.APP_INGRESS)
     ) {
-      kibanaLogger.info(
+      logger.info(
         "[INFO] Innlogging fullført, skal redirecte til: " + redirectString
       );
       response.redirect(redirectString);
     } else {
       const url = getLoginTilOauth2(envProperties.APP_INGRESS);
-      kibanaLogger.info(
+      logger.info(
         "[INFO] Ingen gyldig Auth header, redirect til innlogging: " + url
       );
       response.redirect(url);
@@ -224,7 +144,7 @@ const startServer = async () => {
   });
 
   server.listen(envProperties.PORT, () => {
-    kibanaLogger.info("Server listening on port " + envProperties.PORT);
+    logger.info("Server listening on port " + envProperties.PORT);
   });
 };
 
