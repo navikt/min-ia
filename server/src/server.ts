@@ -1,5 +1,4 @@
 import express, { Request } from "express";
-import promBundle from "express-prom-bundle";
 import { initTokenX } from "./tokenx";
 import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
@@ -15,12 +14,12 @@ import { requestLoggingMiddleware } from "./middleware/requestLogging";
 import { correlationIdMiddleware } from "./middleware/correlationId";
 import { logger } from "./logger";
 import { requestRateLimiter } from "./middleware/requestRateLimiter";
-import { basePath } from "./config/meta";
+import { APP_BASE_PATH, SERVER_PORT } from "./config/meta";
 import { prometheus } from "./middleware/prometheus";
 
 const getLoginTilOauth2 = (redirectUrl: string): string => {
   const referrerUrl = `${process.env.APP_INGRESS}/success?redirect=${redirectUrl}`;
-  return `${basePath}/oauth2/login?redirect=${referrerUrl}`;
+  return `${APP_BASE_PATH}/oauth2/login?redirect=${referrerUrl}`;
 };
 
 const harAuthorizationHeader = (request: Request) => {
@@ -39,17 +38,10 @@ const startServer = async () => {
   server.use(requestLoggingMiddleware);
   server.use(prometheus);
   server.use(requestRateLimiter);
-  server.use(cookieParser());
+  server.use(cookieParser()); // Hva bruker vi cookieParser til?
 
-  // TODO: Samle alle kodesnutter som krever process.env.NODE_ENV === "production"
-
-  if (process.env.NODE_ENV === "production") {
+  if (isProduction()) {
     await Promise.all([initIdporten(), initTokenX()]);
-  }
-
-  logger.info(`NODE_ENV er '${process.env.NODE_ENV}'`);
-
-  if (process.env.NODE_ENV === "production") {
     server.use(backendApiProxy);
     server.use(metrikkerProxy);
     server.use(kursoversiktApiProxy);
@@ -58,14 +50,14 @@ const startServer = async () => {
     backendApiProxyMock(server);
   }
 
-  server.get(`${basePath}/redirect-til-login`, (request, response) => {
+  server.get(`${APP_BASE_PATH}/redirect-til-login`, (request, response) => {
     let redirect: string = request.query.redirect
       ? (request.query.redirect as string)
       : process.env.APP_INGRESS;
 
     if (!redirect.startsWith(process.env.APP_INGRESS)) {
-      logger.info(
-        "[WARN] redirect starter ikke med APP_INGRESS, oppdaterer til " +
+      logger.warning(
+        "Redirect starter ikke med APP_INGRESS, oppdaterer til " +
           process.env.APP_INGRESS
       );
       redirect = process.env.APP_INGRESS;
@@ -76,7 +68,7 @@ const startServer = async () => {
     response.redirect(loginTilOauth2);
   });
 
-  server.get(`${basePath}/success`, (request, response) => {
+  server.get(`${APP_BASE_PATH}/success`, (request, response) => {
     logger.info("Håndterer /success");
     const harNødvendigeCookies: boolean =
       request.cookies !== undefined &&
@@ -110,21 +102,24 @@ const startServer = async () => {
     }
   });
 
-  server.get(`${basePath}/qbrick/config/no-preload`, (request, response) => {
-    response.setHeader("Content-Type", "application/json");
-    response.send(QbrickNoPreloadConfig);
-  });
+  server.get(
+    `${APP_BASE_PATH}/qbrick/config/no-preload`,
+    (request, response) => {
+      response.setHeader("Content-Type", "application/json");
+      response.send(QbrickNoPreloadConfig);
+    }
+  );
 
-  server.get(`${basePath}/internal/isAlive`, (request, response) => {
+  server.get(`${APP_BASE_PATH}/internal/isAlive`, (request, response) => {
     response.sendStatus(200);
   });
 
-  server.get(`${basePath}/internal/isReady`, (request, response) => {
+  server.get(`${APP_BASE_PATH}/internal/isReady`, (request, response) => {
     response.sendStatus(200);
   });
 
-  server.listen(process.env.PORT, () => {
-    logger.info("Server listening on port " + process.env.PORT);
+  server.listen(SERVER_PORT, () => {
+    logger.info("Server listening on port " + SERVER_PORT);
   });
 };
 

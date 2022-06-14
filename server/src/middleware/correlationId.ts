@@ -2,7 +2,7 @@ import { Request } from "express";
 import { randomUUID } from "crypto";
 
 export const correlationIdMiddleware = (req: Request, res, next) => {
-  if (noCorrelationIdHeaderExists(req)) {
+  if (noCorrelationIdHeaderExist(req)) {
     addCorrelationIdHeader(req);
   }
   next();
@@ -16,6 +16,6 @@ const addCorrelationIdHeader = (req: Request) => {
   req.headers["X-Correlation-ID"] = randomUUID();
 };
 
-const noCorrelationIdHeaderExists = (req): boolean => {
+const noCorrelationIdHeaderExist = (req): boolean => {
   return getCorrelationIdHeader(req) === undefined;
 };
