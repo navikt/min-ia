@@ -48,9 +48,9 @@ export const InfoModal: FunctionComponent<Props> = ({
             </Heading>
           )}
           <BodyLong spacing={true}>
-            Utregningene på dette panelet blir gjort fortløpende, basert på
+            Utregningene på dette panelet blir gjort fortløpende, basert på et
             <br />
-            et større statistisk grunnlag, hentet fra SSB.
+            større statistisk grunnlag, basert på statistikk beregnet av NAV og SSB.
           </BodyLong>
         </Modal.Content>
       </Modal>
