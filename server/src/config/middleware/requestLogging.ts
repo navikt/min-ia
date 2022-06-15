@@ -10,7 +10,7 @@ export const requestLoggingMiddleware = morgan(
       correlationId: getCorrelationIdHeader(req),
     });
   },
-  { skip: skipAllInternalRequests }
+  { skip: internalRequests }
 );
 
 function writeRequestLogMessage(tokens, req, res) {
@@ -23,6 +23,9 @@ function writeRequestLogMessage(tokens, req, res) {
   ].join(" ");
 }
 
-function skipAllInternalRequests(req: Request) {
-  return req.originalUrl?.includes("/internal/");
+function internalRequests(req: Request) {
+  return (
+    req.originalUrl?.includes("/internal/") ||
+    req.originalUrl?.includes("/qbrick/config")
+  );
 }
