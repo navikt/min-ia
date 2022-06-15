@@ -14,9 +14,9 @@ export const setupApiRoutes = (server: Express) => {
   setupLoginRoutes(server);
 
   if (isProduction()) {
-    server.use(setupBackendApiProxy);
-    server.use(setupKursoversiktApiProxy);
-    server.use(setupIaTjenestermetrikkerProxy);
+    setupBackendApiProxy(server);
+    setupKursoversiktApiProxy(server);
+    setupIaTjenestermetrikkerProxy(server);
   } else {
     backendApiProxyMock(server);
   }
