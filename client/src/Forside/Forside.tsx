@@ -15,7 +15,10 @@ import {
 } from "../integrasjoner/rest-status";
 import { Infographic } from "../Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
-import { kalkulerInfographicData } from "../Infographic/datatransformasjon";
+import {
+  getBransjeEllerNæringLabel,
+  kalkulerInfographicData,
+} from "../Infographic/datatransformasjon";
 import { sendSidevisningEvent } from "../amplitude/events";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
@@ -92,6 +95,9 @@ export const Forside: FunctionComponent<ForsideProps> = ({
             sykefraværshistorikk.status === RestStatus.IkkeLastet ||
             sykefraværshistorikk.status === RestStatus.LasterInn
           }
+          bransjeEllerNæringLabel={getBransjeEllerNæringLabel(
+            kvartalsvisSykefraværshistorikkData
+          )}
         />
       </>
     );
@@ -113,12 +119,12 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               href={samtalestotteUrl}
             />
             <Lenkeflis
-                overskrift={"Nettkurs"}
-                ikon={<KursOgWebinarerIkon />}
-                brødtekst={
-                  "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
-                }
-                href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
+              overskrift={"Nettkurs"}
+              ikon={<KursOgWebinarerIkon />}
+              brødtekst={
+                "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
+              }
+              href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
             />
             {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
         <Lenkeflis
@@ -138,12 +144,12 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               href={kalkulatorUrl}
             />
             <Lenkeflis
-                overskrift={"Sykefraværs&shy;statistikk"}
-                ikon={<StatistikkIkonIkon />}
-                brødtekst={
-                  "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
-                }
-                href={sykefravarsstatistikkUrl}
+              overskrift={"Sykefraværs&shy;statistikk"}
+              ikon={<StatistikkIkonIkon />}
+              brødtekst={
+                "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
+              }
+              href={sykefravarsstatistikkUrl}
             />
             <InkluderendeArbeidslivPanel />
             <LenkeflisEkstern
