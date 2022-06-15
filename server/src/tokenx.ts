@@ -2,7 +2,7 @@ import { Issuer, TokenSet } from "openid-client";
 import fetch from "node-fetch";
 import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten";
 import { IncomingMessage } from "http";
-import { isProduction } from "./environment";
+import { isProduction } from "./util/environment";
 
 let tokenxClient: any;
 

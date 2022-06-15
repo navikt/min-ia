@@ -1,5 +1,5 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
-import { exchangeToken } from "./tokenx";
+import { exchangeToken } from "../../tokenx";
 import { Express } from "express";
 
 const FRONTEND_API_PATH = "/min-ia/api";

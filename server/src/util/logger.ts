@@ -7,7 +7,7 @@ const logKibanaFriendly = (level: string, message: string) => {
   );
 };
 
-const createKibanaFriendlyLogger = () => {
+const createKibanaLogger = () => {
   return {
     warning(message: string) {
       logKibanaFriendly("Warning", message);
@@ -21,4 +21,4 @@ const createKibanaFriendlyLogger = () => {
   };
 };
 
-export const logger = createKibanaFriendlyLogger();
+export const logger = createKibanaLogger();

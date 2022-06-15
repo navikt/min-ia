@@ -1,5 +1,5 @@
-import { APP_BASE_PATH } from "../config/meta";
-import { logger } from "../logger";
+import { APP_BASE_PATH } from "./config/meta";
+import { logger } from "./util/logger";
 import { Express, Request } from "express";
 
 export const setupLoginRoutes = (server: Express) => {
