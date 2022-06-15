@@ -1,6 +1,6 @@
 import { Express } from "express";
 import { setupQbrickConfigRoute } from "./config/setupQbrickConfigRoute";
-import { setupLoginRoutes } from "./login";
+import { setupLoginRoutes } from "./login/routes";
 import { isProduction } from "./util/environment";
 import {
   setupBackendApiProxy,
