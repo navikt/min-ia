@@ -1,8 +1,14 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
-import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import { BodyLong, HelpText } from "@navikt/ds-react";
+import {
+  Bag,
+  HealthCase,
+  Information,
+  NorwegianFlag,
+  Up,
+} from "@navikt/ds-icons";
+import { BodyLong, Button, Heading, HelpText, Modal } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
@@ -14,6 +20,7 @@ import { useWindowSize } from "../hooks/useWindowSize";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
 import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
+import { InfoModal } from "../komponenter/InfoModal/InfoModal";
 
 export type MuligSykefravær = number | null | undefined;
 export type MuligTall = number | undefined;
@@ -24,6 +31,7 @@ export interface InfographicData {
   sykefraværNæring: MuligSykefravær;
   trendStigningstall: MuligTall;
   nedlastingPågår?: boolean;
+  bransjeEllerNæringLabel?: string;
 }
 
 export const Infographic: FunctionComponent<InfographicData> = ({
@@ -32,6 +40,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
   sykefraværNæring,
   trendStigningstall,
   nedlastingPågår,
+  bransjeEllerNæringLabel,
 }) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
@@ -66,6 +75,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       </BodyLong>
     );
   };
+
   useEffect(() => {
     setSykefravarsstatistikkUrl(
       utledUrlForBedrift(
@@ -113,13 +123,13 @@ export const Infographic: FunctionComponent<InfographicData> = ({
       />
 
       <DesktopEllerMobilVersjon />
-      {windowSize.width !== undefined && windowSize.width > screenSmAsNumeric && (
-        <div className={styles.hjelpetekstWrapper}>
-          <HelpText title="Hvor kommer tallene fra?" strategy={"fixed"}>
-            For flere definisjoner gå til sykefraværsstatistikk.
-          </HelpText>
-        </div>
-      )}
+      {windowSize.width !== undefined &&
+        windowSize.width > screenSmAsNumeric && (
+          <InfoModal
+            bransjeEllerNæring={bransjeEllerNæring}
+            bransjeEllerNæringLabel={bransjeEllerNæringLabel}
+          />
+        )}
     </div>
   );
 };

@@ -86,6 +86,19 @@ function getDataForEnkeltkvartal(
   return enkeltkvartal;
 }
 
+export function getBransjeEllerNæringLabel(
+  fraværshistorikk: KvartalsvisSykefraværshistorikk[]
+): string {
+  const [historikkForBransje] = fraværshistorikk.filter(
+    (historikk) => historikk.type === SykefraværshistorikkType.BRANSJE
+  );
+  const [historikkForNæring] = fraværshistorikk.filter(
+    (historikk) => historikk.type === SykefraværshistorikkType.NÆRING
+  );
+  return historikkForBransje !== undefined
+    ? historikkForBransje?.label
+    : historikkForNæring?.label;
+}
 function kalkulerTrend(
   fraværsistorikk: KvartalsvisSykefraværshistorikk
 ): number | undefined {

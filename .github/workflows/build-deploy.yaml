@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/fav-ikon-pa-nettkurs-siden'
+    if: github.ref == 'refs/heads/mer-info-i-infographic'
     needs: build
     runs-on: ubuntu-latest
     steps:
