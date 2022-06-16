@@ -4,8 +4,8 @@ import { Express } from "express";
 
 const FRONTEND_API_PATH = "/min-ia/api";
 const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
-const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt/api/kurs";
-const KURSOVERSIKT_API_PATH = "/kursoversikt/api/kurs";
+const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt";
+const KURSOVERSIKT_API_PATH = "/api/kurs";
 
 const backendApiProxyOptions: Options = {
   target: process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL,

@@ -83,7 +83,7 @@ export const backendApiProxyMock = (server: Express) => {
     }
   );
 
-  server.get(`/min-ia/kursoversikt/api/kurs`, (request, response) => {
+  server.get(`/min-ia/kursoversikt`, (request, response) => {
     response.send(kurslisteMock);
   });
 };
