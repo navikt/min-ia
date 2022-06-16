@@ -26,9 +26,12 @@ const initClientIfNeeded = () => {
   }
 };
 
-const defaultEventData = {
-  app: "forebygge-fravær",
-  team: "teamia",
+const defaultEventData = () => {
+  return {
+    app: "forebygge-fravær",
+    team: "teamia",
+    url: window.location.href,
+  };
 };
 
 export default function logEvent(
@@ -41,7 +44,7 @@ export default function logEvent(
       .getInstance()
       .logEvent(
         eventName,
-        { ...defaultEventData, ...additionalEventData },
+        { ...defaultEventData(), ...additionalEventData },
         resolve
       );
   });

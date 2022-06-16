@@ -1,11 +1,10 @@
-import { FRONTEND_METRIKKER_PATH } from "./backendApiProxy";
 import {
   bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
   næringKvartalsvisSykefraværsprosentV1OffentligMock,
   organisasjoner,
-} from "./local/testdata";
+} from "./testdata";
 import { Express } from "express";
-import { kurslisteMock } from "./local/testdata-kurs";
+import { kurslisteMock } from "./testdata-kurs";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
@@ -34,9 +33,6 @@ export const backendApiProxyMock = (server: Express) => {
     }
   });
 
-  console.debug(
-    `Setter opp mock for GET-endepunkt med path ${FRONTEND_METRIKKER_PATH}/innlogget/mottatt-iatjeneste`
-  );
   server.get(
     "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
     (request, response) => {
@@ -87,7 +83,7 @@ export const backendApiProxyMock = (server: Express) => {
     }
   );
 
-  server.get(`/min-ia/kursoversikt/api/kurs`, (request, response) => {
+  server.get(`/min-ia/kursoversikt`, (request, response) => {
     response.send(kurslisteMock);
   });
 };

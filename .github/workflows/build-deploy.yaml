@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/mer-info-i-infographic'
+    if: github.ref == 'refs/heads/corr-id-refac'
     needs: build
     runs-on: ubuntu-latest
     steps:

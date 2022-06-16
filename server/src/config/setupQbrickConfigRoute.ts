@@ -1,3 +1,16 @@
+import { APP_BASE_PATH } from "./meta";
+import { Express } from "express";
+
+export const setupQbrickConfigRoute = (server: Express) => {
+  server.get(
+    `${APP_BASE_PATH}/qbrick/config/no-preload`,
+    (request, response) => {
+      response.setHeader("Content-Type", "application/json");
+      response.send(QbrickNoPreloadConfig);
+    }
+  );
+};
+
 export const QbrickNoPreloadConfig = `{
 "controllers": [
     {

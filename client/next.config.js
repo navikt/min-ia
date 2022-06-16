@@ -55,9 +55,8 @@ const nextConfig = {
         destination: "http://localhost:3010/min-ia/success:slug*",
       },
       {
-        source: "/kursoversikt/api/kurs/:slug*",
-        destination:
-          "http://localhost:3010/min-ia/kursoversikt/api/kurs/:slug*",
+        source: "/kursoversikt/:slug*",
+        destination: "http://localhost:3010/min-ia/kursoversikt/:slug*",
       },
       {
         source: "/metrikker/:slug*",

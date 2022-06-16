@@ -1,24 +1,17 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
-import { exchangeToken } from "./tokenx";
+import { exchangeToken } from "../../tokenx";
+import { Express } from "express";
 
-const kursoversiktBaseUrl = "https://arbeidsgiver.nav.no";
-const backendApiBaseUrl =
-  process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL ?? "http://localhost:8080";
-const iaTjenestemetrikkerBaseUrl =
-  process.env.IA_TJENESTER_METRIKKER_BASE_URL ??
-  "http://localhost:8080/ia-tjenester-metrikker";
-
-export const FRONTEND_API_PATH = "/min-ia/api";
-export const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
-export const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt/api/kurs";
-export const KURSOVERSIKT_API_PATH = "/kursoversikt/api/kurs";
+const FRONTEND_API_PATH = "/min-ia/api";
+const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
+const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt";
+const KURSOVERSIKT_API_PATH = "/api/kurs";
 
 const backendApiProxyOptions: Options = {
-  target: backendApiBaseUrl,
+  target: process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL,
   changeOrigin: true,
   pathRewrite: { [FRONTEND_API_PATH]: "/sykefravarsstatistikk-api" },
   router: async (req) => {
-    console.log("[DEBUG] Proxyer kall til backend api");
     const tokenSet = await exchangeToken(
       req,
       process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
@@ -33,9 +26,9 @@ const backendApiProxyOptions: Options = {
   logLevel: "info",
 };
 
-// TODO: Fjern duplikat kode
+// TODO: Bli kvitt duplikat kode
 const iaTjenestemetrikkerProxyOptions: Options = {
-  target: iaTjenestemetrikkerBaseUrl,
+  target: process.env.IA_TJENESTER_METRIKKER_BASE_URL,
   changeOrigin: true,
   pathRewrite: { [FRONTEND_METRIKKER_PATH]: "" },
   router: async (req) => {
@@ -50,11 +43,11 @@ const iaTjenestemetrikkerProxyOptions: Options = {
   },
   secure: true,
   xfwd: true,
-  logLevel: "debug",
+  logLevel: "info",
 };
 
 const kursoveriktProxyOptions: Options = {
-  target: kursoversiktBaseUrl,
+  target: process.env.KURSOVERSIKT_BASE_URL,
   changeOrigin: true,
   pathRewrite: { [FRONTEND_KURSOVERSIKT_PATH]: KURSOVERSIKT_API_PATH },
   router: async (req) => {
@@ -65,17 +58,21 @@ const kursoveriktProxyOptions: Options = {
   logLevel: "info",
 };
 
-export const backendApiProxy = createProxyMiddleware(
-  FRONTEND_API_PATH,
-  backendApiProxyOptions
-);
+export const setupBackendApiProxy = (server: Express) => {
+  server.use(createProxyMiddleware(FRONTEND_API_PATH, backendApiProxyOptions));
+};
 
-export const kursoversiktApiProxy = createProxyMiddleware(
-  FRONTEND_KURSOVERSIKT_PATH,
-  kursoveriktProxyOptions
-);
+export const setupKursoversiktApiProxy = (server: Express) => {
+  server.use(
+    createProxyMiddleware(FRONTEND_KURSOVERSIKT_PATH, kursoveriktProxyOptions)
+  );
+};
 
-export const metrikkerProxy = createProxyMiddleware(
-  FRONTEND_METRIKKER_PATH,
-  iaTjenestemetrikkerProxyOptions
-);
+export const setupIaTjenestermetrikkerProxy = (server: Express) => {
+  server.use(
+    createProxyMiddleware(
+      FRONTEND_METRIKKER_PATH,
+      iaTjenestemetrikkerProxyOptions
+    )
+  );
+};
