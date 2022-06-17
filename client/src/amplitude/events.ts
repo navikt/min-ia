@@ -8,6 +8,10 @@ export const sendBedriftValgtEvent = () => {
   logEvent("bedrift-valgt");
 };
 
+export const sendNettkursFilterValgtEvent = (filter: String) => {
+  logEvent("nettkurs-filter-valgt", {filter: filter})
+}
+
 export const sendNavigereEvent = (
   destinasjon: string,
   lenketekst: string

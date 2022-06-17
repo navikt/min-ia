@@ -17,17 +17,21 @@ nesteNettkurs:Kurs| undefined;
 }
 export const Kurspåmelding: FunctionComponent<Props> = ({ kurspåmelding,nesteNettkurs }: Props) => {
   return <>{
-      nesteNettkurs&&kurspåmelding!==null?
-      <>
-          {/*<div>{kurspåmelding.tittel}</div>*/}
-          <div className={styles.kurspåmelding_tekst}>
-              {kurspåmelding.undertekst}</div>
-          <Lenkepanel
-              tittel={kurspåmelding.lenke.tittel}
-              ikon={KursKalenderIkon}
-              href={kurspåmelding.lenke.href}
-              className={styles.kurspåmelding__folger}
-          /></>:<><div className={styles.kurspåmelding_tekst}>{kurspåmelding?.undertekstUtenKurs}</div>
-              <div className={styles.kurspåmelding__folger}>{kurspåmelding?.undertekstUtenKursDel2}</div></>
+      nesteNettkurs !== undefined && kurspåmelding !== null
+        ? <>
+            {/*<div>{kurspåmelding.tittel}</div>*/}
+            <div className={styles.kurspåmelding_tekst}>
+                {kurspåmelding.undertekst}</div>
+            <Lenkepanel
+                tittel={kurspåmelding.lenke.tittel}
+                ikon={KursKalenderIkon}
+                href={kurspåmelding.lenke.href}
+                className={styles.kurspåmelding__folger}
+            />
+          </>
+        : <>
+            <div className={styles.kurspåmelding_tekst}>{kurspåmelding?.undertekstUtenKurs}</div>
+            <div className={styles.kurspåmelding__folger}>{kurspåmelding?.undertekstUtenKursDel2}</div>
+          </>
   }</>;
 };

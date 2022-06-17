@@ -19,7 +19,6 @@ import {
   getBransjeEllerNæringLabel,
   kalkulerInfographicData,
 } from "../Infographic/datatransformasjon";
-import { sendSidevisningEvent } from "../amplitude/events";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 import { getMiljø } from "../utils/miljøUtils";
@@ -66,7 +65,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         orgnr
       )
     );
-    sendSidevisningEvent();
   }, [orgnr, miljø]);
 
   const sykefraværshistorikk = useSykefraværshistorikk();

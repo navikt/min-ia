@@ -14,6 +14,7 @@ import Script from "next/script";
 import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
 import { Layout } from "../komponenter/Layout/Layout";
+import {sendNettkursFilterValgtEvent} from "../amplitude/events";
 
 interface ListeElement {
   key: Tags;
@@ -66,8 +67,9 @@ export default function Nettkurs(props: { page: PageProps }) {
             aria-pressed={buttonPressed}
             key={toggleFilter.key}
             className={styles.nettkurs__knapp}
-            onClick={(e) => {
+            onClick={() => {
               document.dispatchEvent(new CustomEvent("forcePausePlayer"));
+              sendNettkursFilterValgtEvent(toggleFilter.tekst)
               toggleFilters(toggleFilter.key);
             }}
           >
