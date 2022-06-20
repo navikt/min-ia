@@ -1,4 +1,6 @@
 import { LinkPanel } from "@navikt/ds-react";
+import {navigerEtterCallbacks} from "../../utils/navigasjon";
+import {sendNavigereEvent} from "../../amplitude/events";
 
 export interface LenkepanelProps {
   tittel: string;
@@ -11,7 +13,18 @@ export interface LenkepanelProps {
 export const Lenkepanel = ({ tittel, tekst,href, ikon,className }: LenkepanelProps) => {
   return (
     <>
-      <LinkPanel href={href} className={className}>
+      <LinkPanel
+        href={href}
+        className={className}
+        onClickCapture={(e) => {
+          e.preventDefault();
+        }}
+        onClick={() => {
+          navigerEtterCallbacks(href, [
+            () => sendNavigereEvent(href, tittel),
+          ]);
+        }}
+      >
         <div
           style={{
             display: "grid",
