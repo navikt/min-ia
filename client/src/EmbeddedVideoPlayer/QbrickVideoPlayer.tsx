@@ -1,19 +1,32 @@
 import styles from "./QbrickVideoPlayer.module.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { QbrickVideo } from "../utils/nettkurs-utils";
-import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import { BASE_PATH } from "../utils/konstanter";
+import {
+  IaTjeneste,
+  registrerLevertInnloggetIaTjeneste,
+} from "../integrasjoner/ia-tjenestemetrikker-api";
+import { useOrgnr } from "../hooks/useOrgnr";
 
 export interface QbrickVideoPlayerProps {
   video: QbrickVideo;
 }
 
 export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
+  const orgnr = useOrgnr();
+  const nettkursMetrikkSendt = useRef(false);
   useEffect(() => {
     // @ts-ignore
     if (window && window.GoBrain) {
       // @ts-ignore
       window.GoBrain.widgets(props.video.id).on("play", function () {
+        if (!nettkursMetrikkSendt.current) {
+          registrerLevertInnloggetIaTjeneste(IaTjeneste.NETTKURS, orgnr).then(
+            () => {
+              nettkursMetrikkSendt.current = true;
+            }
+          );
+        }
         // @ts-ignore
         const goBrainWidget = this;
         document.addEventListener("forcePausePlayer", function (evt) {
@@ -21,7 +34,7 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
         });
       });
     }
-  }, [props.video.id]);
+  }, [orgnr, props.video.id]);
 
   const player = () => {
     return {
