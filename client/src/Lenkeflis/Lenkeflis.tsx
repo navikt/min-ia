@@ -6,7 +6,7 @@ import { sendNavigereEvent } from "../amplitude/events";
 import classNames from "classnames";
 import {
   IaTjeneste,
-  registrerLevertInnloggetIaTjeneste,
+  sendLevertInnloggetIaTjeneste,
 } from "../integrasjoner/ia-tjenestemetrikker-api";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { navigerEtterCallbacks } from "../utils/navigasjon";
@@ -22,7 +22,7 @@ export const Lenkeflis: React.FunctionComponent<{
   const destinasjon = href ?? "#";
 
   const metrikkutsendelse = () =>
-    registrerLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
+    sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
   const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
 
   return (

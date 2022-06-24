@@ -31,7 +31,7 @@ const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
   return dato.toISOString().split(".")[0] + "Z";
 };
 
-export const registrerLevertInnloggetIaTjeneste = async (
+export const sendLevertInnloggetIaTjeneste = async (
   tjeneste: IaTjeneste,
   orgnr?: string
 ): Promise<boolean> => {
@@ -39,12 +39,10 @@ export const registrerLevertInnloggetIaTjeneste = async (
     return Promise.reject("Orgnr er udefinert");
   }
   const metrikk = byggIaTjenesteMottattMetrikk(orgnr, tjeneste);
-  return await sendIaTjenesteMetrikk(metrikk);
+  return await post(metrikk);
 };
 
-const sendIaTjenesteMetrikk = async (
-  levertIaTjeneste: IaTjenesteMetrikk
-): Promise<boolean> => {
+const post = async (levertIaTjeneste: IaTjenesteMetrikk): Promise<boolean> => {
   const settings = {
     method: "POST",
     credentials: "include",

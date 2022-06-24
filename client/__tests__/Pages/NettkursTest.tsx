@@ -21,20 +21,34 @@ beforeEach(() => {
   window.postMessage = jest.fn();
 });
 
-it("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
+it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {
   const user = userEvent.setup();
-  render(<Nettkurs page={{
-    title: "Nettkurs",
-    description:
-      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
-  }}/>);
+  renderNettkurs();
 
-  const lenketekst = "Psykisk helse";
-  const statistikklenke = screen.getByRole("button", {
-    name: lenketekst,
+  const knappetekst = "Psykisk helse";
+  const psykiskHelseFilter = screen.getByRole("button", {
+    name: knappetekst,
   });
-  await user.click(statistikklenke);
+  await user.click(psykiskHelseFilter);
 
   expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toHaveBeenCalledWith("nettkurs-filter-valgt", {filter: lenketekst});
+  expect(logEvent).toHaveBeenCalledWith("nettkurs-filter-valgt", {
+    filter: knappetekst,
+  });
 });
+
+it("sender ia-tjenester-metrikker ved start av video", () => {
+  const user = userEvent.setup();
+});
+
+const renderNettkurs = () => {
+  render(
+    <Nettkurs
+      page={{
+        title: "Nettkurs",
+        description:
+          "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+      }}
+    />
+  );
+};
