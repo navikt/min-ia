@@ -1,8 +1,7 @@
 import styles from "./QbrickVideoPlayer.module.scss";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { QbrickVideo } from "../utils/nettkurs-utils";
 import { BASE_PATH } from "../utils/konstanter";
-import { useOrgnr } from "../hooks/useOrgnr";
 
 export interface QbrickVideoPlayerProps {
   video: QbrickVideo;
