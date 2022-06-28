@@ -37,10 +37,6 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
   });
 });
 
-it("sender ia-tjenester-metrikker ved start av video", () => {
-  const user = userEvent.setup();
-});
-
 const renderNettkurs = () => {
   render(
     <Nettkurs
