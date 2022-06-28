@@ -9,7 +9,6 @@ export interface QbrickVideoPlayerProps {
 }
 
 export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
-  const orgnr = useOrgnr();
   useEffect(() => {
     // @ts-ignore
     if (window && window.GoBrain) {
@@ -23,7 +22,7 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
         document.dispatchEvent(new CustomEvent("videoAvspilles"));
       });
     }
-  }, [orgnr, props.video.id]);
+  }, [props.video.id]);
 
   const player = () => {
     return {
