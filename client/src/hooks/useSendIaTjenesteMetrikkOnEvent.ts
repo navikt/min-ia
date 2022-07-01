@@ -7,17 +7,17 @@ import {
 
 export function useSendIaTjenesteMetrikkOnEvent(eventType: string) {
   const orgnr = useOrgnr();
-  const metrikkErSendt = useRef(false);
+  const eventListenerHarBlittSattOpp = useRef(false);
   useEffect(() => {
-    if (!metrikkErSendt.current) {
+    if (orgnr && !eventListenerHarBlittSattOpp.current) {
       document.addEventListener(
         eventType,
         async () => {
           await sendLevertInnloggetIaTjeneste(IaTjeneste.NETTKURS, orgnr);
         },
-        { once: true }
+        { once: true, capture: true }
       );
-      metrikkErSendt.current = true;
+      eventListenerHarBlittSattOpp.current = true;
     }
   }, [eventType, orgnr]);
 }
