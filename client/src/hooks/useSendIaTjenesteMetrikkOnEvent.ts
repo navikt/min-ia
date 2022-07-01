@@ -8,16 +8,21 @@ import {
 export function useSendIaTjenesteMetrikkOnEvent(eventType: string) {
   const orgnr = useOrgnr();
   const eventListenerHarBlittSattOpp = useRef(false);
+
   useEffect(() => {
     if (orgnr && !eventListenerHarBlittSattOpp.current) {
-      document.addEventListener(
-        eventType,
-        async () => {
-          await sendLevertInnloggetIaTjeneste(IaTjeneste.NETTKURS, orgnr);
-        },
-        { once: true, capture: true }
-      );
+      const sendMetrikk = async () => {
+        await sendLevertInnloggetIaTjeneste(IaTjeneste.NETTKURS, orgnr);
+      };
+      document.addEventListener(eventType, sendMetrikk, {
+        once: true,
+        capture: true,
+      });
       eventListenerHarBlittSattOpp.current = true;
+
+      return () => {
+        document.removeEventListener(eventType, sendMetrikk);
+      };
     }
   }, [eventType, orgnr]);
 }
