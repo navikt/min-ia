@@ -14,7 +14,8 @@ import Script from "next/script";
 import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
 import { Layout } from "../komponenter/Layout/Layout";
-import {sendNettkursFilterValgtEvent} from "../amplitude/events";
+import { sendNettkursFilterValgtEvent } from "../amplitude/events";
+import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
 
 interface ListeElement {
   key: Tags;
@@ -26,6 +27,7 @@ type Filter = Tags;
 export default function Nettkurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const sykefraværshistorikk = useSykefraværshistorikk();
+  useSendIaTjenesteMetrikkOnEvent("videoAvspilles");
 
   const [filter, setFilter] = useState<Filter>(Tags.MEST_SETT);
 
@@ -69,7 +71,7 @@ export default function Nettkurs(props: { page: PageProps }) {
             className={styles.nettkurs__knapp}
             onClick={() => {
               document.dispatchEvent(new CustomEvent("forcePausePlayer"));
-              sendNettkursFilterValgtEvent(toggleFilter.tekst)
+              sendNettkursFilterValgtEvent(toggleFilter.tekst);
               toggleFilters(toggleFilter.key);
             }}
           >

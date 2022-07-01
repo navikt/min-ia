@@ -1,7 +1,6 @@
 import styles from "./QbrickVideoPlayer.module.scss";
 import React, { useEffect } from "react";
 import { QbrickVideo } from "../utils/nettkurs-utils";
-import { NavIkon } from "../Nettkurs/ikoner/NavIkon";
 import { BASE_PATH } from "../utils/konstanter";
 
 export interface QbrickVideoPlayerProps {
@@ -19,6 +18,7 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
         document.addEventListener("forcePausePlayer", function (evt) {
           goBrainWidget.pause();
         });
+        document.dispatchEvent(new CustomEvent("videoAvspilles"));
       });
     }
   }, [props.video.id]);

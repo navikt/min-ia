@@ -1,14 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
-import {
-  Bag,
-  HealthCase,
-  Information,
-  NorwegianFlag,
-  Up,
-} from "@navikt/ds-icons";
-import { BodyLong, Button, Heading, HelpText, Modal } from "@navikt/ds-react";
+import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
+import { BodyLong } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
