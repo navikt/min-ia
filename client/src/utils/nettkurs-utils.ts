@@ -20,7 +20,7 @@ export enum Tags {
 export const IAVideoer: QbrickVideo[] = [
   {
     id: "bdd038ea-00015227-44a44546",
-    tags: [Tags.MEST_SETT, Tags.NYESTE, Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.ARBEIDSMILJØ],
+    tags: [Tags.MEST_SETT, Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.ARBEIDSMILJØ],
     metadata: {
       title: "Hvorfor klare kjøreregler er viktig når fraværet oppstår",
       description: "",
@@ -28,7 +28,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "702ed6e6-00015227-76bc0ebe",
-    tags: [Tags.PSYKISK_HELSE, Tags.NYESTE],
+    tags: [Tags.PSYKISK_HELSE],
     metadata: {
       title: "Gode grep i krisetider - Arbeid og psykisk helse",
       description:
@@ -99,4 +99,20 @@ export const IAVideoer: QbrickVideo[] = [
         "Godt arbeidsmiljø er ikkje berre kaker på fredag. Videoen gir eksempel på korleis du kan kome i gang med arbeidsmiljøarbeidet, og korleis du jobbar med det over tid.",
     },
   },
+  {
+    id: "472aedc7-1ded-4fad-bd72-79cf55879e5f",
+    tags: [Tags.PSYKISK_HELSE, Tags.NYESTE],
+    metadata: {
+      title: "Vi må tørre å snakke om psykisk helse på arbeidsplassen",
+      description: ""
+    }
+  },
+  {
+    id: "103542a5-f8df-49f6-af22-117a69fa4548",
+    tags: [Tags.OPPFØLGING, Tags.NYESTE],
+    metadata: {
+      title: "Ekspertbistand // hva og hvordan",
+      description: ""
+    }
+  }
 ];
