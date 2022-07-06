@@ -16,6 +16,7 @@ import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
 import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
+import Head from "next/head";
 
 interface ListeElement {
   key: Tags;
@@ -87,6 +88,10 @@ export default function Nettkurs(props: { page: PageProps }) {
   };
   const innhold = (
     <>
+      <Head>
+        <title>{props.page.title}</title>
+        <meta property="og:title" content="Page title" key="title" />
+      </Head>
       {sykefraværshistorikk.status === RestStatus.IkkeInnlogget ? (
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (

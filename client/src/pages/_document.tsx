@@ -14,6 +14,7 @@ import Document, {
   NextScript,
 } from "next/document";
 import React from "react";
+import {favicon_16x16_data, favicon_32x32_data} from "../utils/favicons";
 
 const { serverRuntimeConfig } = getConfig();
 
@@ -63,7 +64,11 @@ class MyDocument extends Document<Props> {
     const showDecorator = serverRuntimeConfig.noDecorator != "true";
     return (
       <Html lang={language || "no"}>
-        <Head>{showDecorator && <Decorator.Styles />}</Head>
+        <Head>
+          {showDecorator && <Decorator.Styles />}
+          <link rel="icon" type="image/png" sizes="32x32" href={favicon_32x32_data} />
+          <link rel="icon" type="image/png" sizes="16x16" href={favicon_16x16_data} />
+        </Head>
         <body>
           {showDecorator && <Decorator.Header />}
           <Main />
