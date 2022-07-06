@@ -27,14 +27,6 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/favicon-32x32.png",
-        destination: "http://localhost:3010/min-ia/favicon-32x32.png"
-      },
-      {
-        source: "/favicon-16x16.png",
-        destination: "http://localhost:3010/min-ia/favicon-16x16.png"
-      },
-      {
         source: "/qbrick/config/no-preload",
         destination: "http://localhost:3010/min-ia/qbrick/config/no-preload",
       },
