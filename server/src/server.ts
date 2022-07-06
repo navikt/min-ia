@@ -7,7 +7,7 @@ import { requestLoggingMiddleware } from "./config/middleware/requestLogging";
 import { correlationIdMiddleware } from "./config/middleware/correlationId";
 import { logger } from "./util/logger";
 import { requestRateLimiter } from "./config/middleware/requestRateLimiter";
-import {APP_BASE_PATH, SERVER_PORT} from "./config/meta";
+import { SERVER_PORT } from "./config/meta";
 import { prometheus } from "./config/middleware/prometheus";
 import { isAlive, isReady } from "./healthcheck";
 import { setupApiRoutes } from "./routes";
