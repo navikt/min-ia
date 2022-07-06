@@ -22,6 +22,7 @@ const initServer = async () => {
   server.use(prometheus);
   server.use(requestRateLimiter);
   server.use(cookieParser()); // Bruker vi cookieParseren lenger?
+  server.use(express.static("public"))
 
   await initIdporten();
   await initTokenX();

@@ -5,6 +5,8 @@ import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
+import Head from "next/head";
+import React from "react";
 
 const Home = (props: { page: PageProps }) => {
   initialiserSentry();
@@ -21,17 +23,23 @@ const Home = (props: { page: PageProps }) => {
   );
 
   return (
-    <Layout
-      title={props.page.title}
-      description={props.page.description}
-      altinnOrganisasjoner={
-        organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
-          ? organisasjonerBrukerHarTilgangTil.data
-          : []
-      }
-    >
-      {forsideEllerInnloggingsside}
-    </Layout>
+    <>
+      <Head>
+        <title>{props.page.title}</title>
+        <meta property="og:title" content="Page title" key="title" />
+      </Head>
+      <Layout
+        title={props.page.title}
+        description={props.page.description}
+        altinnOrganisasjoner={
+          organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
+            ? organisasjonerBrukerHarTilgangTil.data
+            : []
+        }
+      >
+        {forsideEllerInnloggingsside}
+      </Layout>
+    </>
   );
 };
 

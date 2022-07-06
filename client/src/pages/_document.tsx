@@ -63,7 +63,11 @@ class MyDocument extends Document<Props> {
     const showDecorator = serverRuntimeConfig.noDecorator != "true";
     return (
       <Html lang={language || "no"}>
-        <Head>{showDecorator && <Decorator.Styles />}</Head>
+        <Head>
+          {showDecorator && <Decorator.Styles />}
+          <link rel="icon" type="image/png" sizes="32x32" href="/min-ia/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/min-ia/favicon-16x16.png" />
+        </Head>
         <body>
           {showDecorator && <Decorator.Header />}
           <Main />
