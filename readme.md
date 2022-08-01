@@ -1,8 +1,8 @@
-# Min IA
+# Forebygge fravær
 
 Landingsside for selvbetjente IA-tjenester
 
-# Kjøre lokalt med hot-reload
+## Kjøre lokalt med hot-reload
 - Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 - Naviger til `/server`
 - Rename filen `.env.example` -> `.env`
@@ -13,7 +13,7 @@ Landingsside for selvbetjente IA-tjenester
 - Kjør opp applikasjon: `yarn dev`
 - Åpne applikasjonen på `http://localhost:3000/min-ia` (for Safari browser, legg til `"ws://localhost:3000",` i `connect-src` variabel i `sp.js` fil.
 
-# Kjøre applikasjonen med Docker:
+## Kjøre applikasjonen med Docker:
 0. Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 1. Start container runtime (f.eks docker desktop eller colima)
 2. Kjør `docker build . -t min-ia` fra rotmappen
