@@ -2,10 +2,10 @@ import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Infographic } from "../../src/Infographic/Infographic";
 import {
-  KvartalsvisSykefraværshistorikk,
-  SykefraværshistorikkType,
-} from "../../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
-import { kalkulerInfographicData } from "../../src/Infographic/datatransformasjon";
+  AggregertStatistikk,
+  Statistikkategori,
+} from "../../src/integrasjoner/aggregert-statistikk-api";
+import { hentUtInfographicData } from "../../src/Infographic/datauthenting";
 
 jest.mock("../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -13,7 +13,7 @@ jest.mock("../../src/hooks/useOrgnr", () => ({
 
 it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNorge)} />);
+    render(<Infographic {...hentUtInfographicData(mockSykefraværNorge)} />);
   });
   const infobolk = await screen.getByText(/Sykefraværsprosenten i Norge/);
   expect(infobolk.textContent).toBe(
@@ -23,7 +23,7 @@ it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async 
 
 it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
+    render(<Infographic {...hentUtInfographicData(mockSykefraværNæring)} />);
   });
   const infobolk = await screen.getByText(/Sykefraværsprosenten i din næring/);
   expect(infobolk.textContent).toBe(
@@ -33,7 +33,7 @@ it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", asyn
 
 it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
+    render(<Infographic {...hentUtInfographicData(mockSykefraværNæring)} />);
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
   expect(infobolk.textContent).toBe(
@@ -45,7 +45,7 @@ it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () =
   await act(async () => {
     render(
       <Infographic
-        {...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)}
+        {...hentUtInfographicData(mockSykefraværNæringSynkendeTrend)}
       />
     );
   });
@@ -58,9 +58,7 @@ it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () =
 it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...kalkulerInfographicData(mockSykefraværNæringIngenTrend)}
-      />
+      <Infographic {...hentUtInfographicData(mockSykefraværNæringIngenTrend)} />
     );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din næring/);
@@ -73,7 +71,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Infographic
-        {...kalkulerInfographicData(mockSykefraværNæringUendretTrend)}
+        {...hentUtInfographicData(mockSykefraværNæringUendretTrend)}
       />
     );
   });
@@ -85,7 +83,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
 
 it("viser årsak til sykemelding", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
+    render(<Infographic {...hentUtInfographicData(mockSykefraværNæring)} />);
   });
   const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
   expect(infobolk.textContent).toBe(
@@ -95,7 +93,7 @@ it("viser årsak til sykemelding", async () => {
 
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
+    render(<Infographic {...hentUtInfographicData(mockTomHistorikk)} />);
   });
   const infobolk = await screen.getByText(/Trenger du en større oversikt?/);
   expect(infobolk.textContent).toBe(
@@ -105,7 +103,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
 
 it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
+    render(<Infographic {...hentUtInfographicData(mockTomHistorikk)} />);
   });
   const lenke = await screen.getByRole("link", {
     name: /Klikk her for å gå til statistikksiden./,
@@ -119,11 +117,11 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   );
 });
 
-const mockTomHistorikk: KvartalsvisSykefraværshistorikk[] = [];
+const mockTomHistorikk: AggregertStatistikk[] = [];
 
-const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
+const mockSykefraværNorge: AggregertStatistikk[] = [
   {
-    type: SykefraværshistorikkType.LAND,
+    type: Statistikkategori.LAND,
     label: "Norge",
     kvartalsvisSykefraværsprosent: [
       {
@@ -154,9 +152,9 @@ const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
   },
 ];
 
-const mockSykefraværNæring: KvartalsvisSykefraværshistorikk[] = [
+const mockSykefraværNæring: AggregertStatistikk[] = [
   {
-    type: SykefraværshistorikkType.NÆRING,
+    type: Statistikkategori.NÆRING,
     label: "En næring",
     kvartalsvisSykefraværsprosent: [
       {
@@ -211,9 +209,9 @@ const mockSykefraværNæring: KvartalsvisSykefraværshistorikk[] = [
   },
 ];
 
-const mockSykefraværNæringSynkendeTrend: KvartalsvisSykefraværshistorikk[] = [
+const mockSykefraværNæringSynkendeTrend: AggregertStatistikk[] = [
   {
-    type: SykefraværshistorikkType.NÆRING,
+    type: Statistikkategori.NÆRING,
     label: "En næring",
     kvartalsvisSykefraværsprosent: [
       {
@@ -236,9 +234,9 @@ const mockSykefraværNæringSynkendeTrend: KvartalsvisSykefraværshistorikk[] = 
   },
 ];
 
-const mockSykefraværNæringIngenTrend: KvartalsvisSykefraværshistorikk[] = [
+const mockSykefraværNæringIngenTrend: AggregertStatistikk[] = [
   {
-    type: SykefraværshistorikkType.NÆRING,
+    type: Statistikkategori.NÆRING,
     label: "En næring",
     kvartalsvisSykefraværsprosent: [
       {
@@ -261,9 +259,9 @@ const mockSykefraværNæringIngenTrend: KvartalsvisSykefraværshistorikk[] = [
   },
 ];
 
-const mockSykefraværNæringUendretTrend: KvartalsvisSykefraværshistorikk[] = [
+const mockSykefraværNæringUendretTrend: AggregertStatistikk[] = [
   {
-    type: SykefraværshistorikkType.NÆRING,
+    type: Statistikkategori.NÆRING,
     label: "En næring",
     kvartalsvisSykefraværsprosent: [
       {

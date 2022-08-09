@@ -1,7 +1,7 @@
 import {
-  KvartalsvisSykefraværshistorikk,
-  RestSykefraværshistorikk,
-} from "./kvartalsvis-sykefraværshistorikk-api";
+  AggregertStatistikkDto,
+  RestAggregertStatistikk,
+} from "./aggregert-statistikk-api";
 
 export enum RestStatus {
   IkkeLastet = "IkkeLastet",
@@ -51,9 +51,9 @@ export type RestRessurs<T> =
   | IngenTilgang;
 
 export const erSykefraværsstatistikkLastetNed = (
-  restSykefraværshistorikk: RestSykefraværshistorikk
-): restSykefraværshistorikk is Suksess<KvartalsvisSykefraværshistorikk[]> => {
-  return restSykefraværshistorikk.status === RestStatus.Suksess;
+  restAggregertStatistikk: RestAggregertStatistikk
+): restAggregertStatistikk is Suksess<AggregertStatistikkDto> => {
+  return restAggregertStatistikk.status === RestStatus.Suksess;
 };
 
 export const getRestStatus = (responseStatus: number): RestStatus => {

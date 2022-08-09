@@ -8,17 +8,14 @@ import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React, { FunctionComponent, useEffect, useState } from "react";
-import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
+import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import {
   erSykefraværsstatistikkLastetNed,
   RestStatus,
 } from "../integrasjoner/rest-status";
 import { Infographic } from "../Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
-import {
-  getBransjeEllerNæringLabel,
-  kalkulerInfographicData,
-} from "../Infographic/datatransformasjon";
+import { hentUtInfographicData } from "../Infographic/datauthenting";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 import { getMiljø } from "../utils/miljøUtils";
@@ -67,17 +64,17 @@ export const Forside: FunctionComponent<ForsideProps> = ({
     );
   }, [orgnr, miljø]);
 
-  const sykefraværshistorikk = useSykefraværshistorikk();
-  const kvartalsvisSykefraværshistorikkData = erSykefraværsstatistikkLastetNed(
-    sykefraværshistorikk
+  const aggregertStatistikk = useAggregertStatistikk();
+  const aggregertStatistikkData = erSykefraværsstatistikkLastetNed(
+    aggregertStatistikk
   )
-    ? sykefraværshistorikk.data
-    : [];
+    ? aggregertStatistikk.data
+    : { prosentSiste4Kvartaler: [], trend: [] };
 
   const infographicEllerBannerHvisError =
-    sykefraværshistorikk.status === RestStatus.Feil ||
+    aggregertStatistikk.status === RestStatus.Feil ||
     (!harNoenOrganisasjoner &&
-      sykefraværshistorikk.status !== RestStatus.IkkeLastet) ? (
+      aggregertStatistikk.status !== RestStatus.IkkeLastet) ? (
       <Alert variant={"error"} className={styles.forsideAlert}>
         Det har skjedd en feil. Vennligst prøv igjen senere.
       </Alert>
@@ -88,21 +85,18 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         </Alert>
 
         <Infographic
-          {...kalkulerInfographicData(kvartalsvisSykefraværshistorikkData)}
+          {...hentUtInfographicData(aggregertStatistikkData)}
           nedlastingPågår={
-            sykefraværshistorikk.status === RestStatus.IkkeLastet ||
-            sykefraværshistorikk.status === RestStatus.LasterInn
+            aggregertStatistikk.status === RestStatus.IkkeLastet ||
+            aggregertStatistikk.status === RestStatus.LasterInn
           }
-          bransjeEllerNæringLabel={getBransjeEllerNæringLabel(
-            kvartalsvisSykefraværshistorikkData
-          )}
         />
       </>
     );
 
   return (
     <>
-      {sykefraværshistorikk.status === RestStatus.IkkeInnlogget ? (
+      {aggregertStatistikk.status === RestStatus.IkkeInnlogget ? (
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (
         <div className={styles.forside}>
@@ -124,15 +118,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
               }
               href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
             />
-            {/* Lenkeflisa er fjernet inntil vi har "Hva gjør de som lykkes"-siden oppe å kjøre
-        <Lenkeflis
-          overskrift={"Hva gjør de som lykkes"}
-          ikon={<HvaGjørDeSomLykkesIkon />}
-          brødtekst={
-            "Lær av de som forebygger sykefravær på en god, strukturert måte."
-          }
-          href={"/hva_gjor_de_som_lykkes"}
-        />*/}
             <Lenkeflis
               overskrift={"Fraværs&shy;kalkulator"}
               ikon={<Calculator />}

@@ -1,6 +1,6 @@
 import {
-  bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
-  næringKvartalsvisSykefraværsprosentV1OffentligMock,
+  bransjeAggregertStatistikkMock,
+  næringAggregertStatistikkMock,
   organisasjoner,
 } from "./testdata";
 import { Express } from "express";
@@ -44,13 +44,11 @@ export const backendApiProxyMock = (server: Express) => {
       let kvartalsvisSykefraværsprosent: any[];
       switch (orgnr) {
         case "810969439": {
-          kvartalsvisSykefraværsprosent =
-            næringKvartalsvisSykefraværsprosentV1OffentligMock;
+          kvartalsvisSykefraværsprosent = næringAggregertStatistikkMock;
           break;
         }
         case "910969439": {
-          kvartalsvisSykefraværsprosent =
-            bransjeKvartalsvisSykefraværsprosentV1OffentligMock;
+          kvartalsvisSykefraværsprosent = bransjeAggregertStatistikkMock;
           break;
         }
         case "999999998": {

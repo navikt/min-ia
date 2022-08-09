@@ -3,7 +3,7 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { PageProps } from "../pageProps";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { GetServerSideProps } from "next";
-import { useSykefraværshistorikk } from "../hooks/useSykefraværshistorikk";
+import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import styles from "../Nettkurs/Nettkurs.module.scss";
 import { Button } from "@navikt/ds-react";
@@ -27,7 +27,7 @@ type Filter = Tags;
 
 export default function Nettkurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
-  const sykefraværshistorikk = useSykefraværshistorikk();
+  const sykefraværshistorikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent("videoAvspilles");
 
   const [filter, setFilter] = useState<Filter>(Tags.MEST_SETT);

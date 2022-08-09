@@ -15,27 +15,19 @@ import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
 import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 import { InfoModal } from "../komponenter/InfoModal/InfoModal";
-
-export type MuligSykefravær = number | null | undefined;
-export type MuligTall = number | undefined;
+import { StatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 
 export interface InfographicData {
-  sykefraværNorge: MuligSykefravær;
-  sykefraværBransje: MuligSykefravær;
-  sykefraværNæring: MuligSykefravær;
-  trendStigningstall: MuligTall;
+  sykefraværNorge: StatistikkDto | undefined;
+  sykefraværBransje: StatistikkDto | undefined;
+  sykefraværNæring: StatistikkDto | undefined;
+  trendBransje: StatistikkDto | undefined;
+  trendNæring: StatistikkDto | undefined;
+
   nedlastingPågår?: boolean;
-  bransjeEllerNæringLabel?: string;
 }
 
-export const Infographic: FunctionComponent<InfographicData> = ({
-  sykefraværNorge,
-  sykefraværBransje,
-  sykefraværNæring,
-  trendStigningstall,
-  nedlastingPågår,
-  bransjeEllerNæringLabel,
-}) => {
+export const Infographic: FunctionComponent<InfographicData> = (data) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
   const miljø = getMiljø();
@@ -79,41 +71,45 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     );
   }, [orgnr, miljø]);
 
-  const bransjeEllerNæring = sykefraværBransje ? "bransje" : "næring";
+  const bransjeEllerNæring = data.sykefraværBransje ? "bransje" : "næring";
+  const trendBransjeEllerNæring =
+    data.sykefraværBransje ?? data.sykefraværNæring;
 
   return (
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
-        verdi={sykefraværNorge + "%"}
-        nedlastingPågår={nedlastingPågår}
+        verdi={data.sykefraværNorge?.verdi + "%"}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} det siste kvartalet er: `}
-        verdi={(sykefraværBransje ?? sykefraværNæring) + "%"}
-        nedlastingPågår={nedlastingPågår}
+        verdi={trendBransjeEllerNæring?.verdi + "%"}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
-        nedlastingPågår={nedlastingPågår}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={
           <Up
-            className={roterTrendpil(stigningstallTilTekst(trendStigningstall))}
+            className={roterTrendpil(
+              stigningstallTilTekst(trendBransjeEllerNæring?.verdi)
+            )}
             {...ikonstorrelse}
           />
         }
         tekst={`Sykefraværet i din ${bransjeEllerNæring} de to siste kvartalene er `}
-        verdi={stigningstallTilTekst(trendStigningstall)}
-        nedlastingPågår={nedlastingPågår}
+        verdi={stigningstallTilTekst(trendBransjeEllerNæring?.verdi)}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <DesktopEllerMobilVersjon />
@@ -121,7 +117,7 @@ export const Infographic: FunctionComponent<InfographicData> = ({
         windowSize.width > screenSmAsNumeric && (
           <InfoModal
             bransjeEllerNæring={bransjeEllerNæring}
-            bransjeEllerNæringLabel={bransjeEllerNæringLabel}
+            bransjeEllerNæringLabel={trendBransjeEllerNæring?.label}
           />
         )}
     </div>
@@ -139,7 +135,7 @@ function roterTrendpil(a: string) {
   }
 }
 
-function stigningstallTilTekst(stigning: MuligTall): string {
+function stigningstallTilTekst(stigning: number | undefined): string {
   if (stigning === undefined) {
     return "-";
   } else if (stigning > 0) {
