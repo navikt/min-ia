@@ -19,13 +19,13 @@ export interface StatistikkDto {
   statistikkategori: Statistikkategori;
   label: string;
   verdi: number;
-  antallPersonerIBeregningen: bigint;
+  antallPersonerIBeregningen: number;
   kvartalerIBeregningen: Kvartal[];
 }
 
 export interface Kvartal {
-  årstall: bigint;
-  kvartal: bigint;
+  årstall: number;
+  kvartal: number;
 }
 
 const sykefraværshistorikkPath = (orgnr: string) =>

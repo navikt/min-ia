@@ -71,9 +71,16 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
     );
   }, [orgnr, miljø]);
 
-  const bransjeEllerNæring = data.sykefraværBransje ? "bransje" : "næring";
-  const trendBransjeEllerNæring =
+  const sykefraværBransjeEllerNæringTypetekst = data.sykefraværBransje
+    ? "bransje"
+    : "næring";
+  const sykefraværBransjeEllerNæring =
     data.sykefraværBransje ?? data.sykefraværNæring;
+
+  const trendBransjeEllerNæringTypetekst = data.trendBransje
+    ? "bransje"
+    : "næring";
+  const trendBransjeEllerNæring = data.trendBransje ?? data.trendNæring;
 
   return (
     <div className={styles.infographicWrapper}>
@@ -86,8 +93,8 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} det siste kvartalet er: `}
-        verdi={trendBransjeEllerNæring?.verdi + "%"}
+        tekst={`Sykefraværsprosenten i din ${sykefraværBransjeEllerNæringTypetekst} det siste kvartalet er: `}
+        verdi={sykefraværBransjeEllerNæring?.verdi + "%"}
         nedlastingPågår={data.nedlastingPågår}
       />
 
@@ -107,7 +114,7 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
             {...ikonstorrelse}
           />
         }
-        tekst={`Sykefraværet i din ${bransjeEllerNæring} de to siste kvartalene er `}
+        tekst={`Sykefraværet i din ${trendBransjeEllerNæringTypetekst} de to siste kvartalene er `}
         verdi={stigningstallTilTekst(trendBransjeEllerNæring?.verdi)}
         nedlastingPågår={data.nedlastingPågår}
       />
@@ -116,7 +123,7 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
       {windowSize.width !== undefined &&
         windowSize.width > screenSmAsNumeric && (
           <InfoModal
-            bransjeEllerNæring={bransjeEllerNæring}
+            bransjeEllerNæring={trendBransjeEllerNæringTypetekst}
             bransjeEllerNæringLabel={trendBransjeEllerNæring?.label}
           />
         )}

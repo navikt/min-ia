@@ -57,116 +57,112 @@ export const organisasjoner = [
   },
 ];
 
-export const bransjeAggregertStatistikkMock = [
-  {
-    prosentSiste4Kvartaler: [
-      {
-        kategori: "LAND",
-        label: "Norge",
-        verdi: "9.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-      {
-        kategori: "BRANSJE",
-        label: "Barnehager",
-        verdi: "19.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-    ],
-    trend: [
-      {
-        kategori: "LAND",
-        label: "Norge",
-        verdi: "2.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-      {
-        kategori: "BRANSJE",
-        label: "Barnehager",
-        verdi: "-2.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-    ],
-  },
-];
+export const bransjeAggregertStatistikkMock = {
+  prosentSiste4Kvartaler: [
+    {
+      kategori: "LAND",
+      label: "Norge",
+      verdi: "9.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      kategori: "BRANSJE",
+      label: "Barnehager",
+      verdi: "19.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  trend: [
+    {
+      kategori: "LAND",
+      label: "Norge",
+      verdi: "2.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      kategori: "BRANSJE",
+      label: "Barnehager",
+      verdi: "-2.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+};
 
-export const næringAggregertStatistikkMock = [
-  {
-    prosentSiste4Kvartaler: [
-      {
-        kategori: "LAND",
-        label: "Norge",
-        verdi: "9.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-      {
-        kategori: "NÆRING",
-        label: "Barnehager",
-        verdi: "19.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-    ],
-    trend: [
-      {
-        kategori: "LAND",
-        label: "Norge",
-        verdi: "2.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-      {
-        kategori: "NÆRING",
-        label: "Barnehager",
-        verdi: "-2.0",
-        antallPersonerIBeregningen: 10,
-        kvartalerIBeregningen: [
-          {
-            årstall: 2022,
-            kvartal: 1,
-          },
-        ],
-      },
-    ],
-  },
-];
+export const næringAggregertStatistikkMock = {
+  prosentSiste4Kvartaler: [
+    {
+      kategori: "LAND",
+      label: "Norge",
+      verdi: "9.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      kategori: "NÆRING",
+      label: "Barnehager",
+      verdi: "19.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  trend: [
+    {
+      kategori: "LAND",
+      label: "Norge",
+      verdi: "2.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      kategori: "NÆRING",
+      label: "Barnehager",
+      verdi: "-2.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+};
