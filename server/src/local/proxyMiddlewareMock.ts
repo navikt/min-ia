@@ -1,6 +1,6 @@
 import {
-  bransjeAggregertStatistikkMock,
-  næringAggregertStatistikkMock,
+  aggregertStatistikkMedBransjeMock,
+  aggregertStatistikkNæringMock,
   organisasjoner,
 } from "./testdata";
 import { Express } from "express";
@@ -34,38 +34,38 @@ export const backendApiProxyMock = (server: Express) => {
   });
 
   server.get(
-    "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
+    "/min-ia/api/:orgnr/sykefravarshistorikk/aggregert/v1",
     (request, response) => {
       const orgnr = request.params.orgnr;
       console.log(
-        `[DEBUG] GET /api/${orgnr}/v1/offentlig/sykefravarshistorikk/kvartalsvis`
+        `[DEBUG] GET /api/${orgnr}/sykefravarshistorikk/aggregert/v1`
       );
 
-      let kvartalsvisSykefraværsprosent: any[];
+      let aggregertStatistikkMock: any;
       switch (orgnr) {
         case "810969439": {
-          kvartalsvisSykefraværsprosent = næringAggregertStatistikkMock;
+          aggregertStatistikkMock = aggregertStatistikkNæringMock;
           break;
         }
         case "910969439": {
-          kvartalsvisSykefraværsprosent = bransjeAggregertStatistikkMock;
+          aggregertStatistikkMock = aggregertStatistikkMedBransjeMock;
           break;
         }
         case "999999998": {
-          response.status(401).json([]);
+          response.status(401).json();
           break;
         }
         case "999999997": {
-          response.status(500).json([]);
+          response.status(500).json();
           break;
         }
         default: {
-          kvartalsvisSykefraværsprosent = [];
+          aggregertStatistikkMock = aggregertStatistikkNæringMock;
         }
       }
 
       setTimeout(function () {
-        response.send(kvartalsvisSykefraværsprosent);
+        response.send(aggregertStatistikkMock);
       }, delayInMillis);
     }
   );

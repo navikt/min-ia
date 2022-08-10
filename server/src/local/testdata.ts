@@ -57,12 +57,24 @@ export const organisasjoner = [
   },
 ];
 
-export const bransjeAggregertStatistikkMock = {
+export const aggregertStatistikkMedBransjeMock = {
   prosentSiste4Kvartaler: [
     {
       kategori: "LAND",
       label: "Norge",
       verdi: "9.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      kategori: "NÆRING",
+      label: "Barnehagenæringen",
+      verdi: "10.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -98,6 +110,18 @@ export const bransjeAggregertStatistikkMock = {
       ],
     },
     {
+      kategori: "NÆRING",
+      label: "Barnehagenæringen",
+      verdi: "-2.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
       kategori: "BRANSJE",
       label: "Barnehager",
       verdi: "-2.0",
@@ -112,7 +136,7 @@ export const bransjeAggregertStatistikkMock = {
   ],
 };
 
-export const næringAggregertStatistikkMock = {
+export const aggregertStatistikkNæringMock = {
   prosentSiste4Kvartaler: [
     {
       kategori: "LAND",
@@ -128,8 +152,8 @@ export const næringAggregertStatistikkMock = {
     },
     {
       kategori: "NÆRING",
-      label: "Barnehager",
-      verdi: "19.0",
+      label: "Barnehagenæringen",
+      verdi: "-1.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
