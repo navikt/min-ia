@@ -7,6 +7,7 @@ import { InfographicData } from "./Infographic";
 export function hentUtInfographicData(
   data: AggregertStatistikkDto
 ): InfographicData {
+  console.log(data)
   return {
     sykefraværNorge: data.prosentSiste4Kvartaler.find(
       (s) => s.statistikkategori == Statistikkategori.LAND

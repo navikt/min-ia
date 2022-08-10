@@ -11,7 +11,7 @@ jest.mock("../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
 
-it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
+it("viser sykefraværsprosenten for Norge", async () => {
   await act(async () => {
     render(
       <Infographic
