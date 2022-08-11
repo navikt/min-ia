@@ -33,7 +33,7 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværsprosenten i din bransje/);
+  const infobolk = await screen.getByText(/Sykefraværsprosenten i din/);
   expect(infobolk.textContent).toBe(
     "Sykefraværsprosenten i din bransje det siste kvartalet er: 5.1%"
   );
@@ -191,11 +191,31 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.NÆRING,
       label: "Næringen til barenhager",
+      verdi: 4.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+        {
+          årstall: 2021,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barenhager",
       verdi: -2.0,
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
           årstall: 2022,
+          kvartal: 1,
+        },
+        {
+          årstall: 2021,
           kvartal: 1,
         },
       ],

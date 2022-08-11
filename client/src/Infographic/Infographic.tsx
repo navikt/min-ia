@@ -15,7 +15,10 @@ import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
 import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 import { InfoModal } from "../komponenter/InfoModal/InfoModal";
-import { StatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
+import {
+  Statistikkategori,
+  StatistikkDto,
+} from "../integrasjoner/aggregert-statistikk-api";
 
 export interface InfographicData {
   fraværsprosentNorge: StatistikkDto | undefined;
@@ -34,10 +37,13 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
 
-  const prosentBransjeEllerNæring =
+  const prosenttypeBransjeEllerNæring =
     data.fraværsprosentBransjeEllerNæring?.statistikkategori?.toLowerCase();
   const trendtypeBransjeEllerNæring =
-    data.trendBransjeEllerNæring?.statistikkategori?.toLowerCase();
+    data.trendBransjeEllerNæring?.statistikkategori ===
+    Statistikkategori.BRANSJE
+      ? "bransje"
+      : "næring";
 
   const DesktopEllerMobilVersjon = () => {
     if (
@@ -85,7 +91,7 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={`Sykefraværsprosenten i din ${prosentBransjeEllerNæring} det siste kvartalet er: `}
+        tekst={`Sykefraværsprosenten i din ${prosenttypeBransjeEllerNæring} det siste kvartalet er: `}
         verdi={data.fraværsprosentBransjeEllerNæring?.verdi + "%"}
         nedlastingPågår={data.nedlastingPågår}
       />
@@ -100,9 +106,7 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
       <InfographicFlis
         ikon={
           <Up
-            className={roterTrendpil(
-              stigningstallTilTekst(data.trendBransjeEllerNæring?.verdi)
-            )}
+            className={roterTrendpil(data.trendBransjeEllerNæring?.verdi)}
             {...ikonstorrelse}
           />
         }
@@ -123,14 +127,13 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
   );
 };
 
-function roterTrendpil(a: string) {
-  switch (a) {
-    case "stigende":
-      return styles.rotateOpp;
-    case "synkende":
-      return styles.rotateNed;
-    default:
-      return styles.rotateUendret;
+function roterTrendpil(stigningstall: number | undefined) {
+  if (stigningstall == undefined || stigningstall == 0) {
+    return styles.rotateUendret;
+  } else if (stigningstall > 0) {
+    return styles.rotateOpp;
+  } else {
+    return styles.rotateNed;
   }
 }
 

@@ -11,10 +11,10 @@ export function hentUtInfographicData(
     (s) => s.statistikkategori == Statistikkategori.LAND
   );
   const fraværsprosentNæring = data.prosentSiste4Kvartaler.find(
-    (s) => s.statistikkategori == Statistikkategori.BRANSJE
+    (s) => s.statistikkategori == Statistikkategori.NÆRING
   );
   const fraværsprosentBransje = data.prosentSiste4Kvartaler.find(
-    (s) => s.statistikkategori == Statistikkategori.NÆRING
+    (s) => s.statistikkategori == Statistikkategori.BRANSJE
   );
   const trendBransje = data.trend.find(
     (s) => s.statistikkategori == Statistikkategori.BRANSJE
