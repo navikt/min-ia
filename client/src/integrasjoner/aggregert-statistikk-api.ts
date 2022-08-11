@@ -29,7 +29,7 @@ export interface Kvartal {
 }
 
 const sykefraværshistorikkPath = (orgnr: string) =>
-  `${API_BASE_PATH}/${orgnr}/sykefravarshistorikk/aggregert/v1`;
+  `${API_BASE_PATH}/${orgnr}/v1/sykefravarshistorikk/aggregert`;
 
 export const hentAggregertStatistikk = async (
   orgnr: string

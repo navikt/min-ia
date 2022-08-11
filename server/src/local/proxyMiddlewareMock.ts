@@ -34,11 +34,11 @@ export const backendApiProxyMock = (server: Express) => {
   });
 
   server.get(
-    "/min-ia/api/:orgnr/sykefravarshistorikk/aggregert/v1",
+    "/min-ia/api/:orgnr/v1/sykefravarshistorikk/aggregert",
     (request, response) => {
       const orgnr = request.params.orgnr;
       console.log(
-        `[DEBUG] GET /api/${orgnr}/sykefravarshistorikk/aggregert/v1`
+        `[DEBUG] GET /api/${orgnr}/v1/sykefravarshistorikk/aggregert`
       );
 
       let aggregertStatistikkMock: any;
