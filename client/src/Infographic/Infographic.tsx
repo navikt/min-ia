@@ -18,11 +18,9 @@ import { InfoModal } from "../komponenter/InfoModal/InfoModal";
 import { StatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 
 export interface InfographicData {
-  sykefraværNorge: StatistikkDto | undefined;
-  sykefraværBransje: StatistikkDto | undefined;
-  sykefraværNæring: StatistikkDto | undefined;
-  trendBransje: StatistikkDto | undefined;
-  trendNæring: StatistikkDto | undefined;
+  fraværsprosentNorge: StatistikkDto | undefined;
+  fraværsprosentBransjeEllerNæring: StatistikkDto | undefined;
+  trendBransjeEllerNæring: StatistikkDto | undefined;
 
   nedlastingPågår?: boolean;
 }
@@ -35,6 +33,11 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
+
+  const prosentBransjeEllerNæring =
+    data.fraværsprosentBransjeEllerNæring?.statistikkategori?.toLowerCase()
+  const trendtypeBransjeEllerNæring =
+    data.trendBransjeEllerNæring?.statistikkategori?.toLowerCase();
 
   const DesktopEllerMobilVersjon = () => {
     if (
@@ -71,30 +74,19 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
     );
   }, [orgnr, miljø]);
 
-  const sykefraværBransjeEllerNæringTypetekst = data.sykefraværBransje
-    ? "bransje"
-    : "næring";
-  const sykefraværBransjeEllerNæring =
-    data.sykefraværBransje ?? data.sykefraværNæring;
-
-  const trendBransjeEllerNæringTypetekst = data.trendBransje
-    ? "bransje"
-    : "næring";
-  const trendBransjeEllerNæring = data.trendBransje ?? data.trendNæring;
-
   return (
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
-        verdi={data.sykefraværNorge?.verdi + "%"}
+        verdi={data.fraværsprosentNorge?.verdi + "%"}
         nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={`Sykefraværsprosenten i din ${sykefraværBransjeEllerNæringTypetekst} det siste kvartalet er: `}
-        verdi={sykefraværBransjeEllerNæring?.verdi + "%"}
+        tekst={`Sykefraværsprosenten i din ${prosentBransjeEllerNæring} det siste kvartalet er: `}
+        verdi={data.fraværsprosentBransjeEllerNæring?.verdi + "%"}
         nedlastingPågår={data.nedlastingPågår}
       />
 
@@ -109,13 +101,13 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
         ikon={
           <Up
             className={roterTrendpil(
-              stigningstallTilTekst(trendBransjeEllerNæring?.verdi)
+              stigningstallTilTekst(data.trendBransjeEllerNæring?.verdi)
             )}
             {...ikonstorrelse}
           />
         }
-        tekst={`Sykefraværet i din ${trendBransjeEllerNæringTypetekst} de to siste kvartalene er `}
-        verdi={stigningstallTilTekst(trendBransjeEllerNæring?.verdi)}
+        tekst={`Sykefraværet i din ${trendtypeBransjeEllerNæring} de to siste kvartalene er `}
+        verdi={stigningstallTilTekst(data.trendBransjeEllerNæring?.verdi)}
         nedlastingPågår={data.nedlastingPågår}
       />
 
@@ -123,8 +115,8 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
       {windowSize.width !== undefined &&
         windowSize.width > screenSmAsNumeric && (
           <InfoModal
-            bransjeEllerNæring={trendBransjeEllerNæringTypetekst}
-            bransjeEllerNæringLabel={trendBransjeEllerNæring?.label}
+            bransjeEllerNæring={trendtypeBransjeEllerNæring}
+            bransjeEllerNæringLabel={data.trendBransjeEllerNæring?.label}
           />
         )}
     </div>

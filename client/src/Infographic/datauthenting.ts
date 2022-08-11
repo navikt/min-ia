@@ -7,22 +7,26 @@ import { InfographicData } from "./Infographic";
 export function hentUtInfographicData(
   data: AggregertStatistikkDto
 ): InfographicData {
-  console.log(data)
+  const fraværsprosentNorge = data.prosentSiste4Kvartaler.find(
+    (s) => s.statistikkategori == Statistikkategori.LAND
+  );
+  const fraværsprosentNæring = data.prosentSiste4Kvartaler.find(
+    (s) => s.statistikkategori == Statistikkategori.BRANSJE
+  );
+  const fraværsprosentBransje = data.prosentSiste4Kvartaler.find(
+    (s) => s.statistikkategori == Statistikkategori.NÆRING
+  );
+  const trendBransje = data.trend.find(
+    (s) => s.statistikkategori == Statistikkategori.BRANSJE
+  );
+  const trendNæring = data.trend.find(
+    (s) => s.statistikkategori == Statistikkategori.NÆRING
+  );
+
   return {
-    sykefraværNorge: data.prosentSiste4Kvartaler.find(
-      (s) => s.statistikkategori == Statistikkategori.LAND
-    ),
-    sykefraværBransje: data.prosentSiste4Kvartaler.find(
-      (s) => s.statistikkategori == Statistikkategori.BRANSJE
-    ),
-    sykefraværNæring: data.prosentSiste4Kvartaler.find(
-      (s) => s.statistikkategori == Statistikkategori.NÆRING
-    ),
-    trendBransje: data.trend.find(
-      (s) => s.statistikkategori == Statistikkategori.BRANSJE
-    ),
-    trendNæring: data.trend.find(
-      (s) => s.statistikkategori == Statistikkategori.NÆRING
-    ),
+    fraværsprosentNorge,
+    fraværsprosentBransjeEllerNæring:
+      fraværsprosentBransje ?? fraværsprosentNæring,
+    trendBransjeEllerNæring: trendBransje ?? trendNæring,
   };
 }
