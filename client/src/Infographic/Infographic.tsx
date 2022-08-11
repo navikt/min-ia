@@ -38,7 +38,10 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
 
   const prosenttypeBransjeEllerNæring =
-    data.fraværsprosentBransjeEllerNæring?.statistikkategori?.toLowerCase();
+    data.fraværsprosentBransjeEllerNæring?.statistikkategori ===
+    Statistikkategori.BRANSJE
+      ? "bransje"
+      : "næring";
   const trendtypeBransjeEllerNæring =
     data.trendBransjeEllerNæring?.statistikkategori ===
     Statistikkategori.BRANSJE
@@ -85,14 +88,14 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
-        verdi={data.fraværsprosentNorge?.verdi + "%"}
+        verdi={(data.fraværsprosentNorge?.verdi ?? "- ") + "%"}
         nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
         tekst={`Sykefraværsprosenten i din ${prosenttypeBransjeEllerNæring} det siste kvartalet er: `}
-        verdi={data.fraværsprosentBransjeEllerNæring?.verdi + "%"}
+        verdi={(data.fraværsprosentBransjeEllerNæring?.verdi ?? "- ") + "%"}
         nedlastingPågår={data.nedlastingPågår}
       />
 
@@ -110,7 +113,7 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
             {...ikonstorrelse}
           />
         }
-        tekst={`Sykefraværet i din ${trendtypeBransjeEllerNæring} de to siste kvartalene er `}
+        tekst={`Sykefraværet i din ${trendtypeBransjeEllerNæring} er: `}
         verdi={stigningstallTilTekst(data.trendBransjeEllerNæring?.verdi)}
         nedlastingPågår={data.nedlastingPågår}
       />

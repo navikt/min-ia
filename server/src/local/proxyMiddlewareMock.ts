@@ -1,10 +1,10 @@
-import {
-  aggregertStatistikkMedBransjeMock,
-  aggregertStatistikkNæringMock,
-  organisasjoner,
-} from "./testdata";
+import { organisasjoner } from "./organisasajonerMockdata";
 import { Express } from "express";
 import { kurslisteMock } from "./testdata-kurs";
+import {
+  mockdataOrgnr81096939,
+  mockdataOrgnr91096939,
+} from "./aggregertStatistikkMockdata";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
@@ -44,11 +44,11 @@ export const backendApiProxyMock = (server: Express) => {
       let aggregertStatistikkMock: any;
       switch (orgnr) {
         case "810969439": {
-          aggregertStatistikkMock = aggregertStatistikkNæringMock;
+          aggregertStatistikkMock = mockdataOrgnr81096939;
           break;
         }
         case "910969439": {
-          aggregertStatistikkMock = aggregertStatistikkMedBransjeMock;
+          aggregertStatistikkMock = mockdataOrgnr91096939;
           break;
         }
         case "999999998": {
@@ -60,7 +60,7 @@ export const backendApiProxyMock = (server: Express) => {
           break;
         }
         default: {
-          aggregertStatistikkMock = aggregertStatistikkNæringMock;
+          aggregertStatistikkMock = mockdataOrgnr81096939;
         }
       }
 

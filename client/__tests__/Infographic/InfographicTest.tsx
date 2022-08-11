@@ -48,9 +48,7 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
     );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din bransje de to siste kvartalene er stigende"
-  );
+  expect(infobolk.textContent).toBe("Sykefraværet i din bransje er: stigende");
 });
 
 it("viser synkende fraværstrend i næring når dette er tilfellet", async () => {
@@ -62,9 +60,7 @@ it("viser synkende fraværstrend i næring når dette er tilfellet", async () =>
     );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er synkende"
-  );
+  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: synkende");
 });
 
 it("viser ingen fraværstrend når det ikke finnes data", async () => {
@@ -72,9 +68,7 @@ it("viser ingen fraværstrend når det ikke finnes data", async () => {
     render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
   });
   const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er -"
-  );
+  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: -");
 });
 
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
@@ -86,9 +80,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
     );
   });
   const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er uendret"
-  );
+  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: uendret");
 });
 
 it("viser årsak til sykemelding", async () => {

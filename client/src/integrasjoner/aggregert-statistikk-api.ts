@@ -2,7 +2,6 @@ import { API_BASE_PATH } from "../utils/konstanter";
 import { RestRessurs, RestStatus } from "./rest-status";
 import { fetchMedFeilhåndtering } from "./api-utils";
 
-// TODO Kan vi ta vedd "=" her?
 export enum Statistikkategori {
   LAND = "LAND",
   NÆRING = "NÆRING",
