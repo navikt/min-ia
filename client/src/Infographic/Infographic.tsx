@@ -15,27 +15,20 @@ import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
 import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 import { InfoModal } from "../komponenter/InfoModal/InfoModal";
-
-export type MuligSykefravær = number | null | undefined;
-export type MuligTall = number | undefined;
+import {
+  Statistikkategori,
+  StatistikkDto,
+} from "../integrasjoner/aggregert-statistikk-api";
 
 export interface InfographicData {
-  sykefraværNorge: MuligSykefravær;
-  sykefraværBransje: MuligSykefravær;
-  sykefraværNæring: MuligSykefravær;
-  trendStigningstall: MuligTall;
+  fraværsprosentNorge: StatistikkDto | undefined;
+  fraværsprosentBransjeEllerNæring: StatistikkDto | undefined;
+  trendBransjeEllerNæring: StatistikkDto | undefined;
+
   nedlastingPågår?: boolean;
-  bransjeEllerNæringLabel?: string;
 }
 
-export const Infographic: FunctionComponent<InfographicData> = ({
-  sykefraværNorge,
-  sykefraværBransje,
-  sykefraværNæring,
-  trendStigningstall,
-  nedlastingPågår,
-  bransjeEllerNæringLabel,
-}) => {
+export const Infographic: FunctionComponent<InfographicData> = (data) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
   const miljø = getMiljø();
@@ -43,6 +36,17 @@ export const Infographic: FunctionComponent<InfographicData> = ({
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
+
+  const prosenttypeBransjeEllerNæring =
+    data.fraværsprosentBransjeEllerNæring?.statistikkategori ===
+    Statistikkategori.BRANSJE
+      ? "bransje"
+      : "næring";
+  const trendtypeBransjeEllerNæring =
+    data.trendBransjeEllerNæring?.statistikkategori ===
+    Statistikkategori.BRANSJE
+      ? "bransje"
+      : "næring";
 
   const DesktopEllerMobilVersjon = () => {
     if (
@@ -79,67 +83,64 @@ export const Infographic: FunctionComponent<InfographicData> = ({
     );
   }, [orgnr, miljø]);
 
-  const bransjeEllerNæring = sykefraværBransje ? "bransje" : "næring";
-
   return (
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
         tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
-        verdi={sykefraværNorge + "%"}
-        nedlastingPågår={nedlastingPågår}
+        verdi={(data.fraværsprosentNorge?.verdi ?? "- ") + "%"}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={`Sykefraværsprosenten i din ${bransjeEllerNæring} det siste kvartalet er: `}
-        verdi={(sykefraværBransje ?? sykefraværNæring) + "%"}
-        nedlastingPågår={nedlastingPågår}
+        tekst={`Sykefraværsprosenten i din ${prosenttypeBransjeEllerNæring} det siste kvartalet er: `}
+        verdi={(data.fraværsprosentBransjeEllerNæring?.verdi ?? "- ") + "%"}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
         tekst={"Vanligste årsak til sykemelding i Norge er: "}
         verdi={"Muskel- og skjelettplager"}
-        nedlastingPågår={nedlastingPågår}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={
           <Up
-            className={roterTrendpil(stigningstallTilTekst(trendStigningstall))}
+            className={roterTrendpil(data.trendBransjeEllerNæring?.verdi)}
             {...ikonstorrelse}
           />
         }
-        tekst={`Sykefraværet i din ${bransjeEllerNæring} de to siste kvartalene er `}
-        verdi={stigningstallTilTekst(trendStigningstall)}
-        nedlastingPågår={nedlastingPågår}
+        tekst={`Sykefraværet i din ${trendtypeBransjeEllerNæring} er: `}
+        verdi={stigningstallTilTekst(data.trendBransjeEllerNæring?.verdi)}
+        nedlastingPågår={data.nedlastingPågår}
       />
 
       <DesktopEllerMobilVersjon />
       {windowSize.width !== undefined &&
         windowSize.width > screenSmAsNumeric && (
           <InfoModal
-            bransjeEllerNæring={bransjeEllerNæring}
-            bransjeEllerNæringLabel={bransjeEllerNæringLabel}
+            bransjeEllerNæring={trendtypeBransjeEllerNæring}
+            bransjeEllerNæringLabel={data.trendBransjeEllerNæring?.label}
           />
         )}
     </div>
   );
 };
 
-function roterTrendpil(a: string) {
-  switch (a) {
-    case "stigende":
-      return styles.rotateOpp;
-    case "synkende":
-      return styles.rotateNed;
-    default:
-      return styles.rotateUendret;
+function roterTrendpil(stigningstall: number | undefined) {
+  if (stigningstall == undefined || stigningstall == 0) {
+    return styles.rotateUendret;
+  } else if (stigningstall > 0) {
+    return styles.rotateOpp;
+  } else {
+    return styles.rotateNed;
   }
 }
 
-function stigningstallTilTekst(stigning: MuligTall): string {
+function stigningstallTilTekst(stigning: number | undefined): string {
   if (stigning === undefined) {
     return "-";
   } else if (stigning > 0) {

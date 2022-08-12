@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/fiks_sidetitler_og_favicon'
+    if: github.ref == 'refs/heads/nytt-endepunkt'
     needs: build
     runs-on: ubuntu-latest
     steps:

@@ -2,90 +2,94 @@ import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Infographic } from "../../src/Infographic/Infographic";
 import {
-  KvartalsvisSykefraværshistorikk,
-  SykefraværshistorikkType,
-} from "../../src/integrasjoner/kvartalsvis-sykefraværshistorikk-api";
-import { kalkulerInfographicData } from "../../src/Infographic/datatransformasjon";
+  AggregertStatistikkDto,
+  Statistikkategori,
+} from "../../src/integrasjoner/aggregert-statistikk-api";
+import { hentUtInfographicData } from "../../src/Infographic/datauthenting";
 
 jest.mock("../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
 
-it("viser sykefraværsprosenten i Norge fra siste tilgjengelige kvartal", async () => {
+it("viser sykefraværsprosenten for Norge", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNorge)} />);
+    render(
+      <Infographic
+        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+      />
+    );
   });
   const infobolk = await screen.getByText(/Sykefraværsprosenten i Norge/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i Norge det siste kvartalet er: 4.9%"
+    "Sykefraværsprosenten i Norge det siste kvartalet er: 9%"
   );
 });
 
-it("viser sykefraværsprosent for bransje fra siste tilgjengelige kvartal", async () => {
-  await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
-  });
-  const infobolk = await screen.getByText(/Sykefraværsprosenten i din næring/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i din næring det siste kvartalet er: 5.1%"
-  );
-});
-
-it("viser stigende fraværstrend i bransjen når dette er tilfellet", async () => {
-  await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
-  });
-  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er stigende"
-  );
-});
-
-it("viser synkende fraværstrend i bransjen når dette er tilfellet", async () => {
+it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () => {
   await act(async () => {
     render(
       <Infographic
-        {...kalkulerInfographicData(mockSykefraværNæringSynkendeTrend)}
+        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
+  const infobolk = await screen.getByText(/Sykefraværsprosenten i din/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er synkende"
+    "Sykefraværsprosenten i din bransje det siste kvartalet er: 5.1%"
   );
 });
 
-it("viser ingen fraværstrend når det ikke finnes data ett år tilbake", async () => {
+it("viser stigende fraværstrend for bransjen når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Infographic
-        {...kalkulerInfographicData(mockSykefraværNæringIngenTrend)}
+        {...hentUtInfographicData(mockAggregertStatistikkStigendeTrendBransje)}
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er -"
-  );
+  const infobolk = await screen.getByText(/Sykefraværet i din/);
+  expect(infobolk.textContent).toBe("Sykefraværet i din bransje er: stigende");
+});
+
+it("viser synkende fraværstrend i næring når dette er tilfellet", async () => {
+  await act(async () => {
+    render(
+      <Infographic
+        {...hentUtInfographicData(mockAggregertStatistikkSynkendeTrend)}
+      />
+    );
+  });
+  const infobolk = await screen.getByText(/Sykefraværet i din/);
+  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: synkende");
+});
+
+it("viser ingen fraværstrend når det ikke finnes data", async () => {
+  await act(async () => {
+    render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
+  });
+  const infobolk = await screen.getByText(/Sykefraværet i din/);
+  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: -");
 });
 
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Infographic
-        {...kalkulerInfographicData(mockSykefraværNæringUendretTrend)}
+        {...hentUtInfographicData(mockAggregertStatistikkUendretTrend)}
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din næring/);
-  expect(infobolk.textContent).toBe(
-    "Sykefraværet i din næring de to siste kvartalene er uendret"
-  );
+  const infobolk = await screen.getByText(/Sykefraværet i din/);
+  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: uendret");
 });
 
 it("viser årsak til sykemelding", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockSykefraværNæring)} />);
+    render(
+      <Infographic
+        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+      />
+    );
   });
   const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
   expect(infobolk.textContent).toBe(
@@ -95,7 +99,7 @@ it("viser årsak til sykemelding", async () => {
 
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
+    render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
   });
   const infobolk = await screen.getByText(/Trenger du en større oversikt?/);
   expect(infobolk.textContent).toBe(
@@ -105,7 +109,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
 
 it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
-    render(<Infographic {...kalkulerInfographicData(mockTomHistorikk)} />);
+    render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
   });
   const lenke = await screen.getByRole("link", {
     name: /Klikk her for å gå til statistikksiden./,
@@ -119,169 +123,148 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   );
 });
 
-const mockTomHistorikk: KvartalsvisSykefraværshistorikk[] = [];
+const mockTomtResultat: AggregertStatistikkDto = {
+  prosentSiste4Kvartaler: [],
+  trend: [],
+};
 
-const mockSykefraværNorge: KvartalsvisSykefraværshistorikk[] = [
-  {
-    type: SykefraværshistorikkType.LAND,
-    label: "Norge",
-    kvartalsvisSykefraværsprosent: [
-      {
-        prosent: 5.2,
-        tapteDagsverk: 95,
-        muligeDagsverk: 100,
-        erMaskert: false,
-        kvartal: 2,
-        årstall: 2021,
-      },
-      {
-        prosent: 4.9,
-        tapteDagsverk: 1,
-        muligeDagsverk: 2,
-        erMaskert: false,
-        kvartal: 3,
-        årstall: 2021,
-      },
-      {
-        prosent: 4.3,
-        tapteDagsverk: 2,
-        muligeDagsverk: 3,
-        erMaskert: false,
-        kvartal: 4,
-        årstall: 2019,
-      },
-    ],
-  },
-];
+const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
+  prosentSiste4Kvartaler: [
+    {
+      statistikkategori: Statistikkategori.LAND,
+      label: "Norge",
+      verdi: 9.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: 7.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: 5.1,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  trend: [
+    {
+      statistikkategori: Statistikkategori.LAND,
+      label: "Norge",
+      verdi: 2.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: 4.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+        {
+          årstall: 2021,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barenhager",
+      verdi: -2.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+        {
+          årstall: 2021,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+};
 
-const mockSykefraværNæring: KvartalsvisSykefraværshistorikk[] = [
-  {
-    type: SykefraværshistorikkType.NÆRING,
-    label: "En næring",
-    kvartalsvisSykefraværsprosent: [
-      {
-        prosent: 5.7,
-        tapteDagsverk: 141083.9,
-        muligeDagsverk: 2478321.1,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2018,
-      },
-      {
-        prosent: 5,
-        tapteDagsverk: 121009.6,
-        muligeDagsverk: 2417009.6,
-        erMaskert: false,
-        kvartal: 2,
-        årstall: 2018,
-      },
-      {
-        prosent: 4.4,
-        tapteDagsverk: 117381.3,
-        muligeDagsverk: 2663932.3,
-        erMaskert: false,
-        kvartal: 3,
-        årstall: 2018,
-      },
-      {
-        prosent: 5.4,
-        tapteDagsverk: 139641.2,
-        muligeDagsverk: 2588943.6,
-        erMaskert: false,
-        kvartal: 4,
-        årstall: 2018,
-      },
-      {
-        prosent: 5.6,
-        tapteDagsverk: 139625.1,
-        muligeDagsverk: 2483134.2,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2019,
-      },
-      {
-        prosent: 5.1,
-        tapteDagsverk: 118666.1,
-        muligeDagsverk: 2305817.2,
-        erMaskert: false,
-        kvartal: 2,
-        årstall: 2019,
-      },
-    ],
-  },
-];
+const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
+  prosentSiste4Kvartaler: [],
+  trend: [
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: -2.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+};
 
-const mockSykefraværNæringSynkendeTrend: KvartalsvisSykefraværshistorikk[] = [
-  {
-    type: SykefraværshistorikkType.NÆRING,
-    label: "En næring",
-    kvartalsvisSykefraværsprosent: [
-      {
-        prosent: 5.7,
-        tapteDagsverk: 141083.9,
-        muligeDagsverk: 2478321.1,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2018,
-      },
-      {
-        prosent: 5.6,
-        tapteDagsverk: 139625.1,
-        muligeDagsverk: 2483134.2,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2019,
-      },
-    ],
-  },
-];
+const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
+  prosentSiste4Kvartaler: [],
+  trend: [
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: 0.0,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+};
 
-const mockSykefraværNæringIngenTrend: KvartalsvisSykefraværshistorikk[] = [
-  {
-    type: SykefraværshistorikkType.NÆRING,
-    label: "En næring",
-    kvartalsvisSykefraværsprosent: [
-      {
-        prosent: 5.7,
-        tapteDagsverk: 141083.9,
-        muligeDagsverk: 2478321.1,
-        erMaskert: false,
-        kvartal: 2,
-        årstall: 2018,
-      },
-      {
-        prosent: 5.6,
-        tapteDagsverk: 139625.1,
-        muligeDagsverk: 2483134.2,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2019,
-      },
-    ],
-  },
-];
-
-const mockSykefraværNæringUendretTrend: KvartalsvisSykefraværshistorikk[] = [
-  {
-    type: SykefraværshistorikkType.NÆRING,
-    label: "En næring",
-    kvartalsvisSykefraværsprosent: [
-      {
-        prosent: 5.6,
-        tapteDagsverk: 141083.9,
-        muligeDagsverk: 2478321.1,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2020,
-      },
-      {
-        prosent: 5.6,
-        tapteDagsverk: 139625.1,
-        muligeDagsverk: 2483134.2,
-        erMaskert: false,
-        kvartal: 1,
-        årstall: 2021,
-      },
-    ],
-  },
-];
+const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
+  prosentSiste4Kvartaler: [],
+  trend: [
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barenhager",
+      verdi: 7.4,
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+};

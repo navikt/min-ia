@@ -1,10 +1,10 @@
-import {
-  bransjeKvartalsvisSykefraværsprosentV1OffentligMock,
-  næringKvartalsvisSykefraværsprosentV1OffentligMock,
-  organisasjoner,
-} from "./testdata";
+import { organisasjoner } from "./organisasajonerMockdata";
 import { Express } from "express";
 import { kurslisteMock } from "./testdata-kurs";
+import {
+  mockdataOrgnr81096939,
+  mockdataOrgnr91096939,
+} from "./aggregertStatistikkMockdata";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
@@ -34,40 +34,38 @@ export const backendApiProxyMock = (server: Express) => {
   });
 
   server.get(
-    "/min-ia/api/:orgnr/v1/offentlig/sykefravarshistorikk/kvartalsvis",
+    "/min-ia/api/:orgnr/v1/sykefravarshistorikk/aggregert",
     (request, response) => {
       const orgnr = request.params.orgnr;
       console.log(
-        `[DEBUG] GET /api/${orgnr}/v1/offentlig/sykefravarshistorikk/kvartalsvis`
+        `[DEBUG] GET /api/${orgnr}/v1/sykefravarshistorikk/aggregert`
       );
 
-      let kvartalsvisSykefraværsprosent: any[];
+      let aggregertStatistikkMock: any;
       switch (orgnr) {
         case "810969439": {
-          kvartalsvisSykefraværsprosent =
-            næringKvartalsvisSykefraværsprosentV1OffentligMock;
+          aggregertStatistikkMock = mockdataOrgnr81096939;
           break;
         }
         case "910969439": {
-          kvartalsvisSykefraværsprosent =
-            bransjeKvartalsvisSykefraværsprosentV1OffentligMock;
+          aggregertStatistikkMock = mockdataOrgnr91096939;
           break;
         }
         case "999999998": {
-          response.status(401).json([]);
+          response.status(401).json();
           break;
         }
         case "999999997": {
-          response.status(500).json([]);
+          response.status(500).json();
           break;
         }
         default: {
-          kvartalsvisSykefraværsprosent = [];
+          aggregertStatistikkMock = mockdataOrgnr81096939;
         }
       }
 
       setTimeout(function () {
-        response.send(kvartalsvisSykefraværsprosent);
+        response.send(aggregertStatistikkMock);
       }, delayInMillis);
     }
   );
