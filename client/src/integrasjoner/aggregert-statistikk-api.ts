@@ -18,7 +18,7 @@ export interface AggregertStatistikkDto {
 export interface StatistikkDto {
   statistikkategori: Statistikkategori;
   label: string;
-  verdi: number;
+  verdi: string;
   antallPersonerIBeregningen: number;
   kvartalerIBeregningen: Kvartal[];
 }

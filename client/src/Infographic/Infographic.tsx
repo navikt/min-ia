@@ -87,34 +87,42 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
-        tekst={"Sykefraværsprosenten i Norge det siste kvartalet er: "}
-        verdi={(data.fraværsprosentNorge?.verdi ?? "- ") + "%"}
+        innhold={`Sykefraværet i Norge de siste tolv månedene er: ${
+          data.fraværsprosentNorge?.verdi ?? "- "
+        }%`}
         nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        tekst={`Sykefraværsprosenten i din ${prosenttypeBransjeEllerNæring} det siste kvartalet er: `}
-        verdi={(data.fraværsprosentBransjeEllerNæring?.verdi ?? "- ") + "%"}
+        innhold={sykefraværstekstBransjeEllerNæring(
+          data.fraværsprosentBransjeEllerNæring?.verdi,
+          prosenttypeBransjeEllerNæring
+        )}
         nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<HealthCase {...ikonstorrelse} />}
-        tekst={"Vanligste årsak til sykemelding i Norge er: "}
-        verdi={"Muskel- og skjelettplager"}
+        innhold={
+          "Vanligste årsak til sykemelding i Norge er: muskel- og skjelettplager"
+        }
         nedlastingPågår={data.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={
           <Up
-            className={roterTrendpil(data.trendBransjeEllerNæring?.verdi)}
+            className={roterTrendpil(
+              Number(data.trendBransjeEllerNæring?.verdi)
+            )}
             {...ikonstorrelse}
           />
         }
-        tekst={`Sykefraværet i din ${trendtypeBransjeEllerNæring} er: `}
-        verdi={stigningstallTilTekst(data.trendBransjeEllerNæring?.verdi)}
+        innhold={trendtekstBransjeEllerNæring(
+          Number(data.trendBransjeEllerNæring?.verdi),
+          trendtypeBransjeEllerNæring
+        )}
         nedlastingPågår={data.nedlastingPågår}
       />
 
@@ -130,6 +138,24 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
   );
 };
 
+const sykefraværstekstBransjeEllerNæring = (
+  sykefravær: string | undefined,
+  bransjeEllerNæring: "bransje" | "næring"
+) =>
+  sykefravær
+    ? `Sykefraværet i din ${bransjeEllerNæring} de siste tolv månedene er: ${sykefravær}%`
+    : `Vi mangler data til beregning av sykefraværet i din ${bransjeEllerNæring}`;
+
+const trendtekstBransjeEllerNæring = (
+  stigningstall: number | typeof NaN,
+  bransjeEllerNæring: "bransje" | "næring"
+) =>
+  isFinite(stigningstall)
+    ? `Sykefraværet er ${stigningstallTilTekst(
+        stigningstall
+      )} i din ${bransjeEllerNæring}`
+    : `Vi mangler data til beregning av sykefraværstrenden i din ${bransjeEllerNæring}`;
+
 function roterTrendpil(stigningstall: number | undefined) {
   if (stigningstall == undefined || stigningstall == 0) {
     return styles.rotateUendret;
@@ -140,10 +166,8 @@ function roterTrendpil(stigningstall: number | undefined) {
   }
 }
 
-function stigningstallTilTekst(stigning: number | undefined): string {
-  if (stigning === undefined) {
-    return "-";
-  } else if (stigning > 0) {
+function stigningstallTilTekst(stigning: number): string {
+  if (stigning > 0) {
     return "stigende";
   } else if (stigning < 0) {
     return "synkende";

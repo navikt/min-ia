@@ -2,27 +2,27 @@ import React, { ReactNode } from "react";
 import styles from "./InfographicFlis.module.scss";
 import { Label } from "@navikt/ds-react";
 import Skeleton from "react-loading-skeleton";
-import {SkeltonWrapper} from "../komponenter/Skeleton/SkeletonWrapper";
+import { SkeltonWrapper } from "../komponenter/Skeleton/SkeletonWrapper";
 import "react-loading-skeleton/dist/skeleton.css";
-
 
 export const InfographicFlis = (props: {
   ikon: ReactNode;
-  tekst: string;
-  verdi: string;
+  innhold: ReactNode;
   nedlastingPågår?: boolean;
 }) => {
   return (
     <div className={styles.infographicFlis}>
       <div className={styles.ikonWrapper}>{props.ikon}</div>
-        {props.nedlastingPågår?<SkeltonWrapper>
-                <Skeleton style={{marginTop:'0.5rem'}} />
-                <Skeleton style={{marginTop:'0.5rem'}} />
-            </SkeltonWrapper>:
+      {props.nedlastingPågår ? (
+        <SkeltonWrapper>
+          <Skeleton style={{ marginTop: "0.5rem" }} />
+          <Skeleton style={{ marginTop: "0.5rem" }} />
+        </SkeltonWrapper>
+      ) : (
         <Label size="small" className={styles.tekst}>
-        {props.tekst}
-        <span style={{ fontWeight: 700 }}>{props.verdi}</span>
-      </Label>}
+          {props.innhold}
+        </Label>
+      )}
     </div>
   );
 };

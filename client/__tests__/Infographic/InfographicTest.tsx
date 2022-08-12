@@ -19,9 +19,9 @@ it("viser sykefraværsprosenten for Norge", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværsprosenten i Norge/);
+  const infobolk = await screen.getByText(/Sykefraværet i Norge/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i Norge det siste kvartalet er: 9%"
+    "Sykefraværet i Norge de siste tolv månedene er: 9.0%"
   );
 });
 
@@ -33,9 +33,9 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværsprosenten i din/);
+  const infobolk = await screen.getByText(/Sykefraværet i din/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværsprosenten i din bransje det siste kvartalet er: 5.1%"
+    "Sykefraværet i din bransje de siste tolv månedene er: 5.1%"
   );
 });
 
@@ -47,11 +47,11 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe("Sykefraværet i din bransje er: stigende");
+  const infobolk = await screen.getByText(/Sykefraværet er/);
+  expect(infobolk.textContent).toBe("Sykefraværet er stigende i din bransje");
 });
 
-it("viser synkende fraværstrend i næring når dette er tilfellet", async () => {
+it("viser synkende fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Infographic
@@ -59,16 +59,18 @@ it("viser synkende fraværstrend i næring når dette er tilfellet", async () =>
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: synkende");
+  const infobolk = await screen.getByText(/Sykefraværet er/);
+  expect(infobolk.textContent).toBe("Sykefraværet er synkende i din næring");
 });
 
 it("viser ingen fraværstrend når det ikke finnes data", async () => {
   await act(async () => {
     render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: -");
+  const infobolk = await screen.getByText(/sykefraværstrenden/);
+  expect(infobolk.textContent).toBe(
+    "Vi mangler data til beregning av sykefraværstrenden i din næring"
+  );
 });
 
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
@@ -79,8 +81,8 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din/);
-  expect(infobolk.textContent).toBe("Sykefraværet i din næring er: uendret");
+  const infobolk = await screen.getByText(/Sykefraværet er/);
+  expect(infobolk.textContent).toBe("Sykefraværet er uendret i din næring");
 });
 
 it("viser årsak til sykemelding", async () => {
@@ -93,7 +95,7 @@ it("viser årsak til sykemelding", async () => {
   });
   const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
   expect(infobolk.textContent).toBe(
-    "Vanligste årsak til sykemelding i Norge er: Muskel- og skjelettplager"
+    "Vanligste årsak til sykemelding i Norge er: muskel- og skjelettplager"
   );
 });
 
@@ -133,7 +135,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.LAND,
       label: "Norge",
-      verdi: 9.0,
+      verdi: "9.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -145,7 +147,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.NÆRING,
       label: "Næringen til barenhager",
-      verdi: 7.0,
+      verdi: "7.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -157,7 +159,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.BRANSJE,
       label: "Barnehager",
-      verdi: 5.1,
+      verdi: "5.1",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -171,7 +173,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.LAND,
       label: "Norge",
-      verdi: 2.0,
+      verdi: "2.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -183,7 +185,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.NÆRING,
       label: "Næringen til barenhager",
-      verdi: 4.0,
+      verdi: "4.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -199,7 +201,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.BRANSJE,
       label: "Barenhager",
-      verdi: -2.0,
+      verdi: "-2.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -221,7 +223,7 @@ const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.NÆRING,
       label: "Næringen til barenhager",
-      verdi: -2.0,
+      verdi: "-2.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -238,8 +240,8 @@ const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
   trend: [
     {
       statistikkategori: Statistikkategori.NÆRING,
-      label: "Næringen til barenhager",
-      verdi: 0.0,
+      label: "Næringen til barnehager",
+      verdi: "0.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -257,7 +259,7 @@ const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
     {
       statistikkategori: Statistikkategori.BRANSJE,
       label: "Barenhager",
-      verdi: 7.4,
+      verdi: "7.4",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
