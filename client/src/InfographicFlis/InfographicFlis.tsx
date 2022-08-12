@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import styles from "./InfographicFlis.module.scss";
-import { Label } from "@navikt/ds-react";
+import { BodyShort, Label } from "@navikt/ds-react";
 import Skeleton from "react-loading-skeleton";
 import { SkeltonWrapper } from "../komponenter/Skeleton/SkeletonWrapper";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -19,9 +19,9 @@ export const InfographicFlis = (props: {
           <Skeleton style={{ marginTop: "0.5rem" }} />
         </SkeltonWrapper>
       ) : (
-        <Label size="small" className={styles.tekst}>
+        <BodyShort size="small" className={styles.tekst}>
           {props.innhold}
-        </Label>
+        </BodyShort>
       )}
     </div>
   );
