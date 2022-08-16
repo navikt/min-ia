@@ -8,6 +8,7 @@
     "build": "next build",
     "lint": "eslint .",
     "test": "jest",
+    "coverage": "jest --coverage",
     "watch": "jest --watch",
     "export": "next export"
   },

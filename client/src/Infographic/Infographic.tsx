@@ -15,20 +15,18 @@ import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
 import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 import { InfoModal } from "../komponenter/InfoModal/InfoModal";
-import {
-  Statistikkategori,
-  StatistikkDto,
-} from "../integrasjoner/aggregert-statistikk-api";
 
 export interface InfographicData {
-  fraværsprosentNorge: StatistikkDto | undefined;
-  fraværsprosentBransjeEllerNæring: StatistikkDto | undefined;
-  trendBransjeEllerNæring: StatistikkDto | undefined;
+  fraværsprosentNorge: string | undefined;
+  fraværsprosentBransjeEllerNæring: string | undefined;
+  stigningstallTrendBransjeEllerNæring: number | typeof NaN;
+  bransjeEllerNæring: "bransje" | "næring";
+  bransjeEllerNæringLabel: string | undefined;
 
   nedlastingPågår?: boolean;
 }
 
-export const Infographic: FunctionComponent<InfographicData> = (data) => {
+export const Infographic: FunctionComponent<InfographicData> = (props) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
   const miljø = getMiljø();
@@ -36,12 +34,6 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
   const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
-
-  const bransjeEllerNæring =
-    data.fraværsprosentBransjeEllerNæring?.statistikkategori ===
-    Statistikkategori.BRANSJE
-      ? "bransje"
-      : "næring";
 
   const DesktopEllerMobilVersjon = () => {
     if (
@@ -82,14 +74,14 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
     <div className={styles.infographicWrapper}>
       <InfographicFlis
         ikon={<NorwegianFlag {...ikonstorrelse} />}
-        innhold={innholdSykefraværNorge(data)}
-        nedlastingPågår={data.nedlastingPågår}
+        innhold={displaytekstSykefraværNorge(props.fraværsprosentNorge)}
+        nedlastingPågår={props.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={<Bag {...ikonstorrelse} />}
-        innhold={innholdProsentBransjeEllerNæring(data, bransjeEllerNæring)}
-        nedlastingPågår={data.nedlastingPågår}
+        innhold={displaytekstSykefraværBransjeEllerNæring(props)}
+        nedlastingPågår={props.nedlastingPågår}
       />
 
       <InfographicFlis
@@ -100,76 +92,70 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
             <b>muskel- og skjelettplager</b>
           </>
         }
-        nedlastingPågår={data.nedlastingPågår}
+        nedlastingPågår={props.nedlastingPågår}
       />
 
       <InfographicFlis
         ikon={
           <Up
             className={roterTrendpil(
-              Number(data.trendBransjeEllerNæring?.verdi)
+              props.stigningstallTrendBransjeEllerNæring
             )}
             {...ikonstorrelse}
           />
         }
-        innhold={innholdTrendBransjeEllerNæring(
-          Number(data.trendBransjeEllerNæring?.verdi),
-          bransjeEllerNæring
-        )}
-        nedlastingPågår={data.nedlastingPågår}
+        innhold={displaytekstTrendBransjeEllerNæring(props)}
+        nedlastingPågår={props.nedlastingPågår}
       />
 
       <DesktopEllerMobilVersjon />
       {windowSize.width !== undefined &&
         windowSize.width > screenSmAsNumeric && (
           <InfoModal
-            bransjeEllerNæring={bransjeEllerNæring}
-            bransjeEllerNæringLabel={data.trendBransjeEllerNæring?.label}
+            bransjeEllerNæring={props.bransjeEllerNæring}
+            bransjeEllerNæringLabel={props.bransjeEllerNæringLabel}
           />
         )}
     </div>
   );
 };
 
-function innholdSykefraværNorge(data: InfographicData) {
+function displaytekstSykefraværNorge(prosent: string | undefined) {
   return (
     <>
-      Sykefraværet i Norge de siste tolv månedene er:{" "}
-      <b>{data.fraværsprosentNorge?.verdi ?? "- "}%</b>
+      Sykefraværet i Norge de siste tolv månedene er: <b>{prosent ?? "- "}%</b>
     </>
   );
 }
 
-const innholdProsentBransjeEllerNæring = (
-  data: InfographicData,
-  bransjeEllerNæring: "bransje" | "næring"
+const displaytekstSykefraværBransjeEllerNæring = (
+  data: InfographicData
 ): ReactNode => {
-  const sykefravær = data.fraværsprosentBransjeEllerNæring?.verdi;
-  if (sykefravær) {
+  if (data.fraværsprosentBransjeEllerNæring) {
     return (
       <>
-        Sykefraværet i din {bransjeEllerNæring} de siste tolv månedene er:{" "}
-        <b>{sykefravær}%</b>
+        Sykefraværet i din {data.bransjeEllerNæring} de siste tolv månedene er:{" "}
+        <b>{data.fraværsprosentBransjeEllerNæring}%</b>
       </>
     );
   } else {
-    return `Vi mangler data til beregning av sykefraværet i din ${bransjeEllerNæring}`;
+    return `Vi mangler data til beregning av sykefraværet i din ${data.bransjeEllerNæring}`;
   }
 };
 
-const innholdTrendBransjeEllerNæring = (
-  stigningstall: number | typeof NaN,
-  bransjeEllerNæring: "bransje" | "næring"
+const displaytekstTrendBransjeEllerNæring = (
+  props: InfographicData
 ): ReactNode => {
+  const stigningstall = props.stigningstallTrendBransjeEllerNæring;
   if (isFinite(stigningstall)) {
     return (
       <>
         Sykefraværet er <b>{stigningstallTilTekst(stigningstall)}</b> i din{" "}
-        {bransjeEllerNæring}
+        {props.bransjeEllerNæring}
       </>
     );
   } else {
-    return `Vi mangler data til å kunne beregne utviklingen i sykefraværet i din ${bransjeEllerNæring}`;
+    return `Vi mangler data til å kunne beregne utviklingen i sykefraværet i din ${props.bransjeEllerNæring}`;
   }
 };
 

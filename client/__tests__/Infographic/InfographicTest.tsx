@@ -21,7 +21,7 @@ it("viser sykefraværsprosenten for Norge", async () => {
   });
   const infobolk = await screen.getByText(/Sykefraværet i Norge/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i Norge de siste tolv månedene er: 9.0%"
+    "Sykefraværet i Norge de siste tolv månedene er: 9,0%"
   );
 });
 
@@ -35,7 +35,7 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
   });
   const infobolk = await screen.getByText(/Sykefraværet i din/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din bransje de siste tolv månedene er: 5.1%"
+    "Sykefraværet i din bransje de siste tolv månedene er: 5,1%"
   );
 });
 

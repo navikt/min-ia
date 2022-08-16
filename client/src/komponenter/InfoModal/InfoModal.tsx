@@ -4,7 +4,7 @@ import { BodyLong, Button, Heading, Modal } from "@navikt/ds-react";
 import { Information } from "@navikt/ds-icons";
 
 interface Props {
-  bransjeEllerNæring?: string;
+  bransjeEllerNæring: "bransje" | "næring";
   bransjeEllerNæringLabel?: string;
 }
 export const InfoModal: FunctionComponent<Props> = ({
