@@ -1,3 +1,12 @@
+import {
+  DEV_HOST,
+  LABS_HOST,
+  MIN_SIDE_ARBEIDSGIVER_DEV,
+  MIN_SIDE_ARBEIDSGIVER_LABS,
+  MIN_SIDE_ARBEIDSGIVER_PROD,
+  PROD_HOST
+} from "./konstanter";
+
 export enum Miljø {
   Lokal = "local",
   Dev = "dev-gcp",
@@ -5,19 +14,23 @@ export enum Miljø {
   Prod = "prod-gcp",
 }
 
-export const getMiljø = (): Miljø => {
+export const getMiljø = ():Miljø => {
   if (typeof window === "undefined") {
     return Miljø.Lokal;
   }
-  const hostname = window.location.hostname;
-  if (hostname === "arbeidsgiver.nav.no") {
-    return Miljø.Prod;
+  switch (window.location.hostname) {
+    case PROD_HOST: return Miljø.Prod;
+    case LABS_HOST: return Miljø.Labs;
+    case DEV_HOST: return Miljø.Dev;
+    default: return Miljø.Lokal;
   }
-  if (hostname === "min-ia.dev.nav.no") {
-    return Miljø.Dev;
+};
+
+export const getMinSideArbeidsgiverUrl = () => {
+  switch (getMiljø()) {
+    case Miljø.Prod: return MIN_SIDE_ARBEIDSGIVER_PROD;
+    case Miljø.Labs: return MIN_SIDE_ARBEIDSGIVER_LABS;
+    case Miljø.Dev: return MIN_SIDE_ARBEIDSGIVER_DEV;
+    default: return MIN_SIDE_ARBEIDSGIVER_LABS;
   }
-  if (hostname === "arbeidsgiver.labs.nais.io") {
-    return Miljø.Labs;
-  }
-  return Miljø.Lokal;
 };
