@@ -1,8 +1,8 @@
-import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
-import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
+import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
+import { StatistikkIkonIkon } from "../../Forside/ikoner/StatistikkIkonIkon";
 import { BodyLong } from "@navikt/ds-react";
 import styles from "./Infographic.module.scss";
-import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
+import { LenkeMedEventutsendelse } from "../../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 
 export const InngangTilSykefraværsstatistikk = (props: {
   sykefravarsstatistikkUrl: string;

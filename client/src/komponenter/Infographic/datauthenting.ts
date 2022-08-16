@@ -2,7 +2,7 @@ import {
   AggregertStatistikkDto,
   Statistikkategori,
   StatistikkDto,
-} from "../integrasjoner/aggregert-statistikk-api";
+} from "../../integrasjoner/aggregert-statistikk-api";
 import { InfographicData } from "./Infographic";
 
 export function hentUtInfographicData(

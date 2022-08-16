@@ -1,11 +1,11 @@
 import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Infographic } from "../../src/Infographic/Infographic";
+import { Infographic } from "../../src/komponenter/Infographic/Infographic";
 import {
   AggregertStatistikkDto,
   Statistikkategori,
 } from "../../src/integrasjoner/aggregert-statistikk-api";
-import { hentUtInfographicData } from "../../src/Infographic/datauthenting";
+import { hentUtInfographicData } from "../../src/komponenter/Infographic/datauthenting";
 
 jest.mock("../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",

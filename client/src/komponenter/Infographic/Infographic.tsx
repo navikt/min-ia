@@ -1,16 +1,16 @@
 import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
-import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
+import { InfographicFlis } from "./InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import { useOrgnr } from "../hooks/useOrgnr";
-import { getMiljø } from "../utils/miljøUtils";
+import { useOrgnr } from "../../hooks/useOrgnr";
+import { getMiljø } from "../../utils/miljøUtils";
 import {
   Applikasjon,
   getUrlForApplikasjon,
   utledUrlForBedrift,
-} from "../utils/navigasjon";
-import { InfoModal } from "../komponenter/InfoModal/InfoModal";
-import { useMobileVersion } from "../hooks/useMobileVersion";
+} from "../../utils/navigasjon";
+import { InfoModal } from "./InfoModal/InfoModal";
+import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 
 export interface InfographicData {

@@ -13,9 +13,9 @@ import {
   erSykefraværsstatistikkLastetNed,
   RestStatus,
 } from "../integrasjoner/rest-status";
-import { Infographic } from "../Infographic/Infographic";
+import { Infographic } from "../komponenter/Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
-import { hentUtInfographicData } from "../Infographic/datauthenting";
+import { hentUtInfographicData } from "../komponenter/Infographic/datauthenting";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 import { getMiljø } from "../utils/miljøUtils";
