@@ -2,7 +2,6 @@ import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "../InfographicFlis/InfographicFlis";
 import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
-import { BodyLong } from "@navikt/ds-react";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { getMiljø } from "../utils/miljøUtils";
 import {
@@ -10,11 +9,9 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../utils/navigasjon";
-import { useWindowSize } from "../hooks/useWindowSize";
-import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
-import { StatistikkIkonIkon } from "../Forside/ikoner/StatistikkIkonIkon";
-import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
 import { InfoModal } from "../komponenter/InfoModal/InfoModal";
+import { useMobileVersion } from "../hooks/useMobileVersion";
+import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 
 export interface InfographicData {
   fraværsprosentNorge: string | undefined;
@@ -30,36 +27,9 @@ export const Infographic: FunctionComponent<InfographicData> = (props) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
   const miljø = getMiljø();
-  const windowSize = useWindowSize();
+  const usingMobileVersion = useMobileVersion();
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
-  const screenSmAsNumeric = parseInt(styles.screenSm.replace(/\D/g, ""));
-
-  const DesktopEllerMobilVersjon = () => {
-    if (
-      windowSize.width === undefined ||
-      windowSize.width < screenSmAsNumeric
-    ) {
-      return (
-        <Lenkeflis
-          overskrift={"Sykefraværs&shy;statistikk"}
-          ikon={<StatistikkIkonIkon />}
-          brødtekst={""}
-          href={sykefravarsstatistikkUrl}
-          fyltoppBakgrunn={true}
-        />
-      );
-    }
-    return (
-      <BodyLong className={styles.oversiktTekst} size="medium">
-        Trenger du en større oversikt?{" "}
-        <LenkeMedEventutsendelse
-          href={sykefravarsstatistikkUrl}
-          lenketekst="Klikk her for å gå til statistikksiden."
-        />
-      </BodyLong>
-    );
-  };
 
   useEffect(() => {
     setSykefravarsstatistikkUrl(
@@ -108,14 +78,17 @@ export const Infographic: FunctionComponent<InfographicData> = (props) => {
         nedlastingPågår={props.nedlastingPågår}
       />
 
-      <DesktopEllerMobilVersjon />
-      {windowSize.width !== undefined &&
-        windowSize.width > screenSmAsNumeric && (
-          <InfoModal
-            bransjeEllerNæring={props.bransjeEllerNæring}
-            bransjeEllerNæringLabel={props.bransjeEllerNæringLabel}
-          />
-        )}
+      <InngangTilSykefraværsstatistikk
+        sykefravarsstatistikkUrl={sykefravarsstatistikkUrl}
+        useMobileVersion={usingMobileVersion}
+      />
+
+      {!usingMobileVersion && (
+        <InfoModal
+          bransjeEllerNæring={props.bransjeEllerNæring}
+          bransjeEllerNæringLabel={props.bransjeEllerNæringLabel}
+        />
+      )}
     </div>
   );
 };

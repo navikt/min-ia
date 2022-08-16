@@ -4,6 +4,7 @@ import { kurslisteMock } from "./testdata-kurs";
 import {
   mockdataOrgnr81096939,
   mockdataOrgnr91096939,
+  tomRespons,
 } from "./aggregertStatistikkMockdata";
 
 export const backendApiProxyMock = (server: Express) => {
@@ -60,7 +61,7 @@ export const backendApiProxyMock = (server: Express) => {
           break;
         }
         default: {
-          aggregertStatistikkMock = mockdataOrgnr81096939;
+          aggregertStatistikkMock = { tomRespons };
         }
       }
 

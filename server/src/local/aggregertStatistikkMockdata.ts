@@ -135,3 +135,8 @@ export const mockdataOrgnr81096939 = {
     },
   ],
 };
+
+export const tomRespons = {
+  prosentSiste4Kvartaler: [],
+  trend: [],
+};
