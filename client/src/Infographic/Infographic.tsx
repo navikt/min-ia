@@ -112,7 +112,7 @@ export const Infographic: FunctionComponent<InfographicData> = (data) => {
             {...ikonstorrelse}
           />
         }
-        innhold={innholdForTrendBransjeEllerNæring(
+        innhold={innholdTrendBransjeEllerNæring(
           Number(data.trendBransjeEllerNæring?.verdi),
           bransjeEllerNæring
         )}
@@ -157,7 +157,7 @@ const innholdProsentBransjeEllerNæring = (
   }
 };
 
-const innholdForTrendBransjeEllerNæring = (
+const innholdTrendBransjeEllerNæring = (
   stigningstall: number | typeof NaN,
   bransjeEllerNæring: "bransje" | "næring"
 ): ReactNode => {
@@ -169,7 +169,7 @@ const innholdForTrendBransjeEllerNæring = (
       </>
     );
   } else {
-    `Vi mangler data til beregning av sykefraværstrenden i din ${bransjeEllerNæring}`;
+    return `Vi mangler data til å kunne beregne utviklingen i sykefraværet i din ${bransjeEllerNæring}`;
   }
 };
 

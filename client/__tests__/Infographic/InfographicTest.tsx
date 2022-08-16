@@ -67,9 +67,11 @@ it("viser ingen fraværstrend når det ikke finnes data", async () => {
   await act(async () => {
     render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
   });
-  const infobolk = await screen.getByText(/sykefraværstrenden/);
+  const infobolk = await screen.getByText(
+    /Vi mangler data til å kunne beregne utviklingen/
+  );
   expect(infobolk.textContent).toBe(
-    "Vi mangler data til beregning av sykefraværstrenden i din næring"
+    "Vi mangler data til å kunne beregne utviklingen i sykefraværet i din næring"
   );
 });
 
@@ -254,16 +256,45 @@ const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
-  prosentSiste4Kvartaler: [],
+  prosentSiste4Kvartaler: [
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "3.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2021,
+          kvartal: 2,
+        },
+        {
+          årstall: 2021,
+          kvartal: 3,
+        },
+        {
+          årstall: 2021,
+          kvartal: 4,
+        },
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
   trend: [
     {
       statistikkategori: Statistikkategori.BRANSJE,
-      label: "Barenhager",
+      label: "Barnehager",
       verdi: "7.4",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
           årstall: 2022,
+          kvartal: 1,
+        },
+        {
+          årstall: 2021,
           kvartal: 1,
         },
       ],
