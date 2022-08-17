@@ -14,11 +14,11 @@ import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 
 export interface InfographicData {
-  fraværsprosentNorge: string | undefined;
-  fraværsprosentBransjeEllerNæring: string | undefined;
-  stigningstallTrendBransjeEllerNæring: number | typeof NaN;
+  fraværsprosentNorge?: string;
+  fraværsprosentBransjeEllerNæring?: string;
+  stigningstallTrendBransjeEllerNæring: number;
   bransjeEllerNæring: "bransje" | "næring";
-  bransjeEllerNæringLabel: string | undefined;
+  bransjeEllerNæringLabel?: string;
 
   nedlastingPågår?: boolean;
 }

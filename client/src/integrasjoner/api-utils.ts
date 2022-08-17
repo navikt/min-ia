@@ -1,6 +1,4 @@
 import { RestRessurs, RestStatus, Årsak } from "./rest-status";
-import { Size } from "../hooks/useWindowSize";
-import styles from "../komponenter/Infographic/Infographic.module.scss";
 
 export const getRestStatus = (responseStatus: number): RestStatus => {
   switch (responseStatus) {
