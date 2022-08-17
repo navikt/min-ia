@@ -31,7 +31,7 @@ export const fetchMedFeilhåndtering = async <T>(
     };
   }
   if (restStatus === RestStatus.Feil) {
-     //Sentry.captureException(new Error('Status ' + response.status + ' ved kall til ' + url));
+    //Sentry.captureException(new Error('Status ' + response.status + ' ved kall til ' + url));
 
     try {
       const body = await response.json();

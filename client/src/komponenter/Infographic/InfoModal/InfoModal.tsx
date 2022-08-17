@@ -1,21 +1,25 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import styles from "../../Infographic/Infographic.module.scss";
+import styles from "../Infographic.module.scss";
 import { BodyLong, Button, Heading, Modal } from "@navikt/ds-react";
 import { Information } from "@navikt/ds-icons";
 
 interface Props {
-  bransjeEllerNæring?: string;
+  bransjeEllerNæring: "bransje" | "næring";
   bransjeEllerNæringLabel?: string;
 }
+
 export const InfoModal: FunctionComponent<Props> = ({
   bransjeEllerNæring,
   bransjeEllerNæringLabel,
 }: Props) => {
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
-    if (Modal !== undefined) {
-      // @ts-ignore
-      Modal?.setAppElement("#__next");
+    try {
+      // sikrer at skjermlesere ikke leser opp innholdet bak modal når den er åpen
+      Modal?.setAppElement?.("#__next");
+    } catch (e) {
+      // under testkjøring fins ikke "#__next"
     }
   }, []);
 
