@@ -55,4 +55,12 @@ export const organisasjoner = [
     Status: "Active",
     ParentOrganizationNumber: "311111111",
   },
+  {
+    Name: "Mangler tilgang",
+    Type: "Business",
+    OrganizationNumber: "999999996",
+    OrganizationForm: "BEDR",
+    Status: "Active",
+    ParentOrganizationNumber: "311111111",
+  },
 ];

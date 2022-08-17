@@ -60,6 +60,10 @@ export const backendApiProxyMock = (server: Express) => {
           response.status(500).json();
           break;
         }
+        case "999999996": {
+          response.status(403).json();
+          break;
+        }
         default: {
           aggregertStatistikkMock = { tomRespons };
         }
