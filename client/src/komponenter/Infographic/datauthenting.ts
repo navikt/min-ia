@@ -7,19 +7,19 @@ import { InfographicData } from "./Infographic";
 export function hentUtInfographicData(
   data: AggregertStatistikkDto
 ): InfographicData {
-  const fraværsprosentNorge = data.prosentSiste4Kvartaler?.find(
+  const fraværsprosentNorge = data.prosentSiste4KvartalerTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.LAND
   );
-  const fraværsprosentNæring = data.prosentSiste4Kvartaler?.find(
+  const fraværsprosentNæring = data.prosentSiste4KvartalerTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.NÆRING
   );
-  const fraværsprosentBransje = data.prosentSiste4Kvartaler?.find(
+  const fraværsprosentBransje = data.prosentSiste4KvartalerTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.BRANSJE
   );
-  const trendBransje = data.trend?.find(
+  const trendBransje = data.trendTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.BRANSJE
   );
-  const trendNæring = data.trend?.find(
+  const trendNæring = data.trendTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.NÆRING
   );
   return {

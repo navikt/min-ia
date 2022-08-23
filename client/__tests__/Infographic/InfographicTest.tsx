@@ -128,12 +128,12 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
 });
 
 const mockTomtResultat: AggregertStatistikkDto = {
-  prosentSiste4Kvartaler: [],
-  trend: [],
+  prosentSiste4KvartalerTotalt: [],
+  trendTotalt: [],
 };
 
 const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
-  prosentSiste4Kvartaler: [
+  prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: Statistikkategori.LAND,
       label: "Norge",
@@ -171,7 +171,7 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       ],
     },
   ],
-  trend: [
+  trendTotalt: [
     {
       statistikkategori: Statistikkategori.LAND,
       label: "Norge",
@@ -220,8 +220,8 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
-  prosentSiste4Kvartaler: [],
-  trend: [
+  prosentSiste4KvartalerTotalt: [],
+  trendTotalt: [
     {
       statistikkategori: Statistikkategori.NÆRING,
       label: "Næringen til barenhager",
@@ -238,8 +238,8 @@ const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
-  prosentSiste4Kvartaler: [],
-  trend: [
+  prosentSiste4KvartalerTotalt: [],
+  trendTotalt: [
     {
       statistikkategori: Statistikkategori.NÆRING,
       label: "Næringen til barnehager",
@@ -256,7 +256,7 @@ const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
-  prosentSiste4Kvartaler: [
+  prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: Statistikkategori.BRANSJE,
       label: "Barnehager",
@@ -282,7 +282,7 @@ const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
       ],
     },
   ],
-  trend: [
+  trendTotalt: [
     {
       statistikkategori: Statistikkategori.BRANSJE,
       label: "Barnehager",
