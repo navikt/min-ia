@@ -1,5 +1,5 @@
 export const mockdataOrgnr91096939 = {
-  prosentSiste4Kvartaler: [
+  prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: "LAND",
       label: "Norge",
@@ -37,7 +37,7 @@ export const mockdataOrgnr91096939 = {
       ],
     },
   ],
-  trend: [
+  trendTotalt: [
     {
       statistikkategori: "NÆRING",
       label: "Barnehagenæringen",
@@ -74,7 +74,7 @@ export const mockdataOrgnr91096939 = {
 };
 
 export const mockdataOrgnr81096939 = {
-  prosentSiste4Kvartaler: [
+  prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: "LAND",
       label: "Norge",
@@ -100,7 +100,7 @@ export const mockdataOrgnr81096939 = {
       ],
     },
   ],
-  trend: [
+  trendTotalt: [
     {
       statistikkategori: "BRANSJE",
       label: "Barnehager",
@@ -137,6 +137,6 @@ export const mockdataOrgnr81096939 = {
 };
 
 export const tomRespons = {
-  prosentSiste4Kvartaler: [],
-  trend: [],
+  prosentSiste4KvartalerTotalt: [],
+  trendTotalt: [],
 };
