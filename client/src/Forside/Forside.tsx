@@ -63,7 +63,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
     aggregertStatistikk
   )
     ? aggregertStatistikk.data
-    : { prosentSiste4Kvartaler: [], trend: [] };
+    : { prosentSiste4KvartalerTotalt: [], trendTotalt: [] };
 
   const infographicEllerBannerHvisError =
     aggregertStatistikk.status === RestStatus.Feil ||

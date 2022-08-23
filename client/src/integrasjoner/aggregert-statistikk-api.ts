@@ -11,8 +11,8 @@ export enum Statistikkategori {
 export type RestAggregertStatistikk = RestRessurs<AggregertStatistikkDto>;
 
 export interface AggregertStatistikkDto {
-  prosentSiste4Kvartaler: StatistikkDto[];
-  trend: StatistikkDto[];
+  prosentSiste4KvartalerTotalt: StatistikkDto[];
+  trendTotalt: StatistikkDto[];
 }
 
 export interface StatistikkDto {
