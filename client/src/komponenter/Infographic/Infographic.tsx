@@ -19,11 +19,13 @@ export interface InfographicData {
   stigningstallTrendBransjeEllerNæring: number;
   bransjeEllerNæring: "bransje" | "næring";
   bransjeEllerNæringLabel?: string;
-
-  nedlastingPågår?: boolean;
 }
 
-export const Infographic: FunctionComponent<InfographicData> = (props) => {
+export const Infographic: FunctionComponent<
+  InfographicData & {
+    nedlastingPågår: boolean;
+  }
+> = (props) => {
   const ikonstorrelse = { width: "50px", height: "50px" };
   const orgnr = useOrgnr();
   const miljø = getMiljø();

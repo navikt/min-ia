@@ -1,11 +1,7 @@
-import {
-  AggregertStatistikkDto,
-  RestAggregertStatistikk,
-} from "./aggregert-statistikk-api";
+import { RestAggregertStatistikk } from "./aggregert-statistikk-api";
 
 export enum RestStatus {
   IkkeLastet = "IkkeLastet",
-  LasterInn = "LasterInn",
   Suksess = "Suksess",
   IkkeInnlogget = "IkkeInnlogget",
   IngenTilgang = "IngenTilgang",
@@ -14,10 +10,6 @@ export enum RestStatus {
 
 export interface IkkeLastet {
   status: RestStatus.IkkeLastet;
-}
-
-export interface LasterInn {
-  status: RestStatus.LasterInn;
 }
 
 export interface IkkeInnlogget {
@@ -44,16 +36,21 @@ export interface Feil {
 
 export type RestRessurs<T> =
   | IkkeLastet
-  | LasterInn
   | Suksess<T>
   | IkkeInnlogget
   | Feil
   | IngenTilgang;
 
-export const erSykefraværsstatistikkLastetNed = (
-  restAggregertStatistikk: RestAggregertStatistikk
-): restAggregertStatistikk is Suksess<AggregertStatistikkDto> => {
-  return restAggregertStatistikk.status === RestStatus.Suksess;
+export const ikkeFerdigLastet = <DataType>(
+  responsobjekt: RestRessurs<DataType>
+): boolean => {
+  return responsobjekt.status === RestStatus.IkkeLastet;
+};
+
+export const ferdigNedlastet = <DataType>(
+  respons: RestRessurs<DataType>
+): respons is Suksess<DataType> => {
+  return respons.status === RestStatus.Suksess;
 };
 
 export const getRestStatus = (responseStatus: number): RestStatus => {

@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import "./Kalkulator.less";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
-import { RestAggregertStatistikk } from "../../../integrasjoner/aggregert-statistikk-api";
 import { useOrgnr } from "../../../hooks/useOrgnr";
 import {
   sendSidevisningEvent,
@@ -15,11 +14,17 @@ import {
   sendLevertInnloggetIaTjeneste,
 } from "../../../integrasjoner/ia-tjenestemetrikker-api";
 
-interface Props {
-  restAggregertStatistikk: RestAggregertStatistikk;
+export interface KalkulatorData {
+  tapteDagsverk?: number;
+  muligeDagsverk?: number;
+  fraværsprosentVirksomhet?: number;
 }
 
-const Kalkulator: FunctionComponent<Props> = ({ restAggregertStatistikk }) => {
+export const Fraværskalkulator: FunctionComponent<
+  KalkulatorData & {
+    nedlastingPågår: string;
+  }
+> = (props) => {
   const orgnr = useOrgnr();
 
   const [kalkulatorvariant, setKalkulatorvariant] = useState("prosent");
@@ -72,12 +77,11 @@ const Kalkulator: FunctionComponent<Props> = ({ restAggregertStatistikk }) => {
             Fyll inn og juster tallene så de passer for deg
           </Ingress>
           {kalkulatorvariant === "dagsverk" ? (
-            <KalkulatorMedDagsverk
-              restAggregertStatistikk={restAggregertStatistikk}
-            />
+            <KalkulatorMedDagsverk tapteDagsverkFraDb={props.tapteDagsverk} />
           ) : (
             <KalkulatorMedProsent
-              restAggregertStatistikk={restAggregertStatistikk}
+              muligeDagsverkFraDb={props.muligeDagsverk}
+              sykefraværsprosentFraDb={props.fraværsprosentVirksomhet}
             />
           )}
         </div>
@@ -85,5 +89,3 @@ const Kalkulator: FunctionComponent<Props> = ({ restAggregertStatistikk }) => {
     </div>
   );
 };
-
-export default Kalkulator;

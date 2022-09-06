@@ -11,7 +11,7 @@ import { BodyLong, HelpText, Label, Loader, TextField } from "@navikt/ds-react";
 
 interface Props {
   onChange: (event: any) => void;
-  value: string | undefined;
+  value: number | undefined;
   label: string;
   name: string;
   hjelpetekst?: string | ReactElement;
@@ -46,7 +46,7 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
         <TextField
           label=""
           onChange={onChangeEventHandler}
-          value={props.value || ""}
+          value={props.value?.toString() || ""}
           type="number"
           className="kalkulatorrad__input"
           placeholder={props.placeholder || "0"}

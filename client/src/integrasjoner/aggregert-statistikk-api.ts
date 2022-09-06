@@ -6,12 +6,15 @@ export enum Statistikkategori {
   LAND = "LAND",
   NÆRING = "NÆRING",
   BRANSJE = "BRANSJE",
+  VIRKSOMHET = "VIRKSOMHET",
 }
 
 export type RestAggregertStatistikk = RestRessurs<AggregertStatistikkDto>;
 
 export interface AggregertStatistikkDto {
   prosentSiste4KvartalerTotalt: StatistikkDto[];
+  muligeDavgverk: StatistikkDto[];
+  tapteDagsverk: StatistikkDto[];
   trendTotalt: StatistikkDto[];
 }
 
@@ -27,6 +30,13 @@ export interface Kvartal {
   årstall: number;
   kvartal: number;
 }
+
+export const tomtDataobjekt: AggregertStatistikkDto = {
+  prosentSiste4KvartalerTotalt: [],
+  muligeDavgverk: [],
+  tapteDagsverk: [],
+  trendTotalt: [],
+};
 
 const sykefraværshistorikkPath = (orgnr: string) =>
   `${API_BASE_PATH}/${orgnr}/v1/sykefravarshistorikk/aggregert`;
