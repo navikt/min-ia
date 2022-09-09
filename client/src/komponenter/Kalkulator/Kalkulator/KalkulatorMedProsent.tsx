@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import "./Kalkulator.less";
+import "./Kalkulator.scss";
 import Kostnad from "./../Kostnad/Kostnad";
 import {
   getKostnadForSykefraværsprosent,

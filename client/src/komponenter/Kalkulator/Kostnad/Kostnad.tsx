@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import "./Kostnad.less";
+import "./Kostnad.module.scss";
 import classNames from "classnames";
 import { Kalkulatorvariant } from "../kalkulator-utils";
 import { SedlerIkon } from "../SedlerIkon";

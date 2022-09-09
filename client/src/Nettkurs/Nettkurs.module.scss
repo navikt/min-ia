@@ -1,4 +1,4 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
 .nettkurs {
   margin: 0 auto;
@@ -23,24 +23,23 @@
     min-width: 140px;
   }
 
-  &__ikon_og_tittel{
+  &__ikon_og_tittel {
     display: flex;
     width: fit-content;
     flex-direction: row;
     margin-bottom: 1rem;
   }
 
-  &__ikon{
+  &__ikon {
     display: flex;
     min-width: 33px;
   }
 
-  &__tittel{
+  &__tittel {
     padding-left: 1rem;
   }
 
-  @media (min-width: konstanter.$screen-sm) {
-
+  @media (min-width: screensize.$screen-sm) {
     &__filter_rad {
       display: flex;
       margin-left: auto;
@@ -61,4 +60,3 @@
   width: 100%;
   padding: 2rem 0;
 }
-

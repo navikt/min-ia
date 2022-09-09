@@ -1,4 +1,4 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
 .inkluderendeArbeidslivPanel {
   background-color: var(--navds-global-color-white);
@@ -12,21 +12,21 @@
       font-weight: bold;
     }
   }
-  &__lenke{
+  &__lenke {
     margin-bottom: var(--navds-spacing-4);
   }
   &__lenkepanel {
-    height: konstanter.$lenke-panel-height;
+    height: 7rem;
     background-color: var(--navds-global-color-blue-100);
     color: var(--navds-global-color-blue-500);
-    margin-top: 1rem ;
+    margin-top: 1rem;
     &__tittel {
       padding-left: 0.5rem;
       font-size: var(--navds-font-size-heading-small);
     }
   }
 }
-@media (min-width: konstanter.$screen-md) {
+@media (min-width: screensize.$screen-md) {
   .inkluderendeArbeidslivPanel {
     background-color: var(--navds-global-color-white);
     width: 100%;
@@ -34,16 +34,16 @@
       padding-left: var(--navds-spacing-12);
     }
     &__avsnitt {
-      padding-left: var(--navds-spacing-9) ;
-      padding-top: var(--navds-spacing-5) ;
+      padding-left: var(--navds-spacing-9);
+      padding-top: var(--navds-spacing-5);
     }
 
-    &__lenkepanel{
+    &__lenkepanel {
       width: 48.5%;
       height: var(--navds-spacing-20);
       margin-top: 0;
     }
-    &__lenkepanel__gruppe{
+    &__lenkepanel__gruppe {
       margin-top: var(--navds-spacing-8);
       display: flex;
       flex-wrap: wrap;

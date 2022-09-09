@@ -1,4 +1,4 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
 .lenkeflis {
   width: 100%;
@@ -15,9 +15,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: konstanter.$lenke-panel-height;
+  height: 7rem;
   &__fyltoppBakgrunn {
-    height: konstanter.$lenke-panel-height-small;
+    height: 5rem;
   }
 }
 
@@ -32,13 +32,13 @@
   background-color: var(--navds-global-color-blue-100);
 }
 
-@media (min-width: konstanter.$screen-md) {
+@media (min-width: screensize.$screen-md) {
   .lenkeflis {
     width: 48.5%;
   }
 }
 
-@media (min-width: konstanter.$screen-sm) {
+@media (min-width: screensize.$screen-sm) {
   .ikonOgTekstWrapper {
     height: 12rem;
   }

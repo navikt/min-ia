@@ -34,7 +34,7 @@ export function Fraværskalkulator(props: { page: PageProps }) {
       },
       {
         title: "Fraværskalkulator",
-        url: "/min-ia/kalkulator",
+        url: "min-ia/fraværskalkulator",
       },
     ]);
   }, []);

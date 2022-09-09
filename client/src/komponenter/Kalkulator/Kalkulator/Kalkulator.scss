@@ -1,4 +1,4 @@
-@import '../../variables';
+@use "src/styles/screensize";
 
 .kalkulator {
     .sideinnhold-mixin();
@@ -11,7 +11,7 @@
     }
 
     &__wrapper {
-        background-color: @navLysGra;
+        background-color: var(--navds-global-color-gray-100);
         min-height: 50rem;
         padding: 1.5rem 1rem 5rem;
     }
@@ -49,7 +49,7 @@
         margin-bottom: 0;
     }
 
-    @media (min-width: @screen-sm-min) {
+    @media (min-width: screensize.$screen-sm) {
         &__lesmer-tapte-dagsverk {
             margin-bottom: 0;
         }

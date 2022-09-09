@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactElement } from "react";
-import "./Kalkulatorrad.less";
+import "./Kalkulatorrad.scss";
 import classNames from "classnames";
 import { useOrgnr } from "../../../../hooks/useOrgnr";
 import { sendInputfeltUtfyltEvent } from "../../../../amplitude/events";

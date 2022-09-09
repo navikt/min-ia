@@ -1,13 +1,13 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
-.kurskalender{
+.kurskalender {
   //margin: auto;
-margin: 1rem;
-  &__tittel{
-    margin-top: 0rem;
+  margin: 1rem;
+  &__tittel {
+    margin-top: 0;
   }
 
-  @media (min-width: konstanter.$screen-sm) {
+  @media (min-width: screensize.$screen-sm) {
     margin: 3rem;
   }
 }
