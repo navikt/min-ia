@@ -2,7 +2,7 @@ import {
   AggregertStatistikkDto,
   Statistikkategori,
 } from "../../integrasjoner/aggregert-statistikk-api";
-import { KalkulatorData } from "./Kalkulator/Fraværskalkulator";
+import { KalkulatorData } from "./Kalkulator/Kalkulator";
 
 export const hentUtKalkulatorData = (
   data: AggregertStatistikkDto

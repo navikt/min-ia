@@ -10,8 +10,8 @@ import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import {
-  ferdigNedlastet,
-  ikkeFerdigLastet,
+  erFerdigNedlastet,
+  erIkkeInnlogget,
   RestStatus,
 } from "../integrasjoner/rest-status";
 import { Infographic } from "../komponenter/Infographic/Infographic";
@@ -68,7 +68,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
   }, [orgnr, miljø]);
 
   const aggregertStatistikk = useAggregertStatistikk();
-  const aggregertStatistikkData = ferdigNedlastet(aggregertStatistikk)
+  const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
     ? aggregertStatistikk.data
     : tomtDataobjekt;
 
@@ -87,7 +87,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
 
         <Infographic
           {...hentUtInfographicData(aggregertStatistikkData)}
-          nedlastingPågår={ikkeFerdigLastet(aggregertStatistikk)}
+          nedlastingPågår={erIkkeInnlogget(aggregertStatistikk)}
         />
       </>
     );

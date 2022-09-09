@@ -20,9 +20,9 @@ export interface KalkulatorData {
   fraværsprosentVirksomhet?: number;
 }
 
-export const Fraværskalkulator: FunctionComponent<
+export const Kalkulator: FunctionComponent<
   KalkulatorData & {
-    nedlastingPågår: string;
+    nedlastingPågår: boolean;
   }
 > = (props) => {
   const orgnr = useOrgnr();
