@@ -1,5 +1,5 @@
 import styles from "./forside.module.scss";
-import { StatistikkIkonIkon } from "./ikoner/StatistikkIkonIkon";
+import { StatistikkIkon } from "./ikoner/StatistikkIkon";
 import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
@@ -123,7 +123,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
           />
           <Lenkeflis
             overskrift={"Sykefraværs&shy;statistikk"}
-            ikon={<StatistikkIkonIkon />}
+            ikon={<StatistikkIkon />}
             brødtekst={
               "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
             }
