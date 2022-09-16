@@ -18,7 +18,7 @@
     "express-prom-bundle": "^6.5.0",
     "express-rate-limit": "^6.4.0",
     "http-proxy-middleware": "^2.0.6",
-    "jose": "^4.8.3",
+    "jose": "^4.9.2",
     "morgan": "^1.10.0",
     "node-fetch": "^3.2.6",
     "openid-client": "^5.1.7",
