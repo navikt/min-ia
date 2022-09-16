@@ -150,8 +150,8 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
 });
 
 const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
-  muligeDavgverk: [],
-  tapteDagsverk: [],
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: Statistikkategori.LAND,
@@ -239,8 +239,8 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
-  muligeDavgverk: [],
-  tapteDagsverk: [],
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [],
   trendTotalt: [
     {
@@ -259,8 +259,8 @@ const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
-  muligeDavgverk: [],
-  tapteDagsverk: [],
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [],
   trendTotalt: [
     {
@@ -279,8 +279,8 @@ const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
-  muligeDavgverk: [],
-  tapteDagsverk: [],
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: Statistikkategori.BRANSJE,

@@ -13,8 +13,8 @@ export type RestAggregertStatistikk = RestRessurs<AggregertStatistikkDto>;
 
 export interface AggregertStatistikkDto {
   prosentSiste4KvartalerTotalt: StatistikkDto[];
-  muligeDavgverk: StatistikkDto[];
-  tapteDagsverk: StatistikkDto[];
+  muligeDagsverkTotalt: StatistikkDto[];
+  tapteDagsverkTotalt: StatistikkDto[];
   trendTotalt: StatistikkDto[];
 }
 
@@ -33,8 +33,8 @@ export interface Kvartal {
 
 export const tomtDataobjekt: AggregertStatistikkDto = {
   prosentSiste4KvartalerTotalt: [],
-  muligeDavgverk: [],
-  tapteDagsverk: [],
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   trendTotalt: [],
 };
 

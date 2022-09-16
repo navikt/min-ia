@@ -1,31 +1,35 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import "./Kalkulator.scss";
+import styles from "./Kalkulator.module.scss";
 import Kostnad from "./../Kostnad/Kostnad";
 import {
   getKostnadForAntallDagsverk,
+  GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   Kalkulatorvariant,
+  validerDesimaltallOgReturnerMatch,
 } from "../kalkulator-utils";
 import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
 import { ExternalLink } from "@navikt/ds-icons";
 
 export interface Props {
-  tapteDagsverkFraDb?: number;
+  tapteDagsverkFraDb?: string;
+  nedlastingPågår: boolean;
 }
 
 export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
   tapteDagsverkFraDb,
+  nedlastingPågår,
 }) => {
   const [nåværendeTapteDagsverk, setNåværendeTapteDagsverk] = useState<
-    number | undefined
-  >(tapteDagsverkFraDb);
+    string | undefined
+  >();
 
   const [ønsketTapteDagsverk, setØnsketTapteDagsverk] = useState<
-    number | undefined
+    string | undefined
   >();
 
   const [manglerData, setManglerData] = useState<boolean | undefined>();
-  const [kostnadDagsverk, setKostnadDagsverk] = useState<number | undefined>(
-    2600
+  const [kostnadDagsverk, setKostnadDagsverk] = useState<string | undefined>(
+    GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
   );
   // TODO OBS: Fjernet useEffect som setter nåværende og ønskede tapte dagsverk til
   // undefined dersom restStatus er IkkeLastet
@@ -38,12 +42,11 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
       // TODO OBS: Fjernet sjekk på status===suksess her, har det noe å si?
       !harEndretTapteDagsverk
     ) {
-      const tapteDagsverkSiste4Kvartaler = tapteDagsverkFraDb;
-      if (tapteDagsverkSiste4Kvartaler == undefined) {
-        setNåværendeTapteDagsverk(0);
+      if (tapteDagsverkFraDb == undefined) {
+        setNåværendeTapteDagsverk("");
         setManglerData(true);
       } else {
-        setNåværendeTapteDagsverk(tapteDagsverkSiste4Kvartaler);
+        setNåværendeTapteDagsverk(tapteDagsverkFraDb);
         setManglerData(false);
       }
     }
@@ -55,46 +58,28 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
     : "NAV har legemeldt fravær tilgjengelig i sitt datagrunnlag. Vi ser på de siste 12 månedene " +
       "og beregner hvor mange dagsverk som er tapt. Et dagsverk er arbeid som utføres på en dag.";
 
-  const validerTapteDagsverk = (tapteDagsverk: number): boolean => {
-    return tapteDagsverk >= 0;
-  };
-
-  const validerOgSettNåværendeTapteDagsverk = (tapteDagsverk: number) => {
-    try {
-      setNåværendeTapteDagsverk(Number(tapteDagsverk.toFixed(0)));
-    } catch (e: any) {
-      // TODO OBS: Er dette i tilfelle brukeren skriver inn noe annet enn et nummer?
-      setNåværendeTapteDagsverk(0);
-      console.log(e.message);
-    }
-  };
-
-  const validerOgSettØnsketTapteDagsverk = (tapteDagsverk: number) => {
-    if (!validerTapteDagsverk(tapteDagsverk)) {
-      return;
-    }
-    setØnsketTapteDagsverk(Number(tapteDagsverk.toFixed(0)));
-  };
-
   return (
     <>
-      <div className={"kalkulator__inputrader_wrapper"}>
+      <div className={styles.inputrader_wrapper}>
         <Kalkulatorrad
           onChange={(event) => {
-            validerOgSettNåværendeTapteDagsverk(parseFloat(event.target.value));
+            setNåværendeTapteDagsverk(
+              validerDesimaltallOgReturnerMatch(event.target.value)
+            );
           }}
-          value={nåværendeTapteDagsverk}
+          value={nåværendeTapteDagsverk?.toString()}
           label="Antall tapte dagsverk siste 12 måneder"
-          // TODO: Bruk "lastetInn"-prop ala det vi har for infographic til å bestemme spinner:
-          visSpinner={!tapteDagsverkFraDb}
+          visSpinner={nedlastingPågår}
           name="nåværende-tapte-dagsverk"
           hjelpetekst={antallTapteDagsverkHjelpetekst}
         />
         <Kalkulatorrad
           onChange={(event) => {
-            setKostnadDagsverk(parseInt(event.target.value));
+            setKostnadDagsverk(
+              validerDesimaltallOgReturnerMatch(event.target.value)
+            );
           }}
-          value={kostnadDagsverk}
+          value={kostnadDagsverk?.toString()}
           label="Kostnad per dag per ansatt i kroner"
           placeholder="kr"
           name="kostnad-per-dagsverk"
@@ -112,9 +97,11 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
         />
         <Kalkulatorrad
           onChange={(event) => {
-            validerOgSettØnsketTapteDagsverk(parseFloat(event.target.value));
+            setØnsketTapteDagsverk(
+              validerDesimaltallOgReturnerMatch(event.target.value)
+            );
           }}
-          value={ønsketTapteDagsverk}
+          value={ønsketTapteDagsverk?.toString()}
           label="Mål for sykefraværet i antall tapte dagsverk over 12 måneder"
           name="ønsket-tapte-dagsverk"
           hjelpetekst="Skriv inn mål for sykefraværet i antall tapte dagsverk i en periode på 12 måneder, for å beregne hvor mye du kan spare."
@@ -129,7 +116,9 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           kostnadDagsverk,
           ønsketTapteDagsverk
         )}
-        ønsketRedusert={ønsketTapteDagsverk as number}
+        ønsketRedusert={parseFloat(
+          ønsketTapteDagsverk?.replace(",", ".") || "0"
+        )}
         antallTapteDagsverkEllerProsent={Kalkulatorvariant.Dagsverk}
       />
     </>

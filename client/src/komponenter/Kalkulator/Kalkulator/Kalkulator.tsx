@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
-import "./Kalkulator.scss";
+import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { useOrgnr } from "../../../hooks/useOrgnr";
@@ -15,12 +15,12 @@ import {
 } from "../../../integrasjoner/ia-tjenestemetrikker-api";
 
 export interface KalkulatorData {
-  tapteDagsverk?: number;
-  muligeDagsverk?: number;
-  fraværsprosentVirksomhet?: number;
+  tapteDagsverk?: string;
+  muligeDagsverk?: string;
+  fraværsprosentVirksomhet?: string;
 }
 
-export const Kalkulator: FunctionComponent<
+export const Fraværskalulator: FunctionComponent<
   KalkulatorData & {
     nedlastingPågår: boolean;
   }
@@ -44,21 +44,21 @@ export const Kalkulator: FunctionComponent<
   }, []);
 
   return (
-    <div className="kalkulator__wrapper">
-      <div className="kalkulator">
+    <div className={styles.wrapper}>
+      <div className={styles.kalkulator}>
         <div>
-          <div className="kalkulator__tittel-wrapper">
+          <div className={styles.tittel_wrapper}>
             <div>
-              <Heading level="1" size="medium" className="kalkulator__tittel">
+              <Heading level="1" size="medium" className={styles.tittel}>
                 Hvor mye koster sykefraværet?
               </Heading>
-              <Ingress className="kalkulator__ingress">
+              <Ingress className={styles.ingress}>
                 Her kan du beregne hvor mye sykefraværet koster og hvor mye du
                 kan spare. Lønnskostnader og sykepengerefusjon er ikke med i
                 regnestykket og kommer i tillegg til kostnad per dag.
               </Ingress>
             </div>
-            <div className="kalkulator__dagsverk-eller-prosent-toggle">
+            <div className={styles.dagsverk_eller_prosent_toggle}>
               <ToggleGroup
                 onChange={(valgtVariant) => {
                   setKalkulatorvariant(valgtVariant);
@@ -73,15 +73,19 @@ export const Kalkulator: FunctionComponent<
               </ToggleGroup>
             </div>
           </div>
-          <Ingress className="kalkulator__input-overskrift">
+          <Ingress className={styles.input_overskrift}>
             Fyll inn og juster tallene så de passer for deg
           </Ingress>
           {kalkulatorvariant === "dagsverk" ? (
-            <KalkulatorMedDagsverk tapteDagsverkFraDb={props.tapteDagsverk} />
+            <KalkulatorMedDagsverk
+              tapteDagsverkFraDb={props.tapteDagsverk}
+              nedlastingPågår={props.nedlastingPågår}
+            />
           ) : (
             <KalkulatorMedProsent
               muligeDagsverkFraDb={props.muligeDagsverk}
               sykefraværsprosentFraDb={props.fraværsprosentVirksomhet}
+              nedlastingPågår={props.nedlastingPågår}
             />
           )}
         </div>

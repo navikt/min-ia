@@ -1,23 +1,21 @@
 import React, { FunctionComponent, ReactElement } from "react";
-import "./Kalkulatorrad.scss";
-import classNames from "classnames";
+import styles from "./Kalkulatorrad.module.scss";
 import { useOrgnr } from "../../../../hooks/useOrgnr";
 import { sendInputfeltUtfyltEvent } from "../../../../amplitude/events";
 import {
   IaTjeneste,
   sendLevertInnloggetIaTjeneste,
 } from "../../../../integrasjoner/ia-tjenestemetrikker-api";
-import { BodyLong, HelpText, Label, Loader, TextField } from "@navikt/ds-react";
+import { BodyLong, HelpText, Label, TextField } from "@navikt/ds-react";
 
 interface Props {
   onChange: (event: any) => void;
-  value: number | undefined;
+  value: string | undefined;
   label: string;
   name: string;
   hjelpetekst?: string | ReactElement;
   placeholder?: string;
   visSpinner?: boolean;
-  step?: number;
 }
 
 export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
@@ -31,40 +29,31 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <div className="kalkulatorrad">
-      <Label id={labelId}>{props.label}</Label>
-      <div
-        className={
-          props.hjelpetekst
-            ? "kalkulatorrad__input-hjelpetekst-wrapper"
-            : classNames(
-                "kalkulatorrad__input-hjelpetekst-wrapper",
-                "kalkulatorrad__input-no-hjelpetekst-wrapper"
-              )
-        }
-      >
-        <TextField
-          label=""
-          onChange={onChangeEventHandler}
-          value={props.value?.toString() || ""}
-          type="number"
-          className="kalkulatorrad__input"
-          placeholder={props.placeholder || "0"}
-          step={props.step}
-          aria-labelledby={labelId}
-        />
-        {props.visSpinner && (
-          <Loader className="kalkulatorrad__spinner" transparent={true} />
+    <div className={styles.kalkulatorrad}>
+      <Label className={styles.label} id={labelId}>
+        {props.label}
+      </Label>
+      <TextField
+        type={"text"}
+        inputMode={"numeric"}
+        label=""
+        onChange={onChangeEventHandler}
+        value={props.value || ""}
+        className={styles.input}
+        placeholder={props.placeholder || "0"}
+        aria-labelledby={labelId}
+      />
+      {/*{props.visSpinner && (*/}
+      {/*  <Loader className={styles.spinner} transparent={true} />*/}
+      {/*)}*/}
+      <div className={styles.hjelpetekst_wrapper}>
+        {props.hjelpetekst && (
+          <HelpText>
+            <BodyLong className={styles.hjelpetekst_innhold}>
+              {props.hjelpetekst}
+            </BodyLong>
+          </HelpText>
         )}
-        <div className={"kalkulatorrad__hjelpetekst_wrapper"}>
-          {props.hjelpetekst && (
-            <HelpText className="kalkulatorrad__hjelpetekst">
-              <BodyLong className="kalkulatorrad__hjelpetekst-innhold">
-                {props.hjelpetekst}
-              </BodyLong>
-            </HelpText>
-          )}
-        </div>
       </div>
     </div>
   );

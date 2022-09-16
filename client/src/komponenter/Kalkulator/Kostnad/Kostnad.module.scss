@@ -5,36 +5,42 @@
   padding: 2rem 1rem 3rem;
   border-radius: 0.25rem;
   border: 0.125rem solid var(--navds-global-color-blue-200);
+}
 
-  &__tittel {
-    display: flex;
-  }
+.tittel {
+  display: flex;
+}
 
-  &__ikon {
-    margin-left: 1rem;
-  }
+.ikon {
+  margin-left: 1rem;
+}
 
-  &__tekst {
-    padding-top: 1.5rem;
-    padding-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
+.tekst {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sisteresultat {
+  color: var(--navds-global-color-green-500);
+  &_minus {
+    color: var(--navds-global-color-nav-red);
   }
-  &__sisteresultat {
-    color: var(--navds-global-color-green-500);
-    &_minus {
-      color: var(--navds-global-color-nav-red);
-    }
-  }
-  &__sisterad {
-    border-bottom: 0.125rem solid var(--navds-global-color-gray-100);
-    padding-bottom: 1rem;
-  }
-  &__resultatrad {
-    border-bottom: 0.125rem double var(--navds-global-color-gray-900);
-    padding-bottom: 1rem;
-  }
-  @media (min-width: screensize.$screen-sm) {
+}
+
+.sisterad {
+  border-bottom: 0.125rem solid var(--navds-global-color-gray-100);
+  padding-bottom: 1rem;
+}
+
+.resultatrad {
+  border-bottom: 0.125rem double var(--navds-global-color-gray-900);
+  padding-bottom: 1rem;
+}
+
+@media (min-width: screensize.$screen-sm) {
+  .kostnad {
     min-width: 21rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;

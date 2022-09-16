@@ -1,18 +1,23 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import "./Kalkulator.scss";
+import styles from "./Kalkulator.module.scss";
 import Kostnad from "./../Kostnad/Kostnad";
 import {
   getKostnadForSykefraværsprosent,
   Kalkulatorvariant,
-  rundAvTilEnDesimal,
+  parseFloatMedDefault,
 } from "../kalkulator-utils";
 import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
-import { RestStatus } from "../../../integrasjoner/rest-status";
 import { ExternalLink } from "@navikt/ds-icons";
+import {
+  GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
+  validerDesimaltallOgReturnerMatch,
+  validerProsenttallOgReturnerMatch,
+} from "../kalkulator-utils";
 
 interface Props {
-  muligeDagsverkFraDb?: number;
-  sykefraværsprosentFraDb?: number;
+  muligeDagsverkFraDb?: string;
+  sykefraværsprosentFraDb?: string;
+  nedlastingPågår: boolean;
 }
 
 export const KalkulatorMedProsent: FunctionComponent<Props> = ({
@@ -20,56 +25,22 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
   sykefraværsprosentFraDb,
 }) => {
   const [totaltAntallDagsverk, setTotaltAntallDagsverk] = useState<
-    number | undefined
+    string | undefined
   >();
 
   const [nåværendeSykefraværsprosent, setNåværendeSykefraværsprosent] =
-    useState<number | undefined>();
+    useState<string | undefined>();
 
   const [ønsketSykefraværsprosent, setØnsketSykefraværsprosent] = useState<
-    number | undefined
+    string | undefined
   >();
 
-  const [kostnadDagsverk, setKostnadDagsverk] = useState<number | undefined>(
-    2600
+  const [kostnadDagsverk, setKostnadDagsverk] = useState<string | undefined>(
+    GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
   );
 
   const brukerHarEndretSykefraværsprosenten =
-    nåværendeSykefraværsprosent !== undefined;
-
-  // TODO: trekk alle disse ut, i egne hooks
-
-  const validerOgSettNåværendeSykefraværsprosent = (input: number) => {
-    if (!validerSykefraværsprosent(input)) {
-      return;
-    }
-    try {
-      setNåværendeSykefraværsprosent(Number(input.toFixed(1)));
-    } catch (e) {
-      setNåværendeSykefraværsprosent(0);
-    }
-  };
-
-  const validerOgSettØnsketSykefraværsprosent = (input: number) => {
-    if (!validerSykefraværsprosent(input)) {
-      return;
-    }
-    setØnsketSykefraværsprosent(Number(input.toFixed(1)));
-  };
-
-  const validerSykefraværsprosent = (input: number): boolean => {
-    return 0 <= input && input <= 100;
-  };
-
-  const validerTapteDagsverk = (input: number): boolean => {
-    return 0 <= input && input <= 9999999;
-  };
-
-  const validerOgSettMuligeDagsverk = (muligeDagsverkInput: number) => {
-    if (validerTapteDagsverk(muligeDagsverkInput)) {
-      setTotaltAntallDagsverk(muligeDagsverkInput);
-    }
-  };
+    nåværendeSykefraværsprosent !== undefined && nåværendeSykefraværsprosent !== "";
 
   // TODO: Denne kjører to ganger, fixme
   useEffect(() => {
@@ -78,11 +49,9 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
       !brukerHarEndretSykefraværsprosenten
     ) {
       if (!sykefraværsprosentFraDb) {
-        setNåværendeSykefraværsprosent(0);
+        setNåværendeSykefraværsprosent("");
       } else {
-        setNåværendeSykefraværsprosent(
-          rundAvTilEnDesimal(sykefraværsprosentFraDb)
-        );
+        setNåværendeSykefraværsprosent(sykefraværsprosentFraDb);
         setTotaltAntallDagsverk(muligeDagsverkFraDb);
       }
     }
@@ -92,28 +61,30 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
     sykefraværsprosentFraDb,
   ]);
 
+  const sykefraværHjelpetekst =
+      "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk.";
   const sykefraværRadHjelpetekst =
     sykefraværsprosentFraDb !== undefined
-      ? "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk. " +
-        "Mulige dagsverk de siste 12 månedene er hentet fra det dere har meldt inn i A-ordningen."
-      : undefined;
+      ? sykefraværHjelpetekst +
+        " Mulige dagsverk de siste 12 månedene er hentet fra det dere har meldt inn i A-ordningen."
+      : sykefraværHjelpetekst;
 
   const ønsketTapteDagsverkSiste12MndHjelpetekst =
-    sykefraværsprosentFraDb !== undefined
-      ? "Når vi beregner mål for sykefraværet benytter vi samme antall mulige dagsverk som når vi beregner nåværende sykefraværsprosent."
-      : undefined;
+      "Når vi beregner mål for sykefraværet benytter vi samme antall mulige dagsverk som når vi" +
+      " beregner nåværende sykefraværsprosent.";
 
   return (
     <>
-      <div className={"kalkulator__inputrader_wrapper"}>
+      <div className={styles.inputrader_wrapper}>
         <Kalkulatorrad
           onChange={(event) => {
-            validerOgSettMuligeDagsverk(parseInt(event.target.value));
+            setTotaltAntallDagsverk(
+              validerDesimaltallOgReturnerMatch(event.target.value)
+            );
           }}
           value={totaltAntallDagsverk}
           label="Totalt antall dagsverk i din bedrift siste 12 mnd"
           name="totalt-antall-dagsverk"
-          step={100}
           hjelpetekst={
             <>
               Her kan du justere totalt antall dagsverk i din bedrift de siste
@@ -124,11 +95,12 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
         />
         <Kalkulatorrad
           onChange={(event) => {
-            setKostnadDagsverk(parseInt(event.target.value));
+            setKostnadDagsverk(
+              validerDesimaltallOgReturnerMatch(event.target.value)
+            );
           }}
           value={kostnadDagsverk}
           label="Kostnad per dag per ansatt i kroner"
-          step={10}
           placeholder="kr"
           name="kostnad-per-dagsverk-prosent"
           hjelpetekst={
@@ -145,26 +117,30 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
         />
         <Kalkulatorrad
           onChange={(event) => {
-            validerOgSettNåværendeSykefraværsprosent(
-              parseFloat(event.target.value)
+            setNåværendeSykefraværsprosent(
+              validerProsenttallOgReturnerMatch(
+                event.target.value,
+                nåværendeSykefraværsprosent
+              )
             );
           }}
           value={nåværendeSykefraværsprosent}
           label="Sykefravær i prosent de siste 12 månedene"
-          step={0.1}
           visSpinner={!sykefraværsprosentFraDb}
           name="nåværende-prosent"
           hjelpetekst={sykefraværRadHjelpetekst}
         />
         <Kalkulatorrad
           onChange={(event) => {
-            validerOgSettØnsketSykefraværsprosent(
-              parseFloat(event.target.value)
+            setØnsketSykefraværsprosent(
+              validerProsenttallOgReturnerMatch(
+                event.target.value,
+                ønsketSykefraværsprosent
+              )
             );
           }}
           value={ønsketSykefraværsprosent}
           label="Mål for sykefraværet i prosent"
-          step={0.1}
           name="ønsket-prosent"
           hjelpetekst={ønsketTapteDagsverkSiste12MndHjelpetekst}
         />
@@ -180,7 +156,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           ønsketSykefraværsprosent,
           totaltAntallDagsverk
         )}
-        ønsketRedusert={ønsketSykefraværsprosent as number}
+        ønsketRedusert={parseFloatMedDefault(ønsketSykefraværsprosent)}
         antallTapteDagsverkEllerProsent={Kalkulatorvariant.Prosent}
       />
     </>

@@ -36,6 +36,18 @@ export const mockdataOrgnr91096939 = {
         },
       ],
     },
+    {
+      statistikkategori: "VIRKSOMHET",
+      label: "Virksomhet AS",
+      verdi: "14.0",
+      antallPersonerIBeregningen: 200,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
   ],
   trendTotalt: [
     {
@@ -66,6 +78,34 @@ export const mockdataOrgnr91096939 = {
         },
         {
           årstall: 2021,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  tapteDagsverkTotalt: [
+    {
+      statistikkategori: "VIRKSOMHET",
+      label: "Virksomhet AS",
+      verdi: "7800",
+      antallPersonerIBeregningen: 200,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  muligeDagsverkTotalt: [
+    {
+      statistikkategori: "VIRKSOMHET",
+      label: "Virksomhet AS",
+      verdi: "52000",
+      antallPersonerIBeregningen: 200,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
           kvartal: 1,
         },
       ],

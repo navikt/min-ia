@@ -7,18 +7,18 @@ import { KalkulatorData } from "./Kalkulator/Kalkulator";
 export const hentUtKalkulatorData = (
   data: AggregertStatistikkDto
 ): KalkulatorData => {
-  const muligeDagsverk = data.muligeDavgverk?.find(
+  const muligeDagsverk = data.muligeDagsverkTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.VIRKSOMHET
   );
-  const tapteDagsverk = data.tapteDagsverk?.find(
+  const tapteDagsverk = data.tapteDagsverkTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.VIRKSOMHET
   );
   const fraværsprosentVirksomhet = data.prosentSiste4KvartalerTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.VIRKSOMHET
   );
   return {
-    fraværsprosentVirksomhet: Number(fraværsprosentVirksomhet?.verdi),
-    tapteDagsverk: Number(tapteDagsverk?.verdi),
-    muligeDagsverk: Number(muligeDagsverk?.verdi),
+    fraværsprosentVirksomhet: fraværsprosentVirksomhet?.verdi,
+    tapteDagsverk: tapteDagsverk?.verdi,
+    muligeDagsverk: muligeDagsverk?.verdi,
   };
 };

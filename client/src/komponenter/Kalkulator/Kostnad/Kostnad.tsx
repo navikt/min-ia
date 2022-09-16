@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import "./Kostnad.module.scss";
+import styles from "./Kostnad.module.scss";
 import classNames from "classnames";
 import { Kalkulatorvariant } from "../kalkulator-utils";
 import { SedlerIkon } from "../SedlerIkon";
@@ -25,40 +25,40 @@ const Kostnad: FunctionComponent<Props> = (props) => {
       : 0;
 
   const formatertSykefraværMål =
-    `${sykefraværMål} ` +
+    `${sykefraværMål}` +
     (props.antallTapteDagsverkEllerProsent === Kalkulatorvariant.Prosent
       ? "%"
-      : "dagsverk");
+      : " dagsverk");
 
   const redusertKostnadTekst = `Reduserer dere sykefraværet til ${formatertSykefraværMål} sparer dere årlig`;
   const øktKostnadTekst = `Øker dere sykefraværet til ${formatertSykefraværMål} taper dere ytterligere årlig`;
 
   return (
-    <div className="kostnad">
-      <Heading level="2" size="medium">
+    <div className={styles.kostnad}>
+      <Heading level="2" size="medium" className={styles.tittel}>
         Resultat
-        <div className="kostnad__ikon">
+        <div className={styles.ikon}>
           <SedlerIkon />
         </div>
       </Heading>
-      <div className="kostnad__tekst">
+      <div className={styles.tekst}>
         <Label>Totale kostnader per år med nåværende sykefravær</Label>
         <Label>{somKroneverdi(props.nåværendeKostnad)}</Label>
       </div>
-      <div className={classNames("kostnad__tekst", "kostnad__sisterad")}>
+      <div className={classNames(styles.tekst, styles.sisterad)}>
         <Label>Totale kostnader per år ved målsatt sykefravær</Label>
         <Label>{somKroneverdi(props.ønsketKostnad)}</Label>
       </div>
 
-      <div className={classNames("kostnad__tekst", "kostnad__resultatrad")}>
+      <div className={classNames(styles.tekst, styles.resultatrad)}>
         <Label>
           {beregnKostnad(props) >= 0 ? redusertKostnadTekst : øktKostnadTekst}
         </Label>
         <Label
           className={
             beregnKostnad(props) >= 0
-              ? "kostnad__sisteresultat"
-              : "kostnad__sisteresultat_minus"
+              ? styles.sisteresultat
+              : styles.sisteresultat_minus
           }
         >
           {somKroneverdi(beregnKostnad(props))}

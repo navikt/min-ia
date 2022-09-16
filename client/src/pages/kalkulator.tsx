@@ -4,7 +4,7 @@ import {
   erIkkeFerdigLastet,
   erIkkeInnlogget,
 } from "../integrasjoner/rest-status";
-import { Kalkulator } from "../komponenter/Kalkulator/Kalkulator/Kalkulator";
+import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator/Kalkulator";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { hentUtKalkulatorData } from "../komponenter/Kalkulator/datauthenting";
@@ -14,7 +14,7 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 
-export function Fraværskalkulator(props: { page: PageProps }) {
+export default function Kalkulator(props: { page: PageProps }) {
   const organisasjonerRespons = useAltinnOrganisasjoner();
   const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
     ? organisasjonerRespons.data
@@ -34,7 +34,7 @@ export function Fraværskalkulator(props: { page: PageProps }) {
       },
       {
         title: "Fraværskalkulator",
-        url: "min-ia/fraværskalkulator",
+        url: "/min-ia/kalkulator",
       },
     ]);
   }, []);
@@ -48,7 +48,7 @@ export function Fraværskalkulator(props: { page: PageProps }) {
       {erIkkeInnlogget(aggregertStatistikkRespons) ? (
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (
-        <Kalkulator
+        <Fraværskalulator
           {...hentUtKalkulatorData(statistikk)}
           nedlastingPågår={erIkkeFerdigLastet(aggregertStatistikkRespons)}
         />
