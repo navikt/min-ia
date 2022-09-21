@@ -76,13 +76,13 @@ const getUrlForSykefraværsstatistikk = (miljø: Miljø): string => {
 const getUrlForKalkulator = (miljø: Miljø): string => {
   switch (miljø) {
     case Miljø.Lokal:
-      return "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator";
+      return "https://arbeidsgiver.labs.nais.io/min-ia/kalkulator";
     case Miljø.Labs:
-      return "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator";
+      return "https://arbeidsgiver.labs.nais.io/min-ia/kalkulator";
     case Miljø.Dev:
-      return "https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/kalkulator";
+      return "https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/min-ia/kalkulator";
     case Miljø.Prod:
-      return "https://arbeidsgiver.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk/kalkulator";
+      return "https://arbeidsgiver.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver.nav.no/min-ia/kalkulator";
     default:
       return "";
   }
