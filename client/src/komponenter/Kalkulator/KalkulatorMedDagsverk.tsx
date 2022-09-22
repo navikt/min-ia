@@ -5,6 +5,7 @@ import {
   getKostnadForAntallDagsverk,
   GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   Kalkulatorvariant,
+  parseFloatMedDefault,
   validerDesimaltallOgReturnerMatch,
 } from "./kalkulator-utils";
 import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
@@ -110,9 +111,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           kostnadDagsverk,
           ønsketTapteDagsverk
         )}
-        ønsketRedusert={parseFloat(
-          ønsketTapteDagsverk?.replace(",", ".") || "0"
-        )}
+        ønsketRedusert={parseFloatMedDefault(ønsketTapteDagsverk)}
         antallTapteDagsverkEllerProsent={Kalkulatorvariant.Dagsverk}
       />
     </>
