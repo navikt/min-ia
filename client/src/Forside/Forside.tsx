@@ -19,6 +19,7 @@ import { getMiljø } from "../utils/miljøUtils";
 import {
   Applikasjon,
   getUrlForApplikasjon,
+  getUrlForKalkulator,
   utledUrlForBedrift,
 } from "../utils/navigasjon";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
@@ -40,7 +41,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
 
   const [samtalestotteUrl, setSamtalestotteUrl] = useState("#");
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
-  const [kalkulatorUrl, setKalkulatorUrl] = useState("#");
 
   useEffect(() => {
     setSamtalestotteUrl(
@@ -52,12 +52,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
     setSykefravarsstatistikkUrl(
       utledUrlForBedrift(
         getUrlForApplikasjon(Applikasjon.Sykefraværsstatistikk, miljø),
-        orgnr
-      )
-    );
-    setKalkulatorUrl(
-      utledUrlForBedrift(
-        getUrlForApplikasjon(Applikasjon.Kalkulator, miljø),
         orgnr
       )
     );
@@ -118,7 +112,7 @@ export const Forside: FunctionComponent<ForsideProps> = ({
             brødtekst={
               "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
             }
-            href={kalkulatorUrl}
+            href={getUrlForKalkulator()}
           />
           <Lenkeflis
             overskrift={"Sykefraværs&shy;statistikk"}
