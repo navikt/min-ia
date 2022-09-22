@@ -114,7 +114,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           }}
           value={nåværendeSykefraværsprosent}
           label="Sykefravær i prosent de siste 12 månedene"
-          visSpinner={!sykefraværsprosentFraDb}
+          visLoader={!sykefraværsprosentFraDb}
           name="nåværende-prosent"
           hjelpetekst={sykefraværRadHjelpetekst}
         />

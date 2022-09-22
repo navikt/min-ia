@@ -9,6 +9,7 @@ import {
   IaTjeneste,
   sendLevertInnloggetIaTjeneste,
 } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;
@@ -22,6 +23,10 @@ export const Fraværskalulator: FunctionComponent<
   }
 > = (props) => {
   const orgnr = useOrgnr();
+  useSendIaTjenesteMetrikkOnEvent(
+    IaTjeneste.KALKULATOR,
+    "inputfeltEndretAvBruker"
+  );
 
   const [kalkulatorvariant, setKalkulatorvariant] = useState("prosent");
 
@@ -54,7 +59,9 @@ export const Fraværskalulator: FunctionComponent<
                 onChange={(valgtVariant) => {
                   setKalkulatorvariant(valgtVariant);
                   sendToggleEvent("kalkulatorvariant", valgtVariant);
-                  sendLevertInnloggetIaTjeneste(IaTjeneste.KALKULATOR, orgnr);
+                  document.dispatchEvent(
+                    new CustomEvent("inputfeltEndretAvBruker")
+                  );
                 }}
                 value={kalkulatorvariant}
                 size="medium"

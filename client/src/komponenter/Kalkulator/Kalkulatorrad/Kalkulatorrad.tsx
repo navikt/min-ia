@@ -1,11 +1,6 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import styles from "./Kalkulatorrad.module.scss";
-import { useOrgnr } from "../../../hooks/useOrgnr";
 import { sendInputfeltUtfyltEvent } from "../../../amplitude/events";
-import {
-  IaTjeneste,
-  sendLevertInnloggetIaTjeneste,
-} from "../../../integrasjoner/ia-tjenestemetrikker-api";
 import { BodyLong, HelpText, Label, TextField } from "@navikt/ds-react";
 
 interface Props {
@@ -15,12 +10,11 @@ interface Props {
   name: string;
   hjelpetekst?: string | ReactElement;
   placeholder?: string;
-  visSpinner?: boolean;
+  visLoader?: boolean;
 }
 
 export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
   const labelId = props.name + "-label";
-  const orgnr = useOrgnr();
 
   return (
     <div className={styles.kalkulatorrad}>
@@ -28,22 +22,19 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
         {props.label}
       </Label>
       <TextField
-        onBlur={() => {
+        onChange={(event) => {
+          props.onChange(event);
           sendInputfeltUtfyltEvent(props.label, props.name);
-          sendLevertInnloggetIaTjeneste(IaTjeneste.KALKULATOR, orgnr);
+          document.dispatchEvent(new CustomEvent("inputfeltEndretAvBruker"));
         }}
         type={"text"}
         inputMode={"numeric"}
         label=""
-        onChange={props.onChange}
         value={props.value || ""}
         className={styles.input}
         placeholder={props.placeholder || "0"}
         aria-labelledby={labelId}
       />
-      {/*{props.visSpinner && (*/}
-      {/*  <Loader className={styles.spinner} transparent={true} />*/}
-      {/*)}*/}
       <div className={styles.hjelpetekst_wrapper}>
         {props.hjelpetekst && (
           <HelpText>

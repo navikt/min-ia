@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as hooks from "../../src/hooks/useOrgnr";
 import * as iatjenestemetrikker from "../../src/integrasjoner/ia-tjenestemetrikker-api";
+import { IaTjeneste } from "../../src/integrasjoner/ia-tjenestemetrikker-api";
 
 import { useSendIaTjenesteMetrikkOnEvent } from "../../src/hooks/useSendIaTjenesteMetrikkOnEvent";
 import { FunctionComponent } from "react";
@@ -32,6 +33,6 @@ it("sendLevertInnloggetIaTjeneste kalles når event blir trigget", async () => {
 });
 
 const UseSendIaTjenesteMetrikkerOnEventExample: FunctionComponent = () => {
-  useSendIaTjenesteMetrikkOnEvent("click");
+  useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "click");
   return <button data-testid="dummy-button">exampleButton</button>;
 };

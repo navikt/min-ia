@@ -67,7 +67,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           }}
           value={nåværendeTapteDagsverk?.toString()}
           label="Antall tapte dagsverk siste 12 måneder"
-          visSpinner={nedlastingPågår}
+          visLoader={nedlastingPågår}
           name="nåværende-tapte-dagsverk"
           hjelpetekst={antallTapteDagsverkHjelpetekst}
         />
