@@ -1,5 +1,6 @@
 export enum RestStatus {
   IkkeLastet = "IkkeLastet",
+  LasterInn = "LasterInn",
   Suksess = "Suksess",
   IkkeInnlogget = "IkkeInnlogget",
   IngenTilgang = "IngenTilgang",
@@ -8,6 +9,10 @@ export enum RestStatus {
 
 export interface IkkeLastet {
   status: RestStatus.IkkeLastet;
+}
+
+export interface LasterInn {
+  status: RestStatus.LasterInn;
 }
 
 export interface IkkeInnlogget {
@@ -34,6 +39,7 @@ export interface Feil {
 
 export type RestRessurs<T> =
   | IkkeLastet
+  | LasterInn
   | Suksess<T>
   | IkkeInnlogget
   | Feil

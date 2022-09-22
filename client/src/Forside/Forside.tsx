@@ -9,11 +9,7 @@ import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
-import {
-  erFerdigNedlastet,
-  erIkkeInnlogget,
-  RestStatus,
-} from "../integrasjoner/rest-status";
+import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../komponenter/Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { hentUtInfographicData } from "../komponenter/Infographic/datauthenting";
@@ -87,7 +83,10 @@ export const Forside: FunctionComponent<ForsideProps> = ({
 
         <Infographic
           {...hentUtInfographicData(aggregertStatistikkData)}
-          nedlastingPågår={erIkkeInnlogget(aggregertStatistikk)}
+          nedlastingPågår={
+            aggregertStatistikk.status === RestStatus.IkkeLastet ||
+            aggregertStatistikk.status === RestStatus.LasterInn
+          }
         />
       </>
     );
