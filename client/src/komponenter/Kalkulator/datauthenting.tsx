@@ -2,7 +2,7 @@ import {
   AggregertStatistikkDto,
   Statistikkategori,
 } from "../../integrasjoner/aggregert-statistikk-api";
-import { KalkulatorData } from "./Kalkulator/Kalkulator";
+import { KalkulatorData } from "./Kalkulator";
 
 export const hentUtKalkulatorData = (
   data: AggregertStatistikkDto
@@ -17,8 +17,11 @@ export const hentUtKalkulatorData = (
     (s) => s.statistikkategori === Statistikkategori.VIRKSOMHET
   );
   return {
-    fraværsprosentVirksomhet: fraværsprosentVirksomhet?.verdi,
-    tapteDagsverk: tapteDagsverk?.verdi,
-    muligeDagsverk: muligeDagsverk?.verdi,
+    fraværsprosentVirksomhet: fraværsprosentVirksomhet?.verdi?.replace(
+      ".",
+      ","
+    ),
+    tapteDagsverk: tapteDagsverk?.verdi?.replace(".", ","),
+    muligeDagsverk: muligeDagsverk?.verdi?.replace(".", ","),
   };
 };

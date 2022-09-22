@@ -4,7 +4,7 @@ import {
   erIkkeFerdigLastet,
   erIkkeInnlogget,
 } from "../integrasjoner/rest-status";
-import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator/Kalkulator";
+import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { hentUtKalkulatorData } from "../komponenter/Kalkulator/datauthenting";

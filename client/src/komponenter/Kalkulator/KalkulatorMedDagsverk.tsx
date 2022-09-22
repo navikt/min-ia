@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Kalkulator.module.scss";
-import Kostnad from "./../Kostnad/Kostnad";
+import Kostnad from "./Kostnad/Kostnad";
 import {
   getKostnadForAntallDagsverk,
   GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   Kalkulatorvariant,
   validerDesimaltallOgReturnerMatch,
-} from "../kalkulator-utils";
+} from "./kalkulator-utils";
 import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
 import { ExternalLink } from "@navikt/ds-icons";
 
@@ -31,17 +31,11 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
   const [kostnadDagsverk, setKostnadDagsverk] = useState<string | undefined>(
     GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
   );
-  // TODO OBS: Fjernet useEffect som setter nåværende og ønskede tapte dagsverk til
-  // undefined dersom restStatus er IkkeLastet
 
   const harEndretTapteDagsverk = nåværendeTapteDagsverk !== undefined;
 
-  // TODO: Denne kjører to ganger, fixme
   useEffect(() => {
-    if (
-      // TODO OBS: Fjernet sjekk på status===suksess her, har det noe å si?
-      !harEndretTapteDagsverk
-    ) {
+    if (!harEndretTapteDagsverk) {
       if (tapteDagsverkFraDb == undefined) {
         setNåværendeTapteDagsverk("");
         setManglerData(true);

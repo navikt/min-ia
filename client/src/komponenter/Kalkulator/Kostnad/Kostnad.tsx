@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import styles from "./Kostnad.module.scss";
 import classNames from "classnames";
 import { Kalkulatorvariant } from "../kalkulator-utils";
-import { SedlerIkon } from "../SedlerIkon";
+import { SedlerIkon } from "./SedlerIkon";
 import { Heading, Label } from "@navikt/ds-react";
 
 interface Props {

@@ -1,18 +1,16 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import styles from "./Kalkulator.module.scss";
-import Kostnad from "./../Kostnad/Kostnad";
+import Kostnad from "./Kostnad/Kostnad";
 import {
   getKostnadForSykefraværsprosent,
+  GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   Kalkulatorvariant,
   parseFloatMedDefault,
-} from "../kalkulator-utils";
-import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
-import { ExternalLink } from "@navikt/ds-icons";
-import {
-  GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   validerDesimaltallOgReturnerMatch,
   validerProsenttallOgReturnerMatch,
-} from "../kalkulator-utils";
+} from "./kalkulator-utils";
+import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
+import { ExternalLink } from "@navikt/ds-icons";
 
 interface Props {
   muligeDagsverkFraDb?: string;
@@ -40,14 +38,11 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
   );
 
   const brukerHarEndretSykefraværsprosenten =
-    nåværendeSykefraværsprosent !== undefined && nåværendeSykefraværsprosent !== "";
+    nåværendeSykefraværsprosent !== undefined &&
+    nåværendeSykefraværsprosent !== "";
 
-  // TODO: Denne kjører to ganger, fixme
   useEffect(() => {
-    if (
-      // TODO OBS: Fjernet sjekk på status===suksess her, har det noe å si?
-      !brukerHarEndretSykefraværsprosenten
-    ) {
+    if (!brukerHarEndretSykefraværsprosenten) {
       if (!sykefraværsprosentFraDb) {
         setNåværendeSykefraværsprosent("");
       } else {
@@ -62,7 +57,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
   ]);
 
   const sykefraværHjelpetekst =
-      "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk.";
+    "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk.";
   const sykefraværRadHjelpetekst =
     sykefraværsprosentFraDb !== undefined
       ? sykefraværHjelpetekst +
@@ -70,8 +65,8 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
       : sykefraværHjelpetekst;
 
   const ønsketTapteDagsverkSiste12MndHjelpetekst =
-      "Når vi beregner mål for sykefraværet benytter vi samme antall mulige dagsverk som når vi" +
-      " beregner nåværende sykefraværsprosent.";
+    "Når vi beregner mål for sykefraværet benytter vi samme antall mulige dagsverk som når vi" +
+    " beregner nåværende sykefraværsprosent.";
 
   return (
     <>

@@ -2,17 +2,13 @@ import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
-import { useOrgnr } from "../../../hooks/useOrgnr";
-import {
-  sendSidevisningEvent,
-  sendToggleEvent,
-} from "../../../amplitude/events";
-import { scrollToBanner } from "../../../utils/scroll-utils";
+import { useOrgnr } from "../../hooks/useOrgnr";
+import { sendSidevisningEvent, sendToggleEvent } from "../../amplitude/events";
 import { Heading, Ingress, ToggleGroup } from "@navikt/ds-react";
 import {
   IaTjeneste,
   sendLevertInnloggetIaTjeneste,
-} from "../../../integrasjoner/ia-tjenestemetrikker-api";
+} from "../../integrasjoner/ia-tjenestemetrikker-api";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;
@@ -36,11 +32,6 @@ export const Fraværskalulator: FunctionComponent<
       sendSidevisningEvent();
       hasLoggedPageVisit.current = true;
     }
-  }, []);
-
-  // TODO: Er denne nødvendig?
-  useEffect(() => {
-    scrollToBanner();
   }, []);
 
   return (

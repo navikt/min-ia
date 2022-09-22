@@ -1,11 +1,11 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import styles from "./Kalkulatorrad.module.scss";
-import { useOrgnr } from "../../../../hooks/useOrgnr";
-import { sendInputfeltUtfyltEvent } from "../../../../amplitude/events";
+import { useOrgnr } from "../../../hooks/useOrgnr";
+import { sendInputfeltUtfyltEvent } from "../../../amplitude/events";
 import {
   IaTjeneste,
   sendLevertInnloggetIaTjeneste,
-} from "../../../../integrasjoner/ia-tjenestemetrikker-api";
+} from "../../../integrasjoner/ia-tjenestemetrikker-api";
 import { BodyLong, HelpText, Label, TextField } from "@navikt/ds-react";
 
 interface Props {
