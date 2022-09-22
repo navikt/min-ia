@@ -33,19 +33,21 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
     GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
   );
 
-  const harEndretTapteDagsverk = nåværendeTapteDagsverk !== undefined;
+  const [
+    brukerHarEndretTapteDagsverkInput,
+    setBrukerHarEndretTapteDagsverkInput,
+  ] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!harEndretTapteDagsverk) {
-      if (tapteDagsverkFraDb == undefined) {
-        setNåværendeTapteDagsverk("");
+    if (!brukerHarEndretTapteDagsverkInput) {
+      if (tapteDagsverkFraDb === undefined) {
         setManglerData(true);
       } else {
         setNåværendeTapteDagsverk(tapteDagsverkFraDb);
         setManglerData(false);
       }
     }
-  }, [harEndretTapteDagsverk, tapteDagsverkFraDb, setManglerData]);
+  }, [tapteDagsverkFraDb, setManglerData]);
 
   const antallTapteDagsverkHjelpetekst = manglerData
     ? "Et dagsverk er arbeid som utføres på en dag. " +
@@ -61,6 +63,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
             setNåværendeTapteDagsverk(
               validerDesimaltallOgReturnerMatch(event.target.value)
             );
+            setBrukerHarEndretTapteDagsverkInput(true);
           }}
           value={nåværendeTapteDagsverk?.toString()}
           label="Antall tapte dagsverk siste 12 måneder"

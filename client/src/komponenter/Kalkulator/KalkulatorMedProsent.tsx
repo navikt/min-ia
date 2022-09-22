@@ -37,24 +37,15 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
     GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
   );
 
-  const brukerHarEndretSykefraværsprosenten =
-    nåværendeSykefraværsprosent !== undefined &&
-    nåværendeSykefraværsprosent !== "";
+  const [brukerHarEndretInput, setBrukerHarEndretInput] =
+    useState<boolean>(false);
 
   useEffect(() => {
-    if (!brukerHarEndretSykefraværsprosenten) {
-      if (!sykefraværsprosentFraDb) {
-        setNåværendeSykefraværsprosent("");
-      } else {
-        setNåværendeSykefraværsprosent(sykefraværsprosentFraDb);
-        setTotaltAntallDagsverk(muligeDagsverkFraDb);
-      }
+    if (!brukerHarEndretInput) {
+      setNåværendeSykefraværsprosent(sykefraværsprosentFraDb);
+      setTotaltAntallDagsverk(muligeDagsverkFraDb);
     }
-  }, [
-    brukerHarEndretSykefraværsprosenten,
-    muligeDagsverkFraDb,
-    sykefraværsprosentFraDb,
-  ]);
+  }, [muligeDagsverkFraDb, sykefraværsprosentFraDb]);
 
   const sykefraværHjelpetekst =
     "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk.";
@@ -76,6 +67,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
             setTotaltAntallDagsverk(
               validerDesimaltallOgReturnerMatch(event.target.value)
             );
+            setBrukerHarEndretInput(true);
           }}
           value={totaltAntallDagsverk}
           label="Totalt antall dagsverk i din bedrift siste 12 mnd"
@@ -118,6 +110,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
                 nåværendeSykefraværsprosent
               )
             );
+            setBrukerHarEndretInput(true);
           }}
           value={nåværendeSykefraværsprosent}
           label="Sykefravær i prosent de siste 12 månedene"

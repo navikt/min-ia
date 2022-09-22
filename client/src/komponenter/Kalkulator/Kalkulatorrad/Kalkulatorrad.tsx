@@ -22,22 +22,20 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
   const labelId = props.name + "-label";
   const orgnr = useOrgnr();
 
-  const onChangeEventHandler = (event: any) => {
-    props.onChange(event);
-    sendInputfeltUtfyltEvent(props.label, props.name);
-    sendLevertInnloggetIaTjeneste(IaTjeneste.KALKULATOR, orgnr);
-  };
-
   return (
     <div className={styles.kalkulatorrad}>
       <Label className={styles.label} id={labelId}>
         {props.label}
       </Label>
       <TextField
+        onBlur={() => {
+          sendInputfeltUtfyltEvent(props.label, props.name);
+          sendLevertInnloggetIaTjeneste(IaTjeneste.KALKULATOR, orgnr);
+        }}
         type={"text"}
         inputMode={"numeric"}
         label=""
-        onChange={onChangeEventHandler}
+        onChange={props.onChange}
         value={props.value || ""}
         className={styles.input}
         placeholder={props.placeholder || "0"}
