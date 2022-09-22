@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/mob/kalkis'
+    if: github.ref == 'refs/heads/kalkis'
     needs: build
     runs-on: ubuntu-latest
     steps:
