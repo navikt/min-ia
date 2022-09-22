@@ -22,9 +22,6 @@ client/.env.local
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -131,3 +128,4 @@ dist
 
 # Ignore Intellij project-specific directory
 /.idea/
+*.iml
