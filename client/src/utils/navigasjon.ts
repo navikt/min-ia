@@ -50,7 +50,7 @@ export const getUrlForApplikasjon = (
     case Applikasjon.Sykefraværsstatistikk:
       return getUrlForSykefraværsstatistikk(miljø);
     case Applikasjon.Kalkulator:
-      return getUrlForKalkulator(miljø);
+      return getUrlForKalkulator();
     case Applikasjon.Nettkurs:
       return getUrlForNettkurs();
     default:
@@ -73,19 +73,8 @@ const getUrlForSykefraværsstatistikk = (miljø: Miljø): string => {
   }
 };
 
-const getUrlForKalkulator = (miljø: Miljø): string => {
-  switch (miljø) {
-    case Miljø.Lokal:
-      return "http://localhost:3000/min-ia/kalkulator";
-    case Miljø.Labs:
-      return "https://arbeidsgiver.labs.nais.io/min-ia/kalkulator";
-    case Miljø.Dev:
-      return "https://min-ia.dev.nav.no/min-ia/redirect-til-login?redirect=https://min-ia.dev.nav.no/min-ia/kalkulator";
-    case Miljø.Prod:
-      return "https://arbeidsgiver.nav.no/min-ia/redirect-til-login?redirect=https://arbeidsgiver.nav.no/min-ia/kalkulator";
-    default:
-      return "";
-  }
+export const getUrlForKalkulator = (): string => {
+  return "/min-ia/kalkulator";
 };
 
 const getUrlForSamtalestøtte = (miljø: Miljø): string => {

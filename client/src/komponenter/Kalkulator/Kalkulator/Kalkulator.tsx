@@ -74,7 +74,7 @@ export const Fraværskalulator: FunctionComponent<
             </div>
           </div>
           <Ingress className={styles.input_overskrift}>
-            Fyll inn og juster tallene så de passer for deg
+            Fyll inn og juster tallene så de passer for deg:
           </Ingress>
           {kalkulatorvariant === "dagsverk" ? (
             <KalkulatorMedDagsverk
