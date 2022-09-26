@@ -70,19 +70,13 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         Det har skjedd en feil. Vennligst prøv igjen senere.
       </Alert>
     ) : (
-      <>
-        <Alert variant={"info"} className={styles.forsideAlert}>
-          Vi jobber med å oppdatere sidene våre.
-        </Alert>
-
-        <Infographic
-          {...hentUtInfographicData(aggregertStatistikkData)}
-          nedlastingPågår={
-            aggregertStatistikk.status === RestStatus.IkkeLastet ||
-            aggregertStatistikk.status === RestStatus.LasterInn
-          }
-        />
-      </>
+      <Infographic
+        {...hentUtInfographicData(aggregertStatistikkData)}
+        nedlastingPågår={
+          aggregertStatistikk.status === RestStatus.IkkeLastet ||
+          aggregertStatistikk.status === RestStatus.LasterInn
+        }
+      />
     );
 
   const forside = (
