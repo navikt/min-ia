@@ -6,12 +6,13 @@ import {
 } from "../integrasjoner/aggregert-statistikk-api";
 import { useOrgnr } from "./useOrgnr";
 
-export function useAggregertStatistikk() {
+export function useAggregertStatistikk(): RestAggregertStatistikk {
   const orgnr = useOrgnr();
 
   const [aggregertStatistikk, setAggregertStatistikk] =
     useState<RestAggregertStatistikk>({ status: RestStatus.IkkeLastet });
 
+  // TODO: UseMemo? Dumt hvis kallet går flere ganger
   useEffect(() => {
     if (orgnr) {
       setAggregertStatistikk({

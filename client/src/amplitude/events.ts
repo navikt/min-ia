@@ -9,8 +9,16 @@ export const sendBedriftValgtEvent = () => {
 };
 
 export const sendNettkursFilterValgtEvent = (filter: String) => {
-  logEvent("nettkurs-filter-valgt", {filter: filter})
-}
+  logEvent("nettkurs-filter-valgt", { filter: filter });
+};
+
+export const sendToggleEvent = (togglename: String, label: String) => {
+  logEvent("toggle", { togglenavn: togglename, verdiValgt: label });
+};
+
+export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
+  logEvent("inputfelt-utfylt", { label, name });
+};
 
 export const sendNavigereEvent = (
   destinasjon: string,

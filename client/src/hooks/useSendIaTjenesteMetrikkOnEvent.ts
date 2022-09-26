@@ -5,24 +5,27 @@ import {
   sendLevertInnloggetIaTjeneste,
 } from "../integrasjoner/ia-tjenestemetrikker-api";
 
-export function useSendIaTjenesteMetrikkOnEvent(eventType: string) {
+export function useSendIaTjenesteMetrikkOnEvent(
+  fraIaTjeneste: IaTjeneste,
+  event: string
+) {
   const orgnr = useOrgnr();
   const eventListenerHarBlittSattOpp = useRef(false);
 
   useEffect(() => {
     if (orgnr && !eventListenerHarBlittSattOpp.current) {
       const sendMetrikk = async () => {
-        await sendLevertInnloggetIaTjeneste(IaTjeneste.NETTKURS, orgnr);
+        await sendLevertInnloggetIaTjeneste(fraIaTjeneste, orgnr);
       };
-      document.addEventListener(eventType, sendMetrikk, {
+      document.addEventListener(event, sendMetrikk, {
         once: true,
         capture: true,
       });
       eventListenerHarBlittSattOpp.current = true;
 
       return () => {
-        document.removeEventListener(eventType, sendMetrikk);
+        document.removeEventListener(event, sendMetrikk);
       };
     }
-  }, [eventType, orgnr]);
+  }, [fraIaTjeneste, event, orgnr]);
 }

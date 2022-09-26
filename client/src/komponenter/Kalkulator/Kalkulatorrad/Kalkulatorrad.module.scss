@@ -1,0 +1,41 @@
+@use "src/styles/screensize";
+
+.kalkulatorrad {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: 14px;
+  width: 100%;
+  align-items: center;
+}
+
+.label {
+  flex-basis: 75%;
+}
+
+.input {
+  width: 5rem;
+}
+
+.hjelpetekst_innhold {
+  max-width: 25rem;
+}
+
+@media (min-width: screensize.$screen-sm) {
+  .kalkulatorrad {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 22rem;
+  }
+
+  .input {
+    &.skjemaelement {
+      margin-left: 1rem;
+    }
+  }
+  .input_no_hjelpetekst_wrapper {
+    padding-right: 2.5rem;
+  }
+}

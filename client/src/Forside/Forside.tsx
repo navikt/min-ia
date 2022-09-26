@@ -1,5 +1,5 @@
 import styles from "./forside.module.scss";
-import { StatistikkIkonIkon } from "./ikoner/StatistikkIkonIkon";
+import { StatistikkIkon } from "./ikoner/StatistikkIkon";
 import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
@@ -9,10 +9,7 @@ import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
-import {
-  erSykefraværsstatistikkLastetNed,
-  RestStatus,
-} from "../integrasjoner/rest-status";
+import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../komponenter/Infographic/Infographic";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { hentUtInfographicData } from "../komponenter/Infographic/datauthenting";
@@ -22,10 +19,12 @@ import { getMiljø } from "../utils/miljøUtils";
 import {
   Applikasjon,
   getUrlForApplikasjon,
+  getUrlForKalkulator,
   utledUrlForBedrift,
 } from "../utils/navigasjon";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 import { ManglerRettighetRedirect } from "../utils/Redirects";
+import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 
 interface ForsideProps {
   harNoenOrganisasjoner: boolean;
@@ -42,7 +41,6 @@ export const Forside: FunctionComponent<ForsideProps> = ({
 
   const [samtalestotteUrl, setSamtalestotteUrl] = useState("#");
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
-  const [kalkulatorUrl, setKalkulatorUrl] = useState("#");
 
   useEffect(() => {
     setSamtalestotteUrl(
@@ -57,20 +55,12 @@ export const Forside: FunctionComponent<ForsideProps> = ({
         orgnr
       )
     );
-    setKalkulatorUrl(
-      utledUrlForBedrift(
-        getUrlForApplikasjon(Applikasjon.Kalkulator, miljø),
-        orgnr
-      )
-    );
   }, [orgnr, miljø]);
 
   const aggregertStatistikk = useAggregertStatistikk();
-  const aggregertStatistikkData = erSykefraværsstatistikkLastetNed(
-    aggregertStatistikk
-  )
+  const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
     ? aggregertStatistikk.data
-    : { prosentSiste4KvartalerTotalt: [], trendTotalt: [] };
+    : tomtDataobjekt;
 
   const infographicEllerBannerHvisError =
     aggregertStatistikk.status === RestStatus.Feil ||
@@ -116,11 +106,11 @@ export const Forside: FunctionComponent<ForsideProps> = ({
             brødtekst={
               "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
             }
-            href={kalkulatorUrl}
+            href={getUrlForKalkulator()}
           />
           <Lenkeflis
             overskrift={"Sykefraværs&shy;statistikk"}
-            ikon={<StatistikkIkonIkon />}
+            ikon={<StatistikkIkon />}
             brødtekst={
               "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
             }

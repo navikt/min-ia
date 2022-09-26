@@ -1,8 +1,8 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
 .forside {
   margin: 0 auto;
-  padding: .5rem;
+  padding: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   max-width: 60rem;
@@ -22,7 +22,7 @@
     padding: 2rem 0;
   }
 
-  @media (min-width: konstanter.$screen-md) {
+  @media (min-width: screensize.$screen-md) {
     padding: 2rem;
 
     .panelGrid {

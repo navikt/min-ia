@@ -1,8 +1,3 @@
-import {
-  AggregertStatistikkDto,
-  RestAggregertStatistikk,
-} from "./aggregert-statistikk-api";
-
 export enum RestStatus {
   IkkeLastet = "IkkeLastet",
   LasterInn = "LasterInn",
@@ -50,10 +45,22 @@ export type RestRessurs<T> =
   | Feil
   | IngenTilgang;
 
-export const erSykefraværsstatistikkLastetNed = (
-  restAggregertStatistikk: RestAggregertStatistikk
-): restAggregertStatistikk is Suksess<AggregertStatistikkDto> => {
-  return restAggregertStatistikk.status === RestStatus.Suksess;
+export const erIkkeInnlogget = <Datatype>(
+  respons: RestRessurs<Datatype>
+): respons is IkkeInnlogget => {
+  return respons.status === RestStatus.IkkeInnlogget;
+};
+
+export const erIkkeFerdigLastet = <Datatype>(
+  respons: RestRessurs<Datatype>
+): respons is IkkeLastet => {
+  return respons.status === RestStatus.IkkeLastet;
+};
+
+export const erFerdigNedlastet = <Datatype>(
+  respons: RestRessurs<Datatype>
+): respons is Suksess<Datatype> => {
+  return respons.status === RestStatus.Suksess;
 };
 
 export const getRestStatus = (responseStatus: number): RestStatus => {
