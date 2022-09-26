@@ -45,7 +45,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
       setNåværendeSykefraværsprosent(sykefraværsprosentFraDb);
       setTotaltAntallDagsverk(muligeDagsverkFraDb);
     }
-  }, [muligeDagsverkFraDb, sykefraværsprosentFraDb]);
+  }, [brukerHarEndretInput, muligeDagsverkFraDb, sykefraværsprosentFraDb]);
 
   const sykefraværHjelpetekst =
     "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk.";
