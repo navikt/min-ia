@@ -20,7 +20,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jose": "^4.8.3",
     "morgan": "^1.10.0",
-    "node-fetch": "^3.2.6",
+    "node-fetch": "^3.2.10",
     "openid-client": "^5.1.7",
     "prom-client": "^14.0.1",
     "tsc-watch": "^4.6.0",
