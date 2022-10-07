@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import styles from "./Banner.module.scss";
-import Bedriftsmeny from "@navikt/bedriftsmeny";
+import dynamic from 'next/dynamic';
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
+import styles from './Banner.module.scss'
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
-import { createBrowserHistory, createMemoryHistory, History } from "history";
 import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
+import { MemoryRouter } from "react-router-dom";
+
+const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
+  ssr: false,
+})
 
 export interface Organisasjon {
   Name: string;
@@ -21,15 +25,9 @@ interface Props {
   altinnOrganisasjoner: AltinnOrganisasjon[];
 }
 
-const getHistory = () => {
-  if (typeof window === "undefined") return createMemoryHistory();
-  return createBrowserHistory();
-};
-
 const Banner: React.FunctionComponent<Props> = (props) => {
   const { tittelMedUnderTittel, altinnOrganisasjoner } = props;
   const router = useRouter();
-  const [history] = useState<History>(getHistory());
 
   const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
@@ -46,12 +44,13 @@ const Banner: React.FunctionComponent<Props> = (props) => {
 
   return (
     <div className={styles.banner}>
-      <Bedriftsmeny
-        organisasjoner={altinnOrganisasjoner}
-        sidetittel={tittelMedUnderTittel}
-        history={history}
-        onOrganisasjonChange={onOrganisasjonChange}
-      />
+      <MemoryRouter>
+        <Bedriftsmeny
+          organisasjoner={altinnOrganisasjoner}
+          sidetittel={tittelMedUnderTittel}
+          onOrganisasjonChange={onOrganisasjonChange}
+        />
+      </MemoryRouter>
     </div>
   );
 };
