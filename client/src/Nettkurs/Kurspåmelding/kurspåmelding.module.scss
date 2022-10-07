@@ -1,8 +1,10 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
-.kurspåmelding{
-  &_tekst{margin-top: 1rem;}
-  &__folger{
+.kurspåmelding {
+  &_tekst {
+    margin-top: 1rem;
+  }
+  &__folger {
     margin-top: 0.5rem;
   }
 }

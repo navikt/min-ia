@@ -17,6 +17,7 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
 import Head from "next/head";
+import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 interface ListeElement {
   key: Tags;
@@ -27,8 +28,8 @@ type Filter = Tags;
 
 export default function Nettkurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
-  const sykefraværshistorikk = useAggregertStatistikk();
-  useSendIaTjenesteMetrikkOnEvent("videoAvspilles");
+  const aggregertStatistikk = useAggregertStatistikk();
+  useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
 
   const [filter, setFilter] = useState<Filter>(Tags.MEST_SETT);
 
@@ -92,7 +93,7 @@ export default function Nettkurs(props: { page: PageProps }) {
         <title>{props.page.title}</title>
         <meta property="og:title" content="Page title" key="title" />
       </Head>
-      {sykefraværshistorikk.status === RestStatus.IkkeInnlogget ? (
+      {aggregertStatistikk.status === RestStatus.IkkeInnlogget ? (
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (
         <div className={styles.nettkurs}>

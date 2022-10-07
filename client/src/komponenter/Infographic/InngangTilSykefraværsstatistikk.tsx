@@ -1,5 +1,5 @@
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
-import { StatistikkIkonIkon } from "../../Forside/ikoner/StatistikkIkonIkon";
+import { StatistikkIkon } from "../../Forside/ikoner/StatistikkIkon";
 import { BodyLong } from "@navikt/ds-react";
 import styles from "./Infographic.module.scss";
 import { LenkeMedEventutsendelse } from "../../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
@@ -12,7 +12,7 @@ export const InngangTilSykefraværsstatistikk = (props: {
     return (
       <Lenkeflis
         overskrift={"Sykefraværs&shy;statistikk"}
-        ikon={<StatistikkIkonIkon />}
+        ikon={<StatistikkIkon />}
         brødtekst={""}
         href={props.sykefravarsstatistikkUrl}
         fyltoppBakgrunn={true}

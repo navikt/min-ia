@@ -26,7 +26,7 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/min-ia
     - name: NEXT_PUBLIC_KALKULATOR_URL
-      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk/kalkulator
+      value: https://arbeidsgiver.labs.nais.io/min-ia/kalkulator
     - name: NEXT_PUBLIC_NETTKURS_URL
       value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: NEXT_PUBLIC_SAMTALESTOTTE_URL

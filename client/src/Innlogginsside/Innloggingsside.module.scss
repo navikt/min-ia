@@ -1,4 +1,4 @@
-@use "src/styles/konstanter";
+@use "src/styles/screensize";
 
 .innloggingsside {
   max-width: 40rem;
@@ -29,8 +29,7 @@
     }
   }
 
-
-  @media (min-width: konstanter.$screen-md) {
+  @media (min-width: screensize.$screen-md) {
     padding: 2rem;
   }
 }

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styles from "./InfographicFlis.module.scss";
 import { BodyShort, Label } from "@navikt/ds-react";
 import Skeleton from "react-loading-skeleton";
-import { SkeltonWrapper } from "../../Skeleton/SkeletonWrapper";
+import { SkeletonWrapper } from "../../Skeleton/SkeletonWrapper";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export const InfographicFlis = (props: {
@@ -14,10 +14,10 @@ export const InfographicFlis = (props: {
     <div className={styles.infographicFlis}>
       <div className={styles.ikonWrapper}>{props.ikon}</div>
       {props.nedlastingPågår ? (
-        <SkeltonWrapper>
+        <SkeletonWrapper>
           <Skeleton style={{ marginTop: "0.5rem" }} />
           <Skeleton style={{ marginTop: "0.5rem" }} />
-        </SkeltonWrapper>
+        </SkeletonWrapper>
       ) : (
         <BodyShort size="small" className={styles.tekst}>
           {props.innhold}

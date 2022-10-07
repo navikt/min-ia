@@ -4,6 +4,7 @@ import { Infographic } from "../../src/komponenter/Infographic/Infographic";
 import {
   AggregertStatistikkDto,
   Statistikkategori,
+  tomtDataobjekt,
 } from "../../src/integrasjoner/aggregert-statistikk-api";
 import { hentUtInfographicData } from "../../src/komponenter/Infographic/datauthenting";
 
@@ -16,6 +17,7 @@ it("viser sykefraværsprosenten for Norge", async () => {
     render(
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+        nedlastingPågår={false}
       />
     );
   });
@@ -30,6 +32,7 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
     render(
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+        nedlastingPågår={false}
       />
     );
   });
@@ -44,6 +47,7 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
     render(
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkStigendeTrendBransje)}
+        nedlastingPågår={false}
       />
     );
   });
@@ -56,6 +60,7 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
     render(
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkSynkendeTrend)}
+        nedlastingPågår={false}
       />
     );
   });
@@ -65,7 +70,12 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
 
 it("viser ingen fraværstrend når det ikke finnes data", async () => {
   await act(async () => {
-    render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
+    render(
+      <Infographic
+        {...hentUtInfographicData(tomtDataobjekt)}
+        nedlastingPågår={false}
+      />
+    );
   });
   const infobolk = await screen.getByText(
     /Vi mangler data til å kunne beregne utviklingen/
@@ -80,6 +90,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
     render(
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkUendretTrend)}
+        nedlastingPågår={false}
       />
     );
   });
@@ -92,6 +103,7 @@ it("viser årsak til sykemelding", async () => {
     render(
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+        nedlastingPågår={false}
       />
     );
   });
@@ -103,7 +115,12 @@ it("viser årsak til sykemelding", async () => {
 
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   await act(async () => {
-    render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
+    render(
+      <Infographic
+        {...hentUtInfographicData(tomtDataobjekt)}
+        nedlastingPågår={false}
+      />
+    );
   });
   const infobolk = await screen.getByText(/Trenger du en større oversikt?/);
   expect(infobolk.textContent).toBe(
@@ -113,7 +130,12 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
 
 it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
-    render(<Infographic {...hentUtInfographicData(mockTomtResultat)} />);
+    render(
+      <Infographic
+        {...hentUtInfographicData(tomtDataobjekt)}
+        nedlastingPågår={false}
+      />
+    );
   });
   const lenke = await screen.getByRole("link", {
     name: /Klikk her for å gå til statistikksiden./,
@@ -127,12 +149,9 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   );
 });
 
-const mockTomtResultat: AggregertStatistikkDto = {
-  prosentSiste4KvartalerTotalt: [],
-  trendTotalt: [],
-};
-
 const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: Statistikkategori.LAND,
@@ -220,6 +239,8 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [],
   trendTotalt: [
     {
@@ -238,6 +259,8 @@ const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [],
   trendTotalt: [
     {
@@ -256,6 +279,8 @@ const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
 };
 
 const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
+  muligeDagsverkTotalt: [],
+  tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [
     {
       statistikkategori: Statistikkategori.BRANSJE,
