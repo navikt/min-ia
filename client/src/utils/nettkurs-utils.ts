@@ -100,14 +100,6 @@ export const IAVideoer: QbrickVideo[] = [
     },
   },
   {
-    id: "472aedc7-1ded-4fad-bd72-79cf55879e5f",
-    tags: [Tags.PSYKISK_HELSE, Tags.NYESTE],
-    metadata: {
-      title: "Vi må tørre å snakke om psykisk helse på arbeidsplassen",
-      description: ""
-    }
-  },
-  {
     id: "103542a5-f8df-49f6-af22-117a69fa4548",
     tags: [Tags.OPPFØLGING, Tags.NYESTE],
     metadata: {
