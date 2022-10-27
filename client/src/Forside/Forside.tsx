@@ -93,10 +93,10 @@ export const Forside: FunctionComponent<ForsideProps> = ({
             href={samtalestotteUrl}
           />
           <Lenkeflis
-            overskrift={"Nettkurs"}
+            overskrift={"Video og kurs"}
             ikon={<KursOgWebinarerIkon />}
             brødtekst={
-              "Her finner du kurs for å forebygge, følge opp og redusere sykefravær."
+              "Her finner du videoer og kurs for å forebygge, følge opp og redusere sykefravær."
             }
             href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
           />
