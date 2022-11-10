@@ -125,8 +125,7 @@ const displaytekstTrendBransjeEllerNæring = (
   if (isFinite(stigningstall)) {
     return (
       <>
-        Sykefraværet er <b>{stigningstallTilTekst(stigningstall)}</b> i din{" "}
-        {props.bransjeEllerNæring}
+        Sykefraværet er <b>{stigningstallTilTekst(stigningstall)}</b> i din bransje
       </>
     );
   } else {
