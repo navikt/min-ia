@@ -13,7 +13,7 @@ import { isAlive, isReady } from "./healthcheck";
 import { setupApiRoutes } from "./routes";
 
 const initServer = async () => {
-  logger.info("Starting server: server.ts");
+  logger.info("Starting server (server.ts) on Node environment " + process.env.NODE_ENV);
   const server = express();
   isAlive(server);
 
