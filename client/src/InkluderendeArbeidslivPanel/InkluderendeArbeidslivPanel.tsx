@@ -58,14 +58,11 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               <BodyShort
                 className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
               >
-                De nasjonale målene i IA-avtalen i perioden 2019-2022 er:
+                Målene i IA-avtalen for perioden 2019-2024 er:
               </BodyShort>
               <ul>
-                <li>
-                  Sykefraværsprosenten skal reduseres med 10 prosent
-                  sammenlignet med årsgjennomsnittet for 2018
-                </li>
-                <li>Frafallet fra arbeidslivet skal reduseres</li>
+                <li>Redusere sykefraværet</li>
+                <li>Hindre frafall fra arbeidslivet</li>
               </ul>
             </div>
             <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>

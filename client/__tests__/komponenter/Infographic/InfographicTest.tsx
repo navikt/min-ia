@@ -1,14 +1,14 @@
 import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Infographic } from "../../src/komponenter/Infographic/Infographic";
+import { Infographic } from "../../../src/komponenter/Infographic/Infographic";
 import {
   AggregertStatistikkDto,
   Statistikkategori,
   tomtDataobjekt,
-} from "../../src/integrasjoner/aggregert-statistikk-api";
-import { hentUtInfographicData } from "../../src/komponenter/Infographic/datauthenting";
+} from "../../../src/integrasjoner/aggregert-statistikk-api";
+import { hentUtInfographicData } from "../../../src/komponenter/Infographic/datauthenting";
 
-jest.mock("../../src/hooks/useOrgnr", () => ({
+jest.mock("../../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
 
@@ -65,7 +65,7 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
     );
   });
   const infobolk = await screen.getByText(/Sykefraværet er/);
-  expect(infobolk.textContent).toBe("Sykefraværet er synkende i din næring");
+  expect(infobolk.textContent).toBe("Sykefraværet er synkende i din bransje");
 });
 
 it("viser ingen fraværstrend når det ikke finnes data", async () => {
@@ -95,7 +95,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
     );
   });
   const infobolk = await screen.getByText(/Sykefraværet er/);
-  expect(infobolk.textContent).toBe("Sykefraværet er uendret i din næring");
+  expect(infobolk.textContent).toBe("Sykefraværet er uendret i din bransje");
 });
 
 it("viser årsak til sykemelding", async () => {
