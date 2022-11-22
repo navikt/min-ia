@@ -39,19 +39,19 @@ export const Infographic: FunctionComponent<InfographicData & {
   return (
       <div className={styles.infographicWrapper}>
         <InfographicFlis
-            ikon={<NorwegianFlag {...ikonstorrelse} />}
+            ikon={<NorwegianFlag aria-hidden="true" {...ikonstorrelse} />}
             innhold={displaytekstSykefraværNorge(props.fraværsprosentNorge)}
             nedlastingPågår={props.nedlastingPågår}
         />
 
         <InfographicFlis
-            ikon={<Bag {...ikonstorrelse} />}
+            ikon={<Bag aria-hidden="true" {...ikonstorrelse} />}
             innhold={displaytekstSykefraværBransjeEllerNæring(props)}
             nedlastingPågår={props.nedlastingPågår}
         />
 
         <InfographicFlis
-            ikon={<HealthCase {...ikonstorrelse} />}
+            ikon={<HealthCase aria-hidden="true" {...ikonstorrelse} />}
             innhold={
               <>
                 Vanligste årsak til sykemelding i Norge er:{" "}
@@ -67,6 +67,7 @@ export const Infographic: FunctionComponent<InfographicData & {
                   className={roterTrendpil(
                       props.stigningstallTrendBransjeEllerNæring
                   )}
+                  aria-hidden="true"
                   {...ikonstorrelse}
               />
             }

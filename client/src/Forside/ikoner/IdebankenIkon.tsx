@@ -6,6 +6,7 @@ export const IdebankenIkon = (props: { width: number; height: number }) => {
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <mask
         id="mask0_1936_30042"
