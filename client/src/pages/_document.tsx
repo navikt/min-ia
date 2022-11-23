@@ -1,5 +1,3 @@
-import "node-fetch";
-
 import {
   Components,
   fetchDecoratorReact,
