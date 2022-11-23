@@ -1,5 +1,7 @@
+/// TODO: Hack for å få typescript til å gjenkjenne fetch fra node sitt standardbibliotek
+/// <reference lib="dom" />
+
 import { Issuer, TokenSet } from "openid-client";
-import fetch from "node-fetch";
 import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten";
 import { IncomingMessage } from "http";
 import { isProduction } from "./util/environment";

@@ -1,4 +1,6 @@
-import fetch from "node-fetch";
+/// TODO: Hack for å få typescript til å gjenkjenne fetch fra node sitt standardbibliotek
+/// <reference lib="dom" />
+
 import {
   createRemoteJWKSet,
   FlattenedJWSInput,
