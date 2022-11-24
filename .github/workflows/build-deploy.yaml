@@ -49,7 +49,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/oppgradere_bedriftsvelger'
+    if: github.ref == 'refs/heads/update_node_version'
     needs: build
     runs-on: ubuntu-latest
     steps:
