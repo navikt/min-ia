@@ -13,7 +13,7 @@
     "export": "next export"
   },
   "dependencies": {
-    "@navikt/bedriftsmeny": "^4.1.1",
+    "@navikt/bedriftsmeny": "^5.1.0",
     "@navikt/ds-css": "0.17.3",
     "@navikt/ds-icons": "^0.8.4",
     "@navikt/ds-react": "0.18.7",
