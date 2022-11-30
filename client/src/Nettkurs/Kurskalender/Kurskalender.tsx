@@ -36,7 +36,7 @@ const Kurskalender = () => {
   };
   return (
     <div className={styles.kurskalender}>
-      <Heading size={"large"} className={styles.kurskalender__tittel}>Vil du delta på kurs?</Heading>
+      <Heading size={"large"} level={"2"} className={styles.kurskalender__tittel}>Vil du delta på kurs?</Heading>
       <NesteNettkurs nesteNettkurs={nesteNettkurs} />
       <Kurspåmelding
         kurspåmelding={kurspåmelding}

@@ -45,7 +45,7 @@ export const Fraværskalulator: FunctionComponent<
         <div>
           <div className={styles.tittel_wrapper}>
             <div>
-              <Heading level="1" size="medium" className={styles.tittel}>
+              <Heading level="2" size="medium" className={styles.tittel}>
                 Hvor mye koster sykefraværet?
               </Heading>
               <Ingress className={styles.ingress}>

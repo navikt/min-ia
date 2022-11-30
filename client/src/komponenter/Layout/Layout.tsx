@@ -15,7 +15,7 @@ export const Layout = (props: {
     <Banner
       tittelMedUnderTittel={
         <div>
-          <Heading size="large" level="3">
+          <Heading size="large" level="1">
             {props.title}
             <meta name="description" content={props.description} />
           </Heading>
