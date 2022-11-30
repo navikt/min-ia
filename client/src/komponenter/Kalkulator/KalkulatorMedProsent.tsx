@@ -70,7 +70,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
             setBrukerHarEndretInput(true);
           }}
           value={totaltAntallDagsverk}
-          label="Totalt antall dagsverk i din bedrift siste 12 mnd"
+          label="Totalt antall dagsverk i din bedrift de siste 12 månedene"
           name="totalt-antall-dagsverk"
           hjelpetekst={
             <>
