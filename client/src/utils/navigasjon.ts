@@ -93,5 +93,5 @@ const getUrlForSamtalestøtte = (miljø: Miljø): string => {
 };
 
 const getUrlForNettkurs = (): string => {
-  return "/min-ia/nettkurs";
+  return "/min-ia/video-og-kurs";
 };
