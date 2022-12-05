@@ -26,7 +26,7 @@ interface ListeElement {
 
 type Filter = Tags;
 
-export default function Nettkurs(props: { page: PageProps }) {
+export default function VideoOgKurs(props: { page: PageProps }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const aggregertStatistikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
@@ -141,7 +141,7 @@ export default function Nettkurs(props: { page: PageProps }) {
         url: "/min-ia",
       },
       {
-        title: "Nettkurs",
+        title: "Video og kurs",
         url: "/min-ia/nettkurs",
       },
     ]);
@@ -170,7 +170,7 @@ export default function Nettkurs(props: { page: PageProps }) {
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps: GetServerSideProps = async () => {
   const page = {
-    title: "Nettkurs",
+    title: "Video og kurs",
     description:
       "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
   };

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Nettkurs from "../../src/pages/nettkurs";
+import VideoOgKurs from "../../src/pages/video-og-kurs";
 import logEvent from "../../src/amplitude/logEvent";
 
 jest.mock("../../src/amplitude/logEvent");
@@ -39,9 +39,9 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
 
 const renderNettkurs = () => {
   render(
-    <Nettkurs
+    <VideoOgKurs
       page={{
-        title: "Nettkurs",
+        title: "VideoOgKurs",
         description:
           "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
       }}
