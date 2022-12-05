@@ -142,7 +142,7 @@ export default function VideoOgKurs(props: { page: PageProps }) {
       },
       {
         title: "Video og kurs",
-        url: "/min-ia/nettkurs",
+        url: "/min-ia/video-og-kurs",
       },
     ]);
   }, []);
