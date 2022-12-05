@@ -6,6 +6,8 @@ export const useOrgnr = (): string | undefined => {
 
   if (bedrift === null) {
     return undefined;
+  } else if (bedrift !== undefined && bedrift.length !== 9) {
+    return undefined;
   } else {
     return bedrift;
   }
