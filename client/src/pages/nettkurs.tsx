@@ -6,7 +6,7 @@ import { GetServerSideProps } from "next";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import styles from "../Nettkurs/Nettkurs.module.scss";
-import { Button } from "@navikt/ds-react";
+import {Button, Heading} from "@navikt/ds-react";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { IAVideoer, QbrickVideo, Tags } from "../utils/nettkurs-utils";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
@@ -16,7 +16,6 @@ import Kurskalender from "../Nettkurs/Kurskalender/Kurskalender";
 import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
-import Head from "next/head";
 import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 interface ListeElement {
@@ -31,16 +30,14 @@ export default function Nettkurs(props: { page: PageProps }) {
   const aggregertStatistikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
 
-  const [filter, setFilter] = useState<Filter>(Tags.MEST_SETT);
+  const [filter, setFilter] = useState<Filter>(Tags.ALLE);
 
   const filterListe: ListeElement[] = [
+    { key: Tags.ALLE, tekst: "Alle" },
     { key: Tags.PSYKISK_HELSE, tekst: "Psykisk helse" },
     { key: Tags.ARBEIDSMILJØ, tekst: "Arbeidsmiljø" },
     { key: Tags.OPPFØLGING, tekst: "Oppfølging" },
     { key: Tags.MEDVIRKNING, tekst: "Medvirkning" },
-    { key: Tags.ALLE, tekst: "Alle" },
-    { key: Tags.MEST_SETT, tekst: "Mest sett" },
-    { key: Tags.NYESTE, tekst: "Nyeste" },
   ];
 
   const getFilteredListOfVideos = (
@@ -55,7 +52,7 @@ export default function Nettkurs(props: { page: PageProps }) {
 
   const toggleFilters = (key: Tags) => {
     if (filter === key) {
-      setFilter(Tags.MEST_SETT);
+      setFilter(Tags.ALLE);
     } else {
       setFilter(key);
     }
@@ -89,14 +86,15 @@ export default function Nettkurs(props: { page: PageProps }) {
   };
   const innhold = (
     <>
-      <Head>
+      <Heading size="large" level={'1'}>
         <title>{props.page.title}</title>
         <meta property="og:title" content="Page title" key="title" />
-      </Head>
+      </Heading>
       {aggregertStatistikk.status === RestStatus.IkkeInnlogget ? (
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (
         <div className={styles.nettkurs}>
+          <Heading level={'2'} size={'medium'} className={styles.nettkurs__filter_heading}>Velg filter</Heading>
           <div className={styles.nettkurs__filter_rad}>
             {filterButtonList(filterListe)}
           </div>

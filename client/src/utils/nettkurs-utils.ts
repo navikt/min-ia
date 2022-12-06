@@ -13,14 +13,12 @@ export enum Tags {
   OPPFØLGING = "Oppfølging",
   PSYKISK_HELSE = "Psykisk helse",
   ALLE = "Alle",
-  MEST_SETT = "Mest sett",
-  NYESTE = "Nyeste",
 }
 
 export const IAVideoer: QbrickVideo[] = [
   {
     id: "bdd038ea-00015227-44a44546",
-    tags: [Tags.MEST_SETT, Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.ARBEIDSMILJØ],
+    tags: [Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.ARBEIDSMILJØ],
     metadata: {
       title: "Hvorfor klare kjøreregler er viktig når fraværet oppstår",
       description: "",
@@ -55,7 +53,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "fc48a9e8-00015227-e728460d",
-    tags: [Tags.OPPFØLGING, Tags.MEST_SETT],
+    tags: [Tags.OPPFØLGING],
     metadata: {
       title: "Oppfølgingsplan som fungerer",
       description:
@@ -64,7 +62,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "62f13221-00015227-0618cd4a",
-    tags: [Tags.OPPFØLGING, Tags.MEDVIRKNING, Tags.MEST_SETT],
+    tags: [Tags.OPPFØLGING, Tags.MEDVIRKNING],
     metadata: {
       title: "Tilrettelegging og medvirkning",
       description:
@@ -101,7 +99,7 @@ export const IAVideoer: QbrickVideo[] = [
   },
   {
     id: "103542a5-f8df-49f6-af22-117a69fa4548",
-    tags: [Tags.OPPFØLGING, Tags.NYESTE],
+    tags: [Tags.OPPFØLGING],
     metadata: {
       title: "Ekspertbistand // hva og hvordan",
       description: ""
