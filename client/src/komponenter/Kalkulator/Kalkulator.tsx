@@ -4,7 +4,7 @@ import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { sendSidevisningEvent, sendToggleEvent } from "../../amplitude/events";
-import { Heading, Ingress, ToggleGroup } from "@navikt/ds-react";
+import {Heading, Ingress, Link, ToggleGroup} from "@navikt/ds-react";
 import {
   IaTjeneste,
   sendLevertInnloggetIaTjeneste,
@@ -86,6 +86,9 @@ export const Fraværskalulator: FunctionComponent<
               nedlastingPågår={props.nedlastingPågår}
             />
           )}
+            <Link className={styles.les_mer} href="https://www.sintef.no/prosjekter/bedriftenes-kostnader-ved-sykefravar/">
+              Les mer om hva som påvirker kostnader ved sykefravær (sintef.no)
+            </Link>
         </div>
       </div>
     </div>
