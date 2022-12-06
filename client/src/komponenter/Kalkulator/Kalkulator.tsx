@@ -87,7 +87,7 @@ export const Fraværskalulator: FunctionComponent<
             />
           )}
             <Link className={styles.les_mer} href="https://www.sintef.no/prosjekter/bedriftenes-kostnader-ved-sykefravar/">
-              Les mer om hva som påvirker kostnader ved sykefravær.(sintef.no)
+              Les mer om hva som påvirker kostnader ved sykefravær (sintef.no)
             </Link>
         </div>
       </div>

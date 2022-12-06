@@ -47,7 +47,7 @@
 }
 
 .les_mer {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 
 @media (min-width: screensize.$screen-sm) {
@@ -69,5 +69,8 @@
         margin-top: 0;
       }
     }
+  }
+  .les_mer {
+    padding-top: 2rem;
   }
 }

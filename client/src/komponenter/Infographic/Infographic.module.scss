@@ -37,11 +37,6 @@
   width:2rem;
   height:2rem;
 }
-@media (min-width: screensize.$screen-md) {
-  .hjelpetekstWrapper {
-    //padding-top: 2rem;
-  }
-}
 
 :export {
   screenSm: screensize.$screen-sm;
