@@ -64,6 +64,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/nettkurs',
+        destination: '/video-og-kurs',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
