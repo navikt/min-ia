@@ -29,10 +29,12 @@ export const Layout = (props: {
   return (
     <>
       <div id="app" className="app">
+          <main id="maincontent" role="main" tabIndex={-1}>
         {banner}
         <div>
           <div ref={layoutContentRef}>{props.children}</div>
         </div>
+          </main>
       </div>
     </>
   );

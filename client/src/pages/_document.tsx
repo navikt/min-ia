@@ -70,7 +70,7 @@ class MyDocument extends Document<Props> {
         <body>
           {showDecorator && <Decorator.Header />}
           <Main />
-          {showDecorator && (
+{showDecorator && (
             <>
               <Decorator.Footer />
               <Decorator.Scripts />
