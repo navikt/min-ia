@@ -85,7 +85,7 @@ export const IAVideoer: QbrickVideo[] = [
       title:
         "Arbeidsmiljø skaper du best i samarbeid med tillitsvald og verneombod",
       description:
-        "Arbeidsmiljø skapar du best i samarbeid med tillitsvald og verneombud. Samarbeidet er grunnleggande for å skape eit godt arbeidsmiljø. Videoen gir deg eksempel på korleis du kan gjere dette i di bedrift.",
+        "Arbeidsmiljø skapar du best i samarbeid med tillitsvald og verneombod. Samarbeidet er grunnleggande for å skape eit godt arbeidsmiljø. Videoen gir deg eksempel på korleis du kan gjere dette i di bedrift.",
     },
   },
   {
@@ -102,7 +102,7 @@ export const IAVideoer: QbrickVideo[] = [
     tags: [Tags.OPPFØLGING],
     metadata: {
       title: "Ekspertbistand // hva og hvordan",
-      description: ""
-    }
-  }
+      description: "",
+    },
+  },
 ];
