@@ -115,7 +115,7 @@ export default function VideoOgKurs(props: { page: PageProps }) {
                     <QbrickVideoPlayer key={video.id} video={video} />
                   </div>
                   <div className={styles.nettkurs__ikon_og_tittel}>
-                    <div className={styles.nettkurs__ikon}>
+                    <div aria-hidden="true" className={styles.nettkurs__ikon}>
                       <NavIkon width={33} height={21} />
                     </div>
                     <div className={styles.nettkurs__tittel}>
