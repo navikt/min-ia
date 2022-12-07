@@ -81,17 +81,10 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           label="Kostnad per dag per ansatt i kroner"
           placeholder="kr"
           name="kostnad-per-dagsverk"
-          hjelpetekst={
-            <>
-              SINTEF har beregnet at en dags sykefravær gjennomsnittlig koster
+          hjelpetekst="SINTEF har beregnet at en dags sykefravær gjennomsnittlig koster
               2600 kroner. Beløpet uttrykker produksjonstap og økte kostnader.
               Lønn og refusjoner knyttet til sykefravær er ikke en del av
-              beregnet kostnad.{" "}
-              <ExternalLink href="https://www.sintef.no/prosjekter/bedriftenes-kostnader-ved-sykefravar/">
-                Les mer om hva som påvirker kostnader ved sykefravær.
-              </ExternalLink>
-            </>
-          }
+              beregnet kostnad."
         />
         <Kalkulatorrad
           onChange={(event) => {

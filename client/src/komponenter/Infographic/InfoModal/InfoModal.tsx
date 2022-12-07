@@ -32,7 +32,7 @@ export const InfoModal: FunctionComponent<Props> = ({
           setOpen((open) => !open);
         }}
       >
-        <Information />
+        <Information className={styles.informasjon}/>
       </Button>
       <Modal
         aria-label="Modal for mer informasjon"

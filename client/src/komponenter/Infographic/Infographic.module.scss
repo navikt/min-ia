@@ -33,10 +33,9 @@
 .rotateUendret {
   transform: rotate(90deg);
 }
-@media (min-width: screensize.$screen-md) {
-  .hjelpetekstWrapper {
-    padding-top: 2rem;
-  }
+.informasjon {
+  width:2rem;
+  height:2rem;
 }
 
 :export {

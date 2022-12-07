@@ -1,14 +1,15 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import styles from "./Kalkulatorrad.module.scss";
 import { sendInputfeltUtfyltEvent } from "../../../amplitude/events";
-import { BodyLong, HelpText, Label, TextField } from "@navikt/ds-react";
+import {BodyLong, HelpText, Label, ReadMore, TextField} from "@navikt/ds-react";
 
 interface Props {
   onChange: (event: any) => void;
   value: string | undefined;
   label: string;
   name: string;
-  hjelpetekst?: string | ReactElement;
+  hjelpetekst?: string ;
+  readMore?: ReactElement;
   placeholder?: string;
   visLoader?: boolean;
 }
@@ -37,11 +38,14 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
       />
       <div className={styles.hjelpetekst_wrapper}>
         {props.hjelpetekst && (
-          <HelpText>
-            <BodyLong className={styles.hjelpetekst_innhold}>
+          <HelpText className={styles.hjelpetekst_innhold}>
               {props.hjelpetekst}
-            </BodyLong>
           </HelpText>
+        )}
+          {props.readMore && (
+          <ReadMore  header={'?'} className={styles.hjelpetekst_innhold}>
+              {props.readMore}
+          </ReadMore>
         )}
       </div>
     </div>
