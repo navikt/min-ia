@@ -5,11 +5,14 @@
   padding: 0.5rem;
   max-width: 60rem;
 
+  &__filter_heading{
+    padding: 1rem 0 0 0.5rem;
+  }
   &__filter_rad {
     margin: 0 auto;
     padding: 0.5rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: 60rem;
     flex-wrap: wrap;
   }
@@ -20,7 +23,7 @@
     margin: 0.25rem 0.25rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    min-width: 140px;
+    min-width: 148px;
   }
 
   &__ikon_og_tittel {
@@ -40,15 +43,17 @@
   }
 
   @media (min-width: screensize.$screen-sm) {
+    &__filter_heading{
+      padding: 2rem 1.5rem 0 2rem;
+    }
     &__filter_rad {
-      display: flex;
-      margin-left: auto;
-      justify-content: center;
+      padding-left: 2rem;
+      display: block;
     }
 
     &__knapp {
       margin: 0.5rem;
-      width: 198px;
+      min-width: 0;
     }
   }
 }

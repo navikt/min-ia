@@ -20,7 +20,7 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
         <div className={styles.innloggingsside__illustrasjon}>
           <InnloggingssideIkon height={80} width={80} />
         </div>
-        <Heading size="xlarge">Forebygge fravær</Heading>
+        <Heading level="1" size="xlarge">Forebygge fravær</Heading>
 
         <BodyLong spacing>Inkluderende arbeidsliv</BodyLong>
 

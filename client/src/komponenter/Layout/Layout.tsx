@@ -7,7 +7,7 @@ export const Layout = (props: {
   title: string;
   description: string;
   altinnOrganisasjoner: AltinnOrganisasjon[];
-  children: React.ReactChild;
+  children: React.ReactNode;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
 
