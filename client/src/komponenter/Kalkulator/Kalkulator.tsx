@@ -50,8 +50,8 @@ export const Fraværskalulator: FunctionComponent<
               </Heading>
               <Ingress className={styles.ingress}>
                 Her kan du beregne hvor mye sykefraværet koster og hvor mye du
-                kan spare. Lønnskostnader og sykepengerefusjon er ikke med i
-                regnestykket og kommer i tillegg til kostnad per dag.
+                kan spare. Beløpet viser produksjonstap og økte kostnader.
+                Lønn og sykepengerefusjoner er ikke en del av beløpet.
               </Ingress>
             </div>
             <div className={styles.dagsverk_eller_prosent_toggle}>
