@@ -72,9 +72,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           value={totaltAntallDagsverk}
           label="Totalt antall dagsverk i din bedrift de siste 12 månedene"
           name="totalt-antall-dagsverk"
-          hjelpetekst="Her kan du justere totalt antall dagsverk i din bedrift de siste
-              tolv månedene. En ansatt som jobber full stilling i tolv måneder,
-              utgjør 230 dagsverk."
+          hjelpetekst="En ansatt som jobber full stilling utgjør 230 dagsverk."
         />
         <Kalkulatorrad
           onChange={(event) => {
@@ -86,10 +84,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           label="Kostnad per dag per ansatt i kroner"
           placeholder="kr"
           name="kostnad-per-dagsverk-prosent"
-          hjelpetekst="SINTEF har beregnet at en dags sykefravær gjennomsnittlig koster
-              2600 kroner. Beløpet uttrykker produksjonstap og økte kostnader.
-              Lønn og refusjoner knyttet til sykefravær er ikke en del av
-              beregnet kostnad."
+          hjelpetekst="SINTEF beregner kostnader ved sykefravær til 2600 kr pr dag."
         />
         <Kalkulatorrad
           onChange={(event) => {
@@ -105,7 +100,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           label="Sykefravær i prosent de siste 12 månedene"
           visLoader={!sykefraværsprosentFraDb}
           name="nåværende-prosent"
-          hjelpetekst={sykefraværRadHjelpetekst}
+          hjelpetekst="Prosenten regnes ut fra avtalte og tapte dagsverk."
         />
         <Kalkulatorrad
           onChange={(event) => {
@@ -119,7 +114,6 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           value={ønsketSykefraværsprosent}
           label="Mål for sykefraværet i prosent"
           name="ønsket-prosent"
-          hjelpetekst={ønsketTapteDagsverkSiste12MndHjelpetekst}
         />
       </div>
       <Kostnad
