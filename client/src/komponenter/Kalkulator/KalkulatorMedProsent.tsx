@@ -10,7 +10,6 @@ import {
   validerProsenttallOgReturnerMatch,
 } from "./kalkulator-utils";
 import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
-import { ExternalLink } from "@navikt/ds-icons";
 
 interface Props {
   muligeDagsverkFraDb?: string;
@@ -47,18 +46,6 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
     }
   }, [brukerHarEndretInput, muligeDagsverkFraDb, sykefraværsprosentFraDb]);
 
-  const sykefraværHjelpetekst =
-    "Sykefraværsprosenten regnes ut fra antall tapte dagsverk delt på antall mulige dagsverk.";
-  const sykefraværRadHjelpetekst =
-    sykefraværsprosentFraDb !== undefined
-      ? sykefraværHjelpetekst +
-        " Mulige dagsverk de siste 12 månedene er hentet fra det dere har meldt inn i A-ordningen."
-      : sykefraværHjelpetekst;
-
-  const ønsketTapteDagsverkSiste12MndHjelpetekst =
-    "Når vi beregner mål for sykefraværet benytter vi samme antall mulige dagsverk som når vi" +
-    " beregner nåværende sykefraværsprosent.";
-
   return (
     <>
       <div className={styles.inputrader_wrapper}>
@@ -84,7 +71,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
           label="Kostnad per dag per ansatt i kroner"
           placeholder="kr"
           name="kostnad-per-dagsverk-prosent"
-          hjelpetekst="SINTEF beregner kostnader ved sykefravær til 2600 kr pr dag."
+          hjelpetekst="SINTEF beregner kostnader ved sykefravær til 2600 kr per dag."
         />
         <Kalkulatorrad
           onChange={(event) => {

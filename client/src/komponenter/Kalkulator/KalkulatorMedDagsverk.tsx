@@ -9,7 +9,6 @@ import {
   validerDesimaltallOgReturnerMatch,
 } from "./kalkulator-utils";
 import { Kalkulatorrad } from "./Kalkulatorrad/Kalkulatorrad";
-import { ExternalLink } from "@navikt/ds-icons";
 
 export interface Props {
   tapteDagsverkFraDb?: string;
@@ -28,7 +27,6 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
     string | undefined
   >();
 
-  const [manglerData, setManglerData] = useState<boolean | undefined>();
   const [kostnadDagsverk, setKostnadDagsverk] = useState<string | undefined>(
     GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
   );
@@ -39,21 +37,10 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
   ] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!brukerHarEndretTapteDagsverkInput) {
-      if (tapteDagsverkFraDb === undefined) {
-        setManglerData(true);
-      } else {
-        setNåværendeTapteDagsverk(tapteDagsverkFraDb);
-        setManglerData(false);
-      }
+    if (!brukerHarEndretTapteDagsverkInput && tapteDagsverkFraDb !== undefined) {
+      setNåværendeTapteDagsverk(tapteDagsverkFraDb);
     }
-  }, [tapteDagsverkFraDb, setManglerData]);
-
-  const antallTapteDagsverkHjelpetekst = manglerData
-    ? "Et dagsverk er arbeid som utføres på en dag. " +
-      "Ved fulltidsstilling regnes en hel stilling som ca 230 dagsverk per år."
-    : "NAV har legemeldt fravær tilgjengelig i sitt datagrunnlag. Vi ser på de siste 12 månedene " +
-      "og beregner hvor mange dagsverk som er tapt. Et dagsverk er arbeid som utføres på en dag.";
+  }, [tapteDagsverkFraDb]);
 
   return (
     <>
@@ -69,7 +56,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           label="Antall tapte dagsverk siste 12 måneder"
           visLoader={nedlastingPågår}
           name="nåværende-tapte-dagsverk"
-          hjelpetekst={antallTapteDagsverkHjelpetekst}
+          hjelpetekst="En ansatt som jobber full stilling utgjør 230 dagsverk."
         />
         <Kalkulatorrad
           onChange={(event) => {
@@ -81,10 +68,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           label="Kostnad per dag per ansatt i kroner"
           placeholder="kr"
           name="kostnad-per-dagsverk"
-          hjelpetekst="SINTEF har beregnet at en dags sykefravær gjennomsnittlig koster
-              2600 kroner. Beløpet uttrykker produksjonstap og økte kostnader.
-              Lønn og refusjoner knyttet til sykefravær er ikke en del av
-              beregnet kostnad."
+          hjelpetekst="SINTEF beregner kostnader ved sykefravær til 2600 kr per dag."
         />
         <Kalkulatorrad
           onChange={(event) => {
@@ -95,7 +79,6 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           value={ønsketTapteDagsverk?.toString()}
           label="Mål for sykefraværet i antall tapte dagsverk over 12 måneder"
           name="ønsket-tapte-dagsverk"
-          hjelpetekst="Skriv inn mål for sykefraværet i antall tapte dagsverk i en periode på 12 måneder, for å beregne hvor mye du kan spare."
         />
       </div>
       <Kostnad
