@@ -13,6 +13,7 @@ import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { Layout } from "../komponenter/Layout/Layout";
 import { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
+import Head from "next/head";
 
 export default function Kalkulator(props: { page: PageProps }) {
   const organisasjonerRespons = useAltinnOrganisasjoner();
@@ -40,20 +41,25 @@ export default function Kalkulator(props: { page: PageProps }) {
   }, []);
 
   return (
-    <Layout
-      title={props.page.title}
-      description={props.page.description}
-      altinnOrganisasjoner={brukerensOrganisasjoner}
-    >
-      {erIkkeInnlogget(aggregertStatistikkRespons) ? (
-        <Innloggingsside redirectUrl={window.location.href} />
-      ) : (
-        <Fraværskalulator
-          {...hentUtKalkulatorData(statistikk)}
-          nedlastingPågår={erIkkeFerdigLastet(aggregertStatistikkRespons)}
-        />
-      )}
-    </Layout>
+    <>
+      <Head>
+        <title>{props.page.title}</title>
+      </Head>
+      <Layout
+        title={props.page.title}
+        description={props.page.description}
+        altinnOrganisasjoner={brukerensOrganisasjoner}
+      >
+        {erIkkeInnlogget(aggregertStatistikkRespons) ? (
+          <Innloggingsside redirectUrl={window.location.href} />
+        ) : (
+          <Fraværskalulator
+            {...hentUtKalkulatorData(statistikk)}
+            nedlastingPågår={erIkkeFerdigLastet(aggregertStatistikkRespons)}
+          />
+        )}
+      </Layout>
+    </>
   );
 }
 
