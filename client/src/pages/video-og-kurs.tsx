@@ -6,7 +6,7 @@ import { GetServerSideProps } from "next";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import styles from "../Nettkurs/Nettkurs.module.scss";
-import {Button, Heading} from "@navikt/ds-react";
+import { Button, Heading } from "@navikt/ds-react";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { IAVideoer, QbrickVideo, Tags } from "../utils/nettkurs-utils";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
@@ -86,7 +86,7 @@ export default function VideoOgKurs(props: { page: PageProps }) {
   };
   const innhold = (
     <>
-      <Heading size="large" level={'1'}>
+      <Heading size="large" level={"1"}>
         <title>{props.page.title}</title>
         <meta property="og:title" content="Page title" key="title" />
       </Heading>
@@ -94,7 +94,13 @@ export default function VideoOgKurs(props: { page: PageProps }) {
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (
         <div className={styles.nettkurs}>
-          <Heading level={'2'} size={'medium'} className={styles.nettkurs__filter_heading}>Velg filter</Heading>
+          <Heading
+            level={"2"}
+            size={"medium"}
+            className={styles.nettkurs__filter_heading}
+          >
+            Velg filter
+          </Heading>
           <div className={styles.nettkurs__filter_rad}>
             {filterButtonList(filterListe)}
           </div>
@@ -111,7 +117,10 @@ export default function VideoOgKurs(props: { page: PageProps }) {
                   }}
                   key={index}
                 >
-                  <div style={{ display: "initial", width: "100%" }}>
+                  <div
+                    title={"Video med tittel ".concat(video.metadata.title)}
+                    style={{ display: "initial", width: "100%" }}
+                  >
                     <QbrickVideoPlayer key={video.id} video={video} />
                   </div>
                   <div className={styles.nettkurs__ikon_og_tittel}>
