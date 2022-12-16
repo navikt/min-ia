@@ -6,13 +6,13 @@ import { SkeletonWrapper } from "../../Skeleton/SkeletonWrapper";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export const InfographicFlis = (props: {
-  ikon: ReactNode;
+  //ikon: ReactNode;
   innhold: ReactNode;
   nedlastingPågår?: boolean;
 }) => {
   return (
     <div className={styles.infographicFlis}>
-      <div className={styles.ikonWrapper}>{props.ikon}</div>
+      {/*<div className={styles.ikonWrapper}>{props.ikon}</div>*/}
       {props.nedlastingPågår ? (
         <SkeletonWrapper>
           <Skeleton style={{ marginTop: "0.5rem" }} />

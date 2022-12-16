@@ -6,8 +6,10 @@
   flex-direction: row;
   padding: 0 1rem 0 0;
   margin: 0;
-  &__fyltoppBakgrunn {
-    background-color: var(--navds-global-color-blue-100);
+  &__infographic {
+    //background-color: var(--navds-global-color-blue-100);
+    padding: 3rem 0.5rem;
+    margin: 2rem 0;
   }
 }
 

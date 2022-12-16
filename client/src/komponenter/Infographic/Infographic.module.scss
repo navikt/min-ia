@@ -3,11 +3,17 @@
 .infographicWrapper {
   background-color: white;
   width: 100%;
+  //display: flex;
+  //flex-wrap: wrap;
+  //gap: 2.5rem 0;
+  padding: 2rem 1rem 1.5rem 1rem;
+  //justify-content: center;
+}
+
+.infographicRad{
   display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem 0;
-  padding: 3rem 2rem 1.5rem 2rem;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
 }
 
 .snippetWrapper {

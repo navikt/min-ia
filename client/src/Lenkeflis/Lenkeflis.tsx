@@ -13,11 +13,19 @@ import { navigerEtterCallbacks } from "../utils/navigasjon";
 
 export const Lenkeflis: React.FunctionComponent<{
   overskrift: string;
-  ikon: React.ReactElement;
+  ikon?: React.ReactElement;
   brødtekst: string;
   href: string | undefined;
-  fyltoppBakgrunn?: boolean;
-}> = ({ overskrift, brødtekst, ikon, href, fyltoppBakgrunn }) => {
+  infographicLenkleflis?: boolean;
+  visBrødtekstPåMobil?: boolean;
+}> = ({
+  overskrift,
+  brødtekst,
+  ikon,
+  href,
+  infographicLenkleflis,
+  visBrødtekstPåMobil,
+}) => {
   const orgnr = useOrgnr();
   const destinasjon = href ?? "#";
 
@@ -30,7 +38,7 @@ export const Lenkeflis: React.FunctionComponent<{
       href={destinasjon}
       className={classNames(
         styles.lenkeflis,
-        fyltoppBakgrunn ? styles.lenkeflis__fyltoppBakgrunn : ""
+        infographicLenkleflis ? styles.lenkeflis__infographic : ""
       )}
       onClickCapture={(e) => {
         e.preventDefault();
@@ -45,15 +53,19 @@ export const Lenkeflis: React.FunctionComponent<{
       <div
         className={classNames(
           styles.ikonOgTekstWrapper,
-          fyltoppBakgrunn ? styles.ikonOgTekstWrapper__fyltoppBakgrunn : ""
+          infographicLenkleflis ? styles.ikonOgTekstWrapper__fyltoppBakgrunn : ""
         )}
       >
-        <div className={styles.ikonWrapper}>{ikon}</div>
+        {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
         <div>
           <LinkPanel.Title>
             <div dangerouslySetInnerHTML={{ __html: overskrift }} />
           </LinkPanel.Title>
-          <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
+          {visBrødtekstPåMobil ? (
+            <LinkPanel.Description>{brødtekst}</LinkPanel.Description>
+          ) : (
+            <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
+          )}
         </div>
       </div>
     </LinkPanel>
