@@ -109,7 +109,7 @@ const displaytekstSykefraværBransjeEllerNæring = (
   if (data.fraværsprosentBransjeEllerNæring) {
     return (
       <>
-        <Detail> I {data.bransjeEllerNæring} </Detail>
+        <Detail>I {data.bransjeEllerNæring}</Detail>
         <Label>{data.fraværsprosentBransjeEllerNæring}%</Label>
       </>
     );

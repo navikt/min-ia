@@ -21,9 +21,10 @@ it("sender navigere-event ved klikk på lenke til statistikksiden", async () => 
   const user = userEvent.setup();
   render(<Forside harNoenOrganisasjoner={true} />);
 
-  const lenketekst = "Klikk her for å gå til statistikksiden.";
+  const lenketekst = "Se statistikk";
+  const lenkebeskrivelse = "Se statistikk Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær.";
   const statistikklenke = screen.getByRole("link", {
-    name: lenketekst,
+    name: lenkebeskrivelse,
   });
   await user.click(statistikklenke);
 
