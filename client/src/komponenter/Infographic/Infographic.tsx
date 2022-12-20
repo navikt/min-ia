@@ -25,7 +25,6 @@ export const Infographic: FunctionComponent<
     nedlastingPågår: boolean;
   }
 > = (props) => {
-  //const ikonstorrelse = {width: "50px", height: "50px"};
   const orgnr = useOrgnr();
   const miljø = getMiljø();
   const usingMobileVersion = useMobileVersion();
