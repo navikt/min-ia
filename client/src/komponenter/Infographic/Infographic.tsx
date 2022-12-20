@@ -1,7 +1,6 @@
 import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "./InfographicFlis/InfographicFlis";
-import { Bag, HealthCase, NorwegianFlag, Up } from "@navikt/ds-icons";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { getMiljø } from "../../utils/miljøUtils";
 import {
@@ -9,11 +8,9 @@ import {
   getUrlForApplikasjon,
   utledUrlForBedrift,
 } from "../../utils/navigasjon";
-import { InfoModal } from "./InfoModal/InfoModal";
 import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
-import { BodyLongSmall } from "@navikt/ds-react/src/typography/typography.stories";
 
 export interface InfographicData {
   fraværsprosentNorge?: string;
@@ -46,50 +43,49 @@ export const Infographic: FunctionComponent<
 
   return (
     <div className={styles.infographicWrapper}>
-      <Heading size={"medium"} level={"2"}>
-        Sykefraværsstatistikk siste 12 måneder
-      </Heading>
-      <div className={''}>
-        <div className={styles.infographicRad}>
-          <InfographicFlis
-            innhold={displaytekstSykefraværNorge(props.fraværsprosentNorge)}
-            nedlastingPågår={props.nedlastingPågår}
-          />
+      <div className={styles.infographicContent__wrapper}>
+        <Heading size={"medium"} level={"2"}>
+          Sykefraværsstatistikk siste 12 måneder
+        </Heading>
+        <div className={styles.infographicContent}>
+          <div className={styles.infographicRad}>
+            <InfographicFlis
+              innhold={displaytekstSykefraværNorge(props.fraværsprosentNorge)}
+              nedlastingPågår={props.nedlastingPågår}
+            />
 
-          <InfographicFlis
-            innhold={displaytekstSykefraværBransjeEllerNæring(props)}
-            nedlastingPågår={props.nedlastingPågår}
-          />
-        </div>
+            <InfographicFlis
+              innhold={displaytekstSykefraværBransjeEllerNæring(props)}
+              nedlastingPågår={props.nedlastingPågår}
+            />
+          </div>
 
-        <div className={styles.infographicRad}>
-          <InfographicFlis
-            innhold={
-              <>
-                <BodyLong style={{textAlign:"center"}} size={"small"}>Vanligste diagnose i Norge</BodyLong>
-                <Label style={{textAlign:"center"}}>muskel- og skjelettplager</Label>
-              </>
-            }
-            nedlastingPågår={props.nedlastingPågår}
-          />
+          <div className={styles.infographicRad}>
+            <InfographicFlis
+              innhold={
+                <>
+                  <BodyLong className={styles.infographicFlisOversikt} size={"small"}>
+                    Vanligste diagnose i Norge
+                  </BodyLong>
+                  <Label style={{ textAlign: "center" }}>
+                    Muskel og skjelett
+                  </Label>
+                </>
+              }
+              nedlastingPågår={props.nedlastingPågår}
+            />
 
-          <InfographicFlis
-            innhold={displaytekstTrendBransjeEllerNæring(props)}
-            nedlastingPågår={props.nedlastingPågår}
-          />
+            <InfographicFlis
+              innhold={displaytekstTrendBransjeEllerNæring(props)}
+              nedlastingPågår={props.nedlastingPågår}
+            />
+          </div>
         </div>
       </div>
       <InngangTilSykefraværsstatistikk
         sykefravarsstatistikkUrl={sykefravarsstatistikkUrl}
         useMobileVersion={usingMobileVersion}
       />
-
-      {/*{!usingMobileVersion && (
-            <InfoModal
-                bransjeEllerNæring={props.bransjeEllerNæring}
-                bransjeEllerNæringLabel={props.bransjeEllerNæringLabel}
-            />
-        )}*/}
     </div>
   );
 };

@@ -9,8 +9,7 @@
   padding: 2rem 1rem 1.5rem 1rem;
   //justify-content: center;
 }
-
-.infographicRad{
+.infographicRad {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.75rem;
@@ -40,8 +39,31 @@
   transform: rotate(90deg);
 }
 .informasjon {
-  width:2rem;
-  height:2rem;
+  width: 2rem;
+  height: 2rem;
+}
+.infographicFlisOversikt {
+  text-align: center;
+}
+.infographicContent {
+  &__wrapper {
+    width: 100%;
+  }
+}
+
+@media (min-width: screensize.$screen-md) {
+  .infographicWrapper {
+    display: flex;
+    padding: 2rem 1rem 1.5rem 1rem;
+    justify-content: space-between;
+  }
+
+  .infographicContent {
+    margin: 1.5rem 0 0 0;
+    &__wrapper {
+      width: 49%;
+    }
+  }
 }
 
 :export {
