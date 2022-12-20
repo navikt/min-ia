@@ -119,9 +119,9 @@ it("viser årsak til sykemelding", async () => {
   expect(infobolk.textContent).toBe(
     "Vanligste diagnose i Norge"
   );
-  const infoDiagnose = await screen.getByText(/muskel- og skjelettplager/);
+  const infoDiagnose = await screen.getByText(/Muskel og skjelett/);
   expect(infoDiagnose.textContent).toBe(
-    "muskel- og skjelettplager"
+    "Muskel og skjelett"
   );
 });
 
