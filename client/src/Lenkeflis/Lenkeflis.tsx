@@ -16,14 +16,14 @@ export const Lenkeflis: React.FunctionComponent<{
   ikon?: React.ReactElement;
   brødtekst: string;
   href: string | undefined;
-  infographicLenkleflis?: boolean;
+  infographicLenkeflis?: boolean;
   visBrødtekstPåMobil?: boolean;
 }> = ({
   overskrift,
   brødtekst,
   ikon,
   href,
-  infographicLenkleflis,
+  infographicLenkeflis,
   visBrødtekstPåMobil,
 }) => {
   const orgnr = useOrgnr();
@@ -38,7 +38,7 @@ export const Lenkeflis: React.FunctionComponent<{
       href={destinasjon}
       className={classNames(
         styles.lenkeflis,
-        infographicLenkleflis ? styles.lenkeflis__infographic : ""
+        infographicLenkeflis ? styles.lenkeflis__infographic : ""
       )}
       onClickCapture={(e) => {
         e.preventDefault();
@@ -53,7 +53,7 @@ export const Lenkeflis: React.FunctionComponent<{
       <div
         className={classNames(
           styles.ikonOgTekstWrapper,
-          infographicLenkleflis ? styles.ikonOgTekstWrapper__infographicLenkeflis : ""
+          infographicLenkeflis ? styles.ikonOgTekstWrapper__infographicLenkeflis : ""
         )}
       >
         {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}

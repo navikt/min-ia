@@ -12,7 +12,7 @@ export const InngangTilSykefraværsstatistikk = (props: {
       }
       href={props.sykefravarsstatistikkUrl}
       visBrødtekstPåMobil={true}
-      infographicLenkleflis={true}
+      infographicLenkeflis={true}
     />
   );
 };
