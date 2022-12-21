@@ -6,8 +6,9 @@
   flex-direction: row;
   padding: 0 1rem 0 0;
   margin: 0;
-  &__fyltoppBakgrunn {
-    background-color: var(--navds-global-color-blue-100);
+  &__infographic {
+    padding: 3rem 0.5rem;
+    margin: 2rem 0;
   }
 }
 
@@ -16,7 +17,7 @@
   flex-direction: row;
   align-items: center;
   height: 7rem;
-  &__fyltoppBakgrunn {
+  &__infographicLenkeflis {
     height: 5rem;
   }
 }
@@ -41,5 +42,13 @@
 @media (min-width: screensize.$screen-sm) {
   .ikonOgTekstWrapper {
     height: 12rem;
+  }
+  .lenkeflis {
+    &__infographic{
+      height: 10.5rem;
+      padding: 1rem;
+      margin: 3.5rem 0 1rem 0;
+
+    }
   }
 }

@@ -3,11 +3,12 @@
 .infographicWrapper {
   background-color: white;
   width: 100%;
+  padding: 2rem 1rem 1.5rem 1rem;
+}
+.infographicRad {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem 0;
-  padding: 3rem 2rem 1.5rem 2rem;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
 }
 
 .snippetWrapper {
@@ -18,24 +19,36 @@
 .text {
   float: left;
 }
-.oversiktTekst {
-  padding: 0 3rem;
-}
 .hjelpetekstWrapper {
   margin-left: auto;
 }
-.rotateOpp {
-  transform: rotate(45deg);
-}
-.rotateNed {
-  transform: rotate(135deg);
-}
-.rotateUendret {
-  transform: rotate(90deg);
-}
 .informasjon {
-  width:2rem;
-  height:2rem;
+  width: 2rem;
+  height: 2rem;
+}
+.infographicFlisOversikt {
+  text-align: center;
+}
+.infographicContent {
+  margin-top: 1.5rem;
+  &__wrapper {
+    width: 100%;
+  }
+}
+
+@media (min-width: screensize.$screen-md) {
+  .infographicWrapper {
+    display: flex;
+    padding: 2rem 1rem 1.5rem 1rem;
+    justify-content: space-between;
+  }
+
+  .infographicContent {
+    margin: 1.5rem 0 0 0;
+    &__wrapper {
+      width: 49%;
+    }
+  }
 }
 
 :export {

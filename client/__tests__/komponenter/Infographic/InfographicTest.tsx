@@ -21,9 +21,13 @@ it("viser sykefraværsprosenten for Norge", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i Norge/);
+  const infobolk = await screen.getByText(/I Norge/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i Norge de siste tolv månedene er: 9,0%"
+    "I Norge"
+  );
+  const infoProsent = await screen.getByText(/9/);
+  expect(infoProsent.textContent).toBe(
+      "9,0%"
   );
 });
 
@@ -36,9 +40,13 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet i din/);
+  const infobolk = await screen.getByText(/I bransje/);
   expect(infobolk.textContent).toBe(
-    "Sykefraværet i din bransje de siste tolv månedene er: 5,1%"
+    "I bransje"
+  );
+  const infoProsent = await screen.getByText(/5,1%/);
+  expect(infoProsent.textContent).toBe(
+    "5,1%"
   );
 });
 
@@ -51,8 +59,8 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet er/);
-  expect(infobolk.textContent).toBe("Sykefraværet er stigende i din bransje");
+  const infobolk = await screen.getByText(/Trend i bransjen/);
+  expect(infobolk.textContent).toBe("Trend i bransjenFravær stiger");
 });
 
 it("viser synkende fraværstrend når dette er tilfellet", async () => {
@@ -64,8 +72,8 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet er/);
-  expect(infobolk.textContent).toBe("Sykefraværet er synkende i din næring");
+  const infobolk = await screen.getByText(/Trend i bransjen/);
+  expect(infobolk.textContent).toBe("Trend i bransjenFravær synker");
 });
 
 it("viser ingen fraværstrend når det ikke finnes data", async () => {
@@ -94,8 +102,8 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Sykefraværet er/);
-  expect(infobolk.textContent).toBe("Sykefraværet er uendret i din næring");
+  const infobolk = await screen.getByText(/Trend i bransjen/);
+  expect(infobolk.textContent).toBe("Trend i bransjenFravær er uendret");
 });
 
 it("viser årsak til sykemelding", async () => {
@@ -107,9 +115,13 @@ it("viser årsak til sykemelding", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Vanligste årsak til sykemelding/);
+  const infobolk = await screen.getByText(/Vanligste diagnose i Norge/);
   expect(infobolk.textContent).toBe(
-    "Vanligste årsak til sykemelding i Norge er: muskel- og skjelettplager"
+    "Vanligste diagnose i Norge"
+  );
+  const infoDiagnose = await screen.getByText(/Muskel og skjelett/);
+  expect(infoDiagnose.textContent).toBe(
+    "Muskel og skjelett"
   );
 });
 
@@ -122,9 +134,13 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
       />
     );
   });
-  const infobolk = await screen.getByText(/Trenger du en større oversikt?/);
+  const infobolk = await screen.getByText(/Se statistikk/);
   expect(infobolk.textContent).toBe(
-    "Trenger du en større oversikt? Klikk her for å gå til statistikksiden."
+    "Se statistikk"
+  );
+  const infotekst = await screen.getByText(/Ved å sammenligne dere/);
+  expect(infotekst.textContent).toBe(
+    "Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær."
   );
 });
 
@@ -138,7 +154,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
     );
   });
   const lenke = await screen.getByRole("link", {
-    name: /Klikk her for å gå til statistikksiden./,
+    name: /Se statistikk Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær./,
   });
 
   expect(lenke).toHaveAttribute(
