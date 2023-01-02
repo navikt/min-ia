@@ -1,3 +1,4 @@
+
 import logEvent from "./logEvent";
 
 export const sendSidevisningEvent = () => {
