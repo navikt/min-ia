@@ -32,7 +32,7 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
   await user.click(psykiskHelseFilter);
 
   expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toHaveBeenCalledWith("nettkurs-filter-valgt", {
+  expect(logEvent).toHaveBeenCalledWith("filter-valgt", {
     filter: knappetekst,
   });
 });

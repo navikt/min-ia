@@ -10,7 +10,7 @@ export const sendBedriftValgtEvent = () => {
 };
 
 export const sendNettkursFilterValgtEvent = (filter: String) => {
-  logEvent("nettkurs-filter-valgt", { filter: filter });
+  logEvent("filter-valgt", { filter: filter });
 };
 
 export const sendToggleEvent = (togglename: String, label: String) => {
