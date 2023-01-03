@@ -6,10 +6,11 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
 import { MemoryRouter } from "react-router-dom";
+import Bedriftsmeny, { ForebyggeSykefravaer } from '@navikt/bedriftsmeny';
 
-const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
+/*const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
   ssr: false,
-})
+})*/
 
 export interface Organisasjon {
   Name: string;
@@ -49,6 +50,7 @@ const Banner: React.FunctionComponent<Props> = (props) => {
           organisasjoner={altinnOrganisasjoner}
           sidetittel={tittelMedUnderTittel}
           onOrganisasjonChange={onOrganisasjonChange}
+          piktogram={<ForebyggeSykefravaer />}
         />
       </MemoryRouter>
     </div>
