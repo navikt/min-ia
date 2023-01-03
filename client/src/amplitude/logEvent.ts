@@ -17,7 +17,7 @@ const initClientIfNeeded = () => {
 
 const defaultEventData = () => {
     return {
-        app: "forebygge-fravær",
+        app: "forebygge-fravaer",
         team: "teamia",
         url: window.location.href,
     };
