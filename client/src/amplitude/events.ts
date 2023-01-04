@@ -10,7 +10,7 @@ export const sendNettkursFilterValgtEvent = (filter: String) => {
 };
 
 export const sendToggleEvent = (togglename: String, label: String) => {
-  logEvent("toggle", { togglenavn: togglename, verdiValgt: label });
+  logEvent("toggleGroup valgt", { togglenavn: togglename, verdiValgt: label });
 };
 
 export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
