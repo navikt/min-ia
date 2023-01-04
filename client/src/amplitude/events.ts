@@ -6,7 +6,7 @@ export const sendBedriftValgtEvent = () => {
 };
 
 export const sendNettkursFilterValgtEvent = (filter: String) => {
-  logEvent("filter-valgt", { filter: filter });
+  logEvent("filter valgt", { filter: filter });
 };
 
 export const sendToggleEvent = (togglename: String, label: String) => {
@@ -14,7 +14,7 @@ export const sendToggleEvent = (togglename: String, label: String) => {
 };
 
 export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
-  logEvent("inputfelt-utfylt", { label, name });
+  logEvent("textField utfylt", { label, name });
 };
 
 export const sendNavigereEvent = (
