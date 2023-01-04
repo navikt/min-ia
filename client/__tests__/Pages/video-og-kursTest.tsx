@@ -32,8 +32,9 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
   await user.click(psykiskHelseFilter);
 
   expect(logEvent).toBeCalledTimes(1);
-  expect(logEvent).toHaveBeenCalledWith("filter valgt", {
-    filter: knappetekst,
+  expect(logEvent).toHaveBeenCalledWith("chip valgt", {
+    chipId: knappetekst,
+    tekst: knappetekst
   });
 });
 

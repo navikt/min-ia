@@ -5,8 +5,8 @@ export const sendBedriftValgtEvent = () => {
   logEvent("bedrift valgt");
 };
 
-export const sendNettkursFilterValgtEvent = (filter: String) => {
-  logEvent("filter valgt", { filter: filter });
+export const sendNettkursFilterValgtEvent = (chipId: string, tekst: String) => {
+  logEvent("chip valgt", { chipId: chipId, tekst: tekst });
 };
 
 export const sendToggleEvent = (togglename: String, label: String) => {
