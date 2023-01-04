@@ -9,7 +9,7 @@ const initClientIfNeeded = () => {
             saveEvents: false,
             includeUtm: true,
             includeReferrer: true,
-            platform: window.location.toString(),
+            platform: window.location.toString().split('?')[0].split('#')[0],
         });
         initiated = true;
     }
@@ -19,9 +19,9 @@ const defaultEventData = () => {
     return {
         app: "forebygge-fravaer",
         team: "teamia",
-        url: window.location.href,
+        url: window.location.href.split('?')[0].split('#')[0],
     };
-};
+}
 
 export default function logEvent(
     eventName: string,
