@@ -19,7 +19,6 @@ const defaultEventData = () => {
     return {
         app: "forebygge-fravaer",
         team: "teamia",
-        url: window.location.href.split('?')[0].split('#')[0],
     };
 }
 

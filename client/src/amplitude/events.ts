@@ -1,16 +1,12 @@
 
 import logEvent from "./logEvent";
 
-export const sendSidevisningEvent = () => {
-  logEvent("sidevisning");
-};
-
 export const sendBedriftValgtEvent = () => {
-  logEvent("bedrift-valgt");
+  logEvent("bedrift valgt");
 };
 
 export const sendNettkursFilterValgtEvent = (filter: String) => {
-  logEvent("filter-valgt", { filter: filter });
+  logEvent("filter valgt", { filter: filter });
 };
 
 export const sendToggleEvent = (togglename: String, label: String) => {
@@ -18,7 +14,7 @@ export const sendToggleEvent = (togglename: String, label: String) => {
 };
 
 export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
-  logEvent("inputfelt-utfylt", { label, name });
+  logEvent("inputfelt utfylt", { label, name });
 };
 
 export const sendNavigereEvent = (
