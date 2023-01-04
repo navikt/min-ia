@@ -15,16 +15,9 @@ const initClientIfNeeded = () => {
     }
 };
 
-const defaultEventData = () => {
-    return {
-        app: "forebygge-fravaer",
-        team: "teamia",
-    };
-}
-
 export default function logEvent(
     eventName: string,
-    additionalEventData: any = {}
+    eventData: any = {}
 ): Promise<any> {
     initClientIfNeeded();
     return new Promise(function (resolve) {
@@ -32,7 +25,7 @@ export default function logEvent(
             .getInstance()
             .logEvent(
                 eventName,
-                {...defaultEventData(), ...additionalEventData},
+                {...eventData},
                 resolve
             );
     });
