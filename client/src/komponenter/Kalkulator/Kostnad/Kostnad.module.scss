@@ -4,7 +4,7 @@
   margin-top: 2rem;
   padding: 2rem 1rem 3rem;
   border-radius: 0.25rem;
-  border: 0.125rem solid var(--navds-global-color-blue-200);
+  border: 0.125rem solid var(--a-blue-200);
 }
 
 .tittel {
@@ -23,19 +23,19 @@
 }
 
 .sisteresultat {
-  color: var(--navds-global-color-green-500);
+  color: var(--a-green-500);
   &_minus {
-    color: var(--navds-global-color-nav-red);
+    color: var(--a-nav-red);
   }
 }
 
 .sisterad {
-  border-bottom: 0.125rem solid var(--navds-global-color-gray-100);
+  border-bottom: 0.125rem solid var(--a-gray-100);
   padding-bottom: 1rem;
 }
 
 .resultatrad {
-  border-bottom: 0.125rem double var(--navds-global-color-gray-900);
+  border-bottom: 0.125rem double var(--a-gray-900);
   padding-bottom: 1rem;
 }
 
