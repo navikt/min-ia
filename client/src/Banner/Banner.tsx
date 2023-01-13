@@ -8,6 +8,7 @@ import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
 import { MemoryRouter } from "react-router-dom";
 import { ForebyggeSykefravaer } from '@navikt/bedriftsmeny';
+import { NotifikasjonWidget} from "@navikt/arbeidsgiver-notifikasjon-widget";
 
 const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
   ssr: false,
@@ -52,7 +53,9 @@ const Banner: React.FunctionComponent<Props> = (props) => {
           sidetittel={tittelMedUnderTittel}
           onOrganisasjonChange={onOrganisasjonChange}
           piktogram={<ForebyggeSykefravaer />}
-        />
+        >
+          <NotifikasjonWidget />
+        </Bedriftsmeny>
       </MemoryRouter>
     </div>
   );

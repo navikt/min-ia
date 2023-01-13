@@ -1,6 +1,7 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { exchangeToken } from "../../tokenx";
 import { Express } from "express";
+import { applyNotifikasjonMockMiddleware } from "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock";
 
 const FRONTEND_API_PATH = "/min-ia/api";
 const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
@@ -75,4 +76,11 @@ export const setupIaTjenestermetrikkerProxy = (server: Express) => {
       iaTjenestemetrikkerProxyOptions
     )
   );
+};
+
+export const setupNotifikasjonBrukerAPIProxy = (server: Express) => {
+  applyNotifikasjonMockMiddleware({
+    app: server,
+    path: "/min-ia/notifikasjon-bruker-api",
+  });
 };
