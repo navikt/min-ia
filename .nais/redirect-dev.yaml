@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: 'Ingress'
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/permanent-redirect: https://forebygge-fravar.dev.nav.no/forebygge-fravar
+  labels:
+    app: min-ia
+    team: teamia
+  name: min-ia-redirect
+  namespace: teamia
+spec:
+  ingressClassName: gw-dev-intern-nav-no
+  rules:
+    - host: min-ia.dev.nav.no/min-ia
+      http:
+        paths:
+          - backend:
+              service:
+                name: min-ia
+                port:
+                  number: 80
+            path: /
+            kind: Prefix

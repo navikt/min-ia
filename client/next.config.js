@@ -4,7 +4,7 @@ const csp = require("./src/csp");
 
 const nextConfig = {
   reactStrictMode: true,
-  basePath: "/min-ia",
+  basePath: "/forebygge-fravar",
   serverRuntimeConfig: {
     decoratorUrl: process.env.DECORATOR_URL,
     decoratorBreadcrumbThisPageUrl:
@@ -28,39 +28,39 @@ const nextConfig = {
     return [
       {
         source: "/qbrick/config/no-preload",
-        destination: "http://localhost:3010/min-ia/qbrick/config/no-preload",
+        destination: "http://localhost:3010/forebygge-fravar/qbrick/config/no-preload",
       },
       {
         source: "/internal/isAlive",
-        destination: "http://localhost:3010/min-ia/internal/isAlive",
+        destination: "http://localhost:3010/forebygge-fravar/internal/isAlive",
       },
       {
         source: "/internal/isReady",
-        destination: "http://localhost:3010/min-ia/internal/isReady",
+        destination: "http://localhost:3010/forebygge-fravar/internal/isReady",
       },
       {
         source: "/internal/metrics",
-        destination: "http://localhost:3010/min-ia/internal/metrics",
+        destination: "http://localhost:3010/forebygge-fravar/internal/metrics",
       },
       {
         source: "/api/:slug*",
-        destination: "http://localhost:3010/min-ia/api/:slug*",
+        destination: "http://localhost:3010/forebygge-fravar/api/:slug*",
       },
       {
         source: "/redirect-til-login:slug*",
-        destination: "http://localhost:3010/min-ia/redirect-til-login:slug*",
+        destination: "http://localhost:3010/forebygge-fravar/redirect-til-login:slug*",
       },
       {
         source: "/success:slug*",
-        destination: "http://localhost:3010/min-ia/success:slug*",
+        destination: "http://localhost:3010/forebygge-fravar/success:slug*",
       },
       {
         source: "/kursoversikt/:slug*",
-        destination: "http://localhost:3010/min-ia/kursoversikt/:slug*",
+        destination: "http://localhost:3010/forebygge-fravar/kursoversikt/:slug*",
       },
       {
         source: "/metrikker/:slug*",
-        destination: "http://localhost:3010/min-ia/metrikker/:slug*",
+        destination: "http://localhost:3010/forebygge-fravar/metrikker/:slug*",
       },
     ];
   },

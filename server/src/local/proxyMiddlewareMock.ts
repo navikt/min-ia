@@ -18,7 +18,7 @@ export const backendApiProxyMock = (server: Express) => {
     : "NORMAL";
   const delayInMillis = 500;
 
-  server.get("/min-ia/api/organisasjoner", (request, response) => {
+  server.get("/forebygge-fravar/api/organisasjoner", (request, response) => {
     console.log(`[DEBUG] GET /api/organisasjoner`);
 
     switch (testMode) {
@@ -35,7 +35,7 @@ export const backendApiProxyMock = (server: Express) => {
   });
 
   server.get(
-    "/min-ia/api/:orgnr/v1/sykefravarshistorikk/aggregert",
+    "/forebygge-fravar/api/:orgnr/v1/sykefravarshistorikk/aggregert",
     (request, response) => {
       const orgnr = request.params.orgnr;
       console.log(
@@ -76,7 +76,7 @@ export const backendApiProxyMock = (server: Express) => {
   );
 
   server.post(
-    `/min-ia/metrikker/innlogget/mottatt-iatjeneste`,
+    `/forebygge-fravar/metrikker/innlogget/mottatt-iatjeneste`,
     (request, response) => {
       setTimeout(function () {
         response.send({
@@ -86,7 +86,7 @@ export const backendApiProxyMock = (server: Express) => {
     }
   );
 
-  server.get(`/min-ia/kursoversikt`, (request, response) => {
+  server.get(`/forebygge-fravar/kursoversikt`, (request, response) => {
     response.send(kurslisteMock);
   });
 };

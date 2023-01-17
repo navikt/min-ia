@@ -1,4 +1,4 @@
-name: Build and deploy min-ia
+name: Build and deploy forebygge-fravar
 on: [ push ]
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}

@@ -2,9 +2,9 @@ import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { exchangeToken } from "../../tokenx";
 import { Express } from "express";
 
-const FRONTEND_API_PATH = "/min-ia/api";
-const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
-const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt";
+const FRONTEND_API_PATH = "/forebygge-fravar/api";
+const FRONTEND_METRIKKER_PATH = "/forebygge-fravar/metrikker";
+const FRONTEND_KURSOVERSIKT_PATH = "/forebygge-fravar/kursoversikt";
 const KURSOVERSIKT_API_PATH = "/api/kurs";
 
 const backendApiProxyOptions: Options = {
