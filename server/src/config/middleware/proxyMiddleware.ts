@@ -86,23 +86,23 @@ export const setupNotifikasjonBrukerAPIProxyMock = (server: Express) => {
   });
 };
 
-const proxyConfig: Options = {
-  target: 'http://notifikasjon-bruker-api.fager.svc.cluster.local',
-  changeOrigin: true,
-  pathRewrite: { '/min-ia/notifikasjon-bruker-api': '/api/graphql' },
-  router: async (req) => {
-    const tokenSet = await exchangeToken(req, NOTIFIKASJON_API_AUDIENCE);
-    if (!tokenSet?.expired() && tokenSet?.access_token) {
-      req.headers['authorization'] = `Bearer ${tokenSet.access_token}`;
-    }
-    return undefined;
-  },
-  secure: true,
-  xfwd: true,
-  logLevel: "info",
-};
 
 export function applyNotifikasjonMiddleware(app) {
+  const proxyConfig: Options = {
+    target: 'http://notifikasjon-bruker-api.fager.svc.cluster.local',
+    changeOrigin: true,
+    pathRewrite: { '/min-ia/notifikasjon-bruker-api': '/api/graphql' },
+    router: async (req) => {
+      const tokenSet = await exchangeToken(req, NOTIFIKASJON_API_AUDIENCE);
+      if (!tokenSet?.expired() && tokenSet?.access_token) {
+        req.headers['authorization'] = `Bearer ${tokenSet.access_token}`;
+      }
+      return undefined;
+    },
+    secure: true,
+    xfwd: true,
+    logLevel: "info",
+  };
 
   const notifikasjonBrukerApiProxy = createProxyMiddleware(
         '/min-ia/notifikasjon-bruker-api',
