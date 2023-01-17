@@ -63,7 +63,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/HELST_IKKE_EN_UTVIKLINGS_BRANCH'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/oppdatere-bedriftsmeny-til-v6'
     needs: build
     runs-on: ubuntu-latest
     steps:

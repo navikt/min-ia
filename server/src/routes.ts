@@ -5,7 +5,8 @@ import { isProduction } from "./util/environment";
 import {
   setupBackendApiProxy,
   setupIaTjenestermetrikkerProxy,
-  setupKursoversiktApiProxy, setupNotifikasjonBrukerAPIProxy,
+  setupKursoversiktApiProxy, setupNotifikasjonBrukerAPIProxyMock,
+    applyNotifikasjonMiddleware
 } from "./config/middleware/proxyMiddleware";
 import { backendApiProxyMock } from "./local/proxyMiddlewareMock";
 
@@ -17,8 +18,9 @@ export const setupApiRoutes = (server: Express) => {
     setupBackendApiProxy(server);
     setupKursoversiktApiProxy(server);
     setupIaTjenestermetrikkerProxy(server);
+    applyNotifikasjonMiddleware(server)
   } else {
-    setupNotifikasjonBrukerAPIProxy(server)
+    setupNotifikasjonBrukerAPIProxyMock(server)
     backendApiProxyMock(server);
   }
 };
