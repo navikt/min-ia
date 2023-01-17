@@ -63,7 +63,7 @@ spec:
     - https://arbeidsgiver.nav.no/forebygge-fravar
   prometheus:
     enabled: true
-    path: /min-ia/internal/metrics
+    path: /forebygge-fravar/internal/metrics
   accessPolicy:
     outbound:
       rules:
