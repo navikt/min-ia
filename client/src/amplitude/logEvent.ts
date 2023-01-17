@@ -1,51 +1,32 @@
 import amplitude from "amplitude-js";
-import { getMiljø, Miljø } from "../utils/miljøUtils";
 
-const enum AmplitudeBucket {
-  ARBEIDSGIVER_PROD = "a8243d37808422b4c768d31c88a22ef4",
-  ARBEIDSGIVER_DEV = "6ed1f00aabc6ced4fd6fcb7fcdc01b30",
-}
-
-const getAmplitudeBucket = () => {
-  return getMiljø() === Miljø.Prod
-    ? AmplitudeBucket.ARBEIDSGIVER_PROD
-    : AmplitudeBucket.ARBEIDSGIVER_DEV;
-};
 
 let initiated = false;
 const initClientIfNeeded = () => {
-  if (!initiated) {
-    amplitude.getInstance().init(getAmplitudeBucket(), "", {
-      apiEndpoint: "amplitude.nav.no/collect",
-      saveEvents: false,
-      includeUtm: true,
-      batchEvents: false,
-      includeReferrer: true,
-    });
-    initiated = true;
-  }
-};
-
-const defaultEventData = () => {
-  return {
-    app: "forebygge-fravær",
-    team: "teamia",
-    url: window.location.href,
-  };
+    if (!initiated) {
+        amplitude.getInstance().init('default', '', {
+            apiEndpoint: 'amplitude.nav.no/collect-auto',
+            saveEvents: false,
+            includeUtm: true,
+            includeReferrer: true,
+            platform: window.location.toString().split('?')[0].split('#')[0],
+        });
+        initiated = true;
+    }
 };
 
 export default function logEvent(
-  eventName: string,
-  additionalEventData: any = {}
+    eventName: string,
+    eventData: any = {}
 ): Promise<any> {
-  initClientIfNeeded();
-  return new Promise(function (resolve) {
-    amplitude
-      .getInstance()
-      .logEvent(
-        eventName,
-        { ...defaultEventData(), ...additionalEventData },
-        resolve
-      );
-  });
+    initClientIfNeeded();
+    return new Promise(function (resolve) {
+        amplitude
+            .getInstance()
+            .logEvent(
+                eventName,
+                {...eventData},
+                resolve
+            );
+    });
 }

@@ -70,7 +70,7 @@ export default function VideoOgKurs(props: { page: PageProps }) {
             className={styles.nettkurs__knapp}
             onClick={() => {
               document.dispatchEvent(new CustomEvent("forcePausePlayer"));
-              sendNettkursFilterValgtEvent(toggleFilter.tekst);
+              sendNettkursFilterValgtEvent(toggleFilter.key, toggleFilter.tekst);
               toggleFilters(toggleFilter.key);
             }}
           >

@@ -3,7 +3,7 @@ import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { useOrgnr } from "../../hooks/useOrgnr";
-import { sendSidevisningEvent, sendToggleEvent } from "../../amplitude/events";
+import { sendToggleEvent } from "../../amplitude/events";
 import {Heading, Ingress, Link, ToggleGroup} from "@navikt/ds-react";
 import {
   IaTjeneste,
@@ -22,22 +22,12 @@ export const Fraværskalulator: FunctionComponent<
     nedlastingPågår: boolean;
   }
 > = (props) => {
-  const orgnr = useOrgnr();
   useSendIaTjenesteMetrikkOnEvent(
     IaTjeneste.KALKULATOR,
     "inputfeltEndretAvBruker"
   );
 
   const [kalkulatorvariant, setKalkulatorvariant] = useState("prosent");
-
-  // Using ref so that the metrics is only sent once per page visit
-  const hasLoggedPageVisit = useRef(false);
-  useEffect(() => {
-    if (!hasLoggedPageVisit.current && typeof document !== "undefined") {
-      sendSidevisningEvent();
-      hasLoggedPageVisit.current = true;
-    }
-  }, []);
 
   return (
     <div className={styles.wrapper}>

@@ -1,23 +1,20 @@
+
 import logEvent from "./logEvent";
 
-export const sendSidevisningEvent = () => {
-  logEvent("sidevisning");
-};
-
 export const sendBedriftValgtEvent = () => {
-  logEvent("bedrift-valgt");
+  logEvent("bedrift valgt");
 };
 
-export const sendNettkursFilterValgtEvent = (filter: String) => {
-  logEvent("nettkurs-filter-valgt", { filter: filter });
+export const sendNettkursFilterValgtEvent = (chipId: string, tekst: String) => {
+  logEvent("chip valgt", { chipId: chipId, tekst: tekst });
 };
 
 export const sendToggleEvent = (togglename: String, label: String) => {
-  logEvent("toggle", { togglenavn: togglename, verdiValgt: label });
+  logEvent("toggleGroup valgt", { togglenavn: togglename, verdiValgt: label });
 };
 
 export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
-  logEvent("inputfelt-utfylt", { label, name });
+  logEvent("textField utfylt", { label, name });
 };
 
 export const sendNavigereEvent = (
