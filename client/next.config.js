@@ -64,7 +64,7 @@ const nextConfig = {
       },
       {
         source: "/notifikasjon-bruker-api",
-        destination: "http://localhost:3010/min-ia/notifikasjon-bruker-api",
+        destination: "http://localhost:3010/forebygge-fravar/notifikasjon-bruker-api",
       },
     ];
   },
