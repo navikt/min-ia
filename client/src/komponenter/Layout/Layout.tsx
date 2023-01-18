@@ -15,7 +15,7 @@ export const Layout = (props: {
   const miljø = getMiljø();
 
   const banner = (
-    <NotifikasjonWidgetProvider apiUrl={'/min-ia/notifikasjon-bruker-api'} miljo={miljø === Miljø.Prod ? "prod" : "dev"}>
+    <NotifikasjonWidgetProvider apiUrl={'/forebygge-fravar/notifikasjon-bruker-api'} miljo={miljø === Miljø.Prod ? "prod" : "dev"}>
       <Banner
         tittelMedUnderTittel={
           <div>

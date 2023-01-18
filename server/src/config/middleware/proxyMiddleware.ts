@@ -82,7 +82,7 @@ export const setupIaTjenestermetrikkerProxy = (server: Express) => {
 export const setupNotifikasjonBrukerAPIProxyMock = (server: Express) => {
   applyNotifikasjonMockMiddleware({
     app: server,
-    path: "/min-ia/notifikasjon-bruker-api",
+    path: "/forebygge-fravar/notifikasjon-bruker-api",
   });
 };
 
@@ -91,7 +91,7 @@ export function applyNotifikasjonMiddleware(app) {
   const proxyConfig: Options = {
     target: 'http://notifikasjon-bruker-api.fager.svc.cluster.local',
     changeOrigin: true,
-    pathRewrite: { '/min-ia/notifikasjon-bruker-api': '/api/graphql' },
+    pathRewrite: { '/forebygge-fravar/notifikasjon-bruker-api': '/api/graphql' },
     router: async (req) => {
       const tokenSet = await exchangeToken(req, NOTIFIKASJON_API_AUDIENCE);
       if (!tokenSet?.expired() && tokenSet?.access_token) {
@@ -105,7 +105,7 @@ export function applyNotifikasjonMiddleware(app) {
   };
 
   const notifikasjonBrukerApiProxy = createProxyMiddleware(
-        '/min-ia/notifikasjon-bruker-api',
+        '/forebygge-fravar/notifikasjon-bruker-api',
         proxyConfig
     );
     app.use(notifikasjonBrukerApiProxy);
