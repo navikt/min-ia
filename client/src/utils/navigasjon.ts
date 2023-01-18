@@ -74,7 +74,7 @@ const getUrlForSykefraværsstatistikk = (miljø: Miljø): string => {
 };
 
 export const getUrlForKalkulator = (): string => {
-  return "/min-ia/kalkulator";
+  return "/forebygge-fravar/kalkulator";
 };
 
 const getUrlForSamtalestøtte = (miljø: Miljø): string => {
@@ -93,5 +93,5 @@ const getUrlForSamtalestøtte = (miljø: Miljø): string => {
 };
 
 const getUrlForNettkurs = (): string => {
-  return "/min-ia/video-og-kurs";
+  return "/forebygge-fravar/video-og-kurs";
 };

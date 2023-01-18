@@ -18,15 +18,15 @@ spec:
     - name: NODE_ENV
       value: development
     - name: APP_INGRESS
-      value: https://arbeidsgiver.labs.nais.io/min-ia
+      value: https://arbeidsgiver.labs.nais.io/forebygge-fravar
     - name: DECORATOR_ENV
       value: prod
     - name: DECORATOR_URL
       value: https://www.nav.no/dekoratoren/?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
-      value: https://arbeidsgiver.nav.no/min-ia
+      value: https://arbeidsgiver.nav.no/forebygge-fravar
     - name: NEXT_PUBLIC_KALKULATOR_URL
-      value: https://arbeidsgiver.labs.nais.io/min-ia/kalkulator
+      value: https://arbeidsgiver.labs.nais.io/forebygge-fravar/kalkulator
     - name: NEXT_PUBLIC_NETTKURS_URL
       value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
     - name: NEXT_PUBLIC_SAMTALESTOTTE_URL
@@ -34,11 +34,11 @@ spec:
     - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
   liveness:
-    path: /min-ia/internal/isAlive
+    path: /forebygge-fravar/internal/isAlive
     initialDelay: 20
     timeout: 60
   readiness:
-    path: /min-ia/internal/isReady
+    path: /forebygge-fravar/internal/isReady
     initialDelay: 20
     timeout: 60
   replicas:
@@ -46,7 +46,7 @@ spec:
     max: 2
     cpuThresholdPercentage: 50
   ingresses:
-    - https://arbeidsgiver.labs.nais.io/min-ia
+    - https://arbeidsgiver.labs.nais.io/forebygge-fravar
   accessPolicy:
     outbound:
       external:

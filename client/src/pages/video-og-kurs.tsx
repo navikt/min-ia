@@ -145,11 +145,11 @@ export default function VideoOgKurs(props: { page: PageProps }) {
     setBreadcrumbs([
       {
         title: "Forebygge fravær",
-        url: "/min-ia",
+        url: "/forebygge-fravar",
       },
       {
         title: "Video og kurs",
-        url: "/min-ia/video-og-kurs",
+        url: "/forebygge-fravar/video-og-kurs",
       },
     ]);
   }, []);

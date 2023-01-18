@@ -31,11 +31,11 @@ export default function Kalkulator(props: { page: PageProps }) {
     setBreadcrumbs([
       {
         title: "Forebygge fravær",
-        url: "/min-ia",
+        url: "/forebygge-fravar",
       },
       {
         title: "Fraværskalkulator",
-        url: "/min-ia/kalkulator",
+        url: "/forebygge-fravar/kalkulator",
       },
     ]);
   }, []);

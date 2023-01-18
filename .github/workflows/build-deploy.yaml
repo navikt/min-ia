@@ -1,4 +1,5 @@
-name: Build and deploy min-ia
+name: Build and deploy forebygge-fravar
+run-name: Build and deploy app | ${{ github.event.head_commit.message }}
 on: [ push ]
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
@@ -12,9 +13,9 @@ jobs:
     name: Build, lint, test and push docker image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
 
@@ -31,14 +32,14 @@ jobs:
         run: yarn test
 
       - name: Lint client
-        uses: wearerequired/lint-action@v1
+        uses: wearerequired/lint-action@v2
         with:
           eslint: true
           eslint_dir: client/
           eslint_extensions: js,jsx,ts,tsx
 
       - name: Login to GitHub Docker Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -49,7 +50,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/oppdatere-bedriftsmeny-til-v6'
+    if: github.ref == 'refs/heads/redirect-ingress'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -63,7 +64,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/oppdatere-bedriftsmeny-til-v6'
+    if: github.ref == 'refs/heads/redirect-ingress'
     needs: build
     runs-on: ubuntu-latest
     steps:
