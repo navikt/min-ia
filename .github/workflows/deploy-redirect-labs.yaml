@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - '**'
     paths:
       - '.nais/redirect-labs.yaml'
       - '.github/workflows/deploy-redirect-labs.yaml'
