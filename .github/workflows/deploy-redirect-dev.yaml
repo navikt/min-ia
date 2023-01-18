@@ -5,13 +5,16 @@ on:
     branches:
       - '**'
       - '!main'
+    paths:
+      - '.nais/redirect-dev.yaml'
+      - '.github/workflows/deploy-redirect-dev.yaml'
 jobs:
   deploy:
     name: Deploy redirect ingress to dev-gcp
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Deploy redirect ingress to dev-gcp
+      - name: Deploy redirect ingress to dev
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

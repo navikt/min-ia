@@ -1,0 +1,21 @@
+name: Deploy redirect ingress to prod
+run-name: Deploy ingress to prod | ${{ github.event.head_commit.message }}
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.nais/redirect-prod.yaml'
+      - '.github/workflows/deploy-redirect-prod.yaml'
+jobs:
+  deploy:
+    name: Deploy redirect ingress to prod-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy redirect ingress to prod
+        uses: nais/deploy/actions/deploy@master
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/redirect-prod.yaml

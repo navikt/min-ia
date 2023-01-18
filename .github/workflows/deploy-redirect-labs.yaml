@@ -3,15 +3,17 @@ run-name: Deploy ingress to labs | ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
-      - '**'
-      - '!main'
+      - 'main'
+    paths:
+      - '.nais/redirect-labs.yaml'
+      - '.github/workflows/deploy-redirect-labs.yaml'
 jobs:
   deploy:
     name: Deploy redirect ingress to labs-gcp
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Deploy redirect ingress to labs-gcp
+      - name: Deploy redirect ingress to labs
         uses: nais/deploy/actions/deploy@master
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
