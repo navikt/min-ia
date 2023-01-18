@@ -3,15 +3,15 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx:ingress:kubernetes:io/rewrite-target: "https://forebygge-fravar.dev.nav.no/forebygge-fravar/$2"
+    nginx.ingress.kubernetes.io/rewrite-target: https://forebygge-fravar.dev.nav.no/forebygge-fravar/$2
     prometheus.io/scrape: "false"
   labels:
     app: min-ia
     team: teamia
-  name: min-ia-redirect
+  name: redirect-min-ia-to-forebygge-fravar
   namespace: teamia
 spec:
-  ingressClassName: gw-ekstern-dev-nav-no
+  ingressClassName: gw-dev-nav-no
   rules:
     - host: min-ia.dev.nav.no
       http:
