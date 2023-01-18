@@ -25,6 +25,8 @@ spec:
       value: "prod-fss:arbeidsgiver:sykefravarsstatistikk-api"
     - name: IA_TJENESTER_METRIKKER_AUDIENCE
       value: "prod-gcp:arbeidsgiver:ia-tjenester-metrikker"
+    - name: NOTIFIKASJON_API_AUDIENCE
+      value: "prod-gcp:fager:notifikasjon-bruker-api"
     - name: APP_INGRESS
       value: https://arbeidsgiver.nav.no/min-ia
     - name: DECORATOR_ENV
@@ -73,6 +75,8 @@ spec:
         - application: ia-tjenester-metrikker
           namespace: arbeidsgiver
           cluster: prod-gcp
+        - application: notifikasjon-bruker-api
+          namespace: fager
       external:
         - host: dekoratoren.nav.no
         - host: sykefravarsstatistikk-api.prod-fss-pub.nais.io

@@ -14,6 +14,7 @@ const customJestConfig = {
   testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
     "^uuid$": "uuid",
+    "@navikt/ds-css": "jest-transform-stub",
   },
 };
 

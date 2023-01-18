@@ -1,11 +1,13 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
 import { exchangeToken } from "../../tokenx";
 import { Express } from "express";
+import { applyNotifikasjonMockMiddleware } from "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock";
 
 const FRONTEND_API_PATH = "/min-ia/api";
 const FRONTEND_METRIKKER_PATH = "/min-ia/metrikker";
 const FRONTEND_KURSOVERSIKT_PATH = "/min-ia/kursoversikt";
 const KURSOVERSIKT_API_PATH = "/api/kurs";
+const { NOTIFIKASJON_API_AUDIENCE } = process.env;
 
 const backendApiProxyOptions: Options = {
   target: process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL,
@@ -76,3 +78,35 @@ export const setupIaTjenestermetrikkerProxy = (server: Express) => {
     )
   );
 };
+
+export const setupNotifikasjonBrukerAPIProxyMock = (server: Express) => {
+  applyNotifikasjonMockMiddleware({
+    app: server,
+    path: "/min-ia/notifikasjon-bruker-api",
+  });
+};
+
+
+export function applyNotifikasjonMiddleware(app) {
+  const proxyConfig: Options = {
+    target: 'http://notifikasjon-bruker-api.fager.svc.cluster.local',
+    changeOrigin: true,
+    pathRewrite: { '/min-ia/notifikasjon-bruker-api': '/api/graphql' },
+    router: async (req) => {
+      const tokenSet = await exchangeToken(req, NOTIFIKASJON_API_AUDIENCE);
+      if (!tokenSet?.expired() && tokenSet?.access_token) {
+        req.headers['authorization'] = `Bearer ${tokenSet.access_token}`;
+      }
+      return undefined;
+    },
+    secure: true,
+    xfwd: true,
+    logLevel: "info",
+  };
+
+  const notifikasjonBrukerApiProxy = createProxyMiddleware(
+        '/min-ia/notifikasjon-bruker-api',
+        proxyConfig
+    );
+    app.use(notifikasjonBrukerApiProxy);
+}
