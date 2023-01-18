@@ -1,5 +1,5 @@
 name: Deploy redirect ingress to dev
-run-name: Deploy redirect ingress to dev by @${{ github.actor }}
+run-name: Deploy ingress to dev | ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
