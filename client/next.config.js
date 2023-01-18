@@ -62,6 +62,10 @@ const nextConfig = {
         source: "/metrikker/:slug*",
         destination: "http://localhost:3010/forebygge-fravar/metrikker/:slug*",
       },
+      {
+        source: "/notifikasjon-bruker-api",
+        destination: "http://localhost:3010/min-ia/notifikasjon-bruker-api",
+      },
     ];
   },
   async redirects() {
