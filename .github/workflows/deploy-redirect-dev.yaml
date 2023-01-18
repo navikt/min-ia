@@ -1,9 +1,6 @@
 name: Deploy redirect ingress to dev
 on:
   push:
-    paths:
-      - 'redirect-dev.yaml'
-      - '.github/workflows/deploy-redirect-dev**'
     branches:
       - '**'
       - '!main'
