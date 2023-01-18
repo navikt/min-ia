@@ -1,5 +1,5 @@
 name: Build and deploy forebygge-fravar
-run-name: "${{ github.event.head_commit.message }}" by @${{ github.actor }}
+run-name: ${{ github.event.head_commit.message }} by @${{ github.actor }}
 on: [ push ]
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
