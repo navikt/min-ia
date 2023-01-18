@@ -29,7 +29,7 @@ export const Lenkepanel = ({ tittel, tekst,href, ikon,className }: LenkepanelPro
           style={{
             display: "grid",
             gridAutoFlow: "column",
-            gap: "var(--navds-spacing-8)",
+            gap: "var(--a-spacing-8)",
             alignItems: "center",
           }}
         >
