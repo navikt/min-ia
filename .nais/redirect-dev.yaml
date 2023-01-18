@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: gw-dev-intern-nav-no
   rules:
-    - host: min-ia.dev.nav.no/min-ia
+    - host: min-ia.dev.nav.no
       http:
         paths:
           - backend:
@@ -19,5 +19,5 @@ spec:
                 name: min-ia
                 port:
                   number: 80
-            path: /
+            path: /min-ia
             kind: Prefix
