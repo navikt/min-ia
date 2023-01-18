@@ -1,5 +1,5 @@
 name: Build and deploy forebygge-fravar
-run-name: Build and deploy forebygge fravær triggered by @${{ github.actor }}
+run-name: Build and deploy forebygge fravær by @${{ github.actor }}
 on: [ push ]
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}

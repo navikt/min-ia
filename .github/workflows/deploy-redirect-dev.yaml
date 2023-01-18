@@ -1,6 +1,10 @@
 name: Deploy redirect ingress to dev
+run-name: Deploy redirect ingress to dev by @${{ github.actor }}
 on:
   push:
+    paths:
+      - 'redirect-dev.yaml'
+      - '.github/workflows/deploy-redirect-dev**'
     branches:
       - '**'
       - '!main'
