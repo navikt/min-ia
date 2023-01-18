@@ -1,4 +1,4 @@
-name: Build and deploy forebygge-fravar
+name: Build and deploy min-ia
 run-name: Build and deploy app | ${{ github.event.head_commit.message }}
 on: [ push ]
 env:
@@ -64,7 +64,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/redirect-ingress'
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     steps:
