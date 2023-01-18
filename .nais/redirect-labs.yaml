@@ -3,17 +3,17 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: "https://forebygge-fravar.dev.nav.no/forebygge-fravar/$2"
+    nginx.ingress.kubernetes.io/rewrite-target: "https://arbeidsgiver.labs.nais.io/forebygge-fravar/$2"
     prometheus.io/scrape: "false"
   labels:
     app: min-ia
     team: teamia
-  name: dev-redirect-min-ia-to-forebygge-fravar
+  name: labs-redirect-min-ia-to-forebygge-fravar
   namespace: teamia
 spec:
-  ingressClassName: gw-dev-nav-no
+  ingressClassName: gw-labs-nais-io
   rules:
-    - host: min-ia.dev.nav.no
+    - host: arbeidsgiver.labs.nais.io
       http:
         paths:
           - backend:
