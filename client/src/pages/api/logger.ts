@@ -39,11 +39,10 @@ function getMessage(message: unknown) {
   if (!isNonEmptyStringArray(message)){
     return tekniskeLoggFeil.manglendeEllerMalformetMelding
   }
-  if(isNonEmptyStringArray(message) && !Object.values(predefinerteFeilmeldinger).includes(message[0])) {
-    return tekniskeLoggFeil.ikkePredefinertMelding
+  if(isNonEmptyStringArray(message) && Object.values(predefinerteFeilmeldinger).includes(message[0])) {
+    return message[0]
   }
-
-  return message[0] as string
+  return tekniskeLoggFeil.ikkePredefinertMelding
 }
 
 const loggingHandler = (req: NextApiRequest, res: NextApiResponse): void => {
@@ -53,12 +52,14 @@ const loggingHandler = (req: NextApiRequest, res: NextApiResponse): void => {
   }
 
   const { level, ts }: pino.LogEvent = req.body;
-  const label: unknown = level.label;
+
+  const message = getMessage(req.body.messages);
+
+  const label: unknown = Object.values(tekniskeLoggFeil).includes(message) ? levels.error : level.label
   if (!isValidLoggingLabel(label)) {
     res.status(400).json({ error: `Invalid label ${label}` });
     return;
   }
-  const message = getMessage(req.body.messages);
 
 
   logger
