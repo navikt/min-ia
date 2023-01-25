@@ -2,7 +2,6 @@ import { METRIKKER_BASE_PATH } from "../utils/konstanter";
 
 interface IaTjenesteMetrikk {
   orgnr: String;
-  altinnRettighet: String;
   type: String;
   kilde: String;
   tjenesteMottakkelsesdato: String;
@@ -22,7 +21,6 @@ function byggIaTjenesteMottattMetrikk(orgnr: string, forTjeneste: IaTjeneste) {
     kilde: forTjeneste,
     type: "DIGITAL_IA_TJENESTE",
     tjenesteMottakkelsesdato: tilIsoDatoMedUtcTimezoneUtenMillis(new Date()),
-    altinnRettighet: "SYKEFRAVÆRSSTATISTIKK_FOR_VIRKSOMHETER",
   };
   return iaTjenesteMetrikk;
 }
