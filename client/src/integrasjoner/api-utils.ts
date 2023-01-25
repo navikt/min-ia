@@ -1,4 +1,5 @@
-import { RestRessurs, RestStatus, Årsak } from "./rest-status";
+import {RestRessurs, RestStatus, Årsak} from "./rest-status";
+import {logger, predefinerteFeilmeldinger} from "../utils/logger";
 
 export const getRestStatus = (responseStatus: number): RestStatus => {
   switch (responseStatus) {
@@ -31,7 +32,8 @@ export const fetchMedFeilhåndtering = async <T>(
     };
   }
   if (restStatus === RestStatus.Feil) {
-    //Sentry.captureException(new Error('Status ' + response.status + ' ved kall til ' + url));
+
+    logger.error(predefinerteFeilmeldinger.feilVedNettverkskall)
 
     try {
       const body = await response.json();
@@ -47,6 +49,12 @@ export const fetchMedFeilhåndtering = async <T>(
     } catch (ignored) {
       // Ignored exception
     }
+  }
+  if(restStatus === RestStatus.IkkeInnlogget) {
+    logger.warn(predefinerteFeilmeldinger.brukerIkkeInloggetFeil)
+  }
+  if(restStatus === RestStatus.IngenTilgang) {
+    logger.warn(predefinerteFeilmeldinger.brukerIkkeAutorisertFeil)
   }
   return {
     status: restStatus,

@@ -1,6 +1,5 @@
 import { PageProps } from "../pageProps";
 import { Forside } from "../Forside/Forside";
-import * as Sentry from "@sentry/browser";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestStatus } from "../integrasjoner/rest-status";
@@ -9,7 +8,6 @@ import Head from "next/head";
 import React from "react";
 
 const Home = (props: { page: PageProps }) => {
-  initialiserSentry();
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
@@ -42,14 +40,6 @@ const Home = (props: { page: PageProps }) => {
     </>
   );
 };
-
-function initialiserSentry() {
-  Sentry.init({
-    dsn: "https://fd232b69e0994f30872d69130d694491@sentry.gc.nav.no/122",
-    environment: process.env.NODE_ENV,
-    enabled: process.env.NODE_ENV === "production",
-  });
-}
 
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps = async () => {

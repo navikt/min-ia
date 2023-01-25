@@ -50,7 +50,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/sende-ia-mottatt-ia-tjeneste-med-andre-altinn-rettighet'
+    if: github.ref == 'refs/heads/logging_kibana'
     needs: build
     runs-on: ubuntu-latest
     steps:
