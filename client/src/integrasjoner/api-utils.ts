@@ -51,10 +51,10 @@ export const fetchMedFeilhåndtering = async <T>(
     }
   }
   if(restStatus === RestStatus.IkkeInnlogget) {
-    logger.error(predefinerteFeilmeldinger.brukerIkkeInloggetFeil)
+    logger.warn(predefinerteFeilmeldinger.brukerIkkeInloggetFeil)
   }
   if(restStatus === RestStatus.IngenTilgang) {
-    logger.error(predefinerteFeilmeldinger.brukerIkkeAutorisertFeil)
+    logger.warn(predefinerteFeilmeldinger.brukerIkkeAutorisertFeil)
   }
   return {
     status: restStatus,
