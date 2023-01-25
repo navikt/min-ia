@@ -12,8 +12,7 @@ export const frontendLogger = (): pino.Logger =>
               method: 'POST',
               headers: { 'content-type': 'application/json' },
               body: JSON.stringify(
-                // Hackily massage messages from exceptions into being { err: {...} } to normalize how logging looks
-                errorifyMessages(logEvent),
+                logEvent,
               ),
             });
           } catch (e) {
@@ -24,20 +23,3 @@ export const frontendLogger = (): pino.Logger =>
       },
     },
   });
-
-function errorifyMessages(logEvent: pino.LogEvent): pino.LogEvent {
-  logEvent.messages = logEvent.messages.map((message) => {
-    if (typeof message === 'object' && 'stack' in message) {
-      return {
-        err: {
-          type: message.type,
-          stack: message.stack,
-          message: message.msg ?? message.message,
-        },
-      };
-    }
-    return message;
-  });
-
-  return logEvent;
-}

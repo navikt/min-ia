@@ -1,5 +1,5 @@
-import { RestRessurs, RestStatus, Årsak } from "./rest-status";
-import {logger} from "../utils/logger";
+import {RestRessurs, RestStatus, Årsak} from "./rest-status";
+import {logger, predefinerteFeilmeldinger} from "../utils/logger";
 
 export const getRestStatus = (responseStatus: number): RestStatus => {
   switch (responseStatus) {
@@ -33,7 +33,7 @@ export const fetchMedFeilhåndtering = async <T>(
   }
   if (restStatus === RestStatus.Feil) {
 
-    logger.error(new Error('Status ' + response.status + ' ved kall til ' + url))
+    logger.error(predefinerteFeilmeldinger.feilVedNettverkskall)
 
     try {
       const body = await response.json();
@@ -49,6 +49,12 @@ export const fetchMedFeilhåndtering = async <T>(
     } catch (ignored) {
       // Ignored exception
     }
+  }
+  if(restStatus === RestStatus.IkkeInnlogget) {
+    logger.error(predefinerteFeilmeldinger.brukerIkkeInloggetFeil)
+  }
+  if(restStatus === RestStatus.IngenTilgang) {
+    logger.error(predefinerteFeilmeldinger.brukerIkkeAutorisertFeil)
   }
   return {
     status: restStatus,
