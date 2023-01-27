@@ -50,7 +50,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/logging_kibana'
+    if: github.ref == 'refs/heads/planflis'
     needs: build
     runs-on: ubuntu-latest
     steps:

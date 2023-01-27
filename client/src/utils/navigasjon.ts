@@ -1,4 +1,4 @@
-import { Miljø } from "./miljøUtils";
+import {Miljø} from "./miljøUtils";
 
 export enum Applikasjon {
   Sykefraværsstatistikk,
@@ -76,6 +76,18 @@ const getUrlForSykefraværsstatistikk = (miljø: Miljø): string => {
 export const getUrlForKalkulator = (): string => {
   return "/forebygge-fravar/kalkulator";
 };
+
+export function getUrlForForebyggingsplan(miljø: Miljø): string {
+  switch (miljø) {
+    case Miljø.Lokal:
+    case Miljø.Labs:
+      return "https://arbeidsgiver.labs.nais.io/forebyggingsplan";
+    case Miljø.Dev:
+      return "https://forebyggingsplan-frontend.dev.nav.no/forebyggingsplan";
+    case Miljø.Prod:
+      return "https://arbeidsgiver.nav.no/forebyggingsplan";
+  }
+}
 
 const getUrlForSamtalestøtte = (miljø: Miljø): string => {
   switch (miljø) {
