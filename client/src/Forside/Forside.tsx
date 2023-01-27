@@ -1,9 +1,8 @@
 import styles from "./forside.module.scss";
-import { StatistikkIkon } from "./ikoner/StatistikkIkon";
 import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
+import { Calculator, HandsHeart } from "@navikt/ds-icons";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
-import { Calculator } from "@navikt/ds-icons";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
@@ -19,6 +18,7 @@ import { getMiljø } from "../utils/miljøUtils";
 import {
   Applikasjon,
   getUrlForApplikasjon,
+  getUrlForForebyggingsplan,
   getUrlForKalkulator,
   utledUrlForBedrift,
 } from "../utils/navigasjon";
@@ -40,18 +40,11 @@ export const Forside: FunctionComponent<ForsideProps> = ({
   const miljø = getMiljø();
 
   const [samtalestotteUrl, setSamtalestotteUrl] = useState("#");
-  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
 
   useEffect(() => {
     setSamtalestotteUrl(
       utledUrlForBedrift(
         getUrlForApplikasjon(Applikasjon.Samtalestøtte, miljø),
-        orgnr
-      )
-    );
-    setSykefravarsstatistikkUrl(
-      utledUrlForBedrift(
-        getUrlForApplikasjon(Applikasjon.Sykefraværsstatistikk, miljø),
         orgnr
       )
     );
@@ -109,12 +102,12 @@ export const Forside: FunctionComponent<ForsideProps> = ({
             href={getUrlForKalkulator()}
           />
           <Lenkeflis
-            overskrift={"Sykefraværs&shy;statistikk"}
-            ikon={<StatistikkIkon />}
+            overskrift={"Forebygg fravær hos dere"}
+            ikon={<HandsHeart />}
             brødtekst={
-              "Her finner du oversikt over nyttig sykefraværsstatistikk du kan trenge for å ta gode valg."
+              "Vi har samlet nyttige forslag til aktiviteter dere kan gjøre for å forebygge fravær."
             }
-            href={sykefravarsstatistikkUrl}
+            href={getUrlForForebyggingsplan(miljø)}
           />
           <InkluderendeArbeidslivPanel />
           <LenkeflisEkstern
