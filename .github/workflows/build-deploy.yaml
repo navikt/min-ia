@@ -64,7 +64,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fiks-deploy-til-labs'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -72,6 +72,7 @@ jobs:
       - name: Deploy to DEV
         uses: nais/deploy/actions/deploy@v1
         env:
+          DEPLOY_SERVER: deploy.nais.io:443
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: labs-gcp
           RESOURCE: .nais/labs.yaml
