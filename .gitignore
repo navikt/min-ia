@@ -129,3 +129,4 @@ dist
 # Ignore Intellij project-specific directory
 /.idea/
 *.iml
+yarn.lock
