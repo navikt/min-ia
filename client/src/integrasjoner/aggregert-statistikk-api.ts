@@ -44,6 +44,9 @@ const sykefraværshistorikkPath = (orgnr: string) =>
 export const hentAggregertStatistikk = async (
   orgnr: string
 ): Promise<RestAggregertStatistikk> => {
+  if(orgnr === '') {
+    return {status: RestStatus.IngenTilgang}
+  }
   const response = await fetchMedFeilhåndtering<AggregertStatistikkDto>(
     sykefraværshistorikkPath(orgnr),
     {
