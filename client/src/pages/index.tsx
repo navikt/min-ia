@@ -21,6 +21,12 @@ const Home = (props: { page: PageProps }) => {
     return <ManglerRettighetRedirect />;
   }
 
+  const forsideEllerInnloggingsside = trengerInnlogging ? (
+    <Innloggingsside redirectUrl={window.location.href} />
+  ) : (
+    <Forside />
+  );
+
   return (
     <>
       <Head>
@@ -36,11 +42,7 @@ const Home = (props: { page: PageProps }) => {
             : []
         }
       >
-        {trengerInnlogging ? (
-          <Innloggingsside redirectUrl={window.location.href} />
-        ) : (
-          <Forside />
-        )}
+        {forsideEllerInnloggingsside}
       </Layout>
     </>
   );
