@@ -157,7 +157,7 @@ export default function VideoOgKurs(props: { page: PageProps }) {
   return (
     <>
       <Script
-        src="https://play2.qbrick.com/framework/GoBrain.min.js"
+        src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"
         strategy="beforeInteractive"
       />
       <Layout

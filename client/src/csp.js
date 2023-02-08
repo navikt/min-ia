@@ -1,5 +1,5 @@
 const csp = {
-  "default-src": ["'self'", "arbeidsgiver.nav.no"],
+  "default-src": ["'self'", "arbeidsgiver.nav.no","dekoratoren.ekstern.dev.nav.no"],
   "script-src": [
     "'self'",
     "'report-sample'",
@@ -46,6 +46,8 @@ const csp = {
     "ta-survey-v2.herokuapp.com",
     "video.qbrick.com",
     "play2.qbrick.com",
+    "ws://notification.qbrick.com",
+    "analytics.qbrick.com",
     "*.dna.ip-only.net",
   ],
   "font-src": [
@@ -54,6 +56,8 @@ const csp = {
     "*.hotjar.com",
     "fonts.gstatic.com",
     "www.nav.no",
+    "cdn.nav.no",
+    "play2.qbrick.com",
   ],
   "frame-src": ["vars.hotjar.com", "*.nav.no"],
   "img-src": [
