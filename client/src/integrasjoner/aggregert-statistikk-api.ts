@@ -1,6 +1,7 @@
 import { API_BASE_PATH } from "../utils/konstanter";
 import { RestRessurs, RestStatus } from "./rest-status";
 import { fetchMedFeilhåndtering } from "./api-utils";
+import * as z from "zod";
 
 export enum Statistikkategori {
   LAND = "LAND",
@@ -44,8 +45,10 @@ const sykefraværshistorikkPath = (orgnr: string) =>
 export const hentAggregertStatistikk = async (
   orgnr: string
 ): Promise<RestAggregertStatistikk> => {
-  if(orgnr === '') {
-    return {status: RestStatus.IngenTilgang}
+  try {
+    z.string().length(9).parse(orgnr);
+  } catch {
+    return { status: RestStatus.IngenTilgang };
   }
   const response = await fetchMedFeilhåndtering<AggregertStatistikkDto>(
     sykefraværshistorikkPath(orgnr),
