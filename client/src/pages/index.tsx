@@ -6,18 +6,25 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
+import { ManglerRettighetRedirect } from "../utils/Redirects";
 
 const Home = (props: { page: PageProps }) => {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
 
-  const harNoenOrganisasjoner =
-    organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess;
+  const harIngenOrganisasjoner =
+    organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess &&
+    organisasjonerBrukerHarTilgangTil.data.length === 0;
+
+  if (harIngenOrganisasjoner) {
+    return <ManglerRettighetRedirect />;
+  }
+
   const forsideEllerInnloggingsside = trengerInnlogging ? (
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (
-    <Forside harNoenOrganisasjoner={harNoenOrganisasjoner} />
+    <Forside />
   );
 
   return (
