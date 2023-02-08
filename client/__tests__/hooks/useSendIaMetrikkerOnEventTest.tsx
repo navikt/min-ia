@@ -7,17 +7,17 @@ import { IaTjeneste } from "../../src/integrasjoner/ia-tjenestemetrikker-api";
 import { useSendIaTjenesteMetrikkOnEvent } from "../../src/hooks/useSendIaTjenesteMetrikkOnEvent";
 import { FunctionComponent } from "react";
 
-jest.mock('../../src/integrasjoner/ia-tjenestemetrikker-api', () => {
+jest.mock("../../src/integrasjoner/ia-tjenestemetrikker-api", () => {
   return {
     __esModule: true,
-    ...jest.requireActual('../../src/integrasjoner/ia-tjenestemetrikker-api')
+    ...jest.requireActual("../../src/integrasjoner/ia-tjenestemetrikker-api"),
   };
 });
 
-jest.mock('../../src/hooks/useOrgnr', () => {
+jest.mock("../../src/hooks/useOrgnr", () => {
   return {
     __esModule: true,
-    ...jest.requireActual('../../src/hooks/useOrgnr')
+    ...jest.requireActual("../../src/hooks/useOrgnr"),
   };
 });
 
