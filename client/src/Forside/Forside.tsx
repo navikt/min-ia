@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../komponenter/Infographic/Infographic";
-import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { hentUtInfographicData } from "../komponenter/Infographic/datauthenting";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
@@ -23,9 +22,7 @@ import {
   utledUrlForBedrift,
 } from "../utils/navigasjon";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
-import { ManglerRettighetRedirect } from "../utils/Redirects";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
-import { logger, predefinerteFeilmeldinger } from "../utils/logger";
 
 export const Forside = () => {
   const bredde = 60;
@@ -58,14 +55,11 @@ export const Forside = () => {
     ) : (
       <Infographic
         {...hentUtInfographicData(aggregertStatistikkData)}
-        nedlastingPågår={
-          aggregertStatistikk.status === RestStatus.IkkeLastet ||
-          aggregertStatistikk.status === RestStatus.LasterInn
-        }
+        nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
       />
     );
 
-  const forside = (
+  return (
     <>
       <div className={styles.forside}>
         {infographicEllerBannerHvisError}
@@ -123,14 +117,4 @@ export const Forside = () => {
       </div>
     </>
   );
-
-  switch (aggregertStatistikk.status) {
-    case RestStatus.IkkeInnlogget:
-      return <Innloggingsside redirectUrl={window.location.href} />;
-    case RestStatus.IngenTilgang:
-      logger.info(predefinerteFeilmeldinger.manglerTilgangRedirect);
-      return <ManglerRettighetRedirect />;
-    default:
-      return forside;
-  }
 };
