@@ -33,12 +33,6 @@
   background-color: var(--a-blue-100);
 }
 
-@media (min-width: screensize.$screen-md) {
-  .lenkeflis {
-    width: 48.5%;
-  }
-}
-
 @media (min-width: screensize.$screen-sm) {
   .ikonOgTekstWrapper {
     height: 12rem;

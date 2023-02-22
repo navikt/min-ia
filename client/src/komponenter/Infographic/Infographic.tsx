@@ -11,6 +11,8 @@ import {
 import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
+import { useAltinnOrganisasjonerMedStatistikk } from "../../hooks/useAltinnOrganisasjonerMedStatistikk";
+import { RestStatus } from "../../integrasjoner/rest-status";
 
 export interface InfographicData {
   fraværsprosentNorge?: string;
@@ -30,6 +32,16 @@ export const Infographic: FunctionComponent<
   const usingMobileVersion = useMobileVersion();
 
   const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
+
+  const restAltinnOrganisasjonerMedStatistikktilgang =
+    useAltinnOrganisasjonerMedStatistikk();
+  const brukerHarIaRettighetTilValgtBedrift =
+    orgnr !== undefined &&
+    restAltinnOrganisasjonerMedStatistikktilgang.status ===
+      RestStatus.Suksess &&
+    restAltinnOrganisasjonerMedStatistikktilgang.data
+      .map((org) => org.OrganizationNumber)
+      .includes(orgnr);
 
   useEffect(() => {
     setSykefravarsstatistikkUrl(
@@ -63,7 +75,10 @@ export const Infographic: FunctionComponent<
             <InfographicFlis
               innhold={
                 <>
-                  <BodyLong className={styles.infographicFlisOversikt} size={"small"}>
+                  <BodyLong
+                    className={styles.infographicFlisOversikt}
+                    size={"small"}
+                  >
                     Vanligste diagnose i Norge
                   </BodyLong>
                   <Label style={{ textAlign: "center" }}>
@@ -84,6 +99,9 @@ export const Infographic: FunctionComponent<
       <InngangTilSykefraværsstatistikk
         sykefravarsstatistikkUrl={sykefravarsstatistikkUrl}
         useMobileVersion={usingMobileVersion}
+        brukerHarIaRettighetTilValgtBedrift={
+          brukerHarIaRettighetTilValgtBedrift
+        }
       />
     </div>
   );

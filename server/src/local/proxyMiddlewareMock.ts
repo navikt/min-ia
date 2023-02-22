@@ -1,4 +1,7 @@
-import { organisasjoner } from "./organisasajonerMockdata";
+import {
+  organisasjoner,
+  organisasjonerMedIaRettighet,
+} from "./organisasajonerMockdata";
 import { Express } from "express";
 import { kurslisteMock } from "./testdata-kurs";
 import {
@@ -33,6 +36,25 @@ export const backendApiProxyMock = (server: Express) => {
         break;
     }
   });
+
+  server.get(
+    "/forebygge-fravar/api/organisasjoner/statistikk",
+    (request, response) => {
+      console.log(`[DEBUG] GET /api/organisasjoner/statistikk`);
+
+      switch (testMode) {
+        case "GENERELL_FEIL":
+          response.status(500).json([]);
+          break;
+        case "KREVER_INNLOGGING":
+          response.status(401).json([]);
+          break;
+        default:
+          response.send(organisasjonerMedIaRettighet);
+          break;
+      }
+    }
+  );
 
   server.get(
     "/forebygge-fravar/api/:orgnr/v1/sykefravarshistorikk/aggregert",
