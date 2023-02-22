@@ -50,7 +50,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/redirect'
+    if: github.ref == 'refs/heads/be-om-tilgang-ved-manglende-rettighet'
     needs: build
     runs-on: ubuntu-latest
     steps:
