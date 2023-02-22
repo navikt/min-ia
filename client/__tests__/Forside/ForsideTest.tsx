@@ -17,12 +17,17 @@ beforeEach(() => {
   window.location = { assign: jest.fn() };
 });
 
+jest.mock("../../src/hooks/useOrgnr", () => ({
+  useOrgnr: () => "999999999",
+}));
+
 it("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
   const user = userEvent.setup();
   render(<Forside harNoenOrganisasjoner={true} />);
 
-  const lenketekst = "Se statistikk";
-  const lenkebeskrivelse = "Se statistikk Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær.";
+  const lenketekst = "Be om tilgang";
+  const lenkebeskrivelse =
+    "Be om tilgang Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk.";
   const statistikklenke = screen.getByRole("link", {
     name: lenkebeskrivelse,
   });
@@ -30,7 +35,8 @@ it("sender navigere-event ved klikk på lenke til statistikksiden", async () => 
 
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("navigere", {
-    destinasjon: "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk",
+    destinasjon:
+      "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk?bedrift=999999999",
     lenketekst,
   });
 });
