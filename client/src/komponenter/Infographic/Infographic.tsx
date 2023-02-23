@@ -8,7 +8,7 @@ import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 
 const SYKEFRAVÆRSSTATISTIKK_URL =
-  process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL || "#";
+  process.env.NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL || "#";
 
 export interface InfographicData {
   fraværsprosentNorge?: string;

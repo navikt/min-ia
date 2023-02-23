@@ -17,9 +17,9 @@ import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/Inkl
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 
-const SAMTALESTØTTE_URL = process.env.NEXT_PUBLIC_SAMTALESTOTTE_URL || "#";
+const SAMTALESTØTTE_URL = process.env.NEXT_PUBLIC__SAMTALESTOTTE_URL || "#";
 const FOREBYGGINGSPLAN_URL =
-  process.env.NEXT_PUBLIC_FOREBYGGINGSPLAN_URL || "#";
+  process.env.NEXT_PUBLIC__FOREBYGGINGSPLAN_URL || "#";
 
 export const Forside = () => {
   const bredde = 60;

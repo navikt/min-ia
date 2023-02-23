@@ -29,6 +29,8 @@ spec:
       value: "prod-gcp:fager:notifikasjon-bruker-api"
     - name: APP_INGRESS
       value: https://arbeidsgiver.nav.no/forebygge-fravar
+    - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
+      value: prod
     - name: DECORATOR_ENV
       value: prod
     - name: DECORATOR_URL
@@ -36,13 +38,13 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
 
-    - name: NEXT_PUBLIC_SAMTALESTOTTE_URL
+    - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
-    - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
+    - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk
-    - name: NEXT_PUBLIC_FOREBYGGINGSPLAN_URL
+    - name: NEXT_PUBLIC__FOREBYGGINGSPLAN_URL
       value: https://arbeidsgiver.nav.no/forebyggingsplan
-    - name: NEXT_PUBLIC_MIN_SIDE_ARBEIDSGIVER_URL
+    - name: NEXT_PUBLIC__MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/min-side-arbeidsgiver
   tokenx:
     enabled: true

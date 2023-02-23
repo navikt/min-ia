@@ -18,5 +18,5 @@ export const navigerEtterCallbacks = async (
 };
 
 export function leggTilBedriftPåUrl(url: string, orgnr: string | undefined) {
-  return orgnr ? `${url}?bedrift=${orgnr}` : url
+  return orgnr ? `${url}?bedrift=${orgnr}` : url;
 }

@@ -12,10 +12,13 @@ export const Layout = (props: {
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
 
-  const ENV = process.env.DECORATOR_ENV
+  const MILJO = process.env.NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION;
 
   const banner = (
-    <NotifikasjonWidgetProvider apiUrl={'/forebygge-fravar/notifikasjon-bruker-api'} miljo={ENV ? "prod" : "dev"}>
+    <NotifikasjonWidgetProvider
+      apiUrl={"/forebygge-fravar/notifikasjon-bruker-api"}
+      miljo={MILJO === "prod" ? "prod" : "dev"}
+    >
       <Banner
         tittelMedUnderTittel={
           <div>
