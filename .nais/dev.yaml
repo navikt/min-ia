@@ -29,8 +29,6 @@ spec:
       value: "dev-gcp:fager:notifikasjon-bruker-api"
     - name: APP_INGRESS
       value: https://forebygge-fravar.dev.nav.no/forebygge-fravar
-    - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
-      value: dev
     - name: DECORATOR_ENV
       value: dev
     - name: DECORATOR_URL
@@ -38,10 +36,8 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://forebygge-fravar.dev.nav.no/forebygge-fravar
 
-    - name: NEXT_PUBLIC__KALKULATOR_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/forebygge-fravar/kalkulator
-    - name: NEXT_PUBLIC__NETTKURS_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/forebygge-sykefravaer/#webinar-og-kurs
+    - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
+      value: dev
     - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL

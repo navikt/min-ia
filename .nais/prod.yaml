@@ -29,8 +29,6 @@ spec:
       value: "prod-gcp:fager:notifikasjon-bruker-api"
     - name: APP_INGRESS
       value: https://arbeidsgiver.nav.no/forebygge-fravar
-    - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
-      value: prod
     - name: DECORATOR_ENV
       value: prod
     - name: DECORATOR_URL
@@ -38,6 +36,8 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
 
+    - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
+      value: prod
     - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL
