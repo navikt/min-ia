@@ -41,7 +41,7 @@ spec:
     - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
+      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
     - name: NEXT_PUBLIC__FOREBYGGINGSPLAN_URL
       value: https://forebyggingsplan-frontend.dev.nav.no/forebyggingsplan
     - name: NEXT_PUBLIC__MIN_SIDE_ARBEIDSGIVER_URL
