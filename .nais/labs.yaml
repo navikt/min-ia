@@ -27,7 +27,7 @@ spec:
       value: https://arbeidsgiver.nav.no/forebygge-fravar
 
     - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
-      value: dev
+      value: false
     - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
     - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL

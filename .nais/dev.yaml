@@ -37,7 +37,7 @@ spec:
       value: https://forebygge-fravar.dev.nav.no/forebygge-fravar
 
     - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
-      value: dev
+      value: false
     - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL

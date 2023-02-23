@@ -37,7 +37,7 @@ spec:
       value: https://arbeidsgiver.nav.no/forebygge-fravar
 
     - name: NEXT_PUBLIC__ENVIRONMENT_IS_PRODUCTION
-      value: prod
+      value: true
     - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL
