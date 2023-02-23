@@ -160,7 +160,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   expect(lenke).toHaveAttribute(
     "href",
     expect.stringContaining(
-      "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk?bedrift="
+      "http://localhost:8080/sykefravarsstatistikk?bedrift=999999999"
     )
   );
 });

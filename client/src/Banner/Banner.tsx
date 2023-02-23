@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { MemoryRouter } from "react-router-dom";
 import { ForebyggeSykefravaer } from '@navikt/bedriftsmeny';
 import { NotifikasjonWidget} from "@navikt/arbeidsgiver-notifikasjon-widget";
+import {leggTilBedriftPåUrl} from "../utils/navigasjon";
 
 const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
   ssr: false,
@@ -37,7 +38,7 @@ const Banner: React.FunctionComponent<Props> = (props) => {
 
   const onOrganisasjonChange = (organisasjon?: Organisasjon) => {
     if (organisasjon) {
-      router.push(`?bedrift=${organisasjon.OrganizationNumber}`);
+      router.push(leggTilBedriftPåUrl("", organisasjon.OrganizationNumber));
     }
     if (bedriftValgtManueltFraLista) {
       sendBedriftValgtEvent();

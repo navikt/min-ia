@@ -5,6 +5,7 @@ import {useOrgnr} from "../../hooks/useOrgnr";
 import {useMobileVersion} from "../../hooks/useMobileVersion";
 import {InngangTilSykefraværsstatistikk} from "./InngangTilSykefraværsstatistikk";
 import {BodyLong, Detail, Heading, Label} from "@navikt/ds-react";
+import {leggTilBedriftPåUrl} from "../../utils/navigasjon";
 
 
 const SYKEFRAVÆRSSTATISTIKK_URL = process.env.NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL || "#";
@@ -24,7 +25,7 @@ export const Infographic: FunctionComponent<
 > = (props) => {
     const orgnr = useOrgnr();
     const usingMobileVersion = useMobileVersion();
-    const sykefraværsstatistikkUrlMedBedrift = `${SYKEFRAVÆRSSTATISTIKK_URL}?bedrift=${orgnr}`
+    const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(SYKEFRAVÆRSSTATISTIKK_URL, orgnr)
 
     return (
         <div className={styles.infographicWrapper}>

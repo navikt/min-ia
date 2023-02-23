@@ -15,6 +15,7 @@ import {useOrgnr} from "../hooks/useOrgnr";
 import {Alert} from "@navikt/ds-react";
 import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
+import {leggTilBedriftPåUrl} from "../utils/navigasjon";
 
 const SAMTALESTØTTE_URL = process.env.NEXT_PUBLIC_SAMTALESTOTTE_URL || "#";
 const FOREBYGGINGSPLAN_URL = process.env.NEXT_PUBLIC_FOREBYGGINGSPLAN_URL || "#"
@@ -25,7 +26,7 @@ export const Forside = () => {
 
     const orgnr = useOrgnr();
 
-    const samtalestøtteUrlMedOrgnr = `${SAMTALESTØTTE_URL}?bedrift=${orgnr}`
+    const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(SAMTALESTØTTE_URL, orgnr)
 
     const aggregertStatistikk = useAggregertStatistikk();
     const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)

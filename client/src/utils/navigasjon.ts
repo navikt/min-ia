@@ -16,3 +16,7 @@ export const navigerEtterCallbacks = async (
     () => (window.location.href = destinasjon)
   );
 };
+
+export function leggTilBedriftPåUrl(url: string, orgnr: string | undefined) {
+  return orgnr ? `${url}?bedrift=${orgnr}` : url
+}

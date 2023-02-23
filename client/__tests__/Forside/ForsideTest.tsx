@@ -30,7 +30,7 @@ it("sender navigere-event ved klikk på lenke til statistikksiden", async () => 
 
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("navigere", {
-    destinasjon: "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk",
+    destinasjon: "http://localhost:8080/sykefravarsstatistikk",
     lenketekst,
   });
 });
