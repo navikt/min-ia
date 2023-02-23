@@ -64,7 +64,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fiks-deploy-til-labs'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_lenke_til_forebyggingsplan'
     needs: build
     runs-on: ubuntu-latest
     steps:
