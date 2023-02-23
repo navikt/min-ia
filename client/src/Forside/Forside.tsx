@@ -17,9 +17,8 @@ import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/Inkl
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 
-const SAMTALESTØTTE_URL = process.env.NEXT_PUBLIC__SAMTALESTOTTE_URL || "#";
-const FOREBYGGINGSPLAN_URL =
-  process.env.NEXT_PUBLIC__FOREBYGGINGSPLAN_URL || "#";
+const samtalestøtteUrl = () => process.env.NEXT_PUBLIC__SAMTALESTOTTE_URL || "#";
+const forebyggingsplanUrl = () => process.env.NEXT_PUBLIC__FOREBYGGINGSPLAN_URL || "#"
 
 export const Forside = () => {
   const bredde = 60;
@@ -28,7 +27,7 @@ export const Forside = () => {
   const orgnr = useOrgnr();
 
   const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
-    SAMTALESTØTTE_URL,
+    samtalestøtteUrl(),
     orgnr
   );
 
@@ -84,7 +83,7 @@ export const Forside = () => {
             brødtekst={
               "Vi har samlet nyttige forslag til aktiviteter dere kan gjøre for å forebygge fravær."
             }
-            href={FOREBYGGINGSPLAN_URL}
+            href={forebyggingsplanUrl()}
           />
           <InkluderendeArbeidslivPanel />
           <LenkeflisEkstern

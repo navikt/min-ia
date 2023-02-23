@@ -9,7 +9,6 @@ export const navigerEtterCallbacks = async (
   console.log(destinasjon)
 
   setTimeout(() => {
-    console.log("setTimeout har kjørt, skal sette location.href")
     window.location.href = destinasjon;
   }, maksVentetid);
 
@@ -17,7 +16,6 @@ export const navigerEtterCallbacks = async (
 
   await Promise.allSettled(results).then(
     () => {
-      console.log("alle callsbacks har blitt resolved, setter location.href")
       window.location.href = destinasjon}
   );
 };

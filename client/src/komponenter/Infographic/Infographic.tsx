@@ -7,7 +7,7 @@ import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatis
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 
-const SYKEFRAVÆRSSTATISTIKK_URL =
+const sykefraværssstatistikkUrl = () =>
   process.env.NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL || "#";
 
 export interface InfographicData {
@@ -26,7 +26,7 @@ export const Infographic: FunctionComponent<
   const orgnr = useOrgnr();
   const usingMobileVersion = useMobileVersion();
   const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
-    SYKEFRAVÆRSSTATISTIKK_URL,
+    sykefraværssstatistikkUrl(),
     orgnr
   );
 
