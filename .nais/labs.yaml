@@ -33,6 +33,8 @@ spec:
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
     - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+    - name: NEXT_PUBLIC_FOREBYGGINGSPLAN_URL
+      value: https://arbeidsgiver.labs.nais.io/forebyggingsplan
   liveness:
     path: /forebygge-fravar/internal/isAlive
     initialDelay: 20

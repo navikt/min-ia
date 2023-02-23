@@ -43,6 +43,8 @@ spec:
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
     - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
+    - name: NEXT_PUBLIC_FOREBYGGINGSPLAN_URL
+      value: https://forebyggingsplan-frontend.dev.nav.no/forebyggingsplan
   tokenx:
     enabled: true
   idporten:
