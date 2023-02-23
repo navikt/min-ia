@@ -63,7 +63,7 @@ export const Forside = () => {
                         brødtekst={
                             "Her finner du videoer og kurs for å forebygge, følge opp og redusere sykefravær."
                         }
-                        href={"/video-og-kurs"}
+                        href={"/forebygge-fravar/video-og-kurs"}
                     />
                     <Lenkeflis
                         overskrift={"Fraværs&shy;kalkulator"}
@@ -71,7 +71,7 @@ export const Forside = () => {
                         brødtekst={
                             "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
                         }
-                        href={"/kalkulator"}
+                        href={"/forebygge-fravar/kalkulator"}
                     />
                     <Lenkeflis
                         overskrift={"Forebygg fravær hos dere"}
