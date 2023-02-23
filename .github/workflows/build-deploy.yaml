@@ -50,7 +50,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/redirect'
+    if: github.ref == 'refs/heads/fix_lenke_til_forebyggingsplan'
     needs: build
     runs-on: ubuntu-latest
     steps:
