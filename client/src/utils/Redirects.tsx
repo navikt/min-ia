@@ -1,7 +1,6 @@
-import { getMinSideArbeidsgiverUrl } from "./miljøUtils";
+const MIN_SIDE_ARBEIDSGIVER_URL = process.env.NEXT_PUBLIC_MIN_SIDE_ARBEIDSGIVER_URL || "#"
 
 export const ManglerRettighetRedirect = () => {
-  const minSideUrl = getMinSideArbeidsgiverUrl();
-  window?.location.replace(minSideUrl);
+  window?.location.replace(MIN_SIDE_ARBEIDSGIVER_URL);
   return null;
 };

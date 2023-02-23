@@ -3,7 +3,6 @@ import Banner from "../../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import { getMiljø, Miljø } from "../../utils/miljøUtils";
 
 export const Layout = (props: {
   title: string;
@@ -12,10 +11,11 @@ export const Layout = (props: {
   children: React.ReactNode;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
-  const miljø = getMiljø();
+
+  const ENV = process.env.DECORATOR_ENV
 
   const banner = (
-    <NotifikasjonWidgetProvider apiUrl={'/forebygge-fravar/notifikasjon-bruker-api'} miljo={miljø === Miljø.Prod ? "prod" : "dev"}>
+    <NotifikasjonWidgetProvider apiUrl={'/forebygge-fravar/notifikasjon-bruker-api'} miljo={ENV ? "prod" : "dev"}>
       <Banner
         tittelMedUnderTittel={
           <div>
