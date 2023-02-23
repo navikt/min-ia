@@ -63,7 +63,7 @@ export const Forside = () => {
     <>
       <div className={styles.forside}>
         {infographicEllerBannerHvisError}
-        <div className={styles.panelGrid}>
+        <div className={styles.lenkeflisGrid}>
           <Lenkeflis
             overskrift={"Samtalestøtten"}
             ikon={<SamtalestøtteIkon />}
