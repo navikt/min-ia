@@ -19,10 +19,17 @@ beforeEach(() => {
 
 it("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
   const user = userEvent.setup();
-  render(<Forside harNoenOrganisasjoner={true} />);
+  render(
+    <Forside
+      sykefraværsstatistikkUrl={"https://url-til-sykefraværsstatistikk"}
+      forebyggingsplanUrl={"https://url-til-forebyggingsplan"}
+      samtalestøtteUrl={"https://url-til-samtalestøtte"}
+    />
+  );
 
   const lenketekst = "Se statistikk";
-  const lenkebeskrivelse = "Se statistikk Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær.";
+  const lenkebeskrivelse =
+    "Se statistikk Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær.";
   const statistikklenke = screen.getByRole("link", {
     name: lenkebeskrivelse,
   });
@@ -30,7 +37,7 @@ it("sender navigere-event ved klikk på lenke til statistikksiden", async () => 
 
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("navigere", {
-    destinasjon: "http://localhost:8080/sykefravarsstatistikk",
+    destinasjon: "https://url-til-sykefraværsstatistikk",
     lenketekst,
   });
 });

@@ -26,7 +26,7 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
 
-    - name: NEXT_PUBLIC__ENVIRONMENT
+    - name: ENVIRONMENT
       value: labs
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
@@ -34,7 +34,7 @@ spec:
       value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL
       value: https://arbeidsgiver.labs.nais.io/forebyggingsplan
-    - name: NEXT_PUBLIC__MIN_SIDE_ARBEIDSGIVER_URL
+    - name: MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.labs.nais.io/min-side-arbeidsgiver
   liveness:
     path: /forebygge-fravar/internal/isAlive

@@ -6,9 +6,8 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
-import { ManglerRettighetRedirect } from "../utils/Redirects";
 
-const Home = (props: { page: PageProps; forsideProps: ForsideProps }) => {
+const Home = (props: { page: PageProps; forsideProps: ForsideProps, minSideArbeidsgiverUrl: string, isProduction: boolean }) => {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
@@ -17,8 +16,10 @@ const Home = (props: { page: PageProps; forsideProps: ForsideProps }) => {
     organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess &&
     organisasjonerBrukerHarTilgangTil.data.length === 0;
 
+
   if (harIngenOrganisasjoner) {
-    return <ManglerRettighetRedirect />;
+    window?.location.replace(props.minSideArbeidsgiverUrl);
+    return null
   }
 
   const forsideEllerInnloggingsside = trengerInnlogging ? (
@@ -36,6 +37,7 @@ const Home = (props: { page: PageProps; forsideProps: ForsideProps }) => {
       <Layout
         title={props.page.title}
         description={props.page.description}
+        isProduction={props.isProduction}
         altinnOrganisasjoner={
           organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
             ? organisasjonerBrukerHarTilgangTil.data
@@ -58,18 +60,20 @@ export const getServerSideProps = async () => {
 
   const samtalestøtteUrl = process.env.SAMTALESTOTTE_URL || "#";
   const forebyggingsplanUrl = process.env.FOREBYGGINGSPLAN_URL || "#";
-
   const sykefraværsstatistikkUrl =
     process.env.SYKEFRAVARSSTATISTIKK_URL || "#";
+  const minSideArbeidsgiverUrl = process.env.MIN_SIDE_ARBEIDSGIVER_URL || "#"
+
+  const isProduction = process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
 
   const forsideProps: ForsideProps = {
     samtalestøtteUrl,
     forebyggingsplanUrl,
-    sykefraværsstatistikkUrl,
+    sykefraværsstatistikkUrl
   };
 
   return {
-    props: { page, forsideProps },
+    props: { page, forsideProps, minSideArbeidsgiverUrl, isProduction },
   };
 };
 

@@ -8,16 +8,15 @@ export const Layout = (props: {
   title: string;
   description: string;
   altinnOrganisasjoner: AltinnOrganisasjon[];
+  isProduction: boolean
   children: React.ReactNode;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
 
-  const isProduction = () => process.env.NEXT_PUBLIC__ENVIRONMENT === "prod";
-
   const banner = (
     <NotifikasjonWidgetProvider
       apiUrl={"/forebygge-fravar/notifikasjon-bruker-api"}
-      miljo={isProduction() ? "prod" : "dev"}
+      miljo={props.isProduction ? "prod" : "dev"}
     >
       <Banner
         tittelMedUnderTittel={
