@@ -7,9 +7,6 @@ import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatis
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 
-const sykefraværssstatistikkUrl = () =>
-  process.env.NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL || "#";
-
 export interface InfographicData {
   fraværsprosentNorge?: string;
   fraværsprosentBransjeEllerNæring?: string;
@@ -21,12 +18,13 @@ export interface InfographicData {
 export const Infographic: FunctionComponent<
   InfographicData & {
     nedlastingPågår: boolean;
+    sykefraværsstatistikkUrl: string;
   }
 > = (props) => {
   const orgnr = useOrgnr();
   const usingMobileVersion = useMobileVersion();
   const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
-    sykefraværssstatistikkUrl(),
+    props.sykefraværsstatistikkUrl,
     orgnr
   );
 

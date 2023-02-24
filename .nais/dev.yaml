@@ -38,11 +38,11 @@ spec:
 
     - name: NEXT_PUBLIC__ENVIRONMENT
       value: dev
-    - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
+    - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
-    - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL
+    - name: SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
-    - name: NEXT_PUBLIC__FOREBYGGINGSPLAN_URL
+    - name: FOREBYGGINGSPLAN_URL
       value: https://forebyggingsplan-frontend.dev.nav.no/forebyggingsplan
     - name: NEXT_PUBLIC__MIN_SIDE_ARBEIDSGIVER_URL
       value: https://min-side-arbeidsgiver.dev.nav.no/min-side-arbeidsgiver

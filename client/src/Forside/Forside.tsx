@@ -17,17 +17,20 @@ import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/Inkl
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 
-const samtalestøtteUrl = () => process.env.NEXT_PUBLIC__SAMTALESTOTTE_URL || "#";
-const forebyggingsplanUrl = () => process.env.NEXT_PUBLIC__FOREBYGGINGSPLAN_URL || "#"
+export interface ForsideProps {
+  samtalestøtteUrl: string;
+  forebyggingsplanUrl: string;
+  sykefraværsstatistikkUrl: string;
+}
 
-export const Forside = () => {
+export const Forside = (props: ForsideProps) => {
   const bredde = 60;
   const høyde = 60;
 
   const orgnr = useOrgnr();
 
   const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
-    samtalestøtteUrl(),
+    props.samtalestøtteUrl,
     orgnr
   );
 
@@ -45,6 +48,7 @@ export const Forside = () => {
       <Infographic
         {...hentUtInfographicData(aggregertStatistikkData)}
         nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
+        sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
       />
     );
 
@@ -83,7 +87,7 @@ export const Forside = () => {
             brødtekst={
               "Vi har samlet nyttige forslag til aktiviteter dere kan gjøre for å forebygge fravær."
             }
-            href={forebyggingsplanUrl()}
+            href={props.forebyggingsplanUrl}
           />
           <InkluderendeArbeidslivPanel />
           <LenkeflisEkstern

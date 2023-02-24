@@ -28,11 +28,11 @@ spec:
 
     - name: NEXT_PUBLIC__ENVIRONMENT
       value: labs
-    - name: NEXT_PUBLIC__SAMTALESTOTTE_URL
+    - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.labs.nais.io/samtalestotte
-    - name: NEXT_PUBLIC__SYKEFRAVARSSTATISTIKK_URL
+    - name: SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
-    - name: NEXT_PUBLIC__FOREBYGGINGSPLAN_URL
+    - name: FOREBYGGINGSPLAN_URL
       value: https://arbeidsgiver.labs.nais.io/forebyggingsplan
     - name: NEXT_PUBLIC__MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.labs.nais.io/min-side-arbeidsgiver
