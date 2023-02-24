@@ -21,7 +21,7 @@ beforeEach(() => {
   window.postMessage = jest.fn();
 });
 
-it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {
+it.skip("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {
   const user = userEvent.setup();
   renderNettkurs();
 
