@@ -1,16 +1,11 @@
-import { FunctionComponent, ReactNode, useEffect, useState } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "./InfographicFlis/InfographicFlis";
 import { useOrgnr } from "../../hooks/useOrgnr";
-import { getMiljø } from "../../utils/miljøUtils";
-import {
-  Applikasjon,
-  getUrlForApplikasjon,
-  utledUrlForBedrift,
-} from "../../utils/navigasjon";
 import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
+import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 
 export interface InfographicData {
   fraværsprosentNorge?: string;
@@ -23,22 +18,15 @@ export interface InfographicData {
 export const Infographic: FunctionComponent<
   InfographicData & {
     nedlastingPågår: boolean;
+    sykefraværsstatistikkUrl: string;
   }
 > = (props) => {
   const orgnr = useOrgnr();
-  const miljø = getMiljø();
   const usingMobileVersion = useMobileVersion();
-
-  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
-
-  useEffect(() => {
-    setSykefravarsstatistikkUrl(
-      utledUrlForBedrift(
-        getUrlForApplikasjon(Applikasjon.Sykefraværsstatistikk, miljø),
-        orgnr
-      )
-    );
-  }, [orgnr, miljø]);
+  const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
+    props.sykefraværsstatistikkUrl,
+    orgnr
+  );
 
   return (
     <div className={styles.infographicWrapper}>
@@ -63,7 +51,10 @@ export const Infographic: FunctionComponent<
             <InfographicFlis
               innhold={
                 <>
-                  <BodyLong className={styles.infographicFlisOversikt} size={"small"}>
+                  <BodyLong
+                    className={styles.infographicFlisOversikt}
+                    size={"small"}
+                  >
                     Vanligste diagnose i Norge
                   </BodyLong>
                   <Label style={{ textAlign: "center" }}>
@@ -82,7 +73,7 @@ export const Infographic: FunctionComponent<
         </div>
       </div>
       <InngangTilSykefraværsstatistikk
-        sykefravarsstatistikkUrl={sykefravarsstatistikkUrl}
+        sykefravarsstatistikkUrl={sykefraværsstatistikkUrlMedBedrift}
         useMobileVersion={usingMobileVersion}
       />
     </div>

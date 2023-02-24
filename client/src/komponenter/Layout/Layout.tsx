@@ -3,19 +3,21 @@ import Banner from "../../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import { getMiljø, Miljø } from "../../utils/miljøUtils";
 
 export const Layout = (props: {
   title: string;
   description: string;
   altinnOrganisasjoner: AltinnOrganisasjon[];
+  isProduction: boolean
   children: React.ReactNode;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
-  const miljø = getMiljø();
 
   const banner = (
-    <NotifikasjonWidgetProvider apiUrl={'/forebygge-fravar/notifikasjon-bruker-api'} miljo={miljø === Miljø.Prod ? "prod" : "dev"}>
+    <NotifikasjonWidgetProvider
+      apiUrl={"/forebygge-fravar/notifikasjon-bruker-api"}
+      miljo={props.isProduction ? "prod" : "dev"}
+    >
       <Banner
         tittelMedUnderTittel={
           <div>

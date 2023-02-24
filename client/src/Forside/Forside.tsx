@@ -6,41 +6,33 @@ import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
 import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
 import { IdebankenIkon } from "./ikoner/IdebankenIkon";
 import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { Infographic } from "../komponenter/Infographic/Infographic";
 import { hentUtInfographicData } from "../komponenter/Infographic/datauthenting";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
-import { getMiljø } from "../utils/miljøUtils";
-import {
-  Applikasjon,
-  getUrlForApplikasjon,
-  getUrlForForebyggingsplan,
-  getUrlForKalkulator,
-  utledUrlForBedrift,
-} from "../utils/navigasjon";
 import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
+import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 
-export const Forside = () => {
+export interface ForsideProps {
+  samtalestøtteUrl: string;
+  forebyggingsplanUrl: string;
+  sykefraværsstatistikkUrl: string;
+}
+
+export const Forside = (props: ForsideProps) => {
   const bredde = 60;
   const høyde = 60;
 
   const orgnr = useOrgnr();
-  const miljø = getMiljø();
 
-  const [samtalestotteUrl, setSamtalestotteUrl] = useState("#");
-
-  useEffect(() => {
-    setSamtalestotteUrl(
-      utledUrlForBedrift(
-        getUrlForApplikasjon(Applikasjon.Samtalestøtte, miljø),
-        orgnr
-      )
-    );
-  }, [orgnr, miljø]);
+  const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
+    props.samtalestøtteUrl,
+    orgnr
+  );
 
   const aggregertStatistikk = useAggregertStatistikk();
   const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
@@ -56,6 +48,7 @@ export const Forside = () => {
       <Infographic
         {...hentUtInfographicData(aggregertStatistikkData)}
         nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
+        sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
       />
     );
 
@@ -70,7 +63,7 @@ export const Forside = () => {
             brødtekst={
               "Dette verktøyet hjelper deg å strukturere samtaler med medarbeider."
             }
-            href={samtalestotteUrl}
+            href={samtalestøtteUrlMedOrgnr}
           />
           <Lenkeflis
             overskrift={"Video og kurs"}
@@ -78,7 +71,7 @@ export const Forside = () => {
             brødtekst={
               "Her finner du videoer og kurs for å forebygge, følge opp og redusere sykefravær."
             }
-            href={getUrlForApplikasjon(Applikasjon.Nettkurs, miljø)}
+            href={"/forebygge-fravar/video-og-kurs"}
           />
           <Lenkeflis
             overskrift={"Fraværs&shy;kalkulator"}
@@ -86,7 +79,7 @@ export const Forside = () => {
             brødtekst={
               "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
             }
-            href={getUrlForKalkulator()}
+            href={"/forebygge-fravar/kalkulator"}
           />
           <Lenkeflis
             overskrift={"Forebygg fravær hos dere"}
@@ -94,7 +87,7 @@ export const Forside = () => {
             brødtekst={
               "Vi har samlet nyttige forslag til aktiviteter dere kan gjøre for å forebygge fravær."
             }
-            href={getUrlForForebyggingsplan(miljø)}
+            href={props.forebyggingsplanUrl}
           />
           <InkluderendeArbeidslivPanel />
           <LenkeflisEkstern

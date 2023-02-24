@@ -18,6 +18,7 @@ it("viser sykefraværsprosenten for Norge", async () => {
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
@@ -37,6 +38,7 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
@@ -56,6 +58,7 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkStigendeTrendBransje)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
@@ -69,6 +72,8 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkSynkendeTrend)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
+
       />
     );
   });
@@ -82,6 +87,7 @@ it("viser ingen fraværstrend når det ikke finnes data", async () => {
       <Infographic
         {...hentUtInfographicData(tomtDataobjekt)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
@@ -99,6 +105,8 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkUendretTrend)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
+
       />
     );
   });
@@ -112,6 +120,8 @@ it("viser årsak til sykemelding", async () => {
       <Infographic
         {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
+
       />
     );
   });
@@ -131,6 +141,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
       <Infographic
         {...hentUtInfographicData(tomtDataobjekt)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
@@ -150,6 +161,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
       <Infographic
         {...hentUtInfographicData(tomtDataobjekt)}
         nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
@@ -160,7 +172,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   expect(lenke).toHaveAttribute(
     "href",
     expect.stringContaining(
-      "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk?bedrift="
+      "http://url?bedrift=999999999"
     )
   );
 });
