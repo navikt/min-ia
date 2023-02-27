@@ -23,7 +23,13 @@ jest.mock("../../src/hooks/useOrgnr", () => ({
 
 it("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
   const user = userEvent.setup();
-  render(<Forside harNoenOrganisasjoner={true} />);
+  render(
+    <Forside
+      sykefraværsstatistikkUrl={"https://url-til-sykefraværsstatistikk"}
+      forebyggingsplanUrl={"https://url-til-forebyggingsplan"}
+      samtalestøtteUrl={"https://url-til-samtalestøtte"}
+    />
+  );
 
   const lenketekst = "Be om tilgang";
   const lenkebeskrivelse =
@@ -35,8 +41,7 @@ it("sender navigere-event ved klikk på lenke til statistikksiden", async () => 
 
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("navigere", {
-    destinasjon:
-      "https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk?bedrift=999999999",
+    destinasjon: "https://url-til-sykefraværsstatistikk",
     lenketekst,
   });
 });

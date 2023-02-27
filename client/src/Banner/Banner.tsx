@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import "@navikt/ds-css";
-import styles from './Banner.module.scss'
+import styles from "./Banner.module.scss";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
 import { MemoryRouter } from "react-router-dom";
-import { ForebyggeSykefravaer } from '@navikt/bedriftsmeny';
-import { NotifikasjonWidget} from "@navikt/arbeidsgiver-notifikasjon-widget";
+import { ForebyggeSykefravaer } from "@navikt/bedriftsmeny";
+import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
+import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 
 const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
   ssr: false,
-})
+});
 
 export interface Organisasjon {
   Name: string;
@@ -37,7 +38,7 @@ const Banner: React.FunctionComponent<Props> = (props) => {
 
   const onOrganisasjonChange = (organisasjon?: Organisasjon) => {
     if (organisasjon) {
-      router.push(`?bedrift=${organisasjon.OrganizationNumber}`);
+      router.push(leggTilBedriftPåUrl("", organisasjon.OrganizationNumber));
     }
     if (bedriftValgtManueltFraLista) {
       sendBedriftValgtEvent();

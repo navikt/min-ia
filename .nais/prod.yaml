@@ -35,14 +35,17 @@ spec:
       value: https://www.nav.no/dekoratoren?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
-    - name: NEXT_PUBLIC_KALKULATOR_URL
-      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver.nav.no/forebygge-fravar/kalkulator
-    - name: NEXT_PUBLIC_NETTKURS_URL
-      value: https://arbeidsgiver.nav.no/forebygge-sykefravaer/#webinar-og-kurs
-    - name: NEXT_PUBLIC_SAMTALESTOTTE_URL
+
+    - name: ENVIRONMENT
+      value: prod
+    - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
-    - name: NEXT_PUBLIC_SYKEFRAVARSSTATISTIKK_URL
-      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk/redirect-til-login?redirect=https://arbeidsgiver.nav.no/sykefravarsstatistikk
+    - name: SYKEFRAVARSSTATISTIKK_URL
+      value: https://arbeidsgiver.nav.no/sykefravarsstatistikk
+    - name: FOREBYGGINGSPLAN_URL
+      value: https://arbeidsgiver.nav.no/forebyggingsplan
+    - name: MIN_SIDE_ARBEIDSGIVER_URL
+      value: https://arbeidsgiver.nav.no/min-side-arbeidsgiver
   tokenx:
     enabled: true
   idporten:

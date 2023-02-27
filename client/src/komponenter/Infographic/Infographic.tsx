@@ -1,18 +1,13 @@
-import { FunctionComponent, ReactNode, useEffect, useState } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "./InfographicFlis/InfographicFlis";
 import { useOrgnr } from "../../hooks/useOrgnr";
-import { getMiljø } from "../../utils/miljøUtils";
-import {
-  Applikasjon,
-  getUrlForApplikasjon,
-  utledUrlForBedrift,
-} from "../../utils/navigasjon";
 import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
 import { useAltinnOrganisasjonerMedStatistikk } from "../../hooks/useAltinnOrganisasjonerMedStatistikk";
 import { RestStatus } from "../../integrasjoner/rest-status";
+import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 
 export interface InfographicData {
   fraværsprosentNorge?: string;
@@ -25,13 +20,15 @@ export interface InfographicData {
 export const Infographic: FunctionComponent<
   InfographicData & {
     nedlastingPågår: boolean;
+    sykefraværsstatistikkUrl: string;
   }
 > = (props) => {
   const orgnr = useOrgnr();
-  const miljø = getMiljø();
   const usingMobileVersion = useMobileVersion();
-
-  const [sykefravarsstatistikkUrl, setSykefravarsstatistikkUrl] = useState("#");
+  const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
+    props.sykefraværsstatistikkUrl,
+    orgnr
+  );
 
   const restAltinnOrganisasjonerMedStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikk();
@@ -42,15 +39,6 @@ export const Infographic: FunctionComponent<
     restAltinnOrganisasjonerMedStatistikktilgang.data
       .map((org) => org.OrganizationNumber)
       .includes(orgnr);
-
-  useEffect(() => {
-    setSykefravarsstatistikkUrl(
-      utledUrlForBedrift(
-        getUrlForApplikasjon(Applikasjon.Sykefraværsstatistikk, miljø),
-        orgnr
-      )
-    );
-  }, [orgnr, miljø]);
 
   return (
     <div className={styles.infographicWrapper}>
@@ -97,7 +85,7 @@ export const Infographic: FunctionComponent<
         </div>
       </div>
       <InngangTilSykefraværsstatistikk
-        sykefravarsstatistikkUrl={sykefravarsstatistikkUrl}
+        sykefravarsstatistikkUrl={sykefraværsstatistikkUrlMedBedrift}
         useMobileVersion={usingMobileVersion}
         brukerHarIaRettighetTilValgtBedrift={
           brukerHarIaRettighetTilValgtBedrift

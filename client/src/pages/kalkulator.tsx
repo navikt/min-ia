@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Head from "next/head";
 
-export default function Kalkulator(props: { page: PageProps }) {
+export default function Kalkulator(props: { page: PageProps, isProduction: boolean }) {
   const organisasjonerRespons = useAltinnOrganisasjoner();
   const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
     ? organisasjonerRespons.data
@@ -49,6 +49,7 @@ export default function Kalkulator(props: { page: PageProps }) {
         title={props.page.title}
         description={props.page.description}
         altinnOrganisasjoner={brukerensOrganisasjoner}
+        isProduction={props.isProduction}
       >
         {erIkkeInnlogget(aggregertStatistikkRespons) ? (
           <Innloggingsside redirectUrl={window.location.href} />
@@ -63,8 +64,7 @@ export default function Kalkulator(props: { page: PageProps }) {
   );
 }
 
-// NextJS kaller denne ved Client Side Rendering
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Hvordan få tak i orgnr her? Vil kalle API server side
   const page = {
     title: "Fraværskalkulator",
@@ -72,5 +72,7 @@ export async function getStaticProps() {
       "Her kan du beregne hvor mye sykefraværet koster, og hvor mye du kan spare.",
   };
 
-  return { props: { page } };
+  const isProduction = process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
+
+  return { props: { page, isProduction } };
 }

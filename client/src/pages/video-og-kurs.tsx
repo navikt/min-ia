@@ -25,7 +25,7 @@ interface ListeElement {
 
 type Filter = Tags;
 
-export default function VideoOgKurs(props: { page: PageProps }) {
+export default function VideoOgKurs(props: { page: PageProps, isProduction: boolean }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const aggregertStatistikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
@@ -168,6 +168,7 @@ export default function VideoOgKurs(props: { page: PageProps }) {
             ? organisasjonerBrukerHarTilgangTil.data
             : []
         }
+        isProduction={props.isProduction}
       >
         {innhold}
       </Layout>
@@ -182,5 +183,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
   };
 
-  return { props: { page } };
+  const isProduction = process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
+
+  return { props: { page, isProduction } };
 };
