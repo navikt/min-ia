@@ -18,7 +18,6 @@ export const Lenkeflis: React.FunctionComponent<{
   href: string | undefined;
   infographicLenkeflis?: boolean;
   visBrødtekstPåMobil?: boolean;
-  disabled?: boolean;
 }> = ({
   overskrift,
   brødtekst,
@@ -26,7 +25,6 @@ export const Lenkeflis: React.FunctionComponent<{
   href,
   infographicLenkeflis,
   visBrødtekstPåMobil,
-  disabled = false,
 }) => {
   const orgnr = useOrgnr();
   const destinasjon = href ?? "#";
@@ -37,7 +35,6 @@ export const Lenkeflis: React.FunctionComponent<{
 
   return (
     <LinkPanel
-      style={disabled ? { pointerEvents: "none", opacity: "0.4" } : {}}
       href={destinasjon}
       className={classNames(
         styles.lenkeflis,
