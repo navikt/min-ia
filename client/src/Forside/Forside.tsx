@@ -1,101 +1,99 @@
 import styles from "./forside.module.scss";
-import { SamtalestøtteIkon } from "./ikoner/SamtalestøtteIkon";
-import { Calculator, HandsHeart } from "@navikt/ds-icons";
-import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
-import { KursOgWebinarerIkon } from "./ikoner/KursOgWebinarerIkon";
-import { LenkeflisEkstern } from "../LenkeflisEkstern/LenkeflisEkstern";
-import { IdebankenIkon } from "./ikoner/IdebankenIkon";
-import { ArbeidsmiljøPortalenIkon } from "./ikoner/ArbeidsmiljøportalenIkon";
+import {Calculator, HandsHeart, SpeechBubble, VideoRoom} from "@navikt/ds-icons";
+import {Lenkeflis} from "../Lenkeflis/Lenkeflis";
+import {LenkeflisEkstern} from "../LenkeflisEkstern/LenkeflisEkstern";
+import {IdebankenIkon} from "./ikoner/IdebankenIkon";
+import {ArbeidsmiljøPortalenIkon} from "./ikoner/ArbeidsmiljøportalenIkon";
 import React from "react";
-import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
-import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
-import { Infographic } from "../komponenter/Infographic/Infographic";
-import { hentUtInfographicData } from "../komponenter/Infographic/datauthenting";
-import { useOrgnr } from "../hooks/useOrgnr";
-import { Alert } from "@navikt/ds-react";
-import { InkluderendeArbeidslivPanel } from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
-import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
-import { leggTilBedriftPåUrl } from "../utils/navigasjon";
+import {useAggregertStatistikk} from "../hooks/useAggregertStatistikk";
+import {erFerdigNedlastet, RestStatus} from "../integrasjoner/rest-status";
+import {Infographic} from "../komponenter/Infographic/Infographic";
+import {hentUtInfographicData} from "../komponenter/Infographic/datauthenting";
+import {useOrgnr} from "../hooks/useOrgnr";
+import {Alert} from "@navikt/ds-react";
+import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
+import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
+import {leggTilBedriftPåUrl} from "../utils/navigasjon";
 
 export interface ForsideProps {
-  samtalestøtteUrl: string;
-  forebyggingsplanUrl: string;
-  sykefraværsstatistikkUrl: string;
+    samtalestøtteUrl: string;
+    forebyggingsplanUrl: string;
+    sykefraværsstatistikkUrl: string;
 }
 
 export const Forside = (props: ForsideProps) => {
-  const bredde = 60;
-  const høyde = 60;
+    const bredde = 60;
+    const høyde = 60;
 
-  const orgnr = useOrgnr();
+    const orgnr = useOrgnr();
 
-  const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
-    props.samtalestøtteUrl,
-    orgnr
-  );
-
-  const aggregertStatistikk = useAggregertStatistikk();
-  const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
-    ? aggregertStatistikk.data
-    : tomtDataobjekt;
-
-  const infographicEllerBannerHvisError =
-    aggregertStatistikk.status === RestStatus.Feil ? (
-      <Alert variant={"error"} className={styles.forsideAlert}>
-        Det har skjedd en feil. Vennligst prøv igjen senere.
-      </Alert>
-    ) : (
-      <Infographic
-        {...hentUtInfographicData(aggregertStatistikkData)}
-        nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
-        sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
-      />
+    const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
+        props.samtalestøtteUrl,
+        orgnr
     );
 
-  return (
-    <>
-      <div className={styles.forside}>
-        {infographicEllerBannerHvisError}
-        <div className={styles.panelGrid}>
-          <Lenkeflis
-            overskrift={"Samtalestøtten"}
-            ikon={<SamtalestøtteIkon />}
-            href={samtalestøtteUrlMedOrgnr}
-          />
-          <Lenkeflis
-            overskrift={"Video og kurs"}
-            ikon={<KursOgWebinarerIkon />}
-            href={"/forebygge-fravar/video-og-kurs"}
-          />
-          <Lenkeflis
-            overskrift={"Fraværs&shy;kalkulator"}
-            ikon={<Calculator />}
-            href={"/forebygge-fravar/kalkulator"}
-          />
-          <Lenkeflis
-            overskrift={"Forebygg fravær hos dere"}
-            ikon={<HandsHeart />}
-            href={props.forebyggingsplanUrl}
-          />
-          <InkluderendeArbeidslivPanel />
-          <LenkeflisEkstern
-            overskrift={"Idébanken"}
-            ikon={<IdebankenIkon width={bredde} height={høyde} />}
-            brødtekst={
-              "På idébanken finner du ideer, erfaringer og verktøy som kan bidra til bedre arbeidsmiljø og lavere sykefravær."
-            }
-            href={"https://www.idebanken.org"}
-          />
-          <LenkeflisEkstern
-            overskrift={"Arbeidsmiljø&shy;portalen"}
-            ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
-            brødtekst={
-              "Leter du etter flere gode verktøy for å bedre arbeidsmiljøet? Her finner du kunnskap og digitale verktøy."
-            }
-            href={"https://www.arbeidsmiljoportalen.no"}
-          />
-        </div>
-      </div>
-    </>
-  );
+    const aggregertStatistikk = useAggregertStatistikk();
+    const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
+        ? aggregertStatistikk.data
+        : tomtDataobjekt;
+
+    const infographicEllerBannerHvisError =
+        aggregertStatistikk.status === RestStatus.Feil ? (
+            <Alert variant={"error"} className={styles.forsideAlert}>
+                Det har skjedd en feil. Vennligst prøv igjen senere.
+            </Alert>
+        ) : (
+            <Infographic
+                {...hentUtInfographicData(aggregertStatistikkData)}
+                nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
+                sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
+            />
+        );
+
+    return (
+        <>
+            <div className={styles.forside}>
+                {infographicEllerBannerHvisError}
+                <div className={styles.panelGrid}>
+                    <Lenkeflis
+                        overskrift={"Samtalestøtten"}
+                        ikon={<SpeechBubble/>}
+                        href={samtalestøtteUrlMedOrgnr}
+                    />
+                    <Lenkeflis
+                        overskrift={"Video og kurs"}
+                        ikon={<VideoRoom/>}
+                        href={"/forebygge-fravar/video-og-kurs"}
+                    />
+                    <Lenkeflis
+                        overskrift={"Fraværs&shy;kalkulator"}
+                        ikon={<Calculator/>}
+                        href={"/forebygge-fravar/kalkulator"}
+                    />
+                    <Lenkeflis
+                        overskrift={"Forebygg fravær hos dere"}
+                        ikon={<HandsHeart/>}
+                        href={props.forebyggingsplanUrl}
+                    />
+                    <InkluderendeArbeidslivPanel/>
+                    <LenkeflisEkstern
+                        overskrift={"Idébanken"}
+                        ikon={<IdebankenIkon width={bredde} height={høyde}/>}
+                        brødtekst={
+                            "På idébanken finner du ideer, erfaringer og verktøy som kan bidra til bedre arbeidsmiljø og lavere sykefravær."
+                        }
+                        href={"https://www.idebanken.org"}
+                    />
+                    <LenkeflisEkstern
+                        overskrift={"Arbeidsmiljø&shy;portalen"}
+                        ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde}/>}
+                        brødtekst={
+                            "Leter du etter flere gode verktøy for å bedre arbeidsmiljøet? Her finner du kunnskap og digitale verktøy."
+                        }
+                        href={"https://www.arbeidsmiljoportalen.no"}
+                    />
+                </div>
+            </div>
+        </>
+    );
 };

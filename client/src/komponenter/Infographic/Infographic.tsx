@@ -2,10 +2,10 @@ import { FunctionComponent, ReactNode } from "react";
 import styles from "./Infographic.module.scss";
 import { InfographicFlis } from "./InfographicFlis/InfographicFlis";
 import { useOrgnr } from "../../hooks/useOrgnr";
-import { useMobileVersion } from "../../hooks/useMobileVersion";
-import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
+import {DataFilled} from "@navikt/ds-icons";
+import {Lenkeflis} from "../../Lenkeflis/Lenkeflis";
 
 export interface InfographicData {
   fraværsprosentNorge?: string;
@@ -22,7 +22,6 @@ export const Infographic: FunctionComponent<
   }
 > = (props) => {
   const orgnr = useOrgnr();
-  const usingMobileVersion = useMobileVersion();
   const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
     props.sykefraværsstatistikkUrl,
     orgnr
@@ -71,9 +70,11 @@ export const Infographic: FunctionComponent<
             />
           </div>
         </div>
-        <InngangTilSykefraværsstatistikk
-            sykefravarsstatistikkUrl={sykefraværsstatistikkUrlMedBedrift}
-            useMobileVersion={usingMobileVersion}
+        <Lenkeflis
+            overskrift={"Sykefraværsstatistikken"}
+            href={sykefraværsstatistikkUrlMedBedrift}
+            infographicLenkeflis={true}
+            ikon={<DataFilled/>}
         />
       </div>
     </div>

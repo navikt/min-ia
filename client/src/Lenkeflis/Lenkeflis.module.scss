@@ -21,10 +21,9 @@
 .ikonWrapper {
   display: flex;
   align-items: center;
-  font-size: 2.5rem;
   background-color: var(--a-orange-100);
   border-radius: 50%;
-  padding: 1rem;
+  padding: 15px;
 }
 
 @media (min-width: screensize.$screen-md) {
