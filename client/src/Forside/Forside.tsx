@@ -1,6 +1,4 @@
 import styles from "./forside.module.scss";
-import {Calculator, HandsHeart, SpeechBubble, VideoRoom} from "@navikt/ds-icons";
-import {Lenkeflis} from "../Lenkeflis/Lenkeflis";
 import {LenkeflisEkstern} from "../LenkeflisEkstern/LenkeflisEkstern";
 import {IdebankenIkon} from "./ikoner/IdebankenIkon";
 import {ArbeidsmiljøPortalenIkon} from "./ikoner/ArbeidsmiljøportalenIkon";
@@ -14,6 +12,8 @@ import {Alert} from "@navikt/ds-react";
 import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
 import {leggTilBedriftPåUrl} from "../utils/navigasjon";
+import {NyttVerktoyTilDeg} from "./NyttVerktoyTilDeg";
+import {AndreForebyggendeVerktoy} from "./AndreForebyggendeVerktoy";
 
 export interface ForsideProps {
     samtalestøtteUrl: string;
@@ -54,39 +54,8 @@ export const Forside = (props: ForsideProps) => {
         <div className={styles.sentrertSide}>
             <div className={styles.forside}>
                 {infographicEllerBannerHvisError}
-                <div className={styles.nyttVerktoyTilDeg}>
-                    <h2>Vi har et nytt verktøy til deg...</h2>
-                    <div className={styles.innhold}>
-                        <p className={styles.enhet}>Regelmessig fokus på sykefravær og arbeidsmiljø bidrar til å
-                            redusere fravær. Vi har samlet
-                            forslag til aktiviteter dere kan gjøre på arbeidsplassen.</p>
-                        <Lenkeflis
-                            overskrift={"Start forebygging av sykefravær"}
-                            ikon={<HandsHeart/>}
-                            href={props.forebyggingsplanUrl}
-                        />
-                    </div>
-                </div>
-                <div className={styles.andreForebyggendeVerktoy}>
-                    <h2>Andre forebyggende verktøy</h2>
-                    <div className={styles.panelGrid}>
-                        <Lenkeflis
-                            overskrift={"Samtalestøtten"}
-                            ikon={<SpeechBubble/>}
-                            href={samtalestøtteUrlMedOrgnr}
-                        />
-                        <Lenkeflis
-                            overskrift={"Video og kurs"}
-                            ikon={<VideoRoom/>}
-                            href={"/forebygge-fravar/video-og-kurs"}
-                        />
-                        <Lenkeflis
-                            overskrift={"Fraværs&shy;kalkulator"}
-                            ikon={<Calculator/>}
-                            href={"/forebygge-fravar/kalkulator"}
-                        />
-                    </div>
-                </div>
+                <NyttVerktoyTilDeg href={props.forebyggingsplanUrl}/>
+                <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr}/>
                 <>
                     <InkluderendeArbeidslivPanel/>
                     <LenkeflisEkstern
