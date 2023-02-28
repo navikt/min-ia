@@ -56,7 +56,7 @@ export const Forside = (props: ForsideProps) => {
     <>
       <div className={styles.forside}>
         {infographicEllerBannerHvisError}
-        <div className={styles.panelGrid}>
+        <div className={styles.lenkeflisGrid}>
           <Lenkeflis
             overskrift={"Samtalestøtten"}
             ikon={<SamtalestøtteIkon />}
@@ -89,24 +89,24 @@ export const Forside = (props: ForsideProps) => {
             }
             href={props.forebyggingsplanUrl}
           />
-          <InkluderendeArbeidslivPanel />
-          <LenkeflisEkstern
-            overskrift={"Idébanken"}
-            ikon={<IdebankenIkon width={bredde} height={høyde} />}
-            brødtekst={
-              "På idébanken finner du ideer, erfaringer og verktøy som kan bidra til bedre arbeidsmiljø og lavere sykefravær."
-            }
-            href={"https://www.idebanken.org"}
-          />
-          <LenkeflisEkstern
-            overskrift={"Arbeidsmiljø&shy;portalen"}
-            ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
-            brødtekst={
-              "Leter du etter flere gode verktøy for å bedre arbeidsmiljøet? Her finner du kunnskap og digitale verktøy."
-            }
-            href={"https://www.arbeidsmiljoportalen.no"}
-          />
         </div>
+        <InkluderendeArbeidslivPanel />
+        <LenkeflisEkstern
+          overskrift={"Idébanken"}
+          ikon={<IdebankenIkon width={bredde} height={høyde} />}
+          brødtekst={
+            "På idébanken finner du ideer, erfaringer og verktøy som kan bidra til bedre arbeidsmiljø og lavere sykefravær."
+          }
+          href={"https://www.idebanken.org"}
+        />
+        <LenkeflisEkstern
+          overskrift={"Arbeidsmiljø&shy;portalen"}
+          ikon={<ArbeidsmiljøPortalenIkon width={bredde} height={høyde} />}
+          brødtekst={
+            "Leter du etter flere gode verktøy for å bedre arbeidsmiljøet? Her finner du kunnskap og digitale verktøy."
+          }
+          href={"https://www.arbeidsmiljoportalen.no"}
+        />
       </div>
     </>
   );

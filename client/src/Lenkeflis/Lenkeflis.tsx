@@ -53,7 +53,9 @@ export const Lenkeflis: React.FunctionComponent<{
       <div
         className={classNames(
           styles.ikonOgTekstWrapper,
-          infographicLenkeflis ? styles.ikonOgTekstWrapper__infographicLenkeflis : ""
+          infographicLenkeflis
+            ? styles.ikonOgTekstWrapper__infographicLenkeflis
+            : ""
         )}
       >
         {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}

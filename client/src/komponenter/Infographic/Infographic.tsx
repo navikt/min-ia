@@ -5,6 +5,8 @@ import { useOrgnr } from "../../hooks/useOrgnr";
 import { useMobileVersion } from "../../hooks/useMobileVersion";
 import { InngangTilSykefraværsstatistikk } from "./InngangTilSykefraværsstatistikk";
 import { BodyLong, Detail, Heading, Label } from "@navikt/ds-react";
+import { useAltinnOrganisasjonerMedStatistikk } from "../../hooks/useAltinnOrganisasjonerMedStatistikk";
+import { RestStatus } from "../../integrasjoner/rest-status";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 
 export interface InfographicData {
@@ -27,6 +29,16 @@ export const Infographic: FunctionComponent<
     props.sykefraværsstatistikkUrl,
     orgnr
   );
+
+  const restAltinnOrganisasjonerMedStatistikktilgang =
+    useAltinnOrganisasjonerMedStatistikk();
+  const brukerHarIaRettighetTilValgtBedrift =
+    orgnr !== undefined &&
+    restAltinnOrganisasjonerMedStatistikktilgang.status ===
+      RestStatus.Suksess &&
+    restAltinnOrganisasjonerMedStatistikktilgang.data
+      .map((org) => org.OrganizationNumber)
+      .includes(orgnr);
 
   return (
     <div className={styles.infographicWrapper}>
@@ -75,6 +87,9 @@ export const Infographic: FunctionComponent<
       <InngangTilSykefraværsstatistikk
         sykefravarsstatistikkUrl={sykefraværsstatistikkUrlMedBedrift}
         useMobileVersion={usingMobileVersion}
+        brukerHarIaRettighetTilValgtBedrift={
+          brukerHarIaRettighetTilValgtBedrift
+        }
       />
     </div>
   );

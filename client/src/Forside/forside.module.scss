@@ -13,7 +13,7 @@
     margin-right: 1.5rem;
   }
 
-  .panelGrid {
+  .lenkeflisGrid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -25,8 +25,10 @@
   @media (min-width: screensize.$screen-md) {
     padding: 2rem;
 
-    .panelGrid {
+    .lenkeflisGrid {
       justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
