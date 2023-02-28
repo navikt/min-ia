@@ -51,30 +51,43 @@ export const Forside = (props: ForsideProps) => {
         );
 
     return (
-        <>
+        <div className={styles.sentrertSide}>
             <div className={styles.forside}>
                 {infographicEllerBannerHvisError}
-                <div className={styles.panelGrid}>
-                    <Lenkeflis
-                        overskrift={"Samtalestøtten"}
-                        ikon={<SpeechBubble/>}
-                        href={samtalestøtteUrlMedOrgnr}
-                    />
-                    <Lenkeflis
-                        overskrift={"Video og kurs"}
-                        ikon={<VideoRoom/>}
-                        href={"/forebygge-fravar/video-og-kurs"}
-                    />
-                    <Lenkeflis
-                        overskrift={"Fraværs&shy;kalkulator"}
-                        ikon={<Calculator/>}
-                        href={"/forebygge-fravar/kalkulator"}
-                    />
-                    <Lenkeflis
-                        overskrift={"Forebygg fravær hos dere"}
-                        ikon={<HandsHeart/>}
-                        href={props.forebyggingsplanUrl}
-                    />
+                <div className={styles.nyttVerktoyTilDeg}>
+                    <h2>Vi har et nytt verktøy til deg...</h2>
+                    <div className={styles.innhold}>
+                        <p className={styles.enhet}>Regelmessig fokus på sykefravær og arbeidsmiljø bidrar til å
+                            redusere fravær. Vi har samlet
+                            forslag til aktiviteter dere kan gjøre på arbeidsplassen.</p>
+                        <Lenkeflis
+                            overskrift={"Start forebygging av sykefravær"}
+                            ikon={<HandsHeart/>}
+                            href={props.forebyggingsplanUrl}
+                        />
+                    </div>
+                </div>
+                <div className={styles.andreForebyggendeVerktoy}>
+                    <h2>Andre forebyggende verktøy</h2>
+                    <div className={styles.panelGrid}>
+                        <Lenkeflis
+                            overskrift={"Samtalestøtten"}
+                            ikon={<SpeechBubble/>}
+                            href={samtalestøtteUrlMedOrgnr}
+                        />
+                        <Lenkeflis
+                            overskrift={"Video og kurs"}
+                            ikon={<VideoRoom/>}
+                            href={"/forebygge-fravar/video-og-kurs"}
+                        />
+                        <Lenkeflis
+                            overskrift={"Fraværs&shy;kalkulator"}
+                            ikon={<Calculator/>}
+                            href={"/forebygge-fravar/kalkulator"}
+                        />
+                    </div>
+                </div>
+                <>
                     <InkluderendeArbeidslivPanel/>
                     <LenkeflisEkstern
                         overskrift={"Idébanken"}
@@ -92,8 +105,8 @@ export const Forside = (props: ForsideProps) => {
                         }
                         href={"https://www.arbeidsmiljoportalen.no"}
                     />
-                </div>
+                </>
             </div>
-        </>
+        </div>
     );
 };

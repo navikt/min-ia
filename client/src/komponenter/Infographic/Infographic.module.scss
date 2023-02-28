@@ -25,11 +25,11 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--a-spacing-2);
   &__wrapper {
     display: flex;
     justify-content: space-between;
-    gap: 27px;
+    gap: var(--a-spacing-5);
   }
 }
 
