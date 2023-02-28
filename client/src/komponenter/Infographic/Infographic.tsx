@@ -30,10 +30,10 @@ export const Infographic: FunctionComponent<
 
   return (
     <div className={styles.infographicWrapper}>
+      <Heading size={"medium"} level={"2"}>
+        Sykefraværsstatistikk
+      </Heading>
       <div className={styles.infographicContent__wrapper}>
-        <Heading size={"medium"} level={"2"}>
-          Sykefraværsstatistikk siste 12 måneder
-        </Heading>
         <div className={styles.infographicContent}>
           <div className={styles.infographicRad}>
             <InfographicFlis
@@ -71,11 +71,11 @@ export const Infographic: FunctionComponent<
             />
           </div>
         </div>
+        <InngangTilSykefraværsstatistikk
+            sykefravarsstatistikkUrl={sykefraværsstatistikkUrlMedBedrift}
+            useMobileVersion={usingMobileVersion}
+        />
       </div>
-      <InngangTilSykefraværsstatistikk
-        sykefravarsstatistikkUrl={sykefraværsstatistikkUrlMedBedrift}
-        useMobileVersion={usingMobileVersion}
-      />
     </div>
   );
 };
@@ -83,7 +83,7 @@ export const Infographic: FunctionComponent<
 function displaytekstSykefraværNorge(prosent: string | undefined) {
   return (
     <>
-      <Detail>I Norge</Detail>
+      <Detail>I Norge siste 12 mnd</Detail>
       <Label>{prosent ?? "- "}%</Label>
     </>
   );
@@ -95,7 +95,7 @@ const displaytekstSykefraværBransjeEllerNæring = (
   if (data.fraværsprosentBransjeEllerNæring) {
     return (
       <>
-        <Detail>I {data.bransjeEllerNæring}</Detail>
+        <Detail>I {data.bransjeEllerNæring} siste 12 mnd</Detail>
         <Label>{data.fraværsprosentBransjeEllerNæring}%</Label>
       </>
     );

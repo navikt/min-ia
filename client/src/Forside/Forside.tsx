@@ -60,33 +60,21 @@ export const Forside = (props: ForsideProps) => {
           <Lenkeflis
             overskrift={"Samtalestøtten"}
             ikon={<SamtalestøtteIkon />}
-            brødtekst={
-              "Dette verktøyet hjelper deg å strukturere samtaler med medarbeider."
-            }
             href={samtalestøtteUrlMedOrgnr}
           />
           <Lenkeflis
             overskrift={"Video og kurs"}
             ikon={<KursOgWebinarerIkon />}
-            brødtekst={
-              "Her finner du videoer og kurs for å forebygge, følge opp og redusere sykefravær."
-            }
             href={"/forebygge-fravar/video-og-kurs"}
           />
           <Lenkeflis
             overskrift={"Fraværs&shy;kalkulator"}
             ikon={<Calculator />}
-            brødtekst={
-              "Her får du en rask og enkel oversikt over hvor mye sykefraværet kan koste."
-            }
             href={"/forebygge-fravar/kalkulator"}
           />
           <Lenkeflis
             overskrift={"Forebygg fravær hos dere"}
             ikon={<HandsHeart />}
-            brødtekst={
-              "Vi har samlet nyttige forslag til aktiviteter dere kan gjøre for å forebygge fravær."
-            }
             href={props.forebyggingsplanUrl}
           />
           <InkluderendeArbeidslivPanel />

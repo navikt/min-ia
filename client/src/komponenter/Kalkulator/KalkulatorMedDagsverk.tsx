@@ -40,7 +40,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
     if (!brukerHarEndretTapteDagsverkInput && tapteDagsverkFraDb !== undefined) {
       setNåværendeTapteDagsverk(tapteDagsverkFraDb);
     }
-  }, [tapteDagsverkFraDb]);
+  }, [brukerHarEndretTapteDagsverkInput, tapteDagsverkFraDb]);
 
   return (
     <>

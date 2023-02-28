@@ -1,4 +1,5 @@
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
+import {DataFilled} from "@navikt/ds-icons";
 
 export const InngangTilSykefraværsstatistikk = (props: {
   sykefravarsstatistikkUrl: string;
@@ -6,13 +7,14 @@ export const InngangTilSykefraværsstatistikk = (props: {
 }) => {
   return (
     <Lenkeflis
-      overskrift={"Se statistikk"}
-      brødtekst={
-        "Ved å sammenligne dere med andre og vite årsakene til fraværet, kan dere forebygge og redusere sykefravær."
-      }
+      overskrift={"Sykefraværsstatistikken"}
       href={props.sykefravarsstatistikkUrl}
-      visBrødtekstPåMobil={true}
       infographicLenkeflis={true}
+      ikon={ikon()}
     />
   );
 };
+
+const ikon = () => {
+  return <DataFilled/>
+}

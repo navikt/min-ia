@@ -9,15 +9,15 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: center;
+  align-items: center;
 }
 .infographicFlis {
-  background-color: var(--a-gray-100);
+  background-color: var(--a-orange-100);
   width: 48%;
   display: flex;
   justify-content: space-evenly;
-  padding: 1rem 0;
   align-items: center;
+  border-radius: 4px;
 }
 
 @media (min-width: screensize.$screen-md) {
@@ -28,7 +28,6 @@
   .infographicFlis {
     display: flex;
     width: 49%;
-    padding: 0 0.5rem 0 0.5rem;
     height: 5rem;
   }
 }

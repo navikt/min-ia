@@ -3,22 +3,14 @@
 .infographicWrapper {
   background-color: white;
   width: 100%;
-  padding: 2rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
 }
 .infographicRad {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
 }
 
-.snippetWrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-.text {
-  float: left;
-}
 .hjelpetekstWrapper {
   margin-left: auto;
 }
@@ -30,23 +22,26 @@
   text-align: center;
 }
 .infographicContent {
-  margin-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   &__wrapper {
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 27px;
   }
 }
 
 @media (min-width: screensize.$screen-md) {
   .infographicWrapper {
     display: flex;
-    padding: 2rem 1rem 1.5rem 1rem;
     justify-content: space-between;
+    gap: 18px;
   }
 
   .infographicContent {
-    margin: 1.5rem 0 0 0;
     &__wrapper {
-      width: 49%;
     }
   }
 }
