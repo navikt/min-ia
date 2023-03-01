@@ -29,7 +29,7 @@ export const Infographic: FunctionComponent<
 
     return (
         <div className={styles.infographicWrapper}>
-            <Heading size={"medium"} level={"2"}>
+            <Heading size={"large"} level={"2"}>
                 Sykefraværsstatistikk
             </Heading>
             <div className={styles.infographicContent__wrapper}>
