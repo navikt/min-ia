@@ -2,7 +2,6 @@ import styles from "./forside.module.scss";
 import React from "react";
 import {useAggregertStatistikk} from "../hooks/useAggregertStatistikk";
 import {erFerdigNedlastet, RestStatus} from "../integrasjoner/rest-status";
-import {Infographic} from "../komponenter/Infographic/Infographic";
 import {hentUtInfographicData} from "../komponenter/Infographic/datauthenting";
 import {useOrgnr} from "../hooks/useOrgnr";
 import {Alert} from "@navikt/ds-react";
@@ -11,6 +10,7 @@ import {leggTilBedriftPåUrl} from "../utils/navigasjon";
 import {NyttVerktoyTilDeg} from "./NyttVerktoyTilDeg";
 import {AndreForebyggendeVerktoy} from "./AndreForebyggendeVerktoy";
 import {RelaterteTjenester} from "./RelaterteTjenester";
+import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk";
 
 export interface ForsideProps {
     samtalestøtteUrl: string;
@@ -37,7 +37,7 @@ export const Forside = (props: ForsideProps) => {
                 Det har skjedd en feil. Vennligst prøv igjen senere.
             </Alert>
         ) : (
-            <Infographic
+            <Sykefraværsstatistikk
                 {...hentUtInfographicData(aggregertStatistikkData)}
                 nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
                 sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}

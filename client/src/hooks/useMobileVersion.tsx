@@ -1,5 +1,5 @@
 import { useWindowSize } from "./useWindowSize";
-import styles from "../komponenter/Infographic/Infographic.module.scss";
+import styles from "../Forside/sykefraværsstatistikk.module.scss";
 
 export const useMobileVersion = () => {
   const windowSize = useWindowSize();

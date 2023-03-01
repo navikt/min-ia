@@ -1,11 +1,11 @@
 import {FunctionComponent, ReactNode} from "react";
-import styles from "./Infographic.module.scss";
-import {InfographicFlis} from "./InfographicFlis/InfographicFlis";
-import {useOrgnr} from "../../hooks/useOrgnr";
+import {useOrgnr} from "../hooks/useOrgnr";
+import {leggTilBedriftPåUrl} from "../utils/navigasjon";
+import styles from "./sykefraværsstatistikk.module.scss";
 import {Detail, Heading, Label} from "@navikt/ds-react";
-import {leggTilBedriftPåUrl} from "../../utils/navigasjon";
+import {InfographicFlis} from "../komponenter/Infographic/InfographicFlis/InfographicFlis";
+import {Lenkeflis} from "../Lenkeflis/Lenkeflis";
 import {DataFilled} from "@navikt/ds-icons";
-import {Lenkeflis} from "../../Lenkeflis/Lenkeflis";
 
 export interface InfographicData {
     fraværsprosentNorge?: string;
@@ -15,7 +15,7 @@ export interface InfographicData {
     bransjeEllerNæringLabel?: string;
 }
 
-export const Infographic: FunctionComponent<
+export const Sykefraværsstatistikk: FunctionComponent<
     InfographicData & {
     nedlastingPågår: boolean;
     sykefraværsstatistikkUrl: string;
@@ -28,7 +28,7 @@ export const Infographic: FunctionComponent<
     );
 
     return (
-        <div className={styles.infographicWrapper}>
+        <div className={styles.sykefraværsstatistikk}>
             <Heading size={"large"} level={"2"}>
                 Sykefraværsstatistikk
             </Heading>
@@ -101,7 +101,6 @@ const displaytekstSykefraværBransjeEllerNæring = (
         return `Vi mangler data til beregning av sykefraværet i din ${data.bransjeEllerNæring}`;
     }
 };
-
 const displaytekstTrendBransjeEllerNæring = (
     props: InfographicData
 ): ReactNode => {
