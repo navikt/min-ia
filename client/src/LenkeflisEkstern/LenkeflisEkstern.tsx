@@ -7,10 +7,9 @@ import { navigerEtterCallbacks } from "../utils/navigasjon";
 
 export const LenkeflisEkstern: React.FunctionComponent<{
   overskrift: string;
-  ikon: React.ReactElement;
   brødtekst: string;
   href: string | undefined;
-}> = ({ overskrift, ikon, brødtekst, href }) => {
+}> = ({ overskrift, brødtekst, href }) => {
   const destinasjon = href ?? "#";
   const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
   return (
@@ -26,7 +25,6 @@ export const LenkeflisEkstern: React.FunctionComponent<{
         }}
       >
         <div className={styles.ikonOgTekstWrapper}>
-          {ikon}
           <div className={styles.tekstWrap}>
             <div className="navds-link-panel__title navds-heading navds-heading--medium">
               <div dangerouslySetInnerHTML={{ __html: overskrift }} />
