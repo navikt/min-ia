@@ -1,5 +1,4 @@
 import styles from "./forside.module.scss";
-import {LenkeflisEkstern} from "../LenkeflisEkstern/LenkeflisEkstern";
 import React from "react";
 import {useAggregertStatistikk} from "../hooks/useAggregertStatistikk";
 import {erFerdigNedlastet, RestStatus} from "../integrasjoner/rest-status";
@@ -7,11 +6,11 @@ import {Infographic} from "../komponenter/Infographic/Infographic";
 import {hentUtInfographicData} from "../komponenter/Infographic/datauthenting";
 import {useOrgnr} from "../hooks/useOrgnr";
 import {Alert} from "@navikt/ds-react";
-import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
 import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
 import {leggTilBedriftPåUrl} from "../utils/navigasjon";
 import {NyttVerktoyTilDeg} from "./NyttVerktoyTilDeg";
 import {AndreForebyggendeVerktoy} from "./AndreForebyggendeVerktoy";
+import {RelaterteTjenester} from "./RelaterteTjenester";
 
 export interface ForsideProps {
     samtalestøtteUrl: string;
@@ -51,23 +50,7 @@ export const Forside = (props: ForsideProps) => {
                 {infographicEllerBannerHvisError}
                 <NyttVerktoyTilDeg href={props.forebyggingsplanUrl}/>
                 <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr}/>
-                <>
-                    <InkluderendeArbeidslivPanel/>
-                    <LenkeflisEkstern
-                        overskrift={"Idébanken"}
-                        brødtekst={
-                            "På idébanken finner du ideer, erfaringer og verktøy som kan bidra til bedre arbeidsmiljø og lavere sykefravær."
-                        }
-                        href={"https://www.idebanken.org"}
-                    />
-                    <LenkeflisEkstern
-                        overskrift={"Arbeidsmiljø&shy;portalen"}
-                        brødtekst={
-                            "Leter du etter flere gode verktøy for å bedre arbeidsmiljøet? Her finner du kunnskap og digitale verktøy."
-                        }
-                        href={"https://www.arbeidsmiljoportalen.no"}
-                    />
-                </>
+                <RelaterteTjenester/>
             </div>
         </div>
     );
