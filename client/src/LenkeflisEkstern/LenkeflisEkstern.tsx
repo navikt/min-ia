@@ -2,6 +2,7 @@ import React from "react";
 import {sendNavigereEvent} from "../amplitude/events";
 import {navigerEtterCallbacks} from "../utils/navigasjon";
 import {LinkPanel} from "@navikt/ds-react";
+import styles from "./lenkeflis-ekstern.module.scss"
 
 export const LenkeflisEkstern: React.FunctionComponent<{
     overskrift: string;
@@ -16,7 +17,9 @@ export const LenkeflisEkstern: React.FunctionComponent<{
                    onClick={() => navigerEtterCallbacks(destinasjon, [eventutsendelse], 500)}
         >
             <LinkPanel.Title>{overskrift}</LinkPanel.Title>
-            <LinkPanel.Description>{brødtekst}</LinkPanel.Description>
+            <div className={styles.linkPanel__description__wrapper}>
+                <LinkPanel.Description>{brødtekst}</LinkPanel.Description>
+            </div>
         </LinkPanel>
     )
 };
