@@ -1,10 +1,10 @@
 import {FunctionComponent, ReactNode} from "react";
-import {useOrgnr} from "../hooks/useOrgnr";
-import {leggTilBedriftPåUrl} from "../utils/navigasjon";
+import {useOrgnr} from "../../hooks/useOrgnr";
+import {leggTilBedriftPåUrl} from "../../utils/navigasjon";
 import styles from "./sykefraværsstatistikk.module.scss";
 import {Detail, Heading, Label} from "@navikt/ds-react";
-import {InfographicFlis} from "../komponenter/Infographic/InfographicFlis/InfographicFlis";
-import {Lenkeflis} from "../Lenkeflis/Lenkeflis";
+import {InfographicFlis} from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
+import {Lenkeflis} from "../../Lenkeflis/Lenkeflis";
 import {DataFilled} from "@navikt/ds-icons";
 
 export interface InfographicData {

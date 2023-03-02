@@ -1,0 +1,10 @@
+.andreForebyggendeVerktøy {
+  .panelGrid {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+}
+

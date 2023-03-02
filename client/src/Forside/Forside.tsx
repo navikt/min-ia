@@ -7,10 +7,10 @@ import {useOrgnr} from "../hooks/useOrgnr";
 import {Alert} from "@navikt/ds-react";
 import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
 import {leggTilBedriftPåUrl} from "../utils/navigasjon";
-import {NyttVerktoyTilDeg} from "./NyttVerktoyTilDeg";
-import {AndreForebyggendeVerktoy} from "./AndreForebyggendeVerktoy";
-import {RelaterteTjenester} from "./RelaterteTjenester";
-import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk";
+import {NyttVerktoyTilDeg} from "./NyttVerktøyTilDeg/NyttVerktoyTilDeg";
+import {AndreForebyggendeVerktoy} from "./AndreForebyggendeVerktøy/AndreForebyggendeVerktoy";
+import {RelaterteTjenester} from "./RelaterteTjenester/RelaterteTjenester";
+import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
 
 export interface ForsideProps {
     samtalestøtteUrl: string;

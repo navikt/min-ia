@@ -1,7 +1,7 @@
-import styles from "./forside.module.scss";
+import styles from "./relaterteTjenester.module.scss";
 import {Heading} from "@navikt/ds-react";
-import {InkluderendeArbeidslivPanel} from "../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
-import {LenkeflisEkstern} from "../LenkeflisEkstern/LenkeflisEkstern";
+import {InkluderendeArbeidslivPanel} from "../../InkluderendeArbeidslivPanel/InkluderendeArbeidslivPanel";
+import {LenkeflisEkstern} from "../../LenkeflisEkstern/LenkeflisEkstern";
 import React from "react";
 
 export function RelaterteTjenester() {

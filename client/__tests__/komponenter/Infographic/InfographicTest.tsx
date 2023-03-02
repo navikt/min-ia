@@ -6,7 +6,7 @@ import {
   tomtDataobjekt,
 } from "../../../src/integrasjoner/aggregert-statistikk-api";
 import { hentUtInfographicData } from "../../../src/komponenter/Infographic/datauthenting";
-import {Sykefraværsstatistikk} from "../../../src/Forside/Sykefraværsstatistikk";
+import {Sykefraværsstatistikk} from "../../../src/Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
 
 jest.mock("../../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
