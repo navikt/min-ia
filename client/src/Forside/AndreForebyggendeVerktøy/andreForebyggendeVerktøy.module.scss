@@ -1,7 +1,10 @@
+@use "src/styles/screensize";
+
 .andreForebyggendeVerktøy {
   display: flex;
   flex-direction: column;
   gap: var(--a-spacing-4);
+
 
   .panelGrid {
     display: flex;
@@ -9,6 +12,10 @@
     flex-direction: column;
     gap: var(--a-spacing-4);
     width: 100%;
+
+    @media (min-width: screensize.$screen-md) {
+      flex-direction: row;
+    }
   }
 }
 
