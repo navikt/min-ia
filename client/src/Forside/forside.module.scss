@@ -19,6 +19,8 @@
   }
 
   @media (min-width: screensize.$screen-md) {
+    max-width: 60rem;
+
     .panelGrid {
       justify-content: space-between;
     }
