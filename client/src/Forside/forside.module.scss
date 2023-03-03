@@ -18,12 +18,8 @@
     margin-right: 1.5rem;
   }
 
-  @media (min-width: screensize.$screen-md) {
+  @media (min-width: screensize.$screen-lg) {
     max-width: 60rem;
-
-    .panelGrid {
-      justify-content: space-between;
-    }
   }
 }
 

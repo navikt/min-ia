@@ -7,57 +7,31 @@
   gap: var(--a-spacing-4);
 
   @media (min-width: screensize.$screen-md) {
-  }
-}
-
-.infographicRad {
-  display: flex;
-  gap: var(--a-spacing-2);
-}
-
-.hjelpetekstWrapper {
-  margin-left: auto;
-}
-
-.informasjon {
-  width: 2rem;
-  height: 2rem;
-}
-
-.infographicFlisOversikt {
-  text-align: center;
-}
-
-.infographicContent {
-  flex-basis: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--a-spacing-2);
-
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--a-spacing-4);
-
-    @media (min-width: screensize.$screen-md) {
-      flex-direction: row;
-    }
-  }
-}
-
-@media (min-width: screensize.$screen-md) {
-  .sykefraværsstatistikk {
     display: flex;
     justify-content: space-between;
     gap: 18px;
   }
 
+  .infographicRad {
+    display: flex;
+    gap: var(--a-spacing-2);
+  }
+
   .infographicContent {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--a-spacing-2);
+
     &__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--a-spacing-4);
+
+      @media (min-width: screensize.$screen-md) {
+        flex-direction: row;
+      }
+
     }
   }
-}
-
-:export {
-  screenSm: screensize.$screen-sm;
 }

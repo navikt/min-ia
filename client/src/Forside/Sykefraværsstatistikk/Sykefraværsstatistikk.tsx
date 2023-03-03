@@ -1,4 +1,4 @@
-import {FunctionComponent, ReactNode} from "react";
+import {ReactNode} from "react";
 import {useOrgnr} from "../../hooks/useOrgnr";
 import {leggTilBedriftPåUrl} from "../../utils/navigasjon";
 import styles from "./sykefraværsstatistikk.module.scss";
@@ -6,6 +6,7 @@ import {Detail, Heading, Label} from "@navikt/ds-react";
 import {InfographicFlis} from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
 import {Lenkeflis} from "../../Lenkeflis/Lenkeflis";
 import {DataFilled} from "@navikt/ds-icons";
+import "./sykefraværsstatistikk.module.scss"
 
 export interface InfographicData {
     fraværsprosentNorge?: string;
@@ -15,12 +16,12 @@ export interface InfographicData {
     bransjeEllerNæringLabel?: string;
 }
 
-export const Sykefraværsstatistikk: FunctionComponent<
-    InfographicData & {
+export interface SykefraværsstatistikkProps extends InfographicData {
     nedlastingPågår: boolean;
     sykefraværsstatistikkUrl: string;
 }
-> = (props) => {
+
+export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
     const orgnr = useOrgnr();
     const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
         props.sykefraværsstatistikkUrl,
@@ -70,7 +71,6 @@ export const Sykefraværsstatistikk: FunctionComponent<
                 <Lenkeflis
                     overskrift={"Sykefraværsstatistikken"}
                     href={sykefraværsstatistikkUrlMedBedrift}
-                    infographicLenkeflis={true}
                     ikon={<DataFilled/>}
                 />
             </div>

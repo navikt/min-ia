@@ -13,9 +13,8 @@
     gap: var(--a-spacing-4);
     width: 100%;
 
-    @media (min-width: screensize.$screen-md) {
+    @media (min-width: screensize.$screen-lg) {
       flex-direction: row;
     }
   }
 }
-

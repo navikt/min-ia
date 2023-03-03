@@ -2,25 +2,17 @@ import {LinkPanel} from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import {sendNavigereEvent} from "../amplitude/events";
-import classNames from "classnames";
-import {
-    IaTjeneste,
-    sendLevertInnloggetIaTjeneste,
-} from "../integrasjoner/ia-tjenestemetrikker-api";
+import {IaTjeneste, sendLevertInnloggetIaTjeneste,} from "../integrasjoner/ia-tjenestemetrikker-api";
 import {useOrgnr} from "../hooks/useOrgnr";
 import {navigerEtterCallbacks} from "../utils/navigasjon";
 
-export const Lenkeflis: React.FunctionComponent<{
+export interface LenkeflisProps {
     overskrift: string;
     ikon?: React.ReactElement;
-    href: string | undefined;
-    infographicLenkeflis?: boolean;
-}> = ({
-          overskrift,
-          ikon,
-          href,
-          infographicLenkeflis,
-      }) => {
+    href?: string;
+}
+
+export const Lenkeflis = ({overskrift, ikon, href}: LenkeflisProps) => {
     const orgnr = useOrgnr();
     const destinasjon = href ?? "#";
 
@@ -31,10 +23,7 @@ export const Lenkeflis: React.FunctionComponent<{
     return (
         <LinkPanel
             href={destinasjon}
-            className={classNames(
-                styles.lenkeflis,
-                infographicLenkeflis ? styles.lenkeflis__infographic : ""
-            )}
+            className={styles.lenkeflis}
             onClickCapture={(e) => {
                 e.preventDefault();
             }}
@@ -45,17 +34,12 @@ export const Lenkeflis: React.FunctionComponent<{
                 ]);
             }}
         >
-            <div
-                className={classNames(
-                    styles.ikonOgTekstWrapper,
-                    infographicLenkeflis ? styles.ikonOgTekstWrapper__infographicLenkeflis : ""
-                )}
-            >
-                {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
-                <LinkPanel.Title>
-                    <div dangerouslySetInnerHTML={{__html: overskrift}}/>
-                </LinkPanel.Title>
-            </div>
+            <LinkPanel.Title>
+                <div className={styles.ikonOgTekstWrapper}>
+                    {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
+                    {overskrift}
+                </div>
+            </LinkPanel.Title>
         </LinkPanel>
     );
 };
