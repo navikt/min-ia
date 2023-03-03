@@ -5,13 +5,10 @@
   flex-direction: column;
   gap: var(--a-spacing-4);
 
-
   .panelGrid {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     gap: var(--a-spacing-4);
-    width: 100%;
 
     @media (min-width: screensize.$screen-lg) {
       flex-direction: row;

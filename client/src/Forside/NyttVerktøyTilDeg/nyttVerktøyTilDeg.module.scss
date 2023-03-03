@@ -14,7 +14,7 @@
     }
 
     @media (min-width: screensize.$screen-md) {
-      gap: var(--a-spacing-10);
+      gap: var(--a-spacing-4);
       flex-direction: row;
     }
   }
