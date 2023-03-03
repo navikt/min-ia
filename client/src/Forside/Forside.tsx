@@ -11,6 +11,7 @@ import {NyttVerktoyTilDeg} from "./NyttVerktøyTilDeg/NyttVerktoyTilDeg";
 import {AndreForebyggendeVerktoy} from "./AndreForebyggendeVerktøy/AndreForebyggendeVerktoy";
 import {RelaterteTjenester} from "./RelaterteTjenester/RelaterteTjenester";
 import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
+import {KontaktOss} from "./KontaktOss/KontaktOss";
 
 export interface ForsideProps {
     samtalestøtteUrl: string;
@@ -51,6 +52,9 @@ export const Forside = (props: ForsideProps) => {
                 <NyttVerktoyTilDeg href={props.forebyggingsplanUrl}/>
                 <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr}/>
                 <RelaterteTjenester/>
+            </div>
+            <div className={styles.forside__footer}>
+                <KontaktOss/>
             </div>
         </div>
     );

@@ -2,7 +2,8 @@
 
 .sentrertSide {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .forside {
@@ -16,6 +17,10 @@
     height: 6rem;
     width: 6rem;
     margin-right: 1.5rem;
+  }
+
+  &__footer {
+
   }
 
   @media (min-width: screensize.$screen-lg) {
