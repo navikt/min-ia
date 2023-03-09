@@ -36,6 +36,8 @@ spec:
       value: https://arbeidsgiver.labs.nais.io/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.labs.nais.io/min-side-arbeidsgiver
+    - name: KONTAKT_OSS_ARBEIDSGIVER_URL
+      value: https://arbeidsgiver.nav.no/kontakt-oss
   liveness:
     path: /forebygge-fravar/internal/isAlive
     initialDelay: 20

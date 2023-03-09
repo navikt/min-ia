@@ -46,6 +46,8 @@ spec:
       value: https://arbeidsgiver.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/min-side-arbeidsgiver
+    - name: KONTAKT_OSS_ARBEIDSGIVER_URL
+      value: https://arbeidsgiver.nav.no/kontakt-oss
   tokenx:
     enabled: true
   idporten:

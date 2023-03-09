@@ -2,7 +2,11 @@ import React from "react";
 import {BodyLong, Heading, Link} from "@navikt/ds-react";
 import styles from "./kontaktOss.module.scss"
 
-export function KontaktOss() {
+export interface KontaktOssProps {
+    kontaktOssUrl: string
+}
+
+export function KontaktOss(props: KontaktOssProps) {
     return (
         <div className={styles.kontaktOss}>
             <Heading size={"large"} level={"2"}>
@@ -11,7 +15,7 @@ export function KontaktOss() {
             <div className={styles.kontaktOss__innhold}>
                 <div className={styles.duKanOgsåRingeEllerSkriveTilOss}>
                     <Heading size={"medium"} level={"3"}>
-                        <Link>
+                        <Link href={`${props.kontaktOssUrl}/kontaktskjema`}>
                             Du kan også ringe eller skrive til oss
                         </Link>
                     </Heading>

@@ -20,6 +20,10 @@ export const Lenkeflis = ({overskrift, ikon, href}: LenkeflisProps) => {
         sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
     const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
 
+    const lokalNavigerEtterCallbacks = () => {
+        navigerEtterCallbacks(destinasjon, [metrikkutsendelse, eventutsendelse])
+    }
+
     return (
         <LinkPanel
             href={destinasjon}
@@ -27,12 +31,8 @@ export const Lenkeflis = ({overskrift, ikon, href}: LenkeflisProps) => {
             onClickCapture={(e) => {
                 e.preventDefault();
             }}
-            onClick={() => {
-                navigerEtterCallbacks(destinasjon, [
-                    metrikkutsendelse,
-                    eventutsendelse,
-                ]);
-            }}
+            onClick={lokalNavigerEtterCallbacks}
+            onKeyDown={lokalNavigerEtterCallbacks}
         >
             <LinkPanel.Title>
                 <div className={styles.ikonOgTekstWrapper}>

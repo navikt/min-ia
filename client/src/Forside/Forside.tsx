@@ -17,6 +17,7 @@ export interface ForsideProps {
     samtalestøtteUrl: string;
     forebyggingsplanUrl: string;
     sykefraværsstatistikkUrl: string;
+    kontaktOssUrl: string;
 }
 
 export const Forside = (props: ForsideProps) => {
@@ -54,7 +55,7 @@ export const Forside = (props: ForsideProps) => {
                 <RelaterteTjenester/>
             </div>
             <div className={styles.forside__footer}>
-                <KontaktOss/>
+                <KontaktOss kontaktOssUrl={props.kontaktOssUrl}/>
             </div>
         </div>
     );
