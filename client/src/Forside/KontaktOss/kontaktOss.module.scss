@@ -1,12 +1,5 @@
 @use "src/styles/screensize";
 
-@mixin kontaktOssTextBox {
-  display: flex;
-  flex-direction: column;
-  padding: var(--a-spacing-4);
-  gap: var(--a-spacing-2);
-}
-
 .kontaktOss {
   display: flex;
   flex-direction: column;
@@ -29,16 +22,10 @@
     }
   }
 
-  .duKanChatteMedOss {
-    background-color: var(--a-blue-50);
-    border-radius: 4px;
-    flex-basis: 50%;
-
-    @include kontaktOssTextBox
-  }
-
   .duKanOgsåRingeEllerSkriveTilOss {
-    flex-basis: 50%;
-    @include kontaktOssTextBox
+    display: flex;
+    flex-direction: column;
+    padding: var(--a-spacing-4);
+    gap: var(--a-spacing-2);
   }
 }

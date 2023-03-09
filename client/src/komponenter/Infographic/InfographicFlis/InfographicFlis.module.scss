@@ -18,6 +18,10 @@
   align-items: center;
   padding: var(--a-spacing-2);
   border-radius: 4px;
+
+  p {
+    text-align: center;
+  }
 }
 
 @media (min-width: screensize.$screen-md) {

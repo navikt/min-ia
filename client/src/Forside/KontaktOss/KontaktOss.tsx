@@ -9,18 +9,6 @@ export function KontaktOss() {
                 Kontakt oss
             </Heading>
             <div className={styles.kontaktOss__innhold}>
-                <div className={styles.duKanChatteMedOss}>
-                    <Heading size={"medium"} level={"3"}>
-                        <Link>
-                            Du kan chatte med oss
-                        </Link>
-                    </Heading>
-                    <BodyLong>
-                        Du møter først chatbot Frida som har døgnåpent. Mellom klokken 9 og 15 på hverdager kan du be
-                        Frida
-                        om å få chatte med en veileder.
-                    </BodyLong>
-                </div>
                 <div className={styles.duKanOgsåRingeEllerSkriveTilOss}>
                     <Heading size={"medium"} level={"3"}>
                         <Link>
