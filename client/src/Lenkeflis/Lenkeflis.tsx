@@ -10,9 +10,10 @@ export interface LenkeflisProps {
     overskrift: string;
     ikon?: React.ReactElement;
     href?: string;
+    brødtekst?: string;
 }
 
-export const Lenkeflis = ({overskrift, ikon, href}: LenkeflisProps) => {
+export const Lenkeflis = ({overskrift, ikon, href, brødtekst}: LenkeflisProps) => {
     const orgnr = useOrgnr();
     const destinasjon = href ?? "#";
 
@@ -40,6 +41,11 @@ export const Lenkeflis = ({overskrift, ikon, href}: LenkeflisProps) => {
                     {overskrift}
                 </div>
             </LinkPanel.Title>
+            {brødtekst &&
+                <LinkPanel.Description>
+                    {brødtekst}
+                </LinkPanel.Description>
+            }
         </LinkPanel>
     );
 };

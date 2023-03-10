@@ -12,7 +12,7 @@
 }
 .infographicFlis {
   background-color: var(--a-orange-100);
-  width: 50%;
+  flex-basis: 50%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -30,8 +30,6 @@
   }
 
   .infographicFlis {
-    display: flex;
-    width: 49%;
     height: 5rem;
   }
 }

@@ -14,7 +14,7 @@
   .infographicContent {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-basis: 50%;
     gap: var(--a-spacing-2);
 
     &__wrapper {

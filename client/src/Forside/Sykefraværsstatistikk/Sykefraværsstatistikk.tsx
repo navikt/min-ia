@@ -7,6 +7,8 @@ import {InfographicFlis} from "../../komponenter/Infographic/InfographicFlis/Inf
 import {Lenkeflis} from "../../Lenkeflis/Lenkeflis";
 import {DataFilled} from "@navikt/ds-icons";
 import "./sykefraværsstatistikk.module.scss"
+import {useAltinnOrganisasjonerMedStatistikk} from "../../hooks/useAltinnOrganisasjonerMedStatistikk";
+import {RestStatus} from "../../integrasjoner/rest-status";
 
 export interface InfographicData {
     fraværsprosentNorge?: string;
@@ -27,6 +29,31 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
         props.sykefraværsstatistikkUrl,
         orgnr
     );
+
+    const restAltinnOrganisasjonerMedStatistikktilgang =
+        useAltinnOrganisasjonerMedStatistikk();
+    const brukerHarIaRettighetTilValgtBedrift =
+        orgnr !== undefined &&
+        restAltinnOrganisasjonerMedStatistikktilgang.status === RestStatus.Suksess &&
+        restAltinnOrganisasjonerMedStatistikktilgang.data
+            .map((org) => org.OrganizationNumber)
+            .includes(orgnr);
+
+    const sykefraværstatistikk = () => {
+        if (brukerHarIaRettighetTilValgtBedrift) {
+            return <Lenkeflis
+                overskrift={"Sykefraværsstatistikken"}
+                href={sykefraværsstatistikkUrlMedBedrift}
+                ikon={<DataFilled/>}
+            />
+        } else {
+            return <Lenkeflis
+                overskrift="Be om tilgang"
+                brødtekst="Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk."
+                href={props.sykefraværsstatistikkUrl}
+            />
+        }
+    }
 
     return (
         <div className={styles.sykefraværsstatistikk}>
@@ -51,12 +78,8 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
                         <InfographicFlis
                             innhold={
                                 <>
-                                    <Detail uppercase={true}>
-                                        Vanligste diagnose i Norge
-                                    </Detail>
-                                    <Label style={{textAlign: "center"}}>
-                                        Muskel og skjelett
-                                    </Label>
+                                    <Detail uppercase={true}>Vanligste diagnose i Norge</Detail>
+                                    <Label>Muskel og skjelett</Label>
                                 </>
                             }
                             nedlastingPågår={props.nedlastingPågår}
@@ -68,11 +91,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
                         />
                     </div>
                 </div>
-                <Lenkeflis
-                    overskrift={"Sykefraværsstatistikken"}
-                    href={sykefraværsstatistikkUrlMedBedrift}
-                    ikon={<DataFilled/>}
-                />
+                {sykefraværstatistikk()}
             </div>
         </div>
     );
@@ -110,8 +129,7 @@ const displaytekstTrendBransjeEllerNæring = (
         return (
             <>
                 <Detail uppercase={true}>Trend i bransjen</Detail>
-                <br/>
-                <b>Fravær {stigningstallTilTekst(stigningstall)}</b>
+                <Label>Fravær {stigningstallTilTekst(stigningstall)}</Label>
             </>
         );
     } else {

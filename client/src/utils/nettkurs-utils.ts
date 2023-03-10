@@ -52,7 +52,7 @@ export const IAVideoer: QbrickVideo[] = [
     },
   },
   {
-    id: "fc48a9e8-00015227-e728460d",
+    id: "c51beca0-a06c-4b12-8f0a-f0f4709946b9",
     tags: [Tags.OPPFØLGING],
     metadata: {
       title: "Oppfølgingsplan som fungerer",
@@ -61,7 +61,7 @@ export const IAVideoer: QbrickVideo[] = [
     },
   },
   {
-    id: "62f13221-00015227-0618cd4a",
+    id: "b3474b5c-c246-4834-b936-89f17a0b1281",
     tags: [Tags.OPPFØLGING, Tags.MEDVIRKNING],
     metadata: {
       title: "Tilrettelegging og medvirkning",
