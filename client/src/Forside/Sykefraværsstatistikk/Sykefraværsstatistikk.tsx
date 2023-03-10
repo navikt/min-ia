@@ -50,7 +50,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
             return <Lenkeflis
                 overskrift="Be om tilgang"
                 brødtekst="Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk."
-                href={props.sykefraværsstatistikkUrl}
+                href={sykefraværsstatistikkUrlMedBedrift}
             />
         }
     }
