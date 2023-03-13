@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Forside } from "../../src/Forside/Forside";
 import logEvent from "../../src/amplitude/logEvent";
@@ -23,12 +23,14 @@ jest.mock("../../src/hooks/useOrgnr", () => ({
 
 it("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
   const user = userEvent.setup();
-  render(
-    <Forside
-      sykefraværsstatistikkUrl={"https://url-til-sykefraværsstatistikk"}
-      forebyggingsplanUrl={"https://url-til-forebyggingsplan"}
-      samtalestøtteUrl={"https://url-til-samtalestøtte"}
-    />
+  await waitFor(() =>
+    render(
+      <Forside
+        sykefraværsstatistikkUrl={"https://url-til-sykefraværsstatistikk"}
+        forebyggingsplanUrl={"https://url-til-forebyggingsplan"}
+        samtalestøtteUrl={"https://url-til-samtalestøtte"}
+      />
+    )
   );
 
   const lenketekst = "Be om tilgang";

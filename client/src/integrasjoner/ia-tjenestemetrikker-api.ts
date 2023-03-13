@@ -1,4 +1,4 @@
-import { METRIKKER_BASE_PATH } from "../utils/konstanter";
+import { BASE_PATH } from "../utils/konstanter";
 
 interface IaTjenesteMetrikk {
   orgnr: String;
@@ -7,7 +7,7 @@ interface IaTjenesteMetrikk {
   tjenesteMottakkelsesdato: String;
 }
 
-export const innloggetIaTjenestemetrikkPath = `${METRIKKER_BASE_PATH}/innlogget/mottatt-iatjeneste`;
+export const innloggetIaTjenestemetrikkPath = `${BASE_PATH}/metrikker/innlogget/mottatt-iatjeneste`;
 
 export enum IaTjeneste {
   FOREBYGGE_FRAVÆR = "FOREBYGGE_FRAVÆR",
