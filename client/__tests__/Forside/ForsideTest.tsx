@@ -21,7 +21,7 @@ jest.mock("../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
 
-it.skip("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
+it("sender navigere-event ved klikk på lenke til statistikksiden", async () => {
   const user = userEvent.setup();
   render(
     <Forside
@@ -41,7 +41,7 @@ it.skip("sender navigere-event ved klikk på lenke til statistikksiden", async (
 
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("navigere", {
-    destinasjon: "https://url-til-sykefraværsstatistikk/bedrift=999999999",
+    destinasjon: "https://url-til-sykefraværsstatistikk?bedrift=999999999",
     lenketekst,
   });
 });

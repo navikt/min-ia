@@ -21,7 +21,7 @@ beforeEach(() => {
   window.postMessage = jest.fn();
 });
 
-it.skip("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {
+it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {
   const user = userEvent.setup();
   renderNettkurs();
 
@@ -46,6 +46,7 @@ const renderNettkurs = () => {
         description:
           "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
       }}
+      isProduction={false}
     />
   );
 };

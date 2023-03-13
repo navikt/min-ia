@@ -4,7 +4,7 @@ import { RestStatus } from "../../integrasjoner/rest-status";
 import { getNesteNettkurs } from "../../utils/kurs-utils";
 import { NesteNettkurs } from "../NesteNettkurs/NesteNettkurs";
 import { Kurspåmelding } from "../Kurspåmelding/Kurspåmelding";
-import {Heading} from "@navikt/ds-react";
+import { Heading } from "@navikt/ds-react";
 import styles from "./kurskalender.module.scss";
 
 const Kurskalender = () => {
@@ -36,20 +36,18 @@ const Kurskalender = () => {
   };
   return (
     <div className={styles.kurskalender}>
-      <Heading size={"large"} level={"2"} className={styles.kurskalender__tittel}>Vil du delta på kurs?</Heading>
+      <Heading
+        size={"large"}
+        level={"2"}
+        className={styles.kurskalender__tittel}
+      >
+        Vil du delta på kurs?
+      </Heading>
       <NesteNettkurs nesteNettkurs={nesteNettkurs} />
       <Kurspåmelding
         kurspåmelding={kurspåmelding}
         nesteNettkurs={nesteNettkurs}
       />
-      {/*<div>{kurspåmelding.tittel}</div>
-      <div>
-          {kurspåmelding.undertekst}</div>
-      <Lenkepanel
-        tittel={kurspåmelding.lenke.tittel}
-        ikon={KursKalenderIkon}
-        href={kurspåmelding.lenke.href}
-      />*/}
     </div>
   );
 };
