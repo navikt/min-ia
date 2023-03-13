@@ -16,7 +16,7 @@ export function KontaktOss(props: KontaktOssProps) {
                 <div className={styles.duKanOgsåRingeEllerSkriveTilOss}>
                     <Heading size={"medium"} level={"3"}>
                         <Link href={`${props.kontaktOssUrl}/kontaktskjema`}>
-                            Du kan også ringe eller skrive til oss
+                            Du kan ringe eller skrive til oss
                         </Link>
                     </Heading>
                     <BodyLong>
