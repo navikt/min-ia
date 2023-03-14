@@ -1,12 +1,12 @@
 import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Infographic } from "../../../src/komponenter/Infographic/Infographic";
 import {
   AggregertStatistikkDto,
   Statistikkategori,
   tomtDataobjekt,
 } from "../../../src/integrasjoner/aggregert-statistikk-api";
-import { hentUtInfographicData } from "../../../src/komponenter/Infographic/datauthenting";
+import { hentUtSykefraværsstatistikkData } from "../../../src/komponenter/Infographic/datauthenting";
+import {Sykefraværsstatistikk} from "../../../src/Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
 
 jest.mock("../../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -15,15 +15,15 @@ jest.mock("../../../src/hooks/useOrgnr", () => ({
 it("viser sykefraværsprosenten for Norge", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
   const infobolk = await screen.getByText(/I Norge/);
-  expect(infobolk.textContent).toBe("I Norge");
+  expect(infobolk.textContent).toBe("I Norge siste 12 mnd");
   const infoProsent = await screen.getByText(/9/);
   expect(infoProsent.textContent).toBe("9,0%");
 });
@@ -31,15 +31,15 @@ it("viser sykefraværsprosenten for Norge", async () => {
 it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
   const infobolk = await screen.getByText(/I bransje/);
-  expect(infobolk.textContent).toBe("I bransje");
+  expect(infobolk.textContent).toBe("I bransje siste 12 mnd");
   const infoProsent = await screen.getByText(/5,1%/);
   expect(infoProsent.textContent).toBe("5,1%");
 });
@@ -47,37 +47,37 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
 it("viser stigende fraværstrend for bransjen når dette er tilfellet", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(mockAggregertStatistikkStigendeTrendBransje)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkStigendeTrendBransje)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
     );
   });
-  const infobolk = await screen.getByText(/Trend i bransjen/);
-  expect(infobolk.textContent).toBe("Trend i bransjenFravær stiger");
+  const infobolk = screen.getByText(/Fravær stiger/);
+  expect(infobolk.textContent).toBe("Fravær stiger");
 });
 
 it("viser synkende fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(mockAggregertStatistikkSynkendeTrend)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkSynkendeTrend)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
 
       />
     );
   });
-  const infobolk = await screen.getByText(/Trend i bransjen/);
-  expect(infobolk.textContent).toBe("Trend i bransjenFravær synker");
+  const infobolk = await screen.getByText(/Fravær synker/);
+  expect(infobolk.textContent).toBe("Fravær synker");
 });
 
 it("viser ingen fraværstrend når det ikke finnes data", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(tomtDataobjekt)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -94,23 +94,23 @@ it("viser ingen fraværstrend når det ikke finnes data", async () => {
 it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(mockAggregertStatistikkUendretTrend)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkUendretTrend)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
 
       />
     );
   });
-  const infobolk = await screen.getByText(/Trend i bransjen/);
-  expect(infobolk.textContent).toBe("Trend i bransjenFravær er uendret");
+  const infobolk = await screen.getByText(/Fravær er uendret/);
+  expect(infobolk.textContent).toBe("Fravær er uendret");
 });
 
 it("viser årsak til sykemelding", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
 
@@ -126,8 +126,8 @@ it("viser årsak til sykemelding", async () => {
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(tomtDataobjekt)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -144,8 +144,8 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
 it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
     render(
-      <Infographic
-        {...hentUtInfographicData(tomtDataobjekt)}
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />

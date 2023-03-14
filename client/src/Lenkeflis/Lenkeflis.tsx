@@ -1,75 +1,48 @@
-import { LinkPanel } from "@navikt/ds-react";
+import {LinkPanel} from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
-import { PanelBrødtekstSkjultPåMobil } from "../PanelBrødtekstSkjultPåMobil/PanelBrødtekstSkjultPåMobil";
-import { sendNavigereEvent } from "../amplitude/events";
-import classNames from "classnames";
-import {
-  IaTjeneste,
-  sendLevertInnloggetIaTjeneste,
-} from "../integrasjoner/ia-tjenestemetrikker-api";
-import { useOrgnr } from "../hooks/useOrgnr";
-import { navigerEtterCallbacks } from "../utils/navigasjon";
+import {sendNavigereEvent} from "../amplitude/events";
+import {IaTjeneste, sendLevertInnloggetIaTjeneste,} from "../integrasjoner/ia-tjenestemetrikker-api";
+import {useOrgnr} from "../hooks/useOrgnr";
+import {navigerEtterCallbacks} from "../utils/navigasjon";
 
-export const Lenkeflis: React.FunctionComponent<{
-  overskrift: string;
-  ikon?: React.ReactElement;
-  brødtekst: string;
-  href: string | undefined;
-  infographicLenkeflis?: boolean;
-  visBrødtekstPåMobil?: boolean;
-}> = ({
-  overskrift,
-  brødtekst,
-  ikon,
-  href,
-  infographicLenkeflis,
-  visBrødtekstPåMobil,
-}) => {
-  const orgnr = useOrgnr();
-  const destinasjon = href ?? "#";
+export interface LenkeflisProps {
+    overskrift: string;
+    ikon?: React.ReactElement;
+    href?: string;
+    brødtekst?: string;
+}
 
-  const metrikkutsendelse = () =>
-    sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
-  const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
+export const Lenkeflis = ({overskrift, ikon, href, brødtekst}: LenkeflisProps) => {
+    const orgnr = useOrgnr();
+    const destinasjon = href ?? "#";
 
-  return (
-    <LinkPanel
-      href={destinasjon}
-      className={classNames(
-        styles.lenkeflis,
-        infographicLenkeflis ? styles.lenkeflis__infographic : ""
-      )}
-      onClickCapture={(e) => {
-        e.preventDefault();
-      }}
-      onClick={() => {
-        navigerEtterCallbacks(destinasjon, [
-          metrikkutsendelse,
-          eventutsendelse,
-        ]);
-      }}
-    >
-      <div
-        className={classNames(
-          styles.ikonOgTekstWrapper,
-          infographicLenkeflis
-            ? styles.ikonOgTekstWrapper__infographicLenkeflis
-            : ""
-        )}
-      >
-        {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
-        <div>
-          <LinkPanel.Title>
-            <div dangerouslySetInnerHTML={{ __html: overskrift }} />
-          </LinkPanel.Title>
-          {visBrødtekstPåMobil ? (
-            <LinkPanel.Description>{brødtekst}</LinkPanel.Description>
-          ) : (
-            <PanelBrødtekstSkjultPåMobil tekst={brødtekst} />
-          )}
-        </div>
-      </div>
-    </LinkPanel>
-  );
+    const metrikkutsendelse = () =>
+        sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
+    const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
+
+    return (
+        <LinkPanel
+            href={destinasjon}
+            className={styles.lenkeflis}
+            onClickCapture={(e) => {
+                e.preventDefault();
+            }}
+            onClick={() => {
+                navigerEtterCallbacks(destinasjon, [metrikkutsendelse, eventutsendelse])
+            }}
+        >
+            <LinkPanel.Title>
+                <div className={styles.ikonOgTekstWrapper}>
+                    {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
+                    {overskrift}
+                </div>
+            </LinkPanel.Title>
+            {brødtekst &&
+                <LinkPanel.Description>
+                    {brødtekst}
+                </LinkPanel.Description>
+            }
+        </LinkPanel>
+    );
 };

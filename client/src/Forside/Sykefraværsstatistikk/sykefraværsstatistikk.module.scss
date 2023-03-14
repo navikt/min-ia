@@ -1,0 +1,30 @@
+@use "../../styles/screensize";
+
+.sykefraværsstatistikk {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: var(--a-spacing-4);
+
+  .infographicRad {
+    display: flex;
+    gap: var(--a-spacing-2);
+  }
+
+  .infographicContent {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    gap: var(--a-spacing-2);
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--a-spacing-4);
+
+      @media (min-width: screensize.$screen-md) {
+        flex-direction: row;
+      }
+    }
+  }
+}

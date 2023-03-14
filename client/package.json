@@ -16,9 +16,9 @@
   "dependencies": {
     "@navikt/arbeidsgiver-notifikasjon-widget": "^5.4.5-rc1",
     "@navikt/bedriftsmeny": "^6.3.0",
-    "@navikt/ds-css": "2.0.5",
-    "@navikt/ds-icons": "^2.0.5",
-    "@navikt/ds-react": "2.0.5",
+    "@navikt/ds-css": "2.7.2",
+    "@navikt/ds-icons": "2.7.2",
+    "@navikt/ds-react": "2.6.0",
     "@navikt/nav-dekoratoren-moduler": "^1.6.9",
     "@types/cheerio": "^0.22.31",
     "@types/classnames": "^2.3.1",
