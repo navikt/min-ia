@@ -2,7 +2,7 @@ import styles from "./forside.module.scss";
 import React from "react";
 import {useAggregertStatistikk} from "../hooks/useAggregertStatistikk";
 import {erFerdigNedlastet, RestStatus} from "../integrasjoner/rest-status";
-import {hentUtInfographicData} from "../komponenter/Infographic/datauthenting";
+import {hentUtSykefraværsstatistikkData} from "../komponenter/Infographic/datauthenting";
 import {useOrgnr} from "../hooks/useOrgnr";
 import {Alert} from "@navikt/ds-react";
 import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
@@ -33,14 +33,14 @@ export const Forside = (props: ForsideProps) => {
         ? aggregertStatistikk.data
         : tomtDataobjekt;
 
-    const infographicEllerBannerHvisError =
+    const sykefraværsstatistikkEllerBannerHvisError =
         aggregertStatistikk.status === RestStatus.Feil ? (
             <Alert variant={"error"} className={styles.forsideAlert}>
                 Det har skjedd en feil. Vennligst prøv igjen senere.
             </Alert>
         ) : (
             <Sykefraværsstatistikk
-                {...hentUtInfographicData(aggregertStatistikkData)}
+                {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
                 nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
                 sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
             />
@@ -49,7 +49,7 @@ export const Forside = (props: ForsideProps) => {
     return (
         <div className={styles.sentrertSide}>
             <div className={styles.forside}>
-                {infographicEllerBannerHvisError}
+                {sykefraværsstatistikkEllerBannerHvisError}
                 <NyttVerktoyTilDeg href={props.forebyggingsplanUrl}/>
                 <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr}/>
                 <RelaterteTjenester/>

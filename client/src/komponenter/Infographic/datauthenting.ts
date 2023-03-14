@@ -2,11 +2,11 @@ import {
   AggregertStatistikkDto,
   Statistikkategori,
 } from "../../integrasjoner/aggregert-statistikk-api";
-import {InfographicData} from "../../Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
+import {SykefraværsstatistikkData} from "../../Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
 
-export function hentUtInfographicData(
+export function hentUtSykefraværsstatistikkData(
   data: AggregertStatistikkDto
-): InfographicData {
+): SykefraværsstatistikkData {
   const fraværsprosentNorge = data.prosentSiste4KvartalerTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.LAND
   );

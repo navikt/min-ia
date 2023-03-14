@@ -10,7 +10,7 @@ import "./sykefraværsstatistikk.module.scss"
 import {useAltinnOrganisasjonerMedStatistikk} from "../../hooks/useAltinnOrganisasjonerMedStatistikk";
 import {RestStatus} from "../../integrasjoner/rest-status";
 
-export interface InfographicData {
+export interface SykefraværsstatistikkData {
     fraværsprosentNorge?: string;
     fraværsprosentBransjeEllerNæring?: string;
     stigningstallTrendBransjeEllerNæring: number;
@@ -18,7 +18,7 @@ export interface InfographicData {
     bransjeEllerNæringLabel?: string;
 }
 
-export interface SykefraværsstatistikkProps extends InfographicData {
+export interface SykefraværsstatistikkProps extends SykefraværsstatistikkData {
     nedlastingPågår: boolean;
     sykefraværsstatistikkUrl: string;
 }
@@ -107,7 +107,7 @@ function displaytekstSykefraværNorge(prosent: string | undefined) {
 }
 
 const displaytekstSykefraværBransjeEllerNæring = (
-    data: InfographicData
+    data: SykefraværsstatistikkData
 ): ReactNode => {
     if (data.fraværsprosentBransjeEllerNæring) {
         return (
@@ -121,7 +121,7 @@ const displaytekstSykefraværBransjeEllerNæring = (
     }
 };
 const displaytekstTrendBransjeEllerNæring = (
-    props: InfographicData
+    props: SykefraværsstatistikkData
 ): ReactNode => {
     const stigningstall = props.stigningstallTrendBransjeEllerNæring;
     // Hack for å få skjermleser til å oppføre seg korrekt:

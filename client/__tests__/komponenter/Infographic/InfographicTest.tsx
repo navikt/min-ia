@@ -5,7 +5,7 @@ import {
   Statistikkategori,
   tomtDataobjekt,
 } from "../../../src/integrasjoner/aggregert-statistikk-api";
-import { hentUtInfographicData } from "../../../src/komponenter/Infographic/datauthenting";
+import { hentUtSykefraværsstatistikkData } from "../../../src/komponenter/Infographic/datauthenting";
 import {Sykefraværsstatistikk} from "../../../src/Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
 
 jest.mock("../../../src/hooks/useOrgnr", () => ({
@@ -16,7 +16,7 @@ it("viser sykefraværsprosenten for Norge", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -32,7 +32,7 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -48,7 +48,7 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(mockAggregertStatistikkStigendeTrendBransje)}
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkStigendeTrendBransje)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -62,7 +62,7 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(mockAggregertStatistikkSynkendeTrend)}
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkSynkendeTrend)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
 
@@ -77,7 +77,7 @@ it("viser ingen fraværstrend når det ikke finnes data", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(tomtDataobjekt)}
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -95,7 +95,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(mockAggregertStatistikkUendretTrend)}
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkUendretTrend)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
 
@@ -110,7 +110,7 @@ it("viser årsak til sykemelding", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(mockAggregertStatistikkMedBransjetall)}
+        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
 
@@ -127,7 +127,7 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(tomtDataobjekt)}
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -145,7 +145,7 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtInfographicData(tomtDataobjekt)}
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
