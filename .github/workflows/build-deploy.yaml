@@ -50,7 +50,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/be-om-tilgang-ved-manglende-rettighet'
+    if: github.ref == 'refs/heads/freshere_design'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -64,7 +64,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_lenke_til_forebyggingsplan'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/freshere_design'
     needs: build
     runs-on: ubuntu-latest
     steps:
