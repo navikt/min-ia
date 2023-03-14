@@ -1,5 +1,5 @@
-import { getRestStatus, RestRessurs, RestStatus } from '../integrasjoner/rest-status';
-import {KURSOVERSIKT_API_PATH} from "./konstanter";
+import {getRestStatus, RestRessurs, RestStatus} from '../integrasjoner/rest-status';
+import {BASE_PATH} from "./konstanter";
 
 
 interface KursDto {
@@ -50,22 +50,21 @@ const mapTilKurs = (kursDto: KursDto): Kurs => ({
 });
 
 export const hentRestKurs = async (): Promise<RestKursliste> => {
-    const response = await fetch(KURSOVERSIKT_API_PATH);
-    const restStatus = getRestStatus(response.status);
+    try {
+        const response = await fetch(BASE_PATH + "/kursoversikt");
+        const restStatus = getRestStatus(response.status);
 
-    if (restStatus === RestStatus.Suksess) {
-        try {
-            const kursliste: Kurs[] = ((await response.json()) as KursDto[]).map((kursDto) =>
-                mapTilKurs(kursDto)
+        if (restStatus === RestStatus.Suksess) {
+            const kursliste: Kurs[] = ((await response.json()) as KursDto[]).map(
+                (kursDto) => mapTilKurs(kursDto)
             );
-
             return {
                 status: RestStatus.Suksess,
                 data: kursliste,
             };
-        } catch (error) {
-            return { status: RestStatus.Feil };
         }
+    } catch (error) {
     }
-    return { status: RestStatus.Feil };
+
+    return {status: RestStatus.Feil};
 };
