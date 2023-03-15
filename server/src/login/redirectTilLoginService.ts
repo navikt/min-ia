@@ -1,6 +1,6 @@
-import {logger} from "../util/logger";
 import {Request} from "express";
-import {getLoginTilOauth2} from "./common";
+import {logger} from "../util/logger.js";
+import {getLoginTilOauth2} from "./common.js";
 
 export function redirectToLogin(req, res) {
     const loginTilOauth2 = getLoginTilOauth2(makeRedirectString(req));

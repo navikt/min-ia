@@ -1,7 +1,7 @@
 import { createProxyMiddleware, Options } from "http-proxy-middleware";
-import { exchangeToken } from "../../tokenx";
 import { Express } from "express";
 import { applyNotifikasjonMockMiddleware } from "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock";
+import { exchangeToken } from "../../tokenx.js";
 
 const FRONTEND_API_PATH = "/forebygge-fravar/api";
 const FRONTEND_METRIKKER_PATH = "/forebygge-fravar/metrikker";

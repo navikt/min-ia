@@ -2,9 +2,9 @@
 /// <reference lib="dom" />
 
 import { Issuer, TokenSet } from "openid-client";
-import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten";
 import { IncomingMessage } from "http";
-import { isProduction } from "./util/environment";
+import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten.js";
+import { isProduction } from "./util/environment.js";
 
 let tokenxClient: any;
 

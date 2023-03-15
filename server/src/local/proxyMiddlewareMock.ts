@@ -1,14 +1,14 @@
+import { Express } from "express";
 import {
   organisasjoner,
   organisasjonerMedIaRettighet,
-} from "./organisasajonerMockdata";
-import { Express } from "express";
-import { kurslisteMock } from "./testdata-kurs";
+} from "./organisasajonerMockdata.js";
+import { kurslisteMock } from "./testdata-kurs.js";
 import {
   mockdataOrgnr81096939,
   mockdataOrgnr91096939,
   tomRespons,
-} from "./aggregertStatistikkMockdata";
+} from "./aggregertStatistikkMockdata.js";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");

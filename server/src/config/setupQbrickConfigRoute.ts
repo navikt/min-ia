@@ -1,5 +1,5 @@
-import { APP_BASE_PATH } from "./meta";
 import { Express } from "express";
+import { APP_BASE_PATH } from "./meta.js";
 
 export const setupQbrickConfigRoute = (server: Express) => {
   server.get(

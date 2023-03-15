@@ -1,16 +1,16 @@
 import express from "express";
-import { initTokenX } from "./tokenx";
-import { initIdporten } from "./idporten";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
-import { requestLoggingMiddleware } from "./config/middleware/requestLogging";
-import { correlationIdMiddleware } from "./config/middleware/correlationId";
-import { logger } from "./util/logger";
-import { requestRateLimiter } from "./config/middleware/requestRateLimiter";
-import { SERVER_PORT } from "./config/meta";
-import { prometheus } from "./config/middleware/prometheus";
-import { isAlive, isReady } from "./healthcheck";
-import { setupApiRoutes } from "./routes";
+import { initTokenX } from "./tokenx.js";
+import { initIdporten } from "./idporten.js";
+import { requestLoggingMiddleware } from "./config/middleware/requestLogging.js";
+import { correlationIdMiddleware } from "./config/middleware/correlationId.js";
+import { logger } from "./util/logger.js";
+import { requestRateLimiter } from "./config/middleware/requestRateLimiter.js";
+import { SERVER_PORT } from "./config/meta.js";
+import { prometheus } from "./config/middleware/prometheus.js";
+import { isAlive, isReady } from "./healthcheck.js";
+import { setupApiRoutes } from "./routes.js";
 
 const initServer = async () => {
   logger.info("Starting server (server.ts) on Node environment " + process.env.NODE_ENV);
