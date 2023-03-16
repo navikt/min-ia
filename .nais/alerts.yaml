@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: min-ia
+  namespace: teamia
+  labels:
+    team: teamia
+    created-by: teamia
+spec:
+  groups:
+    - name: min-ia-alerts
+      rules:
+        - alert: ApplikasjonNede
+          expr: sum(up{container="min-ia"}) == 0
+          for: 2m
+          annotations:
+            consequence: "Forebygge fravær frontend er utilgjengelig"
+            action: |-
+              Sjekk helsa til applikasjonen ved å kjøre
+              `kubectl describe pod <podname> -n teamia` og 
+              `kubectl logs <podname> -n teamia`"
+          labels:
+            namespace: teamia
+            severity: critical
+
+        - alert: ErrorLogRegistrert
+          expr: sum(increase(logd_messages_total{log_app="min-ia", log_level="Error"}[10m])) > 0
+          annotations:
+            description: "Forebygge fravær frontend har logget en (eller flere) feil."
+            action: |-
+              Sjekk logs.adeo.no for logger, 
+              eller Grafana-dashboardet vårt: https://grafana.nais.io/dashboards/f/cvOhCMUnz/team-ia
+          labels:
+            namespace: teamia
+            severity: warning
