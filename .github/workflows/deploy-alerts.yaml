@@ -18,10 +18,10 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: nais/alerts.yaml
+          RESOURCE: .nais/alerts.yaml
       - name: deploy to prod-gcp
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
-          RESOURCE: nais/alerts.yaml
+          RESOURCE: .nais/alerts.yaml
