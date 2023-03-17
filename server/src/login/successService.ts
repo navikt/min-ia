@@ -1,6 +1,6 @@
-import {logger} from "../util/logger";
-import {getLoginTilOauth2} from "./common";
 import {Request} from "express";
+import {logger} from "../util/logger.js";
+import {getLoginTilOauth2} from "./common.js";
 
 export function redirectTilAppHvisInnloggingOk(request, response) {
     const redirectString = request.query.redirect as string;

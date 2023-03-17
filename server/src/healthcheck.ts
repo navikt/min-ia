@@ -1,4 +1,4 @@
-import { APP_BASE_PATH } from "./config/meta";
+import { APP_BASE_PATH } from "./config/meta.js";
 import { Express } from "express";
 
 export const isAlive = (server: Express) => {

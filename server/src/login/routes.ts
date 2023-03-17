@@ -1,7 +1,7 @@
-import { APP_BASE_PATH } from "../config/meta";
 import { Express } from "express";
-import { redirectToLogin } from "./redirectTilLoginService";
-import { redirectTilAppHvisInnloggingOk } from "./successService";
+import { APP_BASE_PATH } from "../config/meta.js";
+import { redirectToLogin } from "./redirectTilLoginService.js";
+import { redirectTilAppHvisInnloggingOk } from "./successService.js";
 
 export const setupLoginRoutes = (server: Express) => {
   redirectTilLogin(server);

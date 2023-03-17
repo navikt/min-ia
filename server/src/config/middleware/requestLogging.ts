@@ -1,6 +1,6 @@
 import { Request } from "express";
 import morgan from "morgan";
-import { getCorrelationIdHeader } from "./correlationId";
+import { getCorrelationIdHeader } from "./correlationId.js";
 
 export const requestLoggingMiddleware = morgan(
   (tokens, req, res) => {
