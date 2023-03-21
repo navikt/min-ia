@@ -18,6 +18,7 @@ export interface ForsideProps {
     forebyggingsplanUrl: string;
     sykefraværsstatistikkUrl: string;
     kontaktOssUrl: string;
+    children?: React.ReactNode
 }
 
 export const Forside = (props: ForsideProps) => {
@@ -49,6 +50,7 @@ export const Forside = (props: ForsideProps) => {
     return (
         <div className={styles.sentrertSide}>
             <div className={styles.forside}>
+                {props.children}
                 {sykefraværsstatistikkEllerBannerHvisError}
                 <NyttVerktoyTilDeg href={props.forebyggingsplanUrl}/>
                 <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr}/>

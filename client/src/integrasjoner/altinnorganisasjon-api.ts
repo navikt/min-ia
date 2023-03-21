@@ -42,7 +42,7 @@ export const hentAltinnOrganisasjoner = async (
     // eslint-disable-next-line
   } catch (error: any) {
     if (error.status === RestStatus.Feil || !error.status) {
-      logger.error(predefinerteFeilmeldinger.feilVedHentingAvAltinnOrganisasjoner)
+      logger.warn(predefinerteFeilmeldinger.feilVedHentingAvAltinnOrganisasjoner)
       return { status: RestStatus.Feil };
     }
     return { status: error.status };

@@ -6,6 +6,7 @@ import {RestStatus} from "../integrasjoner/rest-status";
 import {Layout} from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
+import {Alert} from "@navikt/ds-react";
 
 interface HomeProps {
     page: PageProps
@@ -32,7 +33,13 @@ const Home = (props: HomeProps) => {
     const forsideEllerInnloggingsside = trengerInnlogging ? (
         <Innloggingsside redirectUrl={window.location.href}/>
     ) : (
-        <Forside {...props.forsideProps} />
+        <Forside {...props.forsideProps}>
+            {organisasjonerBrukerHarTilgangTil.status === RestStatus.Feil &&
+                <Alert variant="error">
+                    Det har skjedd en feil ved innlasting av dine virksomheter. Vennligst prøv igjen.
+                </Alert>
+            }
+        </Forside>
     );
 
     return (
