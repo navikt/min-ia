@@ -2,7 +2,7 @@ import { API_BASE_PATH } from "../utils/konstanter";
 import { RestRessurs, RestStatus } from "./rest-status";
 import { fetchMedFeilhåndtering } from "./api-utils";
 import * as z from "zod";
-import {logger, predefinerteFeilmeldinger} from "../utils/logger";
+import { logger, predefinerteFeilmeldinger } from "../utils/logger";
 
 export enum Statistikkategori {
   LAND = "LAND",
@@ -49,7 +49,7 @@ export const hentAggregertStatistikk = async (
   try {
     z.string().length(9).parse(orgnr);
   } catch {
-    logger.info(predefinerteFeilmeldinger.ugyldigOrgnummer)
+    logger.info(predefinerteFeilmeldinger.ugyldigOrgnummer);
     return { status: RestStatus.IngenTilgang };
   }
   const response = await fetchMedFeilhåndtering<AggregertStatistikkDto>(
@@ -64,6 +64,9 @@ export const hentAggregertStatistikk = async (
       status: RestStatus.Suksess,
       data: response.data,
     };
+  } else if (response.status === RestStatus.Feil) {
+    logger.error(predefinerteFeilmeldinger.feilVedHentingAvAggregertStatistikk);
+    return response;
   } else {
     return response;
   }
