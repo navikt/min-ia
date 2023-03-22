@@ -8,7 +8,7 @@ metadata:
   labels:
     app: min-ia
     team: teamia
-  name: labs-redirect-min-ia-to-forebygge-fravar
+  name: prod-redirect-min-ia-to-forebygge-fravar
   namespace: teamia
 spec:
   ingressClassName: gw-nav-no
