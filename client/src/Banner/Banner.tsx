@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import "@navikt/ds-css";
@@ -6,10 +6,8 @@ import styles from "./Banner.module.scss";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
-import { MemoryRouter } from "react-router-dom";
 import { ForebyggeSykefravaer } from "@navikt/bedriftsmeny";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 
 const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
   ssr: false,
@@ -29,17 +27,34 @@ interface Props {
   altinnOrganisasjoner: AltinnOrganisasjon[];
 }
 
-const Banner: React.FunctionComponent<Props> = (props) => {
-  const { tittelMedUnderTittel, altinnOrganisasjoner } = props;
-  const router = useRouter();
-
+const Banner: React.FunctionComponent<Props> = ({
+  altinnOrganisasjoner,
+  tittelMedUnderTittel,
+}) => {
+  const { query, push } = useRouter();
   const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
 
-  const onOrganisasjonChange = (organisasjon?: Organisasjon) => {
-    if (organisasjon) {
-      router.push(leggTilBedriftPåUrl("", organisasjon.OrganizationNumber));
-    }
+  const useOrgnrHook: () => [string | null, (orgnr: string) => void] =
+    useCallback(() => {
+      const currentOrgnr =
+        typeof query.bedrift === "string" ? query.bedrift : null;
+
+      return [
+        currentOrgnr,
+        (orgnr: string) => {
+          if (currentOrgnr !== orgnr) {
+            if (orgnr === null) {
+              push("");
+            } else {
+              push(`?bedrift=${orgnr}`);
+            }
+          }
+        },
+      ];
+    }, [push, query.bedrift]);
+
+  const onOrganisasjonChange = () => {
     if (bedriftValgtManueltFraLista) {
       sendBedriftValgtEvent();
     }
@@ -48,16 +63,15 @@ const Banner: React.FunctionComponent<Props> = (props) => {
 
   return (
     <div className={styles.banner}>
-      <MemoryRouter>
-        <Bedriftsmeny
-          organisasjoner={altinnOrganisasjoner}
-          sidetittel={tittelMedUnderTittel}
-          onOrganisasjonChange={onOrganisasjonChange}
-          piktogram={<ForebyggeSykefravaer />}
-        >
-          <NotifikasjonWidget />
-        </Bedriftsmeny>
-      </MemoryRouter>
+      <Bedriftsmeny
+        organisasjoner={altinnOrganisasjoner}
+        sidetittel={tittelMedUnderTittel}
+        onOrganisasjonChange={onOrganisasjonChange}
+        piktogram={<ForebyggeSykefravaer />}
+        orgnrSearchParam={useOrgnrHook}
+      >
+        <NotifikasjonWidget />
+      </Bedriftsmeny>
     </div>
   );
 };
