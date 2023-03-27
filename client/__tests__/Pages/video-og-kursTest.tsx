@@ -34,7 +34,7 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("chip valgt", {
     chipId: knappetekst,
-    tekst: knappetekst
+    tekst: knappetekst,
   });
 });
 
@@ -46,6 +46,7 @@ const renderNettkurs = () => {
         description:
           "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
       }}
-     isProduction={false}/>
+      isProduction={false}
+    />
   );
 };

@@ -1,7 +1,7 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: min-ia
+  name: min-ia-mock
   namespace: teamia
   labels:
     team: teamia
@@ -13,29 +13,26 @@ spec:
       value: https://arbeidsgiver.nav.no/kursoversikt
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
-      ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
-      ## Derfor overskriver vi NODE_ENV i labs-gcp 'development'
     - name: NODE_ENV
       value: development
     - name: APP_INGRESS
-      value: https://arbeidsgiver.labs.nais.io/forebygge-fravar
+      value: https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
     - name: DECORATOR_ENV
       value: prod
     - name: DECORATOR_URL
       value: https://www.nav.no/dekoratoren/?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
-      value: https://arbeidsgiver.nav.no/forebygge-fravar
-
+      value: https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
     - name: ENVIRONMENT
-      value: labs
+      value: dev
     - name: SAMTALESTOTTE_URL
-      value: https://arbeidsgiver.labs.nais.io/samtalestotte
+      value: https://arbeidsgiver.ekstern.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
-      value: https://arbeidsgiver.labs.nais.io/sykefravarsstatistikk
+      value: https://arbeidsgiver.ekstern.dev.nav.no/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL
-      value: https://arbeidsgiver.labs.nais.io/forebyggingsplan
+      value: https://arbeidsgiver.ekstern.dev.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
-      value: https://arbeidsgiver.labs.nais.io/min-side-arbeidsgiver
+      value: https://arbeidsgiver.ekstern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/kontakt-oss
   liveness:
@@ -51,7 +48,7 @@ spec:
     max: 2
     cpuThresholdPercentage: 50
   ingresses:
-    - https://arbeidsgiver.labs.nais.io/forebygge-fravar
+    - https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
   accessPolicy:
     outbound:
       external:

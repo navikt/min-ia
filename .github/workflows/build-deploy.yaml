@@ -87,7 +87,7 @@ jobs:
           DEPLOY_SERVER: deploy.nais.io:443
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: labs-gcp
-          RESOURCE: .nais/labs.yaml
+          RESOURCE: .nais/dev-ekstern.yaml
 
   deployAppToProd:
     name: Deploy app to production

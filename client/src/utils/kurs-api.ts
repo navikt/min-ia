@@ -51,7 +51,7 @@ const mapTilKurs = (kursDto: KursDto): Kurs => ({
 
 export const hentRestKurs = async (): Promise<RestKursliste> => {
     try {
-        const response = await fetch(BASE_PATH + "/kursoversikt");
+    const response = await fetch(BASE_PATH + "/kursoversikt");
         const restStatus = getRestStatus(response.status);
 
         if (restStatus === RestStatus.Suksess) {

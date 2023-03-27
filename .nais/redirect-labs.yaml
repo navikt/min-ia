@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: "https://arbeidsgiver.labs.nais.io/forebygge-fravar/$2"
+    nginx.ingress.kubernetes.io/rewrite-target: "https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar/$2"
     prometheus.io/scrape: "false"
   labels:
     app: min-ia
