@@ -54,6 +54,7 @@ spec:
     enabled: true
     sidecar:
       enabled: true
+      autoLogin: false
   liveness:
     path: /forebygge-fravar/internal/isAlive
     initialDelay: 20

@@ -35,7 +35,6 @@ spec:
       value: https://www.nav.no/dekoratoren?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
-
     - name: ENVIRONMENT
       value: prod
     - name: SAMTALESTOTTE_URL
@@ -54,6 +53,7 @@ spec:
     enabled: true
     sidecar:
       enabled: true
+      autoLogin: false
   liveness:
     path: /forebygge-fravar/internal/isAlive
     initialDelay: 20

@@ -35,6 +35,13 @@ spec:
       value: https://arbeidsgiver.ekstern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/kontakt-oss
+  tokenx:
+    enabled: true
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
   liveness:
     path: /forebygge-fravar/internal/isAlive
     initialDelay: 20
