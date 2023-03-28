@@ -1,40 +1,25 @@
 /// TODO: Hack for å få typescript til å gjenkjenne fetch fra node sitt standardbibliotek
 /// <reference lib="dom" />
 
-import { Issuer, TokenSet } from "openid-client";
+import { Issuer } from "openid-client";
 import { IncomingMessage } from "http";
-import { getMockTokenFromIdporten, verifiserAccessToken } from "./idporten.js";
-import { isMockApp } from "./util/environment.js";
+import { verifiserAccessToken } from "./idporten.js";
 
 let tokenxClient: any;
 
 export async function initTokenX() {
-  if (!isMockApp()) {
-    const tokenxIssuer = await Issuer.discover(
-      process.env.TOKEN_X_WELL_KNOWN_URL!
-    );
-    tokenxClient = new tokenxIssuer.Client(
-      {
-        client_id: process.env.TOKEN_X_CLIENT_ID!,
-        token_endpoint_auth_method: "private_key_jwt",
-      },
-      {
-        keys: [JSON.parse(process.env.TOKEN_X_PRIVATE_JWK!)],
-      }
-    );
-  }
-}
-
-async function getMockTokenXToken() {
-  const tokenXToken = await (
-    await fetch(
-      process.env.FAKEDINGS_URL_TOKENX +
-        `?aud=${process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE}&acr=Level4&pid=01065500791`
-    )
-  ).text();
-  return new TokenSet({
-    access_token: tokenXToken,
-  });
+  const tokenxIssuer = await Issuer.discover(
+    process.env.TOKEN_X_WELL_KNOWN_URL!
+  );
+  tokenxClient = new tokenxIssuer.Client(
+    {
+      client_id: process.env.TOKEN_X_CLIENT_ID!,
+      token_endpoint_auth_method: "private_key_jwt",
+    },
+    {
+      keys: [JSON.parse(process.env.TOKEN_X_PRIVATE_JWK!)],
+    }
+  );
 }
 
 async function getTokenXToken(
@@ -42,9 +27,8 @@ async function getTokenXToken(
   additionalClaims: any,
   audience: string
 ) {
-  let tokenSet;
-  try {
-    tokenSet = await tokenxClient?.grant(
+  return await tokenxClient
+    ?.grant(
       {
         grant_type: "urn:ietf:params:oauth:grant-type:token-exchange",
         client_assertion_type:
@@ -54,21 +38,16 @@ async function getTokenXToken(
         subject_token: token,
       },
       additionalClaims
-    );
-  } catch (err: any) {
-    console.error(
-      `Noe gikk galt med token exchange mot TokenX.
+    )
+    .catch((err: any) => {
+      console.error(
+        `Noe gikk galt med token exchange mot TokenX.
             Feilmelding fra openid-client: (${err}).
             HTTP Status fra TokenX: (${err.response.statusCode} ${err.response.statusMessage})
             Body fra TokenX:`,
-      err.response.body
-    );
-  }
-  if (!tokenSet && isMockApp()) {
-    // Dette skjer kun i lokalt miljø - siden tokenxClient kun blir initialisert i GCP env
-    tokenSet = await getMockTokenXToken();
-  }
-  return tokenSet;
+        err.response.body
+      );
+    });
 }
 
 export async function exchangeToken(
@@ -78,12 +57,8 @@ export async function exchangeToken(
   let token = request.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    if (isMockApp()) {
-      token = await getMockTokenFromIdporten();
-    } else {
-      // Brukeren er ikke autorisert
-      return;
-    }
+    // Brukeren er ikke autorisert
+    return;
   }
   await verifiserAccessToken(token);
   const additionalClaims = {
