@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import VideoOgKurs from "../../src/pages/video-og-kurs";
 import logEvent from "../../src/amplitude/logEvent";
+import { useRouter } from "next/router";
 
 jest.mock("../../src/amplitude/logEvent");
 afterEach(() => {
@@ -21,6 +22,16 @@ beforeEach(() => {
   window.postMessage = jest.fn();
 });
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+// @ts-ignore
+useRouter.mockReturnValue({
+  query: {},
+  push: jest.fn(),
+});
+
 it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {
   const user = userEvent.setup();
   renderNettkurs();
@@ -34,7 +45,7 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
   expect(logEvent).toBeCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("chip valgt", {
     chipId: knappetekst,
-    tekst: knappetekst
+    tekst: knappetekst,
   });
 });
 
@@ -46,6 +57,7 @@ const renderNettkurs = () => {
         description:
           "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
       }}
-     isProduction={false}/>
+      isProduction={false}
+    />
   );
 };
