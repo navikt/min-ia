@@ -1,12 +1,13 @@
 // Only call this function on the server, as the environemnt variables are not exposed to the client.
 import { logger, predefinerteFeilmeldinger } from "./logger";
 
-export const isProd = (): boolean => {
+export const isMockApp = () => {
   return (
-    process.env.NAIS_CLUSTER_NAME === "prod-gcp" ||
-    process.env.ENVIRONMENT === "prod"
+      process.env.NAIS_CLUSTER_NAME === "localhost" ||
+      process.env.NAIS_APP_NAME === "min-ia-mock"
   );
 };
+
 
 export type Tjeneste =
   | "Sykefraværsstatistikk"

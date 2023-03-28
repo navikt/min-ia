@@ -8,7 +8,7 @@ export const Layout = (props: {
   title: string;
   description: string;
   altinnOrganisasjoner: AltinnOrganisasjon[];
-  isProduction: boolean
+  kjørerMockApp: boolean
   children: React.ReactNode;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
@@ -16,7 +16,7 @@ export const Layout = (props: {
   const banner = (
     <NotifikasjonWidgetProvider
       apiUrl={"/forebygge-fravar/notifikasjon-bruker-api"}
-      miljo={props.isProduction ? "prod" : "dev"}
+      miljo={props.kjørerMockApp ? "local" : "prod"}
     >
       <Banner
         tittelMedUnderTittel={

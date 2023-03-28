@@ -46,7 +46,7 @@ const renderNettkurs = () => {
         description:
           "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
       }}
-      isProduction={false}
+      kjørerMockApp={false}
     />
   );
 };

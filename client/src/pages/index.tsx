@@ -6,14 +6,14 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
-import { hentUrlFraMiljøvariabler, isProd } from "../utils/envUtils";
+import { hentUrlFraMiljøvariabler, isMockApp } from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
 
 interface HomeProps {
   page: PageProps;
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
-  isProduction: boolean;
+  kjørerMockApp: boolean;
 }
 
 const Home = (props: HomeProps) => {
@@ -52,7 +52,7 @@ const Home = (props: HomeProps) => {
       <Layout
         title={props.page.title}
         description={props.page.description}
-        isProduction={props.isProduction}
+        kjørerMockApp={props.kjørerMockApp}
         altinnOrganisasjoner={
           organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
             ? organisasjonerBrukerHarTilgangTil.data
@@ -73,7 +73,7 @@ export const getServerSideProps = async () => {
       "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
   };
 
-  const isProduction = isProd();
+  const kjørerMockApp = isMockApp();
   const minSideArbeidsgiverUrl = hentUrlFraMiljøvariabler(
     "Min Side Arbeidsgiver"
   );
@@ -89,7 +89,7 @@ export const getServerSideProps = async () => {
     page,
     forsideProps,
     minSideArbeidsgiverUrl,
-    isProduction,
+    kjørerMockApp,
   };
 
   return { props };
