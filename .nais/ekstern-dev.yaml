@@ -38,10 +38,7 @@ spec:
   tokenx:
     enabled: true
   idporten:
-    enabled: true
-    sidecar:
-      enabled: true
-      autoLogin: true
+    enabled: false
   liveness:
     path: /forebygge-fravar/internal/isAlive
     initialDelay: 20
