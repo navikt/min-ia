@@ -28,7 +28,6 @@ export const Kurspåmelding: FunctionComponent<Props> = ({
     <>
       {nesteNettkurs !== undefined && kurspåmelding !== null ? (
         <>
-          {/*<div>{kurspåmelding.tittel}</div>*/}
           <div className={styles.kurspåmelding_tekst}>
             {kurspåmelding.undertekst}
           </div>
