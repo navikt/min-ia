@@ -13,12 +13,12 @@ import { backendApiProxyMock } from "./local/proxyMiddlewareMock.js";
 
 export const setupApiRoutes = (server: Express) => {
   setupQbrickConfigRoute(server);
-  setupLoginRoutes(server);
 
   if (isMockApp()) {
     setupNotifikasjonBrukerAPIProxyMock(server);
     backendApiProxyMock(server);
   } else {
+    setupLoginRoutes(server);
     setupBackendApiProxy(server);
     setupKursoversiktApiProxy(server);
     setupIaTjenestermetrikkerProxy(server);
