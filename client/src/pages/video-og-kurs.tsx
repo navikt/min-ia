@@ -25,7 +25,10 @@ interface ListeElement {
 
 type Filter = Tags;
 
-export default function VideoOgKurs(props: { page: PageProps, isProduction: boolean }) {
+export default function VideoOgKurs(props: {
+  page: PageProps;
+  isProduction: boolean;
+}) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const aggregertStatistikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
@@ -70,7 +73,10 @@ export default function VideoOgKurs(props: { page: PageProps, isProduction: bool
             className={styles.nettkurs__knapp}
             onClick={() => {
               document.dispatchEvent(new CustomEvent("forcePausePlayer"));
-              sendNettkursFilterValgtEvent(toggleFilter.key, toggleFilter.tekst);
+              sendNettkursFilterValgtEvent(
+                toggleFilter.key,
+                toggleFilter.tekst
+              );
               toggleFilters(toggleFilter.key);
             }}
           >
@@ -84,6 +90,7 @@ export default function VideoOgKurs(props: { page: PageProps, isProduction: bool
   const skalVideoVises = (video: QbrickVideo) => {
     return getFilteredListOfVideos(filter, IAVideoer).includes(video);
   };
+
   const innhold = (
     <>
       <Heading size="large" level={"1"}>
@@ -105,7 +112,7 @@ export default function VideoOgKurs(props: { page: PageProps, isProduction: bool
             {filterButtonList(filterListe)}
           </div>
           <div className={styles.videoer}>
-            {IAVideoer.map((video, index) => {
+            {IAVideoer.map((video) => {
               return (
                 <div
                   style={{
@@ -115,7 +122,7 @@ export default function VideoOgKurs(props: { page: PageProps, isProduction: bool
                     alignItems: "center",
                     justifyContent: "space-between",
                   }}
-                  key={index}
+                  key={video.id}
                 >
                   <div
                     title={"Video med tittel ".concat(video.metadata.title)}
@@ -183,7 +190,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
   };
 
-  const isProduction = process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
+  const isProduction =
+    process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
 
   return { props: { page, isProduction } };
 };
