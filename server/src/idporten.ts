@@ -10,7 +10,7 @@ import {
 } from "jose";
 import { Issuer } from "openid-client";
 import { GetKeyFunction } from "jose/dist/types/types";
-import { isProduction } from "./util/environment";
+import { isMockApp } from "./util/environment";
 
 const acceptedAcrLevel = "Level4";
 const acceptedSigningAlgorithm = "RS256";
@@ -24,7 +24,7 @@ let _remoteJWKSet:
 //const IDPORTEN_WELL_KNOWN_URL="https://fakedings.dev-gcp.nais.io/fake/.well-known/openid-configuration"
 
 export async function initIdporten() {
-  if (isProduction()) {
+  if (!isMockApp()) {
     idportenIssuer = await Issuer.discover(
       process.env.IDPORTEN_WELL_KNOWN_URL!
     );

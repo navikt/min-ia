@@ -84,7 +84,6 @@ jobs:
       - name: Deploy to DEV
         uses: nais/deploy/actions/deploy@v1
         env:
-          DEPLOY_SERVER: deploy.nais.io:443
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/ekstern-dev.yaml

@@ -3,5 +3,8 @@ export const isProduction = () => {
 };
 
 export const isMockApp = () => {
-  return process.env.NAIS_APP_NAME === "min-ia-mock";
+  return (
+    process.env.ENVIRONMENT === "local" ||
+    process.env.NAIS_APP_NAME === "min-ia-mock"
+  );
 };
