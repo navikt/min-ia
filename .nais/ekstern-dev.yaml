@@ -23,8 +23,6 @@ spec:
       value: https://dekoratoren.ekstern.dev.nav.no?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
-    - name: ENVIRONMENT
-      value: dev
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL

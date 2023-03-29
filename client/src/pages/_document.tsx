@@ -1,8 +1,8 @@
 import {
   Components,
+  Env,
   fetchDecoratorReact,
 } from "@navikt/nav-dekoratoren-moduler/ssr";
-import getConfig from "next/config";
 import Document, {
   DocumentContext,
   DocumentInitialProps,
@@ -12,9 +12,9 @@ import Document, {
   NextScript,
 } from "next/document";
 import React from "react";
-import {favicon_16x16_data, favicon_32x32_data} from "../utils/favicons";
+import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
 
-const { serverRuntimeConfig } = getConfig();
+const decoratorEnv = process.env.DECORATOR_ENV as Exclude<Env, "localhost">;
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (
@@ -42,8 +42,7 @@ class MyDocument extends Document<Props> {
       },
     ];
     const Decorator = await fetchDecoratorReact({
-      dekoratorenUrl: serverRuntimeConfig.decoratorUrl,
-      env: serverRuntimeConfig.decoratorEnv,
+      env: decoratorEnv,
       simple: false,
       chatbot: false,
       feedback: false,
@@ -59,23 +58,28 @@ class MyDocument extends Document<Props> {
 
   render(): JSX.Element {
     const { Decorator, language } = this.props;
-    const showDecorator = serverRuntimeConfig.noDecorator != "true";
     return (
       <Html lang={language || "no"}>
         <Head>
-          {showDecorator && <Decorator.Styles />}
-          <link rel="icon" type="image/png" sizes="32x32" href={favicon_32x32_data} />
-          <link rel="icon" type="image/png" sizes="16x16" href={favicon_16x16_data} />
+          <Decorator.Styles />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href={favicon_32x32_data}
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href={favicon_16x16_data}
+          />
         </Head>
         <body>
-          {showDecorator && <Decorator.Header />}
+          <Decorator.Header />
           <Main />
-{showDecorator && (
-            <>
-              <Decorator.Footer />
-              <Decorator.Scripts />
-            </>
-          )}
+          <Decorator.Footer />
+          <Decorator.Scripts />
           <NextScript />
         </body>
       </Html>
