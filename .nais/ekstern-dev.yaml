@@ -18,7 +18,7 @@ spec:
     - name: APP_INGRESS
       value: https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
     - name: DECORATOR_ENV
-      value: prod
+      value: dev
     - name: DECORATOR_URL
       value: https://dekoratoren.ekstern.dev.nav.no?context=arbeidsgiver
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
