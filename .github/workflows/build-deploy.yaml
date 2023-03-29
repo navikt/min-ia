@@ -62,7 +62,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/cache_deps'
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -76,7 +76,7 @@ jobs:
 
   deployAppToLabs:
     name: Deploy app to labs
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/freshere_design'
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     steps:
