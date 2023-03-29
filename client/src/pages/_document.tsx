@@ -15,6 +15,9 @@ import React from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
 
 const decoratorEnv = process.env.DECORATOR_ENV as Exclude<Env, "localhost">;
+const thisPageUrl = process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL;
+console.log("DEKORATOR ENV: ", decoratorEnv)
+console.log("THIS PAGE: ", thisPageUrl)
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (
@@ -35,19 +38,16 @@ class MyDocument extends Document<Props> {
     ctx: DocumentContext
   ): Promise<DocumentInitialProps & Props> {
     const initialProps = await Document.getInitialProps(ctx);
-    const breadcrumbs = [
-      {
-        title: "Forebygge fravær",
-        url: `${process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL}`,
-      },
-    ];
     const Decorator = await fetchDecoratorReact({
-      env: decoratorEnv,
-      simple: false,
+      env: decoratorEnv ?? "prod",
       chatbot: false,
-      feedback: false,
       urlLookupTable: false,
-      breadcrumbs: breadcrumbs,
+      breadcrumbs: [
+        {
+          title: "Forebygge fravær",
+          url: `${process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL}`,
+        },
+      ],
       context: "arbeidsgiver",
     });
 
