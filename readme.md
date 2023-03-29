@@ -10,6 +10,7 @@ Landingsside for selvbetjente IA-tjenester
 - Kjør opp applikasjon: `yarn dev` eller `TEST_MODE=KREVER_INNLOGGING yarn dev` (se `package.json` for flere opsjoner)
 - Naviger til `../client`
 - Installer avhengigheter: `yarn`
+- Rename filen `.env.local.example` -> `.env.local`
 - Kjør opp applikasjon: `yarn dev`
 - Åpne applikasjonen på `http://localhost:3000/forebygge-fravar` (for Safari browser, legg til `"ws://localhost:3000",` i `connect-src` variabel i `sp.js` fil.
 
