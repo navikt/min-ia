@@ -14,8 +14,12 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Head from "next/head";
+import { isMockApp } from "../utils/envUtils";
 
-export default function Kalkulator(props: { page: PageProps, isProduction: boolean }) {
+export default function Kalkulator(props: {
+  page: PageProps;
+  kjørerMockApp: boolean;
+}) {
   const organisasjonerRespons = useAltinnOrganisasjoner();
   const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
     ? organisasjonerRespons.data
@@ -49,7 +53,7 @@ export default function Kalkulator(props: { page: PageProps, isProduction: boole
         title={props.page.title}
         description={props.page.description}
         altinnOrganisasjoner={brukerensOrganisasjoner}
-        isProduction={props.isProduction}
+        kjørerMockApp={props.kjørerMockApp}
       >
         {erIkkeInnlogget(aggregertStatistikkRespons) ? (
           <Innloggingsside redirectUrl={window.location.href} />
@@ -72,7 +76,5 @@ export async function getServerSideProps() {
       "Her kan du beregne hvor mye sykefraværet koster, og hvor mye du kan spare.",
   };
 
-  const isProduction = process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
-
-  return { props: { page, isProduction } };
+  return { props: { page, kjørerMockApp: isMockApp() } };
 }

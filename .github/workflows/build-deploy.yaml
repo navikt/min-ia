@@ -62,7 +62,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/ekstern-dev'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -74,9 +74,9 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/dev.yaml
 
-  deployAppToLabs:
-    name: Deploy app to labs
-    if: github.ref == 'refs/heads/main'
+  deployAppToEksternDev:
+    name: Deploy app to ekstern dev
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/ekstern-dev'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -84,10 +84,9 @@ jobs:
       - name: Deploy to DEV
         uses: nais/deploy/actions/deploy@v1
         env:
-          DEPLOY_SERVER: deploy.nais.io:443
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: labs-gcp
-          RESOURCE: .nais/labs.yaml
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/ekstern-dev.yaml
 
   deployAppToProd:
     name: Deploy app to production

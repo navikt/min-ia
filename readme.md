@@ -5,7 +5,6 @@ Landingsside for selvbetjente IA-tjenester
 # Kjøre lokalt med hot-reload
 - Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 - Naviger til `/server`
-- Rename filen `.env.example` -> `.env`
 - Installer avhengigheter: `yarn`
 - Kjør opp applikasjon: `yarn dev` eller `TEST_MODE=KREVER_INNLOGGING yarn dev` (se `package.json` for flere opsjoner)
 - Naviger til `../client`

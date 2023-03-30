@@ -17,6 +17,7 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
 import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
+import {isMockApp} from "../utils/envUtils";
 
 interface ListeElement {
   key: Tags;
@@ -25,10 +26,7 @@ interface ListeElement {
 
 type Filter = Tags;
 
-export default function VideoOgKurs(props: {
-  page: PageProps;
-  isProduction: boolean;
-}) {
+export default function VideoOgKurs(props: { page: PageProps, kjørerMockApp: boolean }) {
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const aggregertStatistikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
@@ -175,7 +173,7 @@ export default function VideoOgKurs(props: {
             ? organisasjonerBrukerHarTilgangTil.data
             : []
         }
-        isProduction={props.isProduction}
+        kjørerMockApp={props.kjørerMockApp}
       >
         {innhold}
       </Layout>
@@ -190,8 +188,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
       "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
   };
 
-  const isProduction =
-    process.env.ENVIRONMENT === undefined || process.env.ENVIRONMENT === "prod";
-
-  return { props: { page, isProduction } };
+  return { props: { page, kjørerMockApp: isMockApp() } };
 };

@@ -1,6 +1,5 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import "dotenv/config";
 import { initTokenX } from "./tokenx.js";
 import { initIdporten } from "./idporten.js";
 import { requestLoggingMiddleware } from "./config/middleware/requestLogging.js";
@@ -11,9 +10,12 @@ import { SERVER_PORT } from "./config/meta.js";
 import { prometheus } from "./config/middleware/prometheus.js";
 import { isAlive, isReady } from "./healthcheck.js";
 import { setupApiRoutes } from "./routes.js";
+import { isMockApp } from "./util/environment";
 
 const initServer = async () => {
-  logger.info("Starting server (server.ts) on Node environment " + process.env.NODE_ENV);
+  logger.info(
+    "Starting server (server.ts) on Node environment " + process.env.NODE_ENV
+  );
   const server = express();
   isAlive(server);
 
@@ -23,11 +25,12 @@ const initServer = async () => {
   server.use(requestRateLimiter);
   server.use(cookieParser()); // Bruker vi cookieParseren lenger?
 
-  await initIdporten();
-  await initTokenX();
+  if (!isMockApp()) {
+    await initIdporten();
+    await initTokenX();
+  }
 
   setupApiRoutes(server);
-
   server.listen(SERVER_PORT, () => {
     logger.info("Server listening on port " + SERVER_PORT);
   });
