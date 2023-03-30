@@ -71,7 +71,10 @@ export default function VideoOgKurs(props: { page: PageProps, kjørerMockApp: bo
             className={styles.nettkurs__knapp}
             onClick={() => {
               document.dispatchEvent(new CustomEvent("forcePausePlayer"));
-              sendNettkursFilterValgtEvent(toggleFilter.key, toggleFilter.tekst);
+              sendNettkursFilterValgtEvent(
+                toggleFilter.key,
+                toggleFilter.tekst
+              );
               toggleFilters(toggleFilter.key);
             }}
           >
@@ -85,6 +88,7 @@ export default function VideoOgKurs(props: { page: PageProps, kjørerMockApp: bo
   const skalVideoVises = (video: QbrickVideo) => {
     return getFilteredListOfVideos(filter, IAVideoer).includes(video);
   };
+
   const innhold = (
     <>
       <Heading size="large" level={"1"}>
@@ -106,7 +110,7 @@ export default function VideoOgKurs(props: { page: PageProps, kjørerMockApp: bo
             {filterButtonList(filterListe)}
           </div>
           <div className={styles.videoer}>
-            {IAVideoer.map((video, index) => {
+            {IAVideoer.map((video) => {
               return (
                 <div
                   style={{
@@ -116,7 +120,7 @@ export default function VideoOgKurs(props: { page: PageProps, kjørerMockApp: bo
                     alignItems: "center",
                     justifyContent: "space-between",
                   }}
-                  key={index}
+                  key={video.id}
                 >
                   <div
                     title={"Video med tittel ".concat(video.metadata.title)}

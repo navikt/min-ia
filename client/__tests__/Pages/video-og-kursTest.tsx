@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import VideoOgKurs from "../../src/pages/video-og-kurs";
 import logEvent from "../../src/amplitude/logEvent";
+import { useRouter } from "next/router";
 
 jest.mock("../../src/amplitude/logEvent");
 afterEach(() => {
@@ -19,6 +20,16 @@ beforeEach(() => {
   window.location = { assign: jest.fn() };
   // @ts-ignore
   window.postMessage = jest.fn();
+});
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+// @ts-ignore
+useRouter.mockReturnValue({
+  query: {},
+  push: jest.fn(),
 });
 
 it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", async () => {

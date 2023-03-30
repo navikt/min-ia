@@ -12,13 +12,13 @@
 
 .video {
   // ref. https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
-  div[data-gobrain-widgetid] {
+  .gobrainWidgetTarget {
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     position: relative;
     height: 100%;
   }
 
-  div[data-gobrain-widgetid] > div:first-of-type {
+  div[id^="gobrain-widget-id-"] {
     bottom: 0;
     left: 0;
     position: absolute !important;

@@ -6,7 +6,7 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
-import { hentUrlFraMiljøvariabler, isMockApp } from "../utils/envUtils";
+import { hentUrlFraMiljøvariabel, isMockApp } from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
 
 interface HomeProps {
@@ -74,15 +74,15 @@ export const getServerSideProps = async () => {
   };
 
   const kjørerMockApp = isMockApp();
-  const minSideArbeidsgiverUrl = hentUrlFraMiljøvariabler(
+  const minSideArbeidsgiverUrl = hentUrlFraMiljøvariabel(
     "Min Side Arbeidsgiver"
   );
 
   const forsideProps: ForsideProps = {
-    samtalestøtteUrl: hentUrlFraMiljøvariabler("Samtalestøtte"),
-    forebyggingsplanUrl: hentUrlFraMiljøvariabler("Forebyggingsplan"),
-    sykefraværsstatistikkUrl: hentUrlFraMiljøvariabler("Sykefraværsstatistikk"),
-    kontaktOssUrl: hentUrlFraMiljøvariabler("Kontakt Oss"),
+    samtalestøtteUrl: hentUrlFraMiljøvariabel("Samtalestøtte"),
+    forebyggingsplanUrl: hentUrlFraMiljøvariabel("Forebyggingsplan"),
+    sykefraværsstatistikkUrl: hentUrlFraMiljøvariabel("Sykefraværsstatistikk"),
+    kontaktOssUrl: hentUrlFraMiljøvariabel("Kontakt Oss"),
   };
 
   const props: HomeProps = {
