@@ -1,6 +1,5 @@
 import {
   Components,
-  Env,
   fetchDecoratorReact,
 } from "@navikt/nav-dekoratoren-moduler/ssr";
 import Document, {
@@ -13,11 +12,6 @@ import Document, {
 } from "next/document";
 import React from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
-
-const decoratorEnv = process.env.DECORATOR_ENV as Exclude<Env, "localhost">;
-const thisPageUrl = process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL;
-console.log("DEKORATOR ENV: ", decoratorEnv)
-console.log("THIS PAGE: ", thisPageUrl)
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (
@@ -33,19 +27,21 @@ interface Props {
   language: string;
 }
 
-class MyDocument extends Document<Props> {
+const { decoratorEnv, thisPageUrl } = lesOgValiderMiljøvariablerForDekoratør();
+
+export default class MyDocument extends Document<Props> {
   static async getInitialProps(
     ctx: DocumentContext
   ): Promise<DocumentInitialProps & Props> {
     const initialProps = await Document.getInitialProps(ctx);
     const Decorator = await fetchDecoratorReact({
-      env: decoratorEnv ?? "prod",
+      env: decoratorEnv,
       chatbot: false,
       urlLookupTable: false,
       breadcrumbs: [
         {
           title: "Forebygge fravær",
-          url: `${process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL}`,
+          url: thisPageUrl ?? "",
         },
       ],
       context: "arbeidsgiver",
@@ -87,4 +83,17 @@ class MyDocument extends Document<Props> {
   }
 }
 
-export default MyDocument;
+function lesOgValiderMiljøvariablerForDekoratør() {
+  const decoratorEnv = process.env.DECORATOR_ENV as "prod" | "dev";
+  const thisPageUrl = process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL;
+
+  if (!decoratorEnv || !thisPageUrl) {
+    throw Error(
+      "Kunne ikke laste inn miljøvariabler for dekoratøren. Stopper bygget."
+    );
+  }
+  if (decoratorEnv != "prod" && decoratorEnv != "dev") {
+    throw Error("Dekoratør-miljø kan kun være 'prod' eller 'dev'");
+  }
+  return { decoratorEnv, thisPageUrl };
+}

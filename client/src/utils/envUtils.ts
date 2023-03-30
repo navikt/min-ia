@@ -1,13 +1,10 @@
 // Only call this function on the server, as the environemnt variables are not exposed to the client.
-import { logger, predefinerteFeilmeldinger } from "./logger";
-
 export const isMockApp = () => {
   return (
-      process.env.NAIS_CLUSTER_NAME === "localhost" ||
-      process.env.NAIS_APP_NAME === "min-ia-mock"
+    process.env.NAIS_APP_NAME === "min-ia-mock" ||
+    process.env.NAIS_APP_NAME === "min-ia-localhost"
   );
 };
-
 
 export type Tjeneste =
   | "Sykefraværsstatistikk"
@@ -16,9 +13,9 @@ export type Tjeneste =
   | "Min Side Arbeidsgiver"
   | "Kontakt Oss";
 
-export const hentUrlFraMiljøvariabler = (tilTjeneste: Tjeneste) => {
-  var url;
-  switch (tilTjeneste) {
+export const hentUrlFraMiljøvariabler = (tjeneste: Tjeneste) => {
+  let url;
+  switch (tjeneste) {
     case "Sykefraværsstatistikk":
       url = process.env.SYKEFRAVARSSTATISTIKK_URL;
       break;
@@ -36,7 +33,9 @@ export const hentUrlFraMiljøvariabler = (tilTjeneste: Tjeneste) => {
       break;
   }
   if (!url) {
-    logger.error(predefinerteFeilmeldinger.fantIkkeUrlIMiljøvariabler);
+    throw Error(
+      `URL til '${tjeneste}' ble ikke funnet i miljøvariablene. Stopper bygget.`
+    );
   }
-  return url || "";
+  return url;
 };
