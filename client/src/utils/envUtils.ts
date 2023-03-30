@@ -13,7 +13,7 @@ export type Tjeneste =
   | "Min Side Arbeidsgiver"
   | "Kontakt Oss";
 
-export const hentUrlFraMiljøvariabler = (tjeneste: Tjeneste) => {
+export const hentUrlFraMiljøvariabel = (tjeneste: Tjeneste) => {
   let url;
   switch (tjeneste) {
     case "Sykefraværsstatistikk":
