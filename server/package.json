@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev-debug": "DEBUG=express:* nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/server.ts",
-    "dev": "nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/server.ts",
+    "dev": "NODE_ENV=development nodemon --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/server.ts",
     "start": "node --es-module-specifier-resolution=node build/server.js",
     "build": "tsc -p ."
   },
@@ -14,7 +14,6 @@
     "@types/cookie-parser": "^1.4.3",
     "@types/node": "^18.13.0",
     "cookie-parser": "^1.4.6",
-    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-prom-bundle": "^6.5.0",
     "express-rate-limit": "^6.6.0",

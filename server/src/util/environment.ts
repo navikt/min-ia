@@ -1,6 +1,6 @@
 export const isMockApp = () => {
   return (
     process.env.NAIS_APP_NAME === "min-ia-mock" ||
-    process.env.NAIS_APP_NAME === "min-ia-localhost"
+    process.env.NODE_ENV === "development"
   );
 };

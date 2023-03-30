@@ -20,8 +20,6 @@ let _remoteJWKSet:
   | Uint8Array
   | GetKeyFunction<JWSHeaderParameters, FlattenedJWSInput>;
 
-//const IDPORTEN_WELL_KNOWN_URL="https://fakedings.dev-gcp.nais.io/fake/.well-known/openid-configuration"
-
 export async function initIdporten() {
   idportenIssuer = await Issuer.discover(process.env.IDPORTEN_WELL_KNOWN_URL!);
   _remoteJWKSet = createRemoteJWKSet(
@@ -43,11 +41,4 @@ export async function verifiserAccessToken(token: any) {
   if (payload.acr !== acceptedAcrLevel) {
     throw new Error("Invalid ACR-level");
   }
-}
-
-export async function getMockTokenFromIdporten() {
-  const response = await fetch(
-    process.env.FAKEDINGS_URL_IDPORTEN + "?acr=Level=4"
-  );
-  return response.text();
 }
