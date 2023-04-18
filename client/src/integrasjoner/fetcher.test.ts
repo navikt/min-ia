@@ -1,59 +1,44 @@
-import { fetcher } from './fetcher';
+import { fetcher } from "./fetcher";
+import { RestStatus } from "./rest-status";
+import server from "../../__mocks__/server";
 
-// Mock the fetch function
-global.fetch = jest.fn();
+beforeAll(() => {
+  server.listen();
+});
 
-describe('fetcher', () => {
-    beforeEach(() => {
-        fetch.mockClear();
+afterEach(() => {
+  server.resetHandlers();
+});
+
+afterAll(() => {
+  server.close();
+});
+
+describe("fetcher", () => {
+  it("should return data and status when successful", async () => {
+    const result = await fetcher("/api/success");
+
+    expect(result).toEqual({
+      status: RestStatus.Suksess,
+      data: { key: "value" },
     });
+  });
 
-    it('should return data and status when successful', async () => {
-        const mockData = { key: 'value' };
-        fetch.mockResolvedValueOnce(new Response(JSON.stringify(mockData), { status: 200 }));
+  it("should return RestStatus.IkkeInnlogget status is 401", async () => {
+    const result = await fetcher("/api/unauthorized");
 
-        const result = await fetcher('/api/success');
+    expect(result).toEqual({ status: RestStatus.IkkeInnlogget });
+  });
 
-        expect(fetch).toHaveBeenCalledWith('/api/success', {
-            method: 'GET',
-            credentials: 'include',
-        });
-        expect(result).toEqual({ status: RestStatus.Suksess, data: mockData });
-    });
+  it("should return RestStatus.IngenTilgang when status is 403", async () => {
+    const result = await fetcher("/api/forbidden");
 
-    it('should return RestStatus.IkkeInnlogget when 401 status', async () => {
-        fetch.mockResolvedValueOnce(new Response(null, { status: 401 }));
+    expect(result).toEqual({ status: RestStatus.IngenTilgang });
+  });
 
-        const result = await fetcher('/api/unauthorized');
+  it("should return RestStatus.Feil for other statuses", async () => {
+    const result = await fetcher("/api/internal-error");
 
-        expect(fetch).toHaveBeenCalledWith('/api/unauthorized', {
-            method: 'GET',
-            credentials: 'include',
-        });
-        expect(result).toEqual({ status: RestStatus.IkkeInnlogget });
-    });
-
-    it('should return RestStatus.IngenTilgang when 403 status', async () => {
-        fetch.mockResolvedValueOnce(new Response(null, { status: 403 }));
-
-        const result = await fetcher('/api/forbidden');
-
-        expect(fetch).toHaveBeenCalledWith('/api/forbidden', {
-            method: 'GET',
-            credentials: 'include',
-        });
-        expect(result).toEqual({ status: RestStatus.IngenTilgang });
-    });
-
-    it('should return RestStatus.Feil when other status', async () => {
-        fetch.mockResolvedValueOnce(new Response(null, { status: 500 }));
-
-        const result = await fetcher('/api/internal-error');
-
-        expect(fetch).toHaveBeenCalledWith('/api/internal-error', {
-            method: 'GET',
-            credentials: 'include',
-        });
-        expect(result).toEqual({ status: RestStatus.Feil });
-    });
+    expect(result).toEqual({ status: RestStatus.Feil });
+  });
 });

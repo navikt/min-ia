@@ -1,7 +1,7 @@
 // mocks/handlers.ts
 import { rest } from 'msw';
 
-export const handlers = [
+export const testHandlers = [
     rest.get('/api/success', (_, res, ctx) => {
         return res(ctx.status(200), ctx.json({ key: 'value' }));
     }),
@@ -16,4 +16,4 @@ export const handlers = [
     }),
 ];
 
-export default handlers;
+export default testHandlers;
