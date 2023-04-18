@@ -30,6 +30,8 @@ const Home = (props: HomeProps) => {
     return null;
   }
 
+  console.log(trengerInnlogging)
+
   const forsideEllerInnloggingsside = trengerInnlogging ? (
     <Innloggingsside redirectUrl={window.location.href} />
   ) : (

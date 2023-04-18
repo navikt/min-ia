@@ -10,7 +10,7 @@ export const predefinerteFeilmeldinger = {
   manglerTilgangRedirect:
     "Bruker mangler tilgang, redirectes til Min Side Arbeidsgiver",
   feilVedHentingAvAggregertStatistikk:
-    "Det oppstod en feil ved kall til {orgnr}/v1/sykefravarshistorikk/aggregert i sykefraværstatistikk-api",
+    "Det oppstod en feil ved kall til api/{orgnr}/v1/sykefravarshistorikk/aggregert",
 }
 
 // This logger is isomorphic, and can be imported from anywhere in the app

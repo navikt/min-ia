@@ -74,10 +74,6 @@ export const backendApiProxyMock = (server: Express) => {
           aggregertStatistikkMock = mockdataOrgnr91096939;
           break;
         }
-        case "999999998": {
-          response.status(401).json();
-          break;
-        }
         case "999999997": {
           response.status(500).json();
           break;
