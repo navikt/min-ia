@@ -4,9 +4,9 @@ import {
   AggregertStatistikkDto,
   Statistikkategori,
   tomtDataobjekt,
-} from "../../../src/integrasjoner/aggregert-statistikk-api";
-import { hentUtSykefraværsstatistikkData } from "../../../src/komponenter/Infographic/datauthenting";
-import {Sykefraværsstatistikk} from "../../../src/Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
+} from "../../integrasjoner/aggregert-statistikk-api";
+import { hentUtSykefraværsstatistikkData } from "../../komponenter/Infographic/datauthenting";
+import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk";
 
 jest.mock("../../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
