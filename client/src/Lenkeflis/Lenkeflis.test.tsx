@@ -1,9 +1,9 @@
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import logEvent from "../../../src/amplitude/logEvent";
-import {Lenkeflis} from "../../../src/Lenkeflis/Lenkeflis";
+import {Lenkeflis} from "./Lenkeflis";
+import logEvent from "../amplitude/logEvent";
 
-jest.mock("../../../src/amplitude/logEvent");
+jest.mock("../amplitude/logEvent");
 
 beforeEach(() => {
     // window.location-assign er ikke implementert i jest, så vi må mocke den

@@ -1,4 +1,4 @@
-import { leggTilBedriftPåUrl } from "../../src/utils/navigasjon";
+import { leggTilBedriftPåUrl } from "./navigasjon";
 
 describe("Tester at bedrift legges korrekt til på URL", () => {
   it("returnerer opprinnelig URL dersom orgnummer er undefined", () => {
