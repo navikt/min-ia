@@ -11,12 +11,10 @@ beforeEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 const renderHookWithDummyData = (url: string | null) => {
-  return renderHook(() =>
-    useRestRessursSWR(url, "Error fetching data")
-  );
+  return renderHook(() => useRestRessursSWR(url, "Error fetching data"));
 };
 
-const notSuksess = (url: string, statusCode: number) => {
+const notSuksessResponse = (url: string, statusCode: number) => {
   return rest.get(url, (req, res, ctx) => {
     return res(ctx.status(statusCode));
   });
@@ -24,15 +22,15 @@ const notSuksess = (url: string, statusCode: number) => {
 
 describe("useRestRessursSWR", () => {
   it("should return LasterInn status while fetching data", async () => {
-    const dummyUrl = "https://dummy.api/data"
+    const dummyUrl = "https://dummy.api/data";
 
     const { result } = renderHookWithDummyData(dummyUrl);
 
     expect(result.current.status).toEqual(RestStatus.LasterInn);
   });
 
-  it("should return Suksess status and data when fetch is successful", async () => {
-    const suksessUrl = "https://dummy.api/suksess"
+  it("should return status Suksess and data when fetch is successful", async () => {
+    const suksessUrl = "https://dummy.api/suksess";
 
     server.use(
       rest.get(suksessUrl, (req, res, ctx) => {
@@ -53,9 +51,9 @@ describe("useRestRessursSWR", () => {
     }
   });
 
-  it("should return IngenTilgang status when fetch returns 403", async () => {
-    const ingenTilgangUrl = "https://dummy.api/ingen-tilgang"
-    server.use(notSuksess(ingenTilgangUrl, 403));
+  it("should return status IngenTilgang when fetch returns 403", async () => {
+    const ingenTilgangUrl = "https://dummy.api/ingen-tilgang";
+    server.use(notSuksessResponse(ingenTilgangUrl, 403));
 
     await waitFor(() => {
       const { result } = renderHookWithDummyData(ingenTilgangUrl);
@@ -63,10 +61,17 @@ describe("useRestRessursSWR", () => {
     });
   });
 
-  it("should return IkkeLastet status when api url is null", async () => {
+  it("should return status IkkeLastet when api url is null", async () => {
     await waitFor(() => {
       const { result } = renderHookWithDummyData(null);
       expect(result.current.status).toEqual(RestStatus.IkkeLastet);
+    });
+  });
+
+  it("should return status Feil when resource is not found", async () => {
+    await waitFor(() => {
+      const { result } = renderHookWithDummyData("https://dummy.api/404");
+      expect(result.current.status).toEqual(RestStatus.Feil);
     });
   });
 });

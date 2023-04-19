@@ -5,9 +5,10 @@ import {
   RestStatus,
 } from "../integrasjoner/rest-status";
 import useSWR from "swr";
+
 export function useRestRessursSWR<T>(
   apiPath: string | null,
-  errorMessage: string
+  errorMessage: string,
 ): RestRessurs<T> {
   const { data, error, isLoading } = useSWR(apiPath, fetcher);
 
@@ -21,7 +22,6 @@ export function useRestRessursSWR<T>(
   }
   return data;
 }
-
 
 async function fetcher(path: string) {
   const response = await fetch(path, {
