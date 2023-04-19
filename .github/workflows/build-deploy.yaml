@@ -62,7 +62,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/ekstern-dev'
+    if: github.ref == 'refs/heads/fix-ssrf'
     needs: build
     runs-on: ubuntu-latest
     steps:
