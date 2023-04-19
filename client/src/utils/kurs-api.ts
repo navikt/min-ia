@@ -1,4 +1,4 @@
-import {mapTilRestStatus, RestRessurs, RestStatus} from '../integrasjoner/rest-status';
+import {mapStatusskodeTilRestStatus, RestRessurs, RestStatus} from '../integrasjoner/rest-status';
 import {BASE_PATH} from "./konstanter";
 
 
@@ -52,7 +52,7 @@ const mapTilKurs = (kursDto: KursDto): Kurs => ({
 export const hentRestKurs = async (): Promise<RestKursliste> => {
     try {
     const response = await fetch(BASE_PATH + "/kursoversikt");
-        const restStatus = mapTilRestStatus(response.status);
+        const restStatus = mapStatusskodeTilRestStatus(response.status);
 
         if (restStatus === RestStatus.Suksess) {
             const kursliste: Kurs[] = ((await response.json()) as KursDto[]).map(

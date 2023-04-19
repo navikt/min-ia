@@ -40,6 +40,10 @@ export type RestRessurs<T> =
   | Feil
   | IngenTilgang;
 
+export function erSuksess<T>(ressurs: RestRessurs<T>): ressurs is Suksess<T> {
+  return ressurs.status === RestStatus.Suksess;
+}
+
 export const erIkkeInnlogget = <T>(
   respons: RestRessurs<T>
 ): respons is IkkeInnlogget => {
@@ -58,8 +62,8 @@ export const erFerdigNedlastet = <T>(
   return respons.status === RestStatus.Suksess;
 };
 
-export const mapTilRestStatus = (responseStatus: number): RestStatus => {
-  switch (responseStatus) {
+export const mapStatusskodeTilRestStatus = (statuskode: number): RestStatus => {
+  switch (statuskode) {
     case 200: {
       return RestStatus.Suksess;
     }

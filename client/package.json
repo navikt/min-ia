@@ -46,7 +46,8 @@
   "devDependencies": {
     "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock": "^5.4.5-rc1",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "13.4.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "^17.0.19",
     "@types/react": "18.0.25",

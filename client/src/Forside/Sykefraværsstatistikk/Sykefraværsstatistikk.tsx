@@ -7,7 +7,7 @@ import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/I
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
 import { DataFilled } from "@navikt/ds-icons";
 import "./sykefraværsstatistikk.module.scss";
-import { useAltinnOrganisasjonerMedStatistikk } from "../../hooks/useAltinnOrganisasjonerMedStatistikk";
+import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjonerMedStatistikktilgang";
 import { RestStatus } from "../../integrasjoner/rest-status";
 
 export interface SykefraværsstatistikkData {
@@ -30,14 +30,14 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
     orgnr
   );
 
-  const restAltinnOrganisasjonerMedStatistikktilgang =
-    useAltinnOrganisasjonerMedStatistikk();
+  const organisasjonerHvorBrukerHarStatistikktilgang =
+    useAltinnOrganisasjonerMedStatistikktilgang();
 
   function organisasjonslistaInkludererValgtBedrift(orgnr: string) {
     return (
-      restAltinnOrganisasjonerMedStatistikktilgang.status ===
+      organisasjonerHvorBrukerHarStatistikktilgang.status ===
         RestStatus.Suksess &&
-      restAltinnOrganisasjonerMedStatistikktilgang.data
+      organisasjonerHvorBrukerHarStatistikktilgang.data
         .map((org) => org.OrganizationNumber)
         .includes(orgnr)
     );
