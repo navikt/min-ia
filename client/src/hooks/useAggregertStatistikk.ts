@@ -15,5 +15,5 @@ export function useAggregertStatistikk(): RestRessurs<AggregertStatistikkDto> {
   const errorMessage =
     predefinerteFeilmeldinger.feilVedHentingAvAggregertStatistikk;
 
-  return useRestRessursSWR<AggregertStatistikkDto>(apiPath, errorMessage, "agg");
+  return useRestRessursSWR<AggregertStatistikkDto>(apiPath, errorMessage);
 }
