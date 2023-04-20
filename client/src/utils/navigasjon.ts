@@ -18,6 +18,6 @@ export const navigerEtterCallbacks = async (
   );
 };
 
-export function leggTilBedriftPåUrl(url: string, orgnr: string | undefined) {
+export function leggTilBedriftPåUrl(url: string, orgnr: string | null) {
   return orgnr ? `${url}?bedrift=${orgnr}` : url;
 }

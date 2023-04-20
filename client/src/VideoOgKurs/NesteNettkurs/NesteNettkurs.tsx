@@ -6,7 +6,7 @@ import {formatterKursdato} from "../../utils/kurs-utils";
 import styles  from "./neste-nettkurs.module.scss";
 
 interface Props {
-    nesteNettkurs: Kurs | undefined;
+    nesteNettkurs: Kurs | null;
 }
 
 export const NesteNettkurs:FunctionComponent<Props> = ({nesteNettkurs}) => {

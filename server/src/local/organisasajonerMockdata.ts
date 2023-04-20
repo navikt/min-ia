@@ -40,14 +40,6 @@ export const organisasjoner = [
     ParentOrganizationNumber: "",
   },
   {
-    Name: "Krever innlogging",
-    Type: "Business",
-    OrganizationNumber: "999999998",
-    OrganizationForm: "BEDR",
-    Status: "Active",
-    ParentOrganizationNumber: "311111111",
-  },
-  {
     Name: "Generell feil",
     Type: "Business",
     OrganizationNumber: "999999997",
@@ -105,14 +97,6 @@ export const organisasjonerMedIaRettighet = [
     OrganizationForm: "AS",
     Status: "Active",
     ParentOrganizationNumber: "",
-  },
-  {
-    Name: "Krever innlogging",
-    Type: "Business",
-    OrganizationNumber: "999999998",
-    OrganizationForm: "BEDR",
-    Status: "Active",
-    ParentOrganizationNumber: "311111111",
   },
   {
     Name: "Generell feil",

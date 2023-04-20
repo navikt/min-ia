@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
-import { RestStatus } from "../integrasjoner/rest-status";
-import {
-  hentAggregertStatistikk,
-  RestAggregertStatistikk,
-} from "../integrasjoner/aggregert-statistikk-api";
+import { RestRessurs } from "../integrasjoner/rest-status";
+import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import { useOrgnr } from "./useOrgnr";
+import { predefinerteFeilmeldinger } from "../utils/logger";
+import { API_BASE_PATH } from "../utils/konstanter";
+import { useRestRessursSWR } from "./useRestRessursSWR";
 
-export function useAggregertStatistikk(): RestAggregertStatistikk {
-  const orgnr = useOrgnr();
+export function useAggregertStatistikk(): RestRessurs<AggregertStatistikkDto> {
+  const gyldigOrgnr = useOrgnr();
 
-  const [aggregertStatistikk, setAggregertStatistikk] =
-    useState<RestAggregertStatistikk>({ status: RestStatus.IkkeLastet });
+  const apiPath = gyldigOrgnr
+    ? `${API_BASE_PATH}/${gyldigOrgnr}/v1/sykefravarshistorikk/aggregert`
+    : null;
 
-  // TODO: UseMemo? Dumt hvis kallet går flere ganger
-  useEffect(() => {
-    if (orgnr) {
-      setAggregertStatistikk({
-        status: RestStatus.IkkeLastet,
-      });
-      (async () => {
-        setAggregertStatistikk(await hentAggregertStatistikk(orgnr));
-      })();
-    }
-  }, [orgnr]);
-  return aggregertStatistikk;
+  const errorMessage =
+    predefinerteFeilmeldinger.feilVedHentingAvAggregertStatistikk;
+
+  return useRestRessursSWR<AggregertStatistikkDto>(apiPath, errorMessage);
 }

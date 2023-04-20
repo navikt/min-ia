@@ -1,8 +1,4 @@
-import {getRestStatus, RestRessurs, RestStatus} from '../integrasjoner/rest-status';
-import {BASE_PATH} from "./konstanter";
-
-
-interface KursDto {
+export interface KursDto {
     RegistrationID: string;
     Title: string;
     RegistrationUrl: string;
@@ -37,9 +33,7 @@ export interface Kurs {
     påmeldingsfrist: Date;
 }
 
-export type RestKursliste = RestRessurs<Kurs[]>;
-
-const mapTilKurs = (kursDto: KursDto): Kurs => ({
+export const mapTilKurs = (kursDto: KursDto): Kurs => ({
     id: kursDto.RegistrationID,
     tittel: kursDto.Title,
     tema: kursDto.configurable_custom?.Tema,
@@ -48,23 +42,3 @@ const mapTilKurs = (kursDto: KursDto): Kurs => ({
     slutt: new Date(kursDto.RegistrationToDateTime),
     påmeldingsfrist: new Date(kursDto.RegistrationDeadline),
 });
-
-export const hentRestKurs = async (): Promise<RestKursliste> => {
-    try {
-    const response = await fetch(BASE_PATH + "/kursoversikt");
-        const restStatus = getRestStatus(response.status);
-
-        if (restStatus === RestStatus.Suksess) {
-            const kursliste: Kurs[] = ((await response.json()) as KursDto[]).map(
-                (kursDto) => mapTilKurs(kursDto)
-            );
-            return {
-                status: RestStatus.Suksess,
-                data: kursliste,
-            };
-        }
-    } catch (error) {
-    }
-
-    return {status: RestStatus.Feil};
-};

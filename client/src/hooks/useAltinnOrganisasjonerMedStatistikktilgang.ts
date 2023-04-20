@@ -1,11 +1,13 @@
-import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
+import {
+  AltinnOrganisasjon,
+  RestAltinnOrganisasjoner,
+} from "../integrasjoner/altinnorganisasjon-api";
 import { API_BASE_PATH } from "../utils/konstanter";
 import { predefinerteFeilmeldinger } from "../utils/logger";
 import { useRestRessursSWR } from "./useRestRessursSWR";
-import { RestRessurs } from "../integrasjoner/rest-status";
 
-export function useAltinnOrganisasjoner(): RestRessurs<AltinnOrganisasjon[]> {
-  const apiPath = `${API_BASE_PATH}/organisasjoner`;
+export function useAltinnOrganisasjonerMedStatistikktilgang(): RestAltinnOrganisasjoner {
+  const apiPath = `${API_BASE_PATH}/organisasjoner/statistikk`;
   const errorMessage =
     predefinerteFeilmeldinger.feilVedHentingAvAltinnOrganisasjoner;
 

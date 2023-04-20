@@ -31,7 +31,7 @@ const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
 
 export const sendLevertInnloggetIaTjeneste = async (
   tjeneste: IaTjeneste,
-  orgnr?: string
+  orgnr: string | null
 ): Promise<boolean> => {
   if (!orgnr) {
     return Promise.reject("Orgnr er udefinert");
