@@ -30,11 +30,7 @@ async function fetcher(path: string) {
   });
 
   const restStatus = mapStatusskodeTilRestStatus(response.status);
-  if (restStatus === RestStatus.Suksess) {
-    return {
-      status: RestStatus.Suksess,
-      data: await response.json(),
-    };
-  }
-  return { status: restStatus };
+  return restStatus === RestStatus.Suksess
+      ? { status: restStatus, data: await response.json() }
+      : { status: restStatus };
 }

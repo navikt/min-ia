@@ -1,9 +1,10 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { renderHook } from "@testing-library/react-hooks";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import { erSuksess, RestStatus } from "../integrasjoner/rest-status";
 import { waitFor } from "@testing-library/dom";
+import {renderHook} from "@testing-library/react-hooks";
+
 
 export const server = setupServer();
 beforeAll(() => server.listen());
