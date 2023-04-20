@@ -6,6 +6,9 @@ import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 import { useSendIaTjenesteMetrikkOnEvent } from "./useSendIaTjenesteMetrikkOnEvent";
 import { FunctionComponent } from "react";
+import { setupServer } from "msw/node";
+import { rest } from "msw";
+import { innloggetIaTjenestemetrikkPath } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("../../src/integrasjoner/ia-tjenestemetrikker-api", () => {
   return {
@@ -21,7 +24,19 @@ jest.mock("../../src/hooks/useOrgnr", () => {
   };
 });
 
+const handlerMetrikkerApiCall = [
+  rest.post(innloggetIaTjenestemetrikkPath, (req, res, ctx) => {
+    return res(ctx.json({ status: "created" }));
+  }),
+];
+
+export const server = setupServer(...handlerMetrikkerApiCall);
+
+beforeAll(() => server.listen());
+afterAll(() => server.close());
+
 beforeEach(() => {
+  server.resetHandlers();
   jest.spyOn(iatjenestemetrikker, "sendLevertInnloggetIaTjeneste");
   jest.spyOn(hooks, "useOrgnr").mockImplementation(() => "999999999");
 });
