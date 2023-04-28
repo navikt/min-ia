@@ -12,9 +12,9 @@ spec:
     - name: SYKEFRAVARSSTATISTIKK_API_BASE_URL
       value: https://sykefravarsstatistikk-api.dev-fss-pub.nais.io
     - name: IA_TJENESTER_METRIKKER_BASE_URL
-      value: https://ia-tjenester-metrikker.dev.nav.no/ia-tjenester-metrikker
+      value: https://ia-tjenester-metrikker.intern.dev.nav.no/ia-tjenester-metrikker
     - name: KURSOVERSIKT_BASE_URL
-      value: https://kursoversikt.dev.nav.no/kursoversikt
+      value: https://arbeidsgiver.intern.dev.nav.no/kursoversikt
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
       ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
@@ -28,19 +28,19 @@ spec:
     - name: NOTIFIKASJON_API_AUDIENCE
       value: "dev-gcp:fager:notifikasjon-bruker-api"
     - name: APP_INGRESS
-      value: https://forebygge-fravar.dev.nav.no/forebygge-fravar
+      value: https://forebygge-fravar.intern.dev.nav.no/forebygge-fravar
     - name: DECORATOR_ENV
       value: dev
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
-      value: https://forebygge-fravar.dev.nav.no/forebygge-fravar
+      value: https://forebygge-fravar.intern.dev.nav.no/forebygge-fravar
     - name: SAMTALESTOTTE_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/samtalestotte
+      value: https://samtalestotte.intern.dev.nav.no
     - name: SYKEFRAVARSSTATISTIKK_URL
-      value: https://arbeidsgiver-gcp.dev.nav.no/sykefravarsstatistikk
+      value: https://sykefravarsstatistikk.intern.dev.nav.no/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL
-      value: https://forebyggingsplan-frontend.dev.nav.no/forebyggingsplan
+      value: https://forebyggingsplan-frontend.intern.dev.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
-      value: https://min-side-arbeidsgiver.dev.nav.no/min-side-arbeidsgiver
+      value: https://min-side-arbeidsgiver.intern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
       value: https://arbeidsgiver-kontakt-oss.dev.nav.no/kontakt-oss
   tokenx:
@@ -63,7 +63,7 @@ spec:
     max: 2
     cpuThresholdPercentage: 50
   ingresses:
-    - https://forebygge-fravar.dev.nav.no/forebygge-fravar
+    - https://forebygge-fravar.intern.dev.nav.no/forebygge-fravar
   prometheus:
     enabled: true
     path: /forebygge-fravar/internal/metrics
