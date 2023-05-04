@@ -62,7 +62,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main || github.ref == 'refs/heads/fjerne-loginservice'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fjerne-loginservice'
     needs: build
     runs-on: ubuntu-latest
     steps:
