@@ -38,6 +38,8 @@ export default class MyDocument extends Document<Props> {
       env: decoratorEnv,
       chatbot: false,
       urlLookupTable: false,
+      redirectToApp: true,
+      redirectToUrl: thisPageUrl,
       breadcrumbs: [
         {
           title: "Forebygge fravær",
