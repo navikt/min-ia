@@ -76,7 +76,7 @@ jobs:
 
   deployAppToEksternDev:
     name: Deploy app to ekstern dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/ekstern-dev'
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     steps:
