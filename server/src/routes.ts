@@ -1,6 +1,6 @@
 import { Express } from "express";
 import { setupQbrickConfigRoute } from "./config/setupQbrickConfigRoute.js";
-import { setupLoginRoutes } from "./login/routes.js";
+import { setupLoginRedirect } from "./authentication.js";
 import { isMockApp } from "./util/environment.js";
 import {
   setupBackendApiProxy,
@@ -11,14 +11,14 @@ import {
 } from "./config/middleware/proxyMiddleware.js";
 import { backendApiProxyMock } from "./local/proxyMiddlewareMock.js";
 
-export const setupApiRoutes = (server: Express) => {
+export const setupRoutes = (server: Express) => {
   setupQbrickConfigRoute(server);
 
   if (isMockApp()) {
     setupNotifikasjonBrukerAPIProxyMock(server);
     backendApiProxyMock(server);
   } else {
-    setupLoginRoutes(server);
+    setupLoginRedirect(server);
     setupBackendApiProxy(server);
     setupKursoversiktApiProxy(server);
     setupIaTjenestermetrikkerProxy(server);

@@ -9,7 +9,7 @@ import { requestRateLimiter } from "./config/middleware/requestRateLimiter.js";
 import { SERVER_PORT } from "./config/meta.js";
 import { prometheus } from "./config/middleware/prometheus.js";
 import { isAlive, isReady } from "./healthcheck.js";
-import { setupApiRoutes } from "./routes.js";
+import { setupRoutes } from "./routes.js";
 import { isMockApp } from "./util/environment";
 
 const initServer = async () => {
@@ -17,8 +17,9 @@ const initServer = async () => {
     "Starting server (server.ts) on Node environment " + process.env.NODE_ENV
   );
   const server = express();
-  isAlive(server);
 
+  isAlive(server);
+  setupRoutes(server);
   server.use(correlationIdMiddleware);
   server.use(requestLoggingMiddleware);
   server.use(prometheus);
@@ -30,7 +31,6 @@ const initServer = async () => {
     await initTokenX();
   }
 
-  setupApiRoutes(server);
   server.listen(SERVER_PORT, () => {
     logger.info("Server listening on port " + SERVER_PORT);
   });
