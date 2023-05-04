@@ -9,8 +9,15 @@ import { requestRateLimiter } from "./config/middleware/requestRateLimiter.js";
 import { SERVER_PORT } from "./config/meta.js";
 import { prometheus } from "./config/middleware/prometheus.js";
 import { isAlive, isReady } from "./healthcheck.js";
-import { setupRoutes } from "./routes.js";
 import { isMockApp } from "./util/environment";
+import {
+  applyNotifikasjonMiddleware,
+  setupBackendApiProxy, setupIaTjenestermetrikkerProxy,
+  setupKursoversiktApiProxy,
+  setupNotifikasjonBrukerAPIProxyMock
+} from "./config/middleware/proxyMiddleware";
+import {backendApiProxyMock} from "./local/proxyMiddlewareMock";
+import {setupWonderwallLoginRedirect} from "./authentication";
 
 const initServer = async () => {
   logger.info(
@@ -19,16 +26,23 @@ const initServer = async () => {
   const server = express();
 
   isAlive(server);
-  setupRoutes(server);
   server.use(correlationIdMiddleware);
   server.use(requestLoggingMiddleware);
   server.use(prometheus);
   server.use(requestRateLimiter);
   server.use(cookieParser()); // Bruker vi cookieParseren lenger?
 
-  if (!isMockApp()) {
+  if (isMockApp()) {
+    setupNotifikasjonBrukerAPIProxyMock(server);
+    backendApiProxyMock(server);
+  } else {
     await initIdporten();
     await initTokenX();
+    setupWonderwallLoginRedirect(server);
+    setupBackendApiProxy(server);
+    setupKursoversiktApiProxy(server);
+    setupIaTjenestermetrikkerProxy(server);
+    applyNotifikasjonMiddleware(server);
   }
 
   server.listen(SERVER_PORT, () => {
