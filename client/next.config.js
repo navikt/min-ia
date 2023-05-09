@@ -39,10 +39,6 @@ const nextConfig = {
         destination: "http://localhost:3010/forebygge-fravar/redirect-til-login:slug*",
       },
       {
-        source: "/success:slug*",
-        destination: "http://localhost:3010/forebygge-fravar/success:slug*",
-      },
-      {
         source: "/kursoversikt/:slug*",
         destination: "http://localhost:3010/forebygge-fravar/kursoversikt/:slug*",
       },
