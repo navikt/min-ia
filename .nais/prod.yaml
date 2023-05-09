@@ -78,6 +78,8 @@ spec:
           cluster: prod-gcp
         - application: notifikasjon-bruker-api
           namespace: fager
+        - application: nav-dekoratoren
+          namespace: arbeidsgiver
       external:
-        - host: dekoratoren.nav.no
+        - host: www.nav.no
         - host: sykefravarsstatistikk-api.prod-fss-pub.nais.io
