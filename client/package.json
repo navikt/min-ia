@@ -21,6 +21,7 @@
     "@navikt/ds-react": "2.6.0",
     "@navikt/tokenx-middleware": "0.1.0",
     "@navikt/nav-dekoratoren-moduler": "^1.6.9",
+    "@navikt/tokenx-middleware": "^0.1.0",
     "@types/cheerio": "^0.22.31",
     "@types/classnames": "^2.3.1",
     "@types/history": "^5.0.0",
