@@ -53,7 +53,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
         <Lenkeflis
           overskrift={"Sykefraværsstatistikken"}
           href={sykefraværsstatistikkUrlMedBedrift}
-          ikon={<DataFilled />}
+          ikon={<DataFilled aria-hidden />}
         />
       );
     } else {
