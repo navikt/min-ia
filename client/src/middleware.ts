@@ -8,13 +8,11 @@ export function middleware(request: NextRequest) {
   if (noCorrelationIdHeaderExist(request)) {
     addCorrelationIdHeader(request);
   }
-
-  return NextResponse.redirect(new URL("/home", request.url));
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/api/*",
+  matcher: "/api/:path*",
 };
 
 const noCorrelationIdHeaderExist = (req: NextRequest): boolean => {
