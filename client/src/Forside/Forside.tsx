@@ -12,6 +12,7 @@ import { AndreForebyggendeVerktoy } from "./AndreForebyggendeVerktøy/AndreForeb
 import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
 import { KontaktOss } from "./KontaktOss/KontaktOss";
+import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 
 export interface ForsideProps {
   samtalestøtteUrl: string;
@@ -52,6 +53,7 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
+        <FiaSamarbeidsstatus/>
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
