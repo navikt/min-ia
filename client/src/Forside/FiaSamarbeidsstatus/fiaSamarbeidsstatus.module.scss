@@ -1,16 +1,8 @@
 .fiaSamarbeidsstatus {
   padding: 1rem;
   display: flex;
-  gap: .5rem;
-  align-items: center;
-  border: 1px solid black;
-}
-
-.fiaSamarbeidsstatus2 {
-  padding: 1rem;
-  display: flex;
   flex-direction: column;
-
+  background: var(--a-bg-subtle);
   gap: .5rem;
-  border: 1px solid black;
+  border-radius: var(--a-border-radius-medium);
 }

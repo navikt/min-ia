@@ -53,8 +53,8 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
-        <FiaSamarbeidsstatus/>
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
+        <FiaSamarbeidsstatus/>
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
