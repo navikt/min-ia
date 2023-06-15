@@ -948,10 +948,10 @@
     prop-types "^15.7.2"
     react "^17.0.2"
 
-"@navikt/tokenx-middleware@^0.1.1":
-  version "0.1.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/tokenx-middleware/0.1.1/16409f9775d8076e54c62463efd723122f02a500#16409f9775d8076e54c62463efd723122f02a500"
-  integrity sha512-ad2+rzVkMPu7DdGOTgr85272dcYiWFDrqPiqLof5SAF1uAYWMFNtEqFiHhtpW5E6MMluqIkN34pf8R2ENQmgoQ==
+"@navikt/tokenx-middleware@^0.1.3":
+  version "0.1.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/tokenx-middleware/0.1.3/1a861d8824bb752a93bb0df9d09f62d505e6e76f#1a861d8824bb752a93bb0df9d09f62d505e6e76f"
+  integrity sha512-VJ5jgM6gmBIHlfCi7TX7e/sDWrT0YzoOerqVWFv/pEo/3LpDHmWDrEojHJAsy03CbCSirBnc2QqIQColTkdmEw==
   dependencies:
     openid-client "^5.4.2"
 
