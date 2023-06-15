@@ -11,23 +11,9 @@ interface FiaSamarbeidsstatusProps {
     kjørerMockApp: boolean;
 }
 
-const utleddFiaSamarbeidsstatusMock = (orgnr: string | null) => {
-    return orgnr?.startsWith("9") ?
-        {
-            status: RestStatus.Suksess,
-            data: {
-                orgnr: orgnr,
-                samarbeid: "I_SAMARBEID"
-            }
-        } :
-        {
-            status: RestStatus.Feil
-        }
-}
 const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (props) => {
     const orgnr = useOrgnr();
-    const fiaSamarbeidsstatus =
-        props.kjørerMockApp ? utleddFiaSamarbeidsstatusMock(orgnr) : useFiaSamarbeidsstatus(orgnr, props.fiaArbeidsgiverUrl);
+    const fiaSamarbeidsstatus = useFiaSamarbeidsstatus(orgnr, props.fiaArbeidsgiverUrl, props.kjørerMockApp);
 
     if (fiaSamarbeidsstatus.status === RestStatus.Suksess && fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID") {
         return (
