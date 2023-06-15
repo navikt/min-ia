@@ -19,6 +19,8 @@ export interface ForsideProps {
   forebyggingsplanUrl: string;
   sykefraværsstatistikkUrl: string;
   kontaktOssUrl: string;
+  fiaArbeidsgiverUrl: string;
+  kjørerMockApp: boolean;
   children?: React.ReactNode;
 }
 
@@ -54,7 +56,7 @@ export const Forside = (props: ForsideProps) => {
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
-        <FiaSamarbeidsstatus/>
+        <FiaSamarbeidsstatus kjørerMockApp={props.kjørerMockApp} fiaArbeidsgiverUrl={props.fiaArbeidsgiverUrl}/>
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />

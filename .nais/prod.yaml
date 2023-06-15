@@ -33,6 +33,8 @@ spec:
       value: prod
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
+    - name: FIA_ARBEIDSGIVER_URL
+      value: https://arbeidsgiver.nav.no/fia-arbeidsgiver
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
