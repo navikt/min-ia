@@ -23,6 +23,8 @@ spec:
       value: production
     - name: SYKEFRAVARSSTATISTIKK_API_AUDIENCE
       value: "dev-fss:arbeidsgiver:sykefravarsstatistikk-api"
+    - name: FIA_ARBEIDSGIVER_AUDIENCE
+      value: "dev-gcp:pia:fia-arbeidsgiver"
     - name: IA_TJENESTER_METRIKKER_AUDIENCE
       value: "dev-gcp:arbeidsgiver:ia-tjenester-metrikker"
     - name: NOTIFIKASJON_API_AUDIENCE
@@ -34,7 +36,7 @@ spec:
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://forebygge-fravar.intern.dev.nav.no/forebygge-fravar
     - name: FIA_ARBEIDSGIVER_URL
-      value: https://arbeidsgiver.intern.dev.nav.no/fia-arbeidsgiver
+      value: http://fia-arbeidsgiver.pia/fia-arbeidsgiver
     - name: SAMTALESTOTTE_URL
       value: https://samtalestotte.intern.dev.nav.no
     - name: SYKEFRAVARSSTATISTIKK_URL
@@ -80,6 +82,8 @@ spec:
           cluster: dev-gcp
         - application: notifikasjon-bruker-api
           namespace: fager
+        - application: fia-arbeidsgiver
+          namespace: pia
       external:
         - host: dekoratoren.dev.nav.no
         - host: sykefravarsstatistikk-api.dev-fss-pub.nais.io
