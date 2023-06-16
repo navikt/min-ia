@@ -56,7 +56,7 @@ export const Forside = (props: ForsideProps) => {
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
-        <FiaSamarbeidsstatus kjørerMockApp={props.kjørerMockApp} fiaArbeidsgiverUrl={props.fiaArbeidsgiverUrl}/>
+        <FiaSamarbeidsstatus />
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />

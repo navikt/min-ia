@@ -4,16 +4,9 @@ import styles from "./fiaSamarbeidsstatus.module.scss"
 import { HandsHeart } from "@navikt/ds-icons";
 import { useFiaSamarbeidsstatus } from "./fiaSamarbeidsstatusAPI";
 import { RestStatus } from "../../integrasjoner/rest-status";
-import { useOrgnr } from "../../hooks/useOrgnr";
 
-interface FiaSamarbeidsstatusProps {
-    fiaArbeidsgiverUrl: string;
-    kjørerMockApp: boolean;
-}
-
-const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (props) => {
-    const orgnr = useOrgnr();
-    const fiaSamarbeidsstatus = useFiaSamarbeidsstatus(orgnr, props.fiaArbeidsgiverUrl, props.kjørerMockApp);
+const FiaSamarbeidsstatus: React.FunctionComponent = () => {
+    const fiaSamarbeidsstatus = useFiaSamarbeidsstatus();
 
     if (fiaSamarbeidsstatus.status === RestStatus.Suksess && fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID") {
         return (
