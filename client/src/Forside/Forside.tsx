@@ -13,6 +13,7 @@ import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
 import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
+import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 
 export interface ForsideProps {
   samtalestøtteUrl: string;
@@ -50,13 +51,17 @@ export const Forside = (props: ForsideProps) => {
       />
     );
 
+  const fiaSamarbeidsstatus = useFiaSamarbeidsstatus();
+
   return (
     <div className={styles.sentrertSide}>
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
-        <FiaSamarbeidsstatus />
+        {fiaSamarbeidsstatus.status === RestStatus.Suksess
+            && fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID"
+            && <FiaSamarbeidsstatus />}
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
