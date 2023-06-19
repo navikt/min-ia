@@ -61,7 +61,7 @@ export const Forside = (props: ForsideProps) => {
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
         {fiaSamarbeidsstatus.status === RestStatus.Suksess
             && fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID"
-            && <FiaSamarbeidsstatus />}
+            && <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />}
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />

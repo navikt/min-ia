@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Heading, ReadMore } from "@navikt/ds-react";
 import styles from "./fiaSamarbeidsstatus.module.scss"
 import { HandsHeart } from "@navikt/ds-icons";
-import { sendLesMerÅpnetEvent } from "../../amplitude/events";
+import { sendLesMerÅpnetEvent, sendVisSamarbeidsstatusEvent } from "../../amplitude/events";
 
-const FiaSamarbeidsstatus: React.FunctionComponent = () => {
+interface FiaSamarbeidsstatusProps{
+    status: string;
+}
+
+const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (props) => {
+
+    useEffect(()=> {
+        sendVisSamarbeidsstatusEvent(props.status)
+    }, [])
 
     return (
         <div className={styles.fiaSamarbeidsstatus}>

@@ -21,6 +21,10 @@ export const sendLesMerÅpnetEvent = (name: string) => {
   logEvent("les mer åpnet", {name});
 };
 
+export const sendVisSamarbeidsstatusEvent = (status: string) => {
+  logEvent("vis samarbeidsstatus", {status});
+};
+
 export const sendNavigereEvent = (
   destinasjon: string,
   lenketekst: string
