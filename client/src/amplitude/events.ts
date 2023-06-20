@@ -17,8 +17,8 @@ export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
   logEvent("textField utfylt", { label, name });
 };
 
-export const sendLesMerÅpnetEvent = (name: string) => {
-  logEvent("les mer åpnet", {name});
+export const sendLesMerÅpnetEvent = (emne: string) => {
+  logEvent("les mer åpnet", {emne: emne});
 };
 
 export const sendVisSamarbeidsstatusEvent = (status: string) => {
