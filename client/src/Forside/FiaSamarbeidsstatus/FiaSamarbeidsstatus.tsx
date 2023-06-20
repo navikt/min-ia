@@ -12,7 +12,7 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
 
     useEffect(()=> {
         sendVisSamarbeidsstatusEvent(props.status)
-    }, [])
+    }, [props.status])
 
     return (
         <div className={styles.fiaSamarbeidsstatus}>
@@ -23,7 +23,7 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
                 Dere er i et forebyggende samarbeid med NAV
 
             </Heading>
-            <ReadMore header="Les mer" onClick={(e) => {
+            <ReadMore header="Les mer" onClick={() => {
                 sendLesMerÅpnetEvent("Dere er i et forebyggende samarbeid med NAV")
             }}>
                 Din virksomhet samarbeider med NAV om sykefraværs- og forebyggingsarbeid.
