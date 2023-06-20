@@ -83,6 +83,8 @@ export const getServerSideProps = async () => {
     forebyggingsplanUrl: hentUrlFraMiljøvariabel("Forebyggingsplan"),
     sykefraværsstatistikkUrl: hentUrlFraMiljøvariabel("Sykefraværsstatistikk"),
     kontaktOssUrl: hentUrlFraMiljøvariabel("Kontakt Oss"),
+    fiaArbeidsgiverUrl: hentUrlFraMiljøvariabel("Fia-arbeidsgiver"),
+    kjørerMockApp,
   };
 
   const props: HomeProps = {

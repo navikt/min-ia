@@ -12,7 +12,9 @@ import { isAlive, isReady } from "./healthcheck.js";
 import { isMockApp } from "./util/environment";
 import {
   applyNotifikasjonMiddleware,
-  setupBackendApiProxy, setupIaTjenestermetrikkerProxy,
+  setupBackendApiProxy,
+  setupFiaArbeidsgiverProxy,
+  setupIaTjenestermetrikkerProxy,
   setupKursoversiktApiProxy,
   setupNotifikasjonBrukerAPIProxyMock
 } from "./config/middleware/proxyMiddleware";
@@ -42,6 +44,7 @@ const initServer = async () => {
     setupBackendApiProxy(server);
     setupKursoversiktApiProxy(server);
     setupIaTjenestermetrikkerProxy(server);
+    setupFiaArbeidsgiverProxy(server);
     applyNotifikasjonMiddleware(server);
   }
 

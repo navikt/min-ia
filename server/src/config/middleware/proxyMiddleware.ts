@@ -5,6 +5,7 @@ import { exchangeToken } from "../../tokenx.js";
 
 const FRONTEND_API_PATH = "/forebygge-fravar/api";
 const FRONTEND_METRIKKER_PATH = "/forebygge-fravar/metrikker";
+const FRONTEND_FIA_ARBEIDSGIVER_PATH = "/forebygge-fravar/fia-arbeidsgiver";
 const FRONTEND_KURSOVERSIKT_PATH = "/forebygge-fravar/kursoversikt";
 const KURSOVERSIKT_API_PATH = "/api/kurs";
 const { NOTIFIKASJON_API_AUDIENCE } = process.env;
@@ -27,6 +28,25 @@ const backendApiProxyOptions: Options = {
   xfwd: true,
   logLevel: "info",
 };
+
+const fiaArbeidsgiverProxyOptions: Options = {
+  target: process.env.FIA_ARBEIDSGIVER_URL,
+  changeOrigin: true,
+  pathRewrite: { [FRONTEND_FIA_ARBEIDSGIVER_PATH]: "/status"},
+  router: async (req) => {
+    const tokenSet = await exchangeToken(
+        req,
+        process.env.FIA_ARBEIDSGIVER_AUDIENCE
+    );
+    if (!tokenSet?.expired() && tokenSet?.access_token) {
+      req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
+    }
+    return undefined;
+  },
+  secure: true,
+  xfwd: true,
+  logLevel: "info",
+}
 
 // TODO: Bli kvitt duplikat kode
 const iaTjenestemetrikkerProxyOptions: Options = {
@@ -76,6 +96,15 @@ export const setupIaTjenestermetrikkerProxy = (server: Express) => {
       FRONTEND_METRIKKER_PATH,
       iaTjenestemetrikkerProxyOptions
     )
+  );
+};
+
+export const setupFiaArbeidsgiverProxy = (server: Express) => {
+  server.use(
+      createProxyMiddleware(
+          FRONTEND_FIA_ARBEIDSGIVER_PATH,
+          fiaArbeidsgiverProxyOptions
+      )
   );
 };
 

@@ -1,0 +1,24 @@
+.fiaSamarbeidsstatus {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--a-bg-subtle);
+  gap: .5rem;
+  border-radius: var(--a-border-radius-medium);
+}
+
+.fiaSamarbeidsstatusTittelMedIkon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ikonWrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--a-orange-200);
+  border-radius: 50%;
+  padding: 20px;
+}
