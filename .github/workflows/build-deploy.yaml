@@ -67,7 +67,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fia-samarbeidsstatus'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -81,7 +81,7 @@ jobs:
 
   deployAppToEksternDev:
     name: Deploy app to ekstern dev
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build'
     needs: build
     runs-on: ubuntu-latest
     steps:
