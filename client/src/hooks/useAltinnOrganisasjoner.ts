@@ -5,7 +5,7 @@ import { useRestRessursSWR } from "./useRestRessursSWR";
 import { RestRessurs } from "../integrasjoner/rest-status";
 
 export function useAltinnOrganisasjoner(): RestRessurs<AltinnOrganisasjon[]> {
-  const apiPath = `${API_BASE_PATH}/organisasjoner`;
+  const apiPath = `${API_BASE_PATH}/authenticated/sykefravarsstatistikk/organisasjoner`;
   const errorMessage =
     predefinerteFeilmeldinger.feilVedHentingAvAltinnOrganisasjoner;
 

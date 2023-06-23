@@ -8,14 +8,14 @@ export const Layout = (props: {
   title: string;
   description: string;
   altinnOrganisasjoner: AltinnOrganisasjon[];
-  kjørerMockApp: boolean
+  kjørerMockApp: boolean;
   children: React.ReactNode;
 }) => {
   const layoutContentRef = useRef<HTMLDivElement>(null);
 
   const banner = (
     <NotifikasjonWidgetProvider
-      apiUrl={"/forebygge-fravar/notifikasjon-bruker-api"}
+      apiUrl={"/forebygge-fravar/api/authenticated/notifikasjoner"}
       miljo={props.kjørerMockApp ? "local" : "prod"}
     >
       <Banner
