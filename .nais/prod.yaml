@@ -23,6 +23,8 @@ spec:
       value: production
     - name: SYKEFRAVARSSTATISTIKK_API_AUDIENCE
       value: "prod-fss:arbeidsgiver:sykefravarsstatistikk-api"
+    - name: FIA_ARBEIDSGIVER_AUDIENCE
+      value: "prod-gcp:pia:fia-arbeidsgiver"
     - name: IA_TJENESTER_METRIKKER_AUDIENCE
       value: "prod-gcp:arbeidsgiver:ia-tjenester-metrikker"
     - name: NOTIFIKASJON_API_AUDIENCE
@@ -33,6 +35,8 @@ spec:
       value: prod
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
+    - name: FIA_ARBEIDSGIVER_URL
+      value: http://fia-arbeidsgiver.pia/fia-arbeidsgiver
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
@@ -80,6 +84,8 @@ spec:
           namespace: fager
         - application: nav-dekoratoren
           namespace: arbeidsgiver
+        - application: fia-arbeidsgiver
+          namespace: pia
       external:
         - host: www.nav.no
         - host: sykefravarsstatistikk-api.prod-fss-pub.nais.io

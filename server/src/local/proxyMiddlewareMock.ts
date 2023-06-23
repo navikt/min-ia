@@ -9,6 +9,7 @@ import {
   mockdataOrgnr91096939,
   tomRespons,
 } from "./aggregertStatistikkMockdata.js";
+import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
 
 export const backendApiProxyMock = (server: Express) => {
   console.log("========================================");
@@ -106,5 +107,10 @@ export const backendApiProxyMock = (server: Express) => {
 
   server.get(`/forebygge-fravar/kursoversikt`, (request, response) => {
     response.send(kurslisteMock);
+  });
+
+  server.get(`/forebygge-fravar/fia-arbeidsgiver/:orgnr`, (request, response) => {
+    const orgnr = request.params.orgnr;
+    response.send(fiaArbeidsgiverMock(orgnr));
   });
 };

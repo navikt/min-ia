@@ -42,7 +42,7 @@ export const Kurspåmelding: FunctionComponent<Props> = ({
         </div>
         <Lenkepanel
           tittel={kurspåmelding.lenke.tittel}
-          ikon={<KursKalenderIkon />}
+          ikon={<KursKalenderIkon aria-hidden />}
           href={kurspåmelding.lenke.href}
           className={styles.kurspåmelding__folger}
         />

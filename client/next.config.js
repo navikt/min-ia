@@ -50,6 +50,10 @@ const nextConfig = {
         source: "/notifikasjon-bruker-api",
         destination: "http://localhost:3010/forebygge-fravar/notifikasjon-bruker-api",
       },
+      {
+        source: "/fia-arbeidsgiver/:slug*",
+        destination: "http://localhost:3010/forebygge-fravar/fia-arbeidsgiver/:slug*",
+      },
     ];
   },
   async redirects() {

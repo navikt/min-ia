@@ -34,7 +34,6 @@
     "eslint": "^8.28.0",
     "eslint-config-next": "^13.4.4",
     "msw": "^1.2.1",
-    "nav-frontend-core": "^6.0.1",
     "next": "^13.4.4",
     "pino": "^8.8.0",
     "react": "^18.2.0",
