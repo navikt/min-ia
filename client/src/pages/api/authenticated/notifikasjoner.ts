@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { logger } from "../../../utils/logger";
 import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
-import { erGyldigOrgnr } from "../../../hooks/useOrgnr";
+import { logger } from "../../../utils/logger";
+import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,13 +9,6 @@ export default async function handler(
 ) {
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
-  if (!req.query.orgnr)
-    return res.status(400).json({ error: "Mangler parameter 'orgnr'" });
-
-  const orgnr = req.query.orgnr as string;
-  if (!erGyldigOrgnr(orgnr)) {
-    return res.status(400).end();
-  }
 
   if (process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE === undefined) {
     logger.error("SYKEFRAVARSSTATISTIKK_API_AUDIENCE not set");
@@ -30,18 +23,20 @@ export default async function handler(
     return res.status(400).json({ error: "authentication failed" });
   }
 
-  const data = await fetch(
-    `${process.env.SYKEFRAVARSSTATISTIKK_URL}/${orgnr}/v1/sykefravarshistorikk/aggregert`,
-    {
-      headers: {
-        authorization: `${newAuthToken}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch((reason) => {
-      logger.warn(reason);
-    });
-
-  return res.status(200).json(data);
+  await proxyApiRouteRequest({
+    req,
+    res,
+    hostname: "http://notifikasjon-bruker-api.fager.svc.cluster.local",
+    path: "/api/graphql",
+    bearerToken: newAuthToken,
+    // use https: false if you are going through service discovery
+    https: false,
+  });
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+    externalResolver: true,
+  },
+};

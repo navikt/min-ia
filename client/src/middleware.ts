@@ -20,23 +20,6 @@ export async function middleware(request: NextRequest) {
   } else {
     console.log("real app");
     console.log(request.nextUrl.pathname.includes("/authenticated/"));
-    if (request.nextUrl.pathname.includes("/authenticated/")) {
-      if (process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE === undefined) {
-        logger.error("SYKEFRAVARSSTATISTIKK_API_AUDIENCE not set");
-        return new NextResponse(
-          JSON.stringify({ success: false, message: "authentication failed" }),
-          { status: 500, headers: { "content-type": "application/json" } }
-        );
-      }
-      /*
-      await exchangeIdportenSubjectToken(
-        request,
-        process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
-      );
-*/
-      console.log(NextResponse.next().headers);
-      return NextResponse.next(); //todo: får denne med seg ny request med ny token?
-    }
   }
 
   if (
@@ -44,13 +27,10 @@ export async function middleware(request: NextRequest) {
       "/api/authenticated/sykefravarsstatistikk"
     )
   ) {
-    return NextResponse.rewrite(
-      new URL("/sykefravarsstatistikk-api", request.url)
-    );
+    console.log("sykefravarsstatistikk");
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: "/api/authenticated/:path*",
 };
