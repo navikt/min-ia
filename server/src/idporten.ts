@@ -1,6 +1,3 @@
-/// TODO: Hack for å få typescript til å gjenkjenne fetch fra node sitt standardbibliotek
-/// <reference lib="dom" />
-
 import {
   createRemoteJWKSet,
   FlattenedJWSInput,
@@ -11,7 +8,7 @@ import {
 import { Issuer } from "openid-client";
 import { GetKeyFunction } from "jose/dist/types/types";
 
-const acceptedAcrLevel = "Level4";
+const acceptedAcrLevel = ["Level4", "idporten-loa-high"];
 const acceptedSigningAlgorithm = "RS256";
 
 let idportenIssuer: Issuer;
@@ -38,7 +35,7 @@ export async function verifiserAccessToken(token: any) {
     throw new Error("Invalid client ID in token");
   }
 
-  if (payload.acr !== acceptedAcrLevel) {
+  if (!acceptedAcrLevel.includes(payload.acr as string)) {
     throw new Error("Invalid ACR-level");
   }
 }
