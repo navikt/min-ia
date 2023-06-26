@@ -20,7 +20,6 @@ export interface ForsideProps {
   forebyggingsplanUrl: string;
   sykefraværsstatistikkUrl: string;
   kontaktOssUrl: string;
-  fiaArbeidsgiverUrl: string;
   kjørerMockApp: boolean;
   children?: React.ReactNode;
 }
