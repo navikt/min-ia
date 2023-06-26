@@ -2,6 +2,7 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Lenkeflis} from "./Lenkeflis";
 import logEvent from "../amplitude/logEvent";
+import { axe } from 'jest-axe';
 
 jest.mock("../amplitude/logEvent");
 
@@ -35,3 +36,12 @@ it("sender navigere-event ved klikk på en lenkeflis", async () => {
         lenketekst: "Link",
     });
 });
+
+test("uu-feil fra axe", async () => {
+    const { container: myContainer } = render(
+      <Lenkeflis overskrift="Link" brødtekst="Klikk her" href="destinasjon" />
+    );
+    const results = await axe(myContainer);
+    expect(results).toHaveNoViolations();
+  });
+  

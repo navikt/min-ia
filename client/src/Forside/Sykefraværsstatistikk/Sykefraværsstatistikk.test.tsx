@@ -6,7 +6,8 @@ import {
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
 import { hentUtSykefraværsstatistikkData } from "../../komponenter/Infographic/datauthenting";
-import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk";
+import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
+import { axe } from "jest-axe";
 
 jest.mock("../../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -16,7 +17,9 @@ it("viser sykefraværsprosenten for Norge", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkMedBransjetall
+        )}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -32,7 +35,9 @@ it("viser sykefraværsprosent for bransje når dette er tilgjengelig", async () 
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkMedBransjetall
+        )}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -48,7 +53,9 @@ it("viser stigende fraværstrend for bransjen når dette er tilfellet", async ()
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkStigendeTrendBransje)}
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkStigendeTrendBransje
+        )}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
       />
@@ -62,10 +69,11 @@ it("viser synkende fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkSynkendeTrend)}
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkSynkendeTrend
+        )}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
-
       />
     );
   });
@@ -95,10 +103,11 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkUendretTrend)}
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkUendretTrend
+        )}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
-
       />
     );
   });
@@ -110,10 +119,11 @@ it("viser årsak til sykemelding", async () => {
   await act(async () => {
     render(
       <Sykefraværsstatistikk
-        {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkMedBransjetall)}
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkMedBransjetall
+        )}
         nedlastingPågår={false}
         sykefraværsstatistikkUrl={"http://url"}
-
       />
     );
   });
@@ -157,10 +167,64 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
 
   expect(lenke).toHaveAttribute(
     "href",
-    expect.stringContaining(
-      "http://url?bedrift=999999999"
-    )
+    expect.stringContaining("http://url?bedrift=999999999")
   );
+});
+
+test("uu-feil fra axe", async () => {
+  let { container } = render(
+    <Sykefraværsstatistikk
+      {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
+      nedlastingPågår={false}
+      sykefraværsstatistikkUrl={"http://url"}
+    />
+  );
+  let results = await axe(container);
+  expect(results).toHaveNoViolations();
+
+  container = render(
+    <Sykefraværsstatistikk
+      {...hentUtSykefraværsstatistikkData(
+        mockAggregertStatistikkMedBransjetall
+      )}
+      nedlastingPågår={false}
+      sykefraværsstatistikkUrl={"http://url"}
+    />
+  ).container;
+  results = await axe(container);
+  expect(results).toHaveNoViolations();
+
+  container = render(
+    <Sykefraværsstatistikk
+      {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkUendretTrend)}
+      nedlastingPågår={false}
+      sykefraværsstatistikkUrl={"http://url"}
+    />
+  ).container;
+  results = await axe(container);
+  expect(results).toHaveNoViolations();
+
+  container = render(
+    <Sykefraværsstatistikk
+      {...hentUtSykefraværsstatistikkData(mockAggregertStatistikkSynkendeTrend)}
+      nedlastingPågår={false}
+      sykefraværsstatistikkUrl={"http://url"}
+    />
+  ).container;
+  results = await axe(container);
+  expect(results).toHaveNoViolations();
+
+  container = render(
+    <Sykefraværsstatistikk
+      {...hentUtSykefraværsstatistikkData(
+        mockAggregertStatistikkStigendeTrendBransje
+      )}
+      nedlastingPågår={false}
+      sykefraværsstatistikkUrl={"http://url"}
+    />
+  ).container;
+  results = await axe(container);
+  expect(results).toHaveNoViolations();
 });
 
 const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
