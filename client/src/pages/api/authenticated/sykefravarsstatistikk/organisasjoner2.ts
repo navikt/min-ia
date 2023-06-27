@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { logger } from "../../../../utils/logger";
 import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
-import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,21 +23,18 @@ export default async function handler(
     return res.status(400).json({ error: "authentication failed" });
   }
 
-  console.log("hei fra proxy til organisasjoner");
-  await proxyApiRouteRequest({
-    req,
-    res,
-    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL}`,
-    path: "/organisasjoner",
-    bearerToken: newAuthToken,
-    // use https: false if you are going through service discovery
-    https: true,
-  });
-}
+  const data = await fetch(
+    `${process.env.SYKEFRAVARSSTATISTIKK_URL}/organisasjoner`,
+    {
+      headers: {
+        authorization: `${newAuthToken}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((reason) => {
+      logger.warn(reason);
+    });
 
-export const config = {
-  api: {
-    bodyParser: false,
-    externalResolver: true,
-  },
-};
+  return res.status(200).json(data);
+}

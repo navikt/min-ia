@@ -11,7 +11,7 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
   redirectUrl,
 }) => {
   const redirectTilLogin = () => {
-    window.location.href = `${BASE_PATH}/redirect-til-login?redirect=${redirectUrl}`;
+    window.location.href = `${BASE_PATH}/api/authentication?redirect=${redirectUrl}`;
   };
 
   return (
@@ -20,7 +20,9 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
         <div className={styles.innloggingsside__illustrasjon}>
           <InnloggingssideIkon height={80} width={80} />
         </div>
-        <Heading level="1" size="xlarge">Forebygge fravær</Heading>
+        <Heading level="1" size="xlarge">
+          Forebygge fravær
+        </Heading>
 
         <BodyLong spacing>Inkluderende arbeidsliv</BodyLong>
 
@@ -35,7 +37,7 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
 
         <Button
           onClick={redirectTilLogin}
-          style={{paddingLeft:40, paddingRight:40 }}
+          style={{ paddingLeft: 40, paddingRight: 40 }}
         >
           Logg inn
         </Button>

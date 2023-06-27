@@ -26,7 +26,7 @@ export default async function handler(
   await proxyApiRouteRequest({
     req,
     res,
-    hostname: "http://notifikasjon-bruker-api.fager.svc.cluster.local",
+    hostname: "notifikasjon-bruker-api.fager.svc.cluster.local",
     path: "/api/graphql",
     bearerToken: newAuthToken,
     // use https: false if you are going through service discovery
