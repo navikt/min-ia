@@ -21,14 +21,17 @@ export default async function handler(
     process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
   );
   if (!newAuthToken) {
-    return res.status(400).json({ error: "authentication failed" });
+    return res.status(401).json({ error: "authentication failed" });
   }
 
   console.log("hei fra proxy til organisasjoner");
   await proxyApiRouteRequest({
     req,
     res,
-    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL}`,
+    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL}`.replace(
+      "https://",
+      ""
+    ),
     path: "/organisasjoner",
     bearerToken: newAuthToken,
     // use https: false if you are going through service discovery
