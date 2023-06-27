@@ -8,8 +8,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   console.log("hei fra proxy til notifikasjoner");
-  console.log(JSON.stringify(req.headers));
-  console.log(JSON.stringify(req.cookies));
+  console.log(req.headers);
+  console.log(req.cookies);
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 
