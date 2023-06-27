@@ -32,7 +32,7 @@ export default async function handler(
       "https://",
       ""
     ),
-    path: "/organisasjoner",
+    path: "/sykefravarsstatistikk-api/organisasjoner",
     bearerToken: newAuthToken,
     // use https: false if you are going through service discovery
     https: true,
