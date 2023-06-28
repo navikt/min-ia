@@ -9,7 +9,6 @@ export default async function handler(
 ) {
   console.log("hei fra proxy til notifikasjoner");
   console.log(req.headers);
-  console.log(req.cookies);
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 
@@ -25,6 +24,7 @@ export default async function handler(
   if (!newAuthToken) {
     return res.status(400).json({ error: "authentication failed" });
   }
+  console.log("newAuthToken: ", newAuthToken);
 
   await proxyApiRouteRequest({
     req,
