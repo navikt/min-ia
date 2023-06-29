@@ -944,18 +944,20 @@
     eslint ">= 8"
     eslint-plugin-jsx-a11y ">= 6.7"
 
-"@navikt/eslint-config-teamia@^1.0.3":
-  version "1.0.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-teamia/1.0.3/accca0147ae07f065212dc45167e1d1bf6a8f729#accca0147ae07f065212dc45167e1d1bf6a8f729"
-  integrity sha512-n/BNvS1JVXCdhCm1kKbM4XQx8wLh5Y6IHoaO6qRdkNCKiI2EwFqfO36LmcF+ZIUWIEwPtCOD9UggeCCTboS9pQ==
+"@navikt/eslint-config-teamia@^1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-teamia/1.0.5/56415f472b420a7caa53f9b7527fa5320c7786b8#56415f472b420a7caa53f9b7527fa5320c7786b8"
+  integrity sha512-GX+IxmUTkkWCWIX93TpKWySFjJqc/Xw/sujDAO5D7KH8YNkzhJWB+VVPVk3l8iQ9ZD+jQ/VzbIsDNvqu80iM2A==
   dependencies:
     "@navikt/eslint-config-teamia-a11y" ">= 1.0.1"
     "@next/eslint-plugin-next" ">= 13.1"
-    "@typescript-eslint/eslint-plugin" ">= 5.53"
+    "@typescript-eslint/eslint-plugin" ">= 5.59"
+    "@typescript-eslint/parser" ">= 5.59"
     eslint ">= 8"
     eslint-config-next ">= 13.1"
     eslint-config-prettier ">= 8.6"
     eslint-plugin-jest ">= 27.2"
+    eslint-plugin-jsx-a11y ">= 6.7"
     eslint-plugin-react ">= 7.32"
     eslint-plugin-testing-library ">= 5.10"
     jest ">= 29.3"
@@ -1820,7 +1822,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@>= 5.53":
+"@typescript-eslint/eslint-plugin@>= 5.59":
   version "5.60.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.60.1.tgz#81382d6ecb92b8dda70e91f9035611cb2fecd1c3"
   integrity sha512-KSWsVvsJsLJv3c4e73y/Bzt7OpqMCADUO846bHcuWYSYM19bldbAeDv7dYyV0jwkbMfJ2XdlzwjhXtuD7OY6bw==
@@ -1835,6 +1837,16 @@
     natural-compare-lite "^1.4.0"
     semver "^7.3.7"
     tsutils "^3.21.0"
+
+"@typescript-eslint/parser@>= 5.59":
+  version "5.60.1"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.60.1.tgz#0f2f58209c0862a73e3d5a56099abfdfa21d0fd3"
+  integrity sha512-pHWlc3alg2oSMGwsU/Is8hbm3XFbcrb6P5wIxcQW9NsYBfnrubl/GhVVD/Jm/t8HXhA2WncoIRfBtnCgRGV96Q==
+  dependencies:
+    "@typescript-eslint/scope-manager" "5.60.1"
+    "@typescript-eslint/types" "5.60.1"
+    "@typescript-eslint/typescript-estree" "5.60.1"
+    debug "^4.3.4"
 
 "@typescript-eslint/parser@^5.42.0":
   version "5.59.0"
