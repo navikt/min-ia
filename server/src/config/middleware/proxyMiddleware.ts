@@ -11,7 +11,7 @@ const KURSOVERSIKT_API_PATH = "/api/kurs";
 const { NOTIFIKASJON_API_AUDIENCE } = process.env;
 
 const backendApiProxyOptions: Options = {
-  target: process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL,
+  target: process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME,
   changeOrigin: true,
   pathRewrite: { [FRONTEND_API_PATH]: "/sykefravarsstatistikk-api" },
   router: async (req) => {
@@ -30,13 +30,13 @@ const backendApiProxyOptions: Options = {
 };
 
 const fiaArbeidsgiverProxyOptions: Options = {
-  target: process.env.FIA_ARBEIDSGIVER_URL,
+  target: process.env.FIA_ARBEIDSGIVER_HOSTNAME,
   changeOrigin: true,
-  pathRewrite: { [FRONTEND_FIA_ARBEIDSGIVER_PATH]: "/status"},
+  pathRewrite: { [FRONTEND_FIA_ARBEIDSGIVER_PATH]: "/status" },
   router: async (req) => {
     const tokenSet = await exchangeToken(
-        req,
-        process.env.FIA_ARBEIDSGIVER_AUDIENCE
+      req,
+      process.env.FIA_ARBEIDSGIVER_AUDIENCE
     );
     if (!tokenSet?.expired() && tokenSet?.access_token) {
       req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
@@ -46,7 +46,7 @@ const fiaArbeidsgiverProxyOptions: Options = {
   secure: true,
   xfwd: true,
   logLevel: "info",
-}
+};
 
 // TODO: Bli kvitt duplikat kode
 const iaTjenestemetrikkerProxyOptions: Options = {
@@ -101,10 +101,10 @@ export const setupIaTjenestermetrikkerProxy = (server: Express) => {
 
 export const setupFiaArbeidsgiverProxy = (server: Express) => {
   server.use(
-      createProxyMiddleware(
-          FRONTEND_FIA_ARBEIDSGIVER_PATH,
-          fiaArbeidsgiverProxyOptions
-      )
+    createProxyMiddleware(
+      FRONTEND_FIA_ARBEIDSGIVER_PATH,
+      fiaArbeidsgiverProxyOptions
+    )
   );
 };
 
@@ -115,16 +115,17 @@ export const setupNotifikasjonBrukerAPIProxyMock = (server: Express) => {
   });
 };
 
-
 export function applyNotifikasjonMiddleware(app) {
   const proxyConfig: Options = {
-    target: 'http://notifikasjon-bruker-api.fager.svc.cluster.local',
+    target: "http://notifikasjon-bruker-api.fager.svc.cluster.local",
     changeOrigin: true,
-    pathRewrite: { '/forebygge-fravar/notifikasjon-bruker-api': '/api/graphql' },
+    pathRewrite: {
+      "/forebygge-fravar/notifikasjon-bruker-api": "/api/graphql",
+    },
     router: async (req) => {
       const tokenSet = await exchangeToken(req, NOTIFIKASJON_API_AUDIENCE);
       if (!tokenSet?.expired() && tokenSet?.access_token) {
-        req.headers['authorization'] = `Bearer ${tokenSet.access_token}`;
+        req.headers["authorization"] = `Bearer ${tokenSet.access_token}`;
       }
       return undefined;
     },
@@ -134,8 +135,8 @@ export function applyNotifikasjonMiddleware(app) {
   };
 
   const notifikasjonBrukerApiProxy = createProxyMiddleware(
-        '/forebygge-fravar/notifikasjon-bruker-api',
-        proxyConfig
-    );
-    app.use(notifikasjonBrukerApiProxy);
+    "/forebygge-fravar/notifikasjon-bruker-api",
+    proxyConfig
+  );
+  app.use(notifikasjonBrukerApiProxy);
 }

@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/api/authenticated/:path*",
+  matcher: "/api/:path*",
 };
 
 const noCorrelationIdHeaderExist = (req: NextRequest): boolean => {

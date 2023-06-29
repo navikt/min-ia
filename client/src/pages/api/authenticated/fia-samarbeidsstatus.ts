@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { logger } from "../../../../utils/logger";
 import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
+import { logger } from "../../../utils/logger";
+import { erGyldigOrgnr } from "../../../hooks/useOrgnr";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,15 +10,22 @@ export default async function handler(
 ) {
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
+  if (!req.query.orgnr)
+    return res.status(400).json({ error: "Mangler parameter 'orgnr'" });
 
-  if (process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE === undefined) {
-    logger.error("SYKEFRAVARSSTATISTIKK_API_AUDIENCE not set");
+  const orgnr = req.query.orgnr as string;
+  if (!erGyldigOrgnr(orgnr)) {
+    return res.status(400).json({ error: "Ugyldig orgnr" });
+  }
+
+  if (process.env.FIA_ARBEIDSGIVER_AUDIENCE === undefined) {
+    logger.error("FIA_ARBEIDSGIVER_AUDIENCE not set");
     return res.status(500).json({ error: "authentication failed" });
   }
 
   const newAuthToken = await exchangeIdportenSubjectToken(
     req,
-    process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
+    process.env.FIA_ARBEIDSGIVER_AUDIENCE
   );
   if (!newAuthToken) {
     return res.status(401).json({ error: "authentication failed" });
@@ -26,8 +34,8 @@ export default async function handler(
   await proxyApiRouteRequest({
     req,
     res,
-    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
-    path: "/sykefravarsstatistikk-api/organisasjoner/statistikk",
+    hostname: `${process.env.FIA_ARBEIDSGIVER_HOSTNAME}`,
+    path: "/fia-arbeidsgiver/status",
     bearerToken: newAuthToken,
     https: true,
   });

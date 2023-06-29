@@ -22,7 +22,7 @@ export default async function handler(
     process.env.NOTIFIKASJON_API_AUDIENCE
   );
   if (!newAuthToken) {
-    return res.status(400).json({ error: "authentication failed" });
+    return res.status(401).json({ error: "authentication failed" });
   }
   console.log("newAuthToken: ", newAuthToken);
 
@@ -32,7 +32,6 @@ export default async function handler(
     hostname: "notifikasjon-bruker-api.fager.svc.cluster.local",
     path: "/api/graphql",
     bearerToken: newAuthToken,
-    // use https: false if you are going through service discovery
     https: false,
   });
 }

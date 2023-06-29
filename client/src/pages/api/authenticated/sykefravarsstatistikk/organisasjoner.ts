@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { logger } from "../../../../utils/logger";
 import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
-import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
 export default async function handler(
@@ -27,13 +26,9 @@ export default async function handler(
   await proxyApiRouteRequest({
     req,
     res,
-    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_BASE_URL}`.replace(
-      "https://",
-      ""
-    ),
+    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
     path: "/sykefravarsstatistikk-api/organisasjoner",
     bearerToken: newAuthToken,
-    // use https: false if you are going through service discovery
     https: true,
   });
 }

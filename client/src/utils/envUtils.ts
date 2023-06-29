@@ -18,7 +18,7 @@ export const hentUrlFraMiljøvariabel = (tjeneste: Tjeneste) => {
   let url;
   switch (tjeneste) {
     case "Fia-arbeidsgiver":
-      url = process.env.FIA_ARBEIDSGIVER_URL;
+      url = `${process.env.FIA_ARBEIDSGIVER_HOSTNAME} + /fia-arbeidsgiver`;
       break;
     case "Sykefraværsstatistikk":
       url = process.env.SYKEFRAVARSSTATISTIKK_URL;

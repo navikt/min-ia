@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { logger } from "../../utils/logger";
+import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,11 +9,18 @@ export default async function handler(
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
 
-  const data = await fetch(`${process.env.KURSOVERSIKT_BASE_URL}/api/kurs`, {})
-    .then((res) => res.json())
-    .catch((reason) => {
-      logger.warn(reason);
-    });
-
-  return res.status(200).json(data);
+  await proxyApiRouteRequest({
+    req,
+    res,
+    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
+    path: "/kursoversikt/api/kurs",
+    https: true,
+  });
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+    externalResolver: true,
+  },
+};

@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { logger } from "../../../../utils/logger";
 import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
+import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,7 +15,7 @@ export default async function handler(
 
   const orgnr = req.query.orgnr as string;
   if (!erGyldigOrgnr(orgnr)) {
-    return res.status(400).end();
+    return res.status(400).json({ error: "Ugyldig orgnr" });
   }
 
   if (process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE === undefined) {
@@ -27,21 +28,22 @@ export default async function handler(
     process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
   );
   if (!newAuthToken) {
-    return res.status(400).json({ error: "authentication failed" });
+    return res.status(401).json({ error: "authentication failed" });
   }
 
-  const data = await fetch(
-    `${process.env.SYKEFRAVARSSTATISTIKK_URL}/${orgnr}/v1/sykefravarshistorikk/aggregert`,
-    {
-      headers: {
-        authorization: `${newAuthToken}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch((reason) => {
-      logger.warn(reason);
-    });
-
-  return res.status(200).json(data);
+  await proxyApiRouteRequest({
+    req,
+    res,
+    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
+    path: `/${orgnr}/v1/sykefravarshistorikk/aggregert`,
+    bearerToken: newAuthToken,
+    https: true,
+  });
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+    externalResolver: true,
+  },
+};
