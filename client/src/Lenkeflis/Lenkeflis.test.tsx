@@ -8,8 +8,10 @@ jest.mock("../amplitude/logEvent");
 
 beforeEach(() => {
     // window.location-assign er ikke implementert i jest, så vi må mocke den
+    // eslint-disable-next-line
     // @ts-ignore
     delete window.location;
+    // eslint-disable-next-line
     // @ts-ignore
     window.location = {assign: jest.fn()};
 });
@@ -30,7 +32,7 @@ it("sender navigere-event ved klikk på en lenkeflis", async () => {
     const user = userEvent.setup();
     await user.click(statistikklenke);
 
-    expect(logEvent).toBeCalledTimes(1);
+    expect(logEvent).toHaveBeenCalledTimes(1);
     expect(logEvent).toHaveBeenCalledWith("navigere", {
         destinasjon: "destinasjon",
         lenketekst: "Link",

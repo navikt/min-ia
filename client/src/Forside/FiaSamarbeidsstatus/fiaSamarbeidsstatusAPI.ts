@@ -1,4 +1,4 @@
-import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
+import { RestRessurs } from "../../integrasjoner/rest-status";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { predefinerteFeilmeldinger } from "../../utils/logger";
 import { useRestRessursSWR } from "../../hooks/useRestRessursSWR";

@@ -1,14 +1,14 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import styles from "./Kalkulatorrad.module.scss";
 import { sendInputfeltUtfyltEvent } from "../../../amplitude/events";
-import {TextField} from "@navikt/ds-react";
+import { TextField } from "@navikt/ds-react";
 
 interface Props {
-  onChange: (event: any) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string | undefined;
   label: string;
   name: string;
-  hjelpetekst?: string ;
+  hjelpetekst?: string;
   readMore?: ReactElement;
   placeholder?: string;
   visLoader?: boolean;

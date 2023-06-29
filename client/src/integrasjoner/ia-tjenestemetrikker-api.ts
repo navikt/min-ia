@@ -1,10 +1,10 @@
 import { METRIKKER_BASE_PATH } from "../utils/konstanter";
 
 interface IaTjenesteMetrikk {
-  orgnr: String;
-  type: String;
-  kilde: String;
-  tjenesteMottakkelsesdato: String;
+  orgnr: string;
+  type: string;
+  kilde: string;
+  tjenesteMottakkelsesdato: string;
 }
 
 export const innloggetIaTjenestemetrikkPath = `${METRIKKER_BASE_PATH}/innlogget/mottatt-iatjeneste`;
@@ -25,7 +25,7 @@ function byggIaTjenesteMottattMetrikk(orgnr: string, forTjeneste: IaTjeneste) {
   return iaTjenesteMetrikk;
 }
 
-const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): String => {
+const tilIsoDatoMedUtcTimezoneUtenMillis = (dato: Date): string => {
   return dato.toISOString().split(".")[0] + "Z";
 };
 
@@ -43,13 +43,13 @@ export const sendLevertInnloggetIaTjeneste = async (
 const post = async (levertIaTjeneste: IaTjenesteMetrikk): Promise<boolean> => {
   const settings = {
     method: "POST",
-    credentials: "include",
+    credentials: "include" as RequestCredentials,
     body: JSON.stringify(levertIaTjeneste),
     headers: {
       "Content-Type": "application/json",
     },
   };
-  // @ts-ignore
+
   const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
   const data = await res.json();
   return data.status === "created";
