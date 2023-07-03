@@ -1,5 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
+import {
+  exchangeIdportenSubjectToken,
+  isInvalidToken,
+} from "@navikt/tokenx-middleware";
 import { logger } from "../../../utils/logger";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
@@ -34,7 +37,8 @@ export default async function handler(
     req,
     process.env.IA_TJENESTER_METRIKKER_AUDIENCE
   );
-  if (!newAuthToken) {
+
+  if (isInvalidToken(newAuthToken)) {
     return res.status(401).json({ error: "authentication failed" });
   }
 

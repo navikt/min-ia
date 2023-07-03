@@ -1,5 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
+import {
+  exchangeIdportenSubjectToken,
+  isInvalidToken,
+} from "@navikt/tokenx-middleware";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 import { logger } from "../../../utils/logger";
 import { erGyldigOrgnr } from "../../../hooks/useOrgnr";
@@ -27,7 +30,8 @@ export default async function handler(
     req,
     process.env.FIA_ARBEIDSGIVER_AUDIENCE
   );
-  if (!newAuthToken) {
+
+  if (isInvalidToken(newAuthToken)) {
     return res.status(401).json({ error: "authentication failed" });
   }
 

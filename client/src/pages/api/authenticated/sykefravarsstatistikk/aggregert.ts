@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { logger } from "../../../../utils/logger";
-import { exchangeIdportenSubjectToken } from "@navikt/tokenx-middleware";
+import {
+  exchangeIdportenSubjectToken,
+  isInvalidToken,
+} from "@navikt/tokenx-middleware";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
@@ -27,7 +30,8 @@ export default async function handler(
     req,
     process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
   );
-  if (!newAuthToken) {
+
+  if (isInvalidToken(newAuthToken)) {
     return res.status(401).json({ error: "authentication failed" });
   }
 
