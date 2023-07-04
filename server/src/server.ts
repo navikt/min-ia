@@ -16,10 +16,10 @@ import {
   setupFiaArbeidsgiverProxy,
   setupIaTjenestermetrikkerProxy,
   setupKursoversiktApiProxy,
-  setupNotifikasjonBrukerAPIProxyMock
+  setupNotifikasjonBrukerAPIProxyMock,
 } from "./config/middleware/proxyMiddleware";
-import {backendApiProxyMock} from "./local/proxyMiddlewareMock";
-import {setupWonderwallLoginRedirect} from "./authentication";
+import { backendApiProxyMock } from "./local/proxyMiddlewareMock";
+import { setupWonderwallLoginRedirect } from "./authentication";
 
 const initServer = async () => {
   logger.info(
@@ -38,6 +38,7 @@ const initServer = async () => {
     setupNotifikasjonBrukerAPIProxyMock(server);
     backendApiProxyMock(server);
   } else {
+    /*
     await initIdporten();
     await initTokenX();
     setupWonderwallLoginRedirect(server);
@@ -46,6 +47,7 @@ const initServer = async () => {
     setupIaTjenestermetrikkerProxy(server);
     setupFiaArbeidsgiverProxy(server);
     applyNotifikasjonMiddleware(server);
+     */
   }
 
   server.listen(SERVER_PORT, () => {
