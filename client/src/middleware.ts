@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { randomUUID } from "crypto";
 
-export const runtime = "nodejs";
-
 export async function middleware(request: NextRequest) {
   if (noCorrelationIdHeaderExist(request)) {
     addCorrelationIdHeader(request);
