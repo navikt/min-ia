@@ -41,7 +41,7 @@ export default async function handler(
     hostname: `${process.env.FIA_ARBEIDSGIVER_HOSTNAME}`,
     path: "/fia-arbeidsgiver/status",
     bearerToken: newAuthToken,
-    https: true,
+    https: false,
   });
 }
 
