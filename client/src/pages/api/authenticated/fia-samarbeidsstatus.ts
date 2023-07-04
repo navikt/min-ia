@@ -11,6 +11,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("hei fra fia-samarbeidsstatus");
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
   if (!req.query.orgnr)
@@ -39,7 +40,7 @@ export default async function handler(
     req,
     res,
     hostname: `${process.env.FIA_ARBEIDSGIVER_HOSTNAME}`,
-    path: "/fia-arbeidsgiver/status",
+    path: `/fia-arbeidsgiver/status/${orgnr}`,
     bearerToken: newAuthToken,
     https: false,
   });
