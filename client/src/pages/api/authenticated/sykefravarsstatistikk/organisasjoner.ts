@@ -10,7 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  logger.info("hei fra organisasjoner");
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
 
@@ -18,7 +17,6 @@ export default async function handler(
     logger.error("SYKEFRAVARSSTATISTIKK_API_AUDIENCE not set");
     return res.status(500).json({ error: "authentication failed" });
   }
-  logger.info("hei fra organisasjoner, etter audience check");
 
   const newAuthToken = await exchangeIdportenSubjectToken(
     req,

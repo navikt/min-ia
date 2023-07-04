@@ -10,8 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  logger.info("hei fra notifikasjoner");
-  console.log("hei fra notifikasjoner");
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 

@@ -15,7 +15,7 @@ export function useFiaSamarbeidsstatus(): RestRessurs<FiaSamarbeidsstatusDto> {
   const gyldigOrgnr = useOrgnr();
 
   const apiPath = gyldigOrgnr
-    ? `${AUTHENTICATED_BASE_PATH}/fia-samarbeidsstatus/?orgnr=${gyldigOrgnr}`
+    ? `${AUTHENTICATED_BASE_PATH}/fia-samarbeidsstatus?orgnr=${gyldigOrgnr}`
     : null;
 
   const errorMessage =
