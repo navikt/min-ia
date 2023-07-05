@@ -40,7 +40,7 @@ export default async function handler(
     req,
     res,
     hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
-    path: `/${orgnr}/v1/sykefravarshistorikk/aggregert`,
+    path: `/sykefravarsstatistikk-api/${orgnr}/v1/sykefravarshistorikk/aggregert`,
     bearerToken: newAuthToken,
     https: true,
   });
