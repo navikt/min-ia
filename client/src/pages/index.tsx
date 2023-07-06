@@ -9,11 +9,12 @@ import React from "react";
 import { hentUrlFraMiljøvariabel, isMockApp } from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
 
-interface HomeProps {
+export interface HomeProps {
   page: PageProps;
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
   kjørerMockApp: boolean;
+  grafanaAgentUrl: string;
 }
 
 const Home = (props: HomeProps) => {
@@ -91,6 +92,7 @@ export const getServerSideProps = async () => {
     forsideProps,
     minSideArbeidsgiverUrl,
     kjørerMockApp,
+    grafanaAgentUrl: process.env.GRAFANA_AGENT_COLLECTOR_URL ?? "",
   };
 
   return { props };

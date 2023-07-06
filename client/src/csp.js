@@ -1,5 +1,9 @@
 const csp = {
-  "default-src": ["'self'", "arbeidsgiver.nav.no","dekoratoren.ekstern.dev.nav.no"],
+  "default-src": [
+    "'self'",
+    "arbeidsgiver.nav.no",
+    "dekoratoren.ekstern.dev.nav.no",
+  ],
   "script-src": [
     "'self'",
     "'report-sample'",
@@ -49,6 +53,7 @@ const csp = {
     "ws://notification.qbrick.com",
     "analytics.qbrick.com",
     "*.dna.ip-only.net",
+    "localhost:12347",
   ],
   "font-src": [
     "data:",
