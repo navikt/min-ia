@@ -37,9 +37,6 @@ function doInitializeFaro(grafanaAgentUrl: string) {
   }
 }
 
-export default function MyApp({
-  Component,
-  pageProps,
-}: AppProps<{ kjørerMockApp: boolean; grafanaAgentUrl: string }>) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
