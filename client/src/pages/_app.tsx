@@ -41,11 +41,5 @@ export default function MyApp({
   Component,
   pageProps,
 }: AppProps<{ kjørerMockApp: boolean; grafanaAgentUrl: string }>) {
-  React.useEffect(() => {
-    if (!pageProps.kjørerMockApp) {
-      doInitializeFaro(pageProps.grafanaAgentUrl);
-    }
-  });
-
   return <Component {...pageProps} />;
 }
