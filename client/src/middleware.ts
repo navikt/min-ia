@@ -4,8 +4,6 @@ import { randomUUID } from "crypto";
 import { logger } from "./utils/logger";
 
 export async function middleware(request: NextRequest) {
-  logger.info(request);
-
   if (noCorrelationIdHeaderExist(request)) {
     addCorrelationIdHeader(request);
   }
