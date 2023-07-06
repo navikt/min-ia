@@ -14,7 +14,7 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Head from "next/head";
-import { isMockApp } from "../utils/envUtils";
+import { getGrafanaUrl, isMockApp } from "../utils/envUtils";
 
 export default function Kalkulator(props: {
   page: PageProps;
@@ -80,7 +80,7 @@ export async function getServerSideProps() {
     props: {
       page,
       kjørerMockApp: isMockApp(),
-      grafanaAgentUrl: process.env.GRAFANA_AGENT_COLLECTOR_URL ?? "",
+      grafanaAgentUrl: getGrafanaUrl(),
     },
   };
 }

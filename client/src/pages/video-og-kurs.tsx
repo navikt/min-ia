@@ -17,7 +17,7 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
 import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
-import { isMockApp } from "../utils/envUtils";
+import { getGrafanaUrl, isMockApp } from "../utils/envUtils";
 
 interface ListeElement {
   key: Tags;
@@ -195,7 +195,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       page,
       kjørerMockApp: isMockApp(),
-      grafanaAgentUrl: process.env.GRAFANA_AGENT_COLLECTOR_URL ?? "",
+      grafanaAgentUrl: getGrafanaUrl(),
     },
   };
 };
