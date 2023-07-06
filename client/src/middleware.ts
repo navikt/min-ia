@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { randomUUID } from "crypto";
+import { logger } from "./utils/logger";
 
 export async function middleware(request: NextRequest) {
+  logger.info(request);
+
   if (noCorrelationIdHeaderExist(request)) {
     addCorrelationIdHeader(request);
   }
-
+  if (request.nextUrl.pathname === "/api/authenticated/notifikasjoner") {
+    console.log("hei fra middleware som har fanget notifikasjoner");
+  }
   return NextResponse.next();
 }
 

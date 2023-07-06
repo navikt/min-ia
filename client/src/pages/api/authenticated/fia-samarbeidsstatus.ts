@@ -6,6 +6,7 @@ import {
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 import { logger } from "../../../utils/logger";
 import { erGyldigOrgnr } from "../../../hooks/useOrgnr";
+import proxyRequest from "../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -22,28 +23,14 @@ export default async function handler(
     return res.status(400).json({ error: "Ugyldig orgnr" });
   }
 
-  if (process.env.FIA_ARBEIDSGIVER_AUDIENCE === undefined) {
-    logger.error("FIA_ARBEIDSGIVER_AUDIENCE not set");
-    return res.status(500).json({ error: "authentication failed" });
-  }
-
-  const newAuthToken = await exchangeIdportenSubjectToken(
-    req,
-    process.env.FIA_ARBEIDSGIVER_AUDIENCE
-  );
-
-  if (isInvalidToken(newAuthToken)) {
-    return res.status(401).json({ error: "authentication failed" });
-  }
-
-  await proxyApiRouteRequest({
+  return await proxyRequest(
     req,
     res,
-    hostname: `${process.env.FIA_ARBEIDSGIVER_HOSTNAME}`,
-    path: `/fia-arbeidsgiver/status/${orgnr}`,
-    bearerToken: newAuthToken,
-    https: false,
-  });
+    `${process.env.FIA_ARBEIDSGIVER_HOSTNAME}`,
+    `/fia-arbeidsgiver/status/${orgnr}`,
+    process.env.FIA_ARBEIDSGIVER_AUDIENCE,
+    false
+  );
 }
 
 export const config = {
