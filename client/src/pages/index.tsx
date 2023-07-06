@@ -9,7 +9,7 @@ import React from "react";
 import { hentUrlFraMiljøvariabel, isMockApp } from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
 
-export interface HomeProps {
+interface HomeProps {
   page: PageProps;
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
