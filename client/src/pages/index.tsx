@@ -6,11 +6,7 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
-import {
-  getGrafanaUrl,
-  hentUrlFraMiljøvariabel,
-  isMockApp,
-} from "../utils/envUtils";
+import { hentUrlFraMiljøvariabel, isMockApp } from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
 
 interface HomeProps {
@@ -18,7 +14,6 @@ interface HomeProps {
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
   kjørerMockApp: boolean;
-  grafanaAgentUrl: string;
 }
 
 const Home = (props: HomeProps) => {
@@ -96,7 +91,6 @@ export const getServerSideProps = async () => {
     forsideProps,
     minSideArbeidsgiverUrl,
     kjørerMockApp,
-    grafanaAgentUrl: getGrafanaUrl(),
   };
 
   return { props };
