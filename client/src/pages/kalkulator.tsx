@@ -76,11 +76,5 @@ export async function getServerSideProps() {
       "Her kan du beregne hvor mye sykefraværet koster, og hvor mye du kan spare.",
   };
 
-  return {
-    props: {
-      page,
-      kjørerMockApp: isMockApp(),
-      grafanaAgentUrl: process.env.GRAFANA_AGENT_COLLECTOR_URL ?? "",
-    },
-  };
+  return { props: { page, kjørerMockApp: isMockApp() } };
 }

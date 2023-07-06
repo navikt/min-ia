@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamia
 spec:
-  image: { { image } }
+  image: {{image}}
   port: 3000
   env:
     - name: KURSOVERSIKT_BASE_URL
@@ -31,8 +31,6 @@ spec:
       value: https://arbeidsgiver.ekstern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/kontakt-oss
-    - name: GRAFANA_AGENT_COLLECTOR_URL
-      value: https://telemetry.ekstern.dev.nav.no/collect
   tokenx:
     enabled: true
   idporten:

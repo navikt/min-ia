@@ -14,8 +14,6 @@
     "export": "next export"
   },
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.1.1",
-    "@grafana/faro-web-tracing": "^1.1.1",
     "@navikt/arbeidsgiver-notifikasjon-widget": "^5.4.5-rc1",
     "@navikt/bedriftsmeny": "^6.3.0",
     "@navikt/ds-css": "2.7.2",
