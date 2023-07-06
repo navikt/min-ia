@@ -67,7 +67,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build' || github.ref == 'refs/heads/core-web-vitals'
     needs: build
     runs-on: ubuntu-latest
     steps:
