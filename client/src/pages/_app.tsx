@@ -8,6 +8,7 @@ import {
   OTELApi,
 } from "@grafana/faro-web-sdk";
 import { TracingInstrumentation } from "@grafana/faro-web-tracing";
+import { HomeProps } from ".";
 
 function doInitializeFaro(grafanaAgentUrl: string) {
   if (Object.keys(faro).length === 0) {
@@ -37,10 +38,7 @@ function doInitializeFaro(grafanaAgentUrl: string) {
   }
 }
 
-export default function MyApp({
-  Component,
-  pageProps,
-}: AppProps<{ kjørerMockApp: boolean; grafanaAgentUrl: string }>) {
+export default function MyApp({ Component, pageProps }: AppProps<HomeProps>) {
   React.useEffect(() => {
     if (!pageProps.kjørerMockApp) {
       doInitializeFaro(pageProps.grafanaAgentUrl);
