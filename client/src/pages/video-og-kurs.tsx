@@ -17,7 +17,8 @@ import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
 import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
-import { isMockApp } from "../utils/envUtils";
+import { getGrafanaUrl, isMockApp } from "../utils/envUtils";
+import { doInitializeFaro } from "../utils/initializeFaro";
 
 interface ListeElement {
   key: Tags;
@@ -29,7 +30,13 @@ type Filter = Tags;
 export default function VideoOgKurs(props: {
   page: PageProps;
   kjørerMockApp: boolean;
+  grafanaAgentUrl: string;
 }) {
+  React.useEffect(() => {
+    if (!props.kjørerMockApp) {
+      doInitializeFaro(props.grafanaAgentUrl);
+    }
+  });
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const aggregertStatistikk = useAggregertStatistikk();
   useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
@@ -195,6 +202,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       page,
       kjørerMockApp: isMockApp(),
+      grafanaAgentUrl: getGrafanaUrl(),
     },
   };
 };
