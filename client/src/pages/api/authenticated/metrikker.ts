@@ -5,6 +5,7 @@ import {
 } from "@navikt/tokenx-middleware";
 import { logger } from "../../../utils/logger";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
+import proxyRequest from "../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,36 +21,14 @@ export default async function handler(
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 
-  const requestBody = JSON.parse(
-    JSON.stringify({
-      orgnr: req.body.orgnr,
-      type: req.body.type,
-      kilde: req.body.kilde,
-    })
-  );
-
-  if (process.env.IA_TJENESTER_METRIKKER_AUDIENCE === undefined) {
-    logger.error("IA_TJENESTER_METRIKKER_AUDIENCE not set");
-    return res.status(500).json({ error: "authentication failed" });
-  }
-
-  const newAuthToken = await exchangeIdportenSubjectToken(
-    req,
-    process.env.IA_TJENESTER_METRIKKER_AUDIENCE
-  );
-
-  if (isInvalidToken(newAuthToken)) {
-    return res.status(401).json({ error: "authentication failed" });
-  }
-
-  await proxyApiRouteRequest({
+  return await proxyRequest(
     req,
     res,
-    hostname: `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
-    path: "/ia-tjenester-metrikker/innlogget/mottatt-iatjeneste",
-    bearerToken: newAuthToken,
-    https: true,
-  });
+    `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
+    "/ia-tjenester-metrikker/innlogget/mottatt-iatjeneste",
+    process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
+    true
+  );
 }
 
 export const config = {

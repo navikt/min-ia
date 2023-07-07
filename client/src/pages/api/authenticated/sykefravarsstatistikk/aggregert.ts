@@ -6,6 +6,7 @@ import {
 } from "@navikt/tokenx-middleware";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
+import proxyRequest from "../../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -21,28 +22,14 @@ export default async function handler(
     return res.status(400).json({ error: "Ugyldig orgnr" });
   }
 
-  if (process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE === undefined) {
-    logger.error("SYKEFRAVARSSTATISTIKK_API_AUDIENCE not set");
-    return res.status(500).json({ error: "authentication failed" });
-  }
-
-  const newAuthToken = await exchangeIdportenSubjectToken(
-    req,
-    process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE
-  );
-
-  if (isInvalidToken(newAuthToken)) {
-    return res.status(401).json({ error: "authentication failed" });
-  }
-
-  await proxyApiRouteRequest({
+  return await proxyRequest(
     req,
     res,
-    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
-    path: `/sykefravarsstatistikk-api/${orgnr}/v1/sykefravarshistorikk/aggregert`,
-    bearerToken: newAuthToken,
-    https: true,
-  });
+    `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
+    `/sykefravarsstatistikk-api/${orgnr}/v1/sykefravarshistorikk/aggregert`,
+    process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE,
+    true
+  );
 }
 
 export const config = {
