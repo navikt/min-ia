@@ -1,11 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { logger } from "../../../../utils/logger";
-import {
-  exchangeIdportenSubjectToken,
-  isInvalidToken,
-} from "@navikt/tokenx-middleware";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
-import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 import proxyRequest from "../../../../utils/api-proxy";
 
 export default async function handler(
