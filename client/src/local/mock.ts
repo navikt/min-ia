@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import {
   organisasjoner,
   organisasjonerMedIaRettighet,
@@ -8,15 +7,16 @@ import {
   mockdataOrgnr91096939,
   tomRespons,
 } from "./aggregertStatistikkMockdata";
-import { kurslisteMock } from "./testdata-kurs";
+import { NextRequest, NextResponse } from "next/server";
+import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
 import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
+import { kurslisteMock } from "./testdata-kurs";
 
-export default function mockRequest(req: NextApiRequest, res: NextApiResponse) {
+export default async function mockRequest(req: NextRequest) {
   const testMode: string = process.env.TEST_MODE
     ? process.env.TEST_MODE
     : "NORMAL";
   const delayInMillis = 500;
-  console.log("req.url", req.url);
 
   if (
     req.url?.endsWith("/api/authenticated/sykefravarsstatistikk/organisasjoner")
@@ -27,14 +27,13 @@ export default function mockRequest(req: NextApiRequest, res: NextApiResponse) {
 
     switch (testMode) {
       case "GENERELL_FEIL":
-        res.status(500).json([]);
-        break;
+        return new NextResponse(JSON.stringify([]), { status: 500 });
       case "KREVER_INNLOGGING":
-        res.status(401).json([]);
-        break;
+        return new NextResponse(JSON.stringify([]), { status: 401 });
       default:
-        res.send(organisasjoner);
-        break;
+        return new NextResponse(JSON.stringify(organisasjoner), {
+          status: 200,
+        });
     }
   }
 
@@ -49,14 +48,13 @@ export default function mockRequest(req: NextApiRequest, res: NextApiResponse) {
 
     switch (testMode) {
       case "GENERELL_FEIL":
-        res.status(500).json([]);
-        break;
+        return new NextResponse(JSON.stringify([]), { status: 500 });
       case "KREVER_INNLOGGING":
-        res.status(401).json([]);
-        break;
+        return new NextResponse(JSON.stringify([]), { status: 401 });
       default:
-        res.send(organisasjonerMedIaRettighet);
-        break;
+        return new NextResponse(JSON.stringify(organisasjonerMedIaRettighet), {
+          status: 200,
+        });
     }
   }
 
@@ -65,7 +63,7 @@ export default function mockRequest(req: NextApiRequest, res: NextApiResponse) {
       "/api/authenticated/sykefravarsstatistikk/aggregert?orgnr="
     )
   ) {
-    const orgnr = req.query.orgnr as string;
+    const orgnr = req.nextUrl.searchParams.get("orgnr") as string;
     console.log(
       `[DEBUG] GET /api/authenticated/sykefravarsstatistikk/aggregert?orgnr=${orgnr}`
     );
@@ -81,34 +79,53 @@ export default function mockRequest(req: NextApiRequest, res: NextApiResponse) {
         break;
       }
       case "999999997": {
-        res.status(500).json([]);
-        break;
+        return new NextResponse(JSON.stringify([]), { status: 500 });
       }
       case "999999996": {
-        res.status(403).json([]);
-        break;
+        return new NextResponse(JSON.stringify([]), { status: 403 });
       }
       default: {
         aggregertStatistikkMock = { tomRespons };
       }
     }
 
-    setTimeout(function () {
-      res.send(aggregertStatistikkMock);
-    }, delayInMillis);
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify(aggregertStatistikkMock), {
+      status: 200,
+    });
   }
 
   if (req.url?.endsWith("/api/authenticated/metrikker")) {
     console.log("[DEBUG] GET /api/authenticated/metrikker");
-    setTimeout(function () {
-      res.send({ status: "created" });
-    }, delayInMillis);
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify({ status: "created" }), {
+      status: 201,
+    });
   }
 
   if (req.url?.endsWith("/api/authenticated/notifikasjoner")) {
     console.log("[DEBUG] GET /api/authenticated/notifikasjoner");
-    setTimeout(function () {
-      res.send(tomRespons);
-    }, delayInMillis);
+    return new NextResponse(JSON.stringify({ data: notifikasjonerMockdata }), {
+      status: 200,
+    });
+  }
+
+  if (req.url?.includes("api/authenticated/fia-samarbeidsstatus?orgnr=")) {
+    const orgnr = req.nextUrl.searchParams.get("orgnr") as string;
+    console.log(
+      `[DEBUG] GET /api/authenticated/fia-samarbeidsstatus?orgnr=${orgnr}`
+    );
+
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify(fiaArbeidsgiverMock(orgnr)), {
+      status: 200,
+    });
+  }
+
+  if (req.url?.endsWith("api/kursoversikt")) {
+    console.log("[DEBUG] GET /api/kursoversikt");
+    return new NextResponse(JSON.stringify(kurslisteMock), {
+      status: 200,
+    });
   }
 }

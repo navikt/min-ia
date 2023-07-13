@@ -10,9 +10,7 @@ export async function middleware(request: NextRequest) {
   if (isMockApp()) {
     return mockRequest(request);
   }
-  if (request.nextUrl.pathname === "/api/authenticated/notifikasjoner") {
-    //console.log("hei fra middleware som har fanget notifikasjoner");
-  }
+
   return NextResponse.next();
 }
 
@@ -22,7 +20,6 @@ export const config = {
 
 const noCorrelationIdHeaderExist = (req: NextRequest): boolean => {
   req.headers.get("X-Correlation-ID");
-
   return getCorrelationIdHeader(req) === undefined;
 };
 
