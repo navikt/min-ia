@@ -7,7 +7,6 @@ export const isMockApp = () => {
 };
 
 export type Tjeneste =
-  | "Fia-arbeidsgiver"
   | "Sykefraværsstatistikk"
   | "Forebyggingsplan"
   | "Samtalestøtte"
@@ -17,9 +16,6 @@ export type Tjeneste =
 export const hentUrlFraMiljøvariabel = (tjeneste: Tjeneste) => {
   let url;
   switch (tjeneste) {
-    case "Fia-arbeidsgiver":
-      url = `${process.env.FIA_ARBEIDSGIVER_HOSTNAME} + /fia-arbeidsgiver`;
-      break;
     case "Sykefraværsstatistikk":
       url = process.env.SYKEFRAVARSSTATISTIKK_URL;
       break;
