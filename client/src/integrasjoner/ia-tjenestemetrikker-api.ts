@@ -7,7 +7,7 @@ interface IaTjenesteMetrikk {
   tjenesteMottakkelsesdato: String;
 }
 
-export const innloggetIaTjenestemetrikkPath = `${METRIKKER_URL}`;
+export const innloggetIaTjenestemetrikkPath = METRIKKER_URL;
 
 export enum IaTjeneste {
   FOREBYGGE_FRAVÆR = "FOREBYGGE_FRAVÆR",

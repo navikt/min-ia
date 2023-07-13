@@ -5,6 +5,8 @@ import {
 } from "@navikt/tokenx-middleware";
 import { NextApiRequest, NextApiResponse } from "next";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
+import { isMockApp } from "./envUtils";
+import mockRequest from "../local/mock";
 
 export default async function proxyRequest(
   req: NextApiRequest,

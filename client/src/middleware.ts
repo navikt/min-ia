@@ -1,14 +1,17 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { logger } from "./utils/logger";
+import { isMockApp } from "./utils/envUtils";
+import mockRequest from "./local/mock";
 
 export async function middleware(request: NextRequest) {
   if (noCorrelationIdHeaderExist(request)) {
     addCorrelationIdHeader(request);
   }
+  if (isMockApp()) {
+    return mockRequest(request);
+  }
   if (request.nextUrl.pathname === "/api/authenticated/notifikasjoner") {
-    console.log("hei fra middleware som har fanget notifikasjoner");
+    //console.log("hei fra middleware som har fanget notifikasjoner");
   }
   return NextResponse.next();
 }
