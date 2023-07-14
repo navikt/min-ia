@@ -16,15 +16,16 @@ const nextConfig = {
     return [
       {
         source: "/qbrick/config/no-preload",
-        destination: "http://localhost:3010/forebygge-fravar/qbrick/config/no-preload",
+        destination:
+          "http://localhost:3010/forebygge-fravar/qbrick/config/no-preload",
       },
       {
-        source: "/internal/isAlive",
-        destination: "http://localhost:3010/forebygge-fravar/internal/isAlive",
+        source: "/api/isAlive",
+        destination: "http://localhost:3010/forebygge-fravar/api/isAlive",
       },
       {
-        source: "/internal/isReady",
-        destination: "http://localhost:3010/forebygge-fravar/internal/isReady",
+        source: "/api/isReady",
+        destination: "http://localhost:3010/forebygge-fravar/api/isReady",
       },
       {
         source: "/internal/metrics",
@@ -36,11 +37,13 @@ const nextConfig = {
       },
       {
         source: "/redirect-til-login:slug*",
-        destination: "http://localhost:3010/forebygge-fravar/redirect-til-login:slug*",
+        destination:
+          "http://localhost:3010/forebygge-fravar/redirect-til-login:slug*",
       },
       {
         source: "/kursoversikt/:slug*",
-        destination: "http://localhost:3010/forebygge-fravar/kursoversikt/:slug*",
+        destination:
+          "http://localhost:3010/forebygge-fravar/kursoversikt/:slug*",
       },
       {
         source: "/metrikker/:slug*",
@@ -48,22 +51,24 @@ const nextConfig = {
       },
       {
         source: "/notifikasjon-bruker-api",
-        destination: "http://localhost:3010/forebygge-fravar/notifikasjon-bruker-api",
+        destination:
+          "http://localhost:3010/forebygge-fravar/notifikasjon-bruker-api",
       },
       {
         source: "/fia-arbeidsgiver/:slug*",
-        destination: "http://localhost:3010/forebygge-fravar/fia-arbeidsgiver/:slug*",
+        destination:
+          "http://localhost:3010/forebygge-fravar/fia-arbeidsgiver/:slug*",
       },
     ];
   },
   async redirects() {
     return [
       {
-        source: '/nettkurs',
-        destination: '/video-og-kurs',
+        source: "/nettkurs",
+        destination: "/video-og-kurs",
         permanent: true,
       },
-    ]
+    ];
   },
   async headers() {
     return [

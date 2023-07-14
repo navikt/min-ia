@@ -55,11 +55,11 @@ spec:
       enabled: true
       autoLogin: false
   liveness:
-    path: /forebygge-fravar/internal/isAlive
+    path: /forebygge-fravar/api/isAlive
     initialDelay: 20
     timeout: 60
   readiness:
-    path: /forebygge-fravar/internal/isReady
+    path: /forebygge-fravar/api/isReady
     initialDelay: 20
     timeout: 60
   replicas:
