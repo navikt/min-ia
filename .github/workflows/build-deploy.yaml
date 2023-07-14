@@ -22,16 +22,9 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: |
             client/yarn.lock
-            server/yarn.lock
 
       - name: Install client dependencies
         working-directory: client
-        run: yarn install --immutable
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
-      - name: Install server dependencies
-        working-directory: server
         run: yarn install --immutable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}

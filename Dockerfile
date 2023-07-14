@@ -5,12 +5,6 @@ ENV NODE_ENV $NODE_ENV
 
 WORKDIR /home/node/app
 
-## Server side
-COPY server/package.json server/package.json
-COPY server/node_modules server/node_modules
-COPY server/build server/build
-## TODO: unngå å ha med backendApiProxyMock og testdata på image
-
 ## Client side
 WORKDIR /home/node/app
 COPY client/src client/src

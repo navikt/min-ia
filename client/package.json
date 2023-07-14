@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ins": "yarn install && cd ../server && yarn install",
+    "ins": "yarn install",
     "dev": "yarn lint && next dev",
     "start": "next start",
     "build": "next build",
