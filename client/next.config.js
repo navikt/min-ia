@@ -12,55 +12,6 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/qbrick/config/no-preload",
-        destination:
-          "http://localhost:3010/forebygge-fravar/qbrick/config/no-preload",
-      },
-      {
-        source: "/api/isAlive",
-        destination: "http://localhost:3010/forebygge-fravar/api/isAlive",
-      },
-      {
-        source: "/api/isReady",
-        destination: "http://localhost:3010/forebygge-fravar/api/isReady",
-      },
-      {
-        source: "/internal/metrics",
-        destination: "http://localhost:3010/forebygge-fravar/internal/metrics",
-      },
-      {
-        source: "/api/:slug*",
-        destination: "http://localhost:3010/forebygge-fravar/api/:slug*",
-      },
-      {
-        source: "/redirect-til-login:slug*",
-        destination:
-          "http://localhost:3010/forebygge-fravar/redirect-til-login:slug*",
-      },
-      {
-        source: "/kursoversikt/:slug*",
-        destination:
-          "http://localhost:3010/forebygge-fravar/kursoversikt/:slug*",
-      },
-      {
-        source: "/metrikker/:slug*",
-        destination: "http://localhost:3010/forebygge-fravar/metrikker/:slug*",
-      },
-      {
-        source: "/notifikasjon-bruker-api",
-        destination:
-          "http://localhost:3010/forebygge-fravar/notifikasjon-bruker-api",
-      },
-      {
-        source: "/fia-arbeidsgiver/:slug*",
-        destination:
-          "http://localhost:3010/forebygge-fravar/fia-arbeidsgiver/:slug*",
-      },
-    ];
-  },
   async redirects() {
     return [
       {
