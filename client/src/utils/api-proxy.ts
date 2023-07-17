@@ -6,7 +6,7 @@ import {
 import { NextApiRequest, NextApiResponse } from "next";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 
-export default async function proxyRequest(
+export default async function proxyRequestWithTokenExchange(
   req: NextApiRequest,
   res: NextApiResponse,
   hostname: string,

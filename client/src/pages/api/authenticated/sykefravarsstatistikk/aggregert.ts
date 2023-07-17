@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
-import proxyRequest from "../../../../utils/api-proxy";
+import proxyRequestWithTokenExchange from "../../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,7 +16,7 @@ export default async function handler(
     return res.status(400).json({ error: "Ugyldig orgnr" });
   }
 
-  return await proxyRequest(
+  return await proxyRequestWithTokenExchange(
     req,
     res,
     `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
