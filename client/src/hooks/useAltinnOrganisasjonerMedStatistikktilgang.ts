@@ -7,7 +7,7 @@ import { predefinerteFeilmeldinger } from "../utils/logger";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 
 export function useAltinnOrganisasjonerMedStatistikktilgang(): RestAltinnOrganisasjoner {
-  const apiPath = `${SYKEFRAVARSSTATISTIKK_BASE_PATH}/organisasjoner-med-statistikk`;
+  const apiPath = `${SYKEFRAVARSSTATISTIKK_BASE_PATH}/organisasjoner-med-statistikktilgang`;
   const errorMessage =
     predefinerteFeilmeldinger.feilVedHentingAvAltinnOrganisasjoner;
 

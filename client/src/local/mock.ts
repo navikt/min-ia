@@ -39,11 +39,11 @@ export default async function mockRequest(req: NextRequest) {
 
   if (
     req.url?.endsWith(
-      "/api/authenticated/sykefravarsstatistikk/organisasjoner-med-statistikk"
+      "/api/authenticated/sykefravarsstatistikk/organisasjoner-med-statistikktilgang"
     )
   ) {
     console.log(
-      "[DEBUG] GET /api/authenticated/sykefravarsstatistikk/organisasjoner-med-statistikk"
+      "[DEBUG] GET /api/authenticated/sykefravarsstatistikk/organisasjoner-med-statistikktilgang"
     );
 
     switch (testMode) {
