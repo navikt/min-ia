@@ -19,7 +19,7 @@ export const Lenkeflis = ({overskrift, ikon, href, brødtekst}: LenkeflisProps) 
 
     const metrikkutsendelse = () =>
         sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
-    const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
+    const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift) as Promise<boolean>;
 
     return (
         <LinkPanel

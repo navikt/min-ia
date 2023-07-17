@@ -7,11 +7,16 @@
     "dev": "yarn lint && next dev",
     "start": "next start",
     "build": "next build",
-    "lint": "eslint .",
+    "lint": "next lint",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "jest --watch",
     "export": "next export"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@navikt/eslint-config-teamia"
+    ]
   },
   "dependencies": {
     "@navikt/arbeidsgiver-notifikasjon-widget": "^5.4.5-rc1",
@@ -30,7 +35,6 @@
     "amplitude-js": "^8.21.2",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^16.0.3",
-    "eslint": "^8.28.0",
     "msw": "^1.2.1",
     "next": "^12.2.0",
     "pino": "^8.8.0",
@@ -45,17 +49,16 @@
   },
   "devDependencies": {
     "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock": "^5.4.5-rc1",
+    "@navikt/eslint-config-teamia": "^1.0.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.4.3",
+    "@types/jest-axe": "^3.5.5",
     "@types/node": "^17.0.19",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
-    "eslint-config-next": "12.1.0",
-    "eslint-plugin-react": "^7.31.10",
+    "jest-axe": "^7.0.1",
     "jest-cli": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "jest-transform-stub": "^2.0.0",

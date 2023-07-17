@@ -1,13 +1,11 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
-import { useOrgnr } from "../../hooks/useOrgnr";
 import { sendToggleEvent } from "../../amplitude/events";
 import {Heading, Ingress, Link, ToggleGroup} from "@navikt/ds-react";
 import {
   IaTjeneste,
-  sendLevertInnloggetIaTjeneste,
 } from "../../integrasjoner/ia-tjenestemetrikker-api";
 import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
 

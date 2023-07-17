@@ -6,10 +6,10 @@ import { sendNavigereEvent } from "../amplitude/events";
 export const LenkeMedEventutsendelse: React.FunctionComponent<{
   href: string;
   lenketekst: string;
-  className?: any;
+  className?: string;
 }> = ({ href, lenketekst, className }) => {
   const amplitudeutsendelse = () => {
-    return sendNavigereEvent(href, lenketekst);
+    return sendNavigereEvent(href, lenketekst) as Promise<boolean>;
   };
   return (
     <Link

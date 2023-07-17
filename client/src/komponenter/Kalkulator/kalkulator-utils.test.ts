@@ -53,7 +53,7 @@ describe("Tester for kalkulator-utils", () => {
       });
     });
 
-    test("skal returnere match ved ugyldig desimaltall", () => {
+    test("skal returnere match ved for mange desimaltall", () => {
       const desimaltallMedForMangeDesimalerOgForventetMatch: TestCaser[] = [
         { input: "44,444", forventetMatch: "44,44" },
         { input: ".555444", forventetMatch: ".55" },
@@ -68,42 +68,40 @@ describe("Tester for kalkulator-utils", () => {
     });
   });
 
-  describe("validerDesimaltallOgReturnerMatch", () => {
-    test("skal returnere match ved gyldig prosent", () => {
-      const gyldigeProsenttall = ["100", "0", ".7", "50,55", "0.0", "0,0"];
-      gyldigeProsenttall.forEach((prosenttall) => {
-        const result = validerProsenttallOgReturnerMatch(
-          prosenttall,
-          "forrige verdi"
-        );
-        expect(result).toBe(prosenttall);
-      });
+  test("skal returnere match ved gyldig prosent", () => {
+    const gyldigeProsenttall = ["100", "0", ".7", "50,55", "0.0", "0,0"];
+    gyldigeProsenttall.forEach((prosenttall) => {
+      const result = validerProsenttallOgReturnerMatch(
+        prosenttall,
+        "forrige verdi"
+      );
+      expect(result).toBe(prosenttall);
     });
+  });
 
-    test("skal returnere forrige verdi ved ugyldig prosent", () => {
-      const ugyldigeProsenttall = ["-1", "101", "1000", "asdf"];
-      ugyldigeProsenttall.forEach((prosenttall) => {
-        const result = validerProsenttallOgReturnerMatch(
-          prosenttall,
-          "forrige verdi"
-        );
-        expect(result).toBe("forrige verdi");
-      });
+  test("skal returnere forrige verdi ved ugyldig prosent", () => {
+    const ugyldigeProsenttall = ["-1", "101", "1000", "asdf"];
+    ugyldigeProsenttall.forEach((prosenttall) => {
+      const result = validerProsenttallOgReturnerMatch(
+        prosenttall,
+        "forrige verdi"
+      );
+      expect(result).toBe("forrige verdi");
     });
+  });
 
-    test("skal returnere tall med to desimaler dersom input har flere enn to desimaler", () => {
-      const prosenttallMedForMangeDesimalerOgForventetMatch: TestCaser[] = [
-        { input: "44,444", forventetMatch: "44,44" },
-        { input: ".555444", forventetMatch: ".55" },
-      ];
+  test("skal returnere tall med to desimaler dersom input har flere enn to desimaler", () => {
+    const prosenttallMedForMangeDesimalerOgForventetMatch: TestCaser[] = [
+      { input: "44,444", forventetMatch: "44,44" },
+      { input: ".555444", forventetMatch: ".55" },
+    ];
 
-      prosenttallMedForMangeDesimalerOgForventetMatch.forEach((testCase) => {
-        const result = validerProsenttallOgReturnerMatch(
-          testCase.input,
-          "forrige verdi"
-        );
-        expect(result).toBe(testCase.forventetMatch);
-      });
+    prosenttallMedForMangeDesimalerOgForventetMatch.forEach((testCase) => {
+      const result = validerProsenttallOgReturnerMatch(
+        testCase.input,
+        "forrige verdi"
+      );
+      expect(result).toBe(testCase.forventetMatch);
     });
   });
 });
