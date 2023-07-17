@@ -3,6 +3,7 @@ import Banner from "../../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
+import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
 
 export const Layout = (props: {
   title: string;
@@ -15,7 +16,7 @@ export const Layout = (props: {
 
   const banner = (
     <NotifikasjonWidgetProvider
-      apiUrl={"/forebygge-fravar/api/authenticated/notifikasjoner"}
+      apiUrl={`${AUTHENTICATED_BASE_PATH}/notifikasjoner`}
       miljo={props.kjørerMockApp ? "local" : "prod"}
     >
       <Banner
