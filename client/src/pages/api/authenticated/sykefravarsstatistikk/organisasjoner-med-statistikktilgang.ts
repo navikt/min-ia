@@ -9,11 +9,6 @@ export default async function handler(
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
 
-  if (process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE === undefined) {
-    logger.error("SYKEFRAVARSSTATISTIKK_API_AUDIENCE not set");
-    return res.status(500).json({ error: "authentication failed" });
-  }
-
   return await proxyRequestWithTokenExchange(
     req,
     res,
