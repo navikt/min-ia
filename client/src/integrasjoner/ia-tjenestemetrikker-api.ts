@@ -7,8 +7,6 @@ interface IaTjenesteMetrikk {
   tjenesteMottakkelsesdato: String;
 }
 
-export const innloggetIaTjenestemetrikkPath = METRIKKER_URL;
-
 export enum IaTjeneste {
   FOREBYGGE_FRAVÆR = "FOREBYGGE_FRAVÆR",
   KALKULATOR = "KALKULATOR",
@@ -50,7 +48,7 @@ const post = async (levertIaTjeneste: IaTjenesteMetrikk): Promise<boolean> => {
     },
   };
   // @ts-ignore
-  const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
+  const res = await fetch(`${METRIKKER_URL}`, settings);
   const data = await res.json();
   return data.status === "created";
 };
