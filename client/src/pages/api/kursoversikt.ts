@@ -11,7 +11,7 @@ export default async function handler(
   await proxyApiRouteRequest({
     req,
     res,
-    hostname: `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
+    hostname: `${process.env.ARBEIDSGIVER_HOSTNAME}`,
     path: "/kursoversikt/api/kurs",
     https: true,
   });
