@@ -1,4 +1,4 @@
-import { API_BASE_PATH, BASE_PATH } from "../utils/konstanter";
+import { API_BASE_PATH } from "../utils/konstanter";
 import { predefinerteFeilmeldinger } from "../utils/logger";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import {

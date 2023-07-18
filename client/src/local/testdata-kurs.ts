@@ -5,13 +5,13 @@ const getTomorrowsDate = () => {
   return tomorrow;
 };
 
-const getIsoDateWithTime = (dato: Date, time: String): String => {
+const getIsoDateWithTime = (dato: Date, time: string): string => {
   return `${dato.getFullYear()}-${String(dato.getMonth() + 1).padStart(
     2,
     "0"
   )}-${String(dato.getDate()).padStart(2, "0")}${time}`;
 };
-// @ts-ignore
+
 export const kurslisteMock = [
   {
     Title: "Hvorfor jobbe med arbeidsmiljø?",

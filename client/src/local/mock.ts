@@ -68,7 +68,8 @@ export default async function mockRequest(req: NextRequest) {
       `[DEBUG] GET /api/authenticated/sykefravarsstatistikk/aggregert?orgnr=${orgnr}`
     );
 
-    let aggregertStatistikkMock: any;
+    let aggregertStatistikkMock;
+
     switch (orgnr) {
       case "810969439": {
         aggregertStatistikkMock = mockdataOrgnr81096939;

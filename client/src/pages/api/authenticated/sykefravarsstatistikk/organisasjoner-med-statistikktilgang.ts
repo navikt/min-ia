@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { logger } from "../../../../utils/logger";
 import proxyRequestWithTokenExchange from "../../../../utils/api-proxy";
 
 export default async function handler(
