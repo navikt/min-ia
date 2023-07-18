@@ -7,3 +7,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 // Polyfill for fetch
 import "whatwg-fetch";
+
+import { toHaveNoViolations } from "jest-axe";
+
+expect.extend(toHaveNoViolations);

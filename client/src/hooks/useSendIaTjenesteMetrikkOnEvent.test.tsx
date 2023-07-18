@@ -30,7 +30,7 @@ const handlerMetrikkerApiCall = [
   }),
 ];
 
-export const server = setupServer(...handlerMetrikkerApiCall);
+const server = setupServer(...handlerMetrikkerApiCall);
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());

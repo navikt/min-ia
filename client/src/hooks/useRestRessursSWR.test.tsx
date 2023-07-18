@@ -1,11 +1,11 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { useRestRessursSWR } from "./useRestRessursSWR";
-import { erSuksess, RestStatus } from "../integrasjoner/rest-status";
-import { waitFor } from "@testing-library/dom";
+import { RestStatus, Suksess } from "../integrasjoner/rest-status";
+import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-export const server = setupServer();
+const server = setupServer();
 beforeAll(() => server.listen());
 beforeEach(() => server.resetHandlers());
 afterAll(() => server.close());
@@ -44,33 +44,31 @@ describe("useRestRessursSWR", () => {
       expect(result.current.status).toEqual(RestStatus.Suksess);
     });
 
-    if (erSuksess(result.current)) {
-      expect(result.current.data).toEqual({ key: "dummy data" });
-    } else {
-      fail("Expected RestRessurs to be of type Suksess");
-    }
+    expect((result.current as Suksess<{ data: string }>).data).toEqual({
+      key: "dummy data",
+    });
   });
 
   it("should return status IngenTilgang when fetch returns 403", async () => {
     const ingenTilgangUrl = "https://dummy.api/ingen-tilgang";
     server.use(notSuksessResponse(ingenTilgangUrl, 403));
 
+    const { result } = renderHookWithDummyData(ingenTilgangUrl);
     await waitFor(() => {
-      const { result } = renderHookWithDummyData(ingenTilgangUrl);
       expect(result.current.status).toEqual(RestStatus.IngenTilgang);
     });
   });
 
   it("should return status IkkeLastet when api url is null", async () => {
+    const { result } = renderHookWithDummyData(null);
     await waitFor(() => {
-      const { result } = renderHookWithDummyData(null);
       expect(result.current.status).toEqual(RestStatus.IkkeLastet);
     });
   });
 
   it("should return status Feil when resource is not found", async () => {
+    const { result } = renderHookWithDummyData("https://dummy.api/404");
     await waitFor(() => {
-      const { result } = renderHookWithDummyData("https://dummy.api/404");
       expect(result.current.status).toEqual(RestStatus.Feil);
     });
   });

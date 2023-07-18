@@ -13,15 +13,6 @@ const Bedriftsmeny = dynamic(() => import("@navikt/bedriftsmeny"), {
   ssr: false,
 });
 
-export interface Organisasjon {
-  Name: string;
-  Type: string;
-  OrganizationNumber: string;
-  OrganizationForm: string;
-  Status: string;
-  ParentOrganizationNumber: any;
-}
-
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
   altinnOrganisasjoner: AltinnOrganisasjon[];

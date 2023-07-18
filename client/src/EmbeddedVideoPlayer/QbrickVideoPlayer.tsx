@@ -39,14 +39,17 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
   const gobrainWidgetId = `gobrain-widget-id-${props.video.id}`;
   const canCreateVideoPlayer =
     video.current !== null &&
+    // eslint-disable-next-line
     // @ts-ignore
     window?.GoBrain?.Dtos?.Settings?.Embed &&
+    // eslint-disable-next-line
     // @ts-ignore
     !window?.GoBrain?.widgets(gobrainWidgetId);
 
   if (canCreateVideoPlayer) {
+    // eslint-disable-next-line
     // @ts-ignore
-    let embedSettings = new window.GoBrain.Dtos.Settings.Embed();
+    const embedSettings = new window.GoBrain.Dtos.Settings.Embed();
     embedSettings.widgetId = gobrainWidgetId;
     embedSettings.language = "nb";
     embedSettings.autoplay = false;
@@ -56,8 +59,9 @@ export const QbrickVideoPlayer = (props: QbrickVideoPlayerProps) => {
       "https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player";
     embedSettings.data = `https://video.qbrick.com/api/v1/public/accounts/763558/medias/${props.video.id}`;
 
+    // eslint-disable-next-line
     // @ts-ignore
-    let widget = window.GoBrain.create(video.current, embedSettings);
+    const widget = window.GoBrain.create(video.current, embedSettings);
     widget.on("play", function () {
       document.addEventListener("forcePausePlayer", function () {
         widget.pause();

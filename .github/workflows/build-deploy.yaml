@@ -41,11 +41,8 @@ jobs:
         run: yarn test
 
       - name: Lint client
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          eslint_dir: client/
-          eslint_extensions: js,jsx,ts,tsx
+        working-directory: client
+        run: yarn lint
 
       - name: Build client
         working-directory: client
