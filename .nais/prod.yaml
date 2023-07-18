@@ -88,4 +88,5 @@ spec:
           namespace: pia
       external:
         - host: www.nav.no
+        - host: arbeidsgiver.nav.no
         - host: sykefravarsstatistikk-api.prod-fss-pub.nais.io

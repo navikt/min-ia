@@ -85,5 +85,6 @@ spec:
         - application: fia-arbeidsgiver
           namespace: pia
       external:
+        - host: arbeidsgiver.intern.dev.nav.no
         - host: dekoratoren.dev.nav.no
         - host: sykefravarsstatistikk-api.dev-fss-pub.nais.io
