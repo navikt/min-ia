@@ -17,21 +17,14 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
           registry-url: https://npm.pkg.github.com/
+          node-version: '18'
           cache: 'yarn'
           cache-dependency-path: |
             client/yarn.lock
-            server/yarn.lock
 
       - name: Install client dependencies
         working-directory: client
-        run: yarn install --immutable
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
-      - name: Install server dependencies
-        working-directory: server
         run: yarn install --immutable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
@@ -48,10 +41,6 @@ jobs:
         working-directory: client
         run: yarn build
 
-      - name: Build server
-        working-directory: server
-        run: yarn build
-
       - name: Login to GitHub Docker Registry
         uses: docker/login-action@v2
         with:
@@ -64,7 +53,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next-routes'
     needs: build
     runs-on: ubuntu-latest
     steps:

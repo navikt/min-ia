@@ -8,7 +8,7 @@ import { useSendIaTjenesteMetrikkOnEvent } from "./useSendIaTjenesteMetrikkOnEve
 import { FunctionComponent } from "react";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
-import { innloggetIaTjenestemetrikkPath } from "../integrasjoner/ia-tjenestemetrikker-api";
+import { METRIKKER_URL } from "../utils/konstanter";
 
 jest.mock("../../src/integrasjoner/ia-tjenestemetrikker-api", () => {
   return {
@@ -25,7 +25,7 @@ jest.mock("../../src/hooks/useOrgnr", () => {
 });
 
 const handlerMetrikkerApiCall = [
-  rest.post(innloggetIaTjenestemetrikkPath, (req, res, ctx) => {
+  rest.post(METRIKKER_URL, (req, res, ctx) => {
     return res(ctx.json({ status: "created" }));
   }),
 ];

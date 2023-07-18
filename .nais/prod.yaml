@@ -9,12 +9,12 @@ spec:
   image: {{image}}
   port: 3000
   env:
-    - name: SYKEFRAVARSSTATISTIKK_API_BASE_URL
-      value: https://sykefravarsstatistikk-api.prod-fss-pub.nais.io
-    - name: IA_TJENESTER_METRIKKER_BASE_URL
-      value: https://arbeidsgiver.nav.no/ia-tjenester-metrikker
-    - name: KURSOVERSIKT_BASE_URL
-      value: https://arbeidsgiver.nav.no/kursoversikt
+    - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
+      value: sykefravarsstatistikk-api.prod-fss-pub.nais.io
+    - name: IA_TJENESTER_METRIKKER_HOSTNAME
+      value: arbeidsgiver.nav.no
+    - name: ARBEIDSGIVER_HOSTNAME
+      value: arbeidsgiver.nav.no
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
       ## Next.js bruker NODE_ENV og forventer følgende verdier: 'production', 'development' eller 'test'
@@ -35,8 +35,8 @@ spec:
       value: prod
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar
-    - name: FIA_ARBEIDSGIVER_URL
-      value: http://fia-arbeidsgiver.pia/fia-arbeidsgiver
+    - name: FIA_ARBEIDSGIVER_HOSTNAME
+      value: fia-arbeidsgiver.pia
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
@@ -55,11 +55,11 @@ spec:
       enabled: true
       autoLogin: false
   liveness:
-    path: /forebygge-fravar/internal/isAlive
+    path: /forebygge-fravar/api/isAlive
     initialDelay: 20
     timeout: 60
   readiness:
-    path: /forebygge-fravar/internal/isReady
+    path: /forebygge-fravar/api/isReady
     initialDelay: 20
     timeout: 60
   replicas:

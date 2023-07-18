@@ -1,4 +1,4 @@
-import { BASE_PATH } from "../utils/konstanter";
+import { API_BASE_PATH } from "../utils/konstanter";
 import { predefinerteFeilmeldinger } from "../utils/logger";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import {
@@ -9,7 +9,7 @@ import {
 import { Kurs, KursDto, mapTilKurs } from "../utils/kurs-api";
 
 export function useKursoversikt(): RestRessurs<Kurs[]> {
-  const apiPath = `${BASE_PATH}/kursoversikt`;
+  const apiPath = `${API_BASE_PATH}/kursoversikt`;
   const errorMessage = predefinerteFeilmeldinger.feilVedHentingAvKursoversikt;
 
   const result = useRestRessursSWR<KursDto[]>(apiPath, errorMessage);

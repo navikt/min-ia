@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { InnloggingssideIkon } from "./InnloggingssideIkon";
 import { BodyLong, Button, Heading, Link } from "@navikt/ds-react";
-import { BASE_PATH } from "../utils/konstanter";
+import { API_BASE_PATH } from "../utils/konstanter";
 import styles from "./Innloggingsside.module.scss";
 
 interface InnloggingssideProps {
@@ -11,7 +11,7 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
   redirectUrl,
 }) => {
   const redirectTilLogin = () => {
-    window.location.href = `${BASE_PATH}/redirect-til-login?redirect=${redirectUrl}`;
+    window.location.href = `${API_BASE_PATH}/authentication?redirect=${redirectUrl}`;
   };
 
   return (
@@ -20,7 +20,9 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
         <div className={styles.innloggingsside__illustrasjon}>
           <InnloggingssideIkon height={80} width={80} />
         </div>
-        <Heading level="1" size="xlarge">Forebygge fravær</Heading>
+        <Heading level="1" size="xlarge">
+          Forebygge fravær
+        </Heading>
 
         <BodyLong spacing>Inkluderende arbeidsliv</BodyLong>
 
@@ -35,7 +37,7 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
 
         <Button
           onClick={redirectTilLogin}
-          style={{paddingLeft:40, paddingRight:40 }}
+          style={{ paddingLeft: 40, paddingRight: 40 }}
         >
           Logg inn
         </Button>

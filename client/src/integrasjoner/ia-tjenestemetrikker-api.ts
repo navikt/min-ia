@@ -1,4 +1,4 @@
-import { METRIKKER_BASE_PATH } from "../utils/konstanter";
+import { METRIKKER_URL } from "../utils/konstanter";
 
 interface IaTjenesteMetrikk {
   orgnr: string;
@@ -6,8 +6,6 @@ interface IaTjenesteMetrikk {
   kilde: string;
   tjenesteMottakkelsesdato: string;
 }
-
-export const innloggetIaTjenestemetrikkPath = `${METRIKKER_BASE_PATH}/innlogget/mottatt-iatjeneste`;
 
 export enum IaTjeneste {
   FOREBYGGE_FRAVÆR = "FOREBYGGE_FRAVÆR",
@@ -50,7 +48,7 @@ const post = async (levertIaTjeneste: IaTjenesteMetrikk): Promise<boolean> => {
     },
   };
 
-  const res = await fetch(`${innloggetIaTjenestemetrikkPath}`, settings);
+  const res = await fetch(`${METRIKKER_URL}`, settings);
   const data = await res.json();
   return data.status === "created";
 };

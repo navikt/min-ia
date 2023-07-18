@@ -9,8 +9,8 @@ spec:
   image: {{image}}
   port: 3000
   env:
-    - name: KURSOVERSIKT_BASE_URL
-      value: https://arbeidsgiver.nav.no/kursoversikt
+    - name: ARBEIDSGIVER_HOSTNAME
+      value: arbeidsgiver.nav.no
     - name: NODE_EXTRA_CA_CERTS
       value: /etc/ssl/ca-bundle.pem
     - name: NODE_ENV
@@ -31,16 +31,18 @@ spec:
       value: https://arbeidsgiver.ekstern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/kontakt-oss
+    - name: FIA_ARBEIDSGIVER_HOSTNAME
+      value: arbeidsgiver.ekstern.dev.nav.no
   tokenx:
     enabled: true
   idporten:
     enabled: false
   liveness:
-    path: /forebygge-fravar/internal/isAlive
+    path: /forebygge-fravar/api/isAlive
     initialDelay: 20
     timeout: 60
   readiness:
-    path: /forebygge-fravar/internal/isReady
+    path: /forebygge-fravar/api/isReady
     initialDelay: 20
     timeout: 60
   replicas:

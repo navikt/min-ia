@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
 
-cd server
-exec yarn start &
-cd ../client
+cd client
 exec yarn start
