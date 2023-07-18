@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { randomUUID } from "crypto";
 import { isMockApp } from "./utils/envUtils";
 import mockRequest from "./local/mock";
 
@@ -28,5 +27,5 @@ export const getCorrelationIdHeader = (req: NextRequest) => {
 };
 
 const addCorrelationIdHeader = (req: Request) => {
-  req.headers.set("X-Correlation-ID", randomUUID());
+  req.headers.set("X-Correlation-ID", crypto.randomUUID());
 };
