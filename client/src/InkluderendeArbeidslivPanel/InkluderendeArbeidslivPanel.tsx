@@ -9,7 +9,7 @@ import {sendNavigereEvent} from "../amplitude/events";
 const Lenkepanel: React.FunctionComponent<{
     lenketekst: string; destinasjon: string;
 }> = ({destinasjon, lenketekst}) => {
-    const eventutsendelse = () => sendNavigereEvent(destinasjon, lenketekst);
+    const eventutsendelse = () => sendNavigereEvent(destinasjon, lenketekst) as Promise<boolean>;
     return (<LinkPanel
         className={styles.inkluderendeArbeidslivPanel__lenkepanel}
         href={destinasjon}

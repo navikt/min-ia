@@ -10,7 +10,7 @@ export const LenkeflisEkstern: React.FunctionComponent<{
     href: string | undefined;
 }> = ({overskrift, brødtekst, href}) => {
     const destinasjon = href ?? "#";
-    const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
+    const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift) as Promise<boolean>;
     return (
         <LinkPanel href={destinasjon}
                    onClickCapture={event => event.preventDefault()}

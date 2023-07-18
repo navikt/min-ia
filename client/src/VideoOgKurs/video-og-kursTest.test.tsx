@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import VideoOgKurs from "../../src/pages/video-og-kurs";
-import logEvent from "../../src/amplitude/logEvent";
+import VideoOgKurs from "../pages/video-og-kurs";
+import logEvent from "../amplitude/logEvent";
 import { useRouter } from "next/router";
 
 jest.mock("../../src/amplitude/logEvent");
@@ -12,12 +12,16 @@ afterEach(() => {
 
 beforeEach(() => {
   // window.location-assign er ikke implementert i jest, så vi må mocke den
+  // eslint-disable-next-line
   // @ts-ignore
   delete window.location;
+  // eslint-disable-next-line
   // @ts-ignore
   delete window.postMessage;
+  // eslint-disable-next-line
   // @ts-ignore
   window.location = { assign: jest.fn() };
+  // eslint-disable-next-line
   // @ts-ignore
   window.postMessage = jest.fn();
 });
@@ -26,6 +30,7 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
+// eslint-disable-next-line
 // @ts-ignore
 useRouter.mockReturnValue({
   query: {},
@@ -42,7 +47,7 @@ it("sender nettkurs-filter-valgt-event ved klikk på Psykisk helse-filter", asyn
   });
   await user.click(psykiskHelseFilter);
 
-  expect(logEvent).toBeCalledTimes(1);
+  expect(logEvent).toHaveBeenCalledTimes(1);
   expect(logEvent).toHaveBeenCalledWith("chip valgt", {
     chipId: knappetekst,
     tekst: knappetekst,
