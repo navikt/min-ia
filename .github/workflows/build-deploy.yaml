@@ -30,7 +30,7 @@ jobs:
         run: yarn test
       - name: Build
         run: yarn build
-      - name: Push to Google Artifact Repository
+      - name: Push to Google Artifact Registry
         uses: nais/docker-build-push@v0
         id: docker-push
         with:
