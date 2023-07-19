@@ -12,7 +12,6 @@ lerna-debug.log*
 .env.development.local
 .env.test.local
 .env.production.local
-client/.env.local
 
 # vercel
 .vercel
@@ -129,3 +128,7 @@ dist
 # Ignore Intellij project-specific directory
 /.idea/
 *.iml
+
+node_modules
+dist-ssr
+*.local

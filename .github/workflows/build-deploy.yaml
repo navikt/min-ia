@@ -20,25 +20,19 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           node-version: '18'
           cache: 'yarn'
-          cache-dependency-path: |
-            client/yarn.lock
 
-      - name: Install client dependencies
-        working-directory: client
+      - name: Install dependencies
         run: yarn install --immutable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: Run tests
-        working-directory: client
         run: yarn test
 
-      - name: Lint client
-        working-directory: client
+      - name: Lint
         run: yarn lint
 
-      - name: Build client
-        working-directory: client
+      - name: Build
         run: yarn build
 
       - name: Login to GitHub Docker Registry
@@ -53,7 +47,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next-routes'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/mv_client'
     needs: build
     runs-on: ubuntu-latest
     steps:
