@@ -129,3 +129,7 @@ dist
 # Ignore Intellij project-specific directory
 /.idea/
 *.iml
+
+node_modules
+dist-ssr
+*.local
