@@ -10,11 +10,11 @@ spec:
   groups:
     - name: min-ia-alerts
       rules:
-        - alert: ApplikasjonNede
-          expr: sum(up{container="min-ia"}) == 0
+        - alert: Applikasjon nede
+          expr: kube_deployment_status_replicas_available{deployment="min-ia"} == 0
           for: 2m
           annotations:
-            consequence: "Forebygge fravær frontend er utilgjengelig"
+            consequence: "Forebygge fravær er utilgjengelig"
             action: |-
               Sjekk helsa til applikasjonen ved å kjøre
               `kubectl describe pod <podname> -n teamia` og 
