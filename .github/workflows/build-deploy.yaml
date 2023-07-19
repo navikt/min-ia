@@ -53,7 +53,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next-routes'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/mv_client'
     needs: build
     runs-on: ubuntu-latest
     steps:
