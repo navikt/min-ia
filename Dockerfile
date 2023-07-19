@@ -13,4 +13,4 @@ COPY .next .next
 COPY node_modules node_modules
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+ENTRYPOINT ["/bin/sh", "start.sh"]
