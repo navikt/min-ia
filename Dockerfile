@@ -1,22 +1,16 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 
-ARG NODE_ENV
-ENV NODE_ENV $NODE_ENV
-
-WORKDIR /home/node/app
-
-## Client side
-WORKDIR /home/node/app
-COPY client/src client/src
-COPY client/package.json client/package.json
-COPY client/next.config.js client/next.config.js
-COPY client/next-env.d.ts client/next-env.d.ts
-COPY client/tsconfig.json client/tsconfig.json
-COPY client/.next client/.next
-COPY client/node_modules client/node_modules
+ENV NODE_ENV=production
 
 WORKDIR /home/node/app
-COPY start.sh start.sh
+
+COPY src src
+COPY package.json package.json
+COPY next.config.js next.config.js
+COPY next-env.d.ts next-env.d.ts
+COPY tsconfig.json tsconfig.json
+COPY .next .next
+COPY node_modules node_modules
 
 EXPOSE 3000
-ENTRYPOINT ["/bin/sh", "start.sh"]
+CMD ["yarn", "start"]
