@@ -11,6 +11,7 @@ COPY next-env.d.ts next-env.d.ts
 COPY tsconfig.json tsconfig.json
 COPY .next .next
 COPY node_modules node_modules
+COPY start.sh start.sh
 
 EXPOSE 3000
 ENTRYPOINT ["/bin/sh", "start.sh"]
