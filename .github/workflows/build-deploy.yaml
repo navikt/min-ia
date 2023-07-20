@@ -1,6 +1,6 @@
 name: Build and deploy min-ia
 run-name: Build and deploy app | ${{ github.event.head_commit.message }}
-on: [ push ]
+on: [push]
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
 
@@ -17,42 +17,22 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
           registry-url: https://npm.pkg.github.com/
-          cache: 'yarn'
-          cache-dependency-path: |
-            client/yarn.lock
-            server/yarn.lock
+          node-version: "18"
+          cache: "yarn"
 
-      - name: Install client dependencies
-        working-directory: client
-        run: yarn install --immutable
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
-      - name: Install server dependencies
-        working-directory: server
+      - name: Install dependencies
         run: yarn install --immutable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: Run tests
-        working-directory: client
         run: yarn test
 
-      - name: Lint client
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          eslint_dir: client/
-          eslint_extensions: js,jsx,ts,tsx
+      - name: Lint
+        run: yarn lint
 
-      - name: Build client
-        working-directory: client
-        run: yarn build
-
-      - name: Build server
-        working-directory: server
+      - name: Build
         run: yarn build
 
       - name: Login to GitHub Docker Registry
