@@ -6,17 +6,28 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
-import { hentUrlFraMiljøvariabel, isMockApp } from "../utils/envUtils";
+import {
+  getGrafanaUrl,
+  hentUrlFraMiljøvariabel,
+  isMockApp,
+} from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
+import { doInitializeFaro } from "../utils/initializeFaro";
 
 interface HomeProps {
   page: PageProps;
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
   kjørerMockApp: boolean;
+  grafanaAgentUrl: string;
 }
 
 const Home = (props: HomeProps) => {
+  React.useEffect(() => {
+    if (!props.kjørerMockApp) {
+      doInitializeFaro(props.grafanaAgentUrl);
+    }
+  });
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const trengerInnlogging =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
@@ -91,6 +102,7 @@ export const getServerSideProps = async () => {
     forsideProps,
     minSideArbeidsgiverUrl,
     kjørerMockApp,
+    grafanaAgentUrl: getGrafanaUrl(),
   };
 
   return { props };

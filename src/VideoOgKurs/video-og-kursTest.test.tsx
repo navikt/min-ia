@@ -63,6 +63,7 @@ const renderNettkurs = () => {
           "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
       }}
       kjørerMockApp={false}
+      grafanaAgentUrl=""
     />
   );
 };

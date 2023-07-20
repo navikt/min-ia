@@ -11,15 +11,22 @@ import { hentUtKalkulatorData } from "../komponenter/Kalkulator/datauthenting";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { Layout } from "../komponenter/Layout/Layout";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Head from "next/head";
-import { isMockApp } from "../utils/envUtils";
+import { getGrafanaUrl, isMockApp } from "../utils/envUtils";
+import { doInitializeFaro } from "../utils/initializeFaro";
 
 export default function Kalkulator(props: {
   page: PageProps;
   kjørerMockApp: boolean;
+  grafanaAgentUrl: string;
 }) {
+  React.useEffect(() => {
+    if (!props.kjørerMockApp) {
+      doInitializeFaro(props.grafanaAgentUrl);
+    }
+  });
   const organisasjonerRespons = useAltinnOrganisasjoner();
   const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
     ? organisasjonerRespons.data
@@ -76,5 +83,11 @@ export async function getServerSideProps() {
       "Her kan du beregne hvor mye sykefraværet koster, og hvor mye du kan spare.",
   };
 
-  return { props: { page, kjørerMockApp: isMockApp() } };
+  return {
+    props: {
+      page,
+      kjørerMockApp: isMockApp(),
+      grafanaAgentUrl: getGrafanaUrl(),
+    },
+  };
 }
