@@ -1,6 +1,6 @@
 name: Build and deploy min-ia
 run-name: Build and deploy app | ${{ github.event.head_commit.message }}
-on: [push]
+on: [ push ]
 env:
   IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
 
@@ -18,8 +18,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: https://npm.pkg.github.com/
-          node-version: "18"
-          cache: "yarn"
+          node-version: '18'
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --immutable
