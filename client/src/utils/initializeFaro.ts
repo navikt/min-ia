@@ -2,12 +2,12 @@ import {
   faro,
   initializeFaro,
   getWebInstrumentations,
-  OTELApi,
 } from "@grafana/faro-web-sdk";
 import { TracingInstrumentation } from "@grafana/faro-web-tracing";
 
 export function doInitializeFaro(grafanaAgentUrl: string) {
-  if (Object.keys(faro).length === 0) {
+  if (Object.keys(faro).length === 0 && grafanaAgentUrl?.length > 0) {
+    console.log("Initializing Faro");
     initializeFaro({
       url: grafanaAgentUrl,
       app: {
@@ -19,17 +19,7 @@ export function doInitializeFaro(grafanaAgentUrl: string) {
         new TracingInstrumentation(),
       ],
     });
-
-    const { trace, context } = faro.api.getOTEL() as OTELApi;
-
-    const tracer = trace.getTracer("default");
-    const span = tracer.startSpan("some business process");
-
-    const someBusinessProcess = () => {};
-
-    context.with(trace.setSpan(context.active(), span), () => {
-      someBusinessProcess();
-      span.end();
-    });
+  } else {
+    console.log("Faro already initialized");
   }
 }
