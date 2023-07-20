@@ -47,7 +47,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy app to dev
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build' || github.ref == 'refs/heads/core-web-vitals'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/fix_build' || github.ref == 'refs/heads/logger-replacement'
     needs: build
     runs-on: ubuntu-latest
     steps:
