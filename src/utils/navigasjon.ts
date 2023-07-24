@@ -4,7 +4,7 @@
 export const navigerEtterCallbacks = async (
   destinasjon: string,
   callbacks: (() => Promise<boolean>)[],
-  maksVentetid = 10000
+  maksVentetid = 4000
 ) => {
   setTimeout(() => {
     window.location.href = destinasjon;

@@ -1,17 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import proxyRequestWithTokenExchange from "../../../utils/api-proxy";
-import { logger } from "../../../utils/logger";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  logger.info(
-    `Mottatt metrikk\n
-    IA_TJENESTER_METRIKKER_AUDIENCE: ${process.env.IA_TJENESTER_METRIKKER_AUDIENCE}\n
-    IA_TJENESTER_METRIKKER_HOSTNAME: ${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}\n`
-  );
-
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 
