@@ -22,6 +22,7 @@ export default async function proxyRequestWithTokenExchange(
   const newAuthToken = await exchangeIdportenSubjectToken(req, audience);
 
   if (isInvalidToken(newAuthToken)) {
+    logger.error("token is invalid");
     return res.status(401).json({ error: "authentication failed" });
   }
 

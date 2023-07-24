@@ -1,17 +1,18 @@
 FROM node:lts-alpine
 
-ENV NODE_ENV=production
+WORKDIR /usr/src/app
+ENV PORT=3000 \
+    NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1
 
-WORKDIR /home/node/app
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-COPY src src
-COPY package.json package.json
-COPY next.config.js next.config.js
-COPY next-env.d.ts next-env.d.ts
-COPY tsconfig.json tsconfig.json
-COPY .next .next
-COPY node_modules node_modules
-COPY start.sh start.sh
+COPY --chown=nextjs:nodejs .next/standalone ./
+COPY --chown=nextjs:nodejs .next/static ./.next/static
 
+USER nextjs
 EXPOSE 3000
-ENTRYPOINT ["/bin/sh", "start.sh"]
+
+ENV NODE_OPTIONS="--no-experimental-fetch"
+CMD ["node", "server.js"]
