@@ -34,7 +34,7 @@ export default async function handler(
 
 export const config = {
   api: {
-    bodyParser: true,
+    bodyParser: false,
     externalResolver: true,
   },
 };
