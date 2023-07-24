@@ -1,10 +1,17 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import proxyRequestWithTokenExchange from "../../../utils/api-proxy";
+import { logger } from "../../../utils/logger";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  logger.info(
+    "Mottatt metrikk",
+    process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
+    process.env.IA_TJENESTER_METRIKKER_HOSTNAME
+  );
+
   if (!req.body?.orgnr)
     return res.status(400).json({ error: "Mangler 'orgnr' i body" });
   if (!req.body?.type)
@@ -19,7 +26,7 @@ export default async function handler(
     req,
     res,
     `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
-    "/ia-tjenester-metrikker/innlogget/mottatt-iatjeneste",
+    "/innlogget/mottatt-iatjeneste",
     process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
     false
   );
