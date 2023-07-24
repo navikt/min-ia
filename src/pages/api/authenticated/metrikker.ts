@@ -7,9 +7,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   logger.info(
-    "Mottatt metrikk",
-    process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
-    process.env.IA_TJENESTER_METRIKKER_HOSTNAME
+    `Mottatt metrikk\n
+    IA_TJENESTER_METRIKKER_AUDIENCE: ${process.env.IA_TJENESTER_METRIKKER_AUDIENCE}\n
+    IA_TJENESTER_METRIKKER_HOSTNAME: ${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}\n`
   );
 
   if (!req.body?.orgnr)
