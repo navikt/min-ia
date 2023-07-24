@@ -17,8 +17,10 @@ export const Lenkeflis = ({overskrift, ikon, href, brødtekst}: LenkeflisProps) 
     const orgnr = useOrgnr();
     const destinasjon = href ?? "#";
 
-    const metrikkutsendelse = () =>
-        sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
+    const metrikkutsendelse = () => {
+        console.log("metrikkutsendelse, lenkeflis", IaTjeneste.FOREBYGGE_FRAVÆR, orgnr);
+        return sendLevertInnloggetIaTjeneste(IaTjeneste.FOREBYGGE_FRAVÆR, orgnr)
+    };
     const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift) as Promise<boolean>;
 
     return (
