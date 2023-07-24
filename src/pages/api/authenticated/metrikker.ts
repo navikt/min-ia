@@ -26,7 +26,7 @@ export default async function handler(
     req,
     res,
     `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
-    "/innlogget/mottatt-iatjeneste",
+    "/ia-tjenester-metrikker/innlogget/mottatt-iatjeneste",
     process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
     false
   );
