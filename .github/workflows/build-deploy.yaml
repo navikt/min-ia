@@ -43,7 +43,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/standalone_plus_gar'
+    if: github.ref == 'refs/heads/metrikker-fix'
     needs: docker-build-push
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +57,7 @@ jobs:
 
   deployAppToEksternDev:
     name: Deploy to dev-gcp (ekstern)
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs: docker-build-push
     runs-on: ubuntu-latest
     steps:
@@ -71,7 +71,7 @@ jobs:
 
   deployAppToProd:
     name: Deploy to prod-gcp
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs: docker-build-push
     runs-on: ubuntu-latest
     steps:

@@ -21,7 +21,7 @@ export default async function handler(
     `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
     "/ia-tjenester-metrikker/innlogget/mottatt-iatjeneste",
     process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
-    true
+    false
   );
 }
 
