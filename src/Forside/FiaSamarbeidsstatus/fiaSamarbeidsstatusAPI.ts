@@ -1,6 +1,5 @@
 import { RestRessurs } from "../../integrasjoner/rest-status";
 import { useOrgnr } from "../../hooks/useOrgnr";
-import { predefinerteFeilmeldinger } from "../../utils/logger";
 import { useRestRessursSWR } from "../../hooks/useRestRessursSWR";
 import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
 
@@ -18,8 +17,8 @@ export function useFiaSamarbeidsstatus(): RestRessurs<FiaSamarbeidsstatusDto> {
     ? `${AUTHENTICATED_BASE_PATH}/fia-samarbeidsstatus?orgnr=${gyldigOrgnr}`
     : null;
 
-  const errorMessage =
-    predefinerteFeilmeldinger.feilVedHentingAvAggregertStatistikk;
-
-  return useRestRessursSWR<FiaSamarbeidsstatusDto>(apiPath, errorMessage);
+  return useRestRessursSWR<FiaSamarbeidsstatusDto>(
+    apiPath,
+    "Det oppstod en feil ved kall til 'api/{orgnr}/v1/sykefravarshistorikk/aggregert'"
+  );
 }

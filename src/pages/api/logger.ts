@@ -1,8 +1,7 @@
 import pino, { BaseLogger } from "pino";
 import { NextApiRequest, NextApiResponse } from "next";
 import * as z from "zod";
-import { logger } from "../../utils/logger";
-import { predefinerteFeilmeldinger } from "../../utils/logger";
+import { backendLogger } from "../../utils/backendLogger";
 
 type LogLevels = Exclude<keyof BaseLogger, 'string' | 'level'>;
 type NonEmptyStringArray = [string, ...string[]]
@@ -39,7 +38,7 @@ function getMessage(message: unknown) {
   if (!isNonEmptyStringArray(message)){
     return tekniskeLoggFeil.manglendeEllerMalformetMelding
   }
-  if(isNonEmptyStringArray(message) && Object.values(predefinerteFeilmeldinger).includes(message[0])) {
+  if(isNonEmptyStringArray(message)) {
     return message[0]
   }
   return tekniskeLoggFeil.ikkePredefinertMelding
@@ -62,7 +61,7 @@ const loggingHandler = (req: NextApiRequest, res: NextApiResponse): void => {
   }
 
 
-  logger
+  backendLogger
     .child({
       x_timestamp: ts,
       x_isFrontend: true,

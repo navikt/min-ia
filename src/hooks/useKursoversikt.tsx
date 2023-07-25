@@ -1,5 +1,4 @@
 import { API_BASE_PATH } from "../utils/konstanter";
-import { predefinerteFeilmeldinger } from "../utils/logger";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import {
   erSuksess,
@@ -10,9 +9,11 @@ import { Kurs, KursDto, mapTilKurs } from "../utils/kurs-api";
 
 export function useKursoversikt(): RestRessurs<Kurs[]> {
   const apiPath = `${API_BASE_PATH}/kursoversikt`;
-  const errorMessage = predefinerteFeilmeldinger.feilVedHentingAvKursoversikt;
 
-  const result = useRestRessursSWR<KursDto[]>(apiPath, errorMessage);
+  const result = useRestRessursSWR<KursDto[]>(
+    apiPath,
+    "Det oppstod en feil ved kall til '/kursoversikt'"
+  );
 
   if (erSuksess(result)) {
     return {

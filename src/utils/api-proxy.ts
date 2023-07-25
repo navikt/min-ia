@@ -1,4 +1,4 @@
-import { logger } from "./logger";
+import { backendLogger } from "./backendLogger";
 import {
   exchangeIdportenSubjectToken,
   isInvalidToken,
@@ -15,14 +15,14 @@ export default async function proxyRequestWithTokenExchange(
   useHttps: boolean
 ) {
   if (audience === undefined) {
-    logger.error("audience is not set");
+    backendLogger.error("audience is not set");
     return res.status(500).json({ error: "authentication failed" });
   }
 
   const newAuthToken = await exchangeIdportenSubjectToken(req, audience);
 
   if (isInvalidToken(newAuthToken)) {
-    logger.error("token is invalid");
+    backendLogger.error("token is invalid");
     return res.status(401).json({ error: "authentication failed" });
   }
 
