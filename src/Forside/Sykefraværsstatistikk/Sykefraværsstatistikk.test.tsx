@@ -1,4 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import {
   AggregertStatistikkDto,
@@ -123,7 +127,8 @@ it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
       sykefraværsstatistikkUrl={"http://url"}
     />
   );
-  const infobolk = screen.getByText(/Be om tilgang/);
+
+  const infobolk = await screen.findByText(/Be om tilgang/);
   expect(infobolk.textContent).toBe("Be om tilgang");
   const infotekst = screen.getByText(/Klikk her for å be om tilgang/);
   expect(infotekst.textContent).toBe(
@@ -139,7 +144,8 @@ it("lenker riktig til sykefraværsstatistikken", async () => {
       sykefraværsstatistikkUrl={"http://url"}
     />
   );
-  const lenke = screen.getByRole("link", {
+
+  const lenke = await screen.findByRole("link", {
     name: /Be om tilgang Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk./,
   });
 
