@@ -2,13 +2,14 @@ import { ReactNode } from "react";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 import styles from "./sykefraværsstatistikk.module.scss";
-import { Detail, Heading, Label } from "@navikt/ds-react";
+import { Detail, Heading, Label, Loader } from "@navikt/ds-react";
 import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
 import { DataFilled } from "@navikt/ds-icons";
 import "./sykefraværsstatistikk.module.scss";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjonerMedStatistikktilgang";
 import { RestStatus } from "../../integrasjoner/rest-status";
+import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
@@ -32,40 +33,6 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
 
   const organisasjonerHvorBrukerHarStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikktilgang();
-
-  function organisasjonslistaInkludererValgtBedrift(orgnr: string) {
-    return (
-      organisasjonerHvorBrukerHarStatistikktilgang.status ===
-        RestStatus.Suksess &&
-      organisasjonerHvorBrukerHarStatistikktilgang.data
-        .map((org) => org.OrganizationNumber)
-        .includes(orgnr)
-    );
-  }
-
-  const brukerHarIaRettighetTilValgtBedrift = orgnr
-    ? organisasjonslistaInkludererValgtBedrift(orgnr)
-    : false;
-
-  const sykefraværstatistikk = () => {
-    if (brukerHarIaRettighetTilValgtBedrift) {
-      return (
-        <Lenkeflis
-          overskrift={"Sykefraværsstatistikken"}
-          href={sykefraværsstatistikkUrlMedBedrift}
-          ikon={<DataFilled aria-hidden />}
-        />
-      );
-    } else {
-      return (
-        <Lenkeflis
-          overskrift="Be om tilgang"
-          brødtekst="Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk."
-          href={sykefraværsstatistikkUrlMedBedrift}
-        />
-      );
-    }
-  };
 
   return (
     <div className={styles.sykefraværsstatistikk}>
@@ -103,11 +70,61 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
             />
           </div>
         </div>
-        {sykefraværstatistikk()}
+        <Sykefraværsstatistikkinnhold
+          harTilgangTilOrg={
+            (orgnr &&
+              organisasjonerHvorBrukerHarStatistikktilgang.status ===
+                RestStatus.Suksess &&
+              organisasjonerHvorBrukerHarStatistikktilgang.data
+                .map((org) => org.OrganizationNumber)
+                .includes(orgnr)) ||
+            false
+          }
+          sykefraværsstatistikkUrlMedBedrift={
+            sykefraværsstatistikkUrlMedBedrift
+          }
+          organisasjonerHvorBrukerHarStatistikktilgang={
+            organisasjonerHvorBrukerHarStatistikktilgang
+          }
+        />
       </div>
     </div>
   );
 };
+
+function Sykefraværsstatistikkinnhold({
+  harTilgangTilOrg,
+  sykefraværsstatistikkUrlMedBedrift,
+  organisasjonerHvorBrukerHarStatistikktilgang,
+}: {
+  harTilgangTilOrg: boolean;
+  sykefraværsstatistikkUrlMedBedrift: string;
+  organisasjonerHvorBrukerHarStatistikktilgang: RestAltinnOrganisasjoner;
+}) {
+  if (
+    organisasjonerHvorBrukerHarStatistikktilgang.status === RestStatus.LasterInn
+  ) {
+    return <Lenkeflis overskrift="Laster..." ikon={<Loader />} />;
+  }
+
+  if (harTilgangTilOrg) {
+    return (
+      <Lenkeflis
+        overskrift={"Sykefraværsstatistikken"}
+        href={sykefraværsstatistikkUrlMedBedrift}
+        ikon={<DataFilled aria-hidden />}
+      />
+    );
+  }
+
+  return (
+    <Lenkeflis
+      overskrift="Be om tilgang"
+      brødtekst="Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk."
+      href={sykefraværsstatistikkUrlMedBedrift}
+    />
+  );
+}
 
 function displaytekstSykefraværNorge(prosent: string | undefined) {
   return (
