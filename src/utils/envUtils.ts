@@ -6,6 +6,10 @@ export const isMockApp = () => {
   );
 };
 
+export const getGrafanaUrl = () => {
+  return process.env.GRAFANA_AGENT_COLLECTOR_URL ?? "";
+};
+
 export type Tjeneste =
   | "Sykefraværsstatistikk"
   | "Forebyggingsplan"

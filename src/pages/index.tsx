@@ -2,24 +2,35 @@ import { PageProps } from "../pageProps";
 import { Forside, ForsideProps } from "../Forside/Forside";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
-import { RestStatus } from "../integrasjoner/rest-status";
+import { RestRessurs, RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
 import React from "react";
-import { hentUrlFraMiljøvariabel, isMockApp } from "../utils/envUtils";
+import {
+  getGrafanaUrl,
+  hentUrlFraMiljøvariabel,
+  isMockApp,
+} from "../utils/envUtils";
 import { Alert } from "@navikt/ds-react";
+import { doInitializeFaro } from "../utils/initializeFaro";
+import Lasteside from "../Lasteside";
+import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 
 interface HomeProps {
   page: PageProps;
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
   kjørerMockApp: boolean;
+  grafanaAgentUrl: string;
 }
 
 const Home = (props: HomeProps) => {
+  React.useEffect(() => {
+    if (!props.kjørerMockApp) {
+      doInitializeFaro(props.grafanaAgentUrl);
+    }
+  });
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
-  const trengerInnlogging =
-    organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget;
 
   const harIngenOrganisasjoner =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess &&
@@ -29,19 +40,6 @@ const Home = (props: HomeProps) => {
     window?.location.replace(props.minSideArbeidsgiverUrl);
     return null;
   }
-
-  const forsideEllerInnloggingsside = trengerInnlogging ? (
-    <Innloggingsside redirectUrl={window.location.href} />
-  ) : (
-    <Forside {...props.forsideProps}>
-      {organisasjonerBrukerHarTilgangTil.status === RestStatus.Feil && (
-        <Alert variant="error">
-          Det har skjedd en feil ved innlasting av dine virksomheter. Vennligst
-          prøv igjen.
-        </Alert>
-      )}
-    </Forside>
-  );
 
   return (
     <>
@@ -59,11 +57,41 @@ const Home = (props: HomeProps) => {
             : []
         }
       >
-        {forsideEllerInnloggingsside}
+        <Sideinnhold
+          forsideProps={props.forsideProps}
+          organisasjonerBrukerHarTilgangTil={organisasjonerBrukerHarTilgangTil}
+        />
       </Layout>
     </>
   );
 };
+
+function Sideinnhold({
+  forsideProps,
+  organisasjonerBrukerHarTilgangTil,
+}: {
+  forsideProps: ForsideProps;
+  organisasjonerBrukerHarTilgangTil: RestRessurs<AltinnOrganisasjon[]>;
+}) {
+  if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
+    return <Lasteside />;
+  }
+
+  if (organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget) {
+    return <Innloggingsside redirectUrl={window.location.href} />;
+  }
+
+  return (
+    <Forside {...forsideProps}>
+      {organisasjonerBrukerHarTilgangTil.status === RestStatus.Feil && (
+        <Alert variant="error">
+          Det har skjedd en feil ved innlasting av dine virksomheter. Vennligst
+          prøv igjen.
+        </Alert>
+      )}
+    </Forside>
+  );
+}
 
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps = async () => {
@@ -91,6 +119,7 @@ export const getServerSideProps = async () => {
     forsideProps,
     minSideArbeidsgiverUrl,
     kjørerMockApp,
+    grafanaAgentUrl: getGrafanaUrl(),
   };
 
   return { props };

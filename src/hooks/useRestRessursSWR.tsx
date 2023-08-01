@@ -1,4 +1,3 @@
-import { logger } from "../utils/logger";
 import {
   mapStatusskodeTilRestStatus,
   RestRessurs,
@@ -15,7 +14,7 @@ export function useRestRessursSWR<T>(
   });
 
   if (error) {
-    logger.error(errorMessage);
+    console.error(errorMessage);
     return { status: RestStatus.Feil };
   }
   if (isLoading) return { status: RestStatus.LasterInn };

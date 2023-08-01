@@ -5,13 +5,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (!req.body?.orgnr)
-    return res.status(400).json({ error: "Mangler 'orgnr' i body" });
-  if (!req.body?.type)
-    return res.status(400).json({ error: "Mangler 'type' i body" });
-  if (!req.body?.kilde)
-    return res.status(400).json({ error: "Mangler 'kilde' i body" });
-
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 
@@ -27,7 +20,7 @@ export default async function handler(
 
 export const config = {
   api: {
-    bodyParser: true,
+    bodyParser: false,
     externalResolver: true,
   },
 };
