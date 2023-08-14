@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { sendLevertInnloggetIaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
-import VideoOgKurs from "./video-og-kurs";
-import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
-import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator";
-import Home from ".";
+import { sendLevertInnloggetIaTjeneste } from "./integrasjoner/ia-tjenestemetrikker-api";
+import VideoOgKurs from "./pages/video-og-kurs";
+import { QbrickVideoPlayer } from "./EmbeddedVideoPlayer/QbrickVideoPlayer";
+import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
+import Home from "./pages";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -23,16 +23,16 @@ jest.mock("next/router", () => ({
     };
   },
 }));
-jest.mock("../integrasjoner/ia-tjenestemetrikker-api", () => ({
+jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
-  ...jest.requireActual("../integrasjoner/ia-tjenestemetrikker-api"),
+  ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
   sendLevertInnloggetIaTjeneste: jest.fn(),
 }));
-jest.mock("../hooks/useOrgnr", () => ({
+jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
-jest.mock("../amplitude/logEvent");
-jest.mock("../EmbeddedVideoPlayer/QbrickVideoPlayer");
+jest.mock("./amplitude/logEvent");
+jest.mock("./EmbeddedVideoPlayer/QbrickVideoPlayer");
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {
