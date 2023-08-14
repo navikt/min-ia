@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { sendLevertInnloggetIaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
-import VideoOgKurs from "../pages/video-og-kurs";
+import VideoOgKurs from "./video-og-kurs";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator";
 import Home from ".";
