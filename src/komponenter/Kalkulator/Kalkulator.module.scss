@@ -54,6 +54,7 @@
   .tittel_wrapper {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .dagsverk_eller_prosent_toggle {
@@ -61,14 +62,6 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: flex-start;
-
-    .toggleKnapp {
-      width: unset;
-
-      + .toggleKnapp {
-        margin-top: 0;
-      }
-    }
   }
   .les_mer {
     padding-top: 2rem;
