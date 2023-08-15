@@ -66,6 +66,7 @@ export default function Kalkulator(props: {
           <Innloggingsside redirectUrl={window.location.href} />
         ) : (
           <Fraværskalulator
+            kjørerMockApp={props.kjørerMockApp}
             {...hentUtKalkulatorData(statistikk)}
             nedlastingPågår={erIkkeFerdigLastet(aggregertStatistikkRespons)}
           />

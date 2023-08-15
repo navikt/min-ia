@@ -19,6 +19,7 @@ import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetri
 import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
 import { getGrafanaUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
+import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 
 interface ListeElement {
   key: Tags;
@@ -109,6 +110,9 @@ export default function VideoOgKurs(props: {
         <Innloggingsside redirectUrl={window.location.href} />
       ) : (
         <div className={styles.nettkurs}>
+          {props.kjørerMockApp && (
+            <TestVersjonBanner sidenavn="Video og kurs" />
+          )}
           <Heading
             level={"2"}
             size={"medium"}
