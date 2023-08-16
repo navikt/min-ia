@@ -10,6 +10,20 @@ export const getGrafanaUrl = () => {
   return process.env.GRAFANA_AGENT_COLLECTOR_URL ?? "";
 };
 
+export const getProdUrl = (path?: string) => {
+  const url = process.env.PROD_URL;
+
+  if (!url || !url.length) {
+    return "";
+  }
+
+  if (path) {
+    return `${url}/${path}`;
+  }
+
+  return url;
+};
+
 export type Tjeneste =
   | "Sykefraværsstatistikk"
   | "Forebyggingsplan"

@@ -18,6 +18,7 @@ export const Fraværskalulator: FunctionComponent<
   KalkulatorData & {
     nedlastingPågår: boolean;
     kjørerMockApp: boolean;
+    prodUrl?: string;
   }
 > = (props) => {
   useSendIaTjenesteMetrikkOnEvent(
@@ -29,11 +30,11 @@ export const Fraværskalulator: FunctionComponent<
 
   return (
     <div className={styles.wrapper}>
-      {props.kjørerMockApp && (
-        <div className={styles.test_versjon_banner_wrapper}>
-          <TestVersjonBanner sidenavn="Fraværskalkulator" />
-        </div>
-      )}
+      <TestVersjonBanner
+        sidenavn="Fraværskalkulator"
+        prodUrl={props.prodUrl}
+        kjørerMockApp={props.kjørerMockApp}
+      />
       <div className={styles.kalkulator}>
         <div>
           <div className={styles.tittel_wrapper}>

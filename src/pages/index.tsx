@@ -8,6 +8,7 @@ import Head from "next/head";
 import React from "react";
 import {
   getGrafanaUrl,
+  getProdUrl,
   hentUrlFraMiljøvariabel,
   isMockApp,
 } from "../utils/envUtils";
@@ -15,7 +16,6 @@ import { Alert } from "@navikt/ds-react";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import Lasteside from "../Lasteside";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
-import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 
 interface HomeProps {
   page: PageProps;
@@ -60,7 +60,6 @@ const Home = (props: HomeProps) => {
       >
         <Sideinnhold
           forsideProps={props.forsideProps}
-          kjørerMockApp={props.kjørerMockApp}
           organisasjonerBrukerHarTilgangTil={organisasjonerBrukerHarTilgangTil}
         />
       </Layout>
@@ -71,11 +70,9 @@ const Home = (props: HomeProps) => {
 function Sideinnhold({
   forsideProps,
   organisasjonerBrukerHarTilgangTil,
-  kjørerMockApp,
 }: {
   forsideProps: ForsideProps;
   organisasjonerBrukerHarTilgangTil: RestRessurs<AltinnOrganisasjon[]>;
-  kjørerMockApp: boolean;
 }) {
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
     return <Lasteside />;
@@ -87,7 +84,6 @@ function Sideinnhold({
 
   return (
     <Forside {...forsideProps}>
-      {kjørerMockApp && <TestVersjonBanner sidenavn="Forebygge fravær" />}
       {organisasjonerBrukerHarTilgangTil.status === RestStatus.Feil && (
         <Alert variant="error">
           Det har skjedd en feil ved innlasting av dine virksomheter. Vennligst
@@ -116,6 +112,7 @@ export const getServerSideProps = async () => {
     forebyggingsplanUrl: hentUrlFraMiljøvariabel("Forebyggingsplan"),
     sykefraværsstatistikkUrl: hentUrlFraMiljøvariabel("Sykefraværsstatistikk"),
     kontaktOssUrl: hentUrlFraMiljøvariabel("Kontakt Oss"),
+    prodUrl: getProdUrl(),
     kjørerMockApp,
   };
 

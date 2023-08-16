@@ -14,6 +14,7 @@ import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværssta
 import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
+import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 
 export interface ForsideProps {
   samtalestøtteUrl: string;
@@ -22,6 +23,7 @@ export interface ForsideProps {
   kontaktOssUrl: string;
   kjørerMockApp: boolean;
   children?: React.ReactNode;
+  prodUrl?: string;
 }
 
 export const Forside = (props: ForsideProps) => {
@@ -54,13 +56,19 @@ export const Forside = (props: ForsideProps) => {
 
   return (
     <div className={styles.sentrertSide}>
+      <TestVersjonBanner
+        sidenavn="Forebygge fravær"
+        prodUrl={props.prodUrl}
+        kjørerMockApp={props.kjørerMockApp}
+      />
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
-        {fiaSamarbeidsstatus.status === RestStatus.Suksess
-            && fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID"
-            && <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />}
+        {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
+          fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
+            <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
+          )}
         <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
