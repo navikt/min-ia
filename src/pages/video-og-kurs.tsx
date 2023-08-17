@@ -112,7 +112,7 @@ export default function VideoOgKurs(props: {
       ) : (
         <div className={styles.nettkurs}>
           <TestVersjonBanner
-            sidenavn="Video og kurs"
+            sidenavn="siden for videoer og kurs"
             prodUrl={props.prodUrl}
             kjørerMockApp={props.kjørerMockApp}
           />

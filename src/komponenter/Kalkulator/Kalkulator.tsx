@@ -31,7 +31,7 @@ export const Fraværskalulator: FunctionComponent<
   return (
     <div className={styles.wrapper}>
       <TestVersjonBanner
-        sidenavn="Fraværskalkulator"
+        sidenavn="fraværskalkulatoren"
         prodUrl={props.prodUrl}
         kjørerMockApp={props.kjørerMockApp}
       />

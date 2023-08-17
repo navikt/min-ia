@@ -57,7 +57,7 @@ export const Forside = (props: ForsideProps) => {
   return (
     <div className={styles.sentrertSide}>
       <TestVersjonBanner
-        sidenavn="Forebygge fravær"
+        sidenavn="siden for å forebygge fravær"
         prodUrl={props.prodUrl}
         kjørerMockApp={props.kjørerMockApp}
       />

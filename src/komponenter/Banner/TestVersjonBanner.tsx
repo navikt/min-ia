@@ -17,7 +17,7 @@ const TestVersjonBanner = ({
         Dette er en testversjon
       </Heading>
       <BodyShort>
-        Her kan du bli bedre kjent med siden {sidenavn}.
+        Her kan du bli bedre kjent med {sidenavn}.
         {prodUrl?.length ? (
           <>
             <br />
