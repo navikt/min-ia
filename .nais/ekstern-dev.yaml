@@ -33,6 +33,8 @@ spec:
       value: https://arbeidsgiver.nav.no/kontakt-oss
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: arbeidsgiver.ekstern.dev.nav.no
+    - name: PROD_URL
+      value: https://arbeidsgiver.nav.no/forebygge-fravar
   tokenx:
     enabled: true
   idporten:

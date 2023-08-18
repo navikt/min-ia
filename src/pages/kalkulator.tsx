@@ -14,13 +14,14 @@ import { Layout } from "../komponenter/Layout/Layout";
 import React, { useEffect } from "react";
 import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Head from "next/head";
-import { getGrafanaUrl, isMockApp } from "../utils/envUtils";
+import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 
 export default function Kalkulator(props: {
   page: PageProps;
   kjørerMockApp: boolean;
   grafanaAgentUrl: string;
+  prodUrl?: string;
 }) {
   React.useEffect(() => {
     if (!props.kjørerMockApp) {
@@ -66,6 +67,8 @@ export default function Kalkulator(props: {
           <Innloggingsside redirectUrl={window.location.href} />
         ) : (
           <Fraværskalulator
+            kjørerMockApp={props.kjørerMockApp}
+            prodUrl={props.prodUrl}
             {...hentUtKalkulatorData(statistikk)}
             nedlastingPågår={erIkkeFerdigLastet(aggregertStatistikkRespons)}
           />
@@ -88,6 +91,7 @@ export async function getServerSideProps() {
       page,
       kjørerMockApp: isMockApp(),
       grafanaAgentUrl: getGrafanaUrl(),
+      prodUrl: getProdUrl("kalkulator"),
     },
   };
 }

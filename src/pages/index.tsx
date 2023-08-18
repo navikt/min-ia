@@ -8,6 +8,7 @@ import Head from "next/head";
 import React from "react";
 import {
   getGrafanaUrl,
+  getProdUrl,
   hentUrlFraMiljøvariabel,
   isMockApp,
 } from "../utils/envUtils";
@@ -111,6 +112,7 @@ export const getServerSideProps = async () => {
     forebyggingsplanUrl: hentUrlFraMiljøvariabel("Forebyggingsplan"),
     sykefraværsstatistikkUrl: hentUrlFraMiljøvariabel("Sykefraværsstatistikk"),
     kontaktOssUrl: hentUrlFraMiljøvariabel("Kontakt Oss"),
+    prodUrl: getProdUrl(),
     kjørerMockApp,
   };
 

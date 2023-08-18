@@ -3,11 +3,10 @@ import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { sendToggleEvent } from "../../amplitude/events";
-import {Heading, Ingress, Link, ToggleGroup} from "@navikt/ds-react";
-import {
-  IaTjeneste,
-} from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
+import { IaTjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
 import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
+import TestVersjonBanner from "../Banner/TestVersjonBanner";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;
@@ -18,6 +17,8 @@ export interface KalkulatorData {
 export const Fraværskalulator: FunctionComponent<
   KalkulatorData & {
     nedlastingPågår: boolean;
+    kjørerMockApp: boolean;
+    prodUrl?: string;
   }
 > = (props) => {
   useSendIaTjenesteMetrikkOnEvent(
@@ -29,6 +30,11 @@ export const Fraværskalulator: FunctionComponent<
 
   return (
     <div className={styles.wrapper}>
+      <TestVersjonBanner
+        sidenavn="fraværskalkulatoren"
+        prodUrl={props.prodUrl}
+        kjørerMockApp={props.kjørerMockApp}
+      />
       <div className={styles.kalkulator}>
         <div>
           <div className={styles.tittel_wrapper}>
@@ -38,8 +44,8 @@ export const Fraværskalulator: FunctionComponent<
               </Heading>
               <Ingress className={styles.ingress}>
                 Her kan du beregne hvor mye sykefraværet koster og hvor mye du
-                kan spare. Beløpet viser produksjonstap og økte kostnader.
-                Lønn og sykepengerefusjoner er ikke en del av beløpet.
+                kan spare. Beløpet viser produksjonstap og økte kostnader. Lønn
+                og sykepengerefusjoner er ikke en del av beløpet.
               </Ingress>
             </div>
             <div className={styles.dagsverk_eller_prosent_toggle}>
@@ -74,9 +80,12 @@ export const Fraværskalulator: FunctionComponent<
               nedlastingPågår={props.nedlastingPågår}
             />
           )}
-            <Link className={styles.les_mer} href="https://www.sintef.no/prosjekter/bedriftenes-kostnader-ved-sykefravar/">
-              Les mer om hva som påvirker kostnader ved sykefravær (sintef.no)
-            </Link>
+          <Link
+            className={styles.les_mer}
+            href="https://www.sintef.no/prosjekter/bedriftenes-kostnader-ved-sykefravar/"
+          >
+            Les mer om hva som påvirker kostnader ved sykefravær (sintef.no)
+          </Link>
         </div>
       </div>
     </div>
