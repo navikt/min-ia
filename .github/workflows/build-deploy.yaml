@@ -44,7 +44,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/kalkulator-toggle'
+    if: github.ref == 'refs/heads/chainguard-to-latest'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 5
