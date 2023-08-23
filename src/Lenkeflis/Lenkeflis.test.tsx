@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { Lenkeflis } from "./Lenkeflis";
 import logEvent from "../amplitude/logEvent";
 import { axe } from "jest-axe";
-import { sendLevertInnloggetIaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
+import { sendIaTjenesteMetrikk } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("../amplitude/logEvent");
 jest.mock("../hooks/useOrgnr", () => ({
@@ -59,11 +59,11 @@ it("Kaller sendLevertInnloggetIaTjeneste ved klikk på en lenkeflis", async () =
     name: "Link Klikk her",
   });
 
-  expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
   await user.click(statistikklenke);
 
-  expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
 });
 
 test("uu-feil fra axe", async () => {

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import VideoOgKurs from "../pages/video-og-kurs";
 import logEvent from "../amplitude/logEvent";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
-import { sendLevertInnloggetIaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
+import { sendIaTjenesteMetrikk } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("../../src/amplitude/logEvent");
 jest.mock("../../src/EmbeddedVideoPlayer/QbrickVideoPlayer");
@@ -59,19 +59,19 @@ describe("VideoOgKurs", () => {
     (QbrickVideoPlayer as jest.Mock).mockImplementation(MockQbrickVideoPlayer);
     renderNettkurs();
 
-    expect(sendLevertInnloggetIaTjeneste).not.toHaveBeenCalled();
+    expect(sendIaTjenesteMetrikk).not.toHaveBeenCalled();
 
     const playknapper = screen.getAllByText("mock qbrick play button");
     await user.click(playknapper[0]);
 
     await waitFor(() => {
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
 
     // sjekk at det ikke sendes flere metrikker ved klikk forskjellige videoer
     await user.click(playknapper[1]);
     await waitFor(() => {
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { sendLevertInnloggetIaTjeneste } from "./integrasjoner/ia-tjenestemetrikker-api";
+import { sendIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
 import VideoOgKurs from "./pages/video-og-kurs";
 import { QbrickVideoPlayer } from "./EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
@@ -53,11 +53,11 @@ describe("Metrikktester av hele siden", () => {
 
       const dagsverkLenke = screen.getByText("Dagsverk");
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
       await user.click(dagsverkLenke);
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
   });
   describe("Video og kurs", () => {
@@ -79,19 +79,19 @@ describe("Metrikktester av hele siden", () => {
       );
       renderNettkurs();
 
-      expect(sendLevertInnloggetIaTjeneste).not.toHaveBeenCalled();
+      expect(sendIaTjenesteMetrikk).not.toHaveBeenCalled();
 
       const playknapper = screen.getAllByText("mock qbrick play button");
       await user.click(playknapper[0]);
 
       await waitFor(() => {
-        expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
       });
 
       // sjekk at det ikke sendes flere metrikker ved klikk forskjellige videoer
       await user.click(playknapper[1]);
       await waitFor(() => {
-        expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -135,11 +135,11 @@ describe("Metrikktester av hele siden", () => {
         name: "Verktøy for forebygging av sykefravær",
       });
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
       await user.click(statistikklenke);
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
 
     function renderPage() {

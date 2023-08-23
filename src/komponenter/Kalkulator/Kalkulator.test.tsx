@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./Kalkulator";
 import { axe } from "jest-axe";
-import { sendLevertInnloggetIaTjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { sendIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
 jest.mock("next/router", () => ({
   useRouter() {
     return {
@@ -40,11 +40,11 @@ it("Kaller sendLevertInnloggetIaTjeneste ved endring av modus", async () => {
 
   const dagsverkLenke = screen.getByText("Dagsverk");
 
-  expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
   await user.click(dagsverkLenke);
 
-  expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
 });
 
 it("Ingen uu-feil fra axe", async () => {

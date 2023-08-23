@@ -16,10 +16,10 @@ import Kurskalender from ".././VideoOgKurs/Kurskalender/Kurskalender";
 import { Layout } from "../komponenter/Layout/Layout";
 import { sendNettkursFilterValgtEvent } from "../amplitude/events";
 import { useSendIaTjenesteMetrikkOnEvent } from "../hooks/useSendIaTjenesteMetrikkOnEvent";
-import { IaTjeneste } from "../integrasjoner/ia-tjenestemetrikker-api";
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
+import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 
 interface ListeElement {
   key: Tags;
@@ -41,7 +41,7 @@ export default function VideoOgKurs(props: {
   });
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
   const aggregertStatistikk = useAggregertStatistikk();
-  useSendIaTjenesteMetrikkOnEvent(IaTjeneste.NETTKURS, "videoAvspilles");
+  useSendIaTjenesteMetrikkOnEvent(MetrikkKilde.NETTKURS, "videoAvspilles");
 
   const [filter, setFilter] = useState<Filter>(Tags.ALLE);
 
