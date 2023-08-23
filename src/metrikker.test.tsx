@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { sendIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
 import VideoOgKurs from "./pages/video-og-kurs";
 import { QbrickVideoPlayer } from "./EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
+import { sendIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -24,9 +24,7 @@ jest.mock("next/router", () => ({
   },
 }));
 jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
-  __esModule: true,
-  ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
-  sendLevertInnloggetIaTjeneste: jest.fn(),
+  sendIaTjenesteMetrikk: jest.fn().mockReturnValue(() => Promise.resolve()),
 }));
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -38,10 +36,18 @@ const user = userEvent.setup();
 describe("Metrikktester av hele siden", () => {
   afterEach(() => {
     jest.resetAllMocks();
-    jest.fn().mockClear();
+  });
+  beforeAll(() => {
+    jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
+      __esModule: true,
+      ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
+      sendIaTjenesteMetrikk: jest
+        .fn()
+        .mockImplementation(() => Promise.resolve()),
+    }));
   });
   describe("Kalkulator", () => {
-    it("Kaller sendLevertInnloggetIaTjeneste ved endring av modus", async () => {
+    it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
       render(
         <Fraværskalulator
           fraværsprosentVirksomhet="14,0"
@@ -128,9 +134,8 @@ describe("Metrikktester av hele siden", () => {
   });
 
   describe("Forside", () => {
-    it("Kaller sendLevertInnloggetIaTjeneste ved klikk på en lenkeflis", async () => {
+    it("Kaller sendIaTjenesteMetrikk ved klikk på en lenkeflis", async () => {
       renderPage();
-
       const statistikklenke = screen.getByRole("link", {
         name: "Verktøy for forebygging av sykefravær",
       });
