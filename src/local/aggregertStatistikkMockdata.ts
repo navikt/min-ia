@@ -130,7 +130,7 @@ export const mockdataOrgnr81096939 = {
     {
       statistikkategori: "NÆRING",
       label: "Barnehagenæringen",
-      verdi: "-1.0",
+      verdi: "1.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
@@ -160,7 +160,7 @@ export const mockdataOrgnr81096939 = {
     {
       statistikkategori: "NÆRING",
       label: "Barnehagenæringen",
-      verdi: "-1.0",
+      verdi: "1.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
