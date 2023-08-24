@@ -14,12 +14,7 @@ export interface LenkeflisProps {
     brødtekst?: string;
 }
 
-export const Lenkeflis = ({
-    overskrift,
-    ikon,
-    href,
-    brødtekst,
-}: LenkeflisProps) => {
+export const Lenkeflis = ({overskrift, ikon, href, brødtekst}: LenkeflisProps) => {
     const orgnr = useOrgnr();
     const destinasjon = href ?? "#";
 
@@ -34,10 +29,7 @@ export const Lenkeflis = ({
                 e.preventDefault();
             }}
             onClick={() => {
-                navigerEtterCallbacks(destinasjon, [
-                    metrikkutsendelse,
-                    eventutsendelse,
-                ]);
+                navigerEtterCallbacks(destinasjon, [metrikkutsendelse, eventutsendelse])
             }}
         >
             <LinkPanel.Title>
@@ -46,7 +38,11 @@ export const Lenkeflis = ({
                     {overskrift}
                 </div>
             </LinkPanel.Title>
-            {brødtekst && <LinkPanel.Description>{brødtekst}</LinkPanel.Description>}
+            {brødtekst &&
+                <LinkPanel.Description>
+                    {brødtekst}
+                </LinkPanel.Description>
+            }
         </LinkPanel>
     );
 };
