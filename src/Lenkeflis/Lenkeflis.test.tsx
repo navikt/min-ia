@@ -12,7 +12,7 @@ jest.mock("../hooks/useOrgnr", () => ({
 jest.mock("../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("../integrasjoner/ia-tjenestemetrikker-api"),
-  sendLevertInnloggetIaTjeneste: jest.fn(),
+  sendIaTjenesteMetrikk: jest.fn(),
 }));
 
 beforeEach(() => {

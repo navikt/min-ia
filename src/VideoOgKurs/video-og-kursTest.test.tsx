@@ -9,7 +9,7 @@ jest.mock("../../src/amplitude/logEvent");
 jest.mock("../../src/EmbeddedVideoPlayer/QbrickVideoPlayer");
 jest.mock("../../src/integrasjoner/ia-tjenestemetrikker-api", () => ({
   ...jest.requireActual("../../src/integrasjoner/ia-tjenestemetrikker-api"),
-  sendLevertInnloggetIaTjeneste: jest.fn(() => Promise.resolve(true)),
+  sendIaTjenesteMetrikk: jest.fn(() => Promise.resolve(true)),
 }));
 jest.mock("../../src/hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",

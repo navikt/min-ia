@@ -23,7 +23,7 @@ jest.mock("next/router", () => ({
 jest.mock("../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("../../integrasjoner/ia-tjenestemetrikker-api"),
-  sendLevertInnloggetIaTjeneste: jest.fn(),
+  sendIaTjenesteMetrikk: jest.fn(),
 }));
 jest.mock("../../hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -34,7 +34,7 @@ afterEach(() => {
   jest.fn().mockClear();
 });
 
-it("Kaller sendLevertInnloggetIaTjeneste ved endring av modus", async () => {
+it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
   render(<Fraværskalulator {...dummyData} nedlastingPågår={false} />);
   const user = userEvent.setup();
 
