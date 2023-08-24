@@ -24,9 +24,7 @@ export const Lenkeflis = ({
   const destinasjon = href ?? "#";
 
   const metrikkutsendelse = () =>
-    sendIaTjenesteMetrikk(MetrikkKilde.FOREBYGGE_FRAVÆR, orgnr).then(
-      () => true
-    );
+    sendIaTjenesteMetrikk(MetrikkKilde.FOREBYGGE_FRAVÆR, orgnr);
   const eventutsendelse = () =>
     sendNavigereEvent(destinasjon, overskrift) as Promise<boolean>;
 

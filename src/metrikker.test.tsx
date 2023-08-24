@@ -136,8 +136,14 @@ describe("Metrikktester av hele siden", () => {
   describe("Forside", () => {
     it("Kaller sendIaTjenesteMetrikk ved klikk på en lenkeflis", async () => {
       renderPage();
-      const statistikklenke = screen.getByRole("link", {
-        name: "Verktøy for forebygging av sykefravær",
+      const statistikklenke = await waitFor(() => {
+        const lenke = screen.getByRole("link", {
+          name: "Verktøy for forebygging av sykefravær",
+        });
+
+        expect(lenke).toBeInTheDocument();
+
+        return lenke;
       });
 
       expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
