@@ -3,7 +3,7 @@
 // NB: For at dette skal fungere så kreves det en onClickCapture med preventDefault() på lenka
 export const navigerEtterCallbacks = async (
   destinasjon: string,
-  callbacks: (() => Promise<boolean>)[],
+  callbacks: (() => Promise<unknown>)[],
   maksVentetid = 4000
 ) => {
   setTimeout(() => {
