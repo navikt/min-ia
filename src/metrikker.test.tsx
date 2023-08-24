@@ -24,12 +24,13 @@ jest.mock("next/router", () => ({
   },
 }));
 jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
-  sendIaTjenesteMetrikk: jest.fn().mockReturnValue(() => Promise.resolve()),
+  __esModule: true,
+  ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
+  sendIaTjenesteMetrikk: jest.fn(),
 }));
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
-jest.mock("./amplitude/logEvent");
 jest.mock("./EmbeddedVideoPlayer/QbrickVideoPlayer");
 const user = userEvent.setup();
 
@@ -37,15 +38,7 @@ describe("Metrikktester av hele siden", () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
-  beforeAll(() => {
-    jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
-      __esModule: true,
-      ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
-      sendIaTjenesteMetrikk: jest
-        .fn()
-        .mockImplementation(() => Promise.resolve()),
-    }));
-  });
+
   describe("Kalkulator", () => {
     it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
       render(
@@ -66,6 +59,7 @@ describe("Metrikktester av hele siden", () => {
       expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
   });
+
   describe("Video og kurs", () => {
     afterEach(() => {
       document.addEventListener(
