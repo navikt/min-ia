@@ -23,32 +23,30 @@ export const Lenkeflis = ({
     const orgnr = useOrgnr();
     const destinasjon = href ?? "#";
 
-    const metrikkutsendelse = () =>
-      sendIaTjenesteMetrikk(MetrikkKilde.FOREBYGGE_FRAVÆR, orgnr);
-    const eventutsendelse = () =>
-      sendNavigereEvent(destinasjon, overskrift) as Promise<boolean>;
+    const metrikkutsendelse = () => sendIaTjenesteMetrikk(MetrikkKilde.FOREBYGGE_FRAVÆR, orgnr);
+    const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
 
     return (
-      <LinkPanel
-          href={destinasjon}
-          className={styles.lenkeflis}
-          onClickCapture={(e) => {
-              e.preventDefault();
-          }}
-          onClick={() => {
-              navigerEtterCallbacks(destinasjon, [
-                  metrikkutsendelse,
-                  eventutsendelse,
-              ]);
-          }}
-      >
-          <LinkPanel.Title>
-              <div className={styles.ikonOgTekstWrapper}>
-                  {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
-                  {overskrift}
-              </div>
-          </LinkPanel.Title>
-          {brødtekst && <LinkPanel.Description>{brødtekst}</LinkPanel.Description>}
-      </LinkPanel>
+        <LinkPanel
+            href={destinasjon}
+            className={styles.lenkeflis}
+            onClickCapture={(e) => {
+                e.preventDefault();
+            }}
+            onClick={() => {
+                navigerEtterCallbacks(destinasjon, [
+                    metrikkutsendelse,
+                    eventutsendelse,
+                ]);
+            }}
+        >
+            <LinkPanel.Title>
+                <div className={styles.ikonOgTekstWrapper}>
+                    {ikon && <div className={styles.ikonWrapper}>{ikon}</div>}
+                    {overskrift}
+                </div>
+            </LinkPanel.Title>
+            {brødtekst && <LinkPanel.Description>{brødtekst}</LinkPanel.Description>}
+        </LinkPanel>
     );
 };
