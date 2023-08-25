@@ -19,6 +19,6 @@ export function useFiaSamarbeidsstatus(): RestRessurs<FiaSamarbeidsstatusDto> {
 
   return useRestRessursSWR<FiaSamarbeidsstatusDto>(
     apiPath,
-    "Det oppstod en feil ved kall til 'api/{orgnr}/v1/sykefravarshistorikk/aggregert'"
+    `Det oppstod en feil ved kall til ${apiPath}`
   );
 }

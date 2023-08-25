@@ -15,7 +15,7 @@ export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
   fraværsprosentBransjeEllerNæring?: string;
   stigningstallTrendBransjeEllerNæring: number;
-  bransjeEllerNæring: "bransje" | "næring";
+  bransjeEllerNæring: "bransje";
   bransjeEllerNæringLabel?: string;
 }
 
