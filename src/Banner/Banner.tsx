@@ -22,7 +22,7 @@ const Banner: React.FunctionComponent<Props> = ({
   altinnOrganisasjoner,
   tittelMedUnderTittel,
 }) => {
-  const { query, push } = useRouter();
+  const { query, replace } = useRouter();
   const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
 
@@ -36,14 +36,14 @@ const Banner: React.FunctionComponent<Props> = ({
         (orgnr: string) => {
           if (currentOrgnr !== orgnr) {
             if (orgnr === null) {
-              push("");
+              replace("");
             } else {
-              push(`?bedrift=${orgnr}`);
+              replace(`?bedrift=${orgnr}`);
             }
           }
         },
       ];
-    }, [push, query.bedrift]);
+    }, [replace, query.bedrift]);
 
   const onOrganisasjonChange = () => {
     if (bedriftValgtManueltFraLista) {
