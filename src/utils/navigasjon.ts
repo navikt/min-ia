@@ -3,7 +3,7 @@
 // NB: For at dette skal fungere så kreves det en onClickCapture med preventDefault() på lenka
 export const navigerEtterCallbacks = async (
   destinasjon: string,
-  callbacks: (() => Promise<boolean>)[],
+  callbacks: (() => Promise<unknown>)[],
   maksVentetid = 4000
 ) => {
   setTimeout(() => {
@@ -12,12 +12,11 @@ export const navigerEtterCallbacks = async (
 
   const results = callbacks.map((fun) => fun());
 
-  await Promise.allSettled(results).then(
-    () => {
-      window.location.href = destinasjon}
-  );
+  await Promise.allSettled(results).then(() => {
+    window.location.href = destinasjon;
+  });
 };
 
-export function leggTilBedriftPåUrl(url: string, orgnr: string | null) {
+export function leggTilBedriftPåUrl(url: string, orgnr?: string) {
   return orgnr ? `${url}?bedrift=${orgnr}` : url;
 }

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./Kalkulator";
 import { axe } from "jest-axe";
-import { sendLevertInnloggetIaTjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { sendIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
 jest.mock("next/router", () => ({
   useRouter() {
     return {
@@ -23,7 +23,7 @@ jest.mock("next/router", () => ({
 jest.mock("../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("../../integrasjoner/ia-tjenestemetrikker-api"),
-  sendLevertInnloggetIaTjeneste: jest.fn(),
+  sendIaTjenesteMetrikk: jest.fn(),
 }));
 jest.mock("../../hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -34,17 +34,17 @@ afterEach(() => {
   jest.fn().mockClear();
 });
 
-it("Kaller sendLevertInnloggetIaTjeneste ved endring av modus", async () => {
+it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
   render(<Fraværskalulator {...dummyData} nedlastingPågår={false} />);
   const user = userEvent.setup();
 
   const dagsverkLenke = screen.getByText("Dagsverk");
 
-  expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
   await user.click(dagsverkLenke);
 
-  expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
 });
 
 it("Ingen uu-feil fra axe", async () => {

@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { sendLevertInnloggetIaTjeneste } from "./integrasjoner/ia-tjenestemetrikker-api";
 import VideoOgKurs from "./pages/video-og-kurs";
 import { QbrickVideoPlayer } from "./EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
+import { sendIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -26,22 +26,21 @@ jest.mock("next/router", () => ({
 jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
-  sendLevertInnloggetIaTjeneste: jest.fn(),
+  sendIaTjenesteMetrikk: jest.fn(),
 }));
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
-jest.mock("./amplitude/logEvent");
 jest.mock("./EmbeddedVideoPlayer/QbrickVideoPlayer");
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {
   afterEach(() => {
     jest.resetAllMocks();
-    jest.fn().mockClear();
   });
+
   describe("Kalkulator", () => {
-    it("Kaller sendLevertInnloggetIaTjeneste ved endring av modus", async () => {
+    it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
       render(
         <Fraværskalulator
           fraværsprosentVirksomhet="14,0"
@@ -53,13 +52,14 @@ describe("Metrikktester av hele siden", () => {
 
       const dagsverkLenke = screen.getByText("Dagsverk");
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
       await user.click(dagsverkLenke);
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
   });
+
   describe("Video og kurs", () => {
     afterEach(() => {
       document.addEventListener(
@@ -79,19 +79,19 @@ describe("Metrikktester av hele siden", () => {
       );
       renderNettkurs();
 
-      expect(sendLevertInnloggetIaTjeneste).not.toHaveBeenCalled();
+      expect(sendIaTjenesteMetrikk).not.toHaveBeenCalled();
 
       const playknapper = screen.getAllByText("mock qbrick play button");
       await user.click(playknapper[0]);
 
       await waitFor(() => {
-        expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
       });
 
       // sjekk at det ikke sendes flere metrikker ved klikk forskjellige videoer
       await user.click(playknapper[1]);
       await waitFor(() => {
-        expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -128,18 +128,23 @@ describe("Metrikktester av hele siden", () => {
   });
 
   describe("Forside", () => {
-    it("Kaller sendLevertInnloggetIaTjeneste ved klikk på en lenkeflis", async () => {
+    it("Kaller sendIaTjenesteMetrikk ved klikk på en lenkeflis", async () => {
       renderPage();
+      const statistikklenke = await waitFor(() => {
+        const lenke = screen.getByRole("link", {
+          name: "Verktøy for forebygging av sykefravær",
+        });
 
-      const statistikklenke = screen.getByRole("link", {
-        name: "Verktøy for forebygging av sykefravær",
+        expect(lenke).toBeInTheDocument();
+
+        return lenke;
       });
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(0);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
       await user.click(statistikklenke);
 
-      expect(sendLevertInnloggetIaTjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
 
     function renderPage() {

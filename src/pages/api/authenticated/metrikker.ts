@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import proxyRequestWithTokenExchange from "../../../utils/api-proxy";
+import { iaMetrikkerApiPath } from "@navikt/ia-metrikker-client";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +13,7 @@ export default async function handler(
     req,
     res,
     `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
-    "/ia-tjenester-metrikker/innlogget/mottatt-iatjeneste",
+    iaMetrikkerApiPath,
     process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
     true
   );

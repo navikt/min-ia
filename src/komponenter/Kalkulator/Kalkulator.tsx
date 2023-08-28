@@ -4,9 +4,9 @@ import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { sendToggleEvent } from "../../amplitude/events";
 import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
-import { IaTjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
 import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
 import TestVersjonBanner from "../Banner/TestVersjonBanner";
+import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;
@@ -22,7 +22,7 @@ export const Fraværskalulator: FunctionComponent<
   }
 > = (props) => {
   useSendIaTjenesteMetrikkOnEvent(
-    IaTjeneste.KALKULATOR,
+    MetrikkKilde.KALKULATOR,
     "inputfeltEndretAvBruker"
   );
 
