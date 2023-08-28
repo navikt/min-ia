@@ -44,7 +44,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/test-versjon-banner'
+    if: github.ref == 'refs/heads/back-button-fix'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 5
