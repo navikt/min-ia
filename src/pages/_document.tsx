@@ -38,6 +38,7 @@ export default class MyDocument extends Document<Props> {
       env: decoratorEnv,
       params: {
         chatbot: false,
+        logoutWarning: true,
         urlLookupTable: false,
         redirectToApp: true,
         redirectToUrl: thisPageUrl,
