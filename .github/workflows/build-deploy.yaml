@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://npm.pkg.github.com
           cache: yarn
       - name: Install dependencies
@@ -44,7 +44,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/use-new-metrics-package'
+    if: github.ref == 'refs/heads/logout-warning'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 5

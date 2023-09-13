@@ -1,5 +1,5 @@
 import {
-  Components,
+  DecoratorComponents,
   fetchDecoratorReact,
 } from "@navikt/nav-dekoratoren-moduler/ssr";
 import Document, {
@@ -23,7 +23,7 @@ const getDocumentParameter = (
 };
 
 interface Props {
-  Decorator: Components;
+  Decorator: DecoratorComponents;
   language: string;
 }
 
@@ -36,17 +36,20 @@ export default class MyDocument extends Document<Props> {
     const initialProps = await Document.getInitialProps(ctx);
     const Decorator = await fetchDecoratorReact({
       env: decoratorEnv,
-      chatbot: false,
-      urlLookupTable: false,
-      redirectToApp: true,
-      redirectToUrl: thisPageUrl,
-      breadcrumbs: [
-        {
-          title: "Forebygge fravær",
-          url: thisPageUrl ?? "",
-        },
-      ],
-      context: "arbeidsgiver",
+      params: {
+        chatbot: false,
+        logoutWarning: true,
+        urlLookupTable: false,
+        redirectToApp: true,
+        redirectToUrl: thisPageUrl,
+        breadcrumbs: [
+          {
+            title: "Forebygge fravær",
+            url: thisPageUrl ?? "",
+          },
+        ],
+        context: "arbeidsgiver",
+      },
     });
 
     const language = getDocumentParameter(initialProps, "lang");
