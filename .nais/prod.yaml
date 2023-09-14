@@ -85,7 +85,7 @@ spec:
         - application: notifikasjon-bruker-api
           namespace: fager
         - application: nav-dekoratoren
-          namespace: arbeidsgiver
+          namespace: personbruker
         - application: fia-arbeidsgiver
           namespace: pia
       external:
