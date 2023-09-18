@@ -50,10 +50,6 @@ export default function Kalkulator(props: {
         url: "/forebygge-fravar",
       },
       {
-        title: "Sykefraværsstatistikk",
-        url: "/sykefravarsstatistikk",
-      },
-      {
         title: "Fraværskalkulator",
         url: "/forebygge-fravar/kalkulator",
       },
