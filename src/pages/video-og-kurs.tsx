@@ -166,6 +166,10 @@ export default function VideoOgKurs(props: {
   useEffect(() => {
     setBreadcrumbs([
       {
+        title: "Min side – arbeidsgiver",
+        url: "/min-side-arbeidsgiver",
+      },
+      {
         title: "Forebygge fravær",
         url: "/forebygge-fravar",
       },

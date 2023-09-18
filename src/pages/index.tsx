@@ -16,6 +16,7 @@ import { Alert } from "@navikt/ds-react";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import Lasteside from "../Lasteside";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
+import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 
 interface HomeProps {
   page: PageProps;
@@ -36,6 +37,19 @@ const Home = (props: HomeProps) => {
   const harIngenOrganisasjoner =
     organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess &&
     organisasjonerBrukerHarTilgangTil.data.length === 0;
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      {
+        title: "Min side – arbeidsgiver",
+        url: "/min-side-arbeidsgiver",
+      },
+      {
+        title: "Forebygge fravær",
+        url: "/forebygge-fravar",
+      },
+    ]);
+  }, []);
 
   if (harIngenOrganisasjoner) {
     window?.location.replace(props.minSideArbeidsgiverUrl);
