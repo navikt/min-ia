@@ -42,6 +42,10 @@ export default function Kalkulator(props: {
   useEffect(() => {
     setBreadcrumbs([
       {
+        title: "Min side – arbeidsgiver",
+        url: "/min-side-arbeidsgiver",
+      },
+      {
         title: "Forebygge fravær",
         url: "/forebygge-fravar",
       },
