@@ -30,7 +30,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
     return (
         <Accordion>
             <Accordion.Item>
-                <Accordion.Header className={classNames("navds-panel", "navds-link-panel", "navds-panel--border")}>
+                <Accordion.Header className={classNames("navds-panel", "navds-link-panel", "navds-panel--border", styles.inkluderendeArbeidslivAccordion)}>
                     <LinkPanel.Title>
                         Inkluderende arbeidsliv
                     </LinkPanel.Title>

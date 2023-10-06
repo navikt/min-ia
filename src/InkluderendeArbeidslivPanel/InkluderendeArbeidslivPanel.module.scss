@@ -25,6 +25,14 @@
     }
   }
 }
+
+.inkluderendeArbeidslivAccordion {
+  flex-direction: row-reverse;
+  --ac-accordion-header-bg-hover: white;
+  --__ac-accordion-header-shadow: none;
+  --__ac-accordion-header-shadow-color: transparent;
+}
+
 @media (min-width: screensize.$screen-md) {
   .inkluderendeArbeidslivPanel {
     width: 100%;
