@@ -44,7 +44,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/breadcrumb-fix'
+    if: github.ref == 'refs/heads/package-upgrade'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 5
