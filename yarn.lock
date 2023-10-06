@@ -1754,6 +1754,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/amplitude-js@^8.16.3":
+  version "8.16.3"
+  resolved "https://registry.yarnpkg.com/@types/amplitude-js/-/amplitude-js-8.16.3.tgz#5966cf41f2c7d74f076ba34e236a5002a1475b5b"
+  integrity sha512-rUVPlJUoDZopoxXcd3x9dsAkmK0SX3neXWjd7WONTkr+DTqKEwcV90S1NkIn2dWHW3KpLxBiVnoTN3MXI+tJNA==
+
 "@types/aria-query@^5.0.1":
   version "5.0.1"
   resolved "https://registry.npmjs.org/@types/aria-query/-/aria-query-5.0.1.tgz"
