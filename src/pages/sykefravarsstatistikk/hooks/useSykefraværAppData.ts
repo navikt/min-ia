@@ -154,6 +154,42 @@ export function useSykefraværAppData(): SykefraværAppData {
           0
         ),
       },
+      {
+        type: SykefraværshistorikkType.VIRKSOMHET,
+        label: "Dette er en virksomhet",
+        kvartalsvisSykefraværsprosent: genererHistorikk(
+          { årstall: 2015, kvartal: 2 },
+          20,
+          4,
+          2,
+          0.2,
+          1
+        ),
+      },
+      {
+        type: SykefraværshistorikkType.OVERORDNET_ENHET,
+        label: "Dette er en overordnet virksomhet",
+        kvartalsvisSykefraværsprosent: genererHistorikk(
+          { årstall: 2015, kvartal: 2 },
+          12,
+          3,
+          6,
+          0.4,
+          0
+        ),
+      },
+      {
+        type: SykefraværshistorikkType.BRANSJE,
+        label: "Dette er en bransje",
+        kvartalsvisSykefraværsprosent: genererHistorikk(
+          { årstall: 2015, kvartal: 2 },
+          21,
+          7,
+          1,
+          0.5,
+          0
+        ),
+      },
     ],
   };
   const aggregertStatistikk = {
