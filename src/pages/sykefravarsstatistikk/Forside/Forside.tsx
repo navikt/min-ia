@@ -1,6 +1,6 @@
 import { default as React, FunctionComponent, useRef } from "react";
 //import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
-//import "./Forside.css";
+import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
 import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
 import { SlikHarViKommetFramTilDittResultat } from "./SlikHarViKommetFramTilDittResultat/SlikHarViKommetFramTilDittResultat";
@@ -52,17 +52,17 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
 
   if (loading) {
     return (
-      <div className="forside__wrapper">
-        <div className="forside">
+      <div className={styles["forside__wrapper"]}>
+        <div className={styles["forside"]}>
           {/* TODO: Props inn i TestVersjonBanner må være rett */}
           <TestVersjonBanner
             sidenavn="fraværskalkulatoren"
             prodUrl={"props.prodUrl"}
             kjørerMockApp={true}
           />
-          <div className="forside__innhold">
-            <div className="forside__innhold__header">
-              <BodyShort className="forside__innhold__href">
+          <div className={styles["forside__innhold"]}>
+            <div className={styles["forside__innhold__header"]}>
+              <BodyShort className={styles["forside__innhold__href"]}>
                 {window.location.href}
               </BodyShort>
               <Heading spacing size="medium" level="2" as="span">
@@ -73,7 +73,7 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
               variant="rectangle"
               width={105}
               height={48}
-              className="forside__innhold__knapp"
+              className={styles["forside__innhold__knapp"]}
             />
             <BodyShort as="div">
               <strong>
@@ -131,26 +131,26 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
   /* const tabellProps = hentTabellProps(appData.sykefraværshistorikk); */
 
   return (
-    <div className="forside__wrapper">
-      <div className="forside">
+    <div className={styles["forside__wrapper"]}>
+      <div className={styles["forside"]}>
         {/* TODO: Props inn i TestVersjonBanner må være rett */}
         <TestVersjonBanner
           sidenavn="fraværskalkulatoren"
           prodUrl={"props.prodUrl"}
           kjørerMockApp={true}
         />
-        <div className="forside__innhold" ref={innholdRef}>
+        <div className={styles["forside__innhold"]} ref={innholdRef}>
           {harFeil && (
             <Alert
               variant={"error"}
-              className="forside__innhold__info-eller-feilmelding"
+              className={styles["forside__innhold__info-eller-feilmelding"]}
             >
               Kan ikke vise sykefraværsstatistikken akkurat nå. Vennligst prøv
               igjen senere.
             </Alert>
           )}
-          <div className="forside__innhold__header">
-            <BodyShort className="forside__innhold__href">
+          <div className={styles["forside__innhold__header"]}>
+            <BodyShort className={styles["forside__innhold__href"]}>
               {window.location.href}
             </BodyShort>
             <Heading spacing size="medium" level="2">
@@ -180,7 +180,7 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
             orgnr={orgnr}
           /> */}
           {/* {!!tabellProps && (
-            <div className="forside__innhold__kun-print">
+            <div className={styles["forside__innhold__kun-print"]}>
               <Tabell {...tabellProps} />
             </div>
           )} */}

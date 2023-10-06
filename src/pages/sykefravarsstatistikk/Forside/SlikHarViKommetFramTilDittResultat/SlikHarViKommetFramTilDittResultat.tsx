@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-//import "./SlikHarViKommetFramTilDittResultat.css";
+import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import EksternLenke from "../../felleskomponenter/EksternLenke/EksternLenke";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
 
@@ -8,13 +8,15 @@ export const SlikHarViKommetFramTilDittResultat: FunctionComponent = () => {
   return (
     <ReadMore
       header={panelHeader}
-      className="slik-har-vi-kommet-fram-til-ditt-resultat"
+      className={styles["slik-har-vi-kommet-fram-til-ditt-resultat"]}
       onClick={() => {
         // TODO: legg til event for metrikker
         //sendPanelEkspanderEvent(panelHeader)
       }}
     >
-      <div className="slik-har-vi-kommet-fram-til-ditt-resultat__innhold">
+      <div
+        className={styles["slik-har-vi-kommet-fram-til-ditt-resultat__innhold"]}
+      >
         <BodyShort spacing>
           Legemeldt sykefravær i sammenligningen er hentet fra
           sykefraværsstatistikken som NAV og Statistisk sentralbyrå (SSB)
@@ -31,7 +33,11 @@ export const SlikHarViKommetFramTilDittResultat: FunctionComponent = () => {
         </BodyShort>
         <BodyShort spacing>Din bransje er hentet fra Altinn.</BodyShort>
         <EksternLenke
-          className="slik-har-vi-kommet-fram-til-ditt-resultat__margin-bottom_075rem"
+          className={
+            styles[
+              "slik-har-vi-kommet-fram-til-ditt-resultat__margin-bottom_075rem"
+            ]
+          }
           href="https://www.altinn.no/skjemaoversikt/bronnoysundregistrene/samordnet-registermelding---registrering-av-nye-og-endring-av-eksisterende-foretak-og-enheter/"
         >
           Trykk her for å endre næringskode i Altinn

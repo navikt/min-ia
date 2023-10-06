@@ -4,7 +4,7 @@ import ReactToPrint from "react-to-print";
 // import { sendSykefraværsstatistikkIaMetrikk } from '../../metrikker/iatjenester';
 import React from "react";
 import { DownloadIcon } from "@navikt/aksel-icons";
-//import "./LastNedKnapp.css";
+import styles from "./LastNedKnapp.module.css";
 
 export default function LastNedKnapp({
   innholdRef,
@@ -33,7 +33,7 @@ export default function LastNedKnapp({
           lang="nb"
           aria-label="Last ned sykefraværsstatistikken"
           ref={lastNedKnappRef}
-          className="forside__innhold__knapp knapp forside__last-ned-knapp"
+          className={`${styles["forside__innhold__knapp"]} knapp forside__last-ned-knapp`}
         >
           <DownloadIcon title={"Nedlastingsikon"} fontSize="1.75rem" />
           Last ned
