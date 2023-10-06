@@ -54,7 +54,7 @@ type Sykefraværsprosent =
       tapteDagsverk: number | undefined;
       muligeDagsverk: number | undefined;
     };
-interface KvartalsvisSykefraværshistorikk {
+export interface KvartalsvisSykefraværshistorikk {
   type: SykefraværshistorikkType;
   label: string;
   kvartalsvisSykefraværsprosent: KvartalsvisSykefraværsprosent[];
@@ -69,6 +69,55 @@ export interface SykefraværAppData {
   skalSendeMetrikkerAutomatisk?: boolean;
 }
 
+const genererHistorikk = (
+  startÅrstallOgKvartal: ÅrstallOgKvartal,
+  antallKvartaler: number,
+  startprosent: number,
+  variasjon: number,
+  randomness: number,
+  vekst: number
+): KvartalsvisSykefraværsprosent[] => {
+  const historikk: KvartalsvisSykefraværsprosent[] = [];
+
+  let årstallOgKvartal = { ...startÅrstallOgKvartal };
+  let prosent = startprosent;
+
+  for (let i = 0; i < antallKvartaler; i += 1) {
+    historikk.push({
+      ...årstallOgKvartal,
+      erMaskert: false,
+      prosent: prosent,
+      tapteDagsverk: prosent * 10,
+      muligeDagsverk: prosent * 1000,
+    });
+    årstallOgKvartal = neste(årstallOgKvartal);
+    prosent =
+      prosent +
+      variasjon * Math.sin(0.5 + (Math.PI * i) / 2) +
+      randomNumber(vekst - randomness, vekst + randomness);
+    prosent = Math.max(0, prosent);
+    prosent = parseFloat(prosent.toFixed(1));
+  }
+
+  return historikk;
+};
+const randomNumber = (min: number, max: number): number =>
+  Math.random() * (max - min) + min;
+
+const neste = (årstallOgKvartal: ÅrstallOgKvartal): ÅrstallOgKvartal => {
+  const { årstall, kvartal } = årstallOgKvartal;
+  if (kvartal === 4) {
+    return {
+      årstall: årstall + 1,
+      kvartal: 1,
+    };
+  } else {
+    return {
+      årstall,
+      kvartal: kvartal + 1,
+    };
+  }
+};
 export function useSykefraværAppData(): SykefraværAppData {
   const altinnOrganisasjoner = {
     status: RestStatus.Suksess,
@@ -82,26 +131,28 @@ export function useSykefraværAppData(): SykefraværAppData {
     status: RestStatus.Suksess,
     data: [
       {
-        type: "VIRKSOMHET",
-        label: "Underenhet AS",
-        kvartalsvisSykefraværsprosent: [
-          {
-            årstall: 2019,
-            kvartal: 4,
-            erMaskert: false,
-            prosent: 5.5,
-            muligeDagsverk: 200,
-            tapteDagsverk: 11,
-          },
-          {
-            årstall: 2020,
-            kvartal: 1,
-            erMaskert: false,
-            prosent: 6,
-            muligeDagsverk: 200,
-            tapteDagsverk: 12,
-          },
-        ],
+        type: SykefraværshistorikkType.LAND,
+        label: "Norge",
+        kvartalsvisSykefraværsprosent: genererHistorikk(
+          { årstall: 2015, kvartal: 2 },
+          20,
+          5.5,
+          1,
+          0.1,
+          0
+        ),
+      },
+      {
+        type: SykefraværshistorikkType.SEKTOR,
+        label: "Statlig forvaltning",
+        kvartalsvisSykefraværsprosent: genererHistorikk(
+          { årstall: 2015, kvartal: 2 },
+          20,
+          4,
+          2,
+          0.2,
+          0
+        ),
       },
     ],
   };

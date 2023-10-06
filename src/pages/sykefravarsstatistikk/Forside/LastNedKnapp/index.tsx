@@ -8,8 +8,8 @@ import styles from "./LastNedKnapp.module.css";
 
 export default function LastNedKnapp({
   innholdRef,
-  orgnr,
-}: {
+} //  orgnr,
+: {
   innholdRef: React.RefObject<HTMLDivElement>;
   orgnr: string;
 }) {

@@ -13,7 +13,7 @@ import { RestStatus } from "../../../integrasjoner/rest-status";
 import TestVersjonBanner from "../../../komponenter/Banner/TestVersjonBanner";
 
 import { SykefraværAppData } from "../hooks/useSykefraværAppData";
-//import Historikk from "../Historikk/Historikk";
+import Historikk from "../Historikk/Historikk";
 /* import Tabell, {
   hentTabellProps,
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell"; */
@@ -21,7 +21,7 @@ import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
   const orgnr = useOrgnr() || "";
   const harFeil = appData.aggregertStatistikk.restStatus === RestStatus.Feil;
-  const { skalSendeMetrikkerAutomatisk = true } = appData; // Vi må kunne disable autoutsending for å teste utsending ved print-klikk (src/Metrikker.test.tsx)
+  //const { skalSendeMetrikkerAutomatisk = true } = appData; // Vi må kunne disable autoutsending for å teste utsending ved print-klikk (src/Metrikker.test.tsx)
 
   const innholdRef = useRef<HTMLDivElement>(null);
 
@@ -93,9 +93,9 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
               aggregertStatistikk={{ restStatus: RestStatus.IkkeLastet }}
               orgnr={orgnr}
             /> */}
-            {/* <Historikk
+            <Historikk
               restSykefraværsstatistikk={{ status: RestStatus.IkkeLastet }}
-            /> */}
+            />
           </div>
         </div>
       </div>
@@ -184,7 +184,7 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
               <Tabell {...tabellProps} />
             </div>
           )} */}
-          {/* <Historikk restSykefraværsstatistikk={appData.sykefraværshistorikk} /> */}
+          <Historikk restSykefraværsstatistikk={appData.sykefraværshistorikk} />
         </div>
       </div>
     </div>
