@@ -31,7 +31,7 @@ const SykefraværshistorikkType = {
 type SykefraværshistorikkType =
   (typeof SykefraværshistorikkType)[keyof typeof SykefraværshistorikkType];
 
-type RestAggregertStatistikk = {
+export type RestAggregertStatistikk = {
   restStatus: RestStatus;
   aggregertData?: Map<Statistikkategori, AggregertStatistikkDto>;
   error?: unknown;

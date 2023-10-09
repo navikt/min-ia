@@ -14,6 +14,7 @@ import TestVersjonBanner from "../../../komponenter/Banner/TestVersjonBanner";
 
 import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 import Historikk from "../Historikk/Historikk";
+import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
 /* import Tabell, {
   hentTabellProps,
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell"; */
@@ -21,7 +22,7 @@ import Historikk from "../Historikk/Historikk";
 export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
   const orgnr = useOrgnr() || "";
   const harFeil = appData.aggregertStatistikk.restStatus === RestStatus.Feil;
-  //const { skalSendeMetrikkerAutomatisk = true } = appData; // Vi må kunne disable autoutsending for å teste utsending ved print-klikk (src/Metrikker.test.tsx)
+  const { skalSendeMetrikkerAutomatisk = true } = appData;
 
   const innholdRef = useRef<HTMLDivElement>(null);
 
@@ -89,10 +90,10 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
             <Skeleton width="30%" />
             <Skeleton width="45%" />
             <Skeleton width="50%" />
-            {/* <Sammenligningspaneler
+            <Sammenligningspaneler
               aggregertStatistikk={{ restStatus: RestStatus.IkkeLastet }}
               orgnr={orgnr}
-            /> */}
+            />
             <Historikk
               restSykefraværsstatistikk={{ status: RestStatus.IkkeLastet }}
             />
@@ -174,11 +175,11 @@ export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
             restPubliseringsdatoer={appData.publiseringsdatoer}
           />
           <SlikHarViKommetFramTilDittResultat />
-          {/* <Sammenligningspaneler
+          <Sammenligningspaneler
             skalSendeMetrikkerAutomatisk={skalSendeMetrikkerAutomatisk}
             aggregertStatistikk={appData.aggregertStatistikk}
             orgnr={orgnr}
-          /> */}
+          />
           {/* {!!tabellProps && (
             <div className={styles["forside__innhold__kun-print"]}>
               <Tabell {...tabellProps} />
