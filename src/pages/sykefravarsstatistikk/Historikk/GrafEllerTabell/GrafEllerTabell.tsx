@@ -47,13 +47,8 @@ export default function GrafEllerTabell({
   const kvartalsvisSammenligning = konverterTilKvartalsvisSammenligning(
     restSykefraværsstatistikk.data
   );
-  let kvartalsvisSammenligningReversed: KvartalsvisSammenligning[] = [];
-  try {
-    kvartalsvisSammenligningReversed = kvartalsvisSammenligning.toReversed();
-  } catch {
-    // TODO: Vi hadde ikke try/catch her før, så det er noe som er galt.
-    console.log("Error in GrafEllerTabell.tsx");
-  }
+  const kvartalsvisSammenligningReversed =
+    kvartalsvisSammenligning.toReversed();
   const grafLinjerSomSkalVisesResult = useGrafLinjerSomSkalVises(
     kvartalsvisSammenligning
   );

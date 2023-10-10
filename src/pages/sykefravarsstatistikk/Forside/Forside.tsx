@@ -1,4 +1,4 @@
-import { default as React, useRef } from "react";
+import React, { useRef } from "react";
 //import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
 import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
@@ -15,9 +15,9 @@ import TestVersjonBanner from "../../../komponenter/Banner/TestVersjonBanner";
 import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 import Historikk from "../Historikk/Historikk";
 import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
-/* import Tabell, {
+import Tabell, {
   hentTabellProps,
-} from "../Historikk/GrafEllerTabell/Tabell/Tabell"; */
+} from "../Historikk/GrafEllerTabell/Tabell/Tabell";
 
 export const Forside = (appData: SykefraværAppData) => {
   const orgnr = useOrgnr() || "";
@@ -129,7 +129,7 @@ export const Forside = (appData: SykefraværAppData) => {
     appData.altinnOrganisasjoner.data.find(
       (organisasjon) => organisasjon.OrganizationNumber === orgnr
     )?.Name;
-  /* const tabellProps = hentTabellProps(appData.sykefraværshistorikk); */
+  const tabellProps = hentTabellProps(appData.sykefraværshistorikk);
 
   return (
     <div className={styles["forside__wrapper"]}>
@@ -180,14 +180,16 @@ export const Forside = (appData: SykefraværAppData) => {
             aggregertStatistikk={appData.aggregertStatistikk}
             orgnr={orgnr}
           />
-          {/* {!!tabellProps && (
+          {!!tabellProps && (
             <div className={styles["forside__innhold__kun-print"]}>
               <Tabell {...tabellProps} />
             </div>
-          )} */}
+          )}
           <Historikk restSykefraværsstatistikk={appData.sykefraværshistorikk} />
         </div>
       </div>
     </div>
   );
 };
+
+export default Forside;
