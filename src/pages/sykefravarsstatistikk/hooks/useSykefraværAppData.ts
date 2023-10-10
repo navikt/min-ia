@@ -5,7 +5,7 @@ import {
 import { mockdataOrgnr91096939 } from "../../../local/aggregertStatistikkMockdata";
 import { RestRessurs, RestStatus } from "../../../integrasjoner/rest-status";
 import { Statistikkategori } from "../domene/statistikkategori";
-import { AggregertStatistikkDto } from "../../../integrasjoner/aggregert-statistikk-api";
+import { StatistikkDto } from "../../../integrasjoner/aggregert-statistikk-api";
 import { RestAltinnOrganisasjoner } from "../../../integrasjoner/altinnorganisasjon-api";
 
 export type ÅrstallOgKvartal = {
@@ -194,7 +194,7 @@ export function useSykefraværAppData(): SykefraværAppData {
   };
   const aggregertStatistikk = {
     restStatus: RestStatus.Suksess,
-    data: mockdataOrgnr91096939,
+    aggregertData: groupByCategory(mockdataOrgnr91096939),
   };
   const publiseringsdatoer = {
     status: RestStatus.Suksess,
@@ -216,3 +216,63 @@ export function useSykefraværAppData(): SykefraværAppData {
     publiseringsdatoer,
   };
 }
+
+export const groupByCategory = (
+  aggregertStatistikk: AggregertStatistikkDto
+) => {
+  const map = new Map<Statistikkategori, AggregertStatistikk>();
+  Object.values(Statistikkategori).forEach((kategori) => {
+    map.set(kategori, {
+      prosentSiste4KvartalerTotalt: getCategory(
+        kategori,
+        aggregertStatistikk.prosentSiste4KvartalerTotalt
+      ),
+      prosentSiste4KvartalerGradert: getCategory(
+        kategori,
+        aggregertStatistikk.prosentSiste4KvartalerGradert
+      ),
+      prosentSiste4KvartalerKorttid: getCategory(
+        kategori,
+        aggregertStatistikk.prosentSiste4KvartalerKorttid
+      ),
+      prosentSiste4KvartalerLangtid: getCategory(
+        kategori,
+        aggregertStatistikk.prosentSiste4KvartalerLangtid
+      ),
+      trendTotalt: getCategory(kategori, aggregertStatistikk.trendTotalt),
+    });
+  });
+
+  return map;
+};
+
+interface AggregertStatistikkDto {
+  prosentSiste4KvartalerTotalt: StatistikkDto[];
+  prosentSiste4KvartalerGradert: StatistikkDto[];
+  prosentSiste4KvartalerKorttid: StatistikkDto[];
+  prosentSiste4KvartalerLangtid: StatistikkDto[];
+  trendTotalt: StatistikkDto[];
+}
+
+type AggregertStatistikk = {
+  prosentSiste4KvartalerTotalt?: Statistikk;
+  prosentSiste4KvartalerGradert?: Statistikk;
+  prosentSiste4KvartalerKorttid?: Statistikk;
+  prosentSiste4KvartalerLangtid?: Statistikk;
+  trendTotalt?: Statistikk;
+};
+
+type Statistikk = {
+  label: string;
+  statistikkategori: Statistikkategori;
+  verdi: string;
+  antallPersonerIBeregningen: number;
+  kvartalerIBeregningen: {
+    årstall: number;
+    kvartal: number;
+  }[];
+};
+
+const getCategory = (category: Statistikkategori, statistikk: Statistikk[]) => {
+  return statistikk?.find((e) => e.statistikkategori === category);
+};

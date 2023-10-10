@@ -60,6 +60,7 @@ export const Sammenligningspaneler: FunctionComponent<Props> = ({
       harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING
     ),
   ];
+
   return (
     <>
       <Sammenligningspanel

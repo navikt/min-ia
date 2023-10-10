@@ -1,4 +1,4 @@
-import { default as React, FunctionComponent, useRef } from "react";
+import { default as React, useRef } from "react";
 //import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
 import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
@@ -19,7 +19,7 @@ import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspan
   hentTabellProps,
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell"; */
 
-export const Forside: FunctionComponent<SykefraværAppData> = (appData) => {
+export const Forside = (appData: SykefraværAppData) => {
   const orgnr = useOrgnr() || "";
   const harFeil = appData.aggregertStatistikk.restStatus === RestStatus.Feil;
   const { skalSendeMetrikkerAutomatisk = true } = appData;
