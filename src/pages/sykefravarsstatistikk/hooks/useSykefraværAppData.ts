@@ -19,21 +19,13 @@ interface Publiseringsdatoer {
   gjeldendePeriode: ÅrstallOgKvartal;
 }
 
-const SykefraværshistorikkType = {
-  LAND: "LAND",
-  SEKTOR: "SEKTOR",
-  NÆRING: "NÆRING",
-  BRANSJE: "BRANSJE",
-  VIRKSOMHET: "VIRKSOMHET",
-  OVERORDNET_ENHET: "OVERORDNET_ENHET",
-} as const;
+const SykefraværshistorikkType = Statistikkategori;
 
-type SykefraværshistorikkType =
-  (typeof SykefraværshistorikkType)[keyof typeof SykefraværshistorikkType];
+type SykefraværshistorikkType = Statistikkategori;
 
 export type RestAggregertStatistikk = {
   restStatus: RestStatus;
-  aggregertData?: Map<Statistikkategori, AggregertStatistikkDto>;
+  aggregertData?: Map<Statistikkategori, AggregertStatistikk>;
   error?: unknown;
 };
 type KvartalsvisSykefraværsprosent = {
@@ -254,7 +246,7 @@ interface AggregertStatistikkDto {
   trendTotalt: StatistikkDto[];
 }
 
-type AggregertStatistikk = {
+export type AggregertStatistikk = {
   prosentSiste4KvartalerTotalt?: Statistikk;
   prosentSiste4KvartalerGradert?: Statistikk;
   prosentSiste4KvartalerKorttid?: Statistikk;
@@ -262,7 +254,7 @@ type AggregertStatistikk = {
   trendTotalt?: Statistikk;
 };
 
-type Statistikk = {
+export type Statistikk = {
   label: string;
   statistikkategori: Statistikkategori;
   verdi: string;
