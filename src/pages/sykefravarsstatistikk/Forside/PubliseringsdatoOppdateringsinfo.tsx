@@ -2,13 +2,7 @@ import React, { FunctionComponent } from "react";
 import { BodyShort, Loader } from "@navikt/ds-react";
 import { RestRessurs, RestStatus } from "../../../integrasjoner/rest-status";
 
-import { ÅrstallOgKvartal } from "../hooks/useSykefraværAppData";
-
-export interface Publiseringsdatoer {
-  sistePubliseringsdato: Date;
-  nestePubliseringsdato: Date;
-  gjeldendePeriode: ÅrstallOgKvartal;
-}
+import { Publiseringsdatoer } from "../hooks/useSykefraværAppData";
 
 export const PubliseringsdatoOppdateringsinfo: FunctionComponent<{
   restPubliseringsdatoer: RestRessurs<Publiseringsdatoer>;

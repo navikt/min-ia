@@ -1,6 +1,5 @@
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { mockdataOrgnr91096939 } from "../../local/aggregertStatistikkMockdata";
-import { Publiseringsdatoer } from "./Forside/PubliseringsdatoOppdateringsinfo";
 import {
   getOrganisasjonerBrukerHarIaRettigheterTilMock,
   getOrganisasjonerMock,
@@ -9,8 +8,10 @@ import { getArbeidsmiljøportalenBransje } from "./bransje-utils";
 import { Statistikkategori } from "./domene/statistikkategori";
 import {
   AggregertStatistikk,
+  SerialiserbarAppData,
+  SerialiserbarPubliseringsdatoer,
+  SerialiserbarStatistikk,
   SykefraværAppData,
-  groupByCategory,
 } from "./hooks/useSykefraværAppData";
 import { næringskodeTilNæring } from "./næringsbeskrivelser";
 
@@ -120,10 +121,10 @@ aggregertStatistikkMock.set(Statistikkategori.BRANSJE, {
   },
 });
 
-export const mockAllDatahentingStatusOk: SykefraværAppData = {
+export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
   aggregertStatistikk: {
     restStatus: RestStatus.Suksess,
-    aggregertData: groupByCategory(mockdataOrgnr91096939),
+    data: mockdataOrgnr91096939 as SerialiserbarStatistikk,
   },
   altinnOrganisasjoner: {
     status: RestStatus.Suksess,
@@ -227,7 +228,7 @@ export const mockAllDatahentingStatusOk: SykefraværAppData = {
   },
 };
 
-export const mockAllDatahentingStatusLaster: SykefraværAppData = {
+export const mockAllDatahentingStatusLaster: SerialiserbarAppData = {
   aggregertStatistikk: { restStatus: RestStatus.LasterInn },
   altinnOrganisasjoner: { status: RestStatus.LasterInn },
   altinnOrganisasjonerMedStatistikktilgang: {
@@ -248,14 +249,14 @@ export const mockAllDatahentingFeiler: SykefraværAppData = {
   sykefraværshistorikk: { status: RestStatus.Feil },
 };
 
-function getMockPubliseringsdatoer(): Publiseringsdatoer {
+function getMockPubliseringsdatoer(): SerialiserbarPubliseringsdatoer {
   return {
     gjeldendePeriode: {
       årstall: 2022,
       kvartal: 2,
     },
-    nestePubliseringsdato: new Date("2022-12-01"),
-    sistePubliseringsdato: new Date("2022-09-08"),
+    nestePubliseringsdato: "2022-12-01",
+    sistePubliseringsdato: "2022-09-08",
   };
 }
 

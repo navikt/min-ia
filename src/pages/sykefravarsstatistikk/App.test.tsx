@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContent } from "./App";
+import { AppContent } from ".";
 import { render } from "@testing-library/react";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { axe } from "jest-axe";
@@ -56,6 +56,7 @@ describe("App", () => {
   });
 
   // TODO: Test at amplitude-events sendes med riktige properties når det er på plass
+  // eslint-disable-next-line jest/no-commented-out-tests
   /* it('Amplitude-events sendes med riktige user properties', async () => {
         render(<AppContent {...mockAllDatahentingStatusOk} />);
 

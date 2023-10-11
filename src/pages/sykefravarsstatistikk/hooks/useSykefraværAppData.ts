@@ -13,9 +13,14 @@ export type ÅrstallOgKvartal = {
   kvartal: number;
 };
 
-interface Publiseringsdatoer {
+export interface Publiseringsdatoer {
   sistePubliseringsdato: Date;
   nestePubliseringsdato: Date;
+  gjeldendePeriode: ÅrstallOgKvartal;
+}
+export interface SerialiserbarPubliseringsdatoer {
+  sistePubliseringsdato: string;
+  nestePubliseringsdato: string;
   gjeldendePeriode: ÅrstallOgKvartal;
 }
 
@@ -26,6 +31,33 @@ type SykefraværshistorikkType = Statistikkategori;
 export type RestAggregertStatistikk = {
   restStatus: RestStatus;
   aggregertData?: Map<Statistikkategori, AggregertStatistikk>;
+  error?: unknown;
+};
+
+type SerialiserbarStatistikkInnhold = {
+  label: string;
+  statistikkategori: Statistikkategori;
+  verdi: string;
+  antallPersonerIBeregningen: number;
+  kvartalerIBeregningen: {
+    årstall: number;
+    kvartal: number;
+  }[];
+}[];
+
+export type SerialiserbarStatistikk = {
+  prosentSiste4KvartalerTotalt: SerialiserbarStatistikkInnhold;
+  prosentSiste4KvartalerGradert: SerialiserbarStatistikkInnhold;
+  prosentSiste4KvartalerKorttid: SerialiserbarStatistikkInnhold;
+  prosentSiste4KvartalerLangtid: SerialiserbarStatistikkInnhold;
+  trendTotalt: SerialiserbarStatistikkInnhold;
+  tapteDagsverkTotalt: SerialiserbarStatistikkInnhold;
+  muligeDagsverkTotalt: SerialiserbarStatistikkInnhold;
+};
+
+export type RestAggregertSerialiserbarStatistikk = {
+  restStatus: RestStatus;
+  data?: SerialiserbarStatistikk;
   error?: unknown;
 };
 type KvartalsvisSykefraværsprosent = {
@@ -58,6 +90,15 @@ export interface SykefraværAppData {
   sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
   aggregertStatistikk: RestAggregertStatistikk;
   publiseringsdatoer: RestRessurs<Publiseringsdatoer>;
+  skalSendeMetrikkerAutomatisk?: boolean;
+}
+
+export interface SerialiserbarAppData {
+  altinnOrganisasjoner: RestAltinnOrganisasjoner;
+  altinnOrganisasjonerMedStatistikktilgang: RestAltinnOrganisasjoner;
+  sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
+  aggregertStatistikk: RestAggregertSerialiserbarStatistikk;
+  publiseringsdatoer: RestRessurs<SerialiserbarPubliseringsdatoer>;
   skalSendeMetrikkerAutomatisk?: boolean;
 }
 
@@ -110,7 +151,7 @@ const neste = (årstallOgKvartal: ÅrstallOgKvartal): ÅrstallOgKvartal => {
     };
   }
 };
-export function useSykefraværAppData(): SykefraværAppData {
+export function getSykefraværAppData(): SerialiserbarAppData {
   const altinnOrganisasjoner = {
     status: RestStatus.Suksess,
     data: organisasjoner,
@@ -186,7 +227,7 @@ export function useSykefraværAppData(): SykefraværAppData {
   };
   const aggregertStatistikk = {
     restStatus: RestStatus.Suksess,
-    aggregertData: groupByCategory(mockdataOrgnr91096939),
+    data: mockdataOrgnr91096939 as SerialiserbarStatistikk,
   };
   const publiseringsdatoer = {
     status: RestStatus.Suksess,
@@ -195,8 +236,8 @@ export function useSykefraværAppData(): SykefraværAppData {
         årstall: 2022,
         kvartal: 2,
       },
-      nestePubliseringsdato: new Date("2022-12-01"),
-      sistePubliseringsdato: new Date("2022-09-08"),
+      nestePubliseringsdato: "2022-12-01",
+      sistePubliseringsdato: "2022-09-08",
     },
   };
 
@@ -206,6 +247,61 @@ export function useSykefraværAppData(): SykefraværAppData {
     sykefraværshistorikk,
     aggregertStatistikk,
     publiseringsdatoer,
+  };
+}
+
+function getTransformedPubliseringsdatoer(
+  serialiserbarPubliseringsdatoer: RestRessurs<SerialiserbarPubliseringsdatoer>
+): RestRessurs<Publiseringsdatoer> {
+  if (serialiserbarPubliseringsdatoer.status === RestStatus.Suksess) {
+    return {
+      ...serialiserbarPubliseringsdatoer,
+      data: {
+        ...serialiserbarPubliseringsdatoer.data,
+        nestePubliseringsdato: new Date(
+          serialiserbarPubliseringsdatoer.data.nestePubliseringsdato
+        ),
+        sistePubliseringsdato: new Date(
+          serialiserbarPubliseringsdatoer.data.sistePubliseringsdato
+        ),
+      },
+    };
+  }
+
+  return {
+    status: serialiserbarPubliseringsdatoer.status,
+  };
+}
+
+function getTransformedAggregertStatistikk(
+  serialisertAggregertStatistikk: RestAggregertSerialiserbarStatistikk
+): RestAggregertStatistikk {
+  if (serialisertAggregertStatistikk.restStatus === RestStatus.Suksess) {
+    return {
+      restStatus: serialisertAggregertStatistikk.restStatus,
+      aggregertData: groupByCategory(
+        serialisertAggregertStatistikk.data as AggregertStatistikkDto
+      ),
+    };
+  }
+
+  return { restStatus: serialisertAggregertStatistikk.restStatus };
+}
+
+export function transformSykefraværAppData(
+  serialiserbarData: SerialiserbarAppData
+): SykefraværAppData {
+  return {
+    altinnOrganisasjoner: serialiserbarData.altinnOrganisasjoner,
+    altinnOrganisasjonerMedStatistikktilgang:
+      serialiserbarData.altinnOrganisasjonerMedStatistikktilgang,
+    sykefraværshistorikk: serialiserbarData.sykefraværshistorikk,
+    aggregertStatistikk: getTransformedAggregertStatistikk(
+      serialiserbarData.aggregertStatistikk
+    ),
+    publiseringsdatoer: getTransformedPubliseringsdatoer(
+      serialiserbarData.publiseringsdatoer
+    ),
   };
 }
 

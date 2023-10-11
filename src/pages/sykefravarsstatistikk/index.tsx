@@ -1,6 +1,18 @@
 import React from "react";
-import App from "./App";
+import {
+  SerialiserbarAppData,
+  getSykefraværAppData,
+  transformSykefraværAppData,
+} from "./hooks/useSykefraværAppData";
 
-export default function Sykefraværsstatistikk() {
-  return <App />;
+import Forside from "./Forside/Forside";
+
+export function AppContent(props: SerialiserbarAppData) {
+  return <Forside {...transformSykefraværAppData(props)} />;
 }
+
+export const getServerSideProps = () => {
+  return { props: getSykefraværAppData() };
+};
+
+export default AppContent;

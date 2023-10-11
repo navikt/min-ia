@@ -47,8 +47,9 @@ export default function GrafEllerTabell({
   const kvartalsvisSammenligning = konverterTilKvartalsvisSammenligning(
     restSykefraværsstatistikk.data
   );
-  const kvartalsvisSammenligningReversed =
-    kvartalsvisSammenligning.toReversed();
+  const kvartalsvisSammenligningReversed = [
+    ...kvartalsvisSammenligning,
+  ].reverse();
   const grafLinjerSomSkalVisesResult = useGrafLinjerSomSkalVises(
     kvartalsvisSammenligning
   );
