@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
 import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
@@ -18,6 +19,10 @@ import Tabell, {
   hentTabellProps,
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell";
 import useBreadcrumbs from "../../../utils/useBreadcrumbs";
+
+const PrintOnlyHref = dynamic(() => import("./PrintOnlyHref"), {
+  ssr: false,
+});
 
 export const Forside = (appData: SykefraværAppData) => {
   useBreadcrumbs([
@@ -59,13 +64,6 @@ export const Forside = (appData: SykefraværAppData) => {
     appData.sykefraværshistorikk.status,
   ]);
 
-  // TODO: Fiks dette her!
-  const window = {
-    location: {
-      href: "https://www.nav.no",
-    },
-  };
-
   if (loading) {
     return (
       <div className={styles["forside__wrapper"]}>
@@ -78,9 +76,7 @@ export const Forside = (appData: SykefraværAppData) => {
           />
           <div className={styles["forside__innhold"]}>
             <div className={styles["forside__innhold__header"]}>
-              <BodyShort className={styles["forside__innhold__href"]}>
-                {window.location.href}
-              </BodyShort>
+              <PrintOnlyHref />
               <Heading spacing size="medium" level="2" as="span">
                 <Skeleton width="65%" />
               </Heading>
@@ -166,9 +162,7 @@ export const Forside = (appData: SykefraværAppData) => {
             </Alert>
           )}
           <div className={styles["forside__innhold__header"]}>
-            <BodyShort className={styles["forside__innhold__href"]}>
-              {window.location.href}
-            </BodyShort>
+            <PrintOnlyHref />
             <Heading spacing size="medium" level="2">
               Sykefraværsstatistikk for {navnPåVirksomhet}
             </Heading>
