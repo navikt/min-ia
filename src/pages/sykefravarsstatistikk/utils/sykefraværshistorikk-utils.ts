@@ -115,7 +115,9 @@ export const isHistorikkLabel = (
   return Object.prototype.hasOwnProperty.call(HistorikkLabels, maybeLabel);
 };
 
-const historikkTypeToLabel = (type: Statistikkategori): HistorikkLabel => {
+const historikkTypeToLabel = (
+  type: Statistikkategori
+): HistorikkLabel | undefined => {
   switch (type) {
     case Statistikkategori.VIRKSOMHET:
       return HistorikkLabels.virksomhet;
@@ -128,7 +130,6 @@ const historikkTypeToLabel = (type: Statistikkategori): HistorikkLabel => {
     case Statistikkategori.BRANSJE:
       return HistorikkLabels.næringEllerBransje;
     case Statistikkategori.OVERORDNET_ENHET:
-    default: //TODO: Fiks dette. Ikke meningen å ha default.
       return HistorikkLabels.overordnetEnhet;
   }
 };
@@ -139,7 +140,10 @@ export const getHistorikkLabels = (
   const labels: Partial<HistorikkLabels> = {};
   for (const historikk of historikkListe) {
     if (isSykefraværshistorikkType(historikk.type)) {
-      labels[historikkTypeToLabel(historikk.type)] = historikk.label;
+      const historikktype = historikkTypeToLabel(historikk.type);
+      if (historikktype) {
+        labels[historikktype] = historikk.label;
+      }
     }
   }
 
