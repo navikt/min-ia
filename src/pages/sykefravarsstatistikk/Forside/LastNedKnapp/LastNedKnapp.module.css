@@ -1,7 +1,33 @@
-.forside__last-ned-knapp > span {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.last-ned-knapp > span {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.høyrestilt-last-ned-knapp {
+  float: right;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+@media print, (min-width: 768px) {
+  .responsiv-last-ned-knapp {
+    display: block;
+    position: absolute;
+    right: 2rem;
+  }
+}
+
+@media print {
+  .responsiv-last-ned-knapp {
+    display: none;
+  }
+}
+
+@media print {
+  .responsiv-last-ned-knapp {
+    display: none;
+  }
 }

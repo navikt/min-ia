@@ -32,7 +32,7 @@ export default function LastNedKnapp({
           lang="nb"
           aria-label="Last ned sykefraværsstatistikken"
           ref={lastNedKnappRef}
-          className={styles["forside__last-ned-knapp"]}
+          className={`${styles["last-ned-knapp"]} ${styles["responsiv-last-ned-knapp"]}`}
         >
           <DownloadIcon title={"Nedlastingsikon"} fontSize="1.75rem" />
           Last ned

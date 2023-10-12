@@ -60,7 +60,7 @@ export const CsvDownloadLink: FunctionComponent<CsvDownloadLinkProps> = ({
   return (
     <Button
       as={Link}
-      className={styles["forside__last-ned-knapp"]}
+      className={`${styles["last-ned-knapp"]} ${styles["høyrestilt-last-ned-knapp"]}`}
       href={buildCsvDataUrl(
         historikkLabels,
         kvartalsvisSammenligning,
