@@ -1,11 +1,12 @@
 import {
   HistorikkLabels,
   KvartalsvisSammenligning,
-} from "../utils/sykefraværshistorikk-utils";
+} from "../../utils/sykefraværshistorikk-utils";
 import React, { FunctionComponent } from "react";
 import { Button, Link } from "@navikt/ds-react";
 import { DownloadIcon } from "@navikt/aksel-icons";
-import { formaterProsent } from "./GrafEllerTabell/Tabell/tabell-utils";
+import { formaterProsent } from "../../Historikk/GrafEllerTabell/Tabell/tabell-utils";
+import styles from "./LastNedKnapp.module.css";
 
 const buildCsvDataUrl = (
   labels: HistorikkLabels,
@@ -59,7 +60,7 @@ export const CsvDownloadLink: FunctionComponent<CsvDownloadLinkProps> = ({
   return (
     <Button
       as={Link}
-      className={"csv-download-link"}
+      className={styles["forside__last-ned-knapp"]}
       href={buildCsvDataUrl(
         historikkLabels,
         kvartalsvisSammenligning,

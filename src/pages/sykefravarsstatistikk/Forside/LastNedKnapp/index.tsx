@@ -7,9 +7,8 @@ import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
 
 export default function LastNedKnapp({
-  innholdRef,
-} //  orgnr,
-: {
+  innholdRef, //  orgnr,
+}: {
   innholdRef: React.RefObject<HTMLDivElement>;
   orgnr: string;
 }) {
@@ -33,7 +32,7 @@ export default function LastNedKnapp({
           lang="nb"
           aria-label="Last ned sykefraværsstatistikken"
           ref={lastNedKnappRef}
-          className={`${styles["forside__innhold__knapp"]} knapp forside__last-ned-knapp`}
+          className={styles["forside__last-ned-knapp"]}
         >
           <DownloadIcon title={"Nedlastingsikon"} fontSize="1.75rem" />
           Last ned

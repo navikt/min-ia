@@ -6,7 +6,7 @@ import {
   historikkHarOverordnetEnhet,
   konverterTilKvartalsvisSammenligning,
 } from "../../utils/sykefraværshistorikk-utils";
-import { CsvDownloadLink } from "../CsvDownloadLink";
+import { CsvDownloadLink } from "../../Forside/LastNedKnapp/CsvDownloadLink";
 import { getLinjerSomHarData } from "./Graf/graf-utils";
 import {
   HistorikkLabel,
