@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-//import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
 import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
 import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
@@ -18,8 +17,24 @@ import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspan
 import Tabell, {
   hentTabellProps,
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell";
+import useBreadcrumbs from "../../../utils/useBreadcrumbs";
 
 export const Forside = (appData: SykefraværAppData) => {
+  useBreadcrumbs([
+    {
+      title: "Min side – arbeidsgiver",
+      url: "/min-side-arbeidsgiver",
+    },
+    {
+      title: "Forebygge fravær",
+      url: "/forebygge-fravar",
+    },
+    {
+      title: "Sykefraværsstatistikk",
+      url: "/forebygge-fravar/sykefravarsstatistikk",
+    },
+  ]);
+
   const orgnr = useOrgnr() || "";
   const harFeil = appData.aggregertStatistikk.restStatus === RestStatus.Feil;
   const { skalSendeMetrikkerAutomatisk = true } = appData;
