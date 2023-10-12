@@ -9,6 +9,8 @@ import {
 import grafTooltip from "./grafTooltip/grafTooltip";
 import grafLinjer from "./grafLinjer";
 
+import styles from "./GrafVisning.module.css";
+
 // TODO: Få inn stylinga herfra.
 // import './Graf.css';
 import {
@@ -95,12 +97,14 @@ const GrafVisning: FunctionComponent<Props> = ({
           tickFormatter={(tickValue) => tickValue.substring(0, 4)}
           ticks={punkterPåXAksenSomSkalMarkeres}
           tick={XAkseTick}
+          className={styles["graf-xAxis"]}
         />
         <YAxis
           padding={YAxisPadding}
           tickMargin={tickMargin}
           tick={YAkseTick}
           width={tickWidth}
+          className={styles["graf-yAxis"]}
         />
         {grafTooltip()}
         {grafLinjer(linjerSomSkalVises)}

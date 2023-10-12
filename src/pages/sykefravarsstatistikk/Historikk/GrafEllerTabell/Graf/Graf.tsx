@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from "react";
 
-// TODO: Få inn stylinga herfra.
-// import "./Graf.css";
 import { LegendMedToggles } from "./LegendMedToggles/LegendMedToggles";
 import GrafVisning from "./GrafVisning";
 import {
