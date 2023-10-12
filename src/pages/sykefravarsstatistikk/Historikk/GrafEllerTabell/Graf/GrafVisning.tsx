@@ -11,8 +11,6 @@ import grafLinjer from "./grafLinjer";
 
 import styles from "./GrafVisning.module.css";
 
-// TODO: Få inn stylinga herfra.
-// import './Graf.css';
 import {
   hentFørsteKvartalFraAlleÅreneIDatagrunnlaget,
   lagTickString,
