@@ -10,13 +10,13 @@ import { Kakediagram } from "../Kakediagram/Kakediagram";
 import { sammenliknSykefravær } from "../vurdering-utils";
 import { BodyShort, Heading, Ingress, Label, Panel } from "@navikt/ds-react";
 import { Prosent } from "../Prosent";
-import { StatistikkDto } from "../../../../integrasjoner/aggregert-statistikk-api";
 import { parseVerdi } from "../../utils/app-utils";
+import { Statistikk } from "../../hooks/useSykefraværAppData";
 
 interface Props {
   sammenligningsType: SammenligningsType;
-  virksomhetStatistikk?: StatistikkDto;
-  bransjeEllerNæringStatistikk?: StatistikkDto;
+  virksomhetStatistikk?: Statistikk;
+  bransjeEllerNæringStatistikk?: Statistikk;
   defaultÅpen?: boolean;
   className?: string;
 }

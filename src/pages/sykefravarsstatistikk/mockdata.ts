@@ -4,7 +4,6 @@ import {
   getOrganisasjonerBrukerHarIaRettigheterTilMock,
   getOrganisasjonerMock,
 } from "./altinn-mock";
-import { getArbeidsmiljøportalenBransje } from "./bransje-utils";
 import { Statistikkategori } from "./domene/statistikkategori";
 import {
   AggregertStatistikk,
@@ -13,7 +12,6 @@ import {
   SerialiserbarStatistikk,
   SykefraværAppData,
 } from "./hooks/useSykefraværAppData";
-import { næringskodeTilNæring } from "./næringsbeskrivelser";
 
 export const siste4KvartalerMock = [
   { årstall: 2021, kvartal: 3 },
@@ -26,77 +24,6 @@ export const siste2KvartalerMock = [
   { årstall: 2022, kvartal: 1 },
   { årstall: 2022, kvartal: 2 },
 ];
-
-const mapTilUnderenhet = (underenhetDto: UnderenhetDto): Underenhet => {
-  const orgnr = underenhetDto.organisasjonsnummer;
-  const overordnetEnhet = underenhetDto.overordnetEnhet;
-  const næringskode = underenhetDto.naeringskode1
-    ? {
-        kode: underenhetDto.naeringskode1.kode.replace(".", ""),
-        beskrivelse: underenhetDto.naeringskode1.beskrivelse,
-      }
-    : undefined;
-  const antallAnsatte = underenhetDto.antallAnsatte;
-  const næring = næringskodeTilNæring(næringskode);
-  const bransje = getArbeidsmiljøportalenBransje(næringskode);
-  const beliggenhetsadresse = {
-    kommune: underenhetDto.beliggenhetsadresse.kommune,
-    kommunenummer: underenhetDto.beliggenhetsadresse.kommunenummer,
-  };
-  return {
-    orgnr,
-    overordnetEnhet,
-    antallAnsatte,
-    beliggenhetsadresse,
-    bransje,
-    næring,
-    næringskode,
-  };
-};
-
-const underenheterResponseMock = {
-  organisasjonsnummer: "999999999",
-  navn: "HEI OG HÅ BARNEHAGE",
-  organisasjonsform: {
-    kode: "BEDR",
-    beskrivelse: "Bedrift",
-    _links: {
-      self: {
-        href: "https://data.brreg.no/enhetsregisteret/api/organisasjonsformer/BEDR",
-      },
-    },
-  },
-  registreringsdatoEnhetsregisteret: "1990-01-01",
-  registrertIMvaregisteret: false,
-  naeringskode1: {
-    beskrivelse: "næringskoden til barnehage",
-    kode: "88.911",
-  },
-  naeringskode2: {
-    beskrivelse: "random næringskode",
-    kode: "88.992",
-  },
-  antallAnsatte: 62,
-  overordnetEnhet: "999999991",
-  oppstartsdato: "1990-01-01",
-  beliggenhetsadresse: {
-    land: "Norge",
-    landkode: "NO",
-    postnummer: "9999",
-    poststed: "OSLO",
-    adresse: ["testadresse AS"],
-    kommune: "OSLO",
-    kommunenummer: "9999",
-  },
-  _links: {
-    self: {
-      href: "https://data.brreg.no/enhetsregisteret/api/underenheter/999999999",
-    },
-    overordnetEnhet: {
-      href: "https://data.brreg.no/enhetsregisteret/api/enheter/999999991",
-    },
-  },
-};
 
 const aggregertStatistikkMock = new Map<
   Statistikkategori,
@@ -134,19 +61,6 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
     status: RestStatus.Suksess,
     data: getOrganisasjonerBrukerHarIaRettigheterTilMock(),
   },
-  enhetsregisterdata: {
-    restUnderenhet: {
-      status: RestStatus.Suksess,
-      data: mapTilUnderenhet(underenheterResponseMock),
-    },
-    restOverordnetEnhet: {
-      status: RestStatus.Suksess,
-      data: {
-        orgnr: "999999991",
-        institusjonellSektorkode: { kode: "6100", beskrivelse: "min sektor" },
-      },
-    },
-  },
   publiseringsdatoer: {
     status: RestStatus.Suksess,
     data: getMockPubliseringsdatoer(),
@@ -155,7 +69,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
     status: RestStatus.Suksess,
     data: [
       {
-        type: "LAND",
+        type: Statistikkategori.LAND,
         label: "Norge",
         kvartalsvisSykefraværsprosent: [
           {
@@ -169,7 +83,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
         ],
       },
       {
-        type: "SEKTOR",
+        type: Statistikkategori.SEKTOR,
         label: "Statlig forvaltning",
         kvartalsvisSykefraværsprosent: [
           {
@@ -183,7 +97,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
         ],
       },
       {
-        type: "VIRKSOMHET",
+        type: Statistikkategori.VIRKSOMHET,
         label: "FLESK OG FISK AS",
         kvartalsvisSykefraværsprosent: [
           {
@@ -197,7 +111,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
         ],
       },
       {
-        type: "OVERORDNET_ENHET",
+        type: Statistikkategori.OVERORDNET_ENHET,
         label: "THE FISHING GROUP",
         kvartalsvisSykefraværsprosent: [
           {
@@ -211,7 +125,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
         ],
       },
       {
-        type: "NÆRING",
+        type: Statistikkategori.NÆRING,
         label: "Produksjon av nærings- og nytelsesmidler",
         kvartalsvisSykefraværsprosent: [
           {
