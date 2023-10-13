@@ -5,21 +5,32 @@ import {
   HistorikkLabel,
   HistorikkLabels,
 } from "../../../../utils/sykefraværshistorikk-utils";
+import { heiOgHåBarnehage } from "../../../../altinn-mock";
+
+const valgtBedriftMedSykefraværsstatistikkRettigheter =
+  heiOgHåBarnehage[0].OrganizationNumber;
+jest.mock("../../../../../../hooks/useOrgnr", () => ({
+  __esModule: true,
+  ...jest.requireActual("../../../../../../hooks/useOrgnr"),
+  useOrgnr: jest.fn(() => valgtBedriftMedSykefraværsstatistikkRettigheter),
+}));
+
+jest.mock("../../../../../../integrasjoner/ia-tjenestemetrikker-api", () => ({
+  __esModule: true,
+  ...jest.requireActual(
+    "../../../../../../integrasjoner/ia-tjenestemetrikker-api"
+  ),
+  sendSykefraværsstatistikkIaMetrikk: jest.fn(),
+}));
+
+jest.mock("../../../../../../amplitude/events", () => ({
+  __esModule: true,
+  ...jest.requireActual("../../../../../../amplitude/events"),
+  sendCheckboxLagtTil: jest.fn(),
+  sendCheckboxFjernet: jest.fn(),
+}));
 
 describe("LegendMedToggles", () => {
-  // TODO: Test amplitude-events og metrikk når det er på plass
-  /*beforeEach(() => {
-        const valgtBedriftMedSykefraværsstatistikkRettigheter =
-            heiOgHåBarnehage[0].OrganizationNumber;
-        jest.spyOn(hooks, 'useOrgnr').mockReturnValue(
-            valgtBedriftMedSykefraværsstatistikkRettigheter
-        );
-        jest.spyOn(iatjenester, 'sendSykefraværsstatistikkIaMetrikk').mockReturnValue(
-            Promise.resolve([])
-        );
-        jest.spyOn(amplitudeEvents, 'sendCheckboxLagtTil').mockReturnValue(undefined);
-        jest.spyOn(amplitudeEvents, 'sendCheckboxFjernet').mockReturnValue(undefined);
-    });*/
   const labels: HistorikkLabels = {
     virksomhet: "Virksomhet",
     overordnetEnhet: "Overordnet enhet",
@@ -45,7 +56,6 @@ describe("LegendMedToggles", () => {
         setLinjerSomSkalVises={() => {}}
       />
     );
-    //renderHook(() => useAnalytics(amplitudeMock));
 
     expect(screen.getByLabelText(`Virksomhet: Virksomhet`)).toBeInTheDocument();
     expect(
@@ -59,7 +69,6 @@ describe("LegendMedToggles", () => {
   it("Kaller setLinjerSomSkalVises med rikgig verdi på check", () => {
     const setLinjerSomSkalVises = jest.fn();
 
-    //renderHook(() => useAnalytics(amplitudeMock));
     render(
       <LegendMedToggles
         labels={labels}
@@ -76,7 +85,6 @@ describe("LegendMedToggles", () => {
 
   it("Kaller setLinjerSomSkalVises med rikgig verdi check med eksisterende verdi", () => {
     const setLinjerSomSkalVises = jest.fn();
-    //renderHook(() => useAnalytics(amplitudeMock));
 
     render(
       <LegendMedToggles
@@ -99,7 +107,6 @@ describe("LegendMedToggles", () => {
 
   it("Kaller setLinjerSomSkalVises med rikgig verdi på uncheck", () => {
     const setLinjerSomSkalVises = jest.fn();
-    //renderHook(() => useAnalytics(amplitudeMock));
 
     render(
       <LegendMedToggles

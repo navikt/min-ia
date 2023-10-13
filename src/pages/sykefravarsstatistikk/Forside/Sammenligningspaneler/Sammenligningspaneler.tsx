@@ -6,6 +6,7 @@ import { getBransjeEllerNæringKategori } from "./GetBransjeEllerNæringKategori
 import { Skeleton } from "@navikt/ds-react";
 import { RestStatus } from "../../../../integrasjoner/rest-status";
 import { RestAggregertStatistikk } from "../../hooks/useSykefraværAppData";
+import { sendSykefraværsstatistikkIaMetrikk } from "../../../../integrasjoner/ia-tjenestemetrikker-api";
 
 interface Props {
   aggregertStatistikk: RestAggregertStatistikk;
@@ -21,8 +22,7 @@ export const Sammenligningspaneler: FunctionComponent<Props> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       if (skalSendeMetrikkerAutomatisk) {
-        // TODO: Sende metrikker
-        //sendSykefraværsstatistikkIaMetrikk(orgnr);
+        sendSykefraværsstatistikkIaMetrikk(orgnr);
       }
     }, 5000);
     return () => clearTimeout(timer);

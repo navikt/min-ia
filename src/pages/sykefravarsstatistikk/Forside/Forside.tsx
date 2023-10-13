@@ -106,6 +106,7 @@ export const Forside = (appData: SykefraværAppData) => {
               orgnr={orgnr}
             />
             <Historikk
+              orgnr={orgnr}
               restSykefraværsstatistikk={{ status: RestStatus.IkkeLastet }}
             />
           </div>
@@ -194,7 +195,10 @@ export const Forside = (appData: SykefraværAppData) => {
               <Tabell {...tabellProps} />
             </div>
           )}
-          <Historikk restSykefraværsstatistikk={appData.sykefraværshistorikk} />
+          <Historikk
+            restSykefraværsstatistikk={appData.sykefraværshistorikk}
+            orgnr={orgnr}
+          />
         </div>
       </div>
     </div>

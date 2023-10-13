@@ -11,17 +11,19 @@ import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../../integrasjoner/rest-status";
 // import { useOrgnr } from "../../../hooks/useOrgnr";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
+import { sendToogleEvent } from "../../../amplitude/events";
+import { sendSykefraværsstatistikkIaMetrikk } from "../../../integrasjoner/ia-tjenestemetrikker-api";
 
 interface Props {
   restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
+  orgnr: string;
 }
 
 const Historikk: FunctionComponent<Props> = (props) => {
-  const { restSykefraværsstatistikk } = props;
+  const { restSykefraværsstatistikk, orgnr } = props;
   const [grafEllerTabell, setGrafEllerTabell] = useState<"graf" | "tabell">(
     "graf"
   );
-  //const orgnr = useOrgnr() || "";
 
   return (
     <div className={styles["historikk__wrapper"]}>
@@ -44,9 +46,8 @@ const Historikk: FunctionComponent<Props> = (props) => {
             onChange={(value) => {
               const grafEllerTabell = value as "graf" | "tabell";
               setGrafEllerTabell(grafEllerTabell);
-              // TODO: Events
-              /* sendToogleEvent(grafEllerTabell);
-                            sendSykefraværsstatistikkIaMetrikk(orgnr); */
+              sendToogleEvent(grafEllerTabell);
+              sendSykefraværsstatistikkIaMetrikk(orgnr);
             }}
           >
             <ToggleGroup.Item value="graf">Graf</ToggleGroup.Item>

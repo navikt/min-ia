@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { Link, LinkProps } from "@navikt/ds-react";
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
 import classNames from "classnames";
+import { sendNavigereEvent } from "../../../../amplitude/events";
 
 type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
@@ -21,8 +22,7 @@ const EksternLenke: FunctionComponent<WithRequired<LinkProps, "href">> = ({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => {
-        // TODO: legg til event for metrikker
-        //sendNavigereEvent(lenkeProperties.href, lenketekst);
+        sendNavigereEvent(lenkeProperties.href, lenketekst);
       }}
     >
       {lenketekst}

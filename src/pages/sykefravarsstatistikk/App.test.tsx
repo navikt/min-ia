@@ -30,7 +30,6 @@ describe("App", () => {
   const MockObserver = new MockResizeObserver();
 
   beforeEach(() => {
-    //jest.spyOn(amplitudeMock, 'setUserProperties');
     MockObserver.startmock();
   });
 
@@ -54,26 +53,6 @@ describe("App", () => {
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
-
-  // TODO: Test at amplitude-events sendes med riktige properties når det er på plass
-  // eslint-disable-next-line jest/no-commented-out-tests
-  /* it('Amplitude-events sendes med riktige user properties', async () => {
-        render(<AppContent {...mockAllDatahentingStatusOk} />);
-
-        await waitFor(() => {
-            expect(amplitudeMock.setUserProperties).toHaveBeenCalledTimes(1);
-        });
-        await waitFor(() => {
-            expect(amplitudeMock.setUserProperties).toHaveBeenCalledWith({
-                antallAnsatte: '50-99',
-                bransje: 'BARNEHAGER',
-                sektor: 'offentlig',
-                næring2siffer: '88 Sosiale omsorgstjenester uten botilbud',
-                prosent: '10-12',
-                sykefraværsvurdering: 'UNDER',
-            });
-        });
-    }); */
 
   it("Har ingen uu-feil fra axe", async () => {
     const { container } = render(

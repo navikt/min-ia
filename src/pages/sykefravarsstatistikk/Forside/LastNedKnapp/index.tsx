@@ -5,9 +5,12 @@ import ReactToPrint from "react-to-print";
 import React from "react";
 import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
+import { sendKnappEvent } from "../../../../amplitude/events";
+import { sendSykefraværsstatistikkIaMetrikk } from "../../../../integrasjoner/ia-tjenestemetrikker-api";
 
 export default function LastNedKnapp({
-  innholdRef, //  orgnr,
+  innholdRef,
+  orgnr,
 }: {
   innholdRef: React.RefObject<HTMLDivElement>;
   orgnr: string;
@@ -16,9 +19,8 @@ export default function LastNedKnapp({
   return (
     <ReactToPrint
       onBeforePrint={() => {
-        //TODO: legg til events for metrikker
-        //sendKnappEvent('skriv ut');
-        //sendSykefraværsstatistikkIaMetrikk(orgnr);
+        sendKnappEvent("skriv ut");
+        sendSykefraværsstatistikkIaMetrikk(orgnr);
       }}
       onAfterPrint={() => {
         if (lastNedKnappRef.current) {

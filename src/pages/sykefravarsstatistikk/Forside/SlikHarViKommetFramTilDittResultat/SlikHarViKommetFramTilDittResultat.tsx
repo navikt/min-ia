@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import EksternLenke from "../../felleskomponenter/EksternLenke/EksternLenke";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
+import { sendPanelEkspanderEvent } from "../../../../amplitude/events";
 
 export const SlikHarViKommetFramTilDittResultat: FunctionComponent = () => {
   const panelHeader = "Slik har vi kommet fram til ditt resultat";
@@ -10,8 +11,7 @@ export const SlikHarViKommetFramTilDittResultat: FunctionComponent = () => {
       header={panelHeader}
       className={styles["slik-har-vi-kommet-fram-til-ditt-resultat"]}
       onClick={() => {
-        // TODO: legg til event for metrikker
-        //sendPanelEkspanderEvent(panelHeader)
+        sendPanelEkspanderEvent(panelHeader);
       }}
     >
       <div

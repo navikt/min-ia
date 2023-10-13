@@ -14,6 +14,7 @@ import {
 } from "../../utils/sykefraværshistorikk-utils";
 import { Suksess } from "../../../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../../hooks/useSykefraværAppData";
+import { sendKnappEvent } from "../../../../amplitude/events";
 
 const defaultLinjer: readonly HistorikkLabel[] = [
   "virksomhet",
@@ -74,8 +75,7 @@ export default function GrafEllerTabell({
         harOverordnetEnhet={harOverordnetEnhet}
         historikkLabels={historikkLabels}
         onClick={() => {
-          // TODO: Send metrikk
-          //sendKnappEvent('last ned csv')
+          sendKnappEvent("last ned csv");
         }}
       />
     </>
