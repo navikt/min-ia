@@ -178,6 +178,23 @@ export default async function mockRequest(req: NextRequest) {
       status: 200,
     });
   }
+  if (req.url?.includes("/api/sykefravarsstatistikk-api/publiseringsdato")) {
+    console.log(`[DEBUG] GET /api/sykefravarsstatistikk-api/publiseringsdato`);
+
+    const publiseringsdato = {
+      gjeldendePeriode: {
+        årstall: 2022,
+        kvartal: 2,
+      },
+      nestePubliseringsdato: "2022-12-01",
+      sistePubliseringsdato: "2022-09-08",
+    };
+
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify(publiseringsdato), {
+      status: 200,
+    });
+  }
 
   if (req.url?.endsWith("/api/authenticated/metrikker")) {
     console.log("[DEBUG] GET /api/authenticated/metrikker");

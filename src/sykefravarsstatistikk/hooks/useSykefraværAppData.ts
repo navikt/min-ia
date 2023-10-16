@@ -6,6 +6,7 @@ import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
 import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjonerMedStatistikktilgang";
 import { useKvartalsvisStatistikk } from "../../hooks/useKvartalsvisStatistikk";
+import { usePubliseringsdato } from "../../hooks/usePubliseringsdato";
 
 export type ÅrstallOgKvartal = {
   årstall: number;
@@ -152,23 +153,9 @@ export function useSykefraværAppData(): SerialiserbarAppData {
   const altinnOrganisasjoner = useAltinnOrganisasjoner();
   const altinnOrganisasjonerMedStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikktilgang();
-
-  // TODO: Vi trenger dette kallet
   const sykefraværshistorikk = useKvartalsvisStatistikk();
-
   const aggregertStatistikk = useAggregertStatistikk();
-  // TODO: Vi trenger dette kallet
-  const publiseringsdatoer = {
-    status: RestStatus.Suksess,
-    data: {
-      gjeldendePeriode: {
-        årstall: 2022,
-        kvartal: 2,
-      },
-      nestePubliseringsdato: "2022-12-01",
-      sistePubliseringsdato: "2022-09-08",
-    },
-  };
+  const publiseringsdatoer = usePubliseringsdato();
 
   return {
     altinnOrganisasjoner,
