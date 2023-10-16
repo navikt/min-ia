@@ -1,18 +1,20 @@
 import React from "react";
 import {
-  SerialiserbarAppData,
-  getSykefraværAppData,
+  useSykefraværAppData,
   transformSykefraværAppData,
 } from "../sykefravarsstatistikk/hooks/useSykefraværAppData";
 
-import Forside from "../sykefravarsstatistikk/Forside/Forside";
+import dynamic from "next/dynamic";
 
-export function AppContent(props: SerialiserbarAppData) {
-  return <Forside {...transformSykefraværAppData(props)} />;
+const Forside = dynamic(
+  () => import("../sykefravarsstatistikk/Forside/Forside"),
+  {
+    ssr: false,
+  }
+);
+
+export function AppContent() {
+  return <Forside {...transformSykefraværAppData(useSykefraværAppData())} />;
 }
-
-export const getServerSideProps = () => {
-  return { props: getSykefraværAppData() };
-};
 
 export default AppContent;

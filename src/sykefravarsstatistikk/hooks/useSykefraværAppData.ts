@@ -7,6 +7,7 @@ import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { Statistikkategori } from "../domene/statistikkategori";
 import { StatistikkDto } from "../../integrasjoner/aggregert-statistikk-api";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
+import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
 
 export type ÅrstallOgKvartal = {
   årstall: number;
@@ -97,7 +98,7 @@ export interface SerialiserbarAppData {
   altinnOrganisasjoner: RestAltinnOrganisasjoner;
   altinnOrganisasjonerMedStatistikktilgang: RestAltinnOrganisasjoner;
   sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
-  aggregertStatistikk: RestAggregertSerialiserbarStatistikk;
+  aggregertStatistikk: RestRessurs<AggregertStatistikkDto>;
   publiseringsdatoer: RestRessurs<SerialiserbarPubliseringsdatoer>;
   skalSendeMetrikkerAutomatisk?: boolean;
 }
@@ -151,7 +152,7 @@ const neste = (årstallOgKvartal: ÅrstallOgKvartal): ÅrstallOgKvartal => {
     };
   }
 };
-export function getSykefraværAppData(): SerialiserbarAppData {
+export function useSykefraværAppData(): SerialiserbarAppData {
   const altinnOrganisasjoner = {
     status: RestStatus.Suksess,
     data: organisasjoner,
@@ -160,6 +161,7 @@ export function getSykefraværAppData(): SerialiserbarAppData {
     status: RestStatus.Suksess,
     data: organisasjonerMedIaRettighet,
   };
+  // TODO: Vi trenger dette kallet
   const sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]> = {
     status: RestStatus.Suksess,
     data: [
@@ -225,10 +227,13 @@ export function getSykefraværAppData(): SerialiserbarAppData {
       },
     ],
   };
-  const aggregertStatistikk = {
+
+  const aggregertStatistikk = useAggregertStatistikk();
+  /* const aggregertStatistikk = {
     restStatus: RestStatus.Suksess,
     data: mockdataOrgnr91096939 as SerialiserbarStatistikk,
-  };
+  }; */
+  // TODO: Vi trenger dette kallet
   const publiseringsdatoer = {
     status: RestStatus.Suksess,
     data: {
@@ -274,18 +279,19 @@ function getTransformedPubliseringsdatoer(
 }
 
 function getTransformedAggregertStatistikk(
-  serialisertAggregertStatistikk: RestAggregertSerialiserbarStatistikk
+  serialisertAggregertStatistikk: RestRessurs<AggregertStatistikkDto>
 ): RestAggregertStatistikk {
-  if (serialisertAggregertStatistikk.restStatus === RestStatus.Suksess) {
+  if (
+    serialisertAggregertStatistikk.status === RestStatus.Suksess &&
+    serialisertAggregertStatistikk.data !== undefined
+  ) {
     return {
-      restStatus: serialisertAggregertStatistikk.restStatus,
-      aggregertData: groupByCategory(
-        serialisertAggregertStatistikk.data as AggregertStatistikkDto
-      ),
+      restStatus: serialisertAggregertStatistikk.status,
+      aggregertData: groupByCategory(serialisertAggregertStatistikk.data),
     };
   }
 
-  return { restStatus: serialisertAggregertStatistikk.restStatus };
+  return { restStatus: serialisertAggregertStatistikk.status };
 }
 
 export function transformSykefraværAppData(
