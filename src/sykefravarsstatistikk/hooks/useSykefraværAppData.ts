@@ -1,6 +1,6 @@
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { Statistikkategori } from "../domene/statistikkategori";
-import { StatistikkDto } from "../../integrasjoner/aggregert-statistikk-api";
+import { AggregertStatistikkDto } from "../../integrasjoner/aggregert-statistikk-api";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
 import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
@@ -98,56 +98,6 @@ export interface SerialiserbarAppData {
   publiseringsdatoer: RestRessurs<SerialiserbarPubliseringsdatoer>;
   skalSendeMetrikkerAutomatisk?: boolean;
 }
-
-export const genererHistorikk = (
-  startÅrstallOgKvartal: ÅrstallOgKvartal,
-  antallKvartaler: number,
-  startprosent: number,
-  variasjon: number,
-  randomness: number,
-  vekst: number
-): KvartalsvisSykefraværsprosent[] => {
-  const historikk: KvartalsvisSykefraværsprosent[] = [];
-
-  let årstallOgKvartal = { ...startÅrstallOgKvartal };
-  let prosent = startprosent;
-
-  for (let i = 0; i < antallKvartaler; i += 1) {
-    historikk.push({
-      ...årstallOgKvartal,
-      erMaskert: false,
-      prosent: prosent,
-      tapteDagsverk: prosent * 10,
-      muligeDagsverk: prosent * 1000,
-    });
-    årstallOgKvartal = neste(årstallOgKvartal);
-    prosent =
-      prosent +
-      variasjon * Math.sin(0.5 + (Math.PI * i) / 2) +
-      randomNumber(vekst - randomness, vekst + randomness);
-    prosent = Math.max(0, prosent);
-    prosent = parseFloat(prosent.toFixed(1));
-  }
-
-  return historikk;
-};
-const randomNumber = (min: number, max: number): number =>
-  Math.random() * (max - min) + min;
-
-const neste = (årstallOgKvartal: ÅrstallOgKvartal): ÅrstallOgKvartal => {
-  const { årstall, kvartal } = årstallOgKvartal;
-  if (kvartal === 4) {
-    return {
-      årstall: årstall + 1,
-      kvartal: 1,
-    };
-  } else {
-    return {
-      årstall,
-      kvartal: kvartal + 1,
-    };
-  }
-};
 
 export function useSykefraværAppData(): SerialiserbarAppData {
   const altinnOrganisasjoner = useAltinnOrganisasjoner();
@@ -250,14 +200,6 @@ export const groupByCategory = (
 
   return map;
 };
-
-interface AggregertStatistikkDto {
-  prosentSiste4KvartalerTotalt: StatistikkDto[];
-  prosentSiste4KvartalerGradert: StatistikkDto[];
-  prosentSiste4KvartalerKorttid: StatistikkDto[];
-  prosentSiste4KvartalerLangtid: StatistikkDto[];
-  trendTotalt: StatistikkDto[];
-}
 
 export type AggregertStatistikk = {
   prosentSiste4KvartalerTotalt?: Statistikk;

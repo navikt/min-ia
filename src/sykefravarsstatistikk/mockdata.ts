@@ -50,7 +50,7 @@ aggregertStatistikkMock.set(Statistikkategori.BRANSJE, {
 
 export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
   aggregertStatistikk: {
-    restStatus: RestStatus.Suksess,
+    status: RestStatus.Suksess,
     data: mockdataOrgnr91096939 as SerialiserbarStatistikk,
   },
   altinnOrganisasjoner: {
@@ -143,7 +143,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
 };
 
 export const mockAllDatahentingStatusLaster: SerialiserbarAppData = {
-  aggregertStatistikk: { restStatus: RestStatus.LasterInn },
+  aggregertStatistikk: { status: RestStatus.LasterInn },
   altinnOrganisasjoner: { status: RestStatus.LasterInn },
   altinnOrganisasjonerMedStatistikktilgang: {
     status: RestStatus.LasterInn,

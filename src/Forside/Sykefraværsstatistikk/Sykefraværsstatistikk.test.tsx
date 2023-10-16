@@ -248,6 +248,120 @@ const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       ],
     },
   ],
+  prosentSiste4KvartalerGradert: [
+    {
+      statistikkategori: Statistikkategori.LAND,
+      label: "Norge",
+      verdi: "9.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: "7.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "5.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  prosentSiste4KvartalerKorttid: [
+    {
+      statistikkategori: Statistikkategori.LAND,
+      label: "Norge",
+      verdi: "9.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: "7.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "5.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  prosentSiste4KvartalerLangtid: [
+    {
+      statistikkategori: Statistikkategori.LAND,
+      label: "Norge",
+      verdi: "9.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.NÆRING,
+      label: "Næringen til barenhager",
+      verdi: "7.0",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "5.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
   trendTotalt: [
     {
       statistikkategori: Statistikkategori.LAND,
@@ -300,6 +414,9 @@ const mockAggregertStatistikkSynkendeTrend: AggregertStatistikkDto = {
   muligeDagsverkTotalt: [],
   tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [],
+  prosentSiste4KvartalerGradert: [],
+  prosentSiste4KvartalerKorttid: [],
+  prosentSiste4KvartalerLangtid: [],
   trendTotalt: [
     {
       statistikkategori: Statistikkategori.NÆRING,
@@ -320,6 +437,9 @@ const mockAggregertStatistikkUendretTrend: AggregertStatistikkDto = {
   muligeDagsverkTotalt: [],
   tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [],
+  prosentSiste4KvartalerGradert: [],
+  prosentSiste4KvartalerKorttid: [],
+  prosentSiste4KvartalerLangtid: [],
   trendTotalt: [
     {
       statistikkategori: Statistikkategori.NÆRING,
@@ -340,6 +460,84 @@ const mockAggregertStatistikkStigendeTrendBransje: AggregertStatistikkDto = {
   muligeDagsverkTotalt: [],
   tapteDagsverkTotalt: [],
   prosentSiste4KvartalerTotalt: [
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "3.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2021,
+          kvartal: 2,
+        },
+        {
+          årstall: 2021,
+          kvartal: 3,
+        },
+        {
+          årstall: 2021,
+          kvartal: 4,
+        },
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  prosentSiste4KvartalerGradert: [
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "3.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2021,
+          kvartal: 2,
+        },
+        {
+          årstall: 2021,
+          kvartal: 3,
+        },
+        {
+          årstall: 2021,
+          kvartal: 4,
+        },
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  prosentSiste4KvartalerKorttid: [
+    {
+      statistikkategori: Statistikkategori.BRANSJE,
+      label: "Barnehager",
+      verdi: "3.1",
+      antallPersonerIBeregningen: 10,
+      kvartalerIBeregningen: [
+        {
+          årstall: 2021,
+          kvartal: 2,
+        },
+        {
+          årstall: 2021,
+          kvartal: 3,
+        },
+        {
+          årstall: 2021,
+          kvartal: 4,
+        },
+        {
+          årstall: 2022,
+          kvartal: 1,
+        },
+      ],
+    },
+  ],
+  prosentSiste4KvartalerLangtid: [
     {
       statistikkategori: Statistikkategori.BRANSJE,
       label: "Barnehager",

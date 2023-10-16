@@ -11,10 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
 import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
 import { kurslisteMock } from "./testdata-kurs";
-import {
-  SykefraværshistorikkType,
-  genererHistorikk,
-} from "../sykefravarsstatistikk/hooks/useSykefraværAppData";
+import { kvartalsvisHistorikkMockdata } from "./kvartalsvisHistorikkMockdata";
 
 export default async function mockRequest(req: NextRequest) {
   const testMode: string = process.env.TEST_MODE
@@ -110,68 +107,7 @@ export default async function mockRequest(req: NextRequest) {
       `[DEBUG] GET /api/sykefravarsstatistikk-api/kvartalsvis-sykefraværshistorikk?orgnr=${orgnr}`
     );
 
-    const historikk = [
-      {
-        type: SykefraværshistorikkType.LAND,
-        label: "Norge",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          20,
-          5.5,
-          1,
-          0.1,
-          0
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.SEKTOR,
-        label: "Statlig forvaltning",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          20,
-          4,
-          2,
-          0.2,
-          0
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.VIRKSOMHET,
-        label: "Dette er en virksomhet",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          20,
-          4,
-          2,
-          0.2,
-          1
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.OVERORDNET_ENHET,
-        label: "Dette er en overordnet virksomhet",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          12,
-          3,
-          6,
-          0.4,
-          0
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.BRANSJE,
-        label: "Dette er en bransje",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          21,
-          7,
-          1,
-          0.5,
-          0
-        ),
-      },
-    ];
+    const historikk = kvartalsvisHistorikkMockdata;
 
     await new Promise((r) => setTimeout(r, delayInMillis));
     return new NextResponse(JSON.stringify(historikk), {

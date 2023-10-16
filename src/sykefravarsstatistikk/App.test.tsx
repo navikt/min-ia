@@ -1,5 +1,4 @@
 import React from "react";
-import { AppContent } from "../pages/sykefravarsstatistikk";
 import { render } from "@testing-library/react";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { axe } from "jest-axe";
@@ -7,6 +6,8 @@ import {
   mockAllDatahentingStatusLaster,
   mockAllDatahentingStatusOk,
 } from "./mockdata";
+import Forside from "./Forside/Forside";
+import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -22,6 +23,7 @@ jest.mock("next/router", () => ({
       },
       beforePopState: jest.fn(() => null),
       prefetch: jest.fn(() => null),
+      replace: jest.fn(),
     };
   },
 }));
@@ -40,7 +42,7 @@ describe("App", () => {
 
   it("renders without crashing", async () => {
     const { container } = render(
-      <AppContent {...mockAllDatahentingStatusOk} />
+      <Forside {...transformSykefraværAppData(mockAllDatahentingStatusOk)} />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -48,7 +50,9 @@ describe("App", () => {
 
   it("renders without data without crashing", async () => {
     const { container } = render(
-      <AppContent {...mockAllDatahentingStatusLaster} />
+      <Forside
+        {...transformSykefraværAppData(mockAllDatahentingStatusLaster)}
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -56,7 +60,7 @@ describe("App", () => {
 
   it("Har ingen uu-feil fra axe", async () => {
     const { container } = render(
-      <AppContent {...mockAllDatahentingStatusOk} />
+      <Forside {...transformSykefraværAppData(mockAllDatahentingStatusOk)} />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
