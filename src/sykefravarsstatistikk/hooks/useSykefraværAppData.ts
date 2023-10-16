@@ -5,6 +5,7 @@ import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon
 import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
 import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjonerMedStatistikktilgang";
+import { useKvartalsvisStatistikk } from "../../hooks/useKvartalsvisStatistikk";
 
 export type ÅrstallOgKvartal = {
   årstall: number;
@@ -23,7 +24,7 @@ export interface SerialiserbarPubliseringsdatoer {
   gjeldendePeriode: ÅrstallOgKvartal;
 }
 
-const SykefraværshistorikkType = Statistikkategori;
+export const SykefraværshistorikkType = Statistikkategori;
 
 type SykefraværshistorikkType = Statistikkategori;
 
@@ -97,13 +98,13 @@ export interface SerialiserbarAppData {
   skalSendeMetrikkerAutomatisk?: boolean;
 }
 
-const genererHistorikk = (
+export const genererHistorikk = (
   startÅrstallOgKvartal: ÅrstallOgKvartal,
   antallKvartaler: number,
   startprosent: number,
   variasjon: number,
   randomness: number,
-  vekst: number,
+  vekst: number
 ): KvartalsvisSykefraværsprosent[] => {
   const historikk: KvartalsvisSykefraværsprosent[] = [];
 
@@ -152,86 +153,10 @@ export function useSykefraværAppData(): SerialiserbarAppData {
   const altinnOrganisasjonerMedStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikktilgang();
 
-  // const altinnOrganisasjoner = {
-  //   status: RestStatus.Suksess,
-  //   data: organisasjoner,
-  // };
-  // const altinnOrganisasjonerMedStatistikktilgang = {
-  //   status: RestStatus.Suksess,
-  //   data: organisasjonerMedIaRettighet,
-  // };
   // TODO: Vi trenger dette kallet
-  const sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]> = {
-    status: RestStatus.Suksess,
-    data: [
-      {
-        type: SykefraværshistorikkType.LAND,
-        label: "Norge",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          20,
-          5.5,
-          1,
-          0.1,
-          0,
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.SEKTOR,
-        label: "Statlig forvaltning",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          20,
-          4,
-          2,
-          0.2,
-          0,
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.VIRKSOMHET,
-        label: "Dette er en virksomhet",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          20,
-          4,
-          2,
-          0.2,
-          1,
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.OVERORDNET_ENHET,
-        label: "Dette er en overordnet virksomhet",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          12,
-          3,
-          6,
-          0.4,
-          0,
-        ),
-      },
-      {
-        type: SykefraværshistorikkType.BRANSJE,
-        label: "Dette er en bransje",
-        kvartalsvisSykefraværsprosent: genererHistorikk(
-          { årstall: 2015, kvartal: 2 },
-          21,
-          7,
-          1,
-          0.5,
-          0,
-        ),
-      },
-    ],
-  };
+  const sykefraværshistorikk = useKvartalsvisStatistikk();
 
   const aggregertStatistikk = useAggregertStatistikk();
-  /* const aggregertStatistikk = {
-      restStatus: RestStatus.Suksess,
-      data: mockdataOrgnr91096939 as SerialiserbarStatistikk,
-    }; */
   // TODO: Vi trenger dette kallet
   const publiseringsdatoer = {
     status: RestStatus.Suksess,
@@ -255,7 +180,7 @@ export function useSykefraværAppData(): SerialiserbarAppData {
 }
 
 function getTransformedPubliseringsdatoer(
-  serialiserbarPubliseringsdatoer: RestRessurs<SerialiserbarPubliseringsdatoer>,
+  serialiserbarPubliseringsdatoer: RestRessurs<SerialiserbarPubliseringsdatoer>
 ): RestRessurs<Publiseringsdatoer> {
   if (serialiserbarPubliseringsdatoer.status === RestStatus.Suksess) {
     return {
@@ -263,10 +188,10 @@ function getTransformedPubliseringsdatoer(
       data: {
         ...serialiserbarPubliseringsdatoer.data,
         nestePubliseringsdato: new Date(
-          serialiserbarPubliseringsdatoer.data.nestePubliseringsdato,
+          serialiserbarPubliseringsdatoer.data.nestePubliseringsdato
         ),
         sistePubliseringsdato: new Date(
-          serialiserbarPubliseringsdatoer.data.sistePubliseringsdato,
+          serialiserbarPubliseringsdatoer.data.sistePubliseringsdato
         ),
       },
     };
@@ -278,7 +203,7 @@ function getTransformedPubliseringsdatoer(
 }
 
 function getTransformedAggregertStatistikk(
-  serialisertAggregertStatistikk: RestRessurs<AggregertStatistikkDto>,
+  serialisertAggregertStatistikk: RestRessurs<AggregertStatistikkDto>
 ): RestAggregertStatistikk {
   if (
     serialisertAggregertStatistikk.status === RestStatus.Suksess &&
@@ -294,7 +219,7 @@ function getTransformedAggregertStatistikk(
 }
 
 export function transformSykefraværAppData(
-  serialiserbarData: SerialiserbarAppData,
+  serialiserbarData: SerialiserbarAppData
 ): SykefraværAppData {
   return {
     altinnOrganisasjoner: serialiserbarData.altinnOrganisasjoner,
@@ -302,35 +227,35 @@ export function transformSykefraværAppData(
       serialiserbarData.altinnOrganisasjonerMedStatistikktilgang,
     sykefraværshistorikk: serialiserbarData.sykefraværshistorikk,
     aggregertStatistikk: getTransformedAggregertStatistikk(
-      serialiserbarData.aggregertStatistikk,
+      serialiserbarData.aggregertStatistikk
     ),
     publiseringsdatoer: getTransformedPubliseringsdatoer(
-      serialiserbarData.publiseringsdatoer,
+      serialiserbarData.publiseringsdatoer
     ),
   };
 }
 
 export const groupByCategory = (
-  aggregertStatistikk: AggregertStatistikkDto,
+  aggregertStatistikk: AggregertStatistikkDto
 ) => {
   const map = new Map<Statistikkategori, AggregertStatistikk>();
   Object.values(Statistikkategori).forEach((kategori) => {
     map.set(kategori, {
       prosentSiste4KvartalerTotalt: getCategory(
         kategori,
-        aggregertStatistikk.prosentSiste4KvartalerTotalt,
+        aggregertStatistikk.prosentSiste4KvartalerTotalt
       ),
       prosentSiste4KvartalerGradert: getCategory(
         kategori,
-        aggregertStatistikk.prosentSiste4KvartalerGradert,
+        aggregertStatistikk.prosentSiste4KvartalerGradert
       ),
       prosentSiste4KvartalerKorttid: getCategory(
         kategori,
-        aggregertStatistikk.prosentSiste4KvartalerKorttid,
+        aggregertStatistikk.prosentSiste4KvartalerKorttid
       ),
       prosentSiste4KvartalerLangtid: getCategory(
         kategori,
-        aggregertStatistikk.prosentSiste4KvartalerLangtid,
+        aggregertStatistikk.prosentSiste4KvartalerLangtid
       ),
       trendTotalt: getCategory(kategori, aggregertStatistikk.trendTotalt),
     });

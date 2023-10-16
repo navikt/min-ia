@@ -55,7 +55,7 @@ export const Forside = (appData: SykefraværAppData) => {
       appData.publiseringsdatoer.status,
       appData.sykefraværshistorikk.status,
     ].some((status) =>
-      [RestStatus.LasterInn, RestStatus.IkkeLastet].includes(status),
+      [RestStatus.LasterInn, RestStatus.IkkeLastet].includes(status)
     );
   }, [
     appData.aggregertStatistikk.restStatus,
@@ -130,17 +130,17 @@ export const Forside = (appData: SykefraværAppData) => {
           */
 
   const statistikKategori = getBransjeEllerNæringKategori(
-    appData.aggregertStatistikk,
+    appData.aggregertStatistikk
   );
   const harBransje = statistikKategori === Statistikkategori.BRANSJE;
 
   const bransjeEllerNæring = appData.aggregertStatistikk.aggregertData?.get(
-    harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING,
+    harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING
   );
   const navnPåVirksomhet =
     appData.altinnOrganisasjoner.status === RestStatus.Suksess &&
     appData.altinnOrganisasjoner.data.find(
-      (organisasjon) => organisasjon.OrganizationNumber === orgnr,
+      (organisasjon) => organisasjon.OrganizationNumber === orgnr
     )?.Name;
   const tabellProps = hentTabellProps(appData.sykefraværshistorikk);
 
@@ -206,7 +206,7 @@ export const Forside = (appData: SykefraværAppData) => {
   );
 };
 
-export default (props: SykefraværAppData) => {
+const WrappedForside = (props: SykefraværAppData) => {
   return (
     <Layout
       title="💩"
@@ -222,3 +222,5 @@ export default (props: SykefraværAppData) => {
     </Layout>
   );
 };
+
+export default WrappedForside;
