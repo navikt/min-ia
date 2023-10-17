@@ -34,7 +34,10 @@ describe("App", () => {
 
   it("renders without crashing", async () => {
     const { container } = render(
-      <Forside {...transformSykefraværAppData(mockAllDatahentingStatusOk)} />
+      <Forside
+        kjørerMockApp={true}
+        {...transformSykefraværAppData(mockAllDatahentingStatusOk)}
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -43,6 +46,7 @@ describe("App", () => {
   it("renders without data without crashing", async () => {
     const { container } = render(
       <Forside
+        kjørerMockApp={true}
         {...transformSykefraværAppData(mockAllDatahentingStatusLaster)}
       />
     );
@@ -52,7 +56,10 @@ describe("App", () => {
 
   it("Har ingen uu-feil fra axe", async () => {
     const { container } = render(
-      <Forside {...transformSykefraværAppData(mockAllDatahentingStatusOk)} />
+      <Forside
+        kjørerMockApp={true}
+        {...transformSykefraværAppData(mockAllDatahentingStatusOk)}
+      />
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();

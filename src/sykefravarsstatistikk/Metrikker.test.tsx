@@ -70,6 +70,7 @@ describe("Metrikkutsendelser", () => {
     return render(
       <BrowserRouter>
         <Forside
+          kjørerMockApp={true}
           {...transformSykefraværAppData(mockAppData)}
           skalSendeMetrikkerAutomatisk={skalSendeMetrikkerAutomatisk}
         />

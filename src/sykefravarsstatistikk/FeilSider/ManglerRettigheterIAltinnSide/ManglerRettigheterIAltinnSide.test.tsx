@@ -75,7 +75,10 @@ describe("Tester side for manglende Altinn-rettigheter", () => {
   function renderForside() {
     return render(
       <BrowserRouter>
-        <Forside {...transformSykefraværAppData(mockAppData)} />
+        <Forside
+          kjørerMockApp={true}
+          {...transformSykefraværAppData(mockAppData)}
+        />
       </BrowserRouter>
     );
   }
