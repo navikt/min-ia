@@ -10,6 +10,7 @@ import { RestRessurs, RestStatus } from "../integrasjoner/rest-status";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { fleskOgFisk, heiOgHåBarnehage } from "./altinn-mock";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
+import * as hooks from "../hooks/useOrgnr";
 
 const valgtBedriftMedSykefraværsstatistikkRettigheter =
   heiOgHåBarnehage[0].OrganizationNumber;
@@ -27,11 +28,19 @@ jest.mock("../integrasjoner/ia-tjenestemetrikker-api", () => ({
 
 describe("Metrikkutsendelser", () => {
   const MockObserver = new MockResizeObserver();
-  let spy: jest.SpyInstance;
+  let sykefravarsSpy: jest.SpyInstance;
+  let useOrgnrSpy: jest.SpyInstance;
 
   beforeEach(() => {
     MockObserver.startmock();
-    spy = jest.spyOn(metrikker, "sendSykefraværsstatistikkIaMetrikk");
+    sykefravarsSpy = jest.spyOn(
+      metrikker,
+      "sendSykefraværsstatistikkIaMetrikk"
+    );
+    useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
+    useOrgnrSpy.mockReturnValue(
+      valgtBedriftMedSykefraværsstatistikkRettigheter
+    );
   });
 
   afterEach(() => {
@@ -73,13 +82,13 @@ describe("Metrikkutsendelser", () => {
 
     renderForside();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(sykefravarsSpy).not.toHaveBeenCalled();
 
     act(() => {
       jest.advanceTimersByTime(7000);
     });
 
-    expect(spy).toHaveBeenCalled();
+    expect(sykefravarsSpy).toHaveBeenCalled();
     jest.useRealTimers();
   });
 
@@ -89,11 +98,11 @@ describe("Metrikkutsendelser", () => {
     const toggle = screen.getByRole("radio", { name: "Tabell" });
 
     expect(toggle).toBeDefined();
-    expect(spy).not.toHaveBeenCalled();
+    expect(sykefravarsSpy).not.toHaveBeenCalled();
 
     fireEvent.click(toggle);
     await waitFor(() => {
-      expect(spy).toHaveBeenCalled();
+      expect(sykefravarsSpy).toHaveBeenCalled();
     });
   });
 
@@ -104,11 +113,11 @@ describe("Metrikkutsendelser", () => {
       name: /bransje: produksjon av nærings- og nytelsesmidler/i,
     });
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(sykefravarsSpy).not.toHaveBeenCalled();
 
     fireEvent.click(checkbox);
     await waitFor(() => {
-      expect(spy).toHaveBeenCalled();
+      expect(sykefravarsSpy).toHaveBeenCalled();
     });
   });
 
@@ -119,11 +128,11 @@ describe("Metrikkutsendelser", () => {
 
     expect(knapp).toBeDefined();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(sykefravarsSpy).not.toHaveBeenCalled();
 
     fireEvent.click(knapp);
     await waitFor(() => {
-      expect(spy).toHaveBeenCalled();
+      expect(sykefravarsSpy).toHaveBeenCalled();
     });
   });
 });

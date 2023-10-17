@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { axe } from "jest-axe";
 import {
   mockAllDatahentingStatusLaster,
@@ -29,14 +28,7 @@ jest.mock("next/router", () => ({
 }));
 
 describe("App", () => {
-  const MockObserver = new MockResizeObserver();
-
-  beforeEach(() => {
-    MockObserver.startmock();
-  });
-
   afterEach(() => {
-    MockObserver.stopmock();
     jest.resetAllMocks();
   });
 

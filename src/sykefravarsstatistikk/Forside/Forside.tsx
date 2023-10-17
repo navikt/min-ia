@@ -20,6 +20,7 @@ import Tabell, {
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell";
 import useBreadcrumbs from "../../utils/useBreadcrumbs";
 import { Layout } from "../../komponenter/Layout/Layout";
+import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIAltinnSide/ManglerRettigheterIAltinnSide";
 
 const PrintOnlyHref = dynamic(() => import("./PrintOnlyHref"), {
   ssr: false,
@@ -44,6 +45,13 @@ export const Forside = (appData: SykefraværAppData) => {
   const orgnr = useOrgnr() || "";
   const harFeil = appData.aggregertStatistikk.restStatus === RestStatus.Feil;
   const { skalSendeMetrikkerAutomatisk = true } = appData;
+
+  const brukerHarIaRettighetTilValgtBedrift =
+    appData.altinnOrganisasjonerMedStatistikktilgang.status ===
+      RestStatus.Suksess &&
+    appData.altinnOrganisasjonerMedStatistikktilgang.data
+      .map((org) => org.OrganizationNumber)
+      .includes(orgnr);
 
   const innholdRef = useRef<HTMLDivElement>(null);
 
@@ -116,18 +124,15 @@ export const Forside = (appData: SykefraværAppData) => {
     );
   }
 
-  // TODO: handle manglende rettigheter fra Altinn
-  /*
-          if (!brukerHarIaRettighetTilValgtBedrift) {
-            return (
-              <ManglerRettigheterIAltinnSide
-                restOrganisasjonerMedStatistikk={
-                  appData.altinnOrganisasjonerMedStatistikktilgang
-                }
-              />
-            );
-          }
-          */
+  if (!brukerHarIaRettighetTilValgtBedrift) {
+    return (
+      <ManglerRettigheterIAltinnSide
+        restOrganisasjonerMedStatistikk={
+          appData.altinnOrganisasjonerMedStatistikktilgang
+        }
+      />
+    );
+  }
 
   const statistikKategori = getBransjeEllerNæringKategori(
     appData.aggregertStatistikk
