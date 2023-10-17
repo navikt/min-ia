@@ -13,7 +13,7 @@ metadata:
 spec:
   ingressClassName: nais-ingress-external
   rules:
-    - host: sykefravarsstatistikk.intern.dev.nav.no
+    - host: intern.dev.nav.no
       http:
         paths:
           - backend:
