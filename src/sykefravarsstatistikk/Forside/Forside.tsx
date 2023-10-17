@@ -224,9 +224,9 @@ const WrappedForside = (
 ) => {
   return (
     <Layout
-      title="💩"
-      description="💩"
-      kjørerMockApp={false}
+      title="Sykefraværsstatistikk"
+      description="INKLUDERENDE ARBEIDSLIV"
+      kjørerMockApp={props.kjørerMockApp}
       altinnOrganisasjoner={
         props.altinnOrganisasjoner.status === RestStatus.Suksess
           ? props.altinnOrganisasjoner.data
