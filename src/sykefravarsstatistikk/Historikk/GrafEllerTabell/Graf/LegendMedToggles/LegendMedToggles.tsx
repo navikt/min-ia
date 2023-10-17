@@ -12,9 +12,6 @@ import {
 } from "../../../../../amplitude/events";
 import { useOrgnr } from "../../../../../hooks/useOrgnr";
 import { sendSykefraværsstatistikkIaMetrikk } from "../../../../../integrasjoner/ia-tjenestemetrikker-api";
-//import { sendCheckboxLagtTil, sendCheckboxFjernet } from '../../../../amplitude/events';
-//import { sendSykefraværsstatistikkIaMetrikk } from '../../../../metrikker/iatjenester';
-//import { useOrgnr } from '../../../../../../hooks/useOrgnr';
 
 interface Props {
   labels: HistorikkLabels;

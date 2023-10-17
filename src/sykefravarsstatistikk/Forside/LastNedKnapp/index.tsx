@@ -1,7 +1,5 @@
 import { Button } from "@navikt/ds-react";
 import ReactToPrint from "react-to-print";
-// import { sendKnappEvent } from '../../amplitude/events';
-// import { sendSykefraværsstatistikkIaMetrikk } from '../../metrikker/iatjenester';
 import React from "react";
 import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";

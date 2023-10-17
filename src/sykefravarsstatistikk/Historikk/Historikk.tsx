@@ -9,7 +9,6 @@ import {
 } from "@navikt/ds-react";
 import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
-// import { useOrgnr } from "../../../hooks/useOrgnr";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
 import { sendToogleEvent } from "../../amplitude/events";
 import { sendSykefraværsstatistikkIaMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
