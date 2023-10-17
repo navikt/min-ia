@@ -26,7 +26,14 @@ const PrintOnlyHref = dynamic(() => import("./PrintOnlyHref"), {
   ssr: false,
 });
 
-export const Forside = (appData: SykefraværAppData) => {
+export const Forside = ({
+  kjørerMockApp,
+  prodUrl,
+  ...appData
+}: SykefraværAppData & {
+  kjørerMockApp: boolean;
+  prodUrl?: string;
+}) => {
   useBreadcrumbs([
     {
       title: "Min side – arbeidsgiver",
@@ -77,11 +84,10 @@ export const Forside = (appData: SykefraværAppData) => {
     return (
       <div className={styles["forside__wrapper"]}>
         <div className={styles["forside"]}>
-          {/* TODO: Props inn i TestVersjonBanner må være rett */}
           <TestVersjonBanner
-            sidenavn="fraværskalkulatoren"
-            prodUrl={"props.prodUrl"}
-            kjørerMockApp={true}
+            sidenavn="sykefraværsstatistikken"
+            prodUrl={prodUrl}
+            kjørerMockApp={kjørerMockApp}
           />
           <div className={styles["forside__innhold"]}>
             <div className={styles["forside__innhold__header"]}>
@@ -152,11 +158,10 @@ export const Forside = (appData: SykefraværAppData) => {
   return (
     <div className={styles["forside__wrapper"]}>
       <div className={styles["forside"]}>
-        {/* TODO: Props inn i TestVersjonBanner må være rett */}
         <TestVersjonBanner
-          sidenavn="fraværskalkulatoren"
-          prodUrl={"props.prodUrl"}
-          kjørerMockApp={true}
+          sidenavn="sykefraværsstatistikken"
+          prodUrl={prodUrl}
+          kjørerMockApp={kjørerMockApp}
         />
         <div className={styles["forside__innhold"]} ref={innholdRef}>
           {harFeil && (
@@ -211,7 +216,12 @@ export const Forside = (appData: SykefraværAppData) => {
   );
 };
 
-const WrappedForside = (props: SykefraværAppData) => {
+const WrappedForside = (
+  props: SykefraværAppData & {
+    kjørerMockApp: boolean;
+    prodUrl?: string;
+  }
+) => {
   return (
     <Layout
       title="💩"
