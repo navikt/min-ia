@@ -11,7 +11,7 @@ metadata:
   name: prod-redirect-min-ia-to-forebygge-fravar
   namespace: teamia
 spec:
-  ingressClassName: gw-nav-no
+  ingressClassName: nais-ingress-external 
   rules:
     - host: arbeidsgiver.nav.no
       http:
