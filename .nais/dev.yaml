@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamia
 spec:
-  image: {{image}}
+  image: { { image } }
   port: 3000
   env:
     - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
@@ -40,7 +40,7 @@ spec:
     - name: SAMTALESTOTTE_URL
       value: https://samtalestotte.intern.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
-      value: https://sykefravarsstatistikk.intern.dev.nav.no/sykefravarsstatistikk
+      value: /forebygge-fravar/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL
       value: https://forebyggingsplan-frontend.intern.dev.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL

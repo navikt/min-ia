@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamia
 spec:
-  image: {{image}}
+  image: { { image } }
   port: 3000
   env:
     - name: ARBEIDSGIVER_HOSTNAME
@@ -24,7 +24,7 @@ spec:
     - name: SAMTALESTOTTE_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
-      value: https://arbeidsgiver.ekstern.dev.nav.no/sykefravarsstatistikk
+      value: /forebygge-fravar/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
