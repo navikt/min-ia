@@ -11,7 +11,7 @@ metadata:
   name: dev-redirect-sykefravarsstatistikk-to-forebygge-fravar
   namespace: teamia
 spec:
-  ingressClassName: nais-ingress
+  ingressClassName: nais-ingress-external
   rules:
     - host: sykefravarsstatistikk.intern.dev.nav.no
       http:
