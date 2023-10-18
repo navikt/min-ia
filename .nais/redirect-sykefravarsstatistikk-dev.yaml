@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: "https://forebygge-fravar.intern.dev.nav.no/forebygge-fravar/sykefravarsstatistikk/$2"
+    prometheus.io/scrape: "false"
+  labels:
+    app: min-ia
+    team: teamia
+  name: dev-redirect-sykefravarsstatistikk-to-forebygge-fravar
+  namespace: teamia
+spec:
+  ingressClassName: nais-ingress
+  rules:
+    - host: sykefravarsstatistikk.intern.dev.nav.no
+      http:
+        paths:
+          - backend:
+              service:
+                name: sykefravarsstatistikk
+                port:
+                  number: 80
+            path: /sykefravarsstatistikk(/|$)(.*)
+            pathType: ImplementationSpecific

@@ -17,7 +17,7 @@ export interface KalkulatorData {
 export const Fraværskalulator: FunctionComponent<
   KalkulatorData & {
     nedlastingPågår: boolean;
-    kjørerMockApp: boolean;
+    kjørerMockApp?: boolean;
     prodUrl?: string;
   }
 > = (props) => {

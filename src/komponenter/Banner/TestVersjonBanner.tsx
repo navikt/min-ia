@@ -3,11 +3,11 @@ import styles from "./TestVersjonBanner.module.css";
 const TestVersjonBanner = ({
   sidenavn,
   prodUrl,
-  kjørerMockApp,
+  kjørerMockApp = false,
 }: {
   sidenavn: string;
   prodUrl?: string;
-  kjørerMockApp: boolean;
+  kjørerMockApp?: boolean;
 }) => {
   if (!kjørerMockApp) return null;
 

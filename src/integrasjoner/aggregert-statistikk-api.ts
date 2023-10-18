@@ -3,6 +3,10 @@ export enum Statistikkategori {
   NÆRING = "NÆRING",
   BRANSJE = "BRANSJE",
   VIRKSOMHET = "VIRKSOMHET",
+  SEKTOR = "SEKTOR",
+  OVERORDNET_ENHET = "OVERORDNET_ENHET",
+  NÆRING2SIFFER = "NÆRING2SIFFER",
+  NÆRING5SIFFER = "NÆRING5SIFFER",
 }
 
 export interface AggregertStatistikkDto {
@@ -10,6 +14,9 @@ export interface AggregertStatistikkDto {
   muligeDagsverkTotalt: StatistikkDto[];
   tapteDagsverkTotalt: StatistikkDto[];
   trendTotalt: StatistikkDto[];
+  prosentSiste4KvartalerGradert: StatistikkDto[];
+  prosentSiste4KvartalerKorttid: StatistikkDto[];
+  prosentSiste4KvartalerLangtid: StatistikkDto[];
 }
 
 export interface StatistikkDto {
@@ -27,10 +34,10 @@ export interface Kvartal {
 
 export const tomtDataobjekt: AggregertStatistikkDto = {
   prosentSiste4KvartalerTotalt: [],
+  prosentSiste4KvartalerGradert: [],
+  prosentSiste4KvartalerKorttid: [],
+  prosentSiste4KvartalerLangtid: [],
   muligeDagsverkTotalt: [],
   tapteDagsverkTotalt: [],
   trendTotalt: [],
 };
-
-
-

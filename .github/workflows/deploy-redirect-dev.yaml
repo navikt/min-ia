@@ -1,0 +1,22 @@
+name: Deploy sykefravarsstatistikk redirect ingress to dev
+run-name: Deploy sykefravarsstatistikk ingress to dev | ${{ github.event.head_commit.message }}
+on:
+  push:
+    branches:
+      - "sykefravarsstatistikk-import"
+      - "main"
+    paths:
+      - ".nais/redirect-sykefravarsstatistikk-dev.yaml"
+      - ".github/workflows/deploy-redirect-dev.yaml"
+jobs:
+  deploy:
+    name: Deploy sykefravarsstatistikk redirect ingress to dev-gcp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy sykefravarsstatistikk redirect ingress to dev
+        uses: nais/deploy/actions/deploy@master
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/redirect-sykefravarsstatistikk-dev.yaml

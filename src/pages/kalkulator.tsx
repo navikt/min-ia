@@ -11,11 +11,11 @@ import { hentUtKalkulatorData } from "../komponenter/Kalkulator/datauthenting";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { Layout } from "../komponenter/Layout/Layout";
-import React, { useEffect } from "react";
-import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
+import React from "react";
 import Head from "next/head";
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
+import useBreadcrumbs from "../utils/useBreadcrumbs";
 
 export default function Kalkulator(props: {
   page: PageProps;
@@ -38,23 +38,20 @@ export default function Kalkulator(props: {
     ? aggregertStatistikkRespons.data
     : tomtDataobjekt;
 
-  // TODO: lag en useBreadcrumbs-hook
-  useEffect(() => {
-    setBreadcrumbs([
-      {
-        title: "Min side – arbeidsgiver",
-        url: "/min-side-arbeidsgiver",
-      },
-      {
-        title: "Forebygge fravær",
-        url: "/forebygge-fravar",
-      },
-      {
-        title: "Fraværskalkulator",
-        url: "/forebygge-fravar/kalkulator",
-      },
-    ]);
-  }, []);
+  useBreadcrumbs([
+    {
+      title: "Min side – arbeidsgiver",
+      url: "/min-side-arbeidsgiver",
+    },
+    {
+      title: "Forebygge fravær",
+      url: "/forebygge-fravar",
+    },
+    {
+      title: "Fraværskalkulator",
+      url: "/forebygge-fravar/kalkulator",
+    },
+  ]);
 
   return (
     <>

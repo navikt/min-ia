@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { PageProps } from "../pageProps";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
@@ -9,7 +9,6 @@ import styles from ".././VideoOgKurs/Nettkurs.module.scss";
 import { Button, Heading } from "@navikt/ds-react";
 import { QbrickVideoPlayer } from "../EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { IAVideoer, QbrickVideo, Tags } from "../utils/nettkurs-utils";
-import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
 import Script from "next/script";
 import { NavIkon } from "../VideoOgKurs/ikoner/NavIkon";
 import Kurskalender from ".././VideoOgKurs/Kurskalender/Kurskalender";
@@ -20,6 +19,7 @@ import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
+import useBreadcrumbs from "../utils/useBreadcrumbs";
 
 interface ListeElement {
   key: Tags;
@@ -163,22 +163,20 @@ export default function VideoOgKurs(props: {
     </>
   );
 
-  useEffect(() => {
-    setBreadcrumbs([
-      {
-        title: "Min side – arbeidsgiver",
-        url: "/min-side-arbeidsgiver",
-      },
-      {
-        title: "Forebygge fravær",
-        url: "/forebygge-fravar",
-      },
-      {
-        title: "Video og kurs",
-        url: "/forebygge-fravar/video-og-kurs",
-      },
-    ]);
-  }, []);
+  useBreadcrumbs([
+    {
+      title: "Min side – arbeidsgiver",
+      url: "/min-side-arbeidsgiver",
+    },
+    {
+      title: "Forebygge fravær",
+      url: "/forebygge-fravar",
+    },
+    {
+      title: "Video og kurs",
+      url: "/forebygge-fravar/video-og-kurs",
+    },
+  ]);
 
   return (
     <>

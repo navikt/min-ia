@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
 import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
 import { kurslisteMock } from "./testdata-kurs";
+import { kvartalsvisHistorikkMockdata } from "./kvartalsvisHistorikkMockdata";
 
 export default async function mockRequest(req: NextRequest) {
   const testMode: string = process.env.TEST_MODE
@@ -92,6 +93,41 @@ export default async function mockRequest(req: NextRequest) {
 
     await new Promise((r) => setTimeout(r, delayInMillis));
     return new NextResponse(JSON.stringify(aggregertStatistikkMock), {
+      status: 200,
+    });
+  }
+
+  if (
+    req.url?.includes(
+      "/api/sykefravarsstatistikk-api/kvartalsvis-sykefravarshistorikk?orgnr="
+    )
+  ) {
+    const orgnr = req.nextUrl.searchParams.get("orgnr") as string;
+    console.log(
+      `[DEBUG] GET /api/sykefravarsstatistikk-api/kvartalsvis-sykefraværshistorikk?orgnr=${orgnr}`
+    );
+
+    const historikk = kvartalsvisHistorikkMockdata;
+
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify(historikk), {
+      status: 200,
+    });
+  }
+  if (req.url?.includes("/api/sykefravarsstatistikk-api/publiseringsdato")) {
+    console.log(`[DEBUG] GET /api/sykefravarsstatistikk-api/publiseringsdato`);
+
+    const publiseringsdato = {
+      gjeldendePeriode: {
+        årstall: 2022,
+        kvartal: 2,
+      },
+      nestePubliseringsdato: "2022-12-01",
+      sistePubliseringsdato: "2022-09-08",
+    };
+
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify(publiseringsdato), {
       status: 200,
     });
   }

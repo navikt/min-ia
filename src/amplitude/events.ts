@@ -30,3 +30,23 @@ export const sendNavigereEvent = (destinasjon: string, lenketekst: string) => {
     lenketekst: lenketekst,
   });
 };
+
+export const sendKnappEvent = (label: string) => {
+  logEvent("knapp", { label });
+};
+
+export function sendToogleEvent(tekst: "graf" | "tabell") {
+  logEvent("toogle", { tekst });
+}
+
+export function sendCheckboxLagtTil(label?: string) {
+  logEvent("checkbox-lagt-til", { label });
+}
+
+export function sendCheckboxFjernet(label?: string) {
+  logEvent("checkbox-fjernet", { label });
+}
+
+export function sendPanelEkspanderEvent(panelnavn: string) {
+  logEvent("panel-ekspander", { panelnavn });
+}
