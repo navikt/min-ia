@@ -16,7 +16,7 @@ export default function Sykefraværsstatistikkside(
   }
 
   if (
-    ![RestStatus.LasterInn, RestStatus.IkkeLastet, RestStatus.Suksess].includes(
+    [RestStatus.IngenTilgang, RestStatus.Feil].includes(
       props.altinnOrganisasjoner.status
     )
   ) {
