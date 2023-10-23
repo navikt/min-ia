@@ -3,9 +3,9 @@ import {
   useSykefraværAppData,
   transformSykefraværAppData,
 } from "../sykefravarsstatistikk/hooks/useSykefraværAppData";
-import Forside from "../sykefravarsstatistikk/Forside/Forside";
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
+import Sykefraværsstatistikkside from "../sykefravarsstatistikk/Sykefravarsstatistikkside";
 
 export function AppContent({
   grafanaAgentUrl,
@@ -22,7 +22,7 @@ export function AppContent({
   });
 
   return (
-    <Forside
+    <Sykefraværsstatistikkside
       {...transformSykefraværAppData(useSykefraværAppData())}
       {...props}
     />
