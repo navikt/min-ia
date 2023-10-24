@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - '.nais/redirect-prod.yaml'
+      - '.nais/redirect-sykefravarsstatistikk-prod.yaml'
       - '.github/workflows/deploy-redirect-prod.yaml'
 jobs:
   deploy:
