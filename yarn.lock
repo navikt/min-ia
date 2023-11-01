@@ -1220,20 +1220,11 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/5.6.3/4a8a1619a6815d55226077deb858991d6a7cd5f6#4a8a1619a6815d55226077deb858991d6a7cd5f6"
   integrity sha512-/G4to/cg2v4WuTBO8uHS7dwtWBYXFFuq4HwN5JdZcwjPCQxFzcMfYB4lNzDhbn1BboFRyUTkos1yH9iDALa7pg==
 
-"@navikt/eslint-config-teamia-a11y@>= 1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-teamia-a11y/1.0.2/56d4e6d15ca0e1ea3cc2d4a6ca33a6936f3eac10#56d4e6d15ca0e1ea3cc2d4a6ca33a6936f3eac10"
-  integrity sha512-B6m3DX6DVZTMG3GJyjxj+AOscEI9H4yqdka6lYIrYkcBxn1+seC49/Sh7kIQS5igUtLWl02IWMwLkVUbko4J3Q==
+"@navikt/eslint-config-teamia@^1.0.7":
+  version "1.0.7"
+  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-teamia/1.0.7/c089898a3d6b3a3305bf441934b137012e4f963b#c089898a3d6b3a3305bf441934b137012e4f963b"
+  integrity sha512-idYSRliAokT0Xg8ZhRSytEjwpput2nofdZ61VnueaqzhKQ4L9CAIeoFtcsvgdOg9nL3GG20gHAI/C9nPSVlucg==
   dependencies:
-    eslint ">= 8"
-    eslint-plugin-jsx-a11y ">= 6.7"
-
-"@navikt/eslint-config-teamia@^1.0.6":
-  version "1.0.6"
-  resolved "https://npm.pkg.github.com/download/@navikt/eslint-config-teamia/1.0.6/fa9bb14edf5b4950746d0967b38601f0a41197b8#fa9bb14edf5b4950746d0967b38601f0a41197b8"
-  integrity sha512-mdJAPiSp+Qm+szU+BxtkNYURwVImTHBs4qn5lW/nur+4Lg8hIenXeBPc7dlKOxDTP3LwN8uO4AeoSOuafotZ2A==
-  dependencies:
-    "@navikt/eslint-config-teamia-a11y" ">= 1.0.2"
     "@next/eslint-plugin-next" ">= 13.1"
     "@typescript-eslint/eslint-plugin" ">= 5.59"
     "@typescript-eslint/parser" ">= 5.59"
