@@ -50,6 +50,6 @@ it("sendLevertInnloggetIaTjeneste kalles når event blir trigget", async () => {
 });
 
 const UseSendIaTjenesteMetrikkerOnEventExample: FunctionComponent = () => {
-  useSendIaTjenesteMetrikkOnEvent(MetrikkKilde.NETTKURS, "click");
+  useSendIaTjenesteMetrikkOnEvent(MetrikkKilde.SAMTALESTØTTE, "click");
   return <button data-testid="dummy-button">exampleButton</button>;
 };
