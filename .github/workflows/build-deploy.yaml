@@ -45,7 +45,7 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/sykefravar-login-fix'
+    if: github.ref == 'refs/heads/fjern-nettkurs'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 5

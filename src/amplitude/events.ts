@@ -3,11 +3,6 @@ import logEvent from "./logEvent";
 export const sendBedriftValgtEvent = () => {
   logEvent("bedrift valgt");
 };
-
-export const sendNettkursFilterValgtEvent = (chipId: string, tekst: string) => {
-  logEvent("chip valgt", { chipId: chipId, tekst: tekst });
-};
-
 export const sendToggleEvent = (togglename: string, label: string) => {
   logEvent("toggleGroup valgt", { togglenavn: togglename, verdiValgt: label });
 };

@@ -17,7 +17,7 @@ export const InfographicFlis = (props: {
           <Skeleton style={{ marginTop: "0.5rem" }} />
         </SkeletonWrapper>
       ) : (
-        <BodyShort size="small" className={styles.tekst}>
+        <BodyShort size="small" className={styles.tekst} as="div">
           {props.innhold}
         </BodyShort>
       )}

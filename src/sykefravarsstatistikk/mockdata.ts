@@ -9,9 +9,8 @@ import {
   AggregertStatistikk,
   SerialiserbarAppData,
   SerialiserbarPubliseringsdatoer,
-  SerialiserbarStatistikk,
-  SykefraværAppData,
 } from "./hooks/useSykefraværAppData";
+import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 
 export const siste4KvartalerMock = [
   { årstall: 2021, kvartal: 3 },
@@ -51,7 +50,7 @@ aggregertStatistikkMock.set(Statistikkategori.BRANSJE, {
 export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
   aggregertStatistikk: {
     status: RestStatus.Suksess,
-    data: mockdataOrgnr91096939 as SerialiserbarStatistikk,
+    data: mockdataOrgnr91096939 as AggregertStatistikkDto,
   },
   altinnOrganisasjoner: {
     status: RestStatus.Suksess,
@@ -154,15 +153,6 @@ export const mockAllDatahentingStatusLaster: SerialiserbarAppData = {
   },
   sykefraværshistorikk: { status: RestStatus.Suksess, data: [] },
 };
-
-export const mockAllDatahentingFeiler: SykefraværAppData = {
-  aggregertStatistikk: { restStatus: RestStatus.Feil },
-  altinnOrganisasjoner: { status: RestStatus.Feil },
-  altinnOrganisasjonerMedStatistikktilgang: { status: RestStatus.Feil },
-  publiseringsdatoer: { status: RestStatus.Feil },
-  sykefraværshistorikk: { status: RestStatus.Feil },
-};
-
 function getMockPubliseringsdatoer(): SerialiserbarPubliseringsdatoer {
   return {
     gjeldendePeriode: {
@@ -173,85 +163,7 @@ function getMockPubliseringsdatoer(): SerialiserbarPubliseringsdatoer {
     sistePubliseringsdato: "2022-09-08",
   };
 }
-
-export enum ArbeidsmiljøportalenBransje {
-  BARNEHAGER = "BARNEHAGER",
-  NÆRINGSMIDDELINDUSTRI = "NÆRINGSMIDDELINDUSTRI",
-  SYKEHUS = "SYKEHUS",
-  SYKEHJEM = "SYKEHJEM",
-  TRANSPORT = "TRANSPORT",
-  BYGG = "BYGG",
-  ANLEGG = "ANLEGG",
-  ANDRE_BRANSJER = "ANDRE_BRANSJER",
-}
-
-export interface Beliggenhetsadresse {
-  kommune: string;
-  kommunenummer: string;
-}
-
-export type Næringskode5Siffer = {
-  kode: string;
-  beskrivelse: string;
-};
-
 export interface Næring {
   kode: string;
   beskrivelse?: string;
-}
-
-export interface Underenhet {
-  orgnr: string;
-  overordnetEnhet: string;
-  beliggenhetsadresse: Beliggenhetsadresse;
-  næringskode?: Næringskode5Siffer;
-  næring?: Næring;
-  bransje?: ArbeidsmiljøportalenBransje;
-  antallAnsatte: number;
-}
-
-export interface UnderenhetDto {
-  organisasjonsnummer: string;
-  navn: string;
-  organisasjonsform: OrganisasjonsformDto;
-  registreringsdatoEnhetsregisteret: string;
-  registrertIMvaregisteret: boolean;
-  naeringskode1?: NæringskodeDto;
-  antallAnsatte: number;
-  overordnetEnhet: string;
-  oppstartsdato: string;
-  beliggenhetsadresse: AdresseDto;
-  _links: {
-    self: {
-      href: string;
-    };
-    overordnetEnhet: {
-      href: string;
-    };
-  };
-}
-
-interface NæringskodeDto {
-  beskrivelse: string;
-  kode: string;
-}
-
-interface OrganisasjonsformDto {
-  kode: string;
-  beskrivelse: string;
-  _links: {
-    self: {
-      href: string;
-    };
-  };
-}
-
-interface AdresseDto {
-  land: string;
-  landkode: string;
-  postnummer: string;
-  poststed: string;
-  adresse: string[];
-  kommune: string;
-  kommunenummer: string;
 }

@@ -5,8 +5,6 @@ export enum Statistikkategori {
   VIRKSOMHET = "VIRKSOMHET",
   SEKTOR = "SEKTOR",
   OVERORDNET_ENHET = "OVERORDNET_ENHET",
-  NÆRING2SIFFER = "NÆRING2SIFFER",
-  NÆRING5SIFFER = "NÆRING5SIFFER",
 }
 
 export interface AggregertStatistikkDto {
