@@ -1,6 +1,13 @@
 name: Build, test and deploy
 run-name: Build and deploy app || ${{ github.event.head_commit.message }}
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - fjern-nettkurs
+    paths-ignore:
+      - '**.md'
+      - '**/**.md'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -45,7 +52,6 @@ jobs:
 
   deployAppToDev:
     name: Deploy to dev-gcp
-    if: github.ref == 'refs/heads/fjern-nettkurs'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 5

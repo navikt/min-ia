@@ -23,6 +23,12 @@ export const SlikHarViKommetFramTilDittResultat: FunctionComponent = () => {
           utarbeider. Vi viser ikke egenmeldt sykefravær.
         </BodyShort>
         <BodyShort spacing>
+          Du kan lese mer om datakilder og utregning på{" "}
+          <EksternLenke href="https://www.nav.no/no/nav-og-samfunn/statistikk/sykefravar-statistikk/sykefravar/om-statistikken-sykefravaer">
+            «Om statistikken – sykefravær» på nav.no
+          </EksternLenke>
+        </BodyShort>
+        <BodyShort spacing>
           Vi regner ut prosenten som et gjennomsnitt av de fire siste kvartalene
           som er publisert. Hvis vi mangler ett eller flere kvartaler, så bruker
           vi de som er tilgjengelig. Du får sammenlikning med bransjen når du
