@@ -39,11 +39,6 @@ export type RestRessurs<T> =
   | IkkeInnlogget
   | Feil
   | IngenTilgang;
-
-export function erSuksess<T>(ressurs: RestRessurs<T>): ressurs is Suksess<T> {
-  return ressurs.status === RestStatus.Suksess;
-}
-
 export const erIkkeInnlogget = <T>(
   respons: RestRessurs<T>
 ): respons is IkkeInnlogget => {

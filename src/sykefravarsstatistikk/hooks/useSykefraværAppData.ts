@@ -25,8 +25,6 @@ export interface SerialiserbarPubliseringsdatoer {
   gjeldendePeriode: ÅrstallOgKvartal;
 }
 
-export const SykefraværshistorikkType = Statistikkategori;
-
 type SykefraværshistorikkType = Statistikkategori;
 
 export type RestAggregertStatistikk = {
@@ -34,28 +32,6 @@ export type RestAggregertStatistikk = {
   aggregertData?: Map<Statistikkategori, AggregertStatistikk>;
   error?: unknown;
 };
-
-type SerialiserbarStatistikkInnhold = {
-  label: string;
-  statistikkategori: Statistikkategori;
-  verdi: string;
-  antallPersonerIBeregningen: number;
-  kvartalerIBeregningen: {
-    årstall: number;
-    kvartal: number;
-  }[];
-}[];
-
-export type SerialiserbarStatistikk = {
-  prosentSiste4KvartalerTotalt: SerialiserbarStatistikkInnhold;
-  prosentSiste4KvartalerGradert: SerialiserbarStatistikkInnhold;
-  prosentSiste4KvartalerKorttid: SerialiserbarStatistikkInnhold;
-  prosentSiste4KvartalerLangtid: SerialiserbarStatistikkInnhold;
-  trendTotalt: SerialiserbarStatistikkInnhold;
-  tapteDagsverkTotalt: SerialiserbarStatistikkInnhold;
-  muligeDagsverkTotalt: SerialiserbarStatistikkInnhold;
-};
-
 type KvartalsvisSykefraværsprosent = {
   kvartal: number;
   årstall: number;

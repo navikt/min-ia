@@ -1,6 +1,6 @@
 import styles from "./andreForebyggendeVerktøy.module.scss";
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
-import { Calculator, SpeechBubble, VideoRoom } from "@navikt/ds-icons";
+import { Calculator, SpeechBubble } from "@navikt/ds-icons";
 import React from "react";
 import { Heading } from "@navikt/ds-react";
 
@@ -15,11 +15,6 @@ export function AndreForebyggendeVerktoy(props: { href: string }) {
           overskrift={"Samtalestøtten"}
           ikon={<SpeechBubble aria-hidden />}
           href={props.href}
-        />
-        <Lenkeflis
-          overskrift={"Video og kurs"}
-          ikon={<VideoRoom aria-hidden />}
-          href={"/forebygge-fravar/video-og-kurs"}
         />
         <Lenkeflis
           overskrift={"Fraværskalkulator"}

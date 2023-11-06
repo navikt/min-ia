@@ -10,7 +10,6 @@ import {
 import { NextRequest, NextResponse } from "next/server";
 import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
 import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
-import { kurslisteMock } from "./testdata-kurs";
 import { kvartalsvisHistorikkMockdata } from "./kvartalsvisHistorikkMockdata";
 
 export default async function mockRequest(req: NextRequest) {
@@ -155,13 +154,6 @@ export default async function mockRequest(req: NextRequest) {
 
     await new Promise((r) => setTimeout(r, delayInMillis));
     return new NextResponse(JSON.stringify(fiaArbeidsgiverMock(orgnr)), {
-      status: 200,
-    });
-  }
-
-  if (req.url?.endsWith("api/kursoversikt")) {
-    console.log("[DEBUG] GET /api/kursoversikt");
-    return new NextResponse(JSON.stringify(kurslisteMock), {
       status: 200,
     });
   }

@@ -16,15 +16,6 @@ export default {
     sassOptions: {
         includePaths: [path.dirname(__filename)],
     },
-    async redirects() {
-        return [
-            {
-                source: "/nettkurs",
-                destination: "/video-og-kurs",
-                permanent: true,
-            },
-        ];
-    },
     async headers() {
         return [
             {

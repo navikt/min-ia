@@ -1,7 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import VideoOgKurs from "./pages/video-og-kurs";
-import { QbrickVideoPlayer } from "./EmbeddedVideoPlayer/QbrickVideoPlayer";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
 import { sendIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
@@ -31,7 +29,6 @@ jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
-jest.mock("./EmbeddedVideoPlayer/QbrickVideoPlayer");
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {
@@ -58,73 +55,6 @@ describe("Metrikktester av hele siden", () => {
 
       expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
-  });
-
-  describe("Video og kurs", () => {
-    afterEach(() => {
-      document.addEventListener(
-        // fjern/stopp gamle eventlisteners.
-        "videoAvspilles",
-        (e) => {
-          e.stopImmediatePropagation();
-          e.stopPropagation();
-        },
-        true
-      );
-    });
-
-    it("sender metrikker etter play-klikk", async () => {
-      (QbrickVideoPlayer as jest.Mock).mockImplementation(
-        MockQbrickVideoPlayer
-      );
-      renderNettkurs();
-
-      expect(sendIaTjenesteMetrikk).not.toHaveBeenCalled();
-
-      const playknapper = screen.getAllByText("mock qbrick play button");
-      await user.click(playknapper[0]);
-
-      await waitFor(() => {
-        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
-      });
-
-      // sjekk at det ikke sendes flere metrikker ved klikk forskjellige videoer
-      await user.click(playknapper[1]);
-      await waitFor(() => {
-        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    function MockQbrickVideoPlayer() {
-      return (
-        <div>
-          <span>
-            This is a dummy component, and should never be seen outside a code
-            editor or terminal
-          </span>
-          <button
-            onClick={() =>
-              document.dispatchEvent(new CustomEvent("videoAvspilles"))
-            }
-          >
-            mock qbrick play button
-          </button>
-        </div>
-      );
-    }
-
-    const renderNettkurs = () =>
-      render(
-        <VideoOgKurs
-          page={{
-            title: "VideoOgKurs",
-            description:
-              "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
-          }}
-          kjørerMockApp={false}
-          grafanaAgentUrl=""
-        />
-      );
   });
 
   describe("Forside", () => {
