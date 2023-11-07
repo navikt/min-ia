@@ -8,20 +8,39 @@ import {
   AktivitetinnholdType,
   aktiviteter,
 } from "./AktivitetData";
-import { Accordion } from "@navikt/ds-react";
+import { Accordion, Bleed, BodyLong, Heading } from "@navikt/ds-react";
 import { AktivitetHeader } from "./AktivitetHeader";
 import { AktivitetStatistikkType } from "./typer";
 import Oppgave from "./Oppgave";
+import { AndreForebyggendeVerktoy } from "./AndreForebyggendeVerktoy";
 
-export default function Aktiviteter() {
+export default function AktivitetSeksjon(props: {
+  samtalestøtteUrlMedOrgnr: string;
+}) {
   return (
-    <div className={styles["aktiviteter-seksjon"]}>
-      <Accordion>
-        {aktiviteter.map((aktivitet, index) => (
-          <Aktivitet key={index} aktivitet={aktivitet} />
-        ))}
-      </Accordion>
-    </div>
+    <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
+      <div className={styles["aktiviteter-seksjon-innhold"]}>
+        <Heading size="large" className={styles["aktiviteter-header"]}>
+          Øvelser og verktøy
+        </Heading>
+        <BodyLong className={styles["aktiviteter-brødtekst"]}>
+          Vi har laget et par gode grunnleggende øvelser som mange ledere
+          etterspør. Her kan du starte!
+        </BodyLong>
+        <Aktiviteter />
+        <AndreForebyggendeVerktoy href={props.samtalestøtteUrlMedOrgnr} />
+      </div>
+    </Bleed>
+  );
+}
+
+function Aktiviteter() {
+  return (
+    <Accordion>
+      {aktiviteter.map((aktivitet, index) => (
+        <Aktivitet key={index} aktivitet={aktivitet} />
+      ))}
+    </Accordion>
   );
 }
 

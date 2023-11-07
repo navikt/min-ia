@@ -2,7 +2,7 @@ import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { getAktivitetStatusBeskrivelseTekst } from "./Aktivitetsmal/AktivitetsstatusBeskrivelse";
 import { AktivitetStatistikkType } from "./typer";
 
-import styles from "./AktivitetHeader.module.scss";
+import styles from "./Aktiviteter.module.scss";
 import { AktivitetType } from "./AktivitetData";
 
 export const AktivitetHeader = ({

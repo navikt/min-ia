@@ -1,25 +1,58 @@
+@use "src/styles/screensize";
+
 .aktiviteter-seksjon {
   background-color: var(--a-deepblue-50);
+  padding-top: 2rem;
+  .aktiviteter-seksjon-innhold {
+    width: var(--forside-content-max-width);
+    margin: auto;
 
-  .aktivitet {
-    .accordionHeader > span {
-      width: 100%;
+    .aktiviteter-header {
+      padding: 0 var(--a-spacing-4);
+    }
 
-      /* tilsvarer heading size="medium" */
-      font-size: var(--a-font-size-heading-medium);
-      line-height: var(--a-font-line-height-heading-medium);
+    .aktiviteter-brødtekst {
+      padding: var(--a-spacing-4);
+    }
 
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+    .aktivitet {
+      .accordionHeader > span {
+        width: 100%;
+
+        /* tilsvarer heading size="medium" */
+        font-size: var(--a-font-size-heading-medium);
+        line-height: var(--a-font-line-height-heading-medium);
+
+        color: var(--a-blue-600);
+
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        .aktivitet-header-progress-bar {
+          margin-left: auto;
+        }
+      }
     }
   }
 }
 
+.lenkefliser {
+  display: flex;
+  flex-direction: column;
+  gap: var(--a-spacing-4);
+  margin-top: var(--a-spacing-4);
+  margin-bottom: var(--a-spacing-4);
+  padding: var(--a-spacing-4);
+
+  @media (min-width: screensize.$screen-lg) {
+    flex-direction: row;
+  }
+}
+
 .aktivitetIkkeValgt {
-  background-color: var(--a-white);
+  background-color: var(--a-transparent);
 }
 
 .aktivitetValgt {

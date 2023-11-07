@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Oppgave.module.css";
+import styles from "./Oppgave.module.scss";
 import { Button } from "@navikt/ds-react";
 import {
   ArrowCirclepathIcon,

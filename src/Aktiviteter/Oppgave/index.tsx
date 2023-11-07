@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading, Panel } from "@navikt/ds-react";
 
-import styles from "./Oppgave.module.css";
+import styles from "./Oppgave.module.scss";
 import { AktivitetOppgaveType, StatusType } from "../AktivitetData";
 import { Statusvisning } from "../Statusvisning";
 import { AktivitetInnhold } from "../Aktiviteter";
