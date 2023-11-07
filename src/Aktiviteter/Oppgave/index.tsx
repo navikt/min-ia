@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Panel } from "@navikt/ds-react";
+import { Heading } from "@navikt/ds-react";
 
 import styles from "./Oppgave.module.scss";
 import { AktivitetOppgaveType, StatusType } from "../AktivitetData";
@@ -15,11 +15,11 @@ export default function Oppgave({ tittel, innhold, id }: AktivitetOppgaveType) {
   ] as StatusType | undefined; //TODO
 
   return (
-    <Panel className={styles.oppgaveblokk}>
+    <div className={styles.oppgaveblokk}>
       <div className={styles.oppgaveinnhold}>
         <div className={styles.oppgavetittel}>
           <Heading size={"medium"} level="4" spacing>
-            Oppgave: {tittel}
+            {tittel}
           </Heading>
           <Statusvisning status={status} />
         </div>
@@ -38,6 +38,6 @@ export default function Oppgave({ tittel, innhold, id }: AktivitetOppgaveType) {
           ))}
         </KollapsbarOppgavetekstContainer>
       </div>
-    </Panel>
+    </div>
   );
 }

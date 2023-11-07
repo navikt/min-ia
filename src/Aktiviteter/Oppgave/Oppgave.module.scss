@@ -1,7 +1,7 @@
 /* Gjør at oppgave får samme padding over og under
  * ved å fjerne margin på siste element i oppgaveblokka */
 .oppgaveblokk {
-  --oppgaveblokk-farge: var(--a-surface-selected);
+  --oppgaveblokk-farge: var(--a-blue-100);
   --oppgaveblokk-padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@
     > :last-child {
       margin-bottom: 0;
     }
-    .tittelContainer {
+    .oppgavetittel {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,7 +47,7 @@
     .oppgavetekstOverlayGradient {
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: flex-end;
     }
     .synligOppgavetekst {
       .oppgavetekstOverlayGradient {
