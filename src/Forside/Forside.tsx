@@ -15,6 +15,7 @@ import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
+import Aktiviteter from "../Aktiviteter/Aktiviteter";
 
 export interface ForsideProps {
   samtalestøtteUrl: string;
@@ -64,6 +65,7 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
+        <Aktiviteter />
         <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
         {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
           fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (

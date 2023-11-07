@@ -1,0 +1,31 @@
+.aktiviteter-seksjon {
+  background-color: var(--a-deepblue-50);
+
+  .aktivitet {
+    .accordionHeader > span {
+      width: 100%;
+
+      /* tilsvarer heading size="medium" */
+      font-size: var(--a-font-size-heading-medium);
+      line-height: var(--a-font-line-height-heading-medium);
+
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.aktivitetIkkeValgt {
+  background-color: var(--a-white);
+}
+
+.aktivitetValgt {
+  background-color: var(--a-orange-100) !important;
+}
+
+.aktivitetFullført {
+  background-color: var(--a-green-100) !important;
+}
