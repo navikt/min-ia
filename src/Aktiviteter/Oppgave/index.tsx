@@ -10,9 +10,7 @@ import { Statusendringsknapper } from "./Statusendringsknapper";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Oppgave({ tittel, innhold, id }: AktivitetOppgaveType) {
-  const status = ["AVBRUTT", "STARTET", "FULLFØRT", undefined][
-    Math.floor(Math.random() * 4)
-  ] as StatusType | undefined; //TODO
+  const status = "STARTET" as StatusType | undefined; //TODO
 
   return (
     <div className={styles.oppgaveblokk}>

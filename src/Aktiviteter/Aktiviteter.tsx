@@ -2,6 +2,12 @@ import React from "react";
 
 import styles from "./Aktiviteter.module.scss";
 import {
+  AktivitetInfoboksType,
+  AktivitetInlinetekstType,
+  AktivitetLenkeType,
+  AktivitetNumrertlisteType,
+  AktivitetPunktType,
+  AktivitetPunktlisteType,
   AktivitetTekstType,
   AktivitetType,
   AktivitetUndertittelType,
@@ -79,6 +85,10 @@ export function AktivitetInnhold({
 }: {
   innhold: AktivitetinnholdType;
 }) {
+  if (typeof innhold === "string") {
+    return innhold;
+  }
+
   switch (innhold.type) {
     case "oppgave":
       return <Oppgave {...innhold} />;
@@ -86,17 +96,105 @@ export function AktivitetInnhold({
       return <Tekst {...innhold} />;
     case "undertittel":
       return <Undertittel {...innhold} />;
+    case "punktliste":
+      return <Punktliste {...innhold} />;
+    case "lenke":
+      return <Lenke {...innhold} />;
+    case "inlinetekst":
+      return <Inlinetekst {...innhold} />;
+    case "infoboks":
+      return <Infoboks {...innhold} />;
+    case "numrertliste":
+      return <Numrertliste {...innhold} />;
+    case "statistikkbokser":
+      return <Statistikkbokser />;
     default:
+      console.error("Ukjent innholdstype", innhold);
       return null;
   }
 }
 
 function Tekst({ innhold }: AktivitetTekstType) {
+  //TODO: Akselifisering
   return <p>{innhold}</p>;
 }
 
 function Undertittel({ innhold }: AktivitetUndertittelType) {
+  //TODO: Akselifisering
   return <h2>{innhold}</h2>;
+}
+
+function Punktliste({ innhold }: AktivitetPunktlisteType) {
+  //TODO: Akselifisering
+  return (
+    <ul>
+      {innhold.map((punkt, index) => (
+        <Punkt {...punkt} key={index} />
+      ))}
+    </ul>
+  );
+}
+
+function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
+  //TODO: Akselifisering
+  return (
+    <ol>
+      {innhold.map((punkt, index) => (
+        <Punkt {...punkt} key={index} />
+      ))}
+    </ol>
+  );
+}
+
+function Punkt({ innhold }: AktivitetPunktType) {
+  //TODO: Akselifisering
+  return (
+    <li>
+      {Array.isArray(innhold) ? (
+        innhold.map((innhold, index) => (
+          <AktivitetInnhold innhold={innhold} key={index} />
+        ))
+      ) : (
+        <AktivitetInnhold innhold={innhold} />
+      )}
+    </li>
+  );
+}
+
+function Lenke({ tekst, url }: AktivitetLenkeType) {
+  //TODO: Akselifisering
+  return <a href={url}>{tekst}</a>;
+}
+
+function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
+  //TODO: Akselifisering
+  return (
+    <p>
+      {innhold.map((innhold, index) =>
+        typeof innhold === "string" ? (
+          innhold
+        ) : (
+          <AktivitetInnhold innhold={innhold} key={index} />
+        )
+      )}
+    </p>
+  );
+}
+
+function Infoboks({ tittel, innhold }: AktivitetInfoboksType) {
+  //TODO: Akselifisering
+  return (
+    <div className={styles.infoboks}>
+      <h2>{tittel}</h2>
+      {innhold.map((innhold, index) => (
+        <AktivitetInnhold innhold={innhold} key={index} />
+      ))}
+    </div>
+  );
+}
+
+function Statistikkbokser() {
+  return <div>statistikkbokser</div>;
 }
 
 function getAktivitetHeaderFarge(aktivitetStatistikk: AktivitetStatistikkType) {
