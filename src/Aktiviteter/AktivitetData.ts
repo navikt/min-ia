@@ -119,7 +119,7 @@ export const aktiviteter: AktivitetType[] = [
       {
         type: "oppgave",
         tittel: "Oppgave: Kunnskap om tilrettelegging",
-        id: "kunnskapOmTilrettelegging",
+        id: "9D9E8ACC-CB8E-4763-8B04-B345B9F3DE68",
         innhold: [
           {
             type: "tekst",
@@ -180,7 +180,7 @@ export const aktiviteter: AktivitetType[] = [
         type: "oppgave",
         tittel:
           "Oppgave: Slik forbedrer du dine ferdigheter om tilrettelegging",
-        id: "forbedreFerdigheter",
+        id: "B7881929-4104-44F7-B409-2FB0AB3F16BF",
         innhold: [
           {
             type: "tekst",
@@ -298,7 +298,7 @@ export const aktiviteter: AktivitetType[] = [
         type: "oppgave",
         tittel:
           "Oppgave: Slik involverer du dine ansatte for å forbedre tilretteleggingen",
-        id: "involvereAnsatte",
+        id: "81282F61-8A8B-4027-9AA6-3E04A5D30B4B",
         innhold: [
           {
             type: "tekst",
@@ -352,7 +352,7 @@ export const aktiviteter: AktivitetType[] = [
         type: "oppgave",
         tittel:
           "Oppgave: Lag oversikt over tilretteleggingsmulighetene på arbeidsplassen din",
-        id: "lagOversikt",
+        id: "57F04A11-2D32-4F6F-90DE-A0043D64F242",
         innhold: [
           {
             type: "inlinetekst",
@@ -569,7 +569,7 @@ export const aktiviteter: AktivitetType[] = [
         type: "oppgave",
         tittel:
           "Oppgave: Vurder sykefraværstatistikken deres og diskuter årsaker og tiltak",
-        id: "vurderSykefraværstatistikk",
+        id: "D7067365-8971-4D08-A6DE-915AE1CDCE5E",
         innhold: [
           {
             type: "tekst",
@@ -653,7 +653,7 @@ export const aktiviteter: AktivitetType[] = [
       {
         type: "oppgave",
         tittel: "Oppgave: Hvordan få ned kortidsfraværet?",
-        id: "fåNedKorttidsfravær",
+        id: "43384261-71DF-4AC5-ACAE-C9FC062A337A",
         innhold: [
           {
             type: "tekst",

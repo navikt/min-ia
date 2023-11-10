@@ -14,7 +14,15 @@ import {
   AktivitetinnholdType,
   aktiviteter,
 } from "./AktivitetData";
-import { Accordion, Bleed, BodyLong, Heading } from "@navikt/ds-react";
+import {
+  Accordion,
+  Bleed,
+  BodyLong,
+  BodyShort,
+  Heading,
+  Link,
+  List,
+} from "@navikt/ds-react";
 import { AktivitetHeader } from "./AktivitetHeader";
 import { AktivitetStatistikkType } from "./typer";
 import Oppgave from "./Oppgave";
@@ -115,41 +123,36 @@ export function AktivitetInnhold({
 }
 
 function Tekst({ innhold }: AktivitetTekstType) {
-  //TODO: Akselifisering
-  return <p>{innhold}</p>;
+  return <BodyLong spacing>{innhold}</BodyLong>;
 }
 
 function Undertittel({ innhold }: AktivitetUndertittelType) {
-  //TODO: Akselifisering
-  return <h2>{innhold}</h2>;
+  return <Heading size="medium">{innhold}</Heading>;
 }
 
 function Punktliste({ innhold }: AktivitetPunktlisteType) {
-  //TODO: Akselifisering
   return (
-    <ul>
+    <List as="ul">
       {innhold.map((punkt, index) => (
         <Punkt {...punkt} key={index} />
       ))}
-    </ul>
+    </List>
   );
 }
 
 function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
-  //TODO: Akselifisering
   return (
-    <ol>
+    <List as="ol">
       {innhold.map((punkt, index) => (
         <Punkt {...punkt} key={index} />
       ))}
-    </ol>
+    </List>
   );
 }
 
 function Punkt({ innhold }: AktivitetPunktType) {
-  //TODO: Akselifisering
   return (
-    <li>
+    <List.Item>
       {Array.isArray(innhold) ? (
         innhold.map((innhold, index) => (
           <AktivitetInnhold innhold={innhold} key={index} />
@@ -157,19 +160,17 @@ function Punkt({ innhold }: AktivitetPunktType) {
       ) : (
         <AktivitetInnhold innhold={innhold} />
       )}
-    </li>
+    </List.Item>
   );
 }
 
 function Lenke({ tekst, url }: AktivitetLenkeType) {
-  //TODO: Akselifisering
-  return <a href={url}>{tekst}</a>;
+  return <Link href={url}>{tekst}</Link>;
 }
 
 function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
-  //TODO: Akselifisering
   return (
-    <p>
+    <BodyShort>
       {innhold.map((innhold, index) =>
         typeof innhold === "string" ? (
           innhold
@@ -177,15 +178,14 @@ function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
           <AktivitetInnhold innhold={innhold} key={index} />
         )
       )}
-    </p>
+    </BodyShort>
   );
 }
 
 function Infoboks({ tittel, innhold }: AktivitetInfoboksType) {
-  //TODO: Akselifisering
   return (
     <div className={styles.infoboks}>
-      <h2>{tittel}</h2>
+      <Heading size="medium">{tittel}</Heading>
       {innhold.map((innhold, index) => (
         <AktivitetInnhold innhold={innhold} key={index} />
       ))}
