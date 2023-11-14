@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
 import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
 import { kvartalsvisHistorikkMockdata } from "./kvartalsvisHistorikkMockdata";
+import { aktiviteterMock } from "./aktiviteterMock";
 
 export default async function mockRequest(req: NextRequest) {
   const testMode: string = process.env.TEST_MODE
@@ -157,4 +158,25 @@ export default async function mockRequest(req: NextRequest) {
       status: 200,
     });
   }
+
+  if (req.url?.includes("/api/aktiviteter/orgnr/")) {
+    console.log(`[DEBUG] GET /api/aktiviteter/orgnr/{orgnr}`);
+
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify(aktiviteterMock), {
+      status: 200,
+    });
+  }
+  if (req.url?.includes("/api/aktivitet/")) {
+    console.log(
+      `[DEBUG] POST /api/aktivitet/{aktivitetId}/orgnr/{orgnr}/oppdater`
+    );
+
+    await new Promise((r) => setTimeout(r, delayInMillis));
+    return new NextResponse(JSON.stringify({ status: 200 }), {
+      status: 200,
+    });
+  }
+
+  console.log(`[DEBUG][MISSING] ${req.method} ${req.url}`);
 }

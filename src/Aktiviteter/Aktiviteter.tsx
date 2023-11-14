@@ -27,24 +27,42 @@ import { AktivitetHeader } from "./AktivitetHeader";
 import { AktivitetStatistikkType } from "./typer";
 import Oppgave from "./Oppgave";
 import { AndreForebyggendeVerktoy } from "./AndreForebyggendeVerktoy";
+import {
+  AktivitetProvider,
+  useStatusForAktiviteter,
+} from "./context/aktivitetStatus";
+import { useOrgnr } from "../hooks/useOrgnr";
+import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
+import { RestStatus } from "../integrasjoner/rest-status";
 
 export default function AktivitetSeksjon(props: {
   samtalestøtteUrlMedOrgnr: string;
 }) {
+  const orgnr = useOrgnr();
+  const hentedeAktiviteter = useHentAktiviteter(orgnr);
   return (
-    <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
-      <div className={styles["aktiviteter-seksjon-innhold"]}>
-        <Heading size="large" className={styles["aktiviteter-header"]}>
-          Øvelser og verktøy
-        </Heading>
-        <BodyLong className={styles["aktiviteter-brødtekst"]}>
-          Vi har laget et par gode grunnleggende øvelser som mange ledere
-          etterspør. Her kan du starte!
-        </BodyLong>
-        <Aktiviteter />
-        <AndreForebyggendeVerktoy href={props.samtalestøtteUrlMedOrgnr} />
-      </div>
-    </Bleed>
+    <AktivitetProvider
+      aktivitetStatuser={
+        hentedeAktiviteter.status === RestStatus.Suksess &&
+        Array.isArray(hentedeAktiviteter?.data)
+          ? hentedeAktiviteter?.data
+          : []
+      }
+    >
+      <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
+        <div className={styles["aktiviteter-seksjon-innhold"]}>
+          <Heading size="large" className={styles["aktiviteter-header"]}>
+            Øvelser og verktøy
+          </Heading>
+          <BodyLong className={styles["aktiviteter-brødtekst"]}>
+            Vi har laget et par gode grunnleggende øvelser som mange ledere
+            etterspør. Her kan du starte!
+          </BodyLong>
+          <Aktiviteter />
+          <AndreForebyggendeVerktoy href={props.samtalestøtteUrlMedOrgnr} />
+        </div>
+      </Bleed>
+    </AktivitetProvider>
   );
 }
 
@@ -58,14 +76,46 @@ function Aktiviteter() {
   );
 }
 
+function findOppgaveIder(aktivitet: AktivitetinnholdType): string[] {
+  if (
+    typeof aktivitet === "string" ||
+    aktivitet.type === "punktliste" ||
+    aktivitet.type === "numrertliste" ||
+    aktivitet.type === "lenke" ||
+    aktivitet.type === "statistikkbokser"
+  ) {
+    return [];
+  }
+
+  if (aktivitet.type === "oppgave") {
+    return [aktivitet.id];
+  }
+
+  if (Array.isArray(aktivitet?.innhold)) {
+    return aktivitet.innhold.flatMap(findOppgaveIder);
+  }
+
+  return [];
+}
+
 function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
-  const aktivitetStatistikk: AktivitetStatistikkType = {
-    //TODO
-    ferdige: Math.floor(Math.random() * 4),
-    påbegynte: Math.floor(Math.random() * 4),
-    ikkeStartet: Math.floor(Math.random() * 4),
-    totalt: 10,
-  };
+  const ider = React.useMemo(
+    () => aktivitet.innhold.flatMap(findOppgaveIder),
+    [aktivitet]
+  );
+  const statuser = useStatusForAktiviteter(ider);
+  const aktivitetStatistikk: AktivitetStatistikkType = React.useMemo(() => {
+    const ferdige = statuser.filter((status) => status === "FULLFØRT").length;
+    const påbegynte = statuser.filter((status) => status === "STARTET").length;
+    const totalt = statuser.length;
+
+    return {
+      ferdige,
+      påbegynte,
+      ikkeStartet: totalt - ferdige - påbegynte,
+      totalt,
+    };
+  }, [statuser]);
 
   return (
     <Accordion.Item className={styles.aktivitet}>

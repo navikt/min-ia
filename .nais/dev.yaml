@@ -11,6 +11,10 @@ spec:
   env:
     - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
       value: sykefravarsstatistikk-api.dev-fss-pub.nais.io
+    - name: FOREBYGGINGSPLAN_API_BASEURL
+      value: forebyggingsplan.teamia.svc.cluster.local
+    - name: FOREBYGGINGSPLAN_API_AUDIENCE
+      value: dev-gcp:teamia:forebyggingsplan
     - name: IA_TJENESTER_METRIKKER_HOSTNAME
       value: ia-tjenester-metrikker.intern.dev.nav.no
     - name: ARBEIDSGIVER_HOSTNAME
