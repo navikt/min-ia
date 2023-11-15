@@ -92,6 +92,7 @@ spec:
           namespace: personbruker
         - application: fia-arbeidsgiver
           namespace: pia
+        - application: forebyggingsplan
       external:
         - host: www.nav.no
         - host: arbeidsgiver.nav.no
