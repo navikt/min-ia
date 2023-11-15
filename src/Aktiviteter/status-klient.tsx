@@ -9,7 +9,7 @@ export const oppdaterStatus = async (
     `forebygge-fravar/api/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`,
     {
       method: "POST",
-      body: JSON.stringify({ status, aktivitetstype: "OPPGAVE" }),
+      body: JSON.stringify({ status }),
       headers: {
         "Content-Type": "application/json",
       },
