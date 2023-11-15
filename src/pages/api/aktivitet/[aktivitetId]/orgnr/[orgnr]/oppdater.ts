@@ -25,6 +25,9 @@ export default async function handler(
     return res.status(400).json({ error: "Mangler 'status' i body" });
   }
 
+  //TODO: Dette er bare for debugging.
+  return res.status(200).json({ status: 200 });
+
   return await proxyRequestWithTokenExchange(
     req,
     res,
