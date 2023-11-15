@@ -36,8 +36,3 @@ export const sammenliknSykefravær = (
   if (virksomhetVerdi < bransjeEllerNæringVerdi * 0.9) return "UNDER";
   return "MIDDELS";
 };
-
-export const getGrønnGrense = (bransjensProsent: number) =>
-  bransjensProsent * 0.9;
-export const getRødGrense = (bransjensProsent: number) =>
-  bransjensProsent * 1.1;
