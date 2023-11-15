@@ -1,0 +1,34 @@
+.statistikk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: var(--a-border-radius-medium);
+}
+
+.gråBakgrunn {
+  --ac-panel-bg: var(--a-bg-subtle);
+}
+
+.tittel {
+  font-weight: 600;
+}
+
+.tallContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: none;
+}
+
+.rotateOpp {
+  transform: rotate(45deg);
+}
+
+.rotateNed {
+  transform: rotate(135deg);
+}
+
+.rotateUendret {
+  transform: rotate(90deg);
+}

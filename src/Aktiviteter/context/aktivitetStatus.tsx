@@ -3,20 +3,31 @@ import { StatusType } from "../AktivitetData";
 import { AktivitetBrukerStatus } from "../../hooks/useHentAktiviteter";
 import { oppdaterStatus } from "../status-klient";
 import { sendIaMetrikkInteraksjonstjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import {
+  AggregertStatistikkDto,
+  tomtDataobjekt,
+} from "../../integrasjoner/aggregert-statistikk-api";
 
 const AktivitetContext = React.createContext<{
   aktivitetStatuser: AktivitetBrukerStatus[];
   setLokaleEndringer: React.Dispatch<
     React.SetStateAction<{ aktivitetId: string; status: StatusType }[]>
   >;
-}>({ aktivitetStatuser: [], setLokaleEndringer: () => {} });
+  sykefraværsstatistikk: AggregertStatistikkDto;
+}>({
+  aktivitetStatuser: [],
+  setLokaleEndringer: () => {},
+  sykefraværsstatistikk: tomtDataobjekt,
+});
 
 export const AktivitetProvider = ({
   children,
   aktivitetStatuser,
+  sykefraværsstatistikk,
 }: {
   children: React.ReactNode;
   aktivitetStatuser: AktivitetBrukerStatus[];
+  sykefraværsstatistikk: AggregertStatistikkDto;
 }) => {
   const [lokaleEndringer, setLokaleEndringer] = React.useState<
     { aktivitetId: string; status: StatusType }[]
@@ -53,6 +64,7 @@ export const AktivitetProvider = ({
       value={{
         aktivitetStatuser: kombinerteAktivitetStatuser,
         setLokaleEndringer,
+        sykefraværsstatistikk,
       }}
     >
       {children}
@@ -79,6 +91,12 @@ export const useStatusForAktiviteter = (ider: string[]) => {
     (id) =>
       aktivitetStatuser?.find((status) => status.aktivitetId === id)?.status
   );
+};
+
+export const useSykefraværsstatistikkForAktivitet = () => {
+  const { sykefraværsstatistikk } = React.useContext(AktivitetContext);
+
+  return sykefraværsstatistikk;
 };
 
 export const useOppdaterStatus = (

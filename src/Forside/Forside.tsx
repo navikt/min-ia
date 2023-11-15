@@ -62,7 +62,10 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
-        <Aktiviteter samtalestøtteUrlMedOrgnr={samtalestøtteUrlMedOrgnr} />
+        <Aktiviteter
+          samtalestøtteUrlMedOrgnr={samtalestøtteUrlMedOrgnr}
+          sykefraværsstatistikk={aggregertStatistikkData}
+        />
         {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
           fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
             <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />

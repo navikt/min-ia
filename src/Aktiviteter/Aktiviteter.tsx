@@ -34,9 +34,12 @@ import {
 import { useOrgnr } from "../hooks/useOrgnr";
 import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
+import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
+import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
 
 export default function AktivitetSeksjon(props: {
   samtalestøtteUrlMedOrgnr: string;
+  sykefraværsstatistikk: AggregertStatistikkDto;
 }) {
   const orgnr = useOrgnr();
   const hentedeAktiviteter = useHentAktiviteter(orgnr);
@@ -48,6 +51,7 @@ export default function AktivitetSeksjon(props: {
           ? hentedeAktiviteter?.data
           : []
       }
+      sykefraværsstatistikk={props.sykefraværsstatistikk}
     >
       <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
         <div className={styles["aktiviteter-seksjon-innhold"]}>
@@ -165,7 +169,7 @@ export function AktivitetInnhold({
     case "numrertliste":
       return <Numrertliste {...innhold} />;
     case "statistikkbokser":
-      return <Statistikkbokser />;
+      return <Sykefraværsstatistikk />;
     default:
       console.error("Ukjent innholdstype", innhold);
       return null;
@@ -241,10 +245,6 @@ function Infoboks({ tittel, innhold }: AktivitetInfoboksType) {
       ))}
     </div>
   );
-}
-
-function Statistikkbokser() {
-  return <div>statistikkbokser</div>;
 }
 
 function getAktivitetHeaderFarge(aktivitetStatistikk: AktivitetStatistikkType) {
