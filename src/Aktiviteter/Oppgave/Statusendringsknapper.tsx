@@ -12,12 +12,9 @@ import { StatusType } from "../AktivitetData";
 export function Statusendringsknapper({
   status,
   setNyStatus,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  oppgavetittel,
 }: {
   status?: StatusType;
   setNyStatus: (nyStatus: StatusType) => void;
-  oppgavetittel: string;
 }) {
   switch (status) {
     case "AVBRUTT":
@@ -28,7 +25,6 @@ export function Statusendringsknapper({
           className={`${styles.statusknapp} ${styles.helknapp}`}
           onClick={() => {
             setNyStatus("STARTET");
-            //loggKnappetrykk("Start", { oppgavetittel });
           }}
           icon={<ChevronDownIcon title="Start" />}
         >
@@ -43,7 +39,6 @@ export function Statusendringsknapper({
             className={`${styles.statusknapp} ${styles.halvknapp}`}
             onClick={() => {
               setNyStatus("FULLFØRT");
-              //loggKnappetrykk("Fullfør", { oppgavetittel });
             }}
             icon={<CheckmarkIcon title="Fullfør" />}
           >
@@ -54,7 +49,6 @@ export function Statusendringsknapper({
             className={`${styles.statusknapp} ${styles.halvknapp}`}
             onClick={() => {
               setNyStatus("AVBRUTT");
-              //loggKnappetrykk("Avbryt", { oppgavetittel });
             }}
             icon={<XMarkIcon title="Avbryt" />}
           >
@@ -69,7 +63,6 @@ export function Statusendringsknapper({
           className={`${styles.statusknapp} ${styles.helknapp}`}
           onClick={() => {
             setNyStatus("AVBRUTT");
-            //loggKnappetrykk("Tilbakestill", { oppgavetittel });
           }}
           icon={<ArrowCirclepathIcon title="Tilbakestill" />}
         >

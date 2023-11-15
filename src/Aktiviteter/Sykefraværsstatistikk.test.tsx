@@ -28,7 +28,7 @@ describe("Sykefraværsstatistikk", () => {
       </AktivitetProvider>
     );
 
-    expect(await screen.findByText("Sykefravær i bransje")).toBeInTheDocument(); // Vent på kall til backend (msw)
+    expect(await screen.findByText("Sykefravær i bransje")).toBeInTheDocument();
 
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -46,7 +46,7 @@ describe("Sykefraværsstatistikk", () => {
 
     expect(screen.getByText("Sykefravær i bransje")).toBeInTheDocument();
     expect(screen.getByText("5.1 %")).toBeInTheDocument();
-    expect(await screen.findByText("Sykefravær hos deg")).toBeInTheDocument(); // Vent på kall til backend (msw)
+    expect(await screen.findByText("Sykefravær hos deg")).toBeInTheDocument();
     expect(screen.getByText("8.8 %")).toBeInTheDocument();
   });
 });
