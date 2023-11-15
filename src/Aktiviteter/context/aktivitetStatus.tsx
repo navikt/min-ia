@@ -2,6 +2,7 @@ import React from "react";
 import { StatusType } from "../AktivitetData";
 import { AktivitetBrukerStatus } from "../../hooks/useHentAktiviteter";
 import { oppdaterStatus } from "../status-klient";
+import { sendIaMetrikkInteraksjonstjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
 
 const AktivitetContext = React.createContext<{
   aktivitetStatuser: AktivitetBrukerStatus[];
@@ -91,7 +92,7 @@ export const useOppdaterStatus = (
     (status: StatusType) => {
       if (orgnr) {
         oppdaterStatus(aktivitetId, orgnr, status);
-        // TODO: lagreIaMetrikkInteraksjonstjeneste(orgnr);
+        sendIaMetrikkInteraksjonstjeneste(orgnr);
 
         setLokaleEndringer((tidligereEndringer) => {
           const aktivitetIndex = tidligereEndringer.findIndex(

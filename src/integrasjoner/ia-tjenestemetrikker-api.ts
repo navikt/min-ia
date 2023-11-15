@@ -31,3 +31,15 @@ export const sendSykefraværsstatistikkIaMetrikk = async (orgnr?: string) => {
     METRIKKER_URL
   );
 };
+
+export const sendIaMetrikkInteraksjonstjeneste = async (orgnr?: string) => {
+  if (!orgnr) {
+    return Promise.reject("orgnr er udefinert");
+  }
+  return sendIaMetrikk(
+    orgnr,
+    MetrikkType.INTERAKSJONSTJENESTE,
+    MetrikkKilde.SYKEFRAVÆRSSTATISTIKK,
+    METRIKKER_URL
+  );
+};
