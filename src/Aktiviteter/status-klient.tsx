@@ -6,7 +6,7 @@ export const oppdaterStatus = async (
   status: StatusType
 ) => {
   return await fetch(
-    `forebyggingsplan/api/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`,
+    `forebygge-fravar/api/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`,
     {
       method: "POST",
       body: JSON.stringify({ status }),
