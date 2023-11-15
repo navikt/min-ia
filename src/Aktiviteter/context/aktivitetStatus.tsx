@@ -83,7 +83,6 @@ export const useStatusForAktiviteter = (ider: string[]) => {
 
 export const useOppdaterStatus = (
   orgnr: string | null | undefined,
-  tittel: string,
   aktivitetId: string
 ) => {
   const { setLokaleEndringer } = React.useContext(AktivitetContext);
@@ -117,6 +116,6 @@ export const useOppdaterStatus = (
         console.error("Får ikke oppdatert status. Mangler orgnr.");
       }
     },
-    [setLokaleEndringer, orgnr, tittel, aktivitetId]
+    [setLokaleEndringer, orgnr, aktivitetId]
   );
 };
