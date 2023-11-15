@@ -2,7 +2,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
-import { sendIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
+import {
+  sendIaTjenesteMetrikk,
+  sendIaMetrikkInteraksjonstjeneste,
+} from "./integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -25,6 +28,7 @@ jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
   sendIaTjenesteMetrikk: jest.fn(),
+  sendIaMetrikkInteraksjonstjeneste: jest.fn(),
 }));
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -58,23 +62,30 @@ describe("Metrikktester av hele siden", () => {
   });
 
   describe("Forside", () => {
-    it("Kaller sendIaTjenesteMetrikk ved klikk på en lenkeflis", async () => {
+    it("Kaller sendIaMetrikkInteraksjonstjeneste ved endring av status på aktivitet", async () => {
       renderPage();
-      const statistikklenke = await waitFor(() => {
-        const lenke = screen.getByRole("link", {
-          name: "Verktøy for forebygging av sykefravær",
-        });
+      const aktivitetHeader = await waitFor(() => {
+        const lenke = screen.getByText(
+          "Bli gode på å tilrettelegge for ansatte"
+        );
 
         expect(lenke).toBeInTheDocument();
 
         return lenke;
       });
+      await user.click(aktivitetHeader);
+      expect(sendIaMetrikkInteraksjonstjeneste).toHaveBeenCalledTimes(0);
 
-      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
+      const startKnapp = await waitFor(() => {
+        const lenke = screen.getAllByText("Start")[0];
 
-      await user.click(statistikklenke);
+        expect(lenke).toBeInTheDocument();
 
-      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
+        return lenke;
+      });
+      await user.click(startKnapp);
+
+      expect(sendIaMetrikkInteraksjonstjeneste).toHaveBeenCalledTimes(1);
     });
 
     function renderPage() {
@@ -87,7 +98,6 @@ describe("Metrikktester av hele siden", () => {
           }}
           forsideProps={{
             samtalestøtteUrl: "samtalestøtteUrl",
-            forebyggingsplanUrl: "forebyggingsplanUrl",
             sykefraværsstatistikkUrl: "sykefraværsstatistikkUrl",
             kontaktOssUrl: "kontaktOssUrl",
             kjørerMockApp,
