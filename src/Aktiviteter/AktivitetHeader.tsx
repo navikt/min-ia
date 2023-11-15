@@ -1,5 +1,4 @@
 import { ProgressBar } from "../ProgressBar/ProgressBar";
-import { getAktivitetStatusBeskrivelseTekst } from "./Aktivitetsmal/AktivitetsstatusBeskrivelse";
 import { AktivitetStatistikkType } from "./typer";
 
 import styles from "./Aktiviteter.module.scss";
@@ -26,3 +25,24 @@ export const AktivitetHeader = ({
     </>
   );
 };
+
+export function getAktivitetStatusBeskrivelseTekst(
+  aktivitetStatistikk: AktivitetStatistikkType
+) {
+  if (aktivitetStatistikk.totalt === aktivitetStatistikk.ferdige) {
+    return "Alle oppgaver i denne seksjonen er ferdigstilt.";
+  }
+
+  if (
+    aktivitetStatistikk.ferdige === 0 &&
+    aktivitetStatistikk.påbegynte === 0
+  ) {
+    return "Ingen oppgaver i denne seksjonen er påbegynt.";
+  }
+
+  return `${aktivitetStatistikk.ferdige} oppgave${
+    aktivitetStatistikk.ferdige === 1 ? "" : "r"
+  } ferdig og ${aktivitetStatistikk.påbegynte} påbegynt av ${
+    aktivitetStatistikk.totalt
+  } tilgjengelige oppgaver.`;
+}
