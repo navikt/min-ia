@@ -90,6 +90,7 @@ spec:
           namespace: fager
         - application: fia-arbeidsgiver
           namespace: pia
+        - application: forebyggingsplan
       external:
         - host: arbeidsgiver.intern.dev.nav.no
         - host: dekoratoren.dev.nav.no
