@@ -13,11 +13,10 @@ import {
 } from "../context/aktivitetStatus";
 import { useOrgnr } from "../../hooks/useOrgnr";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Oppgave({ tittel, innhold, id }: AktivitetOppgaveType) {
   const status = useStatusForAktivitet(id);
   const orgnr = useOrgnr();
-  const setStatus = useOppdaterStatus(orgnr, tittel, id);
+  const setStatus = useOppdaterStatus(orgnr, id);
 
   return (
     <div className={styles.oppgaveblokk}>
