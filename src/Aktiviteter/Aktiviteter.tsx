@@ -36,6 +36,7 @@ import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
+import { sendÅpneAktivitetEvent } from "../amplitude/events";
 
 export default function AktivitetSeksjon(props: {
   samtalestøtteUrlMedOrgnr: string;
@@ -103,6 +104,7 @@ function findOppgaveIder(aktivitet: AktivitetinnholdType): string[] {
 }
 
 function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
+  const [åpen, setÅpen] = React.useState(false);
   const ider = React.useMemo(
     () => aktivitet.innhold.flatMap(findOppgaveIder),
     [aktivitet]
@@ -122,11 +124,18 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
   }, [statuser]);
 
   return (
-    <Accordion.Item className={styles.aktivitet}>
+    <Accordion.Item className={styles.aktivitet} open={åpen}>
       <Accordion.Header
         className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${
           styles.accordionHeader
         }`}
+        onClick={() => {
+          if (!åpen) {
+            sendÅpneAktivitetEvent(aktivitet.tittel);
+          }
+
+          setÅpen(!åpen);
+        }}
       >
         <AktivitetHeader
           aktivitet={aktivitet}

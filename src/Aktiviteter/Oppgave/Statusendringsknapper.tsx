@@ -8,13 +8,16 @@ import {
   XMarkIcon,
 } from "@navikt/aksel-icons";
 import { StatusType } from "../AktivitetData";
+import { sendOppgaveStatusEvent } from "../../amplitude/events";
 
 export function Statusendringsknapper({
   status,
   setNyStatus,
+  oppgavetittel,
 }: {
   status?: StatusType;
   setNyStatus: (nyStatus: StatusType) => void;
+  oppgavetittel: string;
 }) {
   switch (status) {
     case "AVBRUTT":
@@ -25,6 +28,7 @@ export function Statusendringsknapper({
           className={`${styles.statusknapp} ${styles.helknapp}`}
           onClick={() => {
             setNyStatus("STARTET");
+            sendOppgaveStatusEvent("STARTET", oppgavetittel);
           }}
           icon={<ChevronDownIcon title="Start" />}
         >
@@ -39,6 +43,7 @@ export function Statusendringsknapper({
             className={`${styles.statusknapp} ${styles.halvknapp}`}
             onClick={() => {
               setNyStatus("FULLFØRT");
+              sendOppgaveStatusEvent("FULLFØRT", oppgavetittel);
             }}
             icon={<CheckmarkIcon title="Fullfør" />}
           >
@@ -49,6 +54,7 @@ export function Statusendringsknapper({
             className={`${styles.statusknapp} ${styles.halvknapp}`}
             onClick={() => {
               setNyStatus("AVBRUTT");
+              sendOppgaveStatusEvent("AVBRUTT", oppgavetittel);
             }}
             icon={<XMarkIcon title="Avbryt" />}
           >
@@ -63,6 +69,7 @@ export function Statusendringsknapper({
           className={`${styles.statusknapp} ${styles.helknapp}`}
           onClick={() => {
             setNyStatus("AVBRUTT");
+            sendOppgaveStatusEvent("AVBRUTT", oppgavetittel);
           }}
           icon={<ArrowCirclepathIcon title="Tilbakestill" />}
         >

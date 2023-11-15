@@ -45,3 +45,11 @@ export function sendCheckboxFjernet(label?: string) {
 export function sendPanelEkspanderEvent(panelnavn: string) {
   logEvent("panel-ekspander", { panelnavn });
 }
+
+export function sendOppgaveStatusEvent(status: string, oppgavetittel: string) {
+  logEvent("knapp", { status, oppgavetittel });
+}
+
+export function sendÅpneAktivitetEvent(oppgavetittel: string) {
+  logEvent("åpne", { oppgavetittel });
+}

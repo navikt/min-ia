@@ -30,7 +30,11 @@ export default function Oppgave({ tittel, innhold, id }: AktivitetOppgaveType) {
         <KollapsbarOppgavetekstContainer
           status={status}
           knapper={
-            <Statusendringsknapper status={status} setNyStatus={setStatus} />
+            <Statusendringsknapper
+              status={status}
+              setNyStatus={setStatus}
+              oppgavetittel={tittel}
+            />
           }
         >
           {innhold.map((innhold, index) => (
