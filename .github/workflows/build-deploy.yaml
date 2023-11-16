@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - fjern-nettkurs
+      - forebyggingsplan
     paths-ignore:
       - '**.md'
       - '**/**.md'

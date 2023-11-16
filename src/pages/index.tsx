@@ -121,7 +121,6 @@ export const getServerSideProps = async () => {
 
   const forsideProps: ForsideProps = {
     samtalestøtteUrl: hentUrlFraMiljøvariabel("Samtalestøtte"),
-    forebyggingsplanUrl: hentUrlFraMiljøvariabel("Forebyggingsplan"),
     sykefraværsstatistikkUrl: hentUrlFraMiljøvariabel("Sykefraværsstatistikk"),
     kontaktOssUrl: hentUrlFraMiljøvariabel("Kontakt Oss"),
     prodUrl: getProdUrl(),

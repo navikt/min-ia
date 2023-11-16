@@ -11,6 +11,10 @@ spec:
   env:
     - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
       value: sykefravarsstatistikk-api.prod-fss-pub.nais.io
+    - name: FOREBYGGINGSPLAN_API_BASEURL
+      value: forebyggingsplan.teamia.svc.cluster.local
+    - name: FOREBYGGINGSPLAN_API_AUDIENCE
+      value: prod-gcp:teamia:forebyggingsplan
     - name: IA_TJENESTER_METRIKKER_HOSTNAME
       value: arbeidsgiver.nav.no
     - name: ARBEIDSGIVER_HOSTNAME
@@ -88,6 +92,7 @@ spec:
           namespace: personbruker
         - application: fia-arbeidsgiver
           namespace: pia
+        - application: forebyggingsplan
       external:
         - host: www.nav.no
         - host: arbeidsgiver.nav.no

@@ -21,6 +21,7 @@ export const notifikasjonerMockdata = {
         opprettetTidspunkt: "2023-01-05T09:41:52.62916Z",
         sorteringTidspunkt: "2023-01-05T09:41:52.62916Z",
         id: "f30d34ac-7058-45f5-8ae4-7148425779ef",
+        sak: null,
       },
     ],
     __typename: "NotifikasjonerResultat",

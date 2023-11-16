@@ -7,18 +7,16 @@ import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { leggTilBedriftPåUrl } from "../utils/navigasjon";
-import { NyttVerktoyTilDeg } from "./NyttVerktøyTilDeg/NyttVerktoyTilDeg";
-import { AndreForebyggendeVerktoy } from "./AndreForebyggendeVerktøy/AndreForebyggendeVerktoy";
 import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
 import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
+import Aktiviteter from "../Aktiviteter/Aktiviteter";
 
 export interface ForsideProps {
   samtalestøtteUrl: string;
-  forebyggingsplanUrl: string;
   sykefraværsstatistikkUrl: string;
   kontaktOssUrl: string;
   kjørerMockApp: boolean;
@@ -64,12 +62,14 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
-        <NyttVerktoyTilDeg href={props.forebyggingsplanUrl} />
+        <Aktiviteter
+          samtalestøtteUrlMedOrgnr={samtalestøtteUrlMedOrgnr}
+          sykefraværsstatistikk={aggregertStatistikkData}
+        />
         {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
           fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
             <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
           )}
-        <AndreForebyggendeVerktoy href={samtalestøtteUrlMedOrgnr} />
         <RelaterteTjenester />
         <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
       </div>

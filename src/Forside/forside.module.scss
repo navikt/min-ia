@@ -7,9 +7,10 @@
 }
 
 .forside {
+  --forside-content-max-width: 100vw;
   display: flex;
   flex-direction: column;
-  max-width: 100vw;
+  max-width: var(--forside-content-max-width);
   gap: var(--a-spacing-12);
   padding: var(--a-spacing-4) var(--a-spacing-4);
 
@@ -20,7 +21,7 @@
   }
 
   @media (min-width: screensize.$screen-lg) {
-    max-width: 60rem;
+    --forside-content-max-width: 60rem;
   }
 }
 
