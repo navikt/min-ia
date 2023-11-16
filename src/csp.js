@@ -44,6 +44,8 @@ const cspHeaders = {
   "worker-src": ["'self'", "blob:"],
 };
 
-export const cspString = Object.entries(cspHeaders)
+const cspString = Object.entries(cspHeaders)
   .map((entry) => `${entry[0]} ${entry[1].join(" ")}`)
   .join("; ");
+
+module.exports = { cspString };
