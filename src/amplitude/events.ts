@@ -51,5 +51,5 @@ export function sendOppgaveStatusEvent(status: string, oppgavetittel: string) {
 }
 
 export function sendÅpneAktivitetEvent(oppgavetittel: string) {
-  logEvent("åpne", { oppgavetittel });
+  logEvent("Accordion åpnet", { tekst: oppgavetittel });
 }
