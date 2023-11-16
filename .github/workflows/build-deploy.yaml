@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - forebyggingsplan
     paths-ignore:
       - '**.md'
       - '**/**.md'
