@@ -7,6 +7,7 @@ on:
     paths:
       - '.nais/redirect-sykefravarsstatistikk-prod.yaml'
       - '.github/workflows/deploy-redirect-prod.yaml'
+      - '.nais/redirect-forebyggingsplan-prod.yaml'
 jobs:
   deploy:
     name: Deploy redirect ingress to prod-gcp
@@ -18,4 +19,6 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
-          RESOURCE: .nais/redirect-sykefravarsstatistikk-prod.yaml
+          RESOURCE: "\
+            .nais/redirect-sykefravarsstatistikk-prod.yaml,\
+            .nais/redirect-forebyggingsplan-prod.yaml"
