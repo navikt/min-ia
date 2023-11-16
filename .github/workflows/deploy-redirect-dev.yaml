@@ -3,8 +3,8 @@ run-name: Deploy redirect ingress to dev | ${{ github.event.head_commit.message 
 on:
   push:
     paths:
-      - ".github/workflows/deploy-redirect-dev.yaml",
-      - ".nais/redirect-sykefravarsstatistikk-dev.yaml",
+      - ".github/workflows/deploy-redirect-dev.yaml"
+      - ".nais/redirect-sykefravarsstatistikk-dev.yaml"
       - ".nais/redirect-forebyggingsplan-dev.yaml"
 jobs:
   deploy:
