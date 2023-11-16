@@ -19,4 +19,7 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: .nais/redirect-sykefravarsstatistikk-dev.yaml
+          RESOURCE: \
+            .nais/redirect-sykefravarsstatistikk-dev.yaml,\
+            .nais/redirect-forebyggingsplan-dev.yaml,\
+
