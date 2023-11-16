@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 import path from "path";
-import csp from "./src/csp.js";
-import { fileURLToPath } from 'url';
+import {cspString} from "./src/csp.js";
+import {fileURLToPath} from "url";
+
 const __filename = fileURLToPath(import.meta.url);
 
 export default {
@@ -36,7 +37,7 @@ export default {
                     },
                     {
                         key: "Referrer-Policy",
-                        value: "no-referrer",
+                        value: "origin-when-cross-origin",
                     },
                     {
                         key: "Permissions-Policy",
@@ -44,7 +45,7 @@ export default {
                     },
                     {
                         key: "Content-Security-Policy",
-                        value: csp,
+                        value: cspString,
                     },
                 ],
             },

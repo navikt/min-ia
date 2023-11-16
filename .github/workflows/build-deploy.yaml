@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - csp
     paths-ignore:
       - '**.md'
       - '**/**.md'
