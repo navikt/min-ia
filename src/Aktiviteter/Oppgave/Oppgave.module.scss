@@ -29,7 +29,6 @@
       min-height: 5rem;
       max-height: 7rem;
       padding-top: 1rem;
-      padding-bottom: 1rem;
       overflow: hidden;
       position: relative;
       .oppgavetekstOverlayGradient {
@@ -53,8 +52,8 @@
     }
     .synligOppgavetekst {
       padding-top: 1rem;
-      padding-bottom: 1rem;
       .oppgavetekstOverlayGradient {
+        margin-top: 1rem;
         border-top: thin solid var(--a-gray-400);
         padding-top: calc(var(--oppgaveblokk-padding) / 2);
       }
