@@ -1,3 +1,6 @@
+// "psplugin"/"vergic": skjermdelingsløsningen
+// "hotjar" og "taskanalytics": verktøy for å samle inn brukerinnsikt
+
 const cspHeaders = {
   "default-src": ["'self'", "*.nav.no"],
   "script-src": [
@@ -6,13 +9,21 @@ const cspHeaders = {
     "script.hotjar.com",
     "*.psplugin.com",
     "*.nav.no",
+    "*.taskanalytics.com",
+    "'unsafe-eval'",
+    "'unsafe-inline'",
   ],
-  "style-src": ["'self'", "blob:", "*.nav.no", "*.psplugin.com"],
+  "style-src": [
+    "'self'",
+    "blob:",
+    "*.nav.no",
+    "*.psplugin.com",
+    "'unsafe-inline'",
+  ],
   "connect-src": [
     "'self'",
     "*.nav.no",
-    "oidc-ver2.difi.no/idporten-oidc-provider/authorize",
-    "idporten-ver2.difi.no/opensso/SSORedirect/metaAlias/norge.no/idp4",
+    "*.difi.no",
     "amplitude.nav.no",
     "*.psplugin.com",
     "*.hotjar.com",
@@ -28,6 +39,7 @@ const cspHeaders = {
   "frame-src": ["vars.hotjar.com", "*.nav.no"],
   "img-src": [
     "'self'",
+    "data:",
     "*.hotjar.com",
     "*.nav.no",
     "*.psplugin.com",
@@ -35,9 +47,8 @@ const cspHeaders = {
   ],
   "manifest-src": [
     "'self'",
-    "www.nav.no",
-    "oidc-ver2.difi.no",
-    "idporten-ver2.difi.no",
+    "*.nav.no",
+    "*.difi.no",
   ],
   "media-src": ["'self'", "blob:"],
   "object-src": ["'self'", "blob:"],

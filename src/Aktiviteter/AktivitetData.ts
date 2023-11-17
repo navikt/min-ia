@@ -442,7 +442,7 @@ export const aktiviteter: AktivitetType[] = [
           {
             type: "lenke",
             tekst: "Se sykefravær over tid",
-            url: "https://arbeidsgiver.nav.no/sykefravarsstatistikk/historikk",
+            url: "/sykefravarsstatistikk#historikk",
           },
         ],
       },
