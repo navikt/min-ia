@@ -3,8 +3,10 @@ import { Statistikkategori } from "../domene/statistikkategori";
 import { AggregertStatistikkDto } from "../../integrasjoner/aggregert-statistikk-api";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
-import { useAltinnOrganisasjoner } from "../../hooks/useAltinnOrganisasjoner";
-import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjonerMedStatistikktilgang";
+import {
+    useAltinnOrganisasjoner,
+    useAltinnOrganisasjonerMedStatistikktilgang
+} from "../../hooks/useAltinnOrganisasjoner";
 import { useKvartalsvisStatistikk } from "../../hooks/useKvartalsvisStatistikk";
 import { usePubliseringsdato } from "../../hooks/usePubliseringsdato";
 
