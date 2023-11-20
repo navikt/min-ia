@@ -442,7 +442,7 @@ export const aktiviteter: AktivitetType[] = [
           {
             type: "lenke",
             tekst: "Se sykefravær over tid",
-            url: "/sykefravarsstatistikk#historikk",
+            url: "/forebygge-fravar/sykefravarsstatistikk#historikk",
           },
         ],
       },

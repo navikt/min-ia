@@ -45,11 +45,7 @@ const cspHeaders = {
     "*.psplugin.com",
     "www.vergic.com",
   ],
-  "manifest-src": [
-    "'self'",
-    "*.nav.no",
-    "*.difi.no",
-  ],
+  "manifest-src": ["'self'", "*.nav.no", "*.difi.no"],
   "media-src": ["'self'", "blob:"],
   "object-src": ["'self'", "blob:"],
   "worker-src": ["'self'", "blob:"],
