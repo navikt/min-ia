@@ -29,7 +29,7 @@ const Historikk: FunctionComponent<Props> = (props) => {
       <div className={styles["historikk"]}>
         <div className={styles["historikk__overdel-wrapper"]}>
           <div className={styles["historikk__tekst-wrapper"]}>
-            <Heading spacing level="2" size="medium">
+            <Heading id="historikk" spacing level="2" size="medium">
               Se sykefraværet over tid
             </Heading>
             <BodyShort className={styles["historikk__ingress"]}>
