@@ -80,9 +80,6 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: sykefravarsstatistikk-api
-          namespace: arbeidsgiver
-          cluster: prod-fss
         - application: ia-tjenester-metrikker
           namespace: arbeidsgiver
           cluster: prod-gcp
@@ -92,7 +89,6 @@ spec:
           namespace: personbruker
         - application: fia-arbeidsgiver
           namespace: pia
-        - application: forebyggingsplan
       external:
         - host: www.nav.no
         - host: arbeidsgiver.nav.no
