@@ -11,7 +11,7 @@ metadata:
   name: prod-redirect-forebyggingsplan-to-forebygge-fravar
   namespace: teamia
 spec:
-  ingressClassName: nais-ingress
+  ingressClassName: nais-ingress-external
   rules:
     - host: arbeidsgiver.nav.no
       http:

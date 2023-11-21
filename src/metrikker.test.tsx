@@ -6,6 +6,7 @@ import {
   sendIaTjenesteMetrikk,
   sendIaMetrikkInteraksjonstjeneste,
 } from "./integrasjoner/ia-tjenestemetrikker-api";
+import {RestStatus} from "./integrasjoner/rest-status";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -33,6 +34,25 @@ jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
+
+jest.mock("./hooks/useAltinnOrganisasjoner", () => ({
+  useAltinnOrganisasjoner: () => RestStatus.LasterInn,
+  useAltinnOrganisasjonerMedStatistikktilgang: () => RestStatus.LasterInn,
+}));
+
+jest.mock("./hooks/useAggregertStatistikk", () => ({
+  useAggregertStatistikk: () => RestStatus.LasterInn,
+}));
+
+jest.mock("./hooks/useAggregertStatistikk", () => ({
+  useAggregertStatistikk: () => RestStatus.LasterInn,
+}));
+
+
+jest.mock("./hooks/useRestRessursSWR", () => ({
+  useRestRessursSWR: () => RestStatus.LasterInn,
+}));
+
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {

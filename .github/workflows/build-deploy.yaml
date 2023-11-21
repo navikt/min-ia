@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - csp
+      - rydd-opp-i-tester
     paths-ignore:
       - '**.md'
       - '**/**.md'

@@ -18,7 +18,7 @@ jest.mock("../../../../../hooks/useOrgnr", () => ({
 jest.mock("../../../../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual(
-    "../../../../../integrasjoner/ia-tjenestemetrikker-api"
+    "../../../../../integrasjoner/ia-tjenestemetrikker-api",
   ),
   sendSykefraværsstatistikkIaMetrikk: jest.fn(),
 }));
@@ -47,19 +47,19 @@ describe("LegendMedToggles", () => {
     "land",
   ];
 
-  it("Sjekker at elle linjer som skal vises vises", () => {
+  it("Sjekker at alle linjer som skal vises vises", () => {
     render(
       <LegendMedToggles
         labels={labels}
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={[]}
         setLinjerSomSkalVises={() => {}}
-      />
+      />,
     );
 
     expect(screen.getByLabelText(`Virksomhet: Virksomhet`)).toBeInTheDocument();
     expect(
-      screen.getByLabelText(`Overordnet enhet: Overordnet enhet`)
+      screen.getByLabelText(`Overordnet enhet: Overordnet enhet`),
     ).toBeInTheDocument();
     expect(screen.getByLabelText(`Bransje: Bransje`)).toBeInTheDocument();
     expect(screen.getByLabelText(`Sektor: Sektor`)).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe("LegendMedToggles", () => {
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={[]}
         setLinjerSomSkalVises={setLinjerSomSkalVises}
-      />
+      />,
     );
 
     fireEvent.click(screen.getByLabelText(`Virksomhet: Virksomhet`));
@@ -92,11 +92,11 @@ describe("LegendMedToggles", () => {
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={["virksomhet"]}
         setLinjerSomSkalVises={setLinjerSomSkalVises}
-      />
+      />,
     );
 
     fireEvent.click(
-      screen.getByLabelText(`Overordnet enhet: Overordnet enhet`)
+      screen.getByLabelText(`Overordnet enhet: Overordnet enhet`),
     );
 
     expect(setLinjerSomSkalVises).toHaveBeenCalledWith([
@@ -114,7 +114,7 @@ describe("LegendMedToggles", () => {
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={["virksomhet"]}
         setLinjerSomSkalVises={setLinjerSomSkalVises}
-      />
+      />,
     );
 
     fireEvent.click(screen.getByLabelText(`Virksomhet: Virksomhet`));
