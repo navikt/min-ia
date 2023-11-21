@@ -100,7 +100,7 @@ it("viser 'uendret' som fraværstrend når dette er tilfellet", async () => {
   expect(infobolk.textContent).toBe("Fravær er uendret");
 });
 
-it("viser årsak til sykemelding", async () => {
+it("viser sykefravær i virksomhet", async () => {
   render(
     <Sykefraværsstatistikk
       {...hentUtSykefraværsstatistikkData(
@@ -110,10 +110,10 @@ it("viser årsak til sykemelding", async () => {
       sykefraværsstatistikkUrl={"http://url"}
     />
   );
-  const infobolk = screen.getByText(/Vanligste diagnose i Norge/);
-  expect(infobolk.textContent).toBe("Vanligste diagnose i Norge");
-  const infoDiagnose = screen.getByText(/Muskel og skjelett/);
-  expect(infoDiagnose.textContent).toBe("Muskel og skjelett");
+  const infobolk = screen.getByText(/I din virksomhet siste 12 MND/);
+  expect(infobolk.textContent).toBe("I din virksomhet siste 12 MND");
+  const infoDiagnose = screen.getByText(/8,8%/);
+  expect(infoDiagnose.textContent).toBe("8,8%");
 });
 
 it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
