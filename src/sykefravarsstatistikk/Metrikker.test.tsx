@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { mockAllDatahentingStatusOk } from "./mockdata";
 import { BrowserRouter } from "react-router-dom";
@@ -11,6 +11,7 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { fleskOgFisk, heiOgHåBarnehage } from "./altinn-mock";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
 import * as hooks from "../hooks/useOrgnr";
+import { mockContainerSize } from "../utils/test-utils";
 
 const valgtBedriftMedSykefraværsstatistikkRettigheter =
   heiOgHåBarnehage[0].OrganizationNumber;
@@ -41,6 +42,7 @@ describe("Metrikkutsendelser", () => {
     useOrgnrSpy.mockReturnValue(
       valgtBedriftMedSykefraværsstatistikkRettigheter
     );
+    mockContainerSize();
   });
 
   afterEach(() => {

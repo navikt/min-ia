@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import dynamic from "next/dynamic";
 import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
 import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
@@ -21,10 +20,7 @@ import Tabell, {
 import useBreadcrumbs from "../../utils/useBreadcrumbs";
 import { Layout } from "../../komponenter/Layout/Layout";
 import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIAltinnSide/ManglerRettigheterIAltinnSide";
-
-const PrintOnlyHref = dynamic(() => import("./PrintOnlyHref"), {
-  ssr: false,
-});
+import PrintOnlyHref from "./PrintOnlyHref";
 
 export const Forside = ({
   kjørerMockApp,

@@ -9,6 +9,7 @@ import { fleskOgFisk, heiOgHåBarnehage } from "../../altinn-mock";
 import { mockAllDatahentingStatusOk } from "../../mockdata";
 import { transformSykefraværAppData } from "../../hooks/useSykefraværAppData";
 import * as hooks from "../../../hooks/useOrgnr";
+import { mockContainerSize } from "../../../utils/test-utils";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -47,6 +48,7 @@ describe("Tester side for manglende Altinn-rettigheter", () => {
     useOrgnrSpy.mockReturnValue(
       valgtBedriftMedSykefraværsstatistikkRettigheter
     );
+    mockContainerSize();
   });
 
   afterEach(() => {
