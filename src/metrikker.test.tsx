@@ -6,7 +6,7 @@ import {
   sendIaTjenesteMetrikk,
   sendIaMetrikkInteraksjonstjeneste,
 } from "./integrasjoner/ia-tjenestemetrikker-api";
-import {RestStatus} from "./integrasjoner/rest-status";
+import { RestStatus } from "./integrasjoner/rest-status";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -31,6 +31,13 @@ jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   sendIaTjenesteMetrikk: jest.fn(),
   sendIaMetrikkInteraksjonstjeneste: jest.fn(),
 }));
+
+jest.mock("./Aktiviteter/status-klient", () => ({
+  __esModule: true,
+  ...jest.requireActual("./Aktiviteter/status-klient"),
+  oppdaterStatus: jest.fn(),
+}));
+
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
@@ -48,7 +55,6 @@ jest.mock("./hooks/useAggregertStatistikk", () => ({
   useAggregertStatistikk: () => RestStatus.LasterInn,
 }));
 
-
 jest.mock("./hooks/useRestRessursSWR", () => ({
   useRestRessursSWR: () => RestStatus.LasterInn,
 }));
@@ -56,10 +62,6 @@ jest.mock("./hooks/useRestRessursSWR", () => ({
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
   describe("Kalkulator", () => {
     it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
       render(
@@ -68,7 +70,7 @@ describe("Metrikktester av hele siden", () => {
           tapteDagsverk="7800"
           muligeDagsverk="52000"
           nedlastingPågår={false}
-        />
+        />,
       );
 
       const dagsverkLenke = screen.getByText("Dagsverk");
@@ -86,7 +88,7 @@ describe("Metrikktester av hele siden", () => {
       renderPage();
       const aktivitetHeader = await waitFor(() => {
         const lenke = screen.getByText(
-          "Bli gode på å tilrettelegge for ansatte"
+          "Bli gode på å tilrettelegge for ansatte",
         );
 
         expect(lenke).toBeInTheDocument();
@@ -109,7 +111,7 @@ describe("Metrikktester av hele siden", () => {
     });
 
     function renderPage() {
-      const kjørerMockApp = false;
+      const kjørerMockApp = true;
       render(
         <Home
           page={{
@@ -125,7 +127,7 @@ describe("Metrikktester av hele siden", () => {
           minSideArbeidsgiverUrl="minSideArbeidsgiverUrl"
           kjørerMockApp={kjørerMockApp}
           grafanaAgentUrl="grafanaAgentUrl"
-        />
+        />,
       );
     }
   });
