@@ -8,9 +8,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 export const InfographicFlis = (props: {
   innhold: ReactNode;
   nedlastingPågår?: boolean;
+  fullBredde?: boolean;
 }) => {
   return (
-    <div className={styles.infographicFlis}>
+    <div
+      className={`${styles.infographicFlis} ${
+        props.fullBredde ? styles.fullBredde : ""
+      }`}
+    >
       {props.nedlastingPågår ? (
         <SkeletonWrapper>
           <Skeleton style={{ marginTop: "0.5rem" }} />

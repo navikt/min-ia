@@ -17,6 +17,8 @@ export interface SykefraværsstatistikkData {
   stigningstallTrendBransjeEllerNæring: number;
   bransjeEllerNæring: "bransje";
   bransjeEllerNæringLabel?: string;
+  fraværsprosentVirksomhet: string;
+  trendVirksomhet: string;
 }
 
 export interface SykefraværsstatistikkProps extends SykefraværsstatistikkData {
@@ -33,6 +35,9 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
 
   const organisasjonerHvorBrukerHarStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikktilgang();
+
+  const brukerManglerTilgangTilOrg =
+    props.fraværsprosentVirksomhet.length === 0;
 
   return (
     <div className={styles.sykefraværsstatistikk}>
@@ -54,17 +59,12 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
           </div>
 
           <div className={styles.infographicRad}>
-            <InfographicFlis
-              innhold={
-                <>
-                  <Detail uppercase={true}>Vanligste diagnose i Norge</Detail>
-                  <Label>Muskel og skjelett</Label>
-                </>
-              }
+            <VirksomhetInfographicFlis
+              fraværsprosentVirksomhet={props.fraværsprosentVirksomhet}
               nedlastingPågår={props.nedlastingPågår}
             />
-
             <InfographicFlis
+              fullBredde={brukerManglerTilgangTilOrg}
               innhold={displaytekstTrendBransjeEllerNæring(props)}
               nedlastingPågår={props.nedlastingPågår}
             />
@@ -91,6 +91,30 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
     </div>
   );
 };
+
+function VirksomhetInfographicFlis({
+  fraværsprosentVirksomhet,
+  nedlastingPågår,
+}: {
+  fraværsprosentVirksomhet: string;
+  nedlastingPågår: boolean;
+}) {
+  if (fraværsprosentVirksomhet.length) {
+    return (
+      <InfographicFlis
+        innhold={
+          <>
+            <Detail uppercase={true}>I din virksomhet siste 12 MND</Detail>
+            <Label>{fraværsprosentVirksomhet}%</Label>
+          </>
+        }
+        nedlastingPågår={nedlastingPågår}
+      />
+    );
+  }
+
+  return null;
+}
 
 function Sykefraværsstatistikkinnhold({
   harTilgangTilOrg,

@@ -2,7 +2,7 @@ import {
   AggregertStatistikkDto,
   Statistikkategori,
 } from "../../integrasjoner/aggregert-statistikk-api";
-import {SykefraværsstatistikkData} from "../../Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
+import { SykefraværsstatistikkData } from "../../Forside/Sykefraværsstatistikk/Sykefraværsstatistikk";
 
 export function hentUtSykefraværsstatistikkData(
   data: AggregertStatistikkDto
@@ -16,11 +16,17 @@ export function hentUtSykefraværsstatistikkData(
   const fraværsprosentBransje = data.prosentSiste4KvartalerTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.BRANSJE
   );
+  const fraværsprosentVirksomhet = data.prosentSiste4KvartalerTotalt?.find(
+    (s) => s.statistikkategori === Statistikkategori.VIRKSOMHET
+  );
   const trendBransje = data.trendTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.BRANSJE
   );
   const trendNæring = data.trendTotalt?.find(
     (s) => s.statistikkategori === Statistikkategori.NÆRING
+  );
+  const trendVirksomhet = data.trendTotalt?.find(
+    (s) => s.statistikkategori === Statistikkategori.VIRKSOMHET
   );
   return {
     fraværsprosentNorge: fraværsprosentNorge?.verdi.replace(".", ","),
@@ -33,5 +39,8 @@ export function hentUtSykefraværsstatistikkData(
     bransjeEllerNæring: "bransje",
     bransjeEllerNæringLabel: (fraværsprosentBransje ?? fraværsprosentNæring)
       ?.label,
+    fraværsprosentVirksomhet:
+      fraværsprosentVirksomhet?.verdi.replace(".", ",") || "",
+    trendVirksomhet: trendVirksomhet?.verdi || "",
   };
 }
