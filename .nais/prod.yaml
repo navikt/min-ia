@@ -82,13 +82,13 @@ spec:
       rules:
         - application: ia-tjenester-metrikker
           namespace: arbeidsgiver
-          cluster: prod-gcp
         - application: notifikasjon-bruker-api
           namespace: fager
         - application: nav-dekoratoren
           namespace: personbruker
         - application: fia-arbeidsgiver
           namespace: pia
+        - application: forebyggingsplan
       external:
         - host: www.nav.no
         - host: arbeidsgiver.nav.no
