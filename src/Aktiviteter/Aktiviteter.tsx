@@ -228,7 +228,11 @@ function Punkt({ innhold }: AktivitetPunktType) {
 }
 
 function Lenke({ tekst, url }: AktivitetLenkeType) {
-  return <Link href={url}>{tekst}</Link>;
+  return (
+    <Link href={url} className={styles.lenke}>
+      {tekst}
+    </Link>
+  );
 }
 
 function Inlinetekst({ innhold }: AktivitetInlinetekstType) {

@@ -58,7 +58,10 @@ export default function DeresSykefraværsstatistikkBransje() {
           Tolkning av egne tall øker i verdi når du vet hvordan det ser ut hos
           andre.
         </BodyLong>
-        <Link href="/forebygge-fravar/sykefravarsstatistikk#historikk">
+        <Link
+          href="/forebygge-fravar/sykefravarsstatistikk#historikk"
+          className={styles.lenke}
+        >
           Se sykefravær over tid
         </Link>
       </div>
