@@ -53,10 +53,15 @@ describe("App", () => {
     useOrgnrSpy.mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
     mockContainerSize();
   });
+
   afterEach(() => {
     MockObserver.stopmock();
   });
+
   it("renders without crashing", async () => {
+    jest
+      .spyOn(hooks, "useOrgnr")
+      .mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
     const { container } = render(
       <Forside
         kjørerMockApp={true}

@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
 import {
-  sendIaTjenesteMetrikk,
   sendIaMetrikkInteraksjonstjeneste,
+  sendIaTjenesteMetrikk,
 } from "./integrasjoner/ia-tjenestemetrikker-api";
 import { RestStatus } from "./integrasjoner/rest-status";
 
@@ -42,6 +42,12 @@ jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
 
+jest.mock("./Banner/Banner", () => {
+  return function Dummy() {
+    return <div>dummy</div>;
+  };
+});
+
 jest.mock("./hooks/useAltinnOrganisasjoner", () => ({
   useAltinnOrganisasjoner: () => RestStatus.LasterInn,
   useAltinnOrganisasjonerMedStatistikktilgang: () => RestStatus.LasterInn,
@@ -70,7 +76,7 @@ describe("Metrikktester av hele siden", () => {
           tapteDagsverk="7800"
           muligeDagsverk="52000"
           nedlastingPågår={false}
-        />,
+        />
       );
 
       const dagsverkLenke = screen.getByText("Dagsverk");
@@ -88,7 +94,7 @@ describe("Metrikktester av hele siden", () => {
       renderPage();
       const aktivitetHeader = await waitFor(() => {
         const lenke = screen.getByText(
-          "Bli gode på å tilrettelegge for ansatte",
+          "Bli gode på å tilrettelegge for ansatte"
         );
 
         expect(lenke).toBeInTheDocument();
@@ -127,7 +133,7 @@ describe("Metrikktester av hele siden", () => {
           minSideArbeidsgiverUrl="minSideArbeidsgiverUrl"
           kjørerMockApp={kjørerMockApp}
           grafanaAgentUrl="grafanaAgentUrl"
-        />,
+        />
       );
     }
   });
