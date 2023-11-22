@@ -3,10 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
 import {
-  sendIaTjenesteMetrikk,
   sendIaMetrikkInteraksjonstjeneste,
+  sendIaTjenesteMetrikk,
 } from "./integrasjoner/ia-tjenestemetrikker-api";
-import {RestStatus} from "./integrasjoner/rest-status";
+import { RestStatus } from "./integrasjoner/rest-status";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -31,9 +31,22 @@ jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   sendIaTjenesteMetrikk: jest.fn(),
   sendIaMetrikkInteraksjonstjeneste: jest.fn(),
 }));
+
+jest.mock("./Aktiviteter/status-klient", () => ({
+  __esModule: true,
+  ...jest.requireActual("./Aktiviteter/status-klient"),
+  oppdaterStatus: jest.fn(),
+}));
+
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
+
+jest.mock("./Banner/Banner", () => {
+  return function Dummy() {
+    return <div>dummy</div>;
+  };
+});
 
 jest.mock("./hooks/useAltinnOrganisasjoner", () => ({
   useAltinnOrganisasjoner: () => RestStatus.LasterInn,
@@ -48,7 +61,6 @@ jest.mock("./hooks/useAggregertStatistikk", () => ({
   useAggregertStatistikk: () => RestStatus.LasterInn,
 }));
 
-
 jest.mock("./hooks/useRestRessursSWR", () => ({
   useRestRessursSWR: () => RestStatus.LasterInn,
 }));
@@ -56,10 +68,6 @@ jest.mock("./hooks/useRestRessursSWR", () => ({
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
   describe("Kalkulator", () => {
     it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
       render(
@@ -109,7 +117,7 @@ describe("Metrikktester av hele siden", () => {
     });
 
     function renderPage() {
-      const kjørerMockApp = false;
+      const kjørerMockApp = true;
       render(
         <Home
           page={{

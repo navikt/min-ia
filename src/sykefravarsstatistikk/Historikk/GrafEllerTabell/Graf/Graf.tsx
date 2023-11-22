@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import dynamic from "next/dynamic";
 
 import { LegendMedToggles } from "./LegendMedToggles/LegendMedToggles";
 import {
@@ -7,10 +6,8 @@ import {
   HistorikkLabels,
   KvartalsvisSammenligning,
 } from "../../../utils/sykefraværshistorikk-utils";
+import GrafVisning from "./GrafVisning";
 
-const GrafVisning = dynamic(() => import("./GrafVisning"), {
-  ssr: false,
-});
 interface Props {
   kvartalsvisSammenligning: KvartalsvisSammenligning[];
   historikkLabels: HistorikkLabels;

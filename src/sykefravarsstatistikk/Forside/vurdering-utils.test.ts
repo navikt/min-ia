@@ -38,9 +38,15 @@ it("sammenliknSykefravær skal gi riktig vurdering", () => {
 });
 
 it("sammenliknSykefravær skal gi vurdering INGEN_DATA hvis data tilsier det", () => {
+  const consoleWarnMock = jest
+    .spyOn(console, "warn")
+    .mockImplementation(() => {});
+
   expect(sammenliknSykefravær(undefined, undefined)).toEqual(
     "FEIL_ELLER_INGEN_DATA"
   );
+
+  consoleWarnMock.mockRestore();
 });
 
 it("sammenliknSykefravær - skal gi vurdering UFULLSTENDIG_DATA hvis data tilsier det", () => {
