@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import {
   mockAllDatahentingStatusLaster,
@@ -7,6 +7,11 @@ import {
 } from "./mockdata";
 import Forside from "./Forside/Forside";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
+import { heiOgHåBarnehage } from "./altinn-mock";
+import { useOrgnr } from "../hooks/useOrgnr";
+import * as hooks from "../hooks/useOrgnr";
+import { MockResizeObserver } from "./jest/MockResizeObserver";
+import { mockContainerSize } from "../utils/test-utils";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -27,8 +32,25 @@ jest.mock("next/router", () => ({
   },
 }));
 
+jest.mock("../hooks/useOrgnr", () => ({
+  __esModule: true,
+  ...jest.requireActual("../hooks/useOrgnr"),
+  useOrgnr: jest.fn(),
+}));
+
 describe("App", () => {
+  const MockObserver = new MockResizeObserver();
+  let useOrgnrSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    MockObserver.startmock();
+    useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
+    useOrgnrSpy.mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+    mockContainerSize();
+  });
+
   afterEach(() => {
+    MockObserver.stopmock();
     jest.resetAllMocks();
   });
 
@@ -41,6 +63,25 @@ describe("App", () => {
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
+  });
+
+  it("renders statistics when user have rights", async () => {
+    jest
+      .spyOn(hooks, "useOrgnr")
+      .mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+
+    render(
+      <Forside
+        kjørerMockApp={true}
+        {...transformSykefraværAppData(mockAllDatahentingStatusOk)}
+      />
+    );
+
+    const forsidensOverskrift = screen.getByRole("heading", {
+      name: "Sykefraværsstatistikk for HEI OG HÅ BARNEHAGE",
+    });
+
+    expect(forsidensOverskrift).toBeInTheDocument();
   });
 
   it("renders without data without crashing", async () => {
