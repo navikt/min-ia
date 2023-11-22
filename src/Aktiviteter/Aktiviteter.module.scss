@@ -73,3 +73,9 @@
 .aktivitetFullført {
   background-color: var(--a-green-100) !important;
 }
+
+.statistikkContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

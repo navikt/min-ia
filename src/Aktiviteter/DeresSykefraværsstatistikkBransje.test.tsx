@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
+import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
 import { AktivitetProvider } from "./context/aktivitetStatus";
 import { mockAggregertStatistikkMedBransjetall } from "../Forside/Sykefraværsstatistikk/mockAggregertStatistikkMedBransjetall";
 
@@ -17,14 +17,14 @@ jest.mock("next/router", () => ({
   },
 }));
 
-describe("Sykefraværsstatistikk", () => {
+describe("DeresSykefraværsstatistikkBransje", () => {
   it("Har ingen uu-feil fra axe", async () => {
     const { container } = render(
       <AktivitetProvider
         aktivitetStatuser={[]}
         sykefraværsstatistikk={mockAggregertStatistikkMedBransjetall}
       >
-        <Sykefraværsstatistikk />
+        <DeresSykefraværsstatistikkBransje />
       </AktivitetProvider>
     );
 
@@ -40,7 +40,7 @@ describe("Sykefraværsstatistikk", () => {
         aktivitetStatuser={[]}
         sykefraværsstatistikk={mockAggregertStatistikkMedBransjetall}
       >
-        <Sykefraværsstatistikk />
+        <DeresSykefraværsstatistikkBransje />
       </AktivitetProvider>
     );
 

@@ -35,8 +35,8 @@ import { useOrgnr } from "../hooks/useOrgnr";
 import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
-import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
 import { sendÅpneAktivitetEvent } from "../amplitude/events";
+import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
 
 export default function AktivitetSeksjon(props: {
   samtalestøtteUrlMedOrgnr: string;
@@ -87,7 +87,7 @@ function findOppgaveIder(aktivitet: AktivitetinnholdType): string[] {
     aktivitet.type === "punktliste" ||
     aktivitet.type === "numrertliste" ||
     aktivitet.type === "lenke" ||
-    aktivitet.type === "statistikkbokser"
+    aktivitet.type === "deresSykstatBransje"
   ) {
     return [];
   }
@@ -177,8 +177,8 @@ export function AktivitetInnhold({
       return <Infoboks {...innhold} />;
     case "numrertliste":
       return <Numrertliste {...innhold} />;
-    case "statistikkbokser":
-      return <Sykefraværsstatistikk />;
+    case "deresSykstatBransje":
+      return <DeresSykefraværsstatistikkBransje />;
     default:
       console.error("Ukjent innholdstype", innhold);
       return null;

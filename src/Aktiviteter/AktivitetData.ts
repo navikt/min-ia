@@ -45,8 +45,8 @@ export type AktivitetInfoboksType = {
   innhold: AktivitetinnholdType[];
 };
 
-export type AktivitetStatistikkbokserType = {
-  type: "statistikkbokser";
+export type DeresSykstatBransjeType = {
+  type: "deresSykstatBransje";
 };
 
 export type AktivitetOppgaveType = {
@@ -65,7 +65,7 @@ export type AktivitetinnholdType =
   | AktivitetNumrertlisteType
   | AktivitetLenkeType
   | AktivitetInfoboksType
-  | AktivitetStatistikkbokserType
+  | DeresSykstatBransjeType
   | string;
 
 export type StatusType = "AVBRUTT" | "STARTET" | "FULLFØRT";
@@ -430,21 +430,7 @@ export const aktiviteter: AktivitetType[] = [
           "Dere lærer de ulike typer sykefravær og plager som skyldes forhold på arbeidsplassen. Dere bruker egen sykefraværstatistikk og vurderer mulige tiltak.",
       },
       {
-        type: "infoboks",
-        tittel: "Deres sykefraværstatistikk sammenlignet med bransjen",
-        innhold: [
-          { type: "statistikkbokser" },
-          {
-            type: "tekst",
-            innhold:
-              "Tolkning av egne tall øker i verdi når du vet hvordan det ser ut hos andre.",
-          },
-          {
-            type: "lenke",
-            tekst: "Se sykefravær over tid",
-            url: "/forebygge-fravar/sykefravarsstatistikk#historikk",
-          },
-        ],
+        type: "deresSykstatBransje",
       },
       {
         type: "infoboks",
