@@ -1,9 +1,6 @@
 import React, { ReactNode } from "react";
 import styles from "./InfographicFlis.module.scss";
-import { BodyShort } from "@navikt/ds-react";
-import Skeleton from "react-loading-skeleton";
-import { SkeletonWrapper } from "../../Skeleton/SkeletonWrapper";
-import "react-loading-skeleton/dist/skeleton.css";
+import { BodyShort, Skeleton } from "@navikt/ds-react";
 
 export const InfographicFlis = (props: {
   innhold: ReactNode;
@@ -17,10 +14,10 @@ export const InfographicFlis = (props: {
       }`}
     >
       {props.nedlastingPågår ? (
-        <SkeletonWrapper>
-          <Skeleton style={{ marginTop: "0.5rem" }} />
-          <Skeleton style={{ marginTop: "0.5rem" }} />
-        </SkeletonWrapper>
+        <div className={styles.skeletonWrapper}>
+          <Skeleton className={styles.skeleton} />
+          <Skeleton className={styles.skeleton} />
+        </div>
       ) : (
         <BodyShort size="small" className={styles.tekst} as="div">
           {props.innhold}

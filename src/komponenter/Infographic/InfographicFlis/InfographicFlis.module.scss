@@ -26,6 +26,17 @@
   p {
     text-align: center;
   }
+
+  .skeletonWrapper {
+    display: block;
+    line-height: 1.2;
+    padding: 0.5rem;
+    width: 100%;
+
+    .skeleton {
+      width: 100%;
+    }
+  }
 }
 
 @media (min-width: screensize.$screen-md) {
