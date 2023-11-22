@@ -8,7 +8,6 @@ import {
 import Forside from "./Forside/Forside";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
 import { heiOgHåBarnehage } from "./altinn-mock";
-import { useOrgnr } from "../hooks/useOrgnr";
 import * as hooks from "../hooks/useOrgnr";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { mockContainerSize } from "../utils/test-utils";
@@ -38,22 +37,25 @@ jest.mock("../hooks/useOrgnr", () => ({
   useOrgnr: jest.fn(),
 }));
 
+jest.mock("../Banner/Banner", () => {
+  return function Dummy() {
+    return <div>dummy</div>;
+  };
+});
+
 describe("App", () => {
   const MockObserver = new MockResizeObserver();
-  let useOrgnrSpy: jest.SpyInstance;
 
+  let useOrgnrSpy: jest.SpyInstance;
   beforeEach(() => {
     MockObserver.startmock();
     useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
     useOrgnrSpy.mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
     mockContainerSize();
   });
-
   afterEach(() => {
     MockObserver.stopmock();
-    jest.resetAllMocks();
   });
-
   it("renders without crashing", async () => {
     const { container } = render(
       <Forside
