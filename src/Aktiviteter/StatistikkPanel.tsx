@@ -1,6 +1,5 @@
 import styles from "./StatistikkPanel.module.scss";
-import { BodyShort, Panel, Tooltip } from "@navikt/ds-react";
-import { ArrowUpIcon } from "@navikt/aksel-icons";
+import { Panel, Tooltip } from "@navikt/ds-react";
 
 interface StatistikkPanelProps {
   trend?: string;
@@ -16,31 +15,17 @@ export const StatistikkPanel = ({
   tooltip,
 }: StatistikkPanelProps) => {
   return (
-    <Panel className={`${styles.statistikk} ${styles.gråBakgrunn}`}>
-      <Tooltip content={tooltip}>
-        <BodyShort size={"small"} className={styles.tittel}>
-          {tittel}
-        </BodyShort>
-      </Tooltip>
-      <BodyShort className={styles.tallContainer}>
-        <ArrowUpIcon
-          className={roterEtterTrend(trend)}
-          title={trendBeskrivelse(trend)}
-          fontSize="1rem"
-        />
-        {`${sykefravær} %`}
-      </BodyShort>
-    </Panel>
+    <Tooltip content={tooltip}>
+      <Panel className={`${styles.statistikk}`}>
+        <span>{tittel}</span>
+        <span className={styles.prosent}>{`${sykefravær.replace(
+          ".",
+          ","
+        )}%`}</span>
+        <span>{trendBeskrivelse(trend)}</span>
+      </Panel>
+    </Tooltip>
   );
-};
-
-const roterEtterTrend = (trend: string | undefined): string => {
-  const trendNummer = Number(trend);
-  if (Number.isNaN(trendNummer) || trendNummer === 0) {
-    return styles.rotateUendret;
-  } else if (trendNummer < 0) {
-    return styles.rotateNed;
-  } else return styles.rotateOpp;
 };
 
 const trendBeskrivelse = (trend: string | undefined): string => {
