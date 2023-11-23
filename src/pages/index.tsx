@@ -124,7 +124,7 @@ export const getServerSideProps = async () => {
   const props: HomeProps = {
     forsideProps,
     minSideArbeidsgiverUrl,
-    kjørerMockApp: true,
+    kjørerMockApp,
     grafanaAgentUrl: getGrafanaUrl(),
   };
 
