@@ -9,7 +9,6 @@ import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
-import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../components/Banner/TestVersjonBanner";
@@ -18,7 +17,6 @@ import Aktiviteter from "../Aktiviteter/Aktiviteter";
 export interface ForsideProps {
   samtalestøtteUrl: string;
   sykefraværsstatistikkUrl: string;
-  kontaktOssUrl: string;
   kjørerMockApp: boolean;
   children?: React.ReactNode;
   prodUrl?: string;
@@ -72,7 +70,6 @@ export const Forside = (props: ForsideProps) => {
             <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
           )}
         <RelaterteTjenester />
-        <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
       </div>
     </div>
   );
