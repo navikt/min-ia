@@ -39,6 +39,7 @@ export type RestRessurs<T> =
   | IkkeInnlogget
   | Feil
   | IngenTilgang;
+
 export const erIkkeInnlogget = <T>(
   respons: RestRessurs<T>
 ): respons is IkkeInnlogget => {

@@ -2,7 +2,7 @@ import styles from "./forside.module.scss";
 import React from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
-import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
+import { hentUtSykefraværsstatistikkData } from "../components/Infographic/datauthenting";
 import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
@@ -12,7 +12,7 @@ import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværssta
 import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
-import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
+import TestVersjonBanner from "../components/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
 
 export interface ForsideProps {

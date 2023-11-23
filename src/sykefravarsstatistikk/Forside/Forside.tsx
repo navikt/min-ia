@@ -9,7 +9,7 @@ import LastNedKnapp from "./LastNedKnapp";
 import { Statistikkategori } from "../domene/statistikkategori";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { RestStatus } from "../../integrasjoner/rest-status";
-import TestVersjonBanner from "../../komponenter/Banner/TestVersjonBanner";
+import TestVersjonBanner from "../../components/Banner/TestVersjonBanner";
 
 import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 import Historikk from "../Historikk/Historikk";
@@ -18,7 +18,7 @@ import Tabell, {
   hentTabellProps,
 } from "../Historikk/GrafEllerTabell/Tabell/Tabell";
 import useBreadcrumbs from "../../utils/useBreadcrumbs";
-import { Layout } from "../../komponenter/Layout/Layout";
+import { Layout } from "../../components/Layout/Layout";
 import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIAltinnSide/ManglerRettigheterIAltinnSide";
 import PrintOnlyHref from "./PrintOnlyHref";
 

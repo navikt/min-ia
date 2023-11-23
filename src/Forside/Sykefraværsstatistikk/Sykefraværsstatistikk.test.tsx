@@ -5,7 +5,7 @@ import {
   Statistikkategori,
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
-import { hentUtSykefraværsstatistikkData } from "../../komponenter/Infographic/datauthenting";
+import { hentUtSykefraværsstatistikkData } from "../../components/Infographic/datauthenting";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
 import { axe } from "jest-axe";
 import { mockAggregertStatistikkMedBransjetall } from "./mockAggregertStatistikkMedBransjetall";

@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
+import { Fraværskalulator } from "./components/Kalkulator/Kalkulator";
 import Home from "./pages";
 import {
   sendIaMetrikkInteraksjonstjeneste,
@@ -120,10 +120,6 @@ describe("Metrikktester av hele siden", () => {
       const kjørerMockApp = true;
       render(
         <Home
-          page={{
-            title: "Home",
-            description: "noe",
-          }}
           forsideProps={{
             samtalestøtteUrl: "samtalestøtteUrl",
             sykefraværsstatistikkUrl: "sykefraværsstatistikkUrl",

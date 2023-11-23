@@ -3,7 +3,7 @@ import { useOrgnr } from "../../hooks/useOrgnr";
 import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 import styles from "./sykefraværsstatistikk.module.scss";
 import { Detail, Heading, Label, Loader } from "@navikt/ds-react";
-import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
+import { InfographicFlis } from "../../components/Infographic/InfographicFlis/InfographicFlis";
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
 import { DataFilled } from "@navikt/ds-icons";
 import "./sykefraværsstatistikk.module.scss";

@@ -2,7 +2,7 @@ import { Forside, ForsideProps } from "../Forside/Forside";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestRessurs, RestStatus } from "../integrasjoner/rest-status";
-import { Layout } from "../komponenter/Layout/Layout";
+import { Layout } from "../components/Layout/Layout";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import {

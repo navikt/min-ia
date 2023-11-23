@@ -4,13 +4,13 @@ import {
   erIkkeFerdigLastet,
   erIkkeInnlogget,
 } from "../integrasjoner/rest-status";
-import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator";
+import { Fraværskalulator } from "../components/Kalkulator/Kalkulator";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
-import { hentUtKalkulatorData } from "../komponenter/Kalkulator/datauthenting";
+import { hentUtKalkulatorData } from "../components/Kalkulator/datauthenting";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
-import { Layout } from "../komponenter/Layout/Layout";
+import { Layout } from "../components/Layout/Layout";
 import React from "react";
 import Head from "next/head";
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
