@@ -1,4 +1,3 @@
-import { PageProps } from "../pageProps";
 import { Forside, ForsideProps } from "../Forside/Forside";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
@@ -19,7 +18,6 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
 
 interface HomeProps {
-  page: PageProps;
   forsideProps: ForsideProps;
   minSideArbeidsgiverUrl: string;
   kjørerMockApp: boolean;
@@ -38,13 +36,15 @@ const Home = (props: HomeProps) => {
     organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess &&
     organisasjonerBrukerHarTilgangTil.data.length === 0;
 
+  const tittel = "Forebygge fravær";
+
   useBreadcrumbs([
     {
       title: "Min side – arbeidsgiver",
       url: "/min-side-arbeidsgiver",
     },
     {
-      title: "Forebygge fravær",
+      title: tittel,
       url: "/forebygge-fravar",
     },
   ]);
@@ -57,12 +57,12 @@ const Home = (props: HomeProps) => {
   return (
     <>
       <Head>
-        <title>{props.page.title}</title>
+        <title>{tittel}</title>
         <meta property="og:title" content="Page title" key="title" />
       </Head>
       <Layout
-        title={props.page.title}
-        description={props.page.description}
+        title={tittel}
+        description="Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen"
         kjørerMockApp={props.kjørerMockApp}
         altinnOrganisasjoner={
           organisasjonerBrukerHarTilgangTil.status === RestStatus.Suksess
@@ -108,12 +108,6 @@ function Sideinnhold({
 
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps = async () => {
-  const page: PageProps = {
-    title: "Forebygge fravær",
-    description:
-      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
-  };
-
   const kjørerMockApp = isMockApp();
   const minSideArbeidsgiverUrl = hentUrlFraMiljøvariabel(
     "Min Side Arbeidsgiver"
@@ -128,7 +122,6 @@ export const getServerSideProps = async () => {
   };
 
   const props: HomeProps = {
-    page,
     forsideProps,
     minSideArbeidsgiverUrl,
     kjørerMockApp,
