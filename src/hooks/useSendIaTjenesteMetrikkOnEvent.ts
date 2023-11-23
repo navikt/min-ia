@@ -1,6 +1,6 @@
 import { useOrgnr } from "./useOrgnr";
 import { useEffect, useRef } from "react";
-import { sendIaTjenesteMetrikk } from "../integrasjoner/ia-tjenestemetrikker-api";
+import { sendDigitalIaTjenesteMetrikk } from "../integrasjoner/ia-tjenestemetrikker-api";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 
 export function useSendIaTjenesteMetrikkOnEvent(
@@ -13,7 +13,7 @@ export function useSendIaTjenesteMetrikkOnEvent(
   useEffect(() => {
     if (orgnr && !eventListenerHarBlittSattOpp.current) {
       const sendMetrikk = async () => {
-        await sendIaTjenesteMetrikk(fraIaTjeneste, orgnr);
+        await sendDigitalIaTjenesteMetrikk(fraIaTjeneste, orgnr);
       };
       document.addEventListener(event, sendMetrikk, {
         once: true,

@@ -24,7 +24,7 @@ jest.mock("../hooks/useOrgnr", () => ({
 jest.mock("../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("../integrasjoner/ia-tjenestemetrikker-api"),
-  sendSykefraværsstatistikkIaMetrikk: jest.fn(),
+  sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 
 describe("Metrikkutsendelser", () => {
@@ -36,7 +36,7 @@ describe("Metrikkutsendelser", () => {
     MockObserver.startmock();
     sykefravarsSpy = jest.spyOn(
       metrikker,
-      "sendSykefraværsstatistikkIaMetrikk"
+      "sendDigitalIaTjenesteMetrikk"
     );
     useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
     useOrgnrSpy.mockReturnValue(
@@ -92,6 +92,8 @@ describe("Metrikkutsendelser", () => {
     });
 
     expect(sykefravarsSpy).toHaveBeenCalled();
+    expect(sykefravarsSpy).toHaveBeenNthCalledWith(1, "SYKEFRAVÆRSSTATISTIKK", "777777777")
+
     jest.useRealTimers();
   });
 
@@ -107,6 +109,7 @@ describe("Metrikkutsendelser", () => {
     await waitFor(() => {
       expect(sykefravarsSpy).toHaveBeenCalled();
     });
+    expect(sykefravarsSpy).toHaveBeenNthCalledWith(1, "SYKEFRAVÆRSSTATISTIKK", "777777777")
   });
 
   it("Sender it-metrikk når feltere i historikkgrafen toggles", async () => {

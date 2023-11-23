@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./Kalkulator";
 import { axe } from "jest-axe";
-import { sendIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { sendDigitalIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
 jest.mock("next/router", () => ({
   useRouter() {
     return {
@@ -23,7 +23,7 @@ jest.mock("next/router", () => ({
 jest.mock("../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("../../integrasjoner/ia-tjenestemetrikker-api"),
-  sendIaTjenesteMetrikk: jest.fn(),
+  sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 jest.mock("../../hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
@@ -40,11 +40,11 @@ it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
 
   const dagsverkLenke = screen.getByText("Dagsverk");
 
-  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
+  expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
   await user.click(dagsverkLenke);
 
-  expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
+  expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
 });
 
 it("Ingen uu-feil fra axe", async () => {

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import {Lenkeflis} from "./Lenkeflis";
 import logEvent from "../amplitude/logEvent";
 import {axe} from "jest-axe";
-import {sendIaTjenesteMetrikk} from "../integrasjoner/ia-tjenestemetrikker-api";
+import {sendDigitalIaTjenesteMetrikk} from "../integrasjoner/ia-tjenestemetrikker-api";
 
 jest.mock("../amplitude/logEvent");
 jest.mock("../hooks/useOrgnr", () => ({
@@ -12,7 +12,7 @@ jest.mock("../hooks/useOrgnr", () => ({
 jest.mock("../integrasjoner/ia-tjenestemetrikker-api", () => ({
     __esModule: true,
     ...jest.requireActual("../integrasjoner/ia-tjenestemetrikker-api"),
-    sendIaTjenesteMetrikk: jest.fn(),
+    sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -60,11 +60,11 @@ describe("Lenkeflis", () => {
             name: "Link Klikk her",
         });
 
-        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
+        expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
         await user.click(statistikklenke);
 
-        expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
+        expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
 
     test("inneholder ikke uu-feil", async () => {

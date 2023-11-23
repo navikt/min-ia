@@ -11,7 +11,8 @@ import {
   sendCheckboxLagtTil,
 } from "../../../../../amplitude/events";
 import { useOrgnr } from "../../../../../hooks/useOrgnr";
-import { sendSykefraværsstatistikkIaMetrikk } from "../../../../../integrasjoner/ia-tjenestemetrikker-api";
+import { sendDigitalIaTjenesteMetrikk } from "../../../../../integrasjoner/ia-tjenestemetrikker-api";
+import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 
 interface Props {
   labels: HistorikkLabels;
@@ -41,7 +42,7 @@ export const LegendMedToggles: FunctionComponent<Props> = ({
       legend="Velg linjer som skal vises i grafen"
       value={linjerSomSkalVises}
       onChange={(value) => {
-        sendSykefraværsstatistikkIaMetrikk(orgnr);
+        sendDigitalIaTjenesteMetrikk(MetrikkKilde.SYKEFRAVÆRSSTATISTIKK, orgnr);
         if (value.length > linjerSomSkalVises.length) {
           // Brukeren har lagt til noe
           const verdiLagtTil = value.find(

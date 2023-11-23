@@ -2,7 +2,7 @@ import {LinkPanel} from "@navikt/ds-react";
 import styles from "./Lenkeflis.module.scss";
 import React from "react";
 import {sendNavigereEvent} from "../amplitude/events";
-import {sendIaTjenesteMetrikk} from "../integrasjoner/ia-tjenestemetrikker-api";
+import {sendDigitalIaTjenesteMetrikk} from "../integrasjoner/ia-tjenestemetrikker-api";
 import {useOrgnr} from "../hooks/useOrgnr";
 import {navigerEtterCallbacks} from "../utils/navigasjon";
 import {MetrikkKilde} from "@navikt/ia-metrikker-client";
@@ -18,7 +18,7 @@ export const Lenkeflis = ({overskrift, ikon, href, brødtekst}: LenkeflisProps) 
     const orgnr = useOrgnr();
     const destinasjon = href ?? "#";
 
-    const metrikkutsendelse = () => sendIaTjenesteMetrikk(MetrikkKilde.FOREBYGGE_FRAVÆR, orgnr);
+    const metrikkutsendelse = () => sendDigitalIaTjenesteMetrikk(MetrikkKilde.FOREBYGGE_FRAVÆR, orgnr);
     const eventutsendelse = () => sendNavigereEvent(destinasjon, overskrift);
 
     return (

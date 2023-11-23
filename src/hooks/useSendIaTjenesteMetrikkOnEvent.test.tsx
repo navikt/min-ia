@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { sendIaTjenesteMetrikk } from "../../src/integrasjoner/ia-tjenestemetrikker-api";
+import { sendDigitalIaTjenesteMetrikk } from "../integrasjoner/ia-tjenestemetrikker-api";
 
 import { useSendIaTjenesteMetrikkOnEvent } from "./useSendIaTjenesteMetrikkOnEvent";
 import { FunctionComponent } from "react";
@@ -13,7 +13,7 @@ jest.mock("../../src/integrasjoner/ia-tjenestemetrikker-api", () => {
   return {
     __esModule: true,
     ...jest.requireActual("../../src/integrasjoner/ia-tjenestemetrikker-api"),
-    sendIaTjenesteMetrikk: jest.fn(),
+    sendDigitalIaTjenesteMetrikk: jest.fn(),
   };
 });
 
@@ -42,11 +42,11 @@ it("sendLevertInnloggetIaTjeneste kalles når event blir trigget", async () => {
 
   const dummyButton = screen.getByTestId("dummy-button");
 
-  expect(sendIaTjenesteMetrikk).not.toHaveBeenCalled();
+  expect(sendDigitalIaTjenesteMetrikk).not.toHaveBeenCalled();
 
   await userEvent.click(dummyButton);
 
-  expect(sendIaTjenesteMetrikk).toHaveBeenCalled();
+  expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalled();
 });
 
 const UseSendIaTjenesteMetrikkerOnEventExample: FunctionComponent = () => {

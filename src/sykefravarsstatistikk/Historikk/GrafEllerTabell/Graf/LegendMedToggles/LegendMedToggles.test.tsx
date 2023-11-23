@@ -20,7 +20,7 @@ jest.mock("../../../../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   ...jest.requireActual(
     "../../../../../integrasjoner/ia-tjenestemetrikker-api",
   ),
-  sendSykefraværsstatistikkIaMetrikk: jest.fn(),
+  sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 
 jest.mock("../../../../../amplitude/events", () => ({

@@ -1,17 +1,18 @@
 import React, { FunctionComponent, useState } from "react";
 import styles from "./Historikk.module.css";
 import {
-  BodyShort,
-  ToggleGroup,
-  Heading,
   Alert,
+  BodyShort,
+  Heading,
   Skeleton,
+  ToggleGroup,
 } from "@navikt/ds-react";
 import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
 import { sendToogleEvent } from "../../amplitude/events";
-import { sendSykefraværsstatistikkIaMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { sendDigitalIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
+import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 
 interface Props {
   restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
@@ -46,7 +47,7 @@ const Historikk: FunctionComponent<Props> = (props) => {
               const grafEllerTabell = value as "graf" | "tabell";
               setGrafEllerTabell(grafEllerTabell);
               sendToogleEvent(grafEllerTabell);
-              sendSykefraværsstatistikkIaMetrikk(orgnr);
+              sendDigitalIaTjenesteMetrikk(MetrikkKilde.SYKEFRAVÆRSSTATISTIKK, orgnr)
             }}
           >
             <ToggleGroup.Item value="graf">Graf</ToggleGroup.Item>

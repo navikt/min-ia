@@ -4,7 +4,8 @@ import React from "react";
 import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
 import { sendKnappEvent } from "../../../amplitude/events";
-import { sendSykefraværsstatistikkIaMetrikk } from "../../../integrasjoner/ia-tjenestemetrikker-api";
+import { sendDigitalIaTjenesteMetrikk } from "../../../integrasjoner/ia-tjenestemetrikker-api";
+import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 
 export default function LastNedKnapp({
   innholdRef,
@@ -18,7 +19,7 @@ export default function LastNedKnapp({
     <ReactToPrint
       onBeforePrint={() => {
         sendKnappEvent("skriv ut");
-        sendSykefraværsstatistikkIaMetrikk(orgnr);
+        sendDigitalIaTjenesteMetrikk(MetrikkKilde.SYKEFRAVÆRSSTATISTIKK, orgnr);
       }}
       onAfterPrint={() => {
         if (lastNedKnappRef.current) {
