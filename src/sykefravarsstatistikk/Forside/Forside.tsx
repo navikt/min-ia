@@ -66,7 +66,7 @@ export const Forside = ({
       appData.publiseringsdatoer.status,
       appData.sykefraværshistorikk.status,
     ].some((status) =>
-      [RestStatus.LasterInn, RestStatus.IkkeLastet].includes(status)
+      [RestStatus.LasterInn, RestStatus.IkkeLastet].includes(status),
     );
   }, [
     appData.aggregertStatistikk.restStatus,
@@ -80,11 +80,12 @@ export const Forside = ({
     return (
       <div className={styles["forside__wrapper"]}>
         <div className={styles["forside"]}>
-          <TestVersjonBanner
-            sidenavn="sykefraværsstatistikken"
-            prodUrl={prodUrl}
-            kjørerMockApp={kjørerMockApp}
-          />
+          {kjørerMockApp && (
+            <TestVersjonBanner
+              sidenavn="sykefraværsstatistikken"
+              prodUrl={prodUrl}
+            />
+          )}
           <div className={styles["forside__innhold"]}>
             <div className={styles["forside__innhold__header"]}>
               <PrintOnlyHref />
@@ -137,28 +138,29 @@ export const Forside = ({
   }
 
   const statistikKategori = getBransjeEllerNæringKategori(
-    appData.aggregertStatistikk
+    appData.aggregertStatistikk,
   );
   const harBransje = statistikKategori === Statistikkategori.BRANSJE;
 
   const bransjeEllerNæring = appData.aggregertStatistikk.aggregertData?.get(
-    harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING
+    harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING,
   );
   const navnPåVirksomhet =
     appData.altinnOrganisasjoner.status === RestStatus.Suksess &&
     appData.altinnOrganisasjoner.data.find(
-      (organisasjon) => organisasjon.OrganizationNumber === orgnr
+      (organisasjon) => organisasjon.OrganizationNumber === orgnr,
     )?.Name;
   const tabellProps = hentTabellProps(appData.sykefraværshistorikk);
 
   return (
     <div className={styles["forside__wrapper"]}>
       <div className={styles["forside"]}>
-        <TestVersjonBanner
-          sidenavn="sykefraværsstatistikken"
-          prodUrl={prodUrl}
-          kjørerMockApp={kjørerMockApp}
-        />
+        {kjørerMockApp && (
+          <TestVersjonBanner
+            sidenavn="sykefraværsstatistikken"
+            prodUrl={prodUrl}
+          />
+        )}
         <div className={styles["forside__innhold"]} ref={innholdRef}>
           {harFeil && (
             <Alert
@@ -216,7 +218,7 @@ const WrappedForside = (
   props: SykefraværAppData & {
     kjørerMockApp: boolean;
     prodUrl?: string;
-  }
+  },
 ) => {
   return (
     <Layout

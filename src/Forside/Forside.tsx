@@ -29,7 +29,7 @@ export const Forside = (props: ForsideProps) => {
 
   const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
     props.samtalestøtteUrl,
-    orgnr
+    orgnr,
   );
 
   const aggregertStatistikk = useAggregertStatistikk();
@@ -54,11 +54,12 @@ export const Forside = (props: ForsideProps) => {
 
   return (
     <div className={styles.sentrertSide}>
-      <TestVersjonBanner
-        sidenavn="siden for å forebygge fravær"
-        prodUrl={props.prodUrl}
-        kjørerMockApp={props.kjørerMockApp}
-      />
+      {props.kjørerMockApp && (
+        <TestVersjonBanner
+          sidenavn="siden for å forebygge fravær"
+          prodUrl={props.prodUrl}
+        />
+      )}
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}

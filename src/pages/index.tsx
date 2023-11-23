@@ -4,7 +4,7 @@ import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestRessurs, RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   getGrafanaUrl,
   getProdUrl,
@@ -25,7 +25,7 @@ interface HomeProps {
 }
 
 const Home = (props: HomeProps) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (!props.kjørerMockApp) {
       doInitializeFaro(props.grafanaAgentUrl);
     }
@@ -110,7 +110,7 @@ function Sideinnhold({
 export const getServerSideProps = async () => {
   const kjørerMockApp = isMockApp();
   const minSideArbeidsgiverUrl = hentUrlFraMiljøvariabel(
-    "Min Side Arbeidsgiver"
+    "Min Side Arbeidsgiver",
   );
 
   const forsideProps: ForsideProps = {
@@ -124,7 +124,7 @@ export const getServerSideProps = async () => {
   const props: HomeProps = {
     forsideProps,
     minSideArbeidsgiverUrl,
-    kjørerMockApp,
+    kjørerMockApp: true,
     grafanaAgentUrl: getGrafanaUrl(),
   };
 
