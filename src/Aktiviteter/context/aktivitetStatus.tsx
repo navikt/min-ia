@@ -7,6 +7,7 @@ import {
   AggregertStatistikkDto,
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
+import {MetrikkKilde} from "@navikt/ia-metrikker-client";
 
 const AktivitetContext = React.createContext<{
   aktivitetStatuser: AktivitetBrukerStatus[];
@@ -109,7 +110,7 @@ export const useOppdaterStatus = (
     (status: StatusType) => {
       if (orgnr) {
         oppdaterStatus(aktivitetId, orgnr, status);
-        sendIaMetrikkInteraksjonstjeneste(orgnr);
+        sendIaMetrikkInteraksjonstjeneste(MetrikkKilde.FOREBYGGINGSPLAN, orgnr);
 
         setLokaleEndringer((tidligereEndringer) => {
           const aktivitetIndex = tidligereEndringer.findIndex(

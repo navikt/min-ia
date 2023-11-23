@@ -4,7 +4,7 @@ import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
 import {
   sendIaMetrikkInteraksjonstjeneste,
-  sendIaTjenesteMetrikk,
+  sendDigitalIaTjenesteMetrikk,
 } from "./integrasjoner/ia-tjenestemetrikker-api";
 import { RestStatus } from "./integrasjoner/rest-status";
 
@@ -28,7 +28,7 @@ jest.mock("next/router", () => ({
 jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
-  sendIaTjenesteMetrikk: jest.fn(),
+  sendDigitalIaTjenesteMetrikk: jest.fn(),
   sendIaMetrikkInteraksjonstjeneste: jest.fn(),
 }));
 
@@ -76,16 +76,16 @@ describe("Metrikktester av hele siden", () => {
           tapteDagsverk="7800"
           muligeDagsverk="52000"
           nedlastingPågår={false}
-        />
+        />,
       );
 
       const dagsverkLenke = screen.getByText("Dagsverk");
 
-      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
+      expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
       await user.click(dagsverkLenke);
 
-      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
+      expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -94,7 +94,7 @@ describe("Metrikktester av hele siden", () => {
       renderPage();
       const aktivitetHeader = await waitFor(() => {
         const lenke = screen.getByText(
-          "Bli gode på å tilrettelegge for ansatte"
+          "Bli gode på å tilrettelegge for ansatte",
         );
 
         expect(lenke).toBeInTheDocument();
@@ -114,6 +114,11 @@ describe("Metrikktester av hele siden", () => {
       await user.click(startKnapp);
 
       expect(sendIaMetrikkInteraksjonstjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaMetrikkInteraksjonstjeneste).toHaveBeenNthCalledWith(
+        1,
+        "FOREBYGGINGSPLAN",
+        "999999999",
+      );
     });
 
     function renderPage() {
@@ -133,7 +138,7 @@ describe("Metrikktester av hele siden", () => {
           minSideArbeidsgiverUrl="minSideArbeidsgiverUrl"
           kjørerMockApp={kjørerMockApp}
           grafanaAgentUrl="grafanaAgentUrl"
-        />
+        />,
       );
     }
   });
