@@ -3,7 +3,7 @@ import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { sendToggleEvent } from "../../amplitude/events";
-import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
+import { BodyLong, Heading, Link, ToggleGroup } from "@navikt/ds-react";
 import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
 import TestVersjonBanner from "../Banner/TestVersjonBanner";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
@@ -23,18 +23,19 @@ export const Fraværskalulator: FunctionComponent<
 > = (props) => {
   useSendIaTjenesteMetrikkOnEvent(
     MetrikkKilde.KALKULATOR,
-    "inputfeltEndretAvBruker"
+    "inputfeltEndretAvBruker",
   );
 
   const [kalkulatorvariant, setKalkulatorvariant] = useState("prosent");
 
   return (
     <div className={styles.wrapper}>
-      <TestVersjonBanner
-        sidenavn="fraværskalkulatoren"
-        prodUrl={props.prodUrl}
-        kjørerMockApp={props.kjørerMockApp}
-      />
+      {props.kjørerMockApp && (
+        <TestVersjonBanner
+          sidenavn="fraværskalkulatoren"
+          prodUrl={props.prodUrl}
+        />
+      )}
       <div className={styles.kalkulator}>
         <div>
           <div className={styles.tittel_wrapper}>
@@ -42,11 +43,11 @@ export const Fraværskalulator: FunctionComponent<
               <Heading level="2" size="medium" className={styles.tittel}>
                 Hvor mye koster sykefraværet?
               </Heading>
-              <Ingress className={styles.ingress}>
+              <BodyLong size="large" className={styles.ingress}>
                 Her kan du beregne hvor mye sykefraværet koster og hvor mye du
                 kan spare. Beløpet viser produksjonstap og økte kostnader. Lønn
                 og sykepengerefusjoner er ikke en del av beløpet.
-              </Ingress>
+              </BodyLong>
             </div>
             <div className={styles.dagsverk_eller_prosent_toggle}>
               <ToggleGroup
@@ -54,7 +55,7 @@ export const Fraværskalulator: FunctionComponent<
                   setKalkulatorvariant(valgtVariant);
                   sendToggleEvent("kalkulatorvariant", valgtVariant);
                   document.dispatchEvent(
-                    new CustomEvent("inputfeltEndretAvBruker")
+                    new CustomEvent("inputfeltEndretAvBruker"),
                   );
                 }}
                 value={kalkulatorvariant}
@@ -65,9 +66,9 @@ export const Fraværskalulator: FunctionComponent<
               </ToggleGroup>
             </div>
           </div>
-          <Ingress className={styles.input_overskrift}>
+          <BodyLong size="large" className={styles.input_overskrift}>
             Fyll inn og juster tallene så de passer for deg:
-          </Ingress>
+          </BodyLong>
           {kalkulatorvariant === "dagsverk" ? (
             <KalkulatorMedDagsverk
               tapteDagsverkFraDb={props.tapteDagsverk}
