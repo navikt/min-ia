@@ -235,9 +235,10 @@ function Lenke({ tekst, url }: AktivitetLenkeType) {
   );
 }
 
-function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
+function Inlinetekst({ innhold, spacing }: AktivitetInlinetekstType) {
+  const Tekstcontainer = spacing ? BodyLong : BodyShort;
   return (
-    <BodyShort>
+    <Tekstcontainer spacing={spacing}>
       {innhold.map((innhold, index) =>
         typeof innhold === "string" ? (
           innhold
@@ -245,7 +246,7 @@ function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
           <AktivitetInnhold innhold={innhold} key={index} />
         )
       )}
-    </BodyShort>
+    </Tekstcontainer>
   );
 }
 

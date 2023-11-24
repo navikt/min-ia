@@ -11,6 +11,7 @@ export type AktivitetTekstType = {
 export type AktivitetInlinetekstType = {
   type: "inlinetekst";
   innhold: (string | AktivitetinnholdType)[];
+  spacing?: boolean;
 };
 
 export type AktivitetUndertittelType = {
@@ -413,12 +414,15 @@ export const aktiviteter: AktivitetType[] = [
     ],
   },
   {
-    tittel: "Bruk egen sykefraværstatistikk forebyggende",
+    tittel: "Bruk egen sykefraværstatistikk aktivt",
     innhold: [
       {
         type: "tekst",
         innhold:
-          "Dere skal føre statistikk over fraværet hos dere. Tilrettelegging og forebygging av sykefravær blir enklere hvis dere også sammenligner dere med andre og vet når fraværet er arbeidsrelatert. NAV anbefaler at dere gjør dette fire ganger i året.",
+          "Alle virksomheter skal føre oversikt over sitt sykefravær. Det er ofte hensiktsmessig å sammenligne eget sykefravær med generelt sykefravær i bransjen. Sykefraværstallene blir oppdatert kvartalsvis. Ved å vurdere eget sykefravær og se på bakenforliggende årsaker kan det bidra til redusere og forebygge fravær, ved å iverksette passende tiltak.",
+      },
+      {
+        type: "deresSykstatBransje",
       },
       {
         type: "undertittel",
@@ -430,8 +434,48 @@ export const aktiviteter: AktivitetType[] = [
           "Dere lærer de ulike typer sykefravær og plager som skyldes forhold på arbeidsplassen. Dere bruker egen sykefraværstatistikk og vurderer mulige tiltak.",
       },
       {
-        type: "deresSykstatBransje",
+        type: "oppgave",
+        tittel: "Oppgave: Analyser virksomhetens fravær",
+        id: "analyserVirksomhetensFravaer",
+        innhold: [
+          {
+            type: "undertittel",
+            innhold: "Egenmeldt fravær",
+          },
+          {
+            type: "inlinetekst",
+            spacing: true,
+            innhold: [
+              "Virksomhetens sykefraværsstatistikk skal inneholde oversikt over både egenmeldt og legemeldt fravær. Dersom dere vil sammenligne deres egenmeldte fravær med det egenmeldte fraværet i Norge",
+              {
+                type: "lenke",
+                tekst:
+                  " finner dere statistikk på sidene til Statistik sentralbyrå (SSB).",
+                url: "https://www.ssb.no/arbeid-og-lonn/arbeidsmiljo-sykefravaer-og-arbeidskonflikter/statistikk/sykefravaer",
+              },
+            ],
+          },
+          {
+            type: "undertittel",
+            innhold: "Arbeidsrelatert fravær",
+          },
+          {
+            type: "tekst",
+            innhold:
+              "Vi oppfordrer alle virksomheter til å kartlegge arbeidsrelatert sykefravær. Enklest kan det gjennomføres ved å ha rutiner som sikrer at ansatte blir spurt om deres fravær er påvirket av forhold på arbeidsplassen. NAV har ikke statistikk over arbeidsrelatert fravær.",
+          },
+          {
+            type: "undertittel",
+            innhold: "Legemeldt fravær",
+          },
+          {
+            type: "tekst",
+            innhold:
+              "NAV tilbyr oversikt over virksomhetens legemeldte sykefravær, bransjestatistikker og gjennomsnitt for hele Norge. I denne oversikten finner du korttidsfravær, langtidsfravær, gradert sykefravær og sykefraværsutvikling over tid.",
+          },
+        ],
       },
+
       {
         type: "infoboks",
         tittel: "Fra individuell oppfølging til forebyggende arbeid",
@@ -560,7 +604,12 @@ export const aktiviteter: AktivitetType[] = [
           {
             type: "tekst",
             innhold:
-              "Statistikk gir mer verdi når dere tolker betydningen i fellesskap på egen arbeidsplass.",
+              "Statistikk gir mer verdi når du tolker betydningen sammen med tillitsvalgte og verneombud, på egen arbeidsplass. Forskning viser at sykmeldte som jobber gradert kommer oftere og tidligere tilbake i arbeid.",
+          },
+          {
+            type: "tekst",
+            innhold:
+              "Hvordan er sykefraværet over tid hos dere sammenlignet med andre?",
           },
           {
             type: "punktliste",
@@ -568,88 +617,26 @@ export const aktiviteter: AktivitetType[] = [
               {
                 type: "punkt",
                 innhold:
-                  "Hvordan er sykefraværet over tid hos dere sammenlignet med andre?",
+                  "Er noe av sykefraværet relatert til forhold på arbeidsplassen?",
               },
               {
                 type: "punkt",
-                innhold: [
-                  "Er noe av sykefraværet relatert til forhold på arbeidsplassen?",
-                  {
-                    type: "punktliste",
-                    innhold: [
-                      {
-                        type: "punkt",
-                        innhold:
-                          "Hvis ja: Vurder tiltak som treffer kjente risikoer",
-                      },
-                      {
-                        type: "punkt",
-                        innhold:
-                          "Hvis nei: Er det likevel noe dere kan gjøre? (eks. enkeltansatte som trenger ekstra oppfølging)",
-                      },
-                    ],
-                  },
-                ],
+                innhold: "Hva påvirker deres korttidsfravær?",
+              },
+              {
+                type: "punkt",
+                innhold: "Hva påvirker deres langtidsfravær?",
               },
               {
                 type: "punkt",
                 innhold:
-                  "Hvilke årsaker påvirker deres korttidsfravær? (eks. smitte, arbeidsmiljø, manglende tilrettelegging)",
+                  "Fører langtidsfraværet til belastning på øvrige medarbeidere?",
               },
               {
                 type: "punkt",
-                innhold: [
-                  "Hvilke årsaker påvirker deres langtidsfravær? (eks. arbeidsmiljø, manglende tilrettelegging)",
-                  {
-                    type: "punktliste",
-                    innhold: [
-                      {
-                        type: "punkt",
-                        innhold:
-                          "Fører langtidsfraværet til belastning på øvrige medarbeidere?",
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                type: "punkt",
-                innhold: [
-                  "Hvordan bruker dere gradert sykmelding?",
-                  {
-                    type: "punktliste",
-                    innhold: [
-                      {
-                        type: "punkt",
-                        innhold:
-                          "Hvorfor er vi på dette nivået for gradert sykmelding? (eks. god/manglende kultur og kompetanse)",
-                      },
-                      {
-                        type: "punkt",
-                        innhold: "Kan bruken av gradert sykmelding økes?",
-                      },
-                    ],
-                  },
-                ],
+                innhold: "Kan bruken av gradert sykmelding økes?",
               },
             ],
-          },
-        ],
-      },
-      {
-        type: "oppgave",
-        tittel: "Oppgave: Hvordan få ned kortidsfraværet?",
-        id: "43384261-71DF-4AC5-ACAE-C9FC062A337A",
-        innhold: [
-          {
-            type: "tekst",
-            innhold:
-              "Når noen er borte fra jobb påvirker det arbeidsmiljøet. Grunnene til at ansatte er borte kan være mange, og korttidsfravær kan være vanskelig å snakke om. Dette verktøyet hjelper dere på vei.",
-          },
-          {
-            type: "lenke",
-            tekst: "Gå til oppgave om korttidsfravær på Idebanken",
-            url: "https://www.idebanken.org/kloke-grep/artikler/hvordan-fa-ned-korttidsfravaeret",
           },
         ],
       },
