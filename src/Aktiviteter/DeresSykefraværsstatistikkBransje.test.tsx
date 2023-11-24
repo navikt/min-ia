@@ -48,9 +48,9 @@ describe("DeresSykefraværsstatistikkBransje", () => {
       screen.getByText("Deres sykefraværstatistikk sammenlignet med bransjen")
     ).toBeInTheDocument();
     expect(screen.getByText("Sykefravær i bransje")).toBeInTheDocument();
-    expect(screen.getByText("5.1 %")).toBeInTheDocument();
+    expect(screen.getByText("5,1%")).toBeInTheDocument();
     expect(await screen.findByText("Sykefravær hos deg")).toBeInTheDocument();
-    expect(screen.getByText("8.8 %")).toBeInTheDocument();
+    expect(screen.getByText("8,8%")).toBeInTheDocument();
   });
 
   it("Skal ikke vise sykefravær uten verdier", async () => {
