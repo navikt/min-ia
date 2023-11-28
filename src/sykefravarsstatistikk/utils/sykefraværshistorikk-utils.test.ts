@@ -26,7 +26,7 @@ describe("Tester for graf-og-tabell-utils", () => {
     expect(kvartalsvisSammenligning[0].land.prosent).toEqual(40);
   });
 
-  test("konverterTilKvartalsvisSammenligning skal returnere data for nøyaktig de årstall og kvartal som landshistorikken har", () => {
+  test("konverterTilKvartalsvisSammenligning skal returnere data for de årstall og kvartal som vi har historikk på", () => {
     const kvartalsvisSammenligning = konverterTilKvartalsvisSammenligning([
       lagHistorikkMedÅrstallOgKvartal(Statistikkategori.VIRKSOMHET, [
         { årstall: 1999, kvartal: 4 },
@@ -34,6 +34,7 @@ describe("Tester for graf-og-tabell-utils", () => {
       ]),
       lagHistorikkMedÅrstallOgKvartal(Statistikkategori.LAND, [
         { årstall: 2000, kvartal: 1 },
+        { årstall: 2000, kvartal: 2 },
         { årstall: 2000, kvartal: 3 },
         { årstall: 2000, kvartal: 4 },
       ]),
@@ -56,10 +57,52 @@ describe("Tester for graf-og-tabell-utils", () => {
       );
     };
 
-    expect(årstallOgKvartalerSomVises.length).toEqual(3);
+    expect(årstallOgKvartalerSomVises.length).toEqual(5);
+    expect(resultatInneholder(1999, 4)).toBeTruthy();
+    expect(resultatInneholder(2000, 1)).toBeTruthy();
+    expect(resultatInneholder(2000, 2)).toBeTruthy();
+    expect(resultatInneholder(2000, 3)).toBeTruthy();
+    expect(resultatInneholder(2000, 4)).toBeTruthy();
+  });
+
+  test("konverterTilKvartalsvisSammenligning skal returnere alle perioder fra start til slutt, selv om det er glipe i dataen", () => {
+    const kvartalsvisSammenligning = konverterTilKvartalsvisSammenligning([
+      lagHistorikkMedÅrstallOgKvartal(Statistikkategori.VIRKSOMHET, [
+        { årstall: 1999, kvartal: 4 },
+        { årstall: 2000, kvartal: 1 },
+      ]),
+      lagHistorikkMedÅrstallOgKvartal(Statistikkategori.LAND, [
+        { årstall: 2000, kvartal: 1 },
+        { årstall: 2000, kvartal: 3 },
+        { årstall: 2001, kvartal: 4 },
+      ]),
+    ]);
+
+    const årstallOgKvartalerSomVises = kvartalsvisSammenligning.map(
+      (sammenligning) => {
+        return {
+          årstall: sammenligning.årstall,
+          kvartal: sammenligning.kvartal,
+        };
+      }
+    );
+
+    const resultatInneholder = (årstall: number, kvartal: number): boolean => {
+      return !!årstallOgKvartalerSomVises.find(
+        (årstallOgKvartal) =>
+          årstallOgKvartal.årstall === årstall &&
+          årstallOgKvartal.kvartal === kvartal
+      );
+    };
+
+    expect(årstallOgKvartalerSomVises.length).toEqual(9);
     expect(resultatInneholder(2000, 1)).toBeTruthy();
     expect(resultatInneholder(2000, 3)).toBeTruthy();
     expect(resultatInneholder(2000, 4)).toBeTruthy();
+    expect(resultatInneholder(2001, 1)).toBeTruthy();
+    expect(resultatInneholder(2001, 2)).toBeTruthy();
+    expect(resultatInneholder(2001, 3)).toBeTruthy();
+    expect(resultatInneholder(2001, 4)).toBeTruthy();
   });
 
   test("konverterTilKvartalsvisSammenligning skal legge inn tom sykefraværsprosent hvis historikken ikke inneholder et gitt kvartal", () => {
