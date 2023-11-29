@@ -8,6 +8,7 @@ on:
       - '.nais/redirect-sykefravarsstatistikk-prod.yaml'
       - '.github/workflows/deploy-redirect-prod.yaml'
       - '.nais/redirect-forebyggingsplan-prod.yaml'
+      - '.nais/redirect-samtalestotte-prod.yaml'
 jobs:
   deploy:
     name: Deploy redirect ingresses to prod-gcp
@@ -21,4 +22,5 @@ jobs:
           CLUSTER: prod-gcp
           RESOURCE: "\
             .nais/redirect-sykefravarsstatistikk-prod.yaml,\
-            .nais/redirect-forebyggingsplan-prod.yaml"
+            .nais/redirect-forebyggingsplan-prod.yaml,\
+            .nais/redirect-samtalestotte-prod.yaml"
