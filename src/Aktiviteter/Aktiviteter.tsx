@@ -39,7 +39,6 @@ import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
 import { sendÅpneAktivitetEvent } from "../amplitude/events";
 
 export default function AktivitetSeksjon(props: {
-  samtalestøtteUrlMedOrgnr: string;
   sykefraværsstatistikk: AggregertStatistikkDto;
 }) {
   const orgnr = useOrgnr();
@@ -64,7 +63,7 @@ export default function AktivitetSeksjon(props: {
             etterspør. Her kan du starte!
           </BodyLong>
           <Aktiviteter />
-          <AndreForebyggendeVerktoy href={props.samtalestøtteUrlMedOrgnr} />
+          <AndreForebyggendeVerktoy />
         </div>
       </Bleed>
     </AktivitetProvider>

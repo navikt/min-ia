@@ -130,7 +130,6 @@ describe("Metrikktester av hele siden", () => {
             description: "noe",
           }}
           forsideProps={{
-            samtalestøtteUrl: "samtalestøtteUrl",
             sykefraværsstatistikkUrl: "sykefraværsstatistikkUrl",
             kontaktOssUrl: "kontaktOssUrl",
             kjørerMockApp,

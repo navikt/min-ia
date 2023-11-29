@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - graf-viser-all-tilgjengelig-data
+      - samtalestøtte_url
     paths-ignore:
       - '**.md'
       - '**/**.md'

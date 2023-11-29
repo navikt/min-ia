@@ -3,10 +3,8 @@ import React from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
-import { useOrgnr } from "../hooks/useOrgnr";
 import { Alert } from "@navikt/ds-react";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
-import { leggTilBedriftPåUrl } from "../utils/navigasjon";
 import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
 import { KontaktOss } from "./KontaktOss/KontaktOss";
@@ -16,7 +14,6 @@ import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
 
 export interface ForsideProps {
-  samtalestøtteUrl: string;
   sykefraværsstatistikkUrl: string;
   kontaktOssUrl: string;
   kjørerMockApp: boolean;
@@ -25,13 +22,6 @@ export interface ForsideProps {
 }
 
 export const Forside = (props: ForsideProps) => {
-  const orgnr = useOrgnr();
-
-  const samtalestøtteUrlMedOrgnr = leggTilBedriftPåUrl(
-    props.samtalestøtteUrl,
-    orgnr
-  );
-
   const aggregertStatistikk = useAggregertStatistikk();
   const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
     ? aggregertStatistikk.data
@@ -62,10 +52,7 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
-        <Aktiviteter
-          samtalestøtteUrlMedOrgnr={samtalestøtteUrlMedOrgnr}
-          sykefraværsstatistikk={aggregertStatistikkData}
-        />
+        <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
         {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
           fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
             <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
