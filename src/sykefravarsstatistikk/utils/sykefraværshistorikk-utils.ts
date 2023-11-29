@@ -74,16 +74,50 @@ export const beregnHvilkeÅrstallOgKvartalerSomSkalVises = (
 ): ÅrstallOgKvartal[] => {
   if (historikkListe.length === 0) return [];
 
-  const historikk = historikkListe.find(
-    (historikk) => historikk.type === Statistikkategori.LAND
-  );
+  let førsteKvartal = { årstall: 9999, kvartal: 4 };
+  let sisteKvartal = { årstall: 0, kvartal: 1 };
 
-  if (historikk === undefined) return [];
+  for (const historikkgruppe of historikkListe) {
+    for (const historikkelement of historikkgruppe.kvartalsvisSykefraværsprosent) {
+      if (
+        historikkelement.årstall < førsteKvartal.årstall ||
+        (historikkelement.årstall === førsteKvartal.årstall &&
+          historikkelement.kvartal < førsteKvartal.kvartal)
+      ) {
+        førsteKvartal = historikkelement;
+      }
+      if (
+        historikkelement.årstall > sisteKvartal.årstall ||
+        (historikkelement.årstall === sisteKvartal.årstall &&
+          historikkelement.kvartal > sisteKvartal.kvartal)
+      ) {
+        sisteKvartal = historikkelement;
+      }
+    }
+  }
 
-  return historikk.kvartalsvisSykefraværsprosent.map((prosent) => {
-    return { årstall: prosent.årstall, kvartal: prosent.kvartal };
-  });
+  const output = [];
+  let workingKvartal = førsteKvartal;
+  while (
+    workingKvartal.årstall < sisteKvartal.årstall ||
+    (workingKvartal.årstall === sisteKvartal.årstall &&
+      workingKvartal.kvartal <= sisteKvartal.kvartal)
+  ) {
+    output.push(workingKvartal);
+
+    if (workingKvartal.kvartal < 4) {
+      workingKvartal = {
+        årstall: workingKvartal.årstall,
+        kvartal: workingKvartal.kvartal + 1,
+      };
+    } else {
+      workingKvartal = { årstall: workingKvartal.årstall + 1, kvartal: 1 };
+    }
+  }
+
+  return output;
 };
+
 export const konverterTilKvartalsvisSammenligning = (
   historikkListe: KvartalsvisSykefraværshistorikk[]
 ): KvartalsvisSammenligning[] => {
