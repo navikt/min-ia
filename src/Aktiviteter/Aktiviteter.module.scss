@@ -83,3 +83,15 @@
 .lenke {
   width: fit-content;
 }
+
+.numrertliste {
+  counter-reset: section;
+
+  li {
+    counter-increment: section;
+  }
+
+  li::marker {
+    content: counters(section, ".") ". ";
+  }
+}

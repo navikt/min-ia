@@ -6,6 +6,7 @@ export type AktivitetType = {
 export type AktivitetTekstType = {
   type: "tekst";
   innhold: string;
+  spacing?: boolean;
 };
 
 export type AktivitetInlinetekstType = {
@@ -430,8 +431,14 @@ export const aktiviteter: AktivitetType[] = [
       },
       {
         type: "tekst",
+        spacing: false,
         innhold:
-          "Dere lærer de ulike typer sykefravær og plager som skyldes forhold på arbeidsplassen. Dere bruker egen sykefraværstatistikk og vurderer mulige tiltak.",
+          "Dere lærer om de ulike typene sykefravær og plager som skyldes forhold på arbeidsplassen.",
+      },
+      {
+        type: "tekst",
+        innhold:
+          "Dere bruker egen sykefraværstatistikk og vurderer mulige tiltak.",
       },
       {
         type: "oppgave",

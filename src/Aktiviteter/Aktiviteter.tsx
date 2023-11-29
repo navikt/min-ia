@@ -48,7 +48,7 @@ export default function AktivitetSeksjon(props: {
     <AktivitetProvider
       aktivitetStatuser={
         hentedeAktiviteter.status === RestStatus.Suksess &&
-        Array.isArray(hentedeAktiviteter?.data)
+          Array.isArray(hentedeAktiviteter?.data)
           ? hentedeAktiviteter?.data
           : []
       }
@@ -126,9 +126,8 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
   return (
     <Accordion.Item className={styles.aktivitet} open={åpen}>
       <Accordion.Header
-        className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${
-          styles.accordionHeader
-        }`}
+        className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${styles.accordionHeader
+          }`}
         onClick={() => {
           if (!åpen) {
             sendÅpneAktivitetEvent(aktivitet.tittel);
@@ -185,8 +184,9 @@ export function AktivitetInnhold({
   }
 }
 
-function Tekst({ innhold }: AktivitetTekstType) {
-  return <BodyLong spacing>{innhold}</BodyLong>;
+function Tekst({ innhold, spacing = true }: AktivitetTekstType) {
+  const Tekstcontainer = spacing ? BodyLong : BodyShort;
+  return <Tekstcontainer spacing={spacing}>{innhold}</Tekstcontainer>;
 }
 
 function Undertittel({ innhold }: AktivitetUndertittelType) {
@@ -205,7 +205,7 @@ function Punktliste({ innhold }: AktivitetPunktlisteType) {
 
 function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
   return (
-    <List as="ol">
+    <List as="ol" className={styles.numrertliste}>
       {innhold.map((punkt, index) => (
         <Punkt {...punkt} key={index} />
       ))}
@@ -215,7 +215,7 @@ function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
 
 function Punkt({ innhold }: AktivitetPunktType) {
   return (
-    <List.Item>
+    <li>
       {Array.isArray(innhold) ? (
         innhold.map((innhold, index) => (
           <AktivitetInnhold innhold={innhold} key={index} />
@@ -223,7 +223,7 @@ function Punkt({ innhold }: AktivitetPunktType) {
       ) : (
         <AktivitetInnhold innhold={innhold} />
       )}
-    </List.Item>
+    </li>
   );
 }
 
