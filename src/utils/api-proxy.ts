@@ -1,10 +1,7 @@
 import { backendLogger } from "./backendLogger";
-import {
-  exchangeIdportenSubjectToken,
-  isInvalidToken,
-} from "@navikt/tokenx-middleware";
 import { NextApiRequest, NextApiResponse } from "next";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
+import {exchangeIdportenSubjectToken, isInvalidToken} from "./tokenx-utils";
 
 export default async function proxyRequestWithTokenExchange(
   req: NextApiRequest,
