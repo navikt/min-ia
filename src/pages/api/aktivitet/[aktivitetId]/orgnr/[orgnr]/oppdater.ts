@@ -1,10 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { erGyldigOrgnr } from "../../../../../../hooks/useOrgnr";
-import {
-  exchangeIdportenSubjectToken,
-  isInvalidToken,
-} from "@navikt/tokenx-middleware";
 import { backendLogger } from "../../../../../../utils/backendLogger";
+import {exchangeIdportenSubjectToken, isInvalidToken} from "../../../../../../utils/tokenx-utils";
 
 export default async function handler(
   req: NextApiRequest,
