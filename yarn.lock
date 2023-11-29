@@ -1259,7 +1259,7 @@
   resolved "https://npm.pkg.github.com/download/@navikt/next-api-proxy/3.3.0/c3d32b0d9bbfd066b679546165f0ee48d972e954#c3d32b0d9bbfd066b679546165f0ee48d972e954"
   integrity sha512-Ad/Ybiket4BR/lw8/DFQ4+v6aQFouMRZvmjb4uH+dhM1nST+/yriuUv5ZOkIUPGwkVavOfptrPI6DSYKRRaANg==
 
-"@navikt/next-auth-wonderwall@@navikt/next-auth-wonderwall":
+"@navikt/next-auth-wonderwall@1.5.0":
   version "1.5.0"
   resolved "https://npm.pkg.github.com/download/@navikt/next-auth-wonderwall/1.5.0/643addd5bb139ccf885908e0e27c5cb7b4a6a44d#643addd5bb139ccf885908e0e27c5cb7b4a6a44d"
   integrity sha512-1EnG5KbEJ7Vy8PXpzH3CEupfy6NIfMDhx0aH29kWhsFn2lfl6fxd8+LgqmLd4Weo0HVOpfL9gTptD7SK1Pf/hg==
