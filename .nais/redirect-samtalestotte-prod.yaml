@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "https://www.nav.no/arbeidsgiver/samtalestotte-arbeidsgiver"
+    prometheus.io/scrape: "false"
+  labels:
+    app: min-ia
+    team: teamia
+  name: prod-redirect-samtalestotte
+  namespace: teamia
+spec:
+  ingressClassName: nais-ingress-external
+  rules:
+    - host: arbeidsgiver.nav.no
+      http:
+        paths:
+          - backend:
+              service:
+                name: samtalestotte
+                port:
+                  number: 80
+            path: /samtalestotte
+            pathType: ImplementationSpecific
