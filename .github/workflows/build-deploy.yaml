@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - rydd-opp-i-tester
+      - samtalestøtte_url
     paths-ignore:
       - '**.md'
       - '**/**.md'
