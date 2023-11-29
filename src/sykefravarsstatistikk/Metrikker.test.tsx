@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { mockAllDatahentingStatusOk } from "./mockdata";
 import { BrowserRouter } from "react-router-dom";
@@ -11,6 +11,7 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { fleskOgFisk, heiOgHåBarnehage } from "./altinn-mock";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
 import * as hooks from "../hooks/useOrgnr";
+import { mockContainerSize } from "../utils/test-utils";
 
 const valgtBedriftMedSykefraværsstatistikkRettigheter =
   heiOgHåBarnehage[0].OrganizationNumber;
@@ -23,7 +24,7 @@ jest.mock("../hooks/useOrgnr", () => ({
 jest.mock("../integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("../integrasjoner/ia-tjenestemetrikker-api"),
-  sendSykefraværsstatistikkIaMetrikk: jest.fn(),
+  sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 
 describe("Metrikkutsendelser", () => {
@@ -35,12 +36,13 @@ describe("Metrikkutsendelser", () => {
     MockObserver.startmock();
     sykefravarsSpy = jest.spyOn(
       metrikker,
-      "sendSykefraværsstatistikkIaMetrikk"
+      "sendDigitalIaTjenesteMetrikk"
     );
     useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
     useOrgnrSpy.mockReturnValue(
       valgtBedriftMedSykefraværsstatistikkRettigheter
     );
+    mockContainerSize();
   });
 
   afterEach(() => {
@@ -90,6 +92,8 @@ describe("Metrikkutsendelser", () => {
     });
 
     expect(sykefravarsSpy).toHaveBeenCalled();
+    expect(sykefravarsSpy).toHaveBeenNthCalledWith(1, "SYKEFRAVÆRSSTATISTIKK", "777777777")
+
     jest.useRealTimers();
   });
 
@@ -105,6 +109,7 @@ describe("Metrikkutsendelser", () => {
     await waitFor(() => {
       expect(sykefravarsSpy).toHaveBeenCalled();
     });
+    expect(sykefravarsSpy).toHaveBeenNthCalledWith(1, "SYKEFRAVÆRSSTATISTIKK", "777777777")
   });
 
   it("Sender it-metrikk når feltere i historikkgrafen toggles", async () => {

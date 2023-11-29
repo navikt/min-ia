@@ -2,6 +2,8 @@
 
 Landingsside for selvbetjente IA-tjenester
 
+[![Build, test and deploy](https://github.com/navikt/min-ia/actions/workflows/build-deploy.yaml/badge.svg)](https://github.com/navikt/min-ia/actions/workflows/build-deploy.yaml)
+
 # Kjøre lokalt med hot-reload
 - Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 - Installer avhengigheter: `yarn`

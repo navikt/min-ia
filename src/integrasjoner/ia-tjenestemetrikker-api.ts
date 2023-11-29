@@ -5,8 +5,8 @@ import {
   sendIaMetrikk,
 } from "@navikt/ia-metrikker-client";
 
-export const sendIaTjenesteMetrikk = async (
-  kilde: MetrikkKilde,
+export const sendDigitalIaTjenesteMetrikk = async (
+  tjeneste: MetrikkKilde,
   orgnr?: string
 ) => {
   if (!orgnr) {
@@ -15,31 +15,19 @@ export const sendIaTjenesteMetrikk = async (
   return sendIaMetrikk(
     orgnr,
     MetrikkType.DIGITAL_IA_TJENESTE,
-    kilde,
+    tjeneste,
     METRIKKER_URL
   );
 };
 
-export const sendSykefraværsstatistikkIaMetrikk = async (orgnr?: string) => {
-  if (!orgnr) {
-    return Promise.reject("orgnr er udefinert");
-  }
-  return sendIaMetrikk(
-    orgnr,
-    MetrikkType.DIGITAL_IA_TJENESTE,
-    MetrikkKilde.SYKEFRAVÆRSSTATISTIKK,
-    METRIKKER_URL
-  );
-};
-
-export const sendIaMetrikkInteraksjonstjeneste = async (orgnr?: string) => {
+export const sendIaMetrikkInteraksjonstjeneste = async (tjeneste: MetrikkKilde, orgnr?: string) => {
   if (!orgnr) {
     return Promise.reject("orgnr er udefinert");
   }
   return sendIaMetrikk(
     orgnr,
     MetrikkType.INTERAKSJONSTJENESTE,
-    MetrikkKilde.SYKEFRAVÆRSSTATISTIKK,
+    tjeneste,
     METRIKKER_URL
   );
 };

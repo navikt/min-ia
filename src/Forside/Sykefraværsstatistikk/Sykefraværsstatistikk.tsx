@@ -7,9 +7,9 @@ import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/I
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
 import { DataFilled } from "@navikt/ds-icons";
 import "./sykefraværsstatistikk.module.scss";
-import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjonerMedStatistikktilgang";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
+import {useAltinnOrganisasjonerMedStatistikktilgang} from "../../hooks/useAltinnOrganisasjoner";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;

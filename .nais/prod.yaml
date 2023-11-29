@@ -80,12 +80,8 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: sykefravarsstatistikk-api
-          namespace: arbeidsgiver
-          cluster: prod-fss
         - application: ia-tjenester-metrikker
           namespace: arbeidsgiver
-          cluster: prod-gcp
         - application: notifikasjon-bruker-api
           namespace: fager
         - application: nav-dekoratoren

@@ -59,6 +59,10 @@ const GrafVisning: FunctionComponent<Props> = ({
     }
   );
 
+  const siste = kvartalsvisSammenligningData[kvartalsvisSammenligningData.length - 1];
+
+  const kvartalsvisSammenligningDataMedEtKvartalBuffer = [...kvartalsvisSammenligningData, { årstall: siste.kvartal === 4 ? siste.årstall + 1 : siste.årstall, kvartal: siste.kvartal === 4 ? 1 : siste.kvartal + 1 }];
+
   const punkterPåXAksenSomSkalMarkeres: string[] =
     hentFørsteKvartalFraAlleÅreneIDatagrunnlaget(kvartalsvisSammenligning).map(
       (årstallOgKvartal) =>
@@ -83,7 +87,7 @@ const GrafVisning: FunctionComponent<Props> = ({
   return (
     <ResponsiveContainer minHeight={400}>
       <LineChart
-        data={kvartalsvisSammenligningData}
+        data={kvartalsvisSammenligningDataMedEtKvartalBuffer}
         margin={margin}
         role="img"
         title="Graf som viser sykefraværet over tid. Kan også sees som tabell."

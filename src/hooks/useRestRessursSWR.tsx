@@ -32,6 +32,6 @@ async function fetcher(path: string) {
 
   const restStatus = mapStatusskodeTilRestStatus(response.status);
   return restStatus === RestStatus.Suksess
-    ? { status: restStatus, data: await response.json() }
-    : { status: restStatus };
+      ? { status: restStatus, data: await response.json() }
+      : { status: restStatus };
 }

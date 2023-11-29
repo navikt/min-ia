@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { Fraværskalulator } from "./komponenter/Kalkulator/Kalkulator";
 import Home from "./pages";
 import {
-  sendIaTjenesteMetrikk,
   sendIaMetrikkInteraksjonstjeneste,
+  sendDigitalIaTjenesteMetrikk,
 } from "./integrasjoner/ia-tjenestemetrikker-api";
+import { RestStatus } from "./integrasjoner/rest-status";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -27,19 +28,46 @@ jest.mock("next/router", () => ({
 jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
-  sendIaTjenesteMetrikk: jest.fn(),
+  sendDigitalIaTjenesteMetrikk: jest.fn(),
   sendIaMetrikkInteraksjonstjeneste: jest.fn(),
 }));
+
+jest.mock("./Aktiviteter/status-klient", () => ({
+  __esModule: true,
+  ...jest.requireActual("./Aktiviteter/status-klient"),
+  oppdaterStatus: jest.fn(),
+}));
+
 jest.mock("./hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
+
+jest.mock("./Banner/Banner", () => {
+  return function Dummy() {
+    return <div>dummy</div>;
+  };
+});
+
+jest.mock("./hooks/useAltinnOrganisasjoner", () => ({
+  useAltinnOrganisasjoner: () => RestStatus.LasterInn,
+  useAltinnOrganisasjonerMedStatistikktilgang: () => RestStatus.LasterInn,
+}));
+
+jest.mock("./hooks/useAggregertStatistikk", () => ({
+  useAggregertStatistikk: () => RestStatus.LasterInn,
+}));
+
+jest.mock("./hooks/useAggregertStatistikk", () => ({
+  useAggregertStatistikk: () => RestStatus.LasterInn,
+}));
+
+jest.mock("./hooks/useRestRessursSWR", () => ({
+  useRestRessursSWR: () => RestStatus.LasterInn,
+}));
+
 const user = userEvent.setup();
 
 describe("Metrikktester av hele siden", () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
   describe("Kalkulator", () => {
     it("Kaller sendIaTjenesteMetrikk ved endring av modus", async () => {
       render(
@@ -48,16 +76,16 @@ describe("Metrikktester av hele siden", () => {
           tapteDagsverk="7800"
           muligeDagsverk="52000"
           nedlastingPågår={false}
-        />
+        />,
       );
 
       const dagsverkLenke = screen.getByText("Dagsverk");
 
-      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
+      expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(0);
 
       await user.click(dagsverkLenke);
 
-      expect(sendIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
+      expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -66,7 +94,7 @@ describe("Metrikktester av hele siden", () => {
       renderPage();
       const aktivitetHeader = await waitFor(() => {
         const lenke = screen.getByText(
-          "Bli gode på å tilrettelegge for ansatte"
+          "Bli gode på å tilrettelegge for ansatte",
         );
 
         expect(lenke).toBeInTheDocument();
@@ -86,10 +114,15 @@ describe("Metrikktester av hele siden", () => {
       await user.click(startKnapp);
 
       expect(sendIaMetrikkInteraksjonstjeneste).toHaveBeenCalledTimes(1);
+      expect(sendIaMetrikkInteraksjonstjeneste).toHaveBeenNthCalledWith(
+        1,
+        "FOREBYGGINGSPLAN",
+        "999999999",
+      );
     });
 
     function renderPage() {
-      const kjørerMockApp = false;
+      const kjørerMockApp = true;
       render(
         <Home
           page={{
@@ -105,7 +138,7 @@ describe("Metrikktester av hele siden", () => {
           minSideArbeidsgiverUrl="minSideArbeidsgiverUrl"
           kjørerMockApp={kjørerMockApp}
           grafanaAgentUrl="grafanaAgentUrl"
-        />
+        />,
       );
     }
   });
