@@ -215,7 +215,7 @@ function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
 
 function Punkt({ innhold }: AktivitetPunktType) {
   return (
-    <li>
+    <List.Item>
       {Array.isArray(innhold) ? (
         innhold.map((innhold, index) => (
           <AktivitetInnhold innhold={innhold} key={index} />
@@ -223,7 +223,7 @@ function Punkt({ innhold }: AktivitetPunktType) {
       ) : (
         <AktivitetInnhold innhold={innhold} />
       )}
-    </li>
+    </List.Item>
   );
 }
 
