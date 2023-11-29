@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - samtalestøtte_url
+      - tokenxxx
     paths-ignore:
       - '**.md'
       - '**/**.md'
