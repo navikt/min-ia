@@ -2,14 +2,15 @@ import styles from "./Aktiviteter.module.scss";
 import { Lenkeflis } from "../Lenkeflis/Lenkeflis";
 import { Calculator, SpeechBubble } from "@navikt/ds-icons";
 import React from "react";
+import { SAMTALESTØTTE_URL } from "../utils/konstanter";
 
-export function AndreForebyggendeVerktoy(props: { href: string }) {
+export function AndreForebyggendeVerktoy() {
   return (
     <div className={styles.lenkefliser}>
       <Lenkeflis
         overskrift={"Samtalestøtten"}
         ikon={<SpeechBubble aria-hidden />}
-        href={props.href}
+        href={SAMTALESTØTTE_URL}
       />
       <Lenkeflis
         overskrift={"Fraværskalkulator"}
