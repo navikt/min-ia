@@ -30,7 +30,7 @@ export async function exchangeIdportenSubjectToken(
   request: IncomingMessage,
   audience: string,
 ): Promise<TokenXResult> {
-  const authHeader = getAuthorizationHeader(request);
+  const authHeader = request.headers["authorization"];
 
   if (!authHeader) {
     console.log("No token found in authorization header.");
@@ -52,7 +52,7 @@ export async function exchangeIdportenSubjectToken(
     };
   }
 
-  const validSubjectToken = extractToken(authHeader);
+  const validSubjectToken = authHeader.replace("Bearer ", "");
 
   const grantResult = await grantTokenXOboToken(validSubjectToken, audience);
   if (isInvalidTokenSet(grantResult)) {
@@ -67,12 +67,4 @@ export async function exchangeIdportenSubjectToken(
   }
 
   return grantResult;
-}
-
-function getAuthorizationHeader(request: IncomingMessage): string | undefined {
-  return request.headers["authorization"];
-}
-
-function extractToken(bearerToken: string) {
-  return bearerToken.replace("Bearer ", "");
 }

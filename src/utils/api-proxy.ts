@@ -1,7 +1,7 @@
 import { backendLogger } from "./backendLogger";
 import { NextApiRequest, NextApiResponse } from "next";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
-import {exchangeIdportenSubjectToken, isInvalidToken} from "./tokenx-utils";
+import { exchangeIdportenSubjectToken, isInvalidToken } from "./tokenx-utils";
 
 export default async function proxyRequestWithTokenExchange(
   req: NextApiRequest,
@@ -9,7 +9,7 @@ export default async function proxyRequestWithTokenExchange(
   hostname: string,
   path: string,
   audience: string | undefined,
-  useHttps: boolean
+  useHttps: boolean,
 ) {
   if (audience === undefined) {
     backendLogger.error("audience is not set");
