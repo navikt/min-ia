@@ -41,8 +41,6 @@ spec:
       value: https://arbeidsgiver.nav.no/forebygge-fravar
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: fia-arbeidsgiver.pia
-    - name: SAMTALESTOTTE_URL
-      value: https://arbeidsgiver.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver.nav.no/forebygge-fravar/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL

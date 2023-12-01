@@ -1259,22 +1259,15 @@
   resolved "https://npm.pkg.github.com/download/@navikt/next-api-proxy/3.3.0/c3d32b0d9bbfd066b679546165f0ee48d972e954#c3d32b0d9bbfd066b679546165f0ee48d972e954"
   integrity sha512-Ad/Ybiket4BR/lw8/DFQ4+v6aQFouMRZvmjb4uH+dhM1nST+/yriuUv5ZOkIUPGwkVavOfptrPI6DSYKRRaANg==
 
-"@navikt/next-auth-wonderwall@^1.4.0":
-  version "1.4.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/next-auth-wonderwall/1.4.0/ec8c6949bab113f7eb7d9e4467fcb71a9b7e300b"
-  integrity sha512-eggk3TJKZccF/NJcE03/ZesNft/9PI9n2NpzviVPKRFdXhEI8cTYH8bpiCPWF+3EON7s5MksjymRpxEWbwamOQ==
+"@navikt/next-auth-wonderwall@1.5.0":
+  version "1.5.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/next-auth-wonderwall/1.5.0/643addd5bb139ccf885908e0e27c5cb7b4a6a44d#643addd5bb139ccf885908e0e27c5cb7b4a6a44d"
+  integrity sha512-1EnG5KbEJ7Vy8PXpzH3CEupfy6NIfMDhx0aH29kWhsFn2lfl6fxd8+LgqmLd4Weo0HVOpfL9gTptD7SK1Pf/hg==
   dependencies:
-    jose "^4.11.2"
+    jose "^4.14.4"
     node-cache "^5.1.2"
-    openid-client "^5.3.1"
-    zod "^3.20.2"
-
-"@navikt/tokenx-middleware@^1.2.4":
-  version "1.2.4"
-  resolved "https://npm.pkg.github.com/download/@navikt/tokenx-middleware/1.2.4/e0f63c5d4840db183bbe0a9c1e83c9781c8cb52a"
-  integrity sha512-PQFEr/c2mjoaEoazACtXmEr6meZhahxmKCexhSg6YbEEG4ME95yCNqGS9ISSsrWT1pNiOTLZLivlkQdpNCP4YA==
-  dependencies:
-    "@navikt/next-auth-wonderwall" "^1.4.0"
+    openid-client "^5.4.3"
+    zod "^3.22.2"
 
 "@next/env@13.5.4":
   version "13.5.4"
@@ -5836,10 +5829,10 @@ jest-worker@^29.7.0:
     import-local "^3.0.2"
     jest-cli "^29.6.1"
 
-jose@^4.11.2, jose@^4.14.4:
-  version "4.14.4"
-  resolved "https://registry.npmjs.org/jose/-/jose-4.14.4.tgz"
-  integrity sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==
+jose@^4.14.4, jose@^4.15.1:
+  version "4.15.4"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-4.15.4.tgz#02a9a763803e3872cf55f29ecef0dfdcc218cc03"
+  integrity sha512-W+oqK4H+r5sITxfxpSU+MMdr/YSWGvgZMQDIsNoBDGGy4i7GBPTtvFKibQzW06n3U3TqHjhvBJsirShsEJ6eeQ==
 
 js-levenshtein@^1.1.6:
   version "1.1.6"
@@ -6451,12 +6444,12 @@ open@^9.1.0:
     is-inside-container "^1.0.0"
     is-wsl "^2.2.0"
 
-openid-client@^5.3.1:
-  version "5.4.3"
-  resolved "https://registry.npmjs.org/openid-client/-/openid-client-5.4.3.tgz"
-  integrity sha512-sVQOvjsT/sbSfYsQI/9liWQGVZH/Pp3rrtlGEwgk/bbHfrUDZ24DN57lAagIwFtuEu+FM9Ev7r85s8S/yPjimQ==
+openid-client@^5.4.3:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.6.1.tgz#8f7526a50c290a5e28a7fe21b3ece3107511bc73"
+  integrity sha512-PtrWsY+dXg6y8mtMPyL/namZSYVz8pjXz3yJiBNZsEdCnu9miHLB4ELVC85WvneMKo2Rg62Ay7NkuCpM0bgiLQ==
   dependencies:
-    jose "^4.14.4"
+    jose "^4.15.1"
     lru-cache "^6.0.0"
     object-hash "^2.2.0"
     oidc-token-hash "^5.0.3"
@@ -8103,12 +8096,7 @@ zen-observable@0.8.15:
   resolved "https://registry.npmjs.org/zen-observable/-/zen-observable-0.8.15.tgz"
   integrity sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==
 
-zod@^3.20.2:
-  version "3.21.4"
-  resolved "https://registry.npmjs.org/zod/-/zod-3.21.4.tgz"
-  integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
-
-zod@^3.22.4:
+zod@^3.22.2, zod@^3.22.4:
   version "3.22.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==

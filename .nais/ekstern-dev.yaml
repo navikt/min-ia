@@ -25,8 +25,6 @@ spec:
       value: dev
     - name: DECORATOR_BREADCRUMB_THIS_PAGE_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
-    - name: SAMTALESTOTTE_URL
-      value: https://arbeidsgiver.ekstern.dev.nav.no/samtalestotte
     - name: SYKEFRAVARSSTATISTIKK_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar/sykefravarsstatistikk
     - name: FOREBYGGINGSPLAN_URL

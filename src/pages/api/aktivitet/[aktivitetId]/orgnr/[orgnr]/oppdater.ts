@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { erGyldigOrgnr } from "../../../../../../hooks/useOrgnr";
+import { backendLogger } from "../../../../../../utils/backendLogger";
 import {
   exchangeIdportenSubjectToken,
   isInvalidToken,
-} from "@navikt/tokenx-middleware";
-import { backendLogger } from "../../../../../../utils/backendLogger";
+} from "../../../../../../utils/tokenx-utils";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { aktivitetId, orgnr } = req.query;
   const { status } = req.body;
@@ -36,7 +36,7 @@ export default async function handler(
 
   const newAuthToken = await exchangeIdportenSubjectToken(
     req,
-    process.env.FOREBYGGINGSPLAN_API_AUDIENCE
+    process.env.FOREBYGGINGSPLAN_API_AUDIENCE,
   );
 
   if (isInvalidToken(newAuthToken)) {
@@ -53,7 +53,7 @@ export default async function handler(
         Authorization: `Bearer ${newAuthToken}`,
       },
       body: JSON.stringify({ status, aktivitetstype: "OPPGAVE" }),
-    }
+    },
   );
 
   return res.status(respons.status).json({ status: respons.status });
