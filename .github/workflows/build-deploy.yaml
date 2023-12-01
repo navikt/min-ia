@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-      - tokenxxx
+      - Sykefraværsstatistikkendringer
     paths-ignore:
-      - '**.md'
-      - '**/**.md'
+      - "**.md"
+      - "**/**.md"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

@@ -35,11 +35,7 @@ describe("StatistikkPanel", () => {
         tooltip="Din virksomhet"
       />
     );
-    expect(
-      screen.getByRole("img", {
-        name: /uendret trend/i,
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText("uendret trend")).toBeInTheDocument();
   });
 
   it("Viser stigende trend", async () => {
@@ -51,11 +47,7 @@ describe("StatistikkPanel", () => {
         trend="2"
       />
     );
-    expect(
-      screen.getByRole("img", {
-        name: /stigende trend/i,
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText("stigende trend")).toBeInTheDocument();
   });
 
   it("Viser synkende trend", async () => {
@@ -67,10 +59,6 @@ describe("StatistikkPanel", () => {
         trend="-2"
       />
     );
-    expect(
-      screen.getByRole("img", {
-        name: /synkende trend/i,
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText("synkende trend")).toBeInTheDocument();
   });
 });

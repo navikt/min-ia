@@ -19,8 +19,23 @@
   padding: var(--a-spacing-2);
   border-radius: 4px;
 
+  &.fullBredde {
+    flex-basis: 100%;
+  }
+
   p {
     text-align: center;
+  }
+
+  .skeletonWrapper {
+    display: block;
+    line-height: 1.2;
+    padding: 0.5rem;
+    width: 100%;
+
+    .skeleton {
+      width: 100%;
+    }
   }
 }
 

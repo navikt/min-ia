@@ -35,8 +35,8 @@ import { useOrgnr } from "../hooks/useOrgnr";
 import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
-import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
 import { sendÅpneAktivitetEvent } from "../amplitude/events";
+import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
 
 export default function AktivitetSeksjon(props: {
   sykefraværsstatistikk: AggregertStatistikkDto;
@@ -47,7 +47,7 @@ export default function AktivitetSeksjon(props: {
     <AktivitetProvider
       aktivitetStatuser={
         hentedeAktiviteter.status === RestStatus.Suksess &&
-        Array.isArray(hentedeAktiviteter?.data)
+          Array.isArray(hentedeAktiviteter?.data)
           ? hentedeAktiviteter?.data
           : []
       }
@@ -86,7 +86,7 @@ function findOppgaveIder(aktivitet: AktivitetinnholdType): string[] {
     aktivitet.type === "punktliste" ||
     aktivitet.type === "numrertliste" ||
     aktivitet.type === "lenke" ||
-    aktivitet.type === "statistikkbokser"
+    aktivitet.type === "deresSykstatBransje"
   ) {
     return [];
   }
@@ -125,9 +125,8 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
   return (
     <Accordion.Item className={styles.aktivitet} open={åpen}>
       <Accordion.Header
-        className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${
-          styles.accordionHeader
-        }`}
+        className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${styles.accordionHeader
+          }`}
         onClick={() => {
           if (!åpen) {
             sendÅpneAktivitetEvent(aktivitet.tittel);
@@ -176,16 +175,17 @@ export function AktivitetInnhold({
       return <Infoboks {...innhold} />;
     case "numrertliste":
       return <Numrertliste {...innhold} />;
-    case "statistikkbokser":
-      return <Sykefraværsstatistikk />;
+    case "deresSykstatBransje":
+      return <DeresSykefraværsstatistikkBransje />;
     default:
       console.error("Ukjent innholdstype", innhold);
       return null;
   }
 }
 
-function Tekst({ innhold }: AktivitetTekstType) {
-  return <BodyLong spacing>{innhold}</BodyLong>;
+function Tekst({ innhold, spacing = true }: AktivitetTekstType) {
+  const Tekstcontainer = spacing ? BodyLong : BodyShort;
+  return <Tekstcontainer spacing={spacing}>{innhold}</Tekstcontainer>;
 }
 
 function Undertittel({ innhold }: AktivitetUndertittelType) {
@@ -204,7 +204,7 @@ function Punktliste({ innhold }: AktivitetPunktlisteType) {
 
 function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
   return (
-    <List as="ol">
+    <List as="ol" className={styles.numrertliste}>
       {innhold.map((punkt, index) => (
         <Punkt {...punkt} key={index} />
       ))}
@@ -227,12 +227,17 @@ function Punkt({ innhold }: AktivitetPunktType) {
 }
 
 function Lenke({ tekst, url }: AktivitetLenkeType) {
-  return <Link href={url}>{tekst}</Link>;
+  return (
+    <Link href={url} className={styles.lenke}>
+      {tekst}
+    </Link>
+  );
 }
 
-function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
+function Inlinetekst({ innhold, spacing }: AktivitetInlinetekstType) {
+  const Tekstcontainer = spacing ? BodyLong : BodyShort;
   return (
-    <BodyShort>
+    <Tekstcontainer spacing={spacing}>
       {innhold.map((innhold, index) =>
         typeof innhold === "string" ? (
           innhold
@@ -240,7 +245,7 @@ function Inlinetekst({ innhold }: AktivitetInlinetekstType) {
           <AktivitetInnhold innhold={innhold} key={index} />
         )
       )}
-    </BodyShort>
+    </Tekstcontainer>
   );
 }
 

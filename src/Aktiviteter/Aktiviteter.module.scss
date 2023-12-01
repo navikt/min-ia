@@ -73,3 +73,25 @@
 .aktivitetFullført {
   background-color: var(--a-green-100) !important;
 }
+
+.statistikkContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a-spacing-2);
+}
+
+.lenke {
+  width: fit-content;
+}
+
+.numrertliste {
+  counter-reset: section;
+
+  li {
+    counter-increment: section;
+  }
+
+  li::marker {
+    content: counters(section, ".") ". ";
+  }
+}
