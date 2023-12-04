@@ -55,7 +55,7 @@ export default function AktivitetSeksjon(props: {
     >
       <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
         <div className={styles["aktiviteter-seksjon-innhold"]}>
-          <Heading size="large" className={styles["aktiviteter-header"]}>
+          <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
             Øvelser og verktøy
           </Heading>
           <BodyLong className={styles["aktiviteter-brødtekst"]}>
