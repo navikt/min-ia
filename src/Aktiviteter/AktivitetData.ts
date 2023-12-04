@@ -72,6 +72,8 @@ export type AktivitetinnholdType =
 
 export type StatusType = "AVBRUTT" | "STARTET" | "FULLFØRT";
 
+const SOFT_HYPHEN = String.fromCharCode(173);
+
 export const aktiviteter: AktivitetType[] = [
   {
     tittel: "Bli gode på å tilrettelegge for ansatte",
@@ -353,7 +355,9 @@ export const aktiviteter: AktivitetType[] = [
       {
         type: "oppgave",
         tittel:
-          "Oppgave: Lag oversikt over tilretteleggingsmulighetene på arbeidsplassen din",
+          "Oppgave: Lag oversikt over tilretteleggings" +
+          SOFT_HYPHEN +
+          "mulighetene på arbeidsplassen din",
         id: "57F04A11-2D32-4F6F-90DE-A0043D64F242",
         innhold: [
           {
