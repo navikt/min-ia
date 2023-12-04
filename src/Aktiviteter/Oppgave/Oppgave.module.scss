@@ -63,6 +63,8 @@
       pointer-events: all;
       background-color: var(--oppgaveblokk-farge);
       --a-surface-neutral-subtle-hover: var(--a-blue-100);
+      --a-text-action: var(--a-blue-600);
+      --__ac-button-secondary-border: var(--a-blue-600);
     }
     .helknapp {
       width: 15.5rem;
