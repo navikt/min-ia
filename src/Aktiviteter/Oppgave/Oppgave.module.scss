@@ -26,37 +26,42 @@
       }
     }
     .kollapsetOppgavetekst {
-      min-height: 5rem;
-      max-height: 7rem;
-      padding-top: 1rem;
-      overflow: hidden;
-      position: relative;
+      .oppgavetekstinnhold {
+        min-height: 5rem;
+        max-height: 7rem;
+        overflow: hidden;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 5rem;
+          background: linear-gradient(
+            180deg,
+            transparent -15%,
+            var(--oppgaveblokk-farge) 100%
+          );
+          pointer-events: none;
+        }
+      }
+
       .oppgavetekstOverlayGradient {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: linear-gradient(
-          180deg,
-          transparent -15%,
-          var(--oppgaveblokk-farge) 45%
-        );
-        pointer-events: none;
+        border-top: none;
       }
     }
     .oppgavetekstOverlayGradient {
       display: flex;
       justify-content: center;
       align-items: flex-end;
+      margin-top: 1rem;
+      border-top: thin solid var(--a-gray-400);
+      padding-top: calc(var(--oppgaveblokk-padding) / 2);
     }
-    .synligOppgavetekst {
+    .oppgavetekst {
       padding-top: 1rem;
-      .oppgavetekstOverlayGradient {
-        margin-top: 1rem;
-        border-top: thin solid var(--a-gray-400);
-        padding-top: calc(var(--oppgaveblokk-padding) / 2);
-      }
     }
 
     .statusknapp {
@@ -73,12 +78,6 @@
       width: 7.5rem;
       margin: 0.5rem;
       margin-bottom: 0;
-    }
-    .multiknappholder {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
     }
   }
 }

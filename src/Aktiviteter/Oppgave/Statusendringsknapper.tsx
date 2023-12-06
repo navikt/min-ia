@@ -37,7 +37,7 @@ export function Statusendringsknapper({
       );
     case "STARTET":
       return (
-        <div className={styles.multiknappholder}>
+        <>
           <Button
             variant="secondary"
             className={`${styles.statusknapp} ${styles.halvknapp}`}
@@ -60,7 +60,7 @@ export function Statusendringsknapper({
           >
             Avbryt
           </Button>
-        </div>
+        </>
       );
     case "FULLFØRT":
       return (
