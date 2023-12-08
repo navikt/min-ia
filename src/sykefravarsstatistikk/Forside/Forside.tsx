@@ -21,6 +21,7 @@ import useBreadcrumbs from "../../utils/useBreadcrumbs";
 import { Layout } from "../../komponenter/Layout/Layout";
 import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIAltinnSide/ManglerRettigheterIAltinnSide";
 import PrintOnlyHref from "./PrintOnlyHref";
+import Head from "next/head";
 
 export const Forside = ({
   kjørerMockApp,
@@ -66,7 +67,7 @@ export const Forside = ({
       appData.publiseringsdatoer.status,
       appData.sykefraværshistorikk.status,
     ].some((status) =>
-      [RestStatus.LasterInn, RestStatus.IkkeLastet].includes(status)
+      [RestStatus.LasterInn, RestStatus.IkkeLastet].includes(status),
     );
   }, [
     appData.aggregertStatistikk.restStatus,
@@ -137,17 +138,17 @@ export const Forside = ({
   }
 
   const statistikKategori = getBransjeEllerNæringKategori(
-    appData.aggregertStatistikk
+    appData.aggregertStatistikk,
   );
   const harBransje = statistikKategori === Statistikkategori.BRANSJE;
 
   const bransjeEllerNæring = appData.aggregertStatistikk.aggregertData?.get(
-    harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING
+    harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING,
   );
   const navnPåVirksomhet =
     appData.altinnOrganisasjoner.status === RestStatus.Suksess &&
     appData.altinnOrganisasjoner.data.find(
-      (organisasjon) => organisasjon.OrganizationNumber === orgnr
+      (organisasjon) => organisasjon.OrganizationNumber === orgnr,
     )?.Name;
   const tabellProps = hentTabellProps(appData.sykefraværshistorikk);
 
@@ -216,21 +217,27 @@ const WrappedForside = (
   props: SykefraværAppData & {
     kjørerMockApp: boolean;
     prodUrl?: string;
-  }
+  },
 ) => {
   return (
-    <Layout
-      title="Sykefraværsstatistikk"
-      description="INKLUDERENDE ARBEIDSLIV"
-      kjørerMockApp={props.kjørerMockApp}
-      altinnOrganisasjoner={
-        props.altinnOrganisasjoner.status === RestStatus.Suksess
-          ? props.altinnOrganisasjoner.data
-          : []
-      }
-    >
-      <Forside {...props} />
-    </Layout>
+    <>
+      <Head>
+        <title>Sykefraværsstatistikk</title>
+        <meta property="og:title" content="Page title" key="title" />
+      </Head>
+      <Layout
+        title="Sykefraværsstatistikk"
+        description="INKLUDERENDE ARBEIDSLIV"
+        kjørerMockApp={props.kjørerMockApp}
+        altinnOrganisasjoner={
+          props.altinnOrganisasjoner.status === RestStatus.Suksess
+            ? props.altinnOrganisasjoner.data
+            : []
+        }
+      >
+        <Forside {...props} />
+      </Layout>
+    </>
   );
 };
 
