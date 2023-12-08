@@ -29,7 +29,7 @@ export default function DeresSykefraværsstatistikkBransje() {
   if (sykefraværsstatistikk && sykefraværIVirksomhet) {
     return (
       <div className={styles.infoboks}>
-        <Heading size="medium">
+        <Heading level="4" size="medium">
           Deres sykefraværstatistikk sammenlignet med bransjen
         </Heading>
         <div className={styles.statistikkContainer}>

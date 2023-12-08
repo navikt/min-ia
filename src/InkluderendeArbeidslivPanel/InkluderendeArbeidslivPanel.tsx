@@ -1,14 +1,14 @@
-import {Accordion, BodyShort, LinkPanel} from "@navikt/ds-react";
-import React, {FunctionComponent} from "react";
+import { Accordion, BodyShort, LinkPanel } from "@navikt/ds-react";
+import React, { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
-import {LenkeMedEventutsendelse} from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
-import {navigerEtterCallbacks} from "../utils/navigasjon";
-import {sendNavigereEvent} from "../amplitude/events";
+import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
+import { navigerEtterCallbacks } from "../utils/navigasjon";
+import { sendNavigereEvent } from "../amplitude/events";
 
 const Lenkepanel: React.FunctionComponent<{
     lenketekst: string; destinasjon: string;
-}> = ({destinasjon, lenketekst}) => {
+}> = ({ destinasjon, lenketekst }) => {
     const eventutsendelse = () => sendNavigereEvent(destinasjon, lenketekst) as Promise<boolean>;
     return (<LinkPanel
         className={styles.inkluderendeArbeidslivPanel__lenkepanel}
@@ -25,6 +25,7 @@ const Lenkepanel: React.FunctionComponent<{
         </LinkPanel.Title>
     </LinkPanel>);
 };
+const SOFT_HYPHEN = String.fromCharCode(173);
 
 export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
     return (
@@ -76,11 +77,11 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                         </BodyShort>
                         <div className={styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe}>
                             <Lenkepanel
-                                lenketekst="Tilskudd til ekspertbistand"
+                                lenketekst={`Tilskudd til ekspert${SOFT_HYPHEN}bistand`}
                                 destinasjon="https://arbeidsgiver.nav.no/veiviserarbeidsgiver/tiltak/ekspertbistand"
                             />
                             <Lenkepanel
-                                lenketekst="Kompetansetiltak for sykmeldte"
+                                lenketekst={`Kompetanse${SOFT_HYPHEN}tiltak for sykmeldte`}
                                 destinasjon="https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/nyttig-a-vite/delta-i-prosjekt-med-kompetansetiltak-for-sykmeldte"
                             />
                             <Lenkepanel
@@ -88,7 +89,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                                 destinasjon="https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/relatert-informasjon/nav-anbefaler-nytt-nasjonalt-konsept-helseiarbeid"
                             />
                             <Lenkepanel
-                                lenketekst="Tjenester fra NAV Arbeidslivssenter"
+                                lenketekst={`Tjenester fra NAV Arbeidslivs${SOFT_HYPHEN}senter`}
                                 destinasjon="https://arbeidsgiver.nav.no/forebygge-sykefravaer/#oppfolging-fra-nav-arbeidslivssenter"
                             />
                         </div>
