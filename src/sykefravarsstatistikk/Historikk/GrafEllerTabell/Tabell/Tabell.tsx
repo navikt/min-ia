@@ -10,6 +10,7 @@ import {
 } from "../../../utils/sykefraværshistorikk-utils";
 import { RestRessurs, RestStatus } from "../../../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../../../hooks/useSykefraværAppData";
+import styles from "./Tabell.module.css";
 
 export interface TabellProps {
   kvartalsvisSammenligning: KvartalsvisSammenligning[];
@@ -33,7 +34,7 @@ const Tabell: FunctionComponent<TabellProps> = ({
   };
 
   return (
-    <div className="graf-tabell__wrapper">
+    <div className={styles['tabell-wrapper']}>
       <Table size="small" zebraStripes={true}>
         <Table.Header>
           <Table.Row>
