@@ -18,10 +18,10 @@ export function KollapsbarOppgavetekstContainer({
   return (
     <div
       className={
-        kollapset ? styles.kollapsetOppgavetekst : styles.synligOppgavetekst
+        `${styles.oppgavetekst} ${kollapset ? styles.kollapsetOppgavetekst : ''}`
       }
     >
-      <span aria-hidden={kollapset ? "true" : "false"}>{children}</span>
+      <div aria-hidden={kollapset ? "true" : "false"} className={styles.oppgavetekstinnhold}>{children}</div>
       <div className={styles.oppgavetekstOverlayGradient}>{knapper}</div>
     </div>
   );

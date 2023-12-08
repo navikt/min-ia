@@ -55,7 +55,7 @@ export default function AktivitetSeksjon(props: {
     >
       <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
         <div className={styles["aktiviteter-seksjon-innhold"]}>
-          <Heading size="large" className={styles["aktiviteter-header"]}>
+          <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
             Øvelser og verktøy
           </Heading>
           <BodyLong className={styles["aktiviteter-brødtekst"]}>
@@ -189,7 +189,7 @@ function Tekst({ innhold, spacing = true }: AktivitetTekstType) {
 }
 
 function Undertittel({ innhold }: AktivitetUndertittelType) {
-  return <Heading size="medium">{innhold}</Heading>;
+  return <Heading level="4" size="medium">{innhold}</Heading>;
 }
 
 function Punktliste({ innhold }: AktivitetPunktlisteType) {
@@ -252,7 +252,7 @@ function Inlinetekst({ innhold, spacing }: AktivitetInlinetekstType) {
 function Infoboks({ tittel, innhold }: AktivitetInfoboksType) {
   return (
     <div className={styles.infoboks}>
-      <Heading size="medium">{tittel}</Heading>
+      <Heading level="4" size="medium">{tittel}</Heading>
       {innhold.map((innhold, index) => (
         <AktivitetInnhold innhold={innhold} key={index} />
       ))}

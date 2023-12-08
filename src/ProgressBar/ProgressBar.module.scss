@@ -13,7 +13,7 @@
         transition: width 0.2s ease-in-out;
         height: var(--progress-bar-height);
         border-radius: var(--progress-bar-radius);
-        border: var(--progress-bar-border-width) solid var(--a-data-border-5);
+        border: var(--progress-bar-border-width) solid var(--a-green-500);
         position: absolute;
         left: calc(0px - var(--progress-bar-border-width));
         top: calc(0px - var(--progress-bar-border-width));

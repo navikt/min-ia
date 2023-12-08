@@ -22,7 +22,7 @@ export default function Oppgave({ tittel, innhold, id }: AktivitetOppgaveType) {
     <div className={styles.oppgaveblokk}>
       <div className={styles.oppgaveinnhold}>
         <div className={styles.oppgavetittel}>
-          <Heading size={"medium"} level="4" spacing>
+          <Heading size={"medium"} level="2" spacing>
             {tittel}
           </Heading>
           <Statusvisning status={status} />

@@ -23,4 +23,4 @@ Landingsside for selvbetjente IA-tjenester
 
 * For spørsmål eller henvendelser, opprett gjerne et issue her på GitHub.
 * Koden utvikles og driftes av Team IA i [Produktområde arbeidsgiver](https://navno.sharepoint.com/sites/intranett-prosjekter-og-utvikling/SitePages/Produktomr%C3%A5de-arbeidsgiver.aspx).
-* Slack-kanal [#teamia](https://nav-it.slack.com/archives/CMN0M3CDP)
+* Slack-kanal [#team-pia](https://nav-it.slack.com/archives/C02DL347ZT2)
