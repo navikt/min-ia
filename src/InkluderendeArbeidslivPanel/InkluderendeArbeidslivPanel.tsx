@@ -78,7 +78,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                         <div className={styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe}>
                             <Lenkepanel
                                 lenketekst={`Tilskudd til ekspert${SOFT_HYPHEN}bistand`}
-                                destinasjon="https://arbeidsgiver.nav.no/veiviserarbeidsgiver/tiltak/ekspertbistand"
+                                destinasjon="https://www.nav.no/arbeidsgiver/ekspertbistand"
                             />
                             <Lenkepanel
                                 lenketekst={`Kompetanse${SOFT_HYPHEN}tiltak for sykmeldte`}
