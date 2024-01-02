@@ -2,7 +2,8 @@ import React, { FunctionComponent } from "react";
 import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import EksternLenke from "../../felleskomponenter/EksternLenke/EksternLenke";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
-import { sendPanelEkspanderEvent } from "../../../amplitude/events";
+
+import {sendPanelEkspanderEvent} from "../../../amplitude/amplitude";
 
 export const SlikHarViKommetFramTilDittResultat: FunctionComponent = () => {
   const panelHeader = "Slik har vi kommet fram til ditt resultat";

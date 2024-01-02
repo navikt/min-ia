@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { useOrgnr } from "../../hooks/useOrgnr";
-import { leggTilBedriftPåUrl } from "../../utils/navigasjon";
 import styles from "./sykefraværsstatistikk.module.scss";
 import { Detail, Heading, Label, Loader } from "@navikt/ds-react";
 import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
@@ -26,11 +25,15 @@ export interface SykefraværsstatistikkProps extends SykefraværsstatistikkData 
   sykefraværsstatistikkUrl: string;
 }
 
+export function leggTilBedriftPåUrl(url: string, orgnr?: string) {
+  return orgnr ? `${url}?bedrift=${orgnr}` : url;
+}
+
 export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
   const orgnr = useOrgnr();
   const sykefraværsstatistikkUrlMedBedrift = leggTilBedriftPåUrl(
     props.sykefraværsstatistikkUrl,
-    orgnr
+    orgnr,
   );
 
   const organisasjonerHvorBrukerHarStatistikktilgang =
@@ -74,7 +77,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
           harTilgangTilOrg={
             (orgnr &&
               organisasjonerHvorBrukerHarStatistikktilgang.status ===
-              RestStatus.Suksess &&
+                RestStatus.Suksess &&
               organisasjonerHvorBrukerHarStatistikktilgang.data
                 .map((org) => org.OrganizationNumber)
                 .includes(orgnr)) ||

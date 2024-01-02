@@ -3,9 +3,9 @@ import ReactToPrint from "react-to-print";
 import React from "react";
 import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
-import { sendKnappEvent } from "../../../amplitude/events";
 import { sendDigitalIaTjenesteMetrikk } from "../../../integrasjoner/ia-tjenestemetrikker-api";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
+import {sendKnappEvent} from "../../../amplitude/amplitude";
 
 export default function LastNedKnapp({
   innholdRef,

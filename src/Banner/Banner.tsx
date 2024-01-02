@@ -3,10 +3,11 @@ import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
-import { sendBedriftValgtEvent } from "../amplitude/events";
 import { useRouter } from "next/router";
 import Bedriftsmeny, { ForebyggeSykefravaer } from "@navikt/bedriftsmeny";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
+
+import {sendBedriftValgtEvent} from "../amplitude/amplitude";
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;

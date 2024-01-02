@@ -2,7 +2,8 @@ import React, { FunctionComponent } from "react";
 import { Link, LinkProps } from "@navikt/ds-react";
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
 import classNames from "classnames";
-import { sendNavigereEvent } from "../../../amplitude/events";
+
+import {sendNavigereEvent} from "../../../amplitude/amplitude";
 
 type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 

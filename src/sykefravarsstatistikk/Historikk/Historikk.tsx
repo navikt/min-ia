@@ -10,9 +10,9 @@ import {
 import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
-import { sendToogleEvent } from "../../amplitude/events";
 import { sendDigitalIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
+import {sendToogleEvent} from "../../amplitude/amplitude";
 
 interface Props {
   restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;

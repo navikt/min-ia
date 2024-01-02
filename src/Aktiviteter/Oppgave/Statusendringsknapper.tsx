@@ -8,7 +8,8 @@ import {
   XMarkIcon,
 } from "@navikt/aksel-icons";
 import { StatusType } from "../AktivitetData";
-import { sendOppgaveStatusEvent } from "../../amplitude/events";
+
+import {sendOppgaveStatusEvent} from "../../amplitude/amplitude";
 
 export function Statusendringsknapper({
   status,

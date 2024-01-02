@@ -2,11 +2,11 @@ import React, { FunctionComponent, useState } from "react";
 import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
-import { sendToggleEvent } from "../../amplitude/events";
 import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
 import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
 import TestVersjonBanner from "../Banner/TestVersjonBanner";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
+import {sendToggleEvent} from "../../amplitude/amplitude";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;

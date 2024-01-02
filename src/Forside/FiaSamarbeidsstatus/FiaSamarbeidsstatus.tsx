@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { Heading, ReadMore } from "@navikt/ds-react";
 import styles from "./fiaSamarbeidsstatus.module.scss"
 import { HandsHeart } from "@navikt/ds-icons";
-import { sendLesMerÅpnetEvent, sendVisSamarbeidsstatusEvent } from "../../amplitude/events";
+
+import {sendLesMerÅpnetEvent, sendVisSamarbeidsstatusEvent} from "../../amplitude/amplitude";
 
 interface FiaSamarbeidsstatusProps{
     status: string;
