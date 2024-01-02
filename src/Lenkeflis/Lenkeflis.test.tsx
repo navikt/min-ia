@@ -4,7 +4,6 @@ import { Lenkeflis } from "./Lenkeflis";
 import { sendNavigereEvent } from "../amplitude/amplitude";
 import { axe } from "jest-axe";
 import { sendDigitalIaTjenesteMetrikk } from "../integrasjoner/ia-tjenestemetrikker-api";
-import send from "send";
 
 jest.mock("../amplitude/amplitude");
 jest.mock("../hooks/useOrgnr", () => ({
