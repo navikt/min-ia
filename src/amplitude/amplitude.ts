@@ -3,7 +3,8 @@ import { track } from "@amplitude/analytics-browser";
 
 export function initAmplitude() {
   amplitude.init("default", undefined, {
-    serverUrl: "amplitude.nav.no/collect-auto",
+    serverUrl: "https://amplitude.nav.no/collect-auto",
+    defaultTracking: false,
     ingestionMetadata: {
       sourceName: window.location.toString().split("?")[0].split("#")[0],
     },
