@@ -1,9 +1,7 @@
-import { Accordion, BodyShort, LinkPanel } from "@navikt/ds-react";
+import { Accordion, BodyShort, Link, LinkPanel } from "@navikt/ds-react";
 import React, { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
-import { LenkeMedEventutsendelse } from "../LenkeMedNavigereEvent/LenkeMedEventutsendelse";
-import { sendNavigereEvent } from "../amplitude/amplitude";
 
 const Lenkepanel: React.FunctionComponent<{
   lenketekst: string;
@@ -13,12 +11,6 @@ const Lenkepanel: React.FunctionComponent<{
     <LinkPanel
       className={styles.inkluderendeArbeidslivPanel__lenkepanel}
       href={destinasjon}
-      onClickCapture={(e) => {
-        e.preventDefault();
-      }}
-      onClick={() => {
-        sendNavigereEvent(destinasjon, lenketekst);
-      }}
     >
       <LinkPanel.Title
         className={styles.inkluderendeArbeidslivPanel__lenkepanel__tittel}
@@ -79,16 +71,17 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               <li>Innsats mot lange og/eller hyppige gjentagende sykefravær</li>
             </ul>
           </div>
-          <LenkeMedEventutsendelse
+          <Link
             href={
               "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/ia-avtalen-20192022/ia-avtalen-20192022/id2623741/"
             }
-            lenketekst="Les mer om IA-avtalen på sidene til regjeringen"
             className={classNames(
               styles.inkluderendeArbeidslivPanel__avsnitt,
               styles.inkluderendeArbeidslivPanel__lenke,
             )}
-          />
+          >
+            Les mer om IA-avtalen på sidene til regjeringen
+          </Link>
           <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>
             <BodyShort
               className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
@@ -116,14 +109,15 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               />
             </div>
           </div>
-          <LenkeMedEventutsendelse
+          <Link
             href={"https://arbeidsgiver.nav.no/forebygge-sykefravaer"}
-            lenketekst="Se fullstendig oversikt over NAVs tilbud her"
             className={classNames(
               styles.inkluderendeArbeidslivPanel__avsnitt,
               styles.inkluderendeArbeidslivPanel__lenke,
             )}
-          />
+          >
+            Se fullstendig oversikt over NAVs tilbud her
+          </Link>
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>
