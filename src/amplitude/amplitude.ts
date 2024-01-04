@@ -35,12 +35,7 @@ export const sendLesMerÅpnetEvent = (emne: string) => {
 export const sendVisSamarbeidsstatusEvent = (status: string) => {
   logAmplitudeEvent("vis samarbeidsstatus", { status });
 };
-export const sendNavigereEvent = (destinasjon: string, lenketekst: string) => {
-  return logAmplitudeEvent("navigere", {
-    destinasjon: destinasjon,
-    lenketekst: lenketekst,
-  });
-};
+
 export const sendKnappEvent = (label: string) => {
   logAmplitudeEvent("knapp", { label });
 };
