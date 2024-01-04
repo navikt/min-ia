@@ -14,7 +14,8 @@ import {
 } from "../../utils/sykefraværshistorikk-utils";
 import { Suksess } from "../../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../../hooks/useSykefraværAppData";
-import { sendKnappEvent } from "../../../amplitude/events";
+
+import {sendKnappEvent} from "../../../amplitude/amplitude";
 
 const defaultLinjer: readonly HistorikkLabel[] = [
   "virksomhet",

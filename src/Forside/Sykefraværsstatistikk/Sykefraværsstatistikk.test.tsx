@@ -6,7 +6,7 @@ import {
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
 import { hentUtSykefraværsstatistikkData } from "../../komponenter/Infographic/datauthenting";
-import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
+import {leggTilBedriftPåUrl, Sykefraværsstatistikk} from "./Sykefraværsstatistikk";
 import { axe } from "jest-axe";
 import { mockAggregertStatistikkMedBransjetall } from "./mockAggregertStatistikkMedBransjetall";
 import { RestStatus } from "../../integrasjoner/rest-status";
@@ -19,6 +19,17 @@ jest.mock("../../../src/hooks/useAltinnOrganisasjoner", () => ({
   useAltinnOrganisasjoner: () => RestStatus.LasterInn,
   useAltinnOrganisasjonerMedStatistikktilgang: () => RestStatus.LasterInn,
 }));
+
+describe("Tester at bedrift legges korrekt til på URL", () => {
+  it("returnerer opprinnelig URL dersom orgnummer er undefined", () => {
+    expect(leggTilBedriftPåUrl("url", undefined)).toBe("url");
+  });
+
+  it("legger på orgnr dersom orgnummer finnes", () => {
+    expect(leggTilBedriftPåUrl("url", "999999999")).toBe("url?bedrift=999999999");
+  });
+});
+
 
 describe("Sykefraværsstatistikk", () => {
   it("viser sykefraværsprosenten for Norge", async () => {

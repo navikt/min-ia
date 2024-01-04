@@ -46,7 +46,7 @@ spec:
     - name: FOREBYGGINGSPLAN_URL
       value: https://forebyggingsplan-frontend.intern.dev.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
-      value: https://min-side-arbeidsgiver.intern.dev.nav.no/min-side-arbeidsgiver
+      value: https://arbeidsgiver.intern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
       value: https://arbeidsgiver-kontakt-oss.dev.nav.no/kontakt-oss
     - name: GRAFANA_AGENT_COLLECTOR_URL

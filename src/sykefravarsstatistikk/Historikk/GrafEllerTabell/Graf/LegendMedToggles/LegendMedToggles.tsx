@@ -6,13 +6,10 @@ import {
   HistorikkLabels,
 } from "../../../../utils/sykefraværshistorikk-utils";
 import { GrafSymbol } from "../GrafSymbol/GrafSymbol";
-import {
-  sendCheckboxFjernet,
-  sendCheckboxLagtTil,
-} from "../../../../../amplitude/events";
 import { useOrgnr } from "../../../../../hooks/useOrgnr";
 import { sendDigitalIaTjenesteMetrikk } from "../../../../../integrasjoner/ia-tjenestemetrikker-api";
 import { MetrikkKilde } from "@navikt/ia-metrikker-client";
+import {sendCheckboxFjernet, sendCheckboxLagtTil} from "../../../../../amplitude/amplitude";
 
 interface Props {
   labels: HistorikkLabels;

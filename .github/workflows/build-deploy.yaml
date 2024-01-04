@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - UU-endringer
+      - amplitude-browser
     paths-ignore:
       - "**.md"
       - "**/**.md"

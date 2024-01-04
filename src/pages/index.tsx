@@ -17,6 +17,7 @@ import { doInitializeFaro } from "../utils/initializeFaro";
 import Lasteside from "../Lasteside";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
+import {initAmplitude} from "../amplitude/amplitude";
 
 interface HomeProps {
   page: PageProps;
@@ -30,6 +31,7 @@ const Home = (props: HomeProps) => {
   React.useEffect(() => {
     if (!props.kjørerMockApp) {
       doInitializeFaro(props.grafanaAgentUrl);
+      initAmplitude()
     }
   });
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
