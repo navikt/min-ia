@@ -48,7 +48,7 @@ spec:
     - name: MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
-      value: https://arbeidsgiver.nav.no/kontakt-oss
+      value: https://www.nav.no/arbeidsgiver/kontaktoss
     - name: GRAFANA_AGENT_COLLECTOR_URL
       value: https://telemetry.nav.no/collect
   tokenx:

@@ -32,7 +32,7 @@ spec:
     - name: MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.ekstern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
-      value: https://arbeidsgiver.nav.no/kontakt-oss
+      value: https://www.nav.no/arbeidsgiver/kontaktoss
     - name: FIA_ARBEIDSGIVER_HOSTNAME
       value: arbeidsgiver.ekstern.dev.nav.no
     - name: PROD_URL
