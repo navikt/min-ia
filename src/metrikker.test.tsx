@@ -3,14 +3,12 @@ import Home from "./pages";
 import { sendDigitalIaTjenesteMetrikk } from "./integrasjoner/ia-tjenestemetrikker-api";
 import { afterEach } from "node:test";
 import Kalkulator from "./pages/kalkulator";
-
-
+import Sykefravarsstatistikk from "./pages/sykefravarsstatistikk";
 
 jest.mock("./integrasjoner/ia-tjenestemetrikker-api", () => ({
   __esModule: true,
   ...jest.requireActual("./integrasjoner/ia-tjenestemetrikker-api"),
   sendDigitalIaTjenesteMetrikk: jest.fn(),
-  sendIaMetrikkInteraksjonstjeneste: jest.fn(),
 }));
 
 jest.mock("./hooks/useOrgnr", () => ({
@@ -23,7 +21,7 @@ jest.mock("./Banner/Banner", () => {
   };
 });
 
-describe("Tester at metrikker blir registrert etter fem sekunder", () => {
+describe("Tester at metrikker blir registrert etter ca fem sekunder", () => {
   beforeEach(() => {
     jest.useFakeTimers();
     jest.resetAllMocks();
@@ -34,7 +32,8 @@ describe("Tester at metrikker blir registrert etter fem sekunder", () => {
     jest.useRealTimers();
   });
 
-  it("Forsiden registrerer levert ia-tjeneste etter fem sekunder", async () => {
+
+  it("Forsiden registrerer ia-metrikker", async () => {
     renderHomePage();
 
     expect(sendDigitalIaTjenesteMetrikk).not.toHaveBeenCalled();
@@ -44,8 +43,20 @@ describe("Tester at metrikker blir registrert etter fem sekunder", () => {
     expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalled();
   });
 
-  it("Kalkulatoren registrerer levert ia-tjeneste etter fem sekunder", async () => {
+
+  it("Kalkulatoren registrerer ia-metrikker", async () => {
     renderKalkulatorPage();
+
+    expect(sendDigitalIaTjenesteMetrikk).not.toHaveBeenCalled();
+
+    jest.advanceTimersByTime(5200);
+
+    expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalled();
+  });
+
+
+  it("Sykefraværsstatistikken registrerer ia-metrikker", async () => {
+    renderSykefraværsstatistikkPage();
 
     expect(sendDigitalIaTjenesteMetrikk).not.toHaveBeenCalled();
 
@@ -76,14 +87,22 @@ function renderHomePage() {
 }
 
 function renderKalkulatorPage() {
-  const kjørerMockApp = true;
   render(
     <Kalkulator
       page={{
         title: "Kalkulator",
         description: "noe",
       }}
-      kjørerMockApp={kjørerMockApp}
+      kjørerMockApp={true}
+      grafanaAgentUrl="grafanaAgentUrl"
+    />,
+  );
+}
+
+function renderSykefraværsstatistikkPage() {
+  render(
+    <Sykefravarsstatistikk
+      kjørerMockApp={true}
       grafanaAgentUrl="grafanaAgentUrl"
     />,
   );

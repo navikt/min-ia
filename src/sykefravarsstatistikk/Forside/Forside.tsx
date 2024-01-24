@@ -175,7 +175,7 @@ export const Forside = ({
               Sykefraværsstatistikk for {navnPåVirksomhet}
             </Heading>
           </div>
-          <LastNedKnapp innholdRef={innholdRef} orgnr={orgnr} />
+          <LastNedKnapp innholdRef={innholdRef} />
           <BodyShort>
             <strong>Organisasjonsnummer: {orgnr}</strong>
           </BodyShort>
