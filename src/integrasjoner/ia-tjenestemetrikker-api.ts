@@ -1,9 +1,9 @@
 import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 
 interface Metrikk {
-  orgnr: String;
-  type: String;
-  kilde: String;
+  orgnr: string;
+  type: string;
+  kilde: string;
 }
 
 const METRIKKER_URL = AUTHENTICATED_BASE_PATH + "/metrikker";
