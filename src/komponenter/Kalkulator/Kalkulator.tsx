@@ -3,10 +3,8 @@ import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
-import { useSendIaTjenesteMetrikkOnEvent } from "../../hooks/useSendIaTjenesteMetrikkOnEvent";
 import TestVersjonBanner from "../Banner/TestVersjonBanner";
-import { MetrikkKilde } from "@navikt/ia-metrikker-client";
-import {sendToggleEvent} from "../../amplitude/amplitude";
+import { sendToggleEvent } from "../../amplitude/amplitude";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;
@@ -21,10 +19,8 @@ export const Fraværskalulator: FunctionComponent<
     prodUrl?: string;
   }
 > = (props) => {
-  useSendIaTjenesteMetrikkOnEvent(
-    MetrikkKilde.KALKULATOR,
-    "inputfeltEndretAvBruker"
-  );
+
+
 
   const [kalkulatorvariant, setKalkulatorvariant] = useState("prosent");
 
@@ -54,7 +50,7 @@ export const Fraværskalulator: FunctionComponent<
                   setKalkulatorvariant(valgtVariant);
                   sendToggleEvent("kalkulatorvariant", valgtVariant);
                   document.dispatchEvent(
-                    new CustomEvent("inputfeltEndretAvBruker")
+                    new CustomEvent("inputfeltEndretAvBruker"),
                   );
                 }}
                 value={kalkulatorvariant}

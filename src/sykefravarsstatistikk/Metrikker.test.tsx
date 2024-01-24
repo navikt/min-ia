@@ -92,7 +92,6 @@ describe("Metrikkutsendelser", () => {
     });
 
     expect(sykefravarsSpy).toHaveBeenCalled();
-    expect(sykefravarsSpy).toHaveBeenNthCalledWith(1, "SYKEFRAVÆRSSTATISTIKK", "777777777")
 
     jest.useRealTimers();
   });

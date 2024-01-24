@@ -20,14 +20,3 @@ export const sendDigitalIaTjenesteMetrikk = async (
   );
 };
 
-export const sendIaMetrikkInteraksjonstjeneste = async (tjeneste: MetrikkKilde, orgnr?: string) => {
-  if (!orgnr) {
-    return Promise.reject("orgnr er udefinert");
-  }
-  return sendIaMetrikk(
-    orgnr,
-    MetrikkType.INTERAKSJONSTJENESTE,
-    tjeneste,
-    METRIKKER_URL
-  );
-};

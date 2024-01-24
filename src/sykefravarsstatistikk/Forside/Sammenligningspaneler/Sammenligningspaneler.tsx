@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { Sammenligningspanel } from "../SammenligningMedBransje/Sammenligningspanel";
 import { SammenligningsType } from "../vurderingstekster";
 import { Statistikkategori } from "../../domene/statistikkategori";
@@ -6,8 +6,7 @@ import { getBransjeEllerNæringKategori } from "./GetBransjeEllerNæringKategori
 import { Skeleton } from "@navikt/ds-react";
 import { RestStatus } from "../../../integrasjoner/rest-status";
 import { RestAggregertStatistikk } from "../../hooks/useSykefraværAppData";
-import { sendDigitalIaTjenesteMetrikk } from "../../../integrasjoner/ia-tjenestemetrikker-api";
-import { MetrikkKilde } from "@navikt/ia-metrikker-client";
+import { useSendIaMetrikkEtterFemSekunder } from "../../../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 
 interface Props {
   aggregertStatistikk: RestAggregertStatistikk;
@@ -17,19 +16,8 @@ interface Props {
 
 export const Sammenligningspaneler: FunctionComponent<Props> = ({
   aggregertStatistikk,
-  orgnr,
-  skalSendeMetrikkerAutomatisk = true,
 }) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (skalSendeMetrikkerAutomatisk) {
-        sendDigitalIaTjenesteMetrikk(MetrikkKilde.SYKEFRAVÆRSSTATISTIKK, orgnr);
-      }
-    }, 5000);
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [orgnr]);
-
+    useSendIaMetrikkEtterFemSekunder();
   if (
     aggregertStatistikk.restStatus === RestStatus.IngenTilgang ||
     aggregertStatistikk.restStatus === RestStatus.IkkeInnlogget
@@ -58,7 +46,7 @@ export const Sammenligningspaneler: FunctionComponent<Props> = ({
   const [virksomhet, bransjeEllerNæring] = [
     aggregertStatistikk.aggregertData?.get(Statistikkategori.VIRKSOMHET),
     aggregertStatistikk.aggregertData?.get(
-      harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING
+      harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING,
     ),
   ];
 
