@@ -23,7 +23,6 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
         onChange={(event) => {
           props.onChange(event);
           sendInputfeltUtfyltEvent(props.label, props.name);
-          document.dispatchEvent(new CustomEvent("inputfeltEndretAvBruker"));
         }}
         type={"text"}
         inputMode={"numeric"}

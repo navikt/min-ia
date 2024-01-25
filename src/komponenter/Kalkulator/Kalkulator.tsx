@@ -19,9 +19,6 @@ export const Fraværskalulator: FunctionComponent<
     prodUrl?: string;
   }
 > = (props) => {
-
-
-
   const [kalkulatorvariant, setKalkulatorvariant] = useState("prosent");
 
   return (
@@ -49,9 +46,6 @@ export const Fraværskalulator: FunctionComponent<
                 onChange={(valgtVariant) => {
                   setKalkulatorvariant(valgtVariant);
                   sendToggleEvent("kalkulatorvariant", valgtVariant);
-                  document.dispatchEvent(
-                    new CustomEvent("inputfeltEndretAvBruker"),
-                  );
                 }}
                 value={kalkulatorvariant}
                 size="medium"
