@@ -48,7 +48,6 @@ export const Forside = ({
 
   const orgnr = useOrgnr() || "";
   const harFeil = appData.aggregertStatistikk.restStatus === RestStatus.Feil;
-  const { skalSendeMetrikkerAutomatisk = true } = appData;
 
   const brukerHarIaRettighetTilValgtBedrift =
     appData.altinnOrganisasjonerMedStatistikktilgang.status ===
@@ -176,7 +175,7 @@ export const Forside = ({
               Sykefraværsstatistikk for {navnPåVirksomhet}
             </Heading>
           </div>
-          <LastNedKnapp innholdRef={innholdRef} orgnr={orgnr} />
+          <LastNedKnapp innholdRef={innholdRef} />
           <BodyShort>
             <strong>Organisasjonsnummer: {orgnr}</strong>
           </BodyShort>
@@ -194,7 +193,6 @@ export const Forside = ({
           />
           <SlikHarViKommetFramTilDittResultat />
           <Sammenligningspaneler
-            skalSendeMetrikkerAutomatisk={skalSendeMetrikkerAutomatisk}
             aggregertStatistikk={appData.aggregertStatistikk}
             orgnr={orgnr}
           />

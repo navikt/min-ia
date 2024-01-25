@@ -6,6 +6,7 @@ import {
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import Sykefraværsstatistikkside from "../sykefravarsstatistikk/Sykefravarsstatistikkside";
+import {useSendIaMetrikkEtterFemSekunder} from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 
 export function AppContent({
   grafanaAgentUrl,
@@ -20,6 +21,7 @@ export function AppContent({
       doInitializeFaro(grafanaAgentUrl, "sykefraværsstatistikk");
     }
   });
+  useSendIaMetrikkEtterFemSekunder()
 
   return (
     <Sykefraværsstatistikkside

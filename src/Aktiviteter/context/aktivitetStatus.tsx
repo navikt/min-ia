@@ -2,12 +2,10 @@ import React from "react";
 import { StatusType } from "../AktivitetData";
 import { AktivitetBrukerStatus } from "../../hooks/useHentAktiviteter";
 import { oppdaterStatus } from "../status-klient";
-import { sendIaMetrikkInteraksjonstjeneste } from "../../integrasjoner/ia-tjenestemetrikker-api";
 import {
   AggregertStatistikkDto,
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
-import {MetrikkKilde} from "@navikt/ia-metrikker-client";
 
 const AktivitetContext = React.createContext<{
   aktivitetStatuser: AktivitetBrukerStatus[];
@@ -73,12 +71,6 @@ export const AktivitetProvider = ({
   );
 };
 
-export const useAktivitetStatuser = () => {
-  const { aktivitetStatuser } = React.useContext(AktivitetContext);
-
-  return { aktivitetStatuser };
-};
-
 export const useStatusForAktivitet = (id: string) => {
   const { aktivitetStatuser } = React.useContext(AktivitetContext);
 
@@ -110,8 +102,6 @@ export const useOppdaterStatus = (
     (status: StatusType) => {
       if (orgnr) {
         oppdaterStatus(aktivitetId, orgnr, status);
-        sendIaMetrikkInteraksjonstjeneste(MetrikkKilde.FOREBYGGINGSPLAN, orgnr);
-
         setLokaleEndringer((tidligereEndringer) => {
           const aktivitetIndex = tidligereEndringer.findIndex(
             (endring) => endring.aktivitetId === aktivitetId

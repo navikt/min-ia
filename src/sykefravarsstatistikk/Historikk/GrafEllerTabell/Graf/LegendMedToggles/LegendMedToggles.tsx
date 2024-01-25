@@ -6,9 +6,6 @@ import {
   HistorikkLabels,
 } from "../../../../utils/sykefraværshistorikk-utils";
 import { GrafSymbol } from "../GrafSymbol/GrafSymbol";
-import { useOrgnr } from "../../../../../hooks/useOrgnr";
-import { sendDigitalIaTjenesteMetrikk } from "../../../../../integrasjoner/ia-tjenestemetrikker-api";
-import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 import {sendCheckboxFjernet, sendCheckboxLagtTil} from "../../../../../amplitude/amplitude";
 
 interface Props {
@@ -32,14 +29,11 @@ export const LegendMedToggles: FunctionComponent<Props> = ({
     land: "",
   };
 
-  const orgnr = useOrgnr() || "";
-
   return (
     <CheckboxGroup
       legend="Velg linjer som skal vises i grafen"
       value={linjerSomSkalVises}
       onChange={(value) => {
-        sendDigitalIaTjenesteMetrikk(MetrikkKilde.SYKEFRAVÆRSSTATISTIKK, orgnr);
         if (value.length > linjerSomSkalVises.length) {
           // Brukeren har lagt til noe
           const verdiLagtTil = value.find(

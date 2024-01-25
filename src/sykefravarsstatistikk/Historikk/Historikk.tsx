@@ -10,8 +10,6 @@ import {
 import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
-import { sendDigitalIaTjenesteMetrikk } from "../../integrasjoner/ia-tjenestemetrikker-api";
-import { MetrikkKilde } from "@navikt/ia-metrikker-client";
 import {sendToogleEvent} from "../../amplitude/amplitude";
 
 interface Props {
@@ -20,7 +18,7 @@ interface Props {
 }
 
 const Historikk: FunctionComponent<Props> = (props) => {
-  const { restSykefraværsstatistikk, orgnr } = props;
+  const { restSykefraværsstatistikk} = props;
   const [grafEllerTabell, setGrafEllerTabell] = useState<"graf" | "tabell">(
     "graf"
   );
@@ -47,7 +45,6 @@ const Historikk: FunctionComponent<Props> = (props) => {
               const grafEllerTabell = value as "graf" | "tabell";
               setGrafEllerTabell(grafEllerTabell);
               sendToogleEvent(grafEllerTabell);
-              sendDigitalIaTjenesteMetrikk(MetrikkKilde.SYKEFRAVÆRSSTATISTIKK, orgnr)
             }}
           >
             <ToggleGroup.Item value="graf">Graf</ToggleGroup.Item>

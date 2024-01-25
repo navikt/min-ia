@@ -16,6 +16,7 @@ import Head from "next/head";
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
+import {useSendIaMetrikkEtterFemSekunder} from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 
 export default function Kalkulator(props: {
   page: PageProps;
@@ -28,6 +29,8 @@ export default function Kalkulator(props: {
       doInitializeFaro(props.grafanaAgentUrl);
     }
   });
+  useSendIaMetrikkEtterFemSekunder();
+
   const organisasjonerRespons = useAltinnOrganisasjoner();
   const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
     ? organisasjonerRespons.data

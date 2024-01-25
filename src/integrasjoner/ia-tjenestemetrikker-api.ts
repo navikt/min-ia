@@ -1,33 +1,31 @@
-import { METRIKKER_URL } from "../utils/konstanter";
-import {
-  MetrikkKilde,
-  MetrikkType,
-  sendIaMetrikk,
-} from "@navikt/ia-metrikker-client";
+import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 
-export const sendDigitalIaTjenesteMetrikk = async (
-  tjeneste: MetrikkKilde,
-  orgnr?: string
-) => {
+interface Metrikk {
+  orgnr: string;
+  type: string;
+  kilde: string;
+}
+
+const METRIKKER_URL = AUTHENTICATED_BASE_PATH + "/metrikker";
+
+export const sendDigitalIaTjenesteMetrikk = async (orgnr?: string) => {
   if (!orgnr) {
     return Promise.reject("orgnr er udefinert");
   }
-  return sendIaMetrikk(
-    orgnr,
-    MetrikkType.DIGITAL_IA_TJENESTE,
-    tjeneste,
-    METRIKKER_URL
-  );
-};
 
-export const sendIaMetrikkInteraksjonstjeneste = async (tjeneste: MetrikkKilde, orgnr?: string) => {
-  if (!orgnr) {
-    return Promise.reject("orgnr er udefinert");
-  }
-  return sendIaMetrikk(
-    orgnr,
-    MetrikkType.INTERAKSJONSTJENESTE,
-    tjeneste,
-    METRIKKER_URL
-  );
+  const metrikk: Metrikk = {
+    orgnr: orgnr,
+    type: "DIGITAL_IA_TJENESTE",
+    kilde: "FOREBYGGE_FRAVÆR",
+  };
+
+  return await fetch(METRIKKER_URL, {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify(metrikk),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 };
