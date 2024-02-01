@@ -21,7 +21,7 @@ export default {
   async headers() {
     return [
       {
-        // Apply these headers to all routes in your application.
+        // Applies these headers to all routes in your application.
         source: "/:path*",
         headers: [
           {
@@ -48,6 +48,10 @@ export default {
             key: "Content-Security-Policy",
             value: cspString,
           },
+          {
+            key: "Set-Cookie",
+            value: "SameSite=Strict;"
+          }
         ],
       },
     ];
