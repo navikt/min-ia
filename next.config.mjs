@@ -21,7 +21,7 @@ export default {
   async headers() {
     return [
       {
-        // Apply these headers to all routes in your application.
+        // Applies these headers to all routes in your application.
         source: "/:path*",
         headers: [
           {
