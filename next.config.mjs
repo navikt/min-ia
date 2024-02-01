@@ -48,10 +48,6 @@ export default {
             key: "Content-Security-Policy",
             value: cspString,
           },
-          {
-            key: "Set-Cookie",
-            value: "SameSite=Strict;"
-          }
         ],
       },
     ];
