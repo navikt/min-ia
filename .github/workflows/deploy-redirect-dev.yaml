@@ -13,9 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Deploy sykefravarsstatistikk redirect ingress to dev
-        uses: nais/deploy/actions/deploy@master
+        uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: "\
             .nais/redirect-sykefravarsstatistikk-dev.yaml,\
