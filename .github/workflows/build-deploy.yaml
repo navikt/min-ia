@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - samesite
+      - flytte-applikasjon-over-til-pia
     paths-ignore:
       - "**.md"
       - "**/**.md"
@@ -44,7 +44,7 @@ jobs:
         uses: nais/docker-build-push@v0
         id: docker-push
         with:
-          team: teamia
+          team: pia
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           salsa: false
