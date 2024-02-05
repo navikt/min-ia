@@ -6,6 +6,10 @@ on:
       - ".github/workflows/deploy-redirect-dev.yaml"
       - ".nais/redirect-sykefravarsstatistikk-dev.yaml"
       - ".nais/redirect-forebyggingsplan-dev.yaml"
+
+permissions:
+  id-token: write
+
 jobs:
   deploy:
     name: Deploy redirect ingresses to dev-gcp

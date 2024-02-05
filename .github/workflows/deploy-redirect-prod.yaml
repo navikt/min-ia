@@ -3,12 +3,16 @@ run-name: Deploy ingresses to prod | ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
-      - 'main'
+      - main
     paths:
       - '.nais/redirect-sykefravarsstatistikk-prod.yaml'
       - '.github/workflows/deploy-redirect-prod.yaml'
       - '.nais/redirect-forebyggingsplan-prod.yaml'
       - '.nais/redirect-samtalestotte-prod.yaml'
+
+permissions:
+  id-token: write
+
 jobs:
   deploy:
     name: Deploy redirect ingresses to prod-gcp
