@@ -6,16 +6,19 @@ on:
       - ".github/workflows/deploy-redirect-dev.yaml"
       - ".nais/redirect-sykefravarsstatistikk-dev.yaml"
       - ".nais/redirect-forebyggingsplan-dev.yaml"
+
+permissions:
+  id-token: write
+
 jobs:
   deploy:
     name: Deploy redirect ingresses to dev-gcp
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Deploy sykefravarsstatistikk redirect ingress to dev
-        uses: nais/deploy/actions/deploy@master
+        uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: "\
             .nais/redirect-sykefravarsstatistikk-dev.yaml,\
