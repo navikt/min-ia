@@ -2,10 +2,10 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: min-ia
-  namespace: teamia
+  namespace: pia
   labels:
-    team: teamia
-    created-by: teamia
+    team: pia
+    created-by: pia
 spec:
   groups:
     - name: min-ia-alerts
@@ -17,10 +17,10 @@ spec:
             consequence: "Forebygge fravær er utilgjengelig"
             action: |-
               Sjekk helsa til applikasjonen ved å kjøre
-              `kubectl describe pod <podname> -n teamia` og 
-              `kubectl logs <podname> -n teamia`"
+              `kubectl describe pod <podname> -n pia` og 
+              `kubectl logs <podname> -n pia`"
           labels:
-            namespace: teamia
+            namespace: pia
             severity: critical
 
         - alert: ErrorLogRegistrert
@@ -31,5 +31,5 @@ spec:
               Sjekk logs.adeo.no for logger, 
               eller Grafana-dashboardet vårt: https://grafana.nais.io/dashboards/f/cvOhCMUnz/team-ia
           labels:
-            namespace: teamia
+            namespace: pia
             severity: warning

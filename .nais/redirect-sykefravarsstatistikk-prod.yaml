@@ -7,9 +7,9 @@ metadata:
     prometheus.io/scrape: "false"
   labels:
     app: min-ia
-    team: teamia
+    team: pia
   name: prod-redirect-sykefravarsstatistikk-to-forebygge-fravar
-  namespace: teamia
+  namespace: pia
 spec:
   ingressClassName: nais-ingress-external
   rules:
