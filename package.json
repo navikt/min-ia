@@ -52,7 +52,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock": "^6.5.0",
+    "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock": "^6.5.1",
     "@navikt/eslint-config-teamia": "^1.0.7",
     "@testing-library/jest-dom": "^6.1.3",
     "@testing-library/react": "^14.0.0",
