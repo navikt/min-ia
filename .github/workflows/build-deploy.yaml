@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - flytte-applikasjon-over-til-pia
+      - packageupdate
     paths-ignore:
       - "**.md"
       - "**/**.md"
