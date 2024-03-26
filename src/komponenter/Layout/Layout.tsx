@@ -3,7 +3,6 @@ import Banner from "../../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
 import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
 
 export const Layout = (props: {
