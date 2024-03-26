@@ -6,7 +6,7 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { useRouter } from "next/router";
 import Bedriftsmeny, { ForebyggeSykefravaer } from "@navikt/bedriftsmeny";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
-
+import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
 import {sendBedriftValgtEvent} from "../amplitude/amplitude";
 
 interface Props {

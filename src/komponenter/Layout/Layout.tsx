@@ -4,6 +4,7 @@ import { Heading, Ingress } from "@navikt/ds-react";
 import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
+import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
 
 export const Layout = (props: {
   title: string;
