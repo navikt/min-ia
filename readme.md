@@ -11,11 +11,12 @@ Landingsside for selvbetjente IA-tjenester
 - Åpne applikasjonen på `http://localhost:3000/forebygge-fravar` (for Safari browser, legg til `"ws://localhost:3000",` i `connect-src` variabel i `sp.js` fil.
 
 # Kjøre applikasjonen med Docker:
-0. Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
-1. Start container runtime (f.eks docker desktop eller colima)
-2. Kjør `docker build . -t min-ia` fra rotmappen
-3. Kjør `docker run -p 3000:3000 --env-file=.env.example --env-file=.env.local min-ia` fra rotmappen.
-4. For å stoppe, kjør `docker kill <id>`, hvor id-en hentes ved å kjøre `docker ps`
+0. Om du ikke har gjort det før: kjør `yarn build`
+1. Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
+2. Start container runtime (f.eks docker desktop eller colima)
+3. Kjør `docker build . -t min-ia` fra rotmappen
+4. Kjør `docker run -p 3000:3000 min-ia` fra rotmappen.
+5. For å stoppe, kjør `docker kill <id>`, hvor id-en hentes ved å kjøre `docker ps`
 
 ---
 
