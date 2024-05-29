@@ -16,7 +16,7 @@
     }
 
     .aktivitet {
-      .accordionHeader > span {
+      .accordionHeader > span:nth-child(2) {
         width: 100%;
 
         /* tilsvarer heading size="medium" */

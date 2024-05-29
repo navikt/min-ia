@@ -16,6 +16,10 @@ const customJestConfig = {
     "^uuid$": "uuid",
     "@navikt/ds-css": "jest-transform-stub",
   },
+  testEnvironmentOptions: {
+    customExportConditions: [""],
+  },
+  setupFiles: ["./jest.polyfills.js"],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

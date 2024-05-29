@@ -1,4 +1,4 @@
-import { rest } from "msw";
+import { http } from "msw";
 import { setupServer } from "msw/node";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import { RestStatus, Suksess } from "../integrasjoner/rest-status";
@@ -10,8 +10,13 @@ beforeEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 const notSuksessResponse = (url: string, statusCode: number) => {
-  return rest.get(url, (req, res, ctx) => {
-    return res(ctx.status(statusCode));
+  return http.get(url, () => {
+    return new Response(undefined, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: statusCode,
+    });
   });
 };
 
@@ -20,8 +25,13 @@ describe("useRestRessursSWR", () => {
     const suksessUrl = "https://dummy.api/suksess";
 
     server.use(
-      rest.get(suksessUrl, (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json({ key: "dummy data" }));
+      http.get(suksessUrl, () => {
+        return new Response(JSON.stringify({ key: "dummy data" }), {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          status: 200,
+        });
       })
     );
 
@@ -73,8 +83,13 @@ describe("useRestRessursSWR", () => {
 
   it("should return status Feil when resource is not found", async () => {
     server.use(
-      rest.get("https://dummy.api/404", (req, res, ctx) => {
-        return res(ctx.status(404));
+      http.get("https://dummy.api/404", () => {
+        return new Response(undefined, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          status: 404,
+        });
       })
     );
 
