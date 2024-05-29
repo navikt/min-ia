@@ -59,6 +59,9 @@ export default function Kalkulator(props: {
   return (
     <>
       <Head>
+        {props.kjørerMockApp ? (
+          <meta name="robots" content="noindex" />
+        ) : undefined}
         <title>{props.page.title}</title>
       </Head>
       <Layout
