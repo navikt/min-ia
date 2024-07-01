@@ -12,6 +12,7 @@ import Document, {
 } from "next/document";
 import React from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
+import { isMockApp } from "../utils/envUtils";
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (
@@ -25,6 +26,7 @@ const getDocumentParameter = (
 interface Props {
   Decorator: DecoratorComponents;
   language: string;
+  kjørerMockApp: boolean;
 }
 
 const { decoratorEnv, thisPageUrl } = lesOgValiderMiljøvariablerForDekoratør();
@@ -54,14 +56,19 @@ export default class MyDocument extends Document<Props> {
 
     const language = getDocumentParameter(initialProps, "lang");
 
-    return { ...initialProps, Decorator, language };
+    return { ...initialProps, Decorator, language, kjørerMockApp: isMockApp() };
   }
 
   render(): JSX.Element {
-    const { Decorator, language } = this.props;
+    const { Decorator, language, kjørerMockApp } = this.props;
     return (
       <Html lang={language || "no"}>
         <Head>
+          {
+            kjørerMockApp ? (
+              <meta name="robots" content="noindex" />
+            ) : undefined
+          }
           <Decorator.Styles />
           <link
             rel="icon"
