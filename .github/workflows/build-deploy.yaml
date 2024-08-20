@@ -47,7 +47,6 @@ jobs:
           team: pia
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          salsa: false
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
 
@@ -91,3 +90,20 @@ jobs:
           CLUSTER: prod-gcp
           IMAGE: ${{ needs.docker-build-push.outputs.image }}
           RESOURCE: .nais/prod.yaml
+
+  trivy-scan:
+    name: Scanner docker image med Trivy
+    if: github.ref == 'refs/heads/main'
+    needs: docker-build-push
+    permissions:
+      contents: read # to write sarif
+      security-events: write # push sarif to GitHub security
+      id-token: write # for nais/login
+    runs-on: ubuntu-latest
+    steps:
+      - uses: navikt/pia-actions/trivy-scan@v1 # https://github.com/navikt/pia-actions/tree/main/trivy-scan
+        with:
+          image: ${{ needs.docker-build-push.outputs.image }}
+          team: pia
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
