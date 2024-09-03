@@ -1,7 +1,7 @@
 import styles from "./Artikkel.module.scss";
 import {BodyLong, Heading, Link} from "@navikt/ds-react";
 import Image from "next/image";
-import artikkelBildeLiten from "./artikkelBilde_liten.png"
+import artikkelBilde from "./artikkelBilde.png"
 import {ExternalLinkIcon} from '@navikt/aksel-icons';
 
 
@@ -22,7 +22,7 @@ export function Artikkel() {
             <div className={styles.lenkeflisInnhold}>
                 <Image
                     className={styles.lenkeflisBilde}
-                    src={artikkelBildeLiten}
+                    src={artikkelBilde}
                     width={50}
                     height={50}
                     alt="illustrasjon"
