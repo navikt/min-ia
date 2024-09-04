@@ -12,6 +12,7 @@ import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
+import {Artikkel} from "../Artikkel/Artikkel";
 
 export interface ForsideProps {
   sykefraværsstatistikkUrl: string;
@@ -52,6 +53,7 @@ export const Forside = (props: ForsideProps) => {
       <div className={styles.forside}>
         {props.children}
         {sykefraværsstatistikkEllerBannerHvisError}
+        <Artikkel/>
         <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
         {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
           fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (

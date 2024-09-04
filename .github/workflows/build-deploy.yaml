@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - packageupdate
+      - lenke-til-artikkel-om-rekruttering
     paths-ignore:
       - "**.md"
       - "**/**.md"

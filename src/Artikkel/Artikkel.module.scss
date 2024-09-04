@@ -1,0 +1,24 @@
+@use "../styles/screensize";
+
+.lenkeflis {
+  display: flex;
+  flex-direction: column;
+  padding: var(--a-spacing-6);
+  background-color: var(--a-green-100);
+}
+
+.lenkeflisInnhold{
+  display: flex;
+  flex-direction: row;
+}
+
+.lenkeflisBilde{
+  border-radius: 4px;
+  max-height: 80px;
+  max-width: 100px;
+  margin-right: 2rem;
+}
+.lenkeflisInnholdTittelOgTekst{
+  align-content: center;
+  flex-direction: column;
+}
