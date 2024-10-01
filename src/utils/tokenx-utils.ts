@@ -40,7 +40,7 @@ export async function exchangeIdportenSubjectToken(
 
   if (token == null) {
     return {
-      errorType: "IDPORTEN_TOKEN_INVALID", // TODO: Hvilken error skal vi gi her?
+      errorType: "NO_AUTH_HEADER_FOUND",
       message: "No token found in authorization header.",
     };
   }
