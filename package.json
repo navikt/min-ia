@@ -55,7 +55,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@navikt/arbeidsgiver-notifikasjoner-brukerapi-mock": "^7.0.0",
     "@navikt/eslint-config-teamia": "^1.0.8",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
