@@ -1,5 +1,5 @@
 import styles from "./StatistikkPanel.module.scss";
-import { Panel, Tooltip } from "@navikt/ds-react";
+import { Box, Tooltip } from "@navikt/ds-react";
 
 interface StatistikkPanelProps {
   trend?: string;
@@ -16,14 +16,14 @@ export const StatistikkPanel = ({
 }: StatistikkPanelProps) => {
   return (
     <Tooltip content={tooltip}>
-      <Panel className={`${styles.statistikk}`}>
+      <Box className={`${styles.statistikk}`}>
         <span>{tittel}</span>
         <span className={styles.prosent}>{`${sykefravær.replace(
           ".",
           ","
         )}%`}</span>
         <span>{trendBeskrivelse(trend)}</span>
-      </Panel>
+      </Box>
     </Tooltip>
   );
 };

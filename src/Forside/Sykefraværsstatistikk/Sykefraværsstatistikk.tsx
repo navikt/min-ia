@@ -4,11 +4,11 @@ import styles from "./sykefraværsstatistikk.module.scss";
 import { Detail, Heading, Label, Loader } from "@navikt/ds-react";
 import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
-import { DataFilled } from "@navikt/ds-icons";
 import "./sykefraværsstatistikk.module.scss";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjoner";
+import { BarChartFillIcon } from "@navikt/aksel-icons";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
@@ -77,7 +77,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
           harTilgangTilOrg={
             (orgnr &&
               organisasjonerHvorBrukerHarStatistikktilgang.status ===
-                RestStatus.Suksess &&
+              RestStatus.Suksess &&
               organisasjonerHvorBrukerHarStatistikktilgang.data
                 .map((org) => org.OrganizationNumber)
                 .includes(orgnr)) ||
@@ -141,7 +141,7 @@ function Sykefraværsstatistikkinnhold({
       <Lenkeflis
         overskrift={`Sykefraværs${SOFT_HYPHEN}statistikken`}
         href={sykefraværsstatistikkUrlMedBedrift}
-        ikon={<DataFilled aria-hidden />}
+        ikon={<BarChartFillIcon aria-hidden />}
       />
     );
   }

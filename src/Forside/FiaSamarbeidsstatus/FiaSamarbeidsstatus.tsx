@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { Heading, ReadMore } from "@navikt/ds-react";
 import styles from "./fiaSamarbeidsstatus.module.scss"
-import { HandsHeart } from "@navikt/ds-icons";
+import { HandShakeHeartIcon } from "@navikt/aksel-icons";
 
-import {sendLesMerÅpnetEvent, sendVisSamarbeidsstatusEvent} from "../../amplitude/amplitude";
+import { sendLesMerÅpnetEvent, sendVisSamarbeidsstatusEvent } from "../../amplitude/amplitude";
 
-interface FiaSamarbeidsstatusProps{
+interface FiaSamarbeidsstatusProps {
     status: string;
 }
 
 const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (props) => {
 
-    useEffect(()=> {
+    useEffect(() => {
         sendVisSamarbeidsstatusEvent(props.status)
     }, [props.status])
 
@@ -19,7 +19,7 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
         <div className={styles.fiaSamarbeidsstatus}>
             <Heading size={"large"} level={"2"} className={styles.fiaSamarbeidsstatusTittelMedIkon}>
                 <div className={styles.ikonWrapper}>
-                    <HandsHeart aria-hidden />
+                    <HandShakeHeartIcon aria-hidden />
                 </div>
                 Dere er i et forebyggende samarbeid med NAV
 
