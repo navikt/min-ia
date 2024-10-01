@@ -1,8 +1,4 @@
-import {
-  grantTokenXOboToken,
-  isInvalidTokenSet,
-  validateIdportenToken,
-} from "@navikt/next-auth-wonderwall";
+import { requestOboToken, validateToken, getToken } from "@navikt/oasis";
 import { IncomingMessage } from "http";
 
 export type TokenXResult = TokenXError | string;
@@ -17,7 +13,7 @@ export type TokenXError = {
 };
 
 export function isInvalidToken(
-  tokenXResult: TokenXResult,
+  tokenXResult: TokenXResult
 ): tokenXResult is TokenXError {
   return typeof tokenXResult !== "string";
 }
@@ -28,7 +24,7 @@ export function isInvalidToken(
  */
 export async function exchangeIdportenSubjectToken(
   request: IncomingMessage,
-  audience: string,
+  audience: string
 ): Promise<TokenXResult> {
   const authHeader = request.headers["authorization"];
 
@@ -40,31 +36,40 @@ export async function exchangeIdportenSubjectToken(
     };
   }
 
-  const validationResult = await validateIdportenToken(authHeader);
-  if (validationResult !== "valid") {
+  const token = getToken(request);
+
+  if (token == null) {
+    return {
+      errorType: "NO_AUTH_HEADER_FOUND",
+      message: "No token found in authorization header.",
+    };
+  }
+
+  const validationResult = await validateToken(token);
+  if (!validationResult.ok) {
     console.log(
-      `Failed to validate due to: ${validationResult.errorType} ${validationResult.message}`,
+      `Failed to validate due to: ${validationResult.errorType} ${validationResult.error.message}`
     );
     return {
       errorType: "IDPORTEN_TOKEN_INVALID",
-      message: validationResult.message,
+      message: validationResult.error.message,
       error: validationResult.error,
     };
   }
 
   const validSubjectToken = authHeader.replace("Bearer ", "");
 
-  const grantResult = await grantTokenXOboToken(validSubjectToken, audience);
-  if (isInvalidTokenSet(grantResult)) {
+  const grantResult = await requestOboToken(validSubjectToken, audience);
+  if (!grantResult.ok) {
     console.error(
-      `TokenX failed: ${grantResult.errorType} ${grantResult.message}`,
+      `TokenX failed: ${grantResult.error.cause} ${grantResult.error.message}`
     );
     return {
       errorType: "TOKENX_FAILED",
-      message: grantResult.message,
+      message: grantResult.error.message,
       error: grantResult.error,
     };
   }
 
-  return grantResult;
+  return grantResult.token;
 }
