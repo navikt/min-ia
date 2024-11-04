@@ -4,10 +4,10 @@ import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import { useRouter } from "next/router";
-import Bedriftsmeny, { ForebyggeSykefravaer } from "@navikt/bedriftsmeny";
+import Bedriftsmeny from "@navikt/bedriftsmeny";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
-import {sendBedriftValgtEvent} from "../amplitude/amplitude";
+import { sendBedriftValgtEvent } from "../amplitude/amplitude";
 
 interface Props {
   tittelMedUnderTittel: string | JSX.Element;
@@ -54,7 +54,6 @@ const Banner: React.FunctionComponent<Props> = ({
         organisasjoner={altinnOrganisasjoner}
         sidetittel={tittelMedUnderTittel}
         onOrganisasjonChange={onOrganisasjonChange}
-        piktogram={<ForebyggeSykefravaer />}
         orgnrSearchParam={useOrgnrHook}
       >
         <NotifikasjonWidget />
