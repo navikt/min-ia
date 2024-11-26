@@ -1174,10 +1174,10 @@
     "@apollo/client" "^3.10.8"
     graphql "^16.9.0"
 
-"@navikt/bedriftsmeny@^7.0.3":
-  version "7.0.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/bedriftsmeny/7.0.3/ddebffde12356069fb5590ca71a12ec6b9372180#ddebffde12356069fb5590ca71a12ec6b9372180"
-  integrity sha512-1jErlbYsLTczkJxMm5+3xghpc0gad3ehEJkRzUdXMU/omD/W0fdhjgKcXbAmO2FUuQ/7a5IpV+nCkQbgSAmQ3g==
+"@navikt/bedriftsmeny@^7.0.4":
+  version "7.0.4"
+  resolved "https://npm.pkg.github.com/download/@navikt/bedriftsmeny/7.0.4/c67480e76df44e11026d2d969adfaa5beb5a9b09#c67480e76df44e11026d2d969adfaa5beb5a9b09"
+  integrity sha512-dYIru7bbjUkDkKPCV/6VdBfqzjS/68cESyqYgQgR3WwdKJcLQUOnIak7HldxTByTjEBks9Ad34vdfCFkwS3wCg==
   dependencies:
     focus-trap-react "^10.2.2"
     fuzzysort "^1.1.4"
