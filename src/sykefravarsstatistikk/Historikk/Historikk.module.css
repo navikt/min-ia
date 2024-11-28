@@ -26,7 +26,7 @@ a.csv-download-link {
 }
 
 .historikk__overdel-wrapper {
-    padding: 2rem 0 0;
+    padding: .5rem 0;
 }
 
 .historikk__ingress {
@@ -62,7 +62,7 @@ a.csv-download-link {
 
 @media (min-width: 768px) {
     .historikk__wrapper {
-        padding: 2rem 0;
+        padding: 1rem 2rem;
     }
 
     .historikk__overdel-wrapper {

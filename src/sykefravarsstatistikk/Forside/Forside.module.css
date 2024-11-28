@@ -1,5 +1,5 @@
 .forside {
-    max-width: 60rem;
+    max-width: 90rem;
     margin: 0 auto 0;
 
     display: flex;
@@ -11,8 +11,29 @@
     padding: 1.5rem 1rem 5rem;
 }
 
+.forside__header_kun_print {
+    display: none;
+}
+
+.forside__wrapper_to_kolonner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+}
+
+.forside__wrapper_venstre_kolonne {
+    display: flex;
+    flex-direction: column;
+    min-height: 20rem;
+
+}
+
+.forside__mer_om_statistikk {
+    display: none;
+}
+
 .forside__innhold {
-    background: white;
     padding: 2rem 1.5rem;
     width: 100%;
     border-radius: 0.25rem;
@@ -39,16 +60,37 @@
 }
 
 .forside__innhold__header {
-    display: block;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 1.5rem 1rem 1rem;
+    border: 1px solid var(--a-border-default);
+    border-radius: var(--a-border-radius-small);
+    background: white;
+    justify-content: space-between;
+    /*display: block;*/
+}
+
+.forside__innhold__header_last_ned {
+    margin-right: 2rem;
+    /*justify-content: flex-end;*/
 }
 
 .forside__innhold__href {
     display: none;
 }
 
+.forside__wrapper_venstre_kolonne {
+    display: flex;
+    flex-direction: column;
+    min-height: 20rem;
+
+}
+
+
 @media print, (min-width: 768px) {
     .forside__innhold {
-        padding: 2rem;
+        padding: 2rem 5rem;
     }
 
     .forside__innhold__knapp {
@@ -59,6 +101,9 @@
 }
 
 @media print {
+    .forside__header_kun_print {
+        display: block;
+    }
     .forside__innhold__kun-print {
         display: block;
         page-break-before: always;
@@ -75,6 +120,9 @@
         display: block;
         padding-bottom: 1rem;
     }
+    .forside__mer_om_statistikk {
+        display: none;
+    }
 }
 
 .lenkepanelWrapper {
@@ -85,6 +133,22 @@
 
 }
 @media (min-width: 768px) {
+    .forside__mer_om_statistikk {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 0;
+        min-height: 20rem;
+        height: fit-content;
+        width: 42rem;
+        /*width: 100%;*/
+        background: white;
+        padding: 1.5rem 1rem 1rem;
+        margin-left: 2rem;
+        border: 1px solid var(--a-border-default);
+        border-radius: var(--a-border-radius-small);
+    }
+
     .lenkepanelWrapper {
         grid-template-columns: repeat(2, 1fr);
     }

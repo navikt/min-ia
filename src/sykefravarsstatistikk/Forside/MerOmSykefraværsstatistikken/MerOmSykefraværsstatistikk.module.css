@@ -1,0 +1,44 @@
+.mer_om_statistikk__store_flater {
+    display: none;
+}
+
+.mer_om_statistikk {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 1.5rem 1rem 1rem;
+    margin-top: 2rem;
+    border: 1px solid var(--a-border-default);
+    border-radius: var(--a-border-radius-small);
+}
+
+@media print {
+    .mer_om_statistikk__store_flater {
+        display: none;
+    }
+
+    .mer_om_statistikk {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .mer_om_statistikk__store_flater {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 0;
+        min-height: 20rem;
+        height: fit-content;
+        width: 42rem;
+        background: white;
+        padding: 1.5rem 1rem 1rem;
+        margin-left: 2rem;
+        border: 1px solid var(--a-border-default);
+        border-radius: var(--a-border-radius-small);
+    }
+
+    .mer_om_statistikk {
+        display: none;
+    }
+}
