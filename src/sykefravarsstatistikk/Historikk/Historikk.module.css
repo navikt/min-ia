@@ -22,7 +22,7 @@ a.csv-download-link {
     width: 100%;
     background-color: white;
     min-height: 50rem;
-    padding: 2rem 0;
+    padding: 1rem 2rem;
 }
 
 .historikk__overdel-wrapper {
@@ -61,10 +61,6 @@ a.csv-download-link {
 }
 
 @media (min-width: 768px) {
-    .historikk__wrapper {
-        padding: 1rem 2rem;
-    }
-
     .historikk__overdel-wrapper {
         display: flex;
         flex-wrap: wrap;

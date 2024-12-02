@@ -61,19 +61,24 @@
 
 .forside__innhold__header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
+    justify-content: space-between;
+    background: white;
     padding: 1.5rem 1rem 1rem;
     border: 1px solid var(--a-border-default);
     border-radius: var(--a-border-radius-small);
-    background: white;
-    justify-content: space-between;
-    /*display: block;*/
 }
 
-.forside__innhold__header_last_ned {
-    margin-right: 2rem;
-    /*justify-content: flex-end;*/
+.forside__innhold__header_tekst {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.forside__innhold__header_last_ned_knapp {
+    display: flex;
+    padding: 1rem;
 }
 
 .forside__innhold__href {
@@ -84,7 +89,6 @@
     display: flex;
     flex-direction: column;
     min-height: 20rem;
-
 }
 
 
@@ -132,7 +136,16 @@
     margin: 1rem 0 1rem 0;
 
 }
+
 @media (min-width: 768px) {
+    .forside__innhold {
+    }
+
+    .forside__innhold__header {
+        display: flex;
+        flex-direction: row;
+    }
+
     .forside__mer_om_statistikk {
         display: flex;
         flex-direction: column;
@@ -141,13 +154,13 @@
         min-height: 20rem;
         height: fit-content;
         width: 42rem;
-        /*width: 100%;*/
         background: white;
         padding: 1.5rem 1rem 1rem;
         margin-left: 2rem;
         border: 1px solid var(--a-border-default);
         border-radius: var(--a-border-radius-small);
     }
+
 
     .lenkepanelWrapper {
         grid-template-columns: repeat(2, 1fr);

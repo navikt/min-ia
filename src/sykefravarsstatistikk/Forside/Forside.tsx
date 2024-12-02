@@ -179,7 +179,7 @@ export const Forside = ({
                     <div className={styles["forside__wrapper_to_kolonner"]}>
                         <div className={styles["forside__wrapper_venstre_kolonne"]}>
                             <div className={styles["forside__innhold__header"]}>
-                                <div>
+                                <div className={styles["forside__innhold__header_tekst"]}>
                                     <PeriodeForStatistikk
                                         restPubliseringsdatoer={appData.publiseringsdatoer}
                                     />
@@ -194,7 +194,7 @@ export const Forside = ({
                                     </BodyShort>
 
                                 </div>
-                                <div className={styles["forside__innhold__header_last_ned"]}>
+                                <div className={styles["forside__innhold__header_last_ned_knapp"]}>
                                     <LastNedKnapp innholdRef={innholdRef}/>
                                 </div>
                             </div>
