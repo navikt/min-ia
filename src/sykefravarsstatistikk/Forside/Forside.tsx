@@ -54,8 +54,7 @@ export const Forside = ({
             .map((org) => org.OrganizationNumber)
             .includes(orgnr);
 
-    const innholdRef = useRef<HTMLDivElement>(null);
-
+    const innholdRef = useRef<HTMLDivElement | null>(null);
     const loading = React.useMemo(() => {
         return [
             appData.aggregertStatistikk.restStatus,
@@ -84,12 +83,9 @@ export const Forside = ({
                         kjørerMockApp={kjørerMockApp}
                     />
                     <div className={styles["forside__innhold"]}>
-                        <div className={styles["forside__innhold__header"]}>
-                            <PrintOnlyHref/>
-                            <Heading spacing size="medium" level="2" as="span">
-                                <Skeleton width="65%"/>
-                            </Heading>
-                        </div>
+                        <Heading spacing size="medium" level="2" as="span">
+                            <Skeleton width="65%"/>
+                        </Heading>
                         <Skeleton
                             variant="rectangle"
                             width={105}
