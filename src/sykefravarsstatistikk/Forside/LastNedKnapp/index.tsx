@@ -1,6 +1,6 @@
 import {Button} from "@navikt/ds-react";
 import {useReactToPrint} from "react-to-print";
-import React from "react";
+import React, {useRef} from "react";
 import {DownloadIcon} from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
 import {sendKnappEvent} from "../../../amplitude/amplitude";
@@ -10,7 +10,7 @@ export default function LastNedKnapp({
                                      }: {
     innholdRef: React.RefObject<HTMLDivElement>;
 }) {
-    const lastNedKnappRef = React.useRef<HTMLButtonElement>();
+    const lastNedKnappRef = useRef<HTMLButtonElement | null>(null);
     const printFn = useReactToPrint({
         onBeforePrint: () => {
             sendKnappEvent("skriv ut");

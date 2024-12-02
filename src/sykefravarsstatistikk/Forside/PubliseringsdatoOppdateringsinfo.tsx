@@ -11,11 +11,11 @@ export const PubliseringsdatoOppdateringsinfo: FunctionComponent<{
         const publiseringsdatoer = restPubliseringsdatoer.data;
         return (
             <div>
-                <BodyShort spacing size="medium" level="2">
+                <BodyShort spacing size="medium">
                     <span style={{fontWeight: "bold"}}>Sist oppdatert: {" "}</span>
                     {formatterDatoMedMånedNavn(new Date(publiseringsdatoer.sistePubliseringsdato))}
                 </BodyShort>
-                <BodyShort spacing size="medium" level="2">
+                <BodyShort spacing size="medium">
                     {isFinite(
                             new Date(publiseringsdatoer.nestePubliseringsdato).getDate()
                         ) &&
