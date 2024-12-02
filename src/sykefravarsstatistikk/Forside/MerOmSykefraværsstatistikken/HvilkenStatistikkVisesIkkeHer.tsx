@@ -7,7 +7,7 @@ import {sendPanelEkspanderEvent} from "../../../amplitude/amplitude";
 export const HvilkenStatistikkVisesIkkeHer: FunctionComponent = () => {
   const panelHeader = "Hvilken statistikk vises ikke her?";
   const panelHeaderMedStyle =
-      <>Hvilken statistikk vises <span style={{fontWeight: "bold", textDecoration: "underline" }}>ikke</span> her?</>
+      <>Hvilken statistikk vises <span style={{textDecoration: "underline"}}>ikke</span> her?</>
   return (
     <ReadMore
       header={panelHeaderMedStyle}

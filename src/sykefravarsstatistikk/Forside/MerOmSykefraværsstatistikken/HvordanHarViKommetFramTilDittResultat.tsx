@@ -19,12 +19,12 @@ export const HvordanHarViKommetFramTilDittResultat: FunctionComponent = () => {
         className={styles["slik-har-vi-kommet-fram-til-ditt-resultat__innhold"]}
       >
         <BodyShort spacing>
-          Legemeldt sykefravær i sammenligningen er hentet fra
-          sykefraværsstatistikken som NAV og Statistisk sentralbyrå (SSB)
-          utarbeider. Vi viser ikke egenmeldt sykefravær.
+          Resultatene er basert på legemeldt sykefravær og sammenligningen er hentet fra
+          sykefraværsstatistikken som Nav og Statistisk sentralbyrå (SSB)
+          utarbeider.
         </BodyShort>
         <BodyShort spacing>
-          Du kan lese mer om datakilder og utregning på{" "}
+          Les mer om datakilder og utregning på{" "}
           <EksternLenke href="https://www.nav.no/no/nav-og-samfunn/statistikk/sykefravar-statistikk/sykefravar/om-statistikken-sykefravaer">
             «Om statistikken – sykefravær» på nav.no
           </EksternLenke>

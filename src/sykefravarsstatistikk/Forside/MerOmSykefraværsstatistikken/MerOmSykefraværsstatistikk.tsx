@@ -15,7 +15,7 @@ export const MerOmSykefraværsstatistikk = ({synnligPåStoreFlater}: MerOmSykefr
     return (
         <div className={styles[classNames]}>
             <Heading spacing size="small" level="2">
-                Mer om sykefraværsstatistikk
+                Mer om sykefraværsstatistikken
             </Heading>
             <HvordanHarViKommetFramTilDittResultat/>
             <HvilkenStatistikkVisesIkkeHer/>
