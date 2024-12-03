@@ -1,33 +1,30 @@
 .last-ned-knapp > span {
   display: flex;
+  min-width: 8rem;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
-.høyrestilt-last-ned-knapp {
-  float: right;
-  margin-top: 20px;
-  text-decoration: none;
+.last-ned-knapp-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-@media print, (min-width: 768px) {
-  .responsiv-last-ned-knapp {
-    display: block;
-    position: absolute;
-    right: 2rem;
+@media (min-width: 768px) {
+  .last-ned-knapp-wrapper {
+    justify-content: flex-end;
   }
 }
 
 @media print {
-  .responsiv-last-ned-knapp {
+  .last-ned-knapp > span {
     display: none;
   }
-}
 
-@media print {
-  .responsiv-last-ned-knapp {
+  .last-ned-knapp {
     display: none;
   }
 }
