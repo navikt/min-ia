@@ -29,10 +29,6 @@
 
 }
 
-.forside__mer_om_statistikk {
-    display: none;
-}
-
 .forside__innhold {
     padding: 2rem 1.5rem;
     width: 100%;
@@ -91,8 +87,12 @@
     min-height: 20rem;
 }
 
-
 @media print, (min-width: 768px) {
+    .forside__innhold__header {
+        display: flex;
+        flex-direction: row;
+    }
+
     .forside__innhold {
         padding: 2rem 5rem;
     }
@@ -123,43 +123,5 @@
     .forside__innhold__href {
         display: block;
         padding-bottom: 1rem;
-    }
-    .forside__mer_om_statistikk {
-        display: none;
-    }
-}
-
-.lenkepanelWrapper {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(1, 1fr);
-    margin: 1rem 0 1rem 0;
-
-}
-
-@media (min-width: 768px) {
-    .forside__innhold__header {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .forside__mer_om_statistikk {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 0;
-        min-height: 20rem;
-        height: fit-content;
-        width: 42rem;
-        background: white;
-        padding: 1.5rem 1rem 1rem;
-        margin-left: 2rem;
-        border: 1px solid var(--a-border-default);
-        border-radius: var(--a-border-radius-small);
-    }
-
-
-    .lenkepanelWrapper {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
