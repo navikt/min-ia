@@ -2,13 +2,20 @@ import * as amplitude from "@amplitude/analytics-browser";
 import { track } from "@amplitude/analytics-browser";
 
 export function initAmplitude() {
-  amplitude.init("default", undefined, {
-    serverUrl: "https://amplitude.nav.no/collect-auto",
-    defaultTracking: false,
-    ingestionMetadata: {
-      sourceName: window.location.toString().split("?")[0].split("#")[0],
-    },
-  });
+    amplitude.init(
+        "default",
+        undefined,
+        {
+            serverUrl: "https://amplitude.nav.no/collect-auto",
+            autocapture: false,
+            identityStorage: "localStorage",
+            trackingOptions: {
+                ipAddress: false,
+            },
+            ingestionMetadata: {
+                sourceName: window.location.toString().split("?")[0].split("#")[0],
+            },
+        });
 }
 
 async function logAmplitudeEvent(event: string, data?: Record<string, unknown>): Promise<void> {
@@ -41,29 +48,29 @@ export const sendKnappEvent = (label: string) => {
 };
 
 export function sendToogleEvent(tekst: "graf" | "tabell") {
-  logAmplitudeEvent("toogle", { tekst });
+    logAmplitudeEvent("toogle", {tekst});
 }
 
 export function sendCheckboxLagtTil(label?: string) {
-  logAmplitudeEvent("checkbox-lagt-til", { label });
+    logAmplitudeEvent("checkbox-lagt-til", {label});
 }
 
 export function sendCheckboxFjernet(label?: string) {
-  logAmplitudeEvent("checkbox-fjernet", { label });
+    logAmplitudeEvent("checkbox-fjernet", {label});
 }
 
 export function sendPanelEkspanderEvent(panelnavn: string) {
-  logAmplitudeEvent("panel-ekspander", { panelnavn });
+    logAmplitudeEvent("panel-ekspander", {panelnavn});
 }
 
 export function sendOppgaveStatusEvent(status: string, oppgavetittel: string) {
-  logAmplitudeEvent("knapp", { status, oppgavetittel });
+    logAmplitudeEvent("knapp", {status, oppgavetittel});
 }
 
 export function sendÅpneAktivitetEvent(oppgavetittel: string) {
-  logAmplitudeEvent("Accordion åpnet", { tekst: oppgavetittel });
+    logAmplitudeEvent("Accordion åpnet", {tekst: oppgavetittel});
 }
 
 export const sendBedriftValgtEvent = () => {
-  logAmplitudeEvent("bedrift valgt");
+    logAmplitudeEvent("bedrift valgt");
 };
