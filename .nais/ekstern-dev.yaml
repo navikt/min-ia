@@ -57,5 +57,8 @@ spec:
     - https://arbeidsgiver.ekstern.dev.nav.no/forebygge-fravar
   accessPolicy:
     outbound:
+      rules:
+        - application: nav-dekoratoren
+          namespace: personbruker
       external:
         - host: dekoratoren.ekstern.dev.nav.no

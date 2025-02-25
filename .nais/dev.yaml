@@ -86,6 +86,8 @@ spec:
           namespace: pia
         - application: forebyggingsplan
           namespace: teamia
+        - application: nav-dekoratoren
+          namespace: personbruker
       external:
         - host: arbeidsgiver.intern.dev.nav.no
         - host: dekoratoren.dev.nav.no
