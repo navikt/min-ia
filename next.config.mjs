@@ -9,7 +9,6 @@ const __filename = fileURLToPath(import.meta.url);
 export default {
   reactStrictMode: true,
   basePath: "/forebygge-fravar",
-  swcMinify: true,
   output: "standalone",
   i18n: {
     locales: ["no"],

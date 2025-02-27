@@ -1,4 +1,4 @@
-@import "../styles/screensize";
+@use "../styles/screensize" as *;
 
 .banner > div > div {
   @media(min-width: $screen-md) {
