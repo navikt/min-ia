@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, ReactElement } from "react";
 import styles from "./Sammenligningspanel.module.css";
 import { Speedometer } from "../Speedometer/Speedometer";
 import {
@@ -86,7 +86,7 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
     sammenligningsType
   );
 
-  const getPaneltittel = (): JSX.Element | string => {
+  const getPaneltittel = (): ReactElement | string => {
     switch (sammenligningsType) {
       case SammenligningsType.TOTALT:
         return "Legemeldt sykefravær";
