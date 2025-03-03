@@ -52,12 +52,12 @@ export const Forside = (props: ForsideProps) => {
             />
             <div className={styles.forside}>
                 {props.children}
+                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"}/>
                 {sykefraværsstatistikkEllerBannerHvisError}
                 {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
                     fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
                         <>
                             <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid}/>
-                            <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"}/>
                         </>
                     )}
                 <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData}/>
