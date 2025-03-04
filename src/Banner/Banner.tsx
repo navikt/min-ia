@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import "@navikt/bedriftsmeny/lib/bedriftsmeny.css";
 import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
@@ -10,7 +10,7 @@ import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
 import { sendBedriftValgtEvent } from "../amplitude/amplitude";
 
 interface Props {
-  tittelMedUnderTittel: string | JSX.Element;
+  tittelMedUnderTittel: string | ReactElement;
   altinnOrganisasjoner: AltinnOrganisasjon[];
 }
 

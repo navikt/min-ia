@@ -1,14 +1,14 @@
-import {Button} from "@navikt/ds-react";
-import {useReactToPrint} from "react-to-print";
-import React, {useRef} from "react";
-import {DownloadIcon} from "@navikt/aksel-icons";
+import { Button } from "@navikt/ds-react";
+import { useReactToPrint } from "react-to-print";
+import React, { useRef } from "react";
+import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
-import {sendKnappEvent} from "../../../amplitude/amplitude";
+import { sendKnappEvent } from "../../../amplitude/amplitude";
 
 export default function LastNedKnapp({
-                                         innholdRef,
-                                     }: {
-    innholdRef: React.RefObject<HTMLDivElement>;
+    innholdRef,
+}: {
+    innholdRef: React.RefObject<HTMLDivElement | null>;
 }) {
     const lastNedKnappRef = useRef<HTMLButtonElement | null>(null);
     const printFn = useReactToPrint({
@@ -34,7 +34,7 @@ export default function LastNedKnapp({
             className={`${styles["last-ned-knapp"]}`}
             onClick={() => printFn()}
         >
-            <DownloadIcon title={"Nedlastingsikon"} fontSize="1.75rem"/>
+            <DownloadIcon title={"Nedlastingsikon"} fontSize="1.75rem" />
             Last ned
         </Button>
     );

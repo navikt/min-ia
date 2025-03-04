@@ -10,7 +10,7 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import React from "react";
+import React, { ReactElement } from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
 import { isMockApp } from "../utils/envUtils";
 
@@ -59,7 +59,7 @@ export default class MyDocument extends Document<Props> {
     return { ...initialProps, Decorator, language, kjørerMockApp: isMockApp() };
   }
 
-  render(): JSX.Element {
+  render(): ReactElement {
     const { Decorator, language, kjørerMockApp } = this.props;
     return (
       <Html lang={language || "no"}>
