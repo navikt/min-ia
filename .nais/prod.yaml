@@ -75,6 +75,13 @@ spec:
   prometheus:
     enabled: true
     path: /forebygge-fravar/internal/metrics
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
+    logging:
+      destinations:
+        - id: loki
   accessPolicy:
     outbound:
       rules:
