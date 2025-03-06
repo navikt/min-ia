@@ -18,9 +18,9 @@ export default async function handler(
     if (!req.query.orgnr)
         return res.status(400).json({error: "Mangler parameter 'orgnr'"});
 
-    const erIProd = !(process.env.NAIS_CLUSTER === "dev-gcp" || process.env.NODE_ENV === "development");
+    const erIProd = !(process.env.NAIS_CLUSTER_NAME === "dev-gcp" || process.env.NODE_ENV === "development");
     if (erIProd) {
-        backendLogger.warn(`Endepunkt /aggregert er ikke tilgjengelig i cluster '${process.env.NAIS_CLUSTER}' eller NODE_ENV '${process.env.NODE_ENV}'`);
+        backendLogger.warn(`Endepunkt /aggregert er ikke tilgjengelig i cluster '${process.env.NAIS_CLUSTER_NAME}' eller NODE_ENV '${process.env.NODE_ENV}'`);
         return res.status(400).json({
             error: "Endepunkt er ikke tilgjengelig"
         });
