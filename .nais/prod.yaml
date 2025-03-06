@@ -81,10 +81,10 @@ spec:
       runtime: nodejs
       destinations:
         - id: "grafana-lgtm"
-  logging:
-    destinations:
-      - id: loki
-      - id: elastic
+    logging:
+      destinations:
+        - id: loki
+        - id: elastic
   accessPolicy:
     outbound:
       rules:
