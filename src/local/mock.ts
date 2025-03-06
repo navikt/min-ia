@@ -60,13 +60,15 @@ export default async function mockRequest(req: NextRequest) {
   }
 
   if (
-    req.url?.includes(
-      "/api/authenticated/sykefravarsstatistikk/aggregert?orgnr="
-    )
+      req.nextUrl.pathname.includes(
+          "/api/authenticated/sykefravarsstatistikk/aggregert"
+      ) || req.nextUrl.pathname.includes(
+          "/api/authenticated/sykefravarsstatistikk/v2/aggregert"
+      )
   ) {
     const orgnr = req.nextUrl.searchParams.get("orgnr") as string;
     console.log(
-      `[DEBUG] GET /api/authenticated/sykefravarsstatistikk/aggregert?orgnr=${orgnr}`
+        `[DEBUG] GET ${req.nextUrl.pathname}  - w/ params: ${req.nextUrl.searchParams}`
     );
 
     let aggregertStatistikkMock;
@@ -94,6 +96,7 @@ export default async function mockRequest(req: NextRequest) {
     await new Promise((r) => setTimeout(r, delayInMillis));
     return new NextResponse(JSON.stringify(aggregertStatistikkMock), {
       status: 200,
+      headers: {'content-type': 'application/json'},
     });
   }
 
