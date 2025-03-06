@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - next-15
+      - endre-logg-niva-ved-validering-av-token
     paths-ignore:
       - "**.md"
       - "**/**.md"

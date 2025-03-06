@@ -19,7 +19,7 @@ export default async function proxyRequestWithTokenExchange(
   const newAuthToken = await exchangeIdportenSubjectToken(req, audience);
 
   if (isInvalidToken(newAuthToken)) {
-    backendLogger.error("token is invalid");
+      backendLogger.info(`Token er ikke gyldig. Kan skyldes at bruker ikke er innlogget, token har gått ut eller feil ved verifisering av tokenet. Årsak: ${newAuthToken.errorType}`);
     return res.status(401).json({ error: "authentication failed" });
   }
 
