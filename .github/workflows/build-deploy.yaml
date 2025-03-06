@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - endre-logg-niva-ved-validering-av-token
+      - ta-i-bruk-pia-s19k-endepunkter
     paths-ignore:
       - "**.md"
       - "**/**.md"
