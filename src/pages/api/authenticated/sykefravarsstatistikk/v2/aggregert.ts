@@ -31,6 +31,7 @@ export default async function handler(
         return res.status(400).json({error: "Ugyldig orgnr"});
     }
 
+    backendLogger.info(`Kaller pia-sykefraværsstatistikk for '${orgnr}'`);
     return await proxyRequestWithTokenExchange(
         req,
         res,

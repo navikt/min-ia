@@ -62,7 +62,7 @@ export async function exchangeIdportenSubjectToken(
   const grantResult = await requestOboToken(validSubjectToken, audience);
   if (!grantResult.ok) {
     console.error(
-      `TokenX failed: ${grantResult.error.cause} ${grantResult.error.message}`
+        `TokenX failed: cause:'${grantResult.error.cause}', message:'${grantResult.error.message}'`
     );
     return {
       errorType: "TOKENX_FAILED",
