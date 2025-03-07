@@ -37,7 +37,7 @@ export default async function handler(
         `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
         `/sykefravarsstatistikk/${orgnr}/historikk/kvartalsvis`,
         process.env.PIA_SYKEFRAVARSSTATISTIKK_AUDIENCE,
-        true
+        false
     );
 }
 

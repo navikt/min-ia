@@ -39,7 +39,7 @@ export default async function handler(
         `${process.env.PIA_SYKEFRAVARSSTATISTIKK_HOSTNAME}`,
         `/sykefravarsstatistikk/${orgnr}/siste4kvartaler/aggregert`,
         process.env.PIA_SYKEFRAVARSSTATISTIKK_AUDIENCE,
-        true,
+        false,
     );
 }
 
