@@ -10,7 +10,7 @@ spec:
   port: 3000
   env:
     - name: PIA_SYKEFRAVARSSTATISTIKK_HOSTNAME
-      value: pia-sykefravarsstatistikk
+      value: pia-sykefravarsstatistikk.pia
     - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
       value: sykefravarsstatistikk-api.dev-fss-pub.nais.io
     - name: FOREBYGGINGSPLAN_API_BASEURL
