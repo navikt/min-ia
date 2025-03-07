@@ -13,6 +13,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ) {
+    backendLogger.info(`[DEBUG] mottok request på endepunkt /api/authenticated/sykefravarsstatistikk/v2/aggregert`);
     if (req.method !== "GET")
         return res.status(405).json({error: "Method Not Allowed"});
     if (!req.query.orgnr)
