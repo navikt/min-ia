@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - ta-i-bruk-pia-s19k-endepunkter
+      - router-upgrade
     paths-ignore:
       - "**.md"
       - "**/**.md"
