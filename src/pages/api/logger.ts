@@ -29,6 +29,7 @@ function isNonEmptyStringArray(message: unknown): message is NonEmptyStringArray
   try{
     z.string().array().min(1).parse(message)
     return true
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return false
   }
