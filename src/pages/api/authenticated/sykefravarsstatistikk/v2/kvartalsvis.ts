@@ -34,7 +34,7 @@ export default async function handler(
     return await proxyRequestWithTokenExchange(
         req,
         res,
-        `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
+        `${process.env.PIA_SYKEFRAVARSSTATISTIKK_HOSTNAME}`,
         `/sykefravarsstatistikk/${orgnr}/historikk/kvartalsvis`,
         process.env.PIA_SYKEFRAVARSSTATISTIKK_AUDIENCE,
         false
