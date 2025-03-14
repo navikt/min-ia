@@ -26,7 +26,6 @@ export const getProdUrl = (path?: string) => {
 
 export type Tjeneste =
   | "Sykefraværsstatistikk"
-  | "Forebyggingsplan"
   | "Min Side Arbeidsgiver"
   | "Kontakt Oss";
 
@@ -41,9 +40,6 @@ export const hentUrlFraMiljøvariabel = (tjeneste: Tjeneste) => {
       break;
     case "Kontakt Oss":
       url = process.env.KONTAKT_OSS_ARBEIDSGIVER_URL;
-      break;
-    case "Forebyggingsplan":
-      url = process.env.FOREBYGGINGSPLAN_URL;
       break;
   }
   if (!url) {
