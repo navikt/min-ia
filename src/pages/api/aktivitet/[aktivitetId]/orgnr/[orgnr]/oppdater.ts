@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { erGyldigOrgnr } from "../../../../../../hooks/useOrgnr";
-import { backendLogger } from "../../../../../../utils/backendLogger";
+import {anonymizeOrgnr, backendLogger} from "../../../../../../utils/backendLogger";
 import {
   exchangeIdportenSubjectToken,
   isInvalidToken,
@@ -45,7 +45,7 @@ export default async function handler(
   }
 
   const oppdaterUrl = `http://${process.env.FOREBYGGINGSPLAN_API_BASEURL}/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`;
-  backendLogger.info(`Kaller oppdatering av aktivitet på URL '${oppdaterUrl}'`);
+  backendLogger.info(`Kaller oppdatering av aktivitet på URL '${anonymizeOrgnr(oppdaterUrl)}'`);
   const respons = await fetch(
       oppdaterUrl,
     {
