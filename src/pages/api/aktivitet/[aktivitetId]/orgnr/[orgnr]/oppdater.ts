@@ -44,8 +44,10 @@ export default async function handler(
     return res.status(401).json({ error: "authentication failed" });
   }
 
+  const oppdaterUrl = `http://${process.env.FOREBYGGINGSPLAN_API_BASEURL}/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`;
+  backendLogger.info(`Kaller oppdatering av aktivitet på URL '${oppdaterUrl}'`);
   const respons = await fetch(
-    `http://${process.env.FOREBYGGINGSPLAN_API_BASEURL}/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`,
+      oppdaterUrl,
     {
       method: "POST",
       headers: {
@@ -56,5 +58,6 @@ export default async function handler(
     },
   );
 
+  backendLogger.info(`Fikk følgende status på /oppdater: '${respons.status}'`);
   return res.status(respons.status).json({ status: respons.status });
 }
