@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - router-upgrade
+      - bruk-service-discovery-til-forebyggingsplan
     paths-ignore:
       - "**.md"
       - "**/**.md"

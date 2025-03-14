@@ -14,7 +14,7 @@ spec:
     - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
       value: sykefravarsstatistikk-api.dev-fss-pub.nais.io
     - name: FOREBYGGINGSPLAN_API_BASEURL
-      value: forebyggingsplan.teamia.svc.cluster.local
+      value: forebyggingsplan.teamia
     - name: FOREBYGGINGSPLAN_API_AUDIENCE
       value: dev-gcp:teamia:forebyggingsplan
     - name: IA_TJENESTER_METRIKKER_HOSTNAME
@@ -47,8 +47,6 @@ spec:
       value: fia-arbeidsgiver.pia
     - name: SYKEFRAVARSSTATISTIKK_URL
       value: https://forebygge-fravar.intern.dev.nav.no/forebygge-fravar/sykefravarsstatistikk
-    - name: FOREBYGGINGSPLAN_URL
-      value: https://forebyggingsplan-frontend.intern.dev.nav.no/forebyggingsplan
     - name: MIN_SIDE_ARBEIDSGIVER_URL
       value: https://arbeidsgiver.intern.dev.nav.no/min-side-arbeidsgiver
     - name: KONTAKT_OSS_ARBEIDSGIVER_URL
