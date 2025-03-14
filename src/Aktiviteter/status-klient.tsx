@@ -1,4 +1,5 @@
 import { StatusType } from "./AktivitetData";
+import {API_BASE_PATH} from "../utils/konstanter";
 
 export const oppdaterStatus = async (
   aktivitetId: string,
@@ -6,7 +7,7 @@ export const oppdaterStatus = async (
   status: StatusType
 ) => {
   return await fetch(
-    `forebygge-fravar/api/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`,
+      `${API_BASE_PATH}/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`,
     {
       method: "POST",
       body: JSON.stringify({ status }),
