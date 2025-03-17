@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { erGyldigOrgnr } from "../../../../hooks/useOrgnr";
 import proxyRequestWithTokenExchange from "../../../../utils/api-proxy";
-import {anonymizeOrgnr, backendLogger} from "../../../../utils/backendLogger";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,7 +14,6 @@ export default async function handler(
 
   const hostnavn = `${process.env.FOREBYGGINGSPLAN_API_BASEURL}`;
   const sti = `/aktiviteter/orgnr/${orgnr}`;
-  backendLogger.info(`Kaller oppdatering av aktivitet på hostname '${hostnavn}' og sti '${anonymizeOrgnr(sti)}'`);
   return await proxyRequestWithTokenExchange(
     req,
     res,
