@@ -53,7 +53,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             <BodyShort
               className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
             >
-              Målene i IA-avtalen for perioden 2019-2024 er:
+              Målene i IA-avtalen for perioden 2025-2028 er:
             </BodyShort>
             <ul>
               <li>Redusere sykefraværet</li>
@@ -64,11 +64,11 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             <BodyShort
               className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
             >
-              For å nå målene er det valgt ut to innsatsområder:
+              Innsatsområder for avtalen:
             </BodyShort>
             <ul>
-              <li>Forebyggende arbeidsmiljøarbeid</li>
-              <li>Innsats mot lange og/eller hyppige gjentagende sykefravær</li>
+              <li>Forsterket forebyggende arbeidsmiljøinnsats</li>
+              <li>Bedre oppfølging av sykmeldte</li>
             </ul>
           </div>
           <Link
