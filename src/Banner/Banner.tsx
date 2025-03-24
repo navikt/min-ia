@@ -56,10 +56,25 @@ const Banner: React.FunctionComponent<Props> = ({
         onOrganisasjonChange={onOrganisasjonChange}
         orgnrSearchParam={useOrgnrHook}
       >
-        <NotifikasjonWidget />
+        <SSRSafeNotifikasjonWidget />
       </Bedriftsmeny>
     </div>
   );
 };
+
+function SSRSafeNotifikasjonWidget() {
+  const [kanRendres, setKanRendres] = useState(false);
+  React.useEffect(() => {
+    setKanRendres(true);
+  }, []);
+
+  if (!kanRendres) {
+    return null;
+  }
+
+  return (
+    <NotifikasjonWidget />
+  );
+}
 
 export default Banner;
