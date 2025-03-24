@@ -11,7 +11,7 @@ export default async function handler(
     `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
     `/sykefravarsstatistikk-api/publiseringsdato`,
     process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE,
-      false
+      true
   );
 }
 

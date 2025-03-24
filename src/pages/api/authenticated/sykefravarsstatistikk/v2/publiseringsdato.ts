@@ -23,7 +23,7 @@ export default async function handler(
         `${process.env.PIA_SYKEFRAVARSSTATISTIKK_HOSTNAME}`,
         `/sykefravarsstatistikk/publiseringsdato`,
         process.env.PIA_SYKEFRAVARSSTATISTIKK_AUDIENCE,
-        true
+        false
     );
 }
 
