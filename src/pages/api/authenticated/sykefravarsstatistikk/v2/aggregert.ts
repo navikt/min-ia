@@ -20,7 +20,7 @@ export default async function handler(
 
     const erIProd = !(process.env.NAIS_CLUSTER_NAME === "dev-gcp" || process.env.NODE_ENV === "development");
     if (erIProd) {
-        backendLogger.warn(`Endepunkt /aggregert er ikke tilgjengelig i cluster '${process.env.NAIS_CLUSTER_NAME}' eller NODE_ENV '${process.env.NODE_ENV}'`);
+        backendLogger.warn(`Endepunkt /v2/aggregert er ikke tilgjengelig i cluster '${process.env.NAIS_CLUSTER_NAME}' eller NODE_ENV '${process.env.NODE_ENV}'`);
         return res.status(400).json({
             error: "Endepunkt er ikke tilgjengelig"
         });
