@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - bruk-service-discovery-til-forebyggingsplan
+      - vise-label-bransje-eller-næring
     paths-ignore:
       - "**.md"
       - "**/**.md"

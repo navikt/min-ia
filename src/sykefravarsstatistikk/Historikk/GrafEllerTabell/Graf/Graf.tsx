@@ -14,6 +14,7 @@ interface Props {
   linjerSomKanVises: HistorikkLabel[];
   linjerSomSkalVises: HistorikkLabel[];
   setLinjerSomSkalVises: (linjer: HistorikkLabel[]) => void;
+    harStatistikkForBransje: boolean;
 }
 
 const Graf: FunctionComponent<Props> = (props) => {
@@ -27,6 +28,7 @@ const Graf: FunctionComponent<Props> = (props) => {
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={linjerSomSkalVises}
         setLinjerSomSkalVises={setLinjerSomSkalVises}
+        harStatistikkForBransje={props.harStatistikkForBransje}
       />
       <GrafVisning
         kvartalsvisSammenligning={props.kvartalsvisSammenligning}

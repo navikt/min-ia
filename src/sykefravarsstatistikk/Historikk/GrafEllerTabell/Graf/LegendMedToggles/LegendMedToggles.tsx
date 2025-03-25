@@ -13,6 +13,7 @@ interface Props {
   linjerSomKanVises: HistorikkLabel[];
   linjerSomSkalVises: HistorikkLabel[];
   setLinjerSomSkalVises: (linjer: HistorikkLabel[]) => void;
+  harStatistikkForBransje?: boolean;
 }
 
 export const LegendMedToggles: FunctionComponent<Props> = ({
@@ -20,11 +21,12 @@ export const LegendMedToggles: FunctionComponent<Props> = ({
   linjerSomKanVises,
   linjerSomSkalVises,
   setLinjerSomSkalVises,
+                                                             harStatistikkForBransje = false,
 }) => {
   const prefikser: { [linje in HistorikkLabel]: string } = {
     virksomhet: "Virksomhet:",
     overordnetEnhet: "Overordnet enhet:",
-    næringEllerBransje: "Bransje:",
+    næringEllerBransje: harStatistikkForBransje ? "Bransje:" : "Næring:",
     sektor: "Sektor:",
     land: "",
   };

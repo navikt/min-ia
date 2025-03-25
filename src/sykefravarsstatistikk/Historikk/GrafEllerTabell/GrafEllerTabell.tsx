@@ -4,6 +4,7 @@ import Tabell from "./Tabell/Tabell";
 import {
   getHistorikkLabels,
   historikkHarOverordnetEnhet,
+  historikkHarStatistikkForBransje,
   konverterTilKvartalsvisSammenligning,
 } from "../../utils/sykefraværshistorikk-utils";
 import { CsvDownloadLink } from "../../Forside/LastNedKnapp/CsvDownloadLink";
@@ -42,6 +43,10 @@ export default function GrafEllerTabell({
   restSykefraværsstatistikk: Suksess<KvartalsvisSykefraværshistorikk[]>;
   grafEllerTabell: string;
 }) {
+  const harStatistikkForBransje = historikkHarStatistikkForBransje(
+      restSykefraværsstatistikk.data
+  );
+
   const harOverordnetEnhet = historikkHarOverordnetEnhet(
     restSykefraværsstatistikk.data
   );
@@ -63,12 +68,14 @@ export default function GrafEllerTabell({
           {...grafLinjerSomSkalVisesResult}
           kvartalsvisSammenligning={kvartalsvisSammenligning}
           historikkLabels={historikkLabels}
+          harStatistikkForBransje={harStatistikkForBransje}
         />
       ) : (
         <Tabell
           kvartalsvisSammenligning={kvartalsvisSammenligningReversed}
           historikkLabels={historikkLabels}
           harOverordnetEnhet={harOverordnetEnhet}
+          harStatistikkForBransje={harStatistikkForBransje}
         />
       )}
       <CsvDownloadLink
