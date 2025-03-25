@@ -129,6 +129,15 @@ export const konverterTilKvartalsvisSammenligning = (
   );
 };
 
+export const historikkHarStatistikkForBransje = (
+    historikkListe: KvartalsvisSykefraværshistorikk[]
+): boolean =>
+    !!historikkListe.find(
+        (historikk) =>
+            historikk.type === Statistikkategori.BRANSJE &&
+            historikk.kvartalsvisSykefraværsprosent.length > 0
+    );
+
 export const historikkHarOverordnetEnhet = (
   historikkListe: KvartalsvisSykefraværshistorikk[]
 ): boolean =>

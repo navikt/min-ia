@@ -4,6 +4,7 @@ import Tabellrader from "./Tabellrader";
 import {
   getHistorikkLabels,
   historikkHarOverordnetEnhet,
+  historikkHarStatistikkForBransje,
   HistorikkLabels,
   konverterTilKvartalsvisSammenligning,
   KvartalsvisSammenligning,
@@ -16,12 +17,14 @@ export interface TabellProps {
   kvartalsvisSammenligning: KvartalsvisSammenligning[];
   harOverordnetEnhet: boolean;
   historikkLabels: HistorikkLabels;
+  harStatistikkForBransje: boolean;
 }
 
 const Tabell: FunctionComponent<TabellProps> = ({
   kvartalsvisSammenligning,
   historikkLabels,
   harOverordnetEnhet,
+                                                  harStatistikkForBransje,
 }) => {
   const headerOverordnetEnhet = () => {
     if (harOverordnetEnhet) {
@@ -45,7 +48,7 @@ const Tabell: FunctionComponent<TabellProps> = ({
             </Table.HeaderCell>
             {headerOverordnetEnhet()}
             <Table.HeaderCell scope="col" align="right">
-              Bransje: {historikkLabels.næringEllerBransje}
+              {harStatistikkForBransje ? "Bransje: " : "Næring: "} {historikkLabels.næringEllerBransje}
             </Table.HeaderCell>
             <Table.HeaderCell scope="col" align="right">
               Sektor: {historikkLabels.sektor}
@@ -87,6 +90,9 @@ export function hentTabellProps(
       harOverordnetEnhet,
       historikkLabels,
       kvartalsvisSammenligning: kvartalsvisSammenligningReversed,
+      harStatistikkForBransje: historikkHarStatistikkForBransje(
+          restSykefraværsstatistikk.data
+      )
     };
   }
 }
