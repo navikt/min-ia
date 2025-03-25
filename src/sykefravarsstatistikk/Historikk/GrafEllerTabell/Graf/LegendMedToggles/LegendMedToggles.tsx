@@ -21,7 +21,7 @@ export const LegendMedToggles: FunctionComponent<Props> = ({
   linjerSomKanVises,
   linjerSomSkalVises,
   setLinjerSomSkalVises,
-                                                             harStatistikkForBransje = false,
+                                                             harStatistikkForBransje,
 }) => {
   const prefikser: { [linje in HistorikkLabel]: string } = {
     virksomhet: "Virksomhet:",
