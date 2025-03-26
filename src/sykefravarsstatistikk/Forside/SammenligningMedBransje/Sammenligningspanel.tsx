@@ -1,17 +1,14 @@
-import React, { FunctionComponent, ReactElement } from "react";
+import React, {FunctionComponent, ReactElement} from "react";
 import styles from "./Sammenligningspanel.module.css";
-import { Speedometer } from "../Speedometer/Speedometer";
-import {
-  getForklaringAvVurdering,
-  SammenligningsType,
-  sammenliknSykefraværstekst,
-} from "../vurderingstekster";
-import { Kakediagram } from "../Kakediagram/Kakediagram";
-import { sammenliknSykefravær } from "../vurdering-utils";
-import { BodyShort, Heading, Ingress, Label, Panel } from "@navikt/ds-react";
-import { Prosent } from "../Prosent";
-import { parseVerdi } from "../../utils/app-utils";
-import { Statistikk } from "../../hooks/useSykefraværAppData";
+import {Speedometer} from "../Speedometer/Speedometer";
+import {getForklaringAvVurdering, SammenligningsType, sammenliknSykefraværstekst,} from "../vurderingstekster";
+import {Kakediagram} from "../Kakediagram/Kakediagram";
+import {sammenliknSykefravær} from "../vurdering-utils";
+import {BodyShort, Heading, Ingress, Label, Panel} from "@navikt/ds-react";
+import {Prosent} from "../Prosent";
+import {parseVerdi} from "../../utils/app-utils";
+import {Statistikk} from "../../hooks/useSykefraværAppData";
+import {Statistikkategori} from "../../domene/statistikkategori";
 
 interface Props {
   sammenligningsType: SammenligningsType;
@@ -33,7 +30,7 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
 
   const antallKvartalerVirksomhet =
     virksomhetStatistikk?.kvartalerIBeregningen.length || 0;
-
+  const harBransje: boolean = bransjeEllerNæringStatistikk?.statistikkategori === Statistikkategori.BRANSJE
   const innhold = (
     <>
       <div className={styles["sammenligningspanel__wrapper"]}>
@@ -43,7 +40,8 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
           <Label>{`${virksomhetStatistikk?.kvartalerIBeregningen.length} av 4 kvartaler`}</Label>
         </div>
         <div>
-          <Ingress as="span">Din bransje:</Ingress>
+          <Ingress
+              as="span">{harBransje ? "Din bransje: " : "Din Næring: "}</Ingress>
           <Prosent prosent={bransjeEllerNæringStatistikk?.verdi} />
           <Label>4 av 4 kvartaler</Label>
         </div>
@@ -71,6 +69,7 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
             className={styles["sammenligningspanel__forklaring-av-vurdering"]}
           >
             {getForklaringAvVurdering(
+                harBransje,
               sykefraværVurdering,
               bransjeEllerNæringStatistikk?.verdi
                 ? parseVerdi(bransjeEllerNæringStatistikk?.verdi)
@@ -82,6 +81,7 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
     </>
   );
   const vurderingstekst = sammenliknSykefraværstekst(
+      harBransje,
     sykefraværVurdering,
     sammenligningsType
   );

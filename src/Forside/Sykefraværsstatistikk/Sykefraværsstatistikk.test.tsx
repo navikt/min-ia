@@ -104,7 +104,7 @@ describe("Sykefraværsstatistikk", () => {
       /Vi mangler data til å kunne beregne utviklingen/,
     );
     expect(infobolk.textContent).toBe(
-      "Vi mangler data til å kunne beregne utviklingen i sykefraværet i din bransje",
+        "Vi mangler data til å kunne beregne utviklingen i sykefraværet i din næring",
     );
   });
 

@@ -26,7 +26,7 @@ export const mockdataOrgnr91096939 = {
     },
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "10.0",
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
@@ -124,7 +124,7 @@ export const mockdataOrgnr91096939 = {
     },
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "10.0",
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
@@ -222,7 +222,7 @@ export const mockdataOrgnr91096939 = {
     },
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "10.0",
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
@@ -320,7 +320,7 @@ export const mockdataOrgnr91096939 = {
     },
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "10.0",
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
@@ -394,7 +394,7 @@ export const mockdataOrgnr91096939 = {
   trendTotalt: [
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "-2.0",
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
@@ -471,7 +471,7 @@ export const mockdataOrgnr81096939 = {
     },
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "1.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
@@ -501,7 +501,7 @@ export const mockdataOrgnr81096939 = {
     },
     {
       statistikkategori: "NÆRING",
-      label: "Barnehagenæringen",
+      label: "Produksjon av nærings- og nytelsesmidler",
       verdi: "1.0",
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [

@@ -14,7 +14,7 @@ export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
   fraværsprosentBransjeEllerNæring?: string;
   stigningstallTrendBransjeEllerNæring: number;
-  bransjeEllerNæring: "bransje";
+  bransjeEllerNæring: "bransje" | "næring";
   bransjeEllerNæringLabel?: string;
   fraværsprosentVirksomhet: string;
   trendVirksomhet: string;
@@ -188,7 +188,7 @@ const displaytekstTrendBransjeEllerNæring = (
   if (isFinite(stigningstall)) {
     return (
       <>
-        <Detail uppercase={true}>Trend i bransjen</Detail>
+        <Detail uppercase={true}>Trend i {tilBestemtForm(props.bransjeEllerNæring)}</Detail>
         <Label>Fravær {stigningstallTilTekst(stigningstall)}</Label>
       </>
     );
@@ -196,6 +196,14 @@ const displaytekstTrendBransjeEllerNæring = (
     return `Vi mangler data til å kunne beregne utviklingen i sykefraværet i din ${props.bransjeEllerNæring}`;
   }
 };
+
+function tilBestemtForm(ubestemtForm: "bransje" | "næring"): string {
+  if (ubestemtForm === "bransje") {
+    return "bransjen";
+  } else {
+    return "næringen";
+  }
+}
 
 function stigningstallTilTekst(stigning: number): string {
   if (stigning > 0) {

@@ -184,7 +184,7 @@ export const Forside = ({
                                     />
                                     <BodyShort spacing size="medium">
                                         <strong>
-                                            {harBransje ? "Bransje" : "Næring"}:{" "}
+                                            {harBransje ? "Bransje " : "Næring"}:{" "}
                                         </strong>
                                         {bransjeEllerNæring?.prosentSiste4KvartalerTotalt?.label}
                                     </BodyShort>
@@ -194,13 +194,13 @@ export const Forside = ({
                                     <LastNedKnapp innholdRef={innholdRef}/>
                                 </div>
                             </div>
-                            <MerOmSykefraværsstatistikk synnligPåStoreFlater={false}/>
+                            <MerOmSykefraværsstatistikk harBransje={harBransje} synnligPåStoreFlater={false}/>
                             <Sammenligningspaneler
                                 aggregertStatistikk={appData.aggregertStatistikk}
                                 orgnr={orgnr}
                             />
                         </div>
-                        <MerOmSykefraværsstatistikk synnligPåStoreFlater={true}/>
+                        <MerOmSykefraværsstatistikk harBransje={harBransje} synnligPåStoreFlater={true}/>
 
                     </div>
 

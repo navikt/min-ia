@@ -36,7 +36,7 @@ export function hentUtSykefraværsstatistikkData(
     stigningstallTrendBransjeEllerNæring: Number(
       (trendBransje ?? trendNæring)?.verdi
     ),
-    bransjeEllerNæring: "bransje",
+    bransjeEllerNæring: fraværsprosentBransje ? "bransje" : "næring",
     bransjeEllerNæringLabel: (fraværsprosentBransje ?? fraværsprosentNæring)
       ?.label,
     fraværsprosentVirksomhet:
