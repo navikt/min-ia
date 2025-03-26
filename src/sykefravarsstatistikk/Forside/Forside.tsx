@@ -184,7 +184,7 @@ export const Forside = ({
                                     />
                                     <BodyShort spacing size="medium">
                                         <strong>
-                                            {harBransje ? "Bransje " : "Næring"}:{" "}
+                                            {harBransje ? "Bransje" : "Næring"}:{" "}
                                         </strong>
                                         {bransjeEllerNæring?.prosentSiste4KvartalerTotalt?.label}
                                     </BodyShort>
