@@ -14,18 +14,19 @@ const GRØNN_FAKTOR = 0.9;
 const RØD_FAKTOR = 1.1;
 
 export const sammenliknSykefraværstekst = (
+    harBransje: boolean,
   sykefraværResultat: SykefraværVurdering,
   sammenligningsType: SammenligningsType,
 ) => {
   switch (sammenligningsType) {
     case SammenligningsType.TOTALT:
-      return sammenliknSykefraværstekstTotalt(sykefraværResultat);
+        return sammenliknSykefraværstekstTotalt(harBransje, sykefraværResultat);
     case SammenligningsType.LANGTID:
-      return sammenliknSykefraværstekstLangtid(sykefraværResultat);
+        return sammenliknSykefraværstekstLangtid(harBransje, sykefraværResultat);
     case SammenligningsType.KORTTID:
-      return sammenliknSykefraværstekstKorttid(sykefraværResultat);
+        return sammenliknSykefraværstekstKorttid(harBransje, sykefraværResultat);
     case SammenligningsType.GRADERT:
-      return sammenliknSykefraværstekstGradert(sykefraværResultat);
+        return sammenliknSykefraværstekstGradert(harBransje, sykefraværResultat);
   }
 };
 
@@ -38,29 +39,29 @@ const maskertForklaring = (
 );
 
 const sammenliknSykefraværstekstGradert = (
-  sykefraværResultat: SykefraværVurdering,
+    harBransje: boolean,
+    sykefraværResultat: SykefraværVurdering,
 ) => {
   switch (sykefraværResultat) {
     case "OVER":
       return (
         <BodyShort>
           Markert grønn: Du bruker <strong>mer gradert sykefravær</strong> enn
-          andre i din bransje
+            andre i {harBransje ? "din bransje" : "din næring"}
         </BodyShort>
       );
     case "MIDDELS":
       return (
         <BodyShort>
           Markert gul: Du bruker{" "}
-          <strong>omtrent like mye gradert sykefravær</strong> som andre i din
-          bransje
+            <strong>omtrent like mye gradert sykefravær</strong> som andre i {harBransje ? "din bransje" : "din næring"}
         </BodyShort>
       );
     case "UNDER":
       return (
         <BodyShort>
           Markert rød: Du bruker <strong>mindre gradert sykefravær</strong> enn
-          andre i din bransje
+            andre i din {harBransje ? "din bransje" : "din næring"}
         </BodyShort>
       );
     case "MASKERT":
@@ -84,26 +85,27 @@ const sammenliknSykefraværstekstGradert = (
 };
 
 const sammenliknSykefraværstekstTotalt = (
+    harBransje: boolean,
   sykefraværResultat: SykefraværVurdering,
 ) => {
   switch (sykefraværResultat) {
     case "UNDER":
       return (
         <BodyShort>
-          Markert grønn: Du har <strong>lavere sykefravær</strong> enn bransjen
+            Markert grønn: Du har <strong>lavere sykefravær</strong> enn {harBransje ? "bransjen" : "næringen"}
         </BodyShort>
       );
     case "MIDDELS":
       return (
         <BodyShort>
           Markert gul: Du har <strong>omtrent likt sykefravær</strong> som
-          bransjen
+            {harBransje ? "bransjen" : "næringen"}
         </BodyShort>
       );
     case "OVER":
       return (
         <BodyShort>
-          Markert rød: Du har <strong>høyere sykefravær</strong> enn bransjen
+            Markert rød: Du har <strong>høyere sykefravær</strong> enn {harBransje ? "bransjen" : "næringen"}
         </BodyShort>
       );
     case "MASKERT":
@@ -126,27 +128,27 @@ const sammenliknSykefraværstekstTotalt = (
   }
 };
 
-const sammenliknSykefraværstekstKorttid = (resultat: SykefraværVurdering) => {
+const sammenliknSykefraværstekstKorttid = (harBransje: boolean, resultat: SykefraværVurdering) => {
   switch (resultat) {
     case "UNDER":
       return (
         <BodyShort>
           Markert grønn: Du har et{" "}
-          <strong>lavere legemeldt korttidsfravær</strong> enn bransjen
+            <strong>lavere legemeldt korttidsfravær</strong> enn {harBransje ? "bransjen" : "næringen"}
         </BodyShort>
       );
     case "MIDDELS":
       return (
         <BodyShort>
           Markert gul: Du har{" "}
-          <strong>omtrent likt legemeldt korttidsfravær</strong> som bransjen
+            <strong>omtrent likt legemeldt korttidsfravær</strong> som {harBransje ? "bransjen" : "næringen"}
         </BodyShort>
       );
     case "OVER":
       return (
         <BodyShort>
           Markert rød: Du har et{" "}
-          <strong>høyere legemeldt korttidsfravær</strong> enn bransjen
+            <strong>høyere legemeldt korttidsfravær</strong> enn {harBransje ? "bransjen" : "næringen"}
         </BodyShort>
       );
     case "MASKERT":
@@ -164,6 +166,7 @@ const sammenliknSykefraværstekstKorttid = (resultat: SykefraværVurdering) => {
 };
 
 export const sammenliknSykefraværstekstLangtid = (
+    harBransje: boolean,
   resultat: SykefraværVurdering,
 ) => {
   switch (resultat) {
@@ -171,21 +174,21 @@ export const sammenliknSykefraværstekstLangtid = (
       return (
         <BodyShort>
           Markert grønn: Du har et <strong>lavere langtidsfravær</strong> enn
-          bransjen.
+            {harBransje ? "bransjen" : "næringen"}.
         </BodyShort>
       );
     case "MIDDELS":
       return (
         <BodyShort>
           Markert gul: Du har <strong>omtrent likt langtidsfravær</strong> som
-          bransjen.
+            {harBransje ? "bransjen" : "næringen"}.
         </BodyShort>
       );
     case "OVER":
       return (
         <BodyShort>
           Markert rød: Du har et <strong>høyere langtidsfravær</strong> enn
-          bransjen.
+            {harBransje ? "bransjen" : "næringen"}.
         </BodyShort>
       );
     case "MASKERT":
@@ -203,6 +206,7 @@ export const sammenliknSykefraværstekstLangtid = (
 };
 
 export const getForklaringAvVurdering = (
+    harBransje: boolean,
   resultat: SykefraværVurdering,
   bransjensProsent: number | null | undefined,
   antallKvartaler: number,
@@ -211,7 +215,7 @@ export const getForklaringAvVurdering = (
     return (
       <BodyShort>
         Sammenligningen din er blitt markert som grå fordi vi ikke finner tall
-        for bransjen/næringen din. Vi viser dine tall når de publiseres.
+          for {harBransje ? "bransjen" : "næringen"} din. Vi viser dine tall når de publiseres.
       </BodyShort>
     );
   }
@@ -264,8 +268,8 @@ export const getForklaringAvVurdering = (
         <BodyShort>
           <strong>Din virksomhet</strong> har sykefraværsstatistikk for{" "}
           <strong>{antallKvartaler} av 4</strong> kvartaler. Tallet for{" "}
-          <strong>bransjen</strong> regnes ut fra de fire siste kvartalene. Vi
-          sammenlikner deg med bransjen når vi har dine tall for hele perioden.
+            <strong>{harBransje ? "bransjen" : "næringen"}</strong> regnes ut fra de fire siste kvartalene. Vi
+            sammenlikner deg med {harBransje ? "bransjen" : "næringen"} når vi har dine tall for hele perioden.
         </BodyShort>
       );
     case "FEIL_ELLER_INGEN_DATA":

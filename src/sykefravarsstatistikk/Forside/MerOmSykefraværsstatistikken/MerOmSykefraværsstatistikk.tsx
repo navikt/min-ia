@@ -7,10 +7,11 @@ import {HvordanSammenlignerViMedDinBransje} from "./HvordanSammenlignerViMedDinB
 import React from "react";
 
 interface MerOmSykefraværsstatistikkProps {
+    harBransje: boolean,
     synnligPåStoreFlater: boolean
 }
 
-export const MerOmSykefraværsstatistikk = ({synnligPåStoreFlater}: MerOmSykefraværsstatistikkProps) => {
+export const MerOmSykefraværsstatistikk = ({harBransje, synnligPåStoreFlater}: MerOmSykefraværsstatistikkProps) => {
     const classNames = synnligPåStoreFlater ? "mer_om_statistikk__store_flater" : "mer_om_statistikk";
     return (
         <div className={styles[classNames]}>
@@ -20,7 +21,7 @@ export const MerOmSykefraværsstatistikk = ({synnligPåStoreFlater}: MerOmSykefr
             <HvordanHarViKommetFramTilDittResultat/>
             <HvilkenStatistikkVisesIkkeHer/>
             <HvilkenPeriodeErStatistikkenBasertPå/>
-            <HvordanSammenlignerViMedDinBransje/>
+            <HvordanSammenlignerViMedDinBransje harBransje={harBransje}/>
         </div>
     );
 }

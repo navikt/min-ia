@@ -5,8 +5,12 @@ import {BodyShort, ReadMore} from "@navikt/ds-react";
 
 import {sendPanelEkspanderEvent} from "../../../amplitude/amplitude";
 
-export const HvordanSammenlignerViMedDinBransje: FunctionComponent = () => {
-  const panelHeader = "Hvordan sammenligner vi med din bransje";
+interface HvordanSammenlignerViMedDinBransjeProps {
+  harBransje: boolean,
+}
+
+export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammenlignerViMedDinBransjeProps> = ({harBransje}: HvordanSammenlignerViMedDinBransjeProps) => {
+  const panelHeader = harBransje ? "Hvordan sammenligner vi med din bransje" : "Hvordan sammenligner vi med din næring";
   return (
     <ReadMore
       header={panelHeader}
@@ -22,7 +26,7 @@ export const HvordanSammenlignerViMedDinBransje: FunctionComponent = () => {
           Sammenligningen tar ikke hensyn til størrelsen på din virksomhet.
         </BodyShort>
         <BodyShort spacing>
-          Din bransje er hentet fra Brønnøysundregisterne.
+          Din {harBransje ? "bransje" : "næring"} er hentet fra Brønnøysundregisterne.
         </BodyShort>
         <BodyShort spacing>
           <EksternLenke href="https://info.altinn.no/skjemaoversikt/bronnoysundregistrene/samordnet-registermelding---registrering-av-nye-og-endring-av-eksisterende-foretak-og-enheter/">
