@@ -23,7 +23,7 @@ export default async function handler(
     `${process.env.PIA_SYKEFRAVARSSTATISTIKK_HOSTNAME}`,
     "/sykefravarsstatistikk/organisasjoner/tilgang",
     process.env.PIA_SYKEFRAVARSSTATISTIKK_AUDIENCE,
-    true
+      false
   );
 }
 
