@@ -1,5 +1,5 @@
 import {
-  DecoratorComponents,
+  DecoratorComponentsReact,
   fetchDecoratorReact,
 } from "@navikt/nav-dekoratoren-moduler/ssr";
 import Document, {
@@ -24,7 +24,7 @@ const getDocumentParameter = (
 };
 
 interface Props {
-  Decorator: DecoratorComponents;
+  Decorator: DecoratorComponentsReact;
   language: string;
   kjørerMockApp: boolean;
 }
@@ -41,7 +41,6 @@ export default class MyDocument extends Document<Props> {
       params: {
         chatbot: false,
         logoutWarning: true,
-        urlLookupTable: false,
         redirectToApp: true,
         redirectToUrl: thisPageUrl,
         breadcrumbs: [
@@ -69,7 +68,7 @@ export default class MyDocument extends Document<Props> {
               <meta name="robots" content="noindex" />
             ) : undefined
           }
-          <Decorator.Styles />
+          <Decorator.HeadAssets />
           <link
             rel="icon"
             type="image/png"
