@@ -3,12 +3,12 @@ import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-ap
 import { useOrgnr } from "./useOrgnr";
 import {API_BASE_PATH_V2, SYKEFRAVARSSTATISTIKK_BASE_PATH} from "../utils/konstanter";
 import { useRestRessursSWR } from "./useRestRessursSWR";
-import {usePath} from "./usePath";
+import {useApiPath} from "./useApiPath";
 
 export function useAggregertStatistikk(): RestRessurs<AggregertStatistikkDto> {
   const gyldigOrgnr = useOrgnr();
 
-  const path = usePath(
+  const path = useApiPath(
       `${API_BASE_PATH_V2}/aggregert?orgnr=${gyldigOrgnr}`,
       `${SYKEFRAVARSSTATISTIKK_BASE_PATH}/aggregert?orgnr=${gyldigOrgnr}`
   );
