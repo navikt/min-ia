@@ -1,14 +1,20 @@
 import { RestRessurs } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import { useOrgnr } from "./useOrgnr";
-import { SYKEFRAVARSSTATISTIKK_BASE_PATH } from "../utils/konstanter";
+import {API_BASE_PATH_V2, SYKEFRAVARSSTATISTIKK_BASE_PATH} from "../utils/konstanter";
 import { useRestRessursSWR } from "./useRestRessursSWR";
+import {usePath} from "./usePath";
 
 export function useAggregertStatistikk(): RestRessurs<AggregertStatistikkDto> {
   const gyldigOrgnr = useOrgnr();
 
+  const path = usePath(
+      `${API_BASE_PATH_V2}/aggregert?orgnr=${gyldigOrgnr}`,
+      `${SYKEFRAVARSSTATISTIKK_BASE_PATH}/aggregert?orgnr=${gyldigOrgnr}`
+  );
+
   const apiPath = gyldigOrgnr
-    ? `${SYKEFRAVARSSTATISTIKK_BASE_PATH}/aggregert?orgnr=${gyldigOrgnr}`
+      ? path
     : null;
 
   return useRestRessursSWR<AggregertStatistikkDto>(
