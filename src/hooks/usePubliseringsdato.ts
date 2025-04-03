@@ -1,10 +1,14 @@
 import { RestRessurs } from "../integrasjoner/rest-status";
-import { API_BASE_PATH } from "../utils/konstanter";
+import {API_BASE_PATH, API_BASE_PATH_V2} from "../utils/konstanter";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import { SerialiserbarPubliseringsdatoer } from "../sykefravarsstatistikk/hooks/useSykefraværAppData";
+import {usePath} from "./usePath";
 
 export function usePubliseringsdato(): RestRessurs<SerialiserbarPubliseringsdatoer> {
-  const apiPath = `${API_BASE_PATH}/sykefravarsstatistikk-api/publiseringsdato`;
+    const apiPath = usePath(
+        `${API_BASE_PATH_V2}/publiseringsdato`,
+        `${API_BASE_PATH}/sykefravarsstatistikk-api/publiseringsdato`
+    );
 
   return useRestRessursSWR<SerialiserbarPubliseringsdatoer>(
     apiPath,

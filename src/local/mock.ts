@@ -20,10 +20,10 @@ export default async function mockRequest(req: NextRequest) {
   const delayInMillis = 500;
 
   if (
-    req.url?.endsWith("/api/authenticated/sykefravarsstatistikk/organisasjoner")
+      req.url?.endsWith("/organisasjoner")
   ) {
     console.log(
-      "[DEBUG] GET /api/authenticated/sykefravarsstatistikk/organisasjoner"
+        "[DEBUG] GET /api/[...]/organisasjoner"
     );
 
     switch (testMode) {
@@ -40,11 +40,11 @@ export default async function mockRequest(req: NextRequest) {
 
   if (
     req.url?.endsWith(
-      "/api/authenticated/sykefravarsstatistikk/organisasjoner-med-statistikktilgang"
+        "/organisasjoner-med-statistikktilgang"
     )
   ) {
     console.log(
-      "[DEBUG] GET /api/authenticated/sykefravarsstatistikk/organisasjoner-med-statistikktilgang"
+        "[DEBUG] GET /api/[...]/organisasjoner-med-statistikktilgang"
     );
 
     switch (testMode) {
@@ -100,14 +100,11 @@ export default async function mockRequest(req: NextRequest) {
     });
   }
 
-  if (
-    req.url?.includes(
-      "/api/sykefravarsstatistikk-api/kvartalsvis-sykefravarshistorikk?orgnr="
-    )
+  if (req.nextUrl.pathname.includes("/api/sykefravarsstatistikk-api/kvartalsvis-sykefravarshistorikk")
+      || req.nextUrl.pathname.includes("/api/authenticated/sykefravarsstatistikk/v2/kvartalsvis")
   ) {
-    const orgnr = req.nextUrl.searchParams.get("orgnr") as string;
     console.log(
-      `[DEBUG] GET /api/sykefravarsstatistikk-api/kvartalsvis-sykefraværshistorikk?orgnr=${orgnr}`
+        `[DEBUG] GET ${req.nextUrl.pathname}  - w/ params: ${req.nextUrl.searchParams}`
     );
 
     const historikk = kvartalsvisHistorikkMockdata;
@@ -117,8 +114,12 @@ export default async function mockRequest(req: NextRequest) {
       status: 200,
     });
   }
-  if (req.url?.includes("/api/sykefravarsstatistikk-api/publiseringsdato")) {
-    console.log(`[DEBUG] GET /api/sykefravarsstatistikk-api/publiseringsdato`);
+  if (req.nextUrl.pathname.includes("/api/sykefravarsstatistikk-api/publiseringsdato")
+      || req.nextUrl.pathname.includes("/api/authenticated/sykefravarsstatistikk/v2/publiseringsdato")
+  ) {
+    console.log(
+        `[DEBUG] GET ${req.nextUrl.pathname}  - w/ params: ${req.nextUrl.searchParams}`
+    );
 
     const publiseringsdato = {
       gjeldendePeriode: {
