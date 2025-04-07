@@ -9,6 +9,8 @@ spec:
   image: {{image}}
   port: 3000
   env:
+    - name: PIA_SYKEFRAVARSSTATISTIKK_HOSTNAME
+      value: pia-sykefravarsstatistikk.pia
     - name: SYKEFRAVARSSTATISTIKK_API_HOSTNAME
       value: sykefravarsstatistikk-api.prod-fss-pub.nais.io
     - name: FOREBYGGINGSPLAN_API_BASEURL
@@ -25,6 +27,8 @@ spec:
       ## Derfor overskriver vi NODE_ENV i dev-gcp og prod-gcp til 'production'
     - name: NODE_ENV
       value: production
+    - name: PIA_SYKEFRAVARSSTATISTIKK_AUDIENCE
+      value: "prod-gcp:pia:pia-sykefravarsstatistikk"
     - name: SYKEFRAVARSSTATISTIKK_API_AUDIENCE
       value: "prod-fss:arbeidsgiver:sykefravarsstatistikk-api"
     - name: FIA_ARBEIDSGIVER_AUDIENCE
