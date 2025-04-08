@@ -1,8 +1,8 @@
-export const useApiPath = (v2Path: string, defaultPath: string): string => {
-    let erV2 = false;
+export const useApiPath = (v2Path: string, legacyPath: string): string => {
+    let erLegacy = false;
     if (typeof window !== 'undefined') {
-        erV2 = localStorage.getItem("erV2") === "true";
+        erLegacy = localStorage.getItem("erLegacy") === "true";
     }
 
-    return erV2 ? v2Path : defaultPath;
+    return erLegacy ? legacyPath : v2Path;
 };

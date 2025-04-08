@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - midlertidig-erV2-flag
+      - bruk-v2-path-til-s19k
     paths-ignore:
       - "**.md"
       - "**/**.md"
