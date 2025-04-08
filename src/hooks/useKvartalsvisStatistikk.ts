@@ -19,6 +19,6 @@ export function useKvartalsvisStatistikk(): RestRessurs<
 
   return useRestRessursSWR<KvartalsvisSykefraværshistorikk[]>(
     apiPath,
-    "Det oppstod en feil ved kall til '/sykefravarsstatistikk-api/${orgnr}/sykefravarshistorikk/kvartalsvis'"
+      "Det oppstod en feil ved kall til /kvartalsvis"
   );
 }

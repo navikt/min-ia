@@ -12,6 +12,6 @@ export function usePubliseringsdato(): RestRessurs<SerialiserbarPubliseringsdato
 
   return useRestRessursSWR<SerialiserbarPubliseringsdatoer>(
     apiPath,
-    "Det oppstod en feil ved kall til '/sykefravarsstatistikk-api/publiseringsdato'"
+      "Det oppstod en feil ved kall til /publiseringsdato"
   );
 }

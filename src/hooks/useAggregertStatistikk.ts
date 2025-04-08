@@ -19,6 +19,6 @@ export function useAggregertStatistikk(): RestRessurs<AggregertStatistikkDto> {
 
   return useRestRessursSWR<AggregertStatistikkDto>(
     apiPath,
-    "Det oppstod en feil ved kall til 'api/{orgnr}/v1/sykefravarshistorikk/aggregert'"
+      "Det oppstod en feil ved kall til /aggregert"
   );
 }
