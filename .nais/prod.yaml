@@ -94,12 +94,14 @@ spec:
           namespace: arbeidsgiver
         - application: notifikasjon-bruker-api
           namespace: fager
-        - application: nav-dekoratoren
-          namespace: personbruker
+        - application: pia-sykefravarsstatistikk
+          namespace: pia
         - application: fia-arbeidsgiver
           namespace: pia
         - application: forebyggingsplan
           namespace: teamia
+        - application: nav-dekoratoren
+          namespace: personbruker
       external:
         - host: www.nav.no
         - host: arbeidsgiver.nav.no
