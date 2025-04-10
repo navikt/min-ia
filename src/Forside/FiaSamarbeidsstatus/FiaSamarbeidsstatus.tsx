@@ -21,17 +21,17 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
                 <div className={styles.ikonWrapper}>
                     <HandShakeHeartIcon aria-hidden />
                 </div>
-                Dere er i et forebyggende samarbeid med NAV
+                Dere er i et forebyggende samarbeid med Nav
 
             </Heading>
             <ReadMore header="Les mer" onClick={() => {
                 sendLesMerÅpnetEvent("Dere er i et forebyggende samarbeid med NAV")
             }}>
-                Din virksomhet samarbeider med NAV om sykefraværs- og forebyggingsarbeid.
+                Din virksomhet samarbeider med Nav om sykefraværs- og forebyggingsarbeid.
                 Samarbeidet er tidsbegrenset og forpliktende.
                 For mer informasjon kan du kontakte ansvarlig for sykefraværs- og forebyggingsarbeid i din
                 virksomhet eller
-                lokal NAV-enhet.
+                lokal Nav-enhet.
             </ReadMore>
         </div>
     )

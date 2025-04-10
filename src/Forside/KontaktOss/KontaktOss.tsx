@@ -21,7 +21,7 @@ export function KontaktOss(props: KontaktOssProps) {
                     </Heading>
                     <BodyLong>
                         Arbeidet med å forebygge sykefravær og sikre godt arbeidsmiljø, er et ansvar som deles mellom
-                        arbeidsgiver og tillitsvalgte eller ansattrepresentant. NAV Arbeidslivssenter kan bistå i dette
+                        arbeidsgiver og tillitsvalgte eller ansattrepresentant. Nav Arbeidslivssenter kan bistå i dette
                         arbeidet.
                     </BodyLong>
                 </div>

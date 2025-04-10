@@ -87,7 +87,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             <BodyShort
               className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
             >
-              Virkemidler som NAV leverer i IA-avtalen:
+              Virkemidler som Nav leverer i IA-avtalen:
             </BodyShort>
             <div
               className={styles.inkluderendeArbeidslivPanel__lenkepanel__gruppe}
@@ -97,15 +97,11 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
                 destinasjon="https://www.nav.no/arbeidsgiver/ekspertbistand"
               />
               <Lenkepanel
-                lenketekst={`Kompetanse${SOFT_HYPHEN}tiltak for sykmeldte`}
-                destinasjon="https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/nyttig-a-vite/delta-i-prosjekt-med-kompetansetiltak-for-sykmeldte"
-              />
-              <Lenkepanel
                 lenketekst="HelseIArbeid"
                 destinasjon="https://www.nav.no/arbeidsgiver/helseiarbeid"
               />
               <Lenkepanel
-                lenketekst={`Tjenester fra NAV Arbeidslivs${SOFT_HYPHEN}senter`}
+                lenketekst={`Tjenester fra Nav Arbeidslivs${SOFT_HYPHEN}senter`}
                 destinasjon="https://www.nav.no/arbeidsgiver/navarbeidslivssenter"
               />
             </div>
@@ -117,7 +113,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               styles.inkluderendeArbeidslivPanel__lenke,
             )}
           >
-            Se fullstendig oversikt over NAVs tilbud her
+            Se fullstendig oversikt over Navs tilbud her
           </Link>
         </Accordion.Content>
       </Accordion.Item>
