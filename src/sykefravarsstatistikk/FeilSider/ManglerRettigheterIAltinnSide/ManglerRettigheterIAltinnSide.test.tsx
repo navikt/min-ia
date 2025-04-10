@@ -15,29 +15,31 @@ jest.mock("../../../hooks/useOrgnr", () => ({
 }));
 
 describe("Tester side for manglende Altinn-rettigheter", () => {
-  it("Viser lenke til Altinn med riktig orgnr", () => {
-    const valgtOrgnr = fleskOgFisk[1].OrganizationNumber;
-    jest.spyOn(hooks, "useOrgnr").mockReturnValue(valgtOrgnr);
+  /* TODO: denne testen kan bli reaktivert etter Altinn 3 har lansert "Be om tilgang" i Altinn
+    it("Viser lenke til Altinn med riktig orgnr", () => {
+      const valgtOrgnr = fleskOgFisk[1].OrganizationNumber;
+      jest.spyOn(hooks, "useOrgnr").mockReturnValue(valgtOrgnr);
 
-    const organisasjoner: RestAltinnOrganisasjoner = {
-      status: RestStatus.Suksess,
-      data: fleskOgFisk,
-    };
+      const organisasjoner: RestAltinnOrganisasjoner = {
+        status: RestStatus.Suksess,
+        data: fleskOgFisk,
+      };
 
-    render(
-      <ManglerRettigheterIAltinnSide
-        restOrganisasjonerMedStatistikk={organisasjoner}
-      />
-    );
+      render(
+        <ManglerRettigheterIAltinnSide
+          restOrganisasjonerMedStatistikk={organisasjoner}
+        />
+      );
 
-    const beOmTilgangLenke = screen.getByRole("link", {
-      name: "altinn-logo Be om tilgang i Altinn Gå til Altinn og be om tilgang til tjenesten. Du kan velge hvem i virksomheten som får forespørselen.",
-    }) as HTMLAnchorElement;
+      const beOmTilgangLenke = screen.getByRole("link", {
+        name: "altinn-logo Be om tilgang i Altinn Gå til Altinn og be om tilgang til tjenesten. Du kan velge hvem i virksomheten som får forespørselen.",
+      }) as HTMLAnchorElement;
 
-    expect(beOmTilgangLenke.href).toBe(
-      `https://altinn.no/ui/DelegationRequest?offeredBy=${valgtOrgnr}&resources=3403_2`
-    );
-  });
+      expect(beOmTilgangLenke.href).toBe(
+        `https://altinn.no/ui/DelegationRequest?offeredBy=${valgtOrgnr}&resources=3403_2`
+      );
+    });
+  */
 
   it("Viser lenke til Min Side Arbeidsgiver", () => {
     const valgtBedriftUtenSykefraværsstatistikkRettigheter =
