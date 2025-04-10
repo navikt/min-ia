@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - bruk-v2-path-til-s19k
+      - fjerne-be-om-tilgang
     paths-ignore:
       - "**.md"
       - "**/**.md"
