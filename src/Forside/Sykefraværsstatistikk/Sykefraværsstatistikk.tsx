@@ -148,8 +148,8 @@ function Sykefraværsstatistikkinnhold({
 
   return (
     <Lenkeflis
-      overskrift="Be om tilgang"
-      brødtekst="Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk."
+        overskrift="Sykefraværsstatistikken"
+        brødtekst="Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten."
       href={sykefraværsstatistikkUrlMedBedrift}
     />
   );

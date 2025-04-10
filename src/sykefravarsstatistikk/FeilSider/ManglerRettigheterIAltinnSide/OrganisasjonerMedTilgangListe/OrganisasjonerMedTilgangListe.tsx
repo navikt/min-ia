@@ -18,7 +18,7 @@ export const OrganisasjonerMedTilgangListe: FunctionComponent<Props> = ({
     <Accordion className={styles["organisasjoner-med-tilgang-liste"]}>
       <Accordion.Item>
         <Accordion.Header>
-          Disse virksomhetene har tilgang til sykefraværsstatistikk
+          Du har tilgang til sykefraværsstatistikk for disse virksomhetene
         </Accordion.Header>
         <Accordion.Content>
           <ul className={styles["organisasjoner-med-tilgang-liste__liste"]}>

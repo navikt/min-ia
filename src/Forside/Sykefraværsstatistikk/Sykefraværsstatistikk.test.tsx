@@ -138,6 +138,7 @@ describe("Sykefraværsstatistikk", () => {
     expect(prosent.textContent).toBe("8,8%");
   });
 
+  /* TODO: denne testen kan bli reaktivert etter Altinn 3 har lansert "Be om tilgang" i Altinn
   it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
     render(
       <Sykefraværsstatistikk
@@ -154,7 +155,9 @@ describe("Sykefraværsstatistikk", () => {
       "Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk.",
     );
   });
-
+*/
+  
+  /* TODO: denne testen kan bli reaktivert etter Altinn 3 har lansert "Be om tilgang" i Altinn
   it("lenker riktig til sykefraværsstatistikken", async () => {
     render(
       <Sykefraværsstatistikk
@@ -173,6 +176,7 @@ describe("Sykefraværsstatistikk", () => {
       expect.stringContaining("http://url?bedrift=999999999"),
     );
   });
+  */
 
   test("uu-feil fra axe", async () => {
     let { container } = render(
