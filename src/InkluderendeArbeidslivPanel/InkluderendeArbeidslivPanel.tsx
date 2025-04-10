@@ -2,6 +2,7 @@ import { Accordion, BodyShort, Link, LinkPanel } from "@navikt/ds-react";
 import React, { FunctionComponent } from "react";
 import styles from "./InkluderendeArbeidslivPanel.module.scss";
 import classNames from "classnames";
+import EksternLenke from "../sykefravarsstatistikk/felleskomponenter/EksternLenke/EksternLenke";
 
 const Lenkepanel: React.FunctionComponent<{
   lenketekst: string;
@@ -71,9 +72,9 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               <li>Bedre oppfølging av sykmeldte</li>
             </ul>
           </div>
-          <Link
+          <EksternLenke
             href={
-              "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/ia-avtalen-20192022/ia-avtalen-20192022/id2623741/"
+              "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/"
             }
             className={classNames(
               styles.inkluderendeArbeidslivPanel__avsnitt,
@@ -81,7 +82,7 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
             )}
           >
             Les mer om IA-avtalen på sidene til regjeringen
-          </Link>
+          </EksternLenke>
           <div className={styles.inkluderendeArbeidslivPanel__avsnitt}>
             <BodyShort
               className={styles.inkluderendeArbeidslivPanel__avsnitt__tittel}
@@ -101,16 +102,16 @@ export const InkluderendeArbeidslivPanel: FunctionComponent = () => {
               />
               <Lenkepanel
                 lenketekst="HelseIArbeid"
-                destinasjon="https://www.nav.no/no/bedrift/oppfolging/sykmeldt-arbeidstaker/relatert-informasjon/nav-anbefaler-nytt-nasjonalt-konsept-helseiarbeid"
+                destinasjon="https://www.nav.no/arbeidsgiver/helseiarbeid"
               />
               <Lenkepanel
                 lenketekst={`Tjenester fra NAV Arbeidslivs${SOFT_HYPHEN}senter`}
-                destinasjon="https://arbeidsgiver.nav.no/forebygge-sykefravaer/#oppfolging-fra-nav-arbeidslivssenter"
+                destinasjon="https://www.nav.no/arbeidsgiver/navarbeidslivssenter"
               />
             </div>
           </div>
           <Link
-            href={"https://arbeidsgiver.nav.no/forebygge-sykefravaer"}
+            href={"https://www.nav.no/arbeidsgiver/redusere-sykefravar"}
             className={classNames(
               styles.inkluderendeArbeidslivPanel__avsnitt,
               styles.inkluderendeArbeidslivPanel__lenke,
