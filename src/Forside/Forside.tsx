@@ -1,18 +1,18 @@
 import styles from "./forside.module.scss";
 import React from "react";
-import {useAggregertStatistikk} from "../hooks/useAggregertStatistikk";
-import {erFerdigNedlastet, RestStatus} from "../integrasjoner/rest-status";
-import {hentUtSykefraværsstatistikkData} from "../komponenter/Infographic/datauthenting";
-import {Alert} from "@navikt/ds-react";
-import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
-import {RelaterteTjenester} from "./RelaterteTjenester/RelaterteTjenester";
-import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
-import {KontaktOss} from "./KontaktOss/KontaktOss";
+import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
+import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
+import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
+import { Alert } from "@navikt/ds-react";
+import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
+import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
+import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
+import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
-import {useFiaSamarbeidsstatus} from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
+import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
-import {UXSignalsWidget} from "./UXSignalsWidget";
+import { UXSignalsWidget } from "./UXSignalsWidget";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -28,19 +28,6 @@ export const Forside = (props: ForsideProps) => {
         ? aggregertStatistikk.data
         : tomtDataobjekt;
 
-    const sykefraværsstatistikkEllerBannerHvisError =
-        aggregertStatistikk.status === RestStatus.Feil ? (
-            <Alert variant={"error"} className={styles.forsideAlert}>
-                Det har skjedd en feil. Vennligst prøv igjen senere.
-            </Alert>
-        ) : (
-            <Sykefraværsstatistikk
-                {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
-                nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
-                sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
-            />
-        );
-
     const fiaSamarbeidsstatus = useFiaSamarbeidsstatus();
 
     return (
@@ -52,17 +39,27 @@ export const Forside = (props: ForsideProps) => {
             />
             <div className={styles.forside}>
                 {props.children}
-                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"}/>
-                {sykefraværsstatistikkEllerBannerHvisError}
+                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"} />
                 {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
                     fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
                         <>
-                            <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid}/>
+                            <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
                         </>
                     )}
-                <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData}/>
-                <RelaterteTjenester/>
-                <KontaktOss kontaktOssUrl={props.kontaktOssUrl}/>
+                {aggregertStatistikk.status === RestStatus.Feil ? (
+                    <Alert variant={"error"} className={styles.forsideAlert}>
+                        Det har skjedd en feil. Vennligst prøv igjen senere.
+                    </Alert>
+                ) : (
+                    <Sykefraværsstatistikk
+                        {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
+                        nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
+                        sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
+                    />
+                )}
+                <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
+                <RelaterteTjenester />
+                <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
             </div>
         </div>
     );
