@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BodyShort, Button, Heading } from "@navikt/ds-react";
+import { BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./fiaSamarbeidsstatus.module.scss"
 import { PersonGroupIcon } from "@navikt/aksel-icons";
 
@@ -18,7 +18,7 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
     const VIS_SAMARBEIDKNAPP = DebugManager.getInstance().getItemBoolean(DebugKeys.VIS_SE_SAMARBEID_KNAPP);
 
     return (
-        <div className={styles['samarbeidsstatus-box']}>
+        <Page.Block width="xl" className={styles['samarbeidsstatus-box']}>
             <span>
                 <Heading size="medium" level={"2"} className={styles['samarbeidsstatus-box__tittel']}>
                     Samarbeid om Inkluderende arbeidsliv
@@ -30,7 +30,7 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
             {VIS_SAMARBEIDKNAPP && <Button variant="secondary" icon={<PersonGroupIcon aria-hidden />}>
                 Se samarbeid
             </Button>}
-        </div>
+        </Page.Block>
     );
 }
 

@@ -36,7 +36,7 @@ import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
-import {sendÅpneAktivitetEvent} from "../amplitude/amplitude";
+import { sendÅpneAktivitetEvent } from "../amplitude/amplitude";
 
 export default function AktivitetSeksjon(props: {
   sykefraværsstatistikk: AggregertStatistikkDto;
@@ -53,7 +53,7 @@ export default function AktivitetSeksjon(props: {
       }
       sykefraværsstatistikk={props.sykefraværsstatistikk}
     >
-      <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
+      <Bleed className={styles["aktiviteter-seksjon"]}>
         <div className={styles["aktiviteter-seksjon-innhold"]}>
           <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
             Øvelser og verktøy

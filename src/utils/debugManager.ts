@@ -16,13 +16,18 @@ class DebugManager {
 	}
 
 	private getStorageData(): Record<string, string> {
+		if (typeof window === 'undefined') {
+			return {};
+		}
 		const data = localStorage.getItem(this.storageKey);
 		return data ? JSON.parse(data) : {};
 	}
 
 	private setStorageData(data: Record<string, string>): void {
-		localStorage.setItem(this.storageKey, JSON.stringify(data));
-		window.location.reload();
+		if (typeof window !== 'undefined') {
+			localStorage.setItem(this.storageKey, JSON.stringify(data));
+			window.location.reload();
+		}
 	}
 
 	setItem(key: string, value: string): void {

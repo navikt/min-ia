@@ -3,7 +3,7 @@ import React from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
-import { Alert } from "@navikt/ds-react";
+import { Alert, Page } from "@navikt/ds-react";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
@@ -31,36 +31,44 @@ export const Forside = (props: ForsideProps) => {
     const fiaSamarbeidsstatus = useFiaSamarbeidsstatus();
 
     return (
-        <div className={styles.sentrertSide}>
+        <>
             <TestVersjonBanner
                 sidenavn="siden for å forebygge fravær"
                 prodUrl={props.prodUrl}
                 kjørerMockApp={props.kjørerMockApp}
             />
-            <div className={styles.forside}>
+            <Page.Block width="xl" style={{ position: "relative" }}>
                 {props.children}
                 <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"} />
-                {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
-                    fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
-                        <>
-                            <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
-                        </>
-                    )}
-                {aggregertStatistikk.status === RestStatus.Feil ? (
+            </Page.Block>
+            {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
+                fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
+                    <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
+                )}
+            {aggregertStatistikk.status === RestStatus.Feil ? (
+                <Page.Block width="xl">
                     <Alert variant={"error"} className={styles.forsideAlert}>
                         Det har skjedd en feil. Vennligst prøv igjen senere.
                     </Alert>
-                ) : (
+                </Page.Block>
+            ) : (
+                <Page.Block width="xl">
                     <Sykefraværsstatistikk
                         {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
                         nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
                         sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
                     />
-                )}
+                </Page.Block>
+            )}
+            <Page.Block width="xl">
                 <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
+            </Page.Block>
+            <Page.Block width="xl">
                 <RelaterteTjenester />
+            </Page.Block>
+            <Page.Block width="xl">
                 <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
-            </div>
-        </div>
+            </Page.Block>
+        </>
     );
 };

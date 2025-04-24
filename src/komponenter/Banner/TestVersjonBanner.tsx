@@ -43,7 +43,7 @@ function DebugMenu() {
         <Button
           variant="tertiary"
           size="small"
-          icon={<ChevronDownIcon />}>
+          icon={<ChevronDownIcon aria-hidden />}>
           Debugvalg
         </Button>
       </ActionMenu.Trigger>

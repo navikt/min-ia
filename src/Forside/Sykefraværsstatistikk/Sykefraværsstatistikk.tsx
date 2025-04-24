@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import styles from "./sykefraværsstatistikk.module.scss";
-import { Detail, Heading, Label, Loader } from "@navikt/ds-react";
+import { Detail, Heading, Label, Loader, Page } from "@navikt/ds-react";
 import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
 import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
 import "./sykefraværsstatistikk.module.scss";
@@ -43,7 +43,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
     props.fraværsprosentVirksomhet.length === 0;
 
   return (
-    <div className={styles.sykefraværsstatistikk}>
+    <Page.Block gutters className={styles.sykefraværsstatistikk}>
       <Heading size={"large"} level={"2"}>
         Sykefraværsstatistikk
       </Heading>
@@ -91,7 +91,7 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
           }
         />
       </div>
-    </div>
+    </Page.Block>
   );
 };
 
@@ -148,8 +148,8 @@ function Sykefraværsstatistikkinnhold({
 
   return (
     <Lenkeflis
-        overskrift="Sykefraværsstatistikken"
-        brødtekst="Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten."
+      overskrift="Sykefraværsstatistikken"
+      brødtekst="Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten."
       href={sykefraværsstatistikkUrlMedBedrift}
     />
   );
