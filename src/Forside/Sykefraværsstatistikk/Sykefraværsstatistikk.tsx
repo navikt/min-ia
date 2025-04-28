@@ -148,8 +148,8 @@ function Sykefraværsstatistikkinnhold({
 
   return (
     <Lenkeflis
-        overskrift="Sykefraværsstatistikken"
-        brødtekst="Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten."
+      overskrift="Sykefraværsstatistikken"
+      brødtekst="Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten."
       href={sykefraværsstatistikkUrlMedBedrift}
     />
   );
@@ -180,6 +180,7 @@ const displaytekstSykefraværBransjeEllerNæring = (
     return `Vi mangler data til beregning av sykefraværet i din ${data.bransjeEllerNæring}`;
   }
 };
+
 const displaytekstTrendBransjeEllerNæring = (
   props: SykefraværsstatistikkData
 ): ReactNode => {
