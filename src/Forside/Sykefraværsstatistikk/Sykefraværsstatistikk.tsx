@@ -180,6 +180,7 @@ const displaytekstSykefraværBransjeEllerNæring = (
     return `Vi mangler data til beregning av sykefraværet i din ${data.bransjeEllerNæring}`;
   }
 };
+
 const displaytekstTrendBransjeEllerNæring = (
   props: SykefraværsstatistikkData
 ): ReactNode => {
