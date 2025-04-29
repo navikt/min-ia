@@ -14,6 +14,7 @@ import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
 import { UXSignalsWidget } from "./UXSignalsWidget";
 import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
+import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -60,6 +61,7 @@ export const Forside = (props: ForsideProps) => {
                 />
             )}
             <Fraværskalkulator />
+            <TjenesterFraNav />
             <Page.Block width="xl">
                 <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
             </Page.Block>
