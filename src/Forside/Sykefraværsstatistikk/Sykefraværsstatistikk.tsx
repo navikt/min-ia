@@ -66,9 +66,9 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
             organisasjonerHvorBrukerHarStatistikktilgang={organisasjonerHvorBrukerHarStatistikktilgang} />
         </HStack>
         <HStack justify="space-between" wrap gap="8">
-          {!brukerManglerTilgangTilOrg && <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din virksomhet" innhold={props.fraværsprosentVirksomhet} />}
-          <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din bransje" innhold={props.fraværsprosentBransjeEllerNæring} />
-          <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I Norge" innhold={props.fraværsprosentNorge} />
+          {!brukerManglerTilgangTilOrg && <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din virksomhet" innhold={`${props.fraværsprosentVirksomhet}%`} />}
+          <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din bransje" innhold={`${props.fraværsprosentBransjeEllerNæring}%`} />
+          <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I Norge" innhold={`${props.fraværsprosentNorge}%`} />
           <InfographicFlis nedlastingPågår={props.nedlastingPågår} utenLabel innhold={displaytekstTrendBransjeEllerNæring(props)} />
         </HStack>
       </Page.Block>

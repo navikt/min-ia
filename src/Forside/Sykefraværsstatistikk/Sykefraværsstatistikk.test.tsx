@@ -6,7 +6,7 @@ import {
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
 import { hentUtSykefraværsstatistikkData } from "../../komponenter/Infographic/datauthenting";
-import {leggTilBedriftPåUrl, Sykefraværsstatistikk} from "./Sykefraværsstatistikk";
+import { leggTilBedriftPåUrl, Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
 import { axe } from "jest-axe";
 import { mockAggregertStatistikkMedBransjetall } from "./mockAggregertStatistikkMedBransjetall";
 import { RestStatus } from "../../integrasjoner/rest-status";
@@ -43,7 +43,7 @@ describe("Sykefraværsstatistikk", () => {
       />,
     );
     const infobolk = screen.getByText(/I Norge/);
-    expect(infobolk.textContent).toBe("I Norge siste 12 mnd");
+    expect(infobolk.textContent).toBe("I Norge:");
     const infoProsent = screen.getByText(/9/);
     expect(infoProsent.textContent).toBe("9,0%");
   });
@@ -58,8 +58,8 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    const infobolk = screen.getByText(/I bransje/);
-    expect(infobolk.textContent).toBe("I bransje siste 12 mnd");
+    const infobolk = screen.getByText(/I din bransje/);
+    expect(infobolk.textContent).toBe("I din bransje:");
     const infoProsent = screen.getByText(/5,1%/);
     expect(infoProsent.textContent).toBe("5,1%");
   });
@@ -74,8 +74,8 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    const infobolk = screen.getByText(/Fravær stiger/);
-    expect(infobolk.textContent).toBe("Fravær stiger");
+    const infobolk = screen.getByText(/Fraværet stiger i bransjen/);
+    expect(infobolk.textContent).toBe("Fraværet stiger i bransjen");
   });
 
   it("viser synkende fraværstrend når dette er tilfellet", async () => {
@@ -88,8 +88,8 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    const infobolk = screen.getByText(/Fravær synker/);
-    expect(infobolk.textContent).toBe("Fravær synker");
+    const infobolk = screen.getByText(/Fraværet synker i næringen/);
+    expect(infobolk.textContent).toBe("Fraværet synker i næringen");
   });
 
   it("viser ingen fraværstrend når det ikke finnes data", async () => {
@@ -104,7 +104,7 @@ describe("Sykefraværsstatistikk", () => {
       /Vi mangler data til å kunne beregne utviklingen/,
     );
     expect(infobolk.textContent).toBe(
-        "Vi mangler data til å kunne beregne utviklingen i sykefraværet i din næring",
+      "Vi mangler data til å kunne beregne utviklingen i sykefraværet i din næring",
     );
   });
 
@@ -118,8 +118,8 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    const infobolk = screen.getByText(/Fravær er uendret/);
-    expect(infobolk.textContent).toBe("Fravær er uendret");
+    const infobolk = screen.getByText(/Fraværet er uendret i næringen/);
+    expect(infobolk.textContent).toBe("Fraværet er uendret i næringen");
   });
 
   it("viser sykefravær i virksomhet", async () => {
@@ -132,8 +132,8 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    const infobolk = screen.getByText(/I din virksomhet siste 12 MND/);
-    expect(infobolk.textContent).toBe("I din virksomhet siste 12 MND");
+    const infobolk = screen.getByText(/I din virksomhet:/);
+    expect(infobolk.textContent).toBe("I din virksomhet:");
     const prosent = screen.getByText(/8,8%/);
     expect(prosent.textContent).toBe("8,8%");
   });
@@ -156,7 +156,7 @@ describe("Sykefraværsstatistikk", () => {
     );
   });
 */
-  
+
   /* TODO: denne testen kan bli reaktivert etter Altinn 3 har lansert "Be om tilgang" i Altinn
   it("lenker riktig til sykefraværsstatistikken", async () => {
     render(
