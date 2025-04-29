@@ -13,6 +13,7 @@ import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatu
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
 import { UXSignalsWidget } from "./UXSignalsWidget";
+import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -58,6 +59,7 @@ export const Forside = (props: ForsideProps) => {
                     sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
                 />
             )}
+            <Fraværskalkulator />
             <Page.Block width="xl">
                 <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
             </Page.Block>
