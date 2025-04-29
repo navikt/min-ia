@@ -52,13 +52,11 @@ export const Forside = (props: ForsideProps) => {
                     </Alert>
                 </Page.Block>
             ) : (
-                <Page.Block width="xl">
-                    <Sykefraværsstatistikk
-                        {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
-                        nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
-                        sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
-                    />
-                </Page.Block>
+                <Sykefraværsstatistikk
+                    {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
+                    nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
+                    sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
+                />
             )}
             <Page.Block width="xl">
                 <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />

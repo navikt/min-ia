@@ -1,28 +1,50 @@
 import React, { ReactNode } from "react";
 import styles from "./InfographicFlis.module.scss";
-import { BodyShort, Skeleton } from "@navikt/ds-react";
+import { BodyShort, Box, Skeleton } from "@navikt/ds-react";
 
-export const InfographicFlis = (props: {
+export function InfographicFlis({
+  label,
+  innhold,
+  nedlastingPågår = false,
+  utenLabel = false,
+}: {
+  label?: ReactNode;
   innhold: ReactNode;
   nedlastingPågår?: boolean;
-  fullBredde?: boolean;
-}) => {
-  return (
-    <div
-      className={`${styles.infographicFlis} ${
-        props.fullBredde ? styles.fullBredde : ""
-      }`}
-    >
-      {props.nedlastingPågår ? (
-        <div className={styles.skeletonWrapper}>
-          <Skeleton className={styles.skeleton} />
-          <Skeleton className={styles.skeleton} />
-        </div>
-      ) : (
-        <BodyShort size="small" className={styles.tekst} as="div">
-          {props.innhold}
+  utenLabel?: boolean;
+}) {
+  if (utenLabel) {
+    if (nedlastingPågår) {
+      return (
+        <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+          <Skeleton width="12rem" />
+        </Box>
+      );
+    }
+    return (
+      <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+        <BodyShort size="small" className={styles.verdi} as="div">
+          {innhold}
         </BodyShort>
-      )}
-    </div>
-  );
-};
+      </Box>
+    );
+  }
+
+  if (nedlastingPågår) {
+    return (
+      <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+        <Skeleton width="8rem" />
+        <Skeleton width="5rem" height="4rem" />
+      </Box>
+    );
+  }
+
+  return (
+    <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+      {label && <BodyShort className={styles.label} as="div">{label}:</BodyShort>}
+      <BodyShort size="small" className={styles.verdi} as="div">
+        {innhold}
+      </BodyShort>
+    </Box>
+  )
+}
