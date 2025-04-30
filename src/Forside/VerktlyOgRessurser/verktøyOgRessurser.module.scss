@@ -1,0 +1,18 @@
+.verktøyOgRessurser {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+	.verktøyOgRessurserTittel {
+		margin-bottom: 1rem;
+	}
+	.verktøyStack {
+		.verktøykort {
+			background-color: var(--a-white);
+			border-radius: 0.5rem;
+			padding: 1.5rem;
+			.lenke {
+				width: fit-content;
+			}
+		}
+	}
+
+}
