@@ -22,11 +22,11 @@ import {
   Heading,
   Link,
   List,
+  Page,
 } from "@navikt/ds-react";
 import { AktivitetHeader } from "./AktivitetHeader";
 import { AktivitetStatistikkType } from "./typer";
 import Oppgave from "./Oppgave";
-import { AndreForebyggendeVerktoy } from "./AndreForebyggendeVerktoy";
 import {
   AktivitetProvider,
   useStatusForAktiviteter,
@@ -54,17 +54,18 @@ export default function AktivitetSeksjon(props: {
       sykefraværsstatistikk={props.sykefraværsstatistikk}
     >
       <Bleed className={styles["aktiviteter-seksjon"]}>
-        <div className={styles["aktiviteter-seksjon-innhold"]}>
-          <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
-            Øvelser og verktøy
-          </Heading>
-          <BodyLong className={styles["aktiviteter-brødtekst"]}>
-            Vi har laget et par gode grunnleggende øvelser som mange ledere
-            etterspør. Her kan du starte!
-          </BodyLong>
-          <Aktiviteter />
-          <AndreForebyggendeVerktoy />
-        </div>
+        <Page.Block width="xl">
+          <div className={styles["aktiviteter-seksjon-innhold"]}>
+            <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
+              Øvelser og verktøy
+            </Heading>
+            <BodyLong className={styles["aktiviteter-brødtekst"]}>
+              Vi har laget et par gode grunnleggende øvelser som mange ledere
+              etterspør. Her kan du starte!
+            </BodyLong>
+            <Aktiviteter />
+          </div>
+        </Page.Block>
       </Bleed>
     </AktivitetProvider>
   );

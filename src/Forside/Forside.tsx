@@ -66,9 +66,7 @@ export const Forside = (props: ForsideProps) => {
             <TjenesterFraNav />
             <VerktøyOgRessurser />
             <InkluderendeArbeidsliv />
-            <Page.Block width="xl">
-                <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
-            </Page.Block>
+            <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
             <Page.Block width="xl">
                 <RelaterteTjenester />
             </Page.Block>
