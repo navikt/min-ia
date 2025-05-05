@@ -67,11 +67,9 @@ export const Forside = (props: ForsideProps) => {
             <VerktøyOgRessurser />
             <InkluderendeArbeidsliv />
             <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
+            <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
             <Page.Block width="xl">
                 <RelaterteTjenester />
-            </Page.Block>
-            <Page.Block width="xl">
-                <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
             </Page.Block>
         </>
     );
