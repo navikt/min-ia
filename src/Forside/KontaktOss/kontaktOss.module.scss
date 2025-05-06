@@ -1,7 +1,11 @@
 .kontaktOss {
   background-color: var(--a-white);
   .kontaktOss__innhold {
-    padding: 2rem 0;
+    padding: 2rem 1rem;
+
+    .kontaktOss__tittel {
+      margin: 0 1rem;
+    }
 
     .kontaktOss__stack {
 			display: grid;

@@ -18,18 +18,20 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
     const VIS_SAMARBEIDKNAPP = DebugManager.getInstance().getItemBoolean(DebugKeys.VIS_SE_SAMARBEID_KNAPP);
 
     return (
-        <Page.Block width="xl" className={styles['samarbeidsstatus-box']}>
-            <span>
-                <Heading size="medium" level={"2"} className={styles['samarbeidsstatus-box__tittel']}>
-                    Samarbeid om Inkluderende arbeidsliv
-                </Heading>
-                <BodyShort>
-                    Dere er i samarbeid med Nav Arbeidslivssenter
-                </BodyShort>
-            </span>
-            {VIS_SAMARBEIDKNAPP && <Button variant="secondary" icon={<PersonGroupIcon aria-hidden />}>
-                Se samarbeid
-            </Button>}
+        <Page.Block width="xl">
+            <div className={styles['samarbeidsstatus-box']}>
+                <span>
+                    <Heading size="medium" level={"2"} className={styles['samarbeidsstatus-box__tittel']}>
+                        Samarbeid om Inkluderende arbeidsliv
+                    </Heading>
+                    <BodyShort>
+                        Dere er i samarbeid med Nav Arbeidslivssenter
+                    </BodyShort>
+                </span>
+                {VIS_SAMARBEIDKNAPP && <Button variant="secondary" icon={<PersonGroupIcon aria-hidden />}>
+                    Se samarbeid
+                </Button>}
+            </div>
         </Page.Block>
     );
 }

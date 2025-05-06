@@ -90,14 +90,14 @@ function Sykefraværsstatistikklenke({
   ) {
     return (
       <Button icon={<TrendUpIcon aria-hidden />} as="a" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
-        Du mangler tilgang i Altinn.
+        Laster
       </Button>
     );
   }
   if (harTilgangTilOrg) {
     return (
       <Button icon={<TrendUpIcon aria-hidden />} as="a" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
-        Du mangler tilgang i Altinn.
+        Se din sykefraværsstatistikk
       </Button>
     );
   }

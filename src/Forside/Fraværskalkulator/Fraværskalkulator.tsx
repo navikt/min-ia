@@ -12,7 +12,7 @@ export default function Fraværskalkulator() {
 				<BodyShort>
 					Beregn hvor mye sykefraværet koster og sett mål for sykefraværet
 				</BodyShort>
-				<Button icon={<Calculator aria-hidden />} variant="secondary" as="a" href="/forebygge-fravar/kalkulator">Fraværskalkulator</Button>
+				<Button icon={<Calculator aria-hidden />} variant="secondary" as="a" href="/forebygge-fravar/kalkulator" className={styles.fraværskalkulator_lenke}>Fraværskalkulator</Button>
 			</div>
 		</Page.Block>
 	);
