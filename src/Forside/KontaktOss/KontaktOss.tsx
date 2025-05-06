@@ -1,5 +1,5 @@
 import React from "react";
-import { Bleed, BodyShort, Heading, HStack, Link, Page } from "@navikt/ds-react";
+import { Bleed, BodyShort, Heading, Link, Page } from "@navikt/ds-react";
 import styles from "./kontaktOss.module.scss"
 import { Chat2Icon, PaperplaneIcon, PersonHeadsetIcon } from "@navikt/aksel-icons";
 

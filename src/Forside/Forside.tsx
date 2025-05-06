@@ -5,7 +5,6 @@ import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
 import { Alert, Page } from "@navikt/ds-react";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
-import { RelaterteTjenester } from "./RelaterteTjenester/RelaterteTjenester";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
 import { KontaktOss } from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
@@ -68,9 +67,6 @@ export const Forside = (props: ForsideProps) => {
             <InkluderendeArbeidsliv />
             <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
             <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
-            <Page.Block width="xl">
-                <RelaterteTjenester />
-            </Page.Block>
         </>
     );
 };
