@@ -1,13 +1,12 @@
 import { ReactNode } from "react";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import styles from "./sykefraværsstatistikk.module.scss";
-import { Bleed, BodyShort, Button, Heading, HStack, Page, VStack } from "@navikt/ds-react";
+import { Bleed, BodyShort, Button, Heading, HStack, Link, Page, VStack } from "@navikt/ds-react";
 import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
-import "./sykefraværsstatistikk.module.scss";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjoner";
-import { TrendUpIcon } from "@navikt/aksel-icons";
+import { InformationSquareIcon, TrendUpIcon } from "@navikt/aksel-icons";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
@@ -65,6 +64,10 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
             sykefraværsstatistikkUrlMedBedrift={sykefraværsstatistikkUrlMedBedrift}
             organisasjonerHvorBrukerHarStatistikktilgang={organisasjonerHvorBrukerHarStatistikktilgang} />
         </HStack>
+        <BrukerManglerTilgangTilOrg
+          harTilgangTilOrg={harTilgangTilOrg}
+          sykefraværsstatistikkUrlMedBedrift={sykefraværsstatistikkUrlMedBedrift}
+          organisasjonerHvorBrukerHarStatistikktilgang={organisasjonerHvorBrukerHarStatistikktilgang} />
         <HStack justify="space-between" wrap gap="8">
           {!brukerManglerTilgangTilOrg && <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din virksomhet" innhold={`${props.fraværsprosentVirksomhet}%`} />}
           <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din bransje" innhold={`${props.fraværsprosentBransjeEllerNæring}%`} />
@@ -102,11 +105,26 @@ function Sykefraværsstatistikklenke({
     );
   }
 
-  return (
-    <Button icon={<TrendUpIcon aria-hidden />} as="a" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
-      Du mangler tilgang i Altinn.
-    </Button>
-  );
+  return null;
+}
+
+function BrukerManglerTilgangTilOrg({
+  harTilgangTilOrg,
+  sykefraværsstatistikkUrlMedBedrift,
+  organisasjonerHvorBrukerHarStatistikktilgang,
+}: {
+  harTilgangTilOrg: boolean;
+  sykefraværsstatistikkUrlMedBedrift: string;
+  organisasjonerHvorBrukerHarStatistikktilgang: RestAltinnOrganisasjoner;
+}) {
+  if (organisasjonerHvorBrukerHarStatistikktilgang.status !== RestStatus.LasterInn && !harTilgangTilOrg) {
+    return (
+      <BodyShort weight="semibold">
+        <InformationSquareIcon aria-hidden fontSize="1.75rem" className={styles['info-ikon']} /> Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten. <Link href={sykefraværsstatistikkUrlMedBedrift}>Les mer om tilgang til sykefraværsstatistikk</Link>
+      </BodyShort>
+    );
+  }
+  return null;
 }
 
 const displaytekstTrendBransjeEllerNæring = (
