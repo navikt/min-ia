@@ -6,5 +6,8 @@ export const SYKEFRAVARSSTATISTIKK_BASE_PATH =
 export const SAMTALESTØTTE_URL = "https://www.nav.no/arbeidsgiver/samtalestotte-arbeidsgiver";
 export const ARBEIDSMILJØPORTALEN_URL = "https://www.arbeidsmiljoportalen.no";
 export const IDEBANKEN_URL = "https://www.idebanken.org";
-export const IA_REGJERINGEN_URL = "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv/";
+export const IA_REGJERINGEN_URL = "https://www.regjeringen.no/no/tema/arbeidsliv/arbeidsmiljo-og-sikkerhet/inkluderende_arbeidsliv";
 export const EKSPERTBISTAND_URL = "https://www.nav.no/arbeidsgiver/ekspertbistand";
+export const KONTAKTSKJEMA_URL = "https://kontaktskjema.arbeidsgiver.nav.no";
+export const KURS_URL = "https://arbeidsgiver.nav.no/kursoversikt/?tema=Inkluderende%20arbeidsliv%20(IA)";
+export const FÅ_HJELP_URL = "https://www.nav.no/arbeidsgiver/navarbeidslivssenter";

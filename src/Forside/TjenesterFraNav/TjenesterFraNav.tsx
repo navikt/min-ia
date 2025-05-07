@@ -1,6 +1,7 @@
 import { Bleed, BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./tjenesterFraNav.module.scss";
 import { ExternalLink } from "@navikt/ds-icons";
+import { KURS_URL, FÅ_HJELP_URL, EKSPERTBISTAND_URL } from "../../utils/konstanter";
 
 export default function TjenesterFraNav() {
 	return (
@@ -13,17 +14,17 @@ export default function TjenesterFraNav() {
 					<Tjeneste
 						tittel="Få tilskudd til ekspertbistand"
 						tekst="Få hjelp fra en nøytral ekspert med kompetanse på sykefravær og arbeidsmiljø."
-						lenke=""
+						lenke={EKSPERTBISTAND_URL}
 					/>
 					<Tjeneste
 						tittel="Få hjelp til å redusere sykefraværet"
 						tekst="Nav arbeidslivssenter gir oppfølging til virksomheter som sliter med høyt sykefravær."
-						lenke=""
+						lenke={FÅ_HJELP_URL}
 					/>
 					<Tjeneste
 						tittel="Bli med på kurs"
 						tekst="Nav tilbyr en rekke kurs innen sykefravær og arbeidsmiljø. Se hvilke kurs som holdes i ditt fylke."
-						lenke=""
+						lenke={KURS_URL}
 					/>
 				</div>
 			</Page.Block>

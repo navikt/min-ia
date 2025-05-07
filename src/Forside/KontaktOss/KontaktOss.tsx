@@ -2,6 +2,7 @@ import React from "react";
 import { Bleed, BodyShort, Heading, Link, Page } from "@navikt/ds-react";
 import styles from "./kontaktOss.module.scss"
 import { Chat2Icon, PaperplaneIcon, PersonHeadsetIcon } from "@navikt/aksel-icons";
+import { KONTAKTSKJEMA_URL } from "../../utils/konstanter";
 
 export interface KontaktOssProps {
     kontaktOssUrl: string
@@ -19,13 +20,13 @@ export function KontaktOss(props: KontaktOssProps) {
                         tittel="Arbeidsgivertelefonen"
                         brødtekst="Åpent hverdager kl. 9-15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min."
                         ikon={<PersonHeadsetIcon aria-hidden />}
-                        lenke=""
+                        lenke="tel:+4755553336"
                         lenketekst="55 55 33 36" />
                     <KontaktOssItem
                         tittel="Forebygge fravær"
                         brødtekst="Send inn kontaktskjema hvis du ønsker hjelp til å forebygge og redusere sykefravær."
                         ikon={<PaperplaneIcon aria-hidden />}
-                        lenke=""
+                        lenke={KONTAKTSKJEMA_URL}
                         lenketekst="Kontaktskjema" />
                     <KontaktOssItem
                         tittel="Andre alternativer"

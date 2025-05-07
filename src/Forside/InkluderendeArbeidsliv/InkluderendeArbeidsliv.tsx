@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './inkluderendeArbeidsliv.module.scss';
 import IALogo from './ia_logo.png';
 import { ExternalLink } from '@navikt/ds-icons';
+import { IA_REGJERINGEN_URL } from '../../utils/konstanter';
 
 export default function InkluderendeArbeidsliv() {
 	return (
@@ -26,7 +27,7 @@ export default function InkluderendeArbeidsliv() {
 								<List.Item>Få hjelp til å redusere sykefraværet</List.Item>
 							</List>
 						</span>
-						<Link href="" target="_blank">
+						<Link href={IA_REGJERINGEN_URL} target="_blank">
 							Les mer om IA-avtalen på sidene til regjeringen <ExternalLink fontSize="1rem" aria-hidden />
 						</Link>
 					</VStack>

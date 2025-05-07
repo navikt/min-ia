@@ -3,6 +3,7 @@ import { ExternalLink } from "@navikt/ds-icons";
 import React from "react";
 
 import styles from "./verktøyOgRessurser.module.scss";
+import { ARBEIDSMILJØPORTALEN_URL, IDEBANKEN_URL, SAMTALESTØTTE_URL } from "../../utils/konstanter";
 
 export default function VerktøyOgRessurser() {
 	return (
@@ -11,14 +12,14 @@ export default function VerktøyOgRessurser() {
 				Gode verktøy og ressurser
 			</Heading>
 			<VStack gap="4" className={styles.verktøyStack}>
-				<Verktøykort lenke="" lenketekst="Arbeidsmiljøportalen">
+				<Verktøykort lenke={ARBEIDSMILJØPORTALEN_URL} lenketekst="Arbeidsmiljøportalen">
 					<b>Arbeidsmiljøportalen</b> har gode verktøy for å bedre arbeidsmiljøet
 				</Verktøykort>
-				<Verktøykort lenke="" lenketekst="Idébanken">
+				<Verktøykort lenke={IDEBANKEN_URL} lenketekst="Idébanken">
 					På <b>Idébanken</b> finner du ideer, erfaringer og verktøy for bedre arbeidsmiljø og lavere sykefravær
 
 				</Verktøykort>
-				<Verktøykort lenke="" lenketekst="nav.no">
+				<Verktøykort lenke={SAMTALESTØTTE_URL} lenketekst="nav.no">
 					<b>Samtalestøtten</b> gir gode råd for gjennomføring av samtaler med ansatte
 				</Verktøykort>
 			</VStack>
