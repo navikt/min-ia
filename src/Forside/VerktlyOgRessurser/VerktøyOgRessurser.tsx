@@ -8,7 +8,7 @@ import { ARBEIDSMILJØPORTALEN_URL, IDEBANKEN_URL, SAMTALESTØTTE_URL } from "..
 export default function VerktøyOgRessurser() {
 	return (
 		<Page.Block width="xl" className={styles.verktøyOgRessurser}>
-			<Heading size="medium" level="2" align="center" className={styles.verktøyOgRessurserTittel}>
+			<Heading size="large" level="2" align="center" className={styles.verktøyOgRessurserTittel}>
 				Gode verktøy og ressurser
 			</Heading>
 			<VStack gap="4" className={styles.verktøyStack}>

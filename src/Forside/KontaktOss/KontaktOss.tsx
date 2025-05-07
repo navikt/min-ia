@@ -12,7 +12,7 @@ export function KontaktOss(props: KontaktOssProps) {
     return (
         <Bleed className={styles.kontaktOss}>
             <Page.Block width="xl" className={styles.kontaktOss__innhold}>
-                <Heading size={"medium"} level={"2"} className={styles.kontaktOss__tittel}>
+                <Heading size={"large"} level={"2"} className={styles.kontaktOss__tittel}>
                     Kontakt oss
                 </Heading>
                 <div className={styles.kontaktOss__stack}>

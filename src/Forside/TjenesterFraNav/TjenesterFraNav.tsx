@@ -7,7 +7,7 @@ export default function TjenesterFraNav() {
 	return (
 		<Bleed className={styles.tjenesterFraNav_Bleed}>
 			<Page.Block width="xl" className={styles.tjenesterFraNav}>
-				<Heading size="medium" level="2" className={styles.tjenesterFraNavTittel}>
+				<Heading size="large" level="2" className={styles.tjenesterFraNavTittel}>
 					Tjenester fra Nav
 				</Heading>
 				<div className={styles.tjenesteStack}>

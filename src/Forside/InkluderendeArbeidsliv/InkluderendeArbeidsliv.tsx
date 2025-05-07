@@ -12,7 +12,7 @@ export default function InkluderendeArbeidsliv() {
 			<Page.Block width="xl" className={styles.inkluderendeArbeidsliv}>
 				<HStack gap="2" wrap className={styles.inkluderendeArbeidsliv__hs}>
 					<VStack gap="4" className={styles.inkluderendeArbeidsliv__vs}>
-						<Heading size="medium" level="2">
+						<Heading size="large" level="2">
 							Inkluderende arbeidsliv
 						</Heading>
 						<BodyShort>
