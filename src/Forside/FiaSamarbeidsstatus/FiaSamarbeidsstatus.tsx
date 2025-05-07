@@ -4,7 +4,6 @@ import styles from "./fiaSamarbeidsstatus.module.scss"
 import { PersonGroupIcon } from "@navikt/aksel-icons";
 
 import { sendVisSamarbeidsstatusEvent } from "../../amplitude/amplitude";
-import DebugManager, { DebugKeys } from "../../utils/debugManager";
 
 interface FiaSamarbeidsstatusProps {
     status: string;
@@ -15,7 +14,7 @@ const FiaSamarbeidsstatus: React.FunctionComponent<FiaSamarbeidsstatusProps> = (
         sendVisSamarbeidsstatusEvent(props.status)
     }, [props.status]);
 
-    const VIS_SAMARBEIDKNAPP = DebugManager.getInstance().getItemBoolean(DebugKeys.VIS_SE_SAMARBEID_KNAPP);
+    const VIS_SAMARBEIDKNAPP = false;
 
     return (
         <Page.Block width="xl">

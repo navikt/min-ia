@@ -1,7 +1,5 @@
-import { ActionMenu, Alert, BodyShort, Button, Heading, Link } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, Link } from "@navikt/ds-react";
 import styles from "./TestVersjonBanner.module.css";
-import DebugManager, { DebugKeys } from "../../utils/debugManager";
-import { ChevronDownIcon } from "@navikt/aksel-icons";
 
 const TestVersjonBanner = ({
   sidenavn,
@@ -30,35 +28,7 @@ const TestVersjonBanner = ({
           </>
         ) : null}
       </BodyShort>
-      <DebugMenu />
     </Alert>
   );
 };
-
-function DebugMenu() {
-  const debugMenu = DebugManager.getInstance();
-  return (
-    <ActionMenu>
-      <ActionMenu.Trigger>
-        <Button
-          variant="tertiary"
-          size="small"
-          icon={<ChevronDownIcon aria-hidden />}>
-          Debugvalg
-        </Button>
-      </ActionMenu.Trigger>
-      <ActionMenu.Content>
-        <ActionMenu.CheckboxItem
-          checked={debugMenu.getItemBoolean(DebugKeys.VIS_SE_SAMARBEID_KNAPP)}
-          onCheckedChange={(checked) => {
-            debugMenu.setItemBoolean(DebugKeys.VIS_SE_SAMARBEID_KNAPP, checked);
-          }}
-        >
-          Vis &quot;Se samarbeid&quot; knapp
-        </ActionMenu.CheckboxItem>
-      </ActionMenu.Content>
-    </ActionMenu>
-  )
-}
-
 export default TestVersjonBanner;
