@@ -10,14 +10,39 @@ import { leggTilBedriftPåUrl, Sykefraværsstatistikk } from "./Sykefraværsstat
 import { axe } from "jest-axe";
 import { mockAggregertStatistikkMedBransjetall } from "./mockAggregertStatistikkMedBransjetall";
 import { RestStatus } from "../../integrasjoner/rest-status";
+import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjoner";
 
-jest.mock("../../../src/hooks/useOrgnr", () => ({
+jest.mock("../../hooks/useOrgnr", () => ({
   useOrgnr: () => "999999999",
 }));
 
-jest.mock("../../../src/hooks/useAltinnOrganisasjoner", () => ({
-  useAltinnOrganisasjoner: () => RestStatus.LasterInn,
-  useAltinnOrganisasjonerMedStatistikktilgang: () => RestStatus.LasterInn,
+jest.mock("../../hooks/useAltinnOrganisasjoner", () => ({
+  useAltinnOrganisasjoner: jest.fn(() => ({
+    status: RestStatus.Suksess,
+    data: [
+      {
+        Name: "FLESK OG FISK AS [Local server]",
+        Type: "Enterprise",
+        OrganizationNumber: "999999999",
+        OrganizationForm: "AS",
+        Status: "Active",
+        ParentOrganizationNumber: "",
+      },
+    ],
+  })),
+  useAltinnOrganisasjonerMedStatistikktilgang: jest.fn(() => ({
+    status: RestStatus.Suksess,
+    data: [
+      {
+        Name: "FLESK OG FISK AS [Local server]",
+        Type: "Enterprise",
+        OrganizationNumber: "999999999",
+        OrganizationForm: "AS",
+        Status: "Active",
+        ParentOrganizationNumber: "",
+      },
+    ],
+  })),
 }));
 
 describe("Tester at bedrift legges korrekt til på URL", () => {
@@ -138,8 +163,12 @@ describe("Sykefraværsstatistikk", () => {
     expect(prosent.textContent).toBe("8,8%");
   });
 
-  /* TODO: denne testen kan bli reaktivert etter Altinn 3 har lansert "Be om tilgang" i Altinn
-  it("viser lenke til sykefraværsstatistikken og forklaringstekst", async () => {
+  it("Forteller bruker at de ikke har tilgang til noen virksomheter", async () => {
+    (useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock).mockReturnValueOnce({
+      status: RestStatus.Suksess,
+      data: [],
+    });
+
     render(
       <Sykefraværsstatistikk
         {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
@@ -147,18 +176,71 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-
-    const infobolk = await screen.findByText(/Be om tilgang/);
-    expect(infobolk.textContent).toBe("Be om tilgang");
-    const infotekst = screen.getByText(/Klikk her for å be om tilgang/);
-    expect(infotekst.textContent).toBe(
-      "Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk.",
+    expect(screen.getByText("Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toHaveAttribute(
+      "href",
+      expect.stringContaining("http://url?bedrift=999999999"),
     );
   });
-*/
+  it("Forteller bruker at de mangler tilgang til sykefraværsstatistikk i virksomheten", async () => {
+    (useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock).mockReturnValueOnce({
+      status: RestStatus.Suksess,
+      data: [
+        {
+          Name: "FLESK OG FISK AS [Local server]",
+          Type: "Enterprise",
+          OrganizationNumber: "123123123",
+          OrganizationForm: "AS",
+          Status: "Active",
+          ParentOrganizationNumber: "",
+        },
+      ],
+    });
 
-  /* TODO: denne testen kan bli reaktivert etter Altinn 3 har lansert "Be om tilgang" i Altinn
-  it("lenker riktig til sykefraværsstatistikken", async () => {
+    render(
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
+        nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
+      />,
+    );
+    expect(screen.getByText("Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toHaveAttribute(
+      "href",
+      expect.stringContaining("http://url?bedrift=999999999"),
+    );
+  });
+
+  it("Forteller IKKE bruker at de mangler tilgang til sykefraværsstatistikk dersom de ikke gjør det", async () => {
+    render(
+      <Sykefraværsstatistikk
+        {...hentUtSykefraværsstatistikkData(
+          mockAggregertStatistikkMedBransjetall,
+        )}
+        nedlastingPågår={false}
+        sykefraværsstatistikkUrl={"http://url"}
+      />,
+    );
+    expect(screen.queryByText("Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.")).toBeNull();
+  });
+
+  test("Viser riktig lenke til sykefravørsstatistikken dersom bruker ikke har tilgang", async () => {
+    (useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock).mockReturnValueOnce({
+      status: RestStatus.Suksess,
+      data: [
+        {
+          Name: "FLESK OG FISK AS [Local server]",
+          Type: "Enterprise",
+          OrganizationNumber: "123123123",
+          OrganizationForm: "AS",
+          Status: "Active",
+          ParentOrganizationNumber: "",
+        },
+      ],
+    });
+
     render(
       <Sykefraværsstatistikk
         {...hentUtSykefraværsstatistikkData(tomtDataobjekt)}
@@ -168,7 +250,7 @@ describe("Sykefraværsstatistikk", () => {
     );
 
     const lenke = await screen.findByRole("link", {
-      name: /Be om tilgang Klikk her for å be om tilgang for å se denne virksomhetens sykefraværsstatistikk./,
+      name: /Les mer om tilgang til sykefraværsstatistikk/,
     });
 
     expect(lenke).toHaveAttribute(
@@ -176,7 +258,6 @@ describe("Sykefraværsstatistikk", () => {
       expect.stringContaining("http://url?bedrift=999999999"),
     );
   });
-  */
 
   test("uu-feil fra axe", async () => {
     let { container } = render(

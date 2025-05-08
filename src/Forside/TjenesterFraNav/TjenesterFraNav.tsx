@@ -41,6 +41,7 @@ function Tjeneste({ tittel, tekst, lenke }: { tittel: string, tekst: string, len
 			<BodyShort>{tekst}</BodyShort>
 			<Button
 				as="a"
+				role="link"
 				href={lenke}
 				className={styles.tjenestelenke}
 				variant="secondary"

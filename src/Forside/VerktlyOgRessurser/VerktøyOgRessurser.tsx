@@ -42,6 +42,8 @@ function Verktøykort({
 			<Button
 				as="a"
 				href={lenke}
+				role="link"
+				target="_blank"
 				className={styles.lenke}
 				variant="secondary"
 				size="small"

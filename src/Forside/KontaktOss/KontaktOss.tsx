@@ -8,7 +8,7 @@ export interface KontaktOssProps {
     kontaktOssUrl: string
 }
 
-export function KontaktOss(props: KontaktOssProps) {
+export default function KontaktOss(props: KontaktOssProps) {
     return (
         <Bleed className={styles.kontaktOss}>
             <Page.Block width="xl" className={styles.kontaktOss__innhold}>

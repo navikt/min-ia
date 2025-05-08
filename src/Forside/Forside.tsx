@@ -6,7 +6,7 @@ import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/dat
 import { Alert, Page } from "@navikt/ds-react";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
 import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
-import { KontaktOss } from "./KontaktOss/KontaktOss";
+import KontaktOss from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
