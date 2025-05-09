@@ -44,7 +44,7 @@ function Tjeneste({ tittel, tekst, lenke }: { tittel: string, tekst: string, len
 				role="link"
 				href={lenke}
 				className={styles.tjenestelenke}
-				variant="secondary"
+				variant="primary"
 				size="small"
 				icon={<ExternalLink fontSize="1rem" aria-hidden />}
 				iconPosition="right"

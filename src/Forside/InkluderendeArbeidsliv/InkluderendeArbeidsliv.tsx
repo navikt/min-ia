@@ -27,7 +27,7 @@ export default function InkluderendeArbeidsliv() {
 								<List.Item>Få hjelp til å redusere sykefraværet</List.Item>
 							</List>
 						</span>
-						<Link href={IA_REGJERINGEN_URL} target="_blank">
+						<Link variant='neutral' href={IA_REGJERINGEN_URL} target="_blank">
 							Les mer om IA-avtalen på sidene til regjeringen <ExternalLink fontSize="1rem" aria-hidden />
 						</Link>
 					</VStack>
