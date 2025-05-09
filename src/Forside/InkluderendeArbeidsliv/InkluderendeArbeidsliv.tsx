@@ -31,7 +31,7 @@ export default function InkluderendeArbeidsliv() {
 							Les mer om IA-avtalen på sidene til regjeringen <ExternalLink fontSize="1rem" aria-hidden />
 						</Link>
 					</VStack>
-					<div className={styles.inkluderendeArbeidsliv__logo__container}>
+					<div aria-hidden className={styles.inkluderendeArbeidsliv__logo__container}>
 						<Image src={IALogo} alt="Logo for Inkluderende arbeidsliv" className={styles.inkluderendeArbeidsliv__logo} />
 					</div>
 				</HStack>

@@ -18,7 +18,7 @@ export default function KontaktOss(props: KontaktOssProps) {
                 <div className={styles.kontaktOss__stack}>
                     <KontaktOssItem
                         tittel="Arbeidsgivertelefonen"
-                        brødtekst="Åpent hverdager kl. 9-15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min."
+                        brødtekst="Åpent hverdager kl. 9 til 15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min."
                         ikon={<PersonHeadsetIcon aria-hidden />}
                         lenke="tel:+4755553336"
                         lenketekst="55 55 33 36" />

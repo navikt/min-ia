@@ -99,7 +99,7 @@ function Sykefraværsstatistikklenke({
   }
   if (harTilgangTilOrg) {
     return (
-      <Button icon={<TrendUpIcon aria-hidden />} as="a" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
+      <Button icon={<TrendUpIcon aria-hidden />} as="a" role="link" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
         Se din sykefraværsstatistikk
       </Button>
     );

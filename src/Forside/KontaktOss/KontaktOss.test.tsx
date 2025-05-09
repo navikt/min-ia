@@ -16,7 +16,7 @@ describe("KontaktOss", () => {
 		expect(screen.getByRole("heading", { name: "Arbeidsgivertelefonen", level: 3 })).toBeInTheDocument();
 		expect(screen.getByRole("heading", { name: "Forebygge fravær", level: 3 })).toBeInTheDocument();
 		expect(screen.getByRole("heading", { name: "Andre alternativer", level: 3 })).toBeInTheDocument();
-		expect(screen.getByText("Åpent hverdager kl. 9-15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min.")).toBeInTheDocument();
+		expect(screen.getByText("Åpent hverdager kl. 9 til 15. Vi kan ringe deg tilbake hvis ventetiden er over 5 min.")).toBeInTheDocument();
 		expect(screen.getByText("Send inn kontaktskjema hvis du ønsker hjelp til å forebygge og redusere sykefravær.")).toBeInTheDocument();
 		expect(screen.getByText("Se flere alternativer og mer informasjon om hvordan du kan kontakte oss.")).toBeInTheDocument();
 	});
