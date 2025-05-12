@@ -32,19 +32,25 @@
         overflow: hidden;
         position: relative;
 
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 5rem;
-          background: linear-gradient(
-            180deg,
-            transparent -15%,
-            var(--oppgaveblokk-farge) 100%
-          );
-          pointer-events: none;
+        @media print {
+          max-height: none;
+        }
+
+        @media not print {
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5rem;
+            background: linear-gradient(
+              180deg,
+              transparent -15%,
+              var(--oppgaveblokk-farge) 100%
+            );
+            pointer-events: none;
+          }
         }
       }
 

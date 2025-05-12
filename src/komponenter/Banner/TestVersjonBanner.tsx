@@ -1,5 +1,5 @@
 import { Alert, BodyShort, Heading, Link } from "@navikt/ds-react";
-import styles from "./TestVersjonBanner.module.css";
+import styles from "./TestVersjonBanner.module.scss";
 
 const TestVersjonBanner = ({
   sidenavn,

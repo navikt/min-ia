@@ -36,6 +36,13 @@
           margin-right: 0.25rem;
         }
       }
+
+      .aktivitetInnhold {
+        @media print {
+          display: block;
+          animation: none;
+        }
+      }
     }
 
     .infoboks {

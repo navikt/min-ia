@@ -1,0 +1,9 @@
+.uxSignalWidget {
+	max-width: 620px;
+}
+
+@media print {
+	.uxSignalWidget {
+		display: none !important;
+	}
+}

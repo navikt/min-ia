@@ -141,7 +141,7 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
           aktivitetStatistikk={aktivitetStatistikk}
         />
       </Accordion.Header>
-      <Accordion.Content>
+      <Accordion.Content className={styles.aktivitetInnhold}>
         {aktivitet.innhold.map((innhold, index) => (
           <AktivitetInnhold key={index} innhold={innhold} />
         ))}
