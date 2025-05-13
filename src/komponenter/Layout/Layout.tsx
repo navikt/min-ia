@@ -13,38 +13,28 @@ export const Layout = (props: {
   kjørerMockApp: boolean;
   children: React.ReactNode;
 }) => {
-  const layoutContentRef = useRef<HTMLDivElement>(null);
-
-  const banner = (
-    <NotifikasjonWidgetProvider
-      apiUrl={`${AUTHENTICATED_BASE_PATH}/notifikasjoner`}
-      miljo={props.kjørerMockApp ? "local" : "prod"}
-    >
-      <Banner
-        tittelMedUnderTittel={
-          <div>
-            <Heading size="large" level="1">
-              {props.title}
-              <meta name="description" content={props.description} />
-            </Heading>
-            <Ingress>Inkluderende arbeidsliv</Ingress>
-          </div>
-        }
-        altinnOrganisasjoner={props.altinnOrganisasjoner}
-      />
-    </NotifikasjonWidgetProvider>
-  );
+  const layoutContentRef = useRef<HTMLDivElement>(null)
 
   return (
-    <>
-      <div id="app" className="app">
-        <main id="maincontent" role="main" tabIndex={-1}>
-          {banner}
-          <div>
-            <div ref={layoutContentRef}>{props.children}</div>
-          </div>
-        </main>
-      </div>
-    </>
+    <main id="maincontent" role="main" tabIndex={-1}>
+      <NotifikasjonWidgetProvider
+        apiUrl={`${AUTHENTICATED_BASE_PATH}/notifikasjoner`}
+        miljo={props.kjørerMockApp ? "local" : "prod"}
+      >
+        <Banner
+          tittelMedUnderTittel={
+            <div>
+              <Heading size="large" level="1">
+                {props.title}
+                <meta name="description" content={props.description} />
+              </Heading>
+              <Ingress>Inkluderende arbeidsliv</Ingress>
+            </div>
+          }
+          altinnOrganisasjoner={props.altinnOrganisasjoner}
+        />
+      </NotifikasjonWidgetProvider>
+      <div ref={layoutContentRef}>{props.children}</div>
+    </main>
   );
 };

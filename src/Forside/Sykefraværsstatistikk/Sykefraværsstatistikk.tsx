@@ -1,14 +1,12 @@
 import { ReactNode } from "react";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import styles from "./sykefraværsstatistikk.module.scss";
-import { Detail, Heading, Label, Loader } from "@navikt/ds-react";
+import { Bleed, BodyShort, Button, Heading, HStack, Link, Page, VStack } from "@navikt/ds-react";
 import { InfographicFlis } from "../../komponenter/Infographic/InfographicFlis/InfographicFlis";
-import { Lenkeflis } from "../../Lenkeflis/Lenkeflis";
-import "./sykefraværsstatistikk.module.scss";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjoner";
-import { BarChartFillIcon } from "@navikt/aksel-icons";
+import { InformationSquareIcon, TrendUpIcon } from "@navikt/aksel-icons";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
@@ -41,87 +39,47 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
 
   const brukerManglerTilgangTilOrg =
     props.fraværsprosentVirksomhet.length === 0;
+  const harTilgangTilOrg = (orgnr &&
+    organisasjonerHvorBrukerHarStatistikktilgang.status ===
+    RestStatus.Suksess &&
+    organisasjonerHvorBrukerHarStatistikktilgang.data
+      .map((org) => org.OrganizationNumber)
+      .includes(orgnr)) ||
+    false;
 
   return (
-    <div className={styles.sykefraværsstatistikk}>
-      <Heading size={"large"} level={"2"}>
-        Sykefraværsstatistikk
-      </Heading>
-      <div className={styles.infographicContent__wrapper}>
-        <div className={styles.infographicContent}>
-          <div className={styles.infographicRad}>
-            <InfographicFlis
-              innhold={displaytekstSykefraværNorge(props.fraværsprosentNorge)}
-              nedlastingPågår={props.nedlastingPågår}
-            />
-
-            <InfographicFlis
-              innhold={displaytekstSykefraværBransjeEllerNæring(props)}
-              nedlastingPågår={props.nedlastingPågår}
-            />
-          </div>
-
-          <div className={styles.infographicRad}>
-            <VirksomhetInfographicFlis
-              fraværsprosentVirksomhet={props.fraværsprosentVirksomhet}
-              nedlastingPågår={props.nedlastingPågår}
-            />
-            <InfographicFlis
-              fullBredde={brukerManglerTilgangTilOrg}
-              innhold={displaytekstTrendBransjeEllerNæring(props)}
-              nedlastingPågår={props.nedlastingPågår}
-            />
-          </div>
-        </div>
-        <Sykefraværsstatistikkinnhold
-          harTilgangTilOrg={
-            (orgnr &&
-              organisasjonerHvorBrukerHarStatistikktilgang.status ===
-              RestStatus.Suksess &&
-              organisasjonerHvorBrukerHarStatistikktilgang.data
-                .map((org) => org.OrganizationNumber)
-                .includes(orgnr)) ||
-            false
-          }
-          sykefraværsstatistikkUrlMedBedrift={
-            sykefraværsstatistikkUrlMedBedrift
-          }
-          organisasjonerHvorBrukerHarStatistikktilgang={
-            organisasjonerHvorBrukerHarStatistikktilgang
-          }
-        />
-      </div>
-    </div>
+    <Bleed style={{ backgroundColor: "white" }}>
+      <Page.Block width="xl" className={styles.sykefraværsstatistikk}>
+        <HStack justify="space-between" align="start">
+          <VStack>
+            <Heading size={"large"} level={"2"}>
+              Sykefraværsstatistikk
+            </Heading>
+            <BodyShort>
+              Legemeldt sykefravær siste 12 mnd
+            </BodyShort>
+          </VStack>
+          <Sykefraværsstatistikklenke
+            harTilgangTilOrg={harTilgangTilOrg}
+            sykefraværsstatistikkUrlMedBedrift={sykefraværsstatistikkUrlMedBedrift}
+            organisasjonerHvorBrukerHarStatistikktilgang={organisasjonerHvorBrukerHarStatistikktilgang} />
+        </HStack>
+        <BrukerManglerTilgangTilOrg
+          harTilgangTilOrg={harTilgangTilOrg}
+          sykefraværsstatistikkUrlMedBedrift={sykefraværsstatistikkUrlMedBedrift}
+          organisasjonerHvorBrukerHarStatistikktilgang={organisasjonerHvorBrukerHarStatistikktilgang} />
+        <HStack justify="space-between" wrap gap="8">
+          {!brukerManglerTilgangTilOrg && <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din virksomhet" innhold={`${props.fraværsprosentVirksomhet}%`} />}
+          <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I din bransje" innhold={`${props.fraværsprosentBransjeEllerNæring}%`} />
+          <InfographicFlis nedlastingPågår={props.nedlastingPågår} label="I Norge" innhold={`${props.fraværsprosentNorge}%`} />
+          <InfographicFlis nedlastingPågår={props.nedlastingPågår} utenLabel innhold={displaytekstTrendBransjeEllerNæring(props)} />
+        </HStack>
+      </Page.Block>
+    </Bleed>
   );
 };
 
-function VirksomhetInfographicFlis({
-  fraværsprosentVirksomhet,
-  nedlastingPågår,
-}: {
-  fraværsprosentVirksomhet: string;
-  nedlastingPågår: boolean;
-}) {
-  if (fraværsprosentVirksomhet.length) {
-    return (
-      <InfographicFlis
-        innhold={
-          <>
-            <Detail uppercase={true}>I din virksomhet siste 12 MND</Detail>
-            <Label>{fraværsprosentVirksomhet}%</Label>
-          </>
-        }
-        nedlastingPågår={nedlastingPågår}
-      />
-    );
-  }
-
-  return null;
-}
-
-const SOFT_HYPHEN = String.fromCharCode(173);
-
-function Sykefraværsstatistikkinnhold({
+function Sykefraværsstatistikklenke({
   harTilgangTilOrg,
   sykefraværsstatistikkUrlMedBedrift,
   organisasjonerHvorBrukerHarStatistikktilgang,
@@ -133,53 +91,41 @@ function Sykefraværsstatistikkinnhold({
   if (
     organisasjonerHvorBrukerHarStatistikktilgang.status === RestStatus.LasterInn
   ) {
-    return <Lenkeflis overskrift="Laster..." ikon={<Loader />} />;
+    return (
+      <Button icon={<TrendUpIcon aria-hidden />} as="a" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
+        Laster
+      </Button>
+    );
   }
-
   if (harTilgangTilOrg) {
     return (
-      <Lenkeflis
-        overskrift={`Sykefraværs${SOFT_HYPHEN}statistikken`}
-        href={sykefraværsstatistikkUrlMedBedrift}
-        ikon={<BarChartFillIcon aria-hidden />}
-      />
+      <Button icon={<TrendUpIcon aria-hidden />} as="a" role="link" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
+        Se din sykefraværsstatistikk
+      </Button>
     );
   }
 
-  return (
-    <Lenkeflis
-      overskrift="Sykefraværsstatistikken"
-      brødtekst="Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten."
-      href={sykefraværsstatistikkUrlMedBedrift}
-    />
-  );
+  return null;
 }
 
-function displaytekstSykefraværNorge(prosent: string | undefined) {
-  return (
-    <>
-      <Detail uppercase={true}>I Norge siste 12 mnd</Detail>
-      <Label>{prosent ?? "- "}%</Label>
-    </>
-  );
-}
-
-const displaytekstSykefraværBransjeEllerNæring = (
-  data: SykefraværsstatistikkData
-): ReactNode => {
-  if (data.fraværsprosentBransjeEllerNæring) {
+function BrukerManglerTilgangTilOrg({
+  harTilgangTilOrg,
+  sykefraværsstatistikkUrlMedBedrift,
+  organisasjonerHvorBrukerHarStatistikktilgang,
+}: {
+  harTilgangTilOrg: boolean;
+  sykefraværsstatistikkUrlMedBedrift: string;
+  organisasjonerHvorBrukerHarStatistikktilgang: RestAltinnOrganisasjoner;
+}) {
+  if (organisasjonerHvorBrukerHarStatistikktilgang.status !== RestStatus.LasterInn && !harTilgangTilOrg) {
     return (
-      <>
-        <Detail uppercase={true}>
-          I {data.bransjeEllerNæring} siste 12 mnd
-        </Detail>
-        <Label>{data.fraværsprosentBransjeEllerNæring}%</Label>
-      </>
+      <BodyShort weight="semibold">
+        <InformationSquareIcon aria-hidden fontSize="1.75rem" className={styles['info-ikon']} /> Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten. <Link href={sykefraværsstatistikkUrlMedBedrift}>Les mer om tilgang til sykefraværsstatistikk</Link>
+      </BodyShort>
     );
-  } else {
-    return `Vi mangler data til beregning av sykefraværet i din ${data.bransjeEllerNæring}`;
   }
-};
+  return null;
+}
 
 const displaytekstTrendBransjeEllerNæring = (
   props: SykefraværsstatistikkData
@@ -187,12 +133,7 @@ const displaytekstTrendBransjeEllerNæring = (
   const stigningstall = props.stigningstallTrendBransjeEllerNæring;
   // Hack for å få skjermleser til å oppføre seg korrekt:
   if (isFinite(stigningstall)) {
-    return (
-      <>
-        <Detail uppercase={true}>Trend i {tilBestemtForm(props.bransjeEllerNæring)}</Detail>
-        <Label>Fravær {stigningstallTilTekst(stigningstall)}</Label>
-      </>
-    );
+    return `Fraværet ${stigningstallTilTekst(stigningstall)} i ${tilBestemtForm(props.bransjeEllerNæring)}`;
   } else {
     return `Vi mangler data til å kunne beregne utviklingen i sykefraværet i din ${props.bransjeEllerNæring}`;
   }

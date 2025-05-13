@@ -1,8 +1,10 @@
 import React from "react";
 
-import {useScript} from "./UseScript";
+import { useScript } from "./UseScript";
 
-export const UXSignalsWidget = ({eriDev, id}: {
+import styles from "./uxSignalsWidget.module.scss";
+
+export const UXSignalsWidget = ({ eriDev, id }: {
     eriDev: boolean
     id: string
 }) => {
@@ -10,6 +12,6 @@ export const UXSignalsWidget = ({eriDev, id}: {
     return (<div
         data-uxsignals-embed={id}
         data-uxsignals-mode={eriDev ? 'demo' : ''}
-        style={{maxWidth: '620px'}}
+        className={styles.uxSignalWidget}
     />);
 }

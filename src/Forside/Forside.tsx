@@ -1,18 +1,21 @@
 import styles from "./forside.module.scss";
 import React from "react";
-import {useAggregertStatistikk} from "../hooks/useAggregertStatistikk";
-import {erFerdigNedlastet, RestStatus} from "../integrasjoner/rest-status";
-import {hentUtSykefraværsstatistikkData} from "../komponenter/Infographic/datauthenting";
-import {Alert} from "@navikt/ds-react";
-import {tomtDataobjekt} from "../integrasjoner/aggregert-statistikk-api";
-import {RelaterteTjenester} from "./RelaterteTjenester/RelaterteTjenester";
-import {Sykefraværsstatistikk} from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
-import {KontaktOss} from "./KontaktOss/KontaktOss";
+import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
+import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
+import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
+import { Alert, Page } from "@navikt/ds-react";
+import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
+import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværsstatistikk";
+import KontaktOss from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
-import {useFiaSamarbeidsstatus} from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
+import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
-import {UXSignalsWidget} from "./UXSignalsWidget";
+import { UXSignalsWidget } from "./UXSignalsWidget";
+import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
+import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
+import VerktøyOgRessurser from "./VerktlyOgRessurser/VerktøyOgRessurser";
+import InkluderendeArbeidsliv from "./InkluderendeArbeidsliv/InkluderendeArbeidsliv";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -28,42 +31,42 @@ export const Forside = (props: ForsideProps) => {
         ? aggregertStatistikk.data
         : tomtDataobjekt;
 
-    const sykefraværsstatistikkEllerBannerHvisError =
-        aggregertStatistikk.status === RestStatus.Feil ? (
-            <Alert variant={"error"} className={styles.forsideAlert}>
-                Det har skjedd en feil. Vennligst prøv igjen senere.
-            </Alert>
-        ) : (
-            <Sykefraværsstatistikk
-                {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
-                nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
-                sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
-            />
-        );
-
     const fiaSamarbeidsstatus = useFiaSamarbeidsstatus();
 
     return (
-        <div className={styles.sentrertSide}>
+        <>
             <TestVersjonBanner
                 sidenavn="siden for å forebygge fravær"
                 prodUrl={props.prodUrl}
                 kjørerMockApp={props.kjørerMockApp}
             />
-            <div className={styles.forside}>
+            <Page.Block width="xl" style={{ position: "relative" }}>
                 {props.children}
-                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"}/>
-                {sykefraværsstatistikkEllerBannerHvisError}
-                {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
-                    fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
-                        <>
-                            <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid}/>
-                        </>
-                    )}
-                <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData}/>
-                <RelaterteTjenester/>
-                <KontaktOss kontaktOssUrl={props.kontaktOssUrl}/>
-            </div>
-        </div>
+                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"} />
+            </Page.Block>
+            {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
+                fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
+                    <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
+                )}
+            {aggregertStatistikk.status === RestStatus.Feil ? (
+                <Page.Block width="xl">
+                    <Alert variant={"error"} className={styles.forsideAlert}>
+                        Det har skjedd en feil. Vennligst prøv igjen senere.
+                    </Alert>
+                </Page.Block>
+            ) : (
+                <Sykefraværsstatistikk
+                    {...hentUtSykefraværsstatistikkData(aggregertStatistikkData)}
+                    nedlastingPågår={!erFerdigNedlastet(aggregertStatistikk)}
+                    sykefraværsstatistikkUrl={props.sykefraværsstatistikkUrl}
+                />
+            )}
+            <Fraværskalkulator />
+            <TjenesterFraNav />
+            <VerktøyOgRessurser />
+            <InkluderendeArbeidsliv />
+            <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
+            <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
+        </>
     );
 };

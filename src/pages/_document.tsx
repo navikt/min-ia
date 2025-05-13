@@ -13,6 +13,7 @@ import Document, {
 import React, { ReactElement } from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
 import { isMockApp } from "../utils/envUtils";
+import { Page } from "@navikt/ds-react";
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (
@@ -82,13 +83,13 @@ export default class MyDocument extends Document<Props> {
             href={favicon_16x16_data}
           />
         </Head>
-        <body>
+        <Page as="body" style={{ backgroundColor: "var(--a-bg-subtle)" }}>
           <Decorator.Header />
           <Main />
           <Decorator.Footer />
           <Decorator.Scripts />
           <NextScript />
-        </body>
+        </Page>
       </Html>
     );
   }

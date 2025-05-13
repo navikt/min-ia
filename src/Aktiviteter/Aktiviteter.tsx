@@ -22,11 +22,11 @@ import {
   Heading,
   Link,
   List,
+  Page,
 } from "@navikt/ds-react";
 import { AktivitetHeader } from "./AktivitetHeader";
 import { AktivitetStatistikkType } from "./typer";
 import Oppgave from "./Oppgave";
-import { AndreForebyggendeVerktoy } from "./AndreForebyggendeVerktoy";
 import {
   AktivitetProvider,
   useStatusForAktiviteter,
@@ -36,7 +36,7 @@ import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
-import {sendÅpneAktivitetEvent} from "../amplitude/amplitude";
+import { sendÅpneAktivitetEvent } from "../amplitude/amplitude";
 
 export default function AktivitetSeksjon(props: {
   sykefraværsstatistikk: AggregertStatistikkDto;
@@ -53,18 +53,19 @@ export default function AktivitetSeksjon(props: {
       }
       sykefraværsstatistikk={props.sykefraværsstatistikk}
     >
-      <Bleed marginInline="full" className={styles["aktiviteter-seksjon"]}>
-        <div className={styles["aktiviteter-seksjon-innhold"]}>
-          <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
-            Øvelser og verktøy
-          </Heading>
-          <BodyLong className={styles["aktiviteter-brødtekst"]}>
-            Vi har laget et par gode grunnleggende øvelser som mange ledere
-            etterspør. Her kan du starte!
-          </BodyLong>
-          <Aktiviteter />
-          <AndreForebyggendeVerktoy />
-        </div>
+      <Bleed className={styles["aktiviteter-seksjon"]}>
+        <Page.Block width="xl">
+          <div className={styles["aktiviteter-seksjon-innhold"]}>
+            <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
+              Øvelser og verktøy
+            </Heading>
+            <BodyLong className={styles["aktiviteter-brødtekst"]}>
+              Vi har laget et par gode grunnleggende øvelser som mange ledere
+              etterspør. Her kan du starte!
+            </BodyLong>
+            <Aktiviteter />
+          </div>
+        </Page.Block>
       </Bleed>
     </AktivitetProvider>
   );
@@ -140,7 +141,7 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
           aktivitetStatistikk={aktivitetStatistikk}
         />
       </Accordion.Header>
-      <Accordion.Content>
+      <Accordion.Content className={styles.aktivitetInnhold}>
         {aktivitet.innhold.map((innhold, index) => (
           <AktivitetInnhold key={index} innhold={innhold} />
         ))}

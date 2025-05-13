@@ -1,6 +1,7 @@
 @use "../styles/screensize" as *;
 
 .banner > div > div {
+  grid-template-columns: 1fr minmax(1rem, 80rem) 1fr;
   @media(min-width: $screen-md) {
     padding: 0 2rem;
   }

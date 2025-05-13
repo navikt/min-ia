@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--a-gray-100);
 }
 
 .forside {
@@ -14,11 +15,6 @@
   gap: var(--a-spacing-12);
   padding: var(--a-spacing-4) var(--a-spacing-4);
 
-  .ikonWrapper {
-    height: 6rem;
-    width: 6rem;
-    margin-right: 1.5rem;
-  }
 
   @media (min-width: screensize.$screen-lg) {
     --forside-content-max-width: 60rem;

@@ -1,24 +1,17 @@
-.fiaSamarbeidsstatus {
-  padding: 1rem;
+.samarbeidsstatus-box {
   display: flex;
-  flex-direction: column;
-  background: var(--a-bg-subtle);
-  gap: .5rem;
-  border-radius: var(--a-border-radius-medium);
-}
-
-.fiaSamarbeidsstatusTittelMedIkon {
-  display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
+  background-color: var(--a-deepblue-600);
+  padding: 2rem 4rem;
+  border-radius: var(--a-border-radius-xlarge);
+  color: var(--a-white);
+  margin: 4rem 1rem;
 
-.ikonWrapper {
-  display: flex;
-  align-items: center;
-  background-color: var(--a-orange-200);
-  border-radius: 50%;
-  padding: 20px;
+  .samarbeidsstatus-box__tittel {
+    font-weight: 500;
+  }
+
+  --ac-button-secondary-text: var(--a-white);
+  --ac-button-secondary-border: var(--a-white);
 }

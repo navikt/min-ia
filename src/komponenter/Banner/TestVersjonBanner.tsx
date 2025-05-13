@@ -1,5 +1,6 @@
 import { Alert, BodyShort, Heading, Link } from "@navikt/ds-react";
-import styles from "./TestVersjonBanner.module.css";
+import styles from "./TestVersjonBanner.module.scss";
+
 const TestVersjonBanner = ({
   sidenavn,
   prodUrl,
@@ -30,5 +31,4 @@ const TestVersjonBanner = ({
     </Alert>
   );
 };
-
 export default TestVersjonBanner;
