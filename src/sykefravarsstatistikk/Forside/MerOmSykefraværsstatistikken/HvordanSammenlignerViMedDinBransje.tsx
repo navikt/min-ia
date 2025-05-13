@@ -1,15 +1,15 @@
-import React, {FunctionComponent} from "react";
+import React, { FunctionComponent } from "react";
 import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import EksternLenke from "../../felleskomponenter/EksternLenke/EksternLenke";
-import {BodyShort, ReadMore} from "@navikt/ds-react";
+import { BodyShort, ReadMore } from "@navikt/ds-react";
 
-import {sendPanelEkspanderEvent} from "../../../amplitude/amplitude";
+import { sendPanelEkspanderEvent } from "../../../analytics/analytics";
 
 interface HvordanSammenlignerViMedDinBransjeProps {
   harBransje: boolean,
 }
 
-export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammenlignerViMedDinBransjeProps> = ({harBransje}: HvordanSammenlignerViMedDinBransjeProps) => {
+export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammenlignerViMedDinBransjeProps> = ({ harBransje }: HvordanSammenlignerViMedDinBransjeProps) => {
   const panelHeader = harBransje ? "Hvordan sammenligner vi med din bransje" : "Hvordan sammenligner vi med din næring";
   return (
     <ReadMore
@@ -35,7 +35,7 @@ export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammen
         </BodyShort>
         <BodyShort spacing>
           <EksternLenke
-              href="https://www.brreg.no/bedrift/naeringskoder/">
+            href="https://www.brreg.no/bedrift/naeringskoder/">
             Les mer om næringskoder i Brønnøysundregistrene
           </EksternLenke>
         </BodyShort>

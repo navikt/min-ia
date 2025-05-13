@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import styles from "./Kalkulatorrad.module.scss";
 import { TextField } from "@navikt/ds-react";
-import {sendInputfeltUtfyltEvent} from "../../../amplitude/amplitude";
+import { sendInputfeltUtfyltEvent } from "../../../analytics/analytics";
 
 interface Props {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

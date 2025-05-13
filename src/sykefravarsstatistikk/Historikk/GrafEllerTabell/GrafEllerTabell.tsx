@@ -16,7 +16,7 @@ import {
 import { Suksess } from "../../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../../hooks/useSykefraværAppData";
 
-import {sendKnappEvent} from "../../../amplitude/amplitude";
+import { sendKnappEvent } from "../../../analytics/analytics";
 
 const defaultLinjer: readonly HistorikkLabel[] = [
   "virksomhet",
@@ -44,7 +44,7 @@ export default function GrafEllerTabell({
   grafEllerTabell: string;
 }) {
   const harStatistikkForBransje = historikkHarStatistikkForBransje(
-      restSykefraværsstatistikk.data
+    restSykefraværsstatistikk.data
   );
 
   const harOverordnetEnhet = historikkHarOverordnetEnhet(

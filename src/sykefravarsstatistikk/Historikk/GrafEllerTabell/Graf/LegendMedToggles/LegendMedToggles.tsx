@@ -6,7 +6,7 @@ import {
   HistorikkLabels,
 } from "../../../../utils/sykefraværshistorikk-utils";
 import { GrafSymbol } from "../GrafSymbol/GrafSymbol";
-import {sendCheckboxFjernet, sendCheckboxLagtTil} from "../../../../../amplitude/amplitude";
+import { sendCheckboxFjernet, sendCheckboxLagtTil } from "../../../../../analytics/analytics";
 
 interface Props {
   labels: HistorikkLabels;
@@ -21,7 +21,7 @@ export const LegendMedToggles: FunctionComponent<Props> = ({
   linjerSomKanVises,
   linjerSomSkalVises,
   setLinjerSomSkalVises,
-                                                             harStatistikkForBransje,
+  harStatistikkForBransje,
 }) => {
   const prefikser: { [linje in HistorikkLabel]: string } = {
     virksomhet: "Virksomhet:",

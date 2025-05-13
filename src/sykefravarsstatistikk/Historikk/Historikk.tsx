@@ -10,7 +10,7 @@ import {
 import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
-import {sendToogleEvent} from "../../amplitude/amplitude";
+import { sendToogleEvent } from "../../analytics/analytics";
 
 interface Props {
   restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const Historikk: FunctionComponent<Props> = (props) => {
-  const { restSykefraværsstatistikk} = props;
+  const { restSykefraværsstatistikk } = props;
   const [grafEllerTabell, setGrafEllerTabell] = useState<"graf" | "tabell">(
     "graf"
   );

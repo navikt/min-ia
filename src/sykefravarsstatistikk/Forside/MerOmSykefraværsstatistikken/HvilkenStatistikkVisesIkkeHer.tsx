@@ -2,12 +2,12 @@ import React, { FunctionComponent } from "react";
 import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
 
-import {sendPanelEkspanderEvent} from "../../../amplitude/amplitude";
+import { sendPanelEkspanderEvent } from "../../../analytics/analytics";
 
 export const HvilkenStatistikkVisesIkkeHer: FunctionComponent = () => {
   const panelHeader = "Hvilken statistikk vises ikke her?";
   const panelHeaderMedStyle =
-      <>Hvilken statistikk vises <span style={{textDecoration: "underline"}}>ikke</span> her?</>
+    <>Hvilken statistikk vises <span style={{ textDecoration: "underline" }}>ikke</span> her?</>
   return (
     <ReadMore
       header={panelHeaderMedStyle}

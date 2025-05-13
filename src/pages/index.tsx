@@ -17,8 +17,8 @@ import { doInitializeFaro } from "../utils/initializeFaro";
 import Lasteside from "../Lasteside";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
-import {initAmplitude} from "../amplitude/amplitude";
-import {useSendIaMetrikkEtterFemSekunder} from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
+import { initAnalytics } from "../analytics/analytics";
+import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 
 interface HomeProps {
   page: PageProps;
@@ -32,7 +32,7 @@ const Home = (props: HomeProps) => {
   React.useEffect(() => {
     if (!props.kjørerMockApp) {
       doInitializeFaro(props.grafanaAgentUrl);
-      initAmplitude()
+      initAnalytics()
     }
   });
   const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();

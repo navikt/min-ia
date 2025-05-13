@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Bedriftsmeny from "@navikt/bedriftsmeny";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
-import { sendBedriftValgtEvent } from "../amplitude/amplitude";
+import { sendBedriftValgtEvent } from "../analytics/analytics";
 
 interface Props {
   tittelMedUnderTittel: string | ReactElement;

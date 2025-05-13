@@ -23,9 +23,9 @@ jest.mock("../../../../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 
-jest.mock("../../../../../amplitude/amplitude", () => ({
+jest.mock("../../../../../analytics/analytics", () => ({
   __esModule: true,
-  ...jest.requireActual("../../../../../amplitude/amplitude"),
+  ...jest.requireActual("../../../../../analytics/analytics"),
   sendCheckboxLagtTil: jest.fn(),
   sendCheckboxFjernet: jest.fn(),
 }));
@@ -53,7 +53,7 @@ describe("LegendMedToggles", () => {
         labels={labels}
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={[]}
-        setLinjerSomSkalVises={() => {}}
+        setLinjerSomSkalVises={() => { }}
         harStatistikkForBransje={true}
       />,
     );

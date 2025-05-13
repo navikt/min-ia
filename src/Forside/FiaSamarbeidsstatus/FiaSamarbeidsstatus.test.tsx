@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { axe } from "jest-axe";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus";
-import { sendVisSamarbeidsstatusEvent } from "../../amplitude/amplitude";
+import { sendVisSamarbeidsstatusEvent } from "../../analytics/analytics";
 
-jest.mock("../../amplitude/amplitude", () => ({
+jest.mock("../../analytics/analytics", () => ({
 	sendVisSamarbeidsstatusEvent: jest.fn(),
 }));
 

@@ -4,7 +4,7 @@ import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
 import TestVersjonBanner from "../Banner/TestVersjonBanner";
-import { sendToggleEvent } from "../../amplitude/amplitude";
+import { sendToggleEvent } from "../../analytics/analytics";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;

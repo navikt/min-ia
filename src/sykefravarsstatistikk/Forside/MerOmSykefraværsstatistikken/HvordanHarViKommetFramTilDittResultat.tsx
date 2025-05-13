@@ -3,7 +3,7 @@ import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import EksternLenke from "../../felleskomponenter/EksternLenke/EksternLenke";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
 
-import {sendPanelEkspanderEvent} from "../../../amplitude/amplitude";
+import { sendPanelEkspanderEvent } from "../../../analytics/analytics";
 
 export const HvordanHarViKommetFramTilDittResultat: FunctionComponent = () => {
   const panelHeader = "Hvordan har vi kommet frem til ditt resultat?";

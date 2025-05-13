@@ -1,7 +1,7 @@
 import * as amplitude from "@amplitude/analytics-browser";
 import { track } from "@amplitude/analytics-browser";
 
-export function initAmplitude() {
+export function initAnalytics() {
     amplitude.init(
         "default",
         undefined,
@@ -18,7 +18,7 @@ export function initAmplitude() {
         });
 }
 
-async function logAmplitudeEvent(event: string, data?: Record<string, unknown>): Promise<void> {
+async function logAnalyticsEvent(event: string, data?: Record<string, unknown>): Promise<void> {
   try {
     track(event, { ...data });
   } catch (e) {
@@ -28,49 +28,49 @@ async function logAmplitudeEvent(event: string, data?: Record<string, unknown>):
 
 
 export const sendToggleEvent = (togglename: string, label: string) => {
-  logAmplitudeEvent("toggleGroup valgt", {
+  logAnalyticsEvent("toggleGroup valgt", {
     togglenavn: togglename,
     verdiValgt: label,
   });
 };
 export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
-  logAmplitudeEvent("textField utfylt", { label, name });
+  logAnalyticsEvent("textField utfylt", { label, name });
 };
 export const sendLesMerÅpnetEvent = (emne: string) => {
-  logAmplitudeEvent("les mer åpnet", { emne: emne });
+  logAnalyticsEvent("les mer åpnet", { emne: emne });
 };
 export const sendVisSamarbeidsstatusEvent = (status: string) => {
-  logAmplitudeEvent("vis samarbeidsstatus", { status });
+  logAnalyticsEvent("vis samarbeidsstatus", { status });
 };
 
 export const sendKnappEvent = (label: string) => {
-  logAmplitudeEvent("knapp", { label });
+  logAnalyticsEvent("knapp", { label });
 };
 
 export function sendToogleEvent(tekst: "graf" | "tabell") {
-    logAmplitudeEvent("toogle", {tekst});
+    logAnalyticsEvent("toogle", {tekst});
 }
 
 export function sendCheckboxLagtTil(label?: string) {
-    logAmplitudeEvent("checkbox-lagt-til", {label});
+    logAnalyticsEvent("checkbox-lagt-til", {label});
 }
 
 export function sendCheckboxFjernet(label?: string) {
-    logAmplitudeEvent("checkbox-fjernet", {label});
+    logAnalyticsEvent("checkbox-fjernet", {label});
 }
 
 export function sendPanelEkspanderEvent(panelnavn: string) {
-    logAmplitudeEvent("panel-ekspander", {panelnavn});
+    logAnalyticsEvent("panel-ekspander", {panelnavn});
 }
 
 export function sendOppgaveStatusEvent(status: string, oppgavetittel: string) {
-    logAmplitudeEvent("knapp", {status, oppgavetittel});
+    logAnalyticsEvent("knapp", {status, oppgavetittel});
 }
 
 export function sendÅpneAktivitetEvent(oppgavetittel: string) {
-    logAmplitudeEvent("Accordion åpnet", {tekst: oppgavetittel});
+    logAnalyticsEvent("Accordion åpnet", {tekst: oppgavetittel});
 }
 
 export const sendBedriftValgtEvent = () => {
-    logAmplitudeEvent("bedrift valgt");
+    logAnalyticsEvent("bedrift valgt");
 };

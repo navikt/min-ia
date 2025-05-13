@@ -3,7 +3,7 @@ import { BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./fiaSamarbeidsstatus.module.scss"
 import { PersonGroupIcon } from "@navikt/aksel-icons";
 
-import { sendVisSamarbeidsstatusEvent } from "../../amplitude/amplitude";
+import { sendVisSamarbeidsstatusEvent } from "../../analytics/analytics";
 
 interface FiaSamarbeidsstatusProps {
     status: string;
