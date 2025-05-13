@@ -20,7 +20,7 @@ export default function Fraværskalkulator() {
 					as="a"
 					href="/forebygge-fravar/kalkulator"
 					className={styles.fraværskalkulator_lenke}
-					onClick={() => sendNavigereEvent("Fraværskalkulatoren", "/forebygge-fravar/kalkulator")}>
+					onClick={() => sendNavigereEvent("Fraværskalkulator", "/forebygge-fravar/kalkulator")}>
 					Fraværskalkulator
 				</Button>
 			</div>
