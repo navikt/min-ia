@@ -36,9 +36,7 @@ export const sendToggleEvent = (togglename: string, label: string) => {
 export const sendInputfeltUtfyltEvent = (label: string, name: string) => {
   logAnalyticsEvent("textField utfylt", { label, name });
 };
-export const sendLesMerÅpnetEvent = (emne: string) => {
-  logAnalyticsEvent("les mer åpnet", { emne: emne });
-};
+
 export const sendVisSamarbeidsstatusEvent = (status: string) => {
   logAnalyticsEvent("vis samarbeidsstatus", { status });
 };
@@ -73,4 +71,8 @@ export function sendÅpneAktivitetEvent(oppgavetittel: string) {
 
 export const sendBedriftValgtEvent = () => {
     logAnalyticsEvent("bedrift valgt");
+};
+
+export const sendNavigereEvent = (lenketekst: string, destinasjon: string) => {
+    logAnalyticsEvent("navigere", {lenketekst, destinasjon});
 };

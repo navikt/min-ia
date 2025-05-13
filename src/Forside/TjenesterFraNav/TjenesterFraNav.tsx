@@ -2,6 +2,7 @@ import { Bleed, BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./tjenesterFraNav.module.scss";
 import { ExternalLink } from "@navikt/ds-icons";
 import { KURS_URL, FÅ_HJELP_URL, EKSPERTBISTAND_URL } from "../../utils/konstanter";
+import { sendNavigereEvent } from "../../analytics/analytics";
 
 export default function TjenesterFraNav() {
 	return (
@@ -48,6 +49,7 @@ function Tjeneste({ tittel, tekst, lenke }: { tittel: string, tekst: string, len
 				size="small"
 				icon={<ExternalLink fontSize="1rem" aria-hidden />}
 				iconPosition="right"
+				onClick={() => sendNavigereEvent(tittel, lenke)}
 			>
 				Les mer
 			</Button>

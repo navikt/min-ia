@@ -3,6 +3,7 @@ import { Bleed, BodyShort, Heading, Link, Page } from "@navikt/ds-react";
 import styles from "./kontaktOss.module.scss"
 import { Chat2Icon, PaperplaneIcon, PersonHeadsetIcon } from "@navikt/aksel-icons";
 import { KONTAKTSKJEMA_URL } from "../../utils/konstanter";
+import { sendNavigereEvent } from "../../analytics/analytics";
 
 export interface KontaktOssProps {
     kontaktOssUrl: string
@@ -61,7 +62,7 @@ function KontaktOssItem({
                     {tittel}
                 </Heading>
                 <BodyShort>{brødtekst}</BodyShort>
-                <Link href={lenke} target="_blank">
+                <Link href={lenke} target="_blank" onClick={() => sendNavigereEvent(lenketekst, lenke)}>
                     {lenketekst}
                 </Link>
             </div>

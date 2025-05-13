@@ -7,6 +7,7 @@ import { RestStatus } from "../../integrasjoner/rest-status";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjoner";
 import { InformationSquareIcon, TrendUpIcon } from "@navikt/aksel-icons";
+import { sendNavigereEvent } from "../../analytics/analytics";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;
@@ -99,7 +100,13 @@ function Sykefraværsstatistikklenke({
   }
   if (harTilgangTilOrg) {
     return (
-      <Button icon={<TrendUpIcon aria-hidden />} as="a" role="link" target="_blank" href={sykefraværsstatistikkUrlMedBedrift}>
+      <Button
+        icon={<TrendUpIcon aria-hidden />}
+        as="a"
+        role="link"
+        target="_blank"
+        href={sykefraværsstatistikkUrlMedBedrift}
+        onClick={() => sendNavigereEvent("Se din sykefraværsstatistikk", sykefraværsstatistikkUrlMedBedrift.split("?")[0])}>
         Se din sykefraværsstatistikk
       </Button>
     );

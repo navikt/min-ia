@@ -5,6 +5,7 @@ import styles from './inkluderendeArbeidsliv.module.scss';
 import IALogo from './ia_logo.png';
 import { ExternalLink } from '@navikt/ds-icons';
 import { IA_REGJERINGEN_URL } from '../../utils/konstanter';
+import { sendNavigereEvent } from '../../analytics/analytics';
 
 export default function InkluderendeArbeidsliv() {
 	return (
@@ -27,7 +28,11 @@ export default function InkluderendeArbeidsliv() {
 								<List.Item>Få hjelp til å redusere sykefraværet</List.Item>
 							</List>
 						</span>
-						<Link variant='neutral' href={IA_REGJERINGEN_URL} target="_blank">
+						<Link
+							variant='neutral'
+							href={IA_REGJERINGEN_URL}
+							target="_blank"
+							onClick={() => sendNavigereEvent("Les mer om IA-avtalen på sidene til regjeringen", IA_REGJERINGEN_URL)}>
 							Les mer om IA-avtalen på sidene til regjeringen <ExternalLink fontSize="1rem" aria-hidden />
 						</Link>
 					</VStack>

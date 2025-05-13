@@ -36,7 +36,7 @@ import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
-import { sendÅpneAktivitetEvent } from "../analytics/analytics";
+import { sendNavigereEvent, sendÅpneAktivitetEvent } from "../analytics/analytics";
 
 export default function AktivitetSeksjon(props: {
   sykefraværsstatistikk: AggregertStatistikkDto;
@@ -229,7 +229,7 @@ function Punkt({ innhold }: AktivitetPunktType) {
 
 function Lenke({ tekst, url }: AktivitetLenkeType) {
   return (
-    <Link href={url} className={styles.lenke}>
+    <Link href={url} className={styles.lenke} onClick={() => sendNavigereEvent(tekst, url)}>
       {tekst}
     </Link>
   );

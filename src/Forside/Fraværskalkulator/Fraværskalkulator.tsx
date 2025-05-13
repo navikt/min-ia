@@ -1,6 +1,7 @@
 import { Calculator } from "@navikt/ds-icons";
 import { BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./fraværskalkulator.module.scss";
+import { sendNavigereEvent } from "../../analytics/analytics";
 
 export default function Fraværskalkulator() {
 	return (
@@ -18,7 +19,8 @@ export default function Fraværskalkulator() {
 					role="link"
 					as="a"
 					href="/forebygge-fravar/kalkulator"
-					className={styles.fraværskalkulator_lenke}>
+					className={styles.fraværskalkulator_lenke}
+					onClick={() => sendNavigereEvent("Fraværskalkulatoren", "/forebygge-fravar/kalkulator")}>
 					Fraværskalkulator
 				</Button>
 			</div>

@@ -4,6 +4,7 @@ import React from "react";
 
 import styles from "./verktøyOgRessurser.module.scss";
 import { ARBEIDSMILJØPORTALEN_URL, IDEBANKEN_URL, SAMTALESTØTTE_URL } from "../../utils/konstanter";
+import { sendNavigereEvent } from "../../analytics/analytics";
 
 export default function VerktøyOgRessurser() {
 	return (
@@ -48,7 +49,9 @@ function Verktøykort({
 				variant="secondary"
 				size="small"
 				icon={<ExternalLink fontSize="1rem" aria-hidden />}
-				iconPosition="right">
+				iconPosition="right"
+				onClick={() => sendNavigereEvent(lenketekst, lenke)}
+			>
 				{lenketekst}
 			</Button>
 		</HStack>
