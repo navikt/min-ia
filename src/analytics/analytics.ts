@@ -66,7 +66,7 @@ export function sendOppgaveStatusEvent(status: string, oppgavetittel: string) {
 }
 
 export function sendÅpneAktivitetEvent(oppgavetittel: string) {
-    logAnalyticsEvent("Accordion åpnet", {tekst: oppgavetittel});
+    logAnalyticsEvent("accordion åpnet", {tekst: oppgavetittel});
 }
 
 export const sendBedriftValgtEvent = () => {
