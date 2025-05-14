@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { sendVisSamarbeidsstatusEvent, sendNavigereEvent } from "../analytics/analytics";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../analytics/analytics";
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
@@ -106,7 +106,7 @@ describe("Forside", () => {
 			knappetekst: "Kontakt oss",
 			knappeurl: "kontaktOssUrl",
 		}
-	])("Kaller sendNavigereEvent", async ({ knappetekst, knappeurl, getKnapp }) => {
+	])("Kaller sendNavigereEvent for lenkeklikk", async ({ knappetekst, knappeurl, getKnapp }) => {
 		expect(sendNavigereEvent).not.toHaveBeenCalled();
 		render(<Forside
 			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
@@ -118,5 +118,70 @@ describe("Forside", () => {
 		knapp.click();
 		expect(sendNavigereEvent).toHaveBeenCalledTimes(1);
 		expect(sendNavigereEvent).toHaveBeenCalledWith(knappetekst, knappeurl);
+	});
+
+	it.each([
+		"Bli gode på å tilrettelegge for ansatte",
+		"Kom i gang med å føre din egen sykefraværsstatistikk",
+		"Bruk egen sykefraværstatistikk aktivt"
+	])("Kaller sendÅpneAktivitetEvent for ekspandering av aktivitetaccordion", (accordiontittel) => {
+		render(<Forside
+			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
+			kontaktOssUrl="kontaktOssUrl"
+			kjørerMockApp={false}
+		/>);
+
+		expect(sendÅpneAktivitetEvent).not.toHaveBeenCalled();
+		const aktivitetAccordion = screen.getByText(accordiontittel);
+		aktivitetAccordion.click();
+		expect(sendÅpneAktivitetEvent).toHaveBeenCalledTimes(1);
+		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel);
+	});
+
+	it("Kaller sendOppgaveStatusEvent ved statusendring på oppgave", async () => {
+		render(<Forside
+			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
+			kontaktOssUrl="kontaktOssUrl"
+			kjørerMockApp={false}
+		/>);
+
+		expect(sendOppgaveStatusEvent).not.toHaveBeenCalled();
+		const aktivitetAccordion = screen.getByText("Bli gode på å tilrettelegge for ansatte");
+		aktivitetAccordion.click();
+		const parent = aktivitetAccordion.closest("div") as HTMLElement;
+
+		const oppgave = within(parent).getByText("Oppgave: Kunnskap om tilrettelegging").parentElement?.parentElement as HTMLElement;
+
+		const startknapp = within(oppgave).getAllByText("Start")[0].closest("button") as HTMLButtonElement;
+		startknapp.click();
+		expect(sendOppgaveStatusEvent).toHaveBeenCalledTimes(1);
+		expect(sendOppgaveStatusEvent).toHaveBeenCalledWith("STARTET", "Oppgave: Kunnskap om tilrettelegging");
+		await waitFor(() => {
+			expect(within(oppgave).getAllByText("Fullfør")[0].closest("button")).toBeInTheDocument();
+		});
+
+		const fullførknapp = within(oppgave).getAllByText("Fullfør")[0].closest("button") as HTMLButtonElement;
+		fullførknapp.click();
+		expect(sendOppgaveStatusEvent).toHaveBeenCalledTimes(2);
+		expect(sendOppgaveStatusEvent).toHaveBeenCalledWith("FULLFØRT", "Oppgave: Kunnskap om tilrettelegging");
+		await waitFor(() => {
+			expect(within(oppgave).getAllByText("Tilbakestill")[0].closest("button")).toBeInTheDocument();
+		});
+	});
+
+	it("Kaller sendNavigereEvent for lenkeklikk i øvelser og verktøy", async () => {
+		render(<Forside
+			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
+			kontaktOssUrl="kontaktOssUrl"
+			kjørerMockApp={false}
+		/>);
+
+		expect(sendNavigereEvent).not.toHaveBeenCalled();
+		const aktivitetAccordion = screen.getByText("Bruk egen sykefraværstatistikk aktivt");
+		aktivitetAccordion.click();
+		const parent = aktivitetAccordion.closest("div") as HTMLElement;
+		within(parent).getByText("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.").click();
+		expect(sendNavigereEvent).toHaveBeenCalledTimes(1);
+		expect(sendNavigereEvent).toHaveBeenCalledWith("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.", "https://arbeidsgiver.nav.no/sykefravarsstatistikk/");
 	});
 });
