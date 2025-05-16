@@ -18,8 +18,8 @@ const grafTooltip = () => (
         </div>
       </span>,
     ]}
+    allowEscapeViewBox={{ x: true, y: true }}
     separator={": "}
-    active={true}
     contentStyle={{ border: "2px solid #254B6D", borderRadius: "0.25rem" }}
     labelStyle={{ paddingBottom: "0.5rem" }}
     cursor={{ stroke: "#254B6D", strokeWidth: 3, type: "dot" }}
