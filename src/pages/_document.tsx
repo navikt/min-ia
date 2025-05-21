@@ -10,6 +10,7 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
+import Script from "next/script";
 import React, { ReactElement } from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
 import { isMockApp } from "../utils/envUtils";
@@ -69,6 +70,7 @@ export default class MyDocument extends Document<Props> {
               <meta name="robots" content="noindex" />
             ) : undefined
           }
+          <Script defer strategy="afterInteractive" src="https://cdn.nav.no/team-researchops/sporing/sporing.js" data-host-url="https://umami.nav.no" data-website-id="2f12e744-9e79-4e18-9989-2733602cf761"></Script>
           <Decorator.HeadAssets />
           <link
             rel="icon"

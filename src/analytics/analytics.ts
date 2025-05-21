@@ -1,22 +1,6 @@
-import * as amplitude from "@amplitude/analytics-browser";
-import { track } from "@amplitude/analytics-browser";
+import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
 
-export function initAnalytics() {
-    amplitude.init(
-        "default",
-        undefined,
-        {
-            serverUrl: "https://amplitude.nav.no/collect-auto",
-            autocapture: false,
-            identityStorage: "localStorage",
-            trackingOptions: {
-                ipAddress: false,
-            },
-            ingestionMetadata: {
-                sourceName: window.location.toString().split("?")[0].split("#")[0],
-            },
-        });
-}
+const track = getAnalyticsInstance("min-ia");
 
 async function logAnalyticsEvent(event: string, data?: Record<string, unknown>): Promise<void> {
   try {
@@ -25,7 +9,6 @@ async function logAnalyticsEvent(event: string, data?: Record<string, unknown>):
     console.error(e);
   }
 }
-
 
 export const sendToggleEvent = (togglename: string, label: string) => {
   logAnalyticsEvent("toggleGroup valgt", {
