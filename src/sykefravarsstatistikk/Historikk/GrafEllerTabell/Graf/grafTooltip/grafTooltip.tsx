@@ -19,9 +19,9 @@ const grafTooltip = () => (
       </span>,
     ]}
     allowEscapeViewBox={{ x: true, y: true }}
-    separator={": "}
     contentStyle={{ border: "2px solid #254B6D", borderRadius: "0.25rem" }}
     labelStyle={{ paddingBottom: "0.5rem" }}
+    itemStyle={{ paddingTop: 0, paddingBottom: 0 }}
     cursor={{ stroke: "#254B6D", strokeWidth: 3, type: "dot" }}
   />
 );
