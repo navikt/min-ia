@@ -1,5 +1,5 @@
 import React from "react";
-import { SpørsmålResultat } from "./TemaResultat";
+import { SpørsmålResultat } from "./SpørreundersøkelseRad";
 
 const alternativRekkefølgeSett = [
   [
