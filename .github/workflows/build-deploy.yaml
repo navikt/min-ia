@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - redesign
+      - dele-med-ag
     paths-ignore:
       - "**.md"
       - "**/**.md"
