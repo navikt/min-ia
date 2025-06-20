@@ -4189,6 +4189,16 @@ headers-polyfill@^4.0.2:
   resolved "https://registry.npmjs.org/headers-polyfill/-/headers-polyfill-4.0.3.tgz"
   integrity sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==
 
+highcharts-react-official@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.2.2.tgz#19e0c7d3746af5802b381d40253de4e63084dd02"
+  integrity sha512-2kkWOB6RpdR26fmAJkrtJFG9xWFUDGKWyat88tW3fa/3l/Jc7D5ZfwTng2MZsdiKIH32AFy0Pr75udUe7uN6LA==
+
+highcharts@^12.2.0:
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-12.2.0.tgz#264633af7e815f0f6291c0d570b1da12e323e9de"
+  integrity sha512-UUN+osTP3aeGc4KmoMuWAjzpKif8GYHFozzYI4O8h1ILGof25M/ZGBpXLvgqf1z0LVh7N9eG7i0HnzMfjcR4nA==
+
 history@*, history@^4.10.1:
   version "4.10.1"
   resolved "https://registry.npmjs.org/history/-/history-4.10.1.tgz"

@@ -34,6 +34,8 @@
     "@types/uuid": "^10.0.0",
     "csp-header": "^6.1.0",
     "dotenv": "^16.5.0",
+    "highcharts": "^12.2.0",
+    "highcharts-react-official": "^3.2.2",
     "html-react-parser": "^5.2.3",
     "msw": "2.7.6",
     "next": "15.3.2",
