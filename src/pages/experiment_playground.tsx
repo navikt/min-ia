@@ -73,9 +73,9 @@ export default function ExperimentPlaygroundPage(props: {
 export async function getServerSideProps() {
 	// Hvordan få tak i orgnr her? Vil kalle API server side
 	const page = {
-		title: "Fraværskalkulator",
+		title: "Experiment playground",
 		description:
-			"Her kan du beregne hvor mye sykefraværet koster, og hvor mye du kan spare.",
+			"Her putter vi ting vi tester ut. Ingenting du ser her er ment for sluttbrukere.",
 	};
 
 	return {
