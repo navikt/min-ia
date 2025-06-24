@@ -2,18 +2,8 @@ import { ExpansionCard } from "@navikt/ds-react";
 import React from "react";
 import { BehovsvurderingCardHeaderInnhold } from "./BehovsvurderingCardHeaderInnhold";
 import { BehovsvurderingRadInnhold } from "./BehovsvurderingRadInnhold";
-/* import {
-    useSpørreundersøkelseKomponenter,
-    useSpørreundersøkelseType,
-} from "./SpørreundersøkelseContext"; */
 
-/* const StyledExpansionCard = styled(ExpansionCard) <{ $avstandFraSiste: number }>`
-    margin-top: 1rem;
-
-    & > div {
-        z-index: ${(props) => props.$avstandFraSiste + 5};
-    }
-`; */
+import styles from "./SpørreundersøkelseRad.module.scss";
 
 const StyledExpansionCard = ExpansionCard;
 
@@ -53,22 +43,20 @@ export default function SpørreundersøkelseRad({
     spørreundersøkelse,
     dato,
     defaultOpen,
-    /* avstandFraSiste, */
 }: {
     spørreundersøkelse: Spørreundersøkelse;
     dato?: string;
     defaultOpen?: boolean;
-    /* avstandFraSiste: number; */
 }) {
     const [erÅpen, setErÅpen] = React.useState(defaultOpen);
 
-    const spørreundersøkelseType = "Behovsvurdering"; //useSpørreundersøkelseType();
-    /* const { CardHeader, CardInnhold } = useSpørreundersøkelseKomponenter(); */
+    const spørreundersøkelseType = "Behovsvurdering";
     const CardHeader = BehovsvurderingCardHeaderInnhold;
     const CardInnhold = BehovsvurderingRadInnhold;
 
     return (
         <StyledExpansionCard
+            className={styles.spørreundersøkelseRad}
             aria-label={spørreundersøkelseType}
             open={erÅpen}
             onToggle={(open: boolean) => {

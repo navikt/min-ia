@@ -2,34 +2,7 @@ import { BodyShort, Heading, HeadingProps, HStack } from "@navikt/ds-react";
 import BarChart from "./Grafer/BarChart";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import { SpørsmålResultat } from "./SpørreundersøkelseRad";
-
-const TemaContainer = (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />;/* styled.div`
-    display: grid;
-    grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
-    justify-items: stretch;
-    width: 100%;
-    padding-bottom: 4rem;
-    gap: 2rem;
-
-    @media screen and (max-width: 768px) {
-        grid-template-columns: 1fr;
-    }
-`; */
-
-const TemaGrafContainer = (props: React.HTMLAttributes<HTMLDivElement>) => <div {...props} />;/* styled.div`
-    border: 1px solid var(--a-gray-300);
-    border-radius: var(--a-border-radius-large);
-    grid-column: span 1;
-    padding: 2rem;
-`; */
-
-const KategoriTittel = BodyShort;/* styled(BodyShort) <{ $farge: string }>`
-  color: ${(props) => props.$farge || "var(--a-blue-500)"};
-
-  margin-left: 10px;
-  margin-bottom: 0.5rem;
-`; */
-
+import styles from "./TemaResultat.module.scss";
 
 
 interface Props {
@@ -47,7 +20,7 @@ export const TemaResultat = ({
 }: Props) => {
     return (
         <>
-            <HStack justify="space-between" align="center" as="span">
+            <HStack justify="space-between" align="center" as="span" className={styles.headerStack}>
                 <Heading level="3" size={headingSize}>
                     {navn}
                 </Heading>
@@ -58,24 +31,24 @@ export const TemaResultat = ({
                                 spørsmål.antallDeltakereSomHarSvart,
                         ),
                     )}
+                    navn={navn}
                 />
             </HStack>
-            <TemaContainer>
+            <div className={styles.temaContainer}>
                 {spørsmålResultat.map((spørsmål: SpørsmålResultat) => (
-                    <TemaGrafContainer key={spørsmål.id}>
-                        {spørsmål.kategori ? <KategoriTittel
-                            /* $farge={getGraffargeFromTema(navn, true)} */>
+                    <div className={styles.temaGrafContainer} key={spørsmål.id}>
+                        {spørsmål.kategori ? <BodyShort className={styles.kategoriTittel} style={{ color: getGraffargeFromTema(navn) }}>
                             {spørsmål.kategori}
-                        </KategoriTittel> : null}
+                        </BodyShort> : null}
                         <BarChart
                             horizontal={spørsmål.flervalg}
                             spørsmål={spørsmål}
                             erIEksportMode={erIEksportMode}
                             farge={getGraffargeFromTema(navn)}
                         />
-                    </TemaGrafContainer>
+                    </div>
                 ))}
-            </TemaContainer>
+            </div>
         </>
     );
 };
@@ -92,22 +65,17 @@ export function getGraffargeFromTema(navn: string, mørk: boolean = false) {
     }
 }
 
-const StyledDeltakere = HStack;/* styled(HStack)`
-    color: var(--a-blue-500);
-    font-size: 1.25rem;
-    gap: 1rem;
-    margin-right: 2rem;
-`; */
-
 export function AntallDeltakere({
     antallDeltakere,
+    navn
 }: {
     antallDeltakere: number;
+    navn: string;
 }) {
     return (
-        <StyledDeltakere align="center">
+        <HStack className={styles.antallDeltakere} align="center" style={{ color: getGraffargeFromTema(navn, true) }}>
             <PersonGroupFillIcon fontSize="1.5rem" aria-hidden />
             {antallDeltakere} deltakere
-        </StyledDeltakere>
+        </HStack>
     );
 }
