@@ -11,7 +11,7 @@ import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
 import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
-import { UXSignalsWidget } from "./UXSignalsWidget";
+/* import { UXSignalsWidget } from "./UXSignalsWidget"; */
 import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
 import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
 import VerktøyOgRessurser from "./VerktlyOgRessurser/VerktøyOgRessurser";
@@ -42,7 +42,7 @@ export const Forside = (props: ForsideProps) => {
             />
             <Page.Block width="xl" style={{ position: "relative" }}>
                 {props.children}
-                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"} />
+                {/* <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"} /> */}
             </Page.Block>
             {fiaSamarbeidsstatus.status === RestStatus.Suksess &&
                 fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (

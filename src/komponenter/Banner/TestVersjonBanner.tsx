@@ -1,5 +1,6 @@
 import { Alert, BodyShort, Heading, Link } from "@navikt/ds-react";
 import styles from "./TestVersjonBanner.module.scss";
+import React from "react";
 
 const TestVersjonBanner = ({
   sidenavn,
@@ -10,10 +11,13 @@ const TestVersjonBanner = ({
   prodUrl?: string;
   kjørerMockApp?: boolean;
 }) => {
+  const [show, setShow] = React.useState(true);
   if (!kjørerMockApp) return null;
 
+  if (!show) return null;
+
   return (
-    <Alert variant="warning" size="medium" className={styles.alert}>
+    <Alert variant="warning" size="medium" className={styles.alert} onClose={() => setShow(false)} closeButton>
       <Heading spacing level="2" size="small">
         Dette er en testversjon
       </Heading>
