@@ -11,8 +11,9 @@ declare global {
 
 export default function Skyramaskering() {
 	// Vi trenger å kjøre redactSearchParam for å fjerne bedrift fra URL-en om bruker svarer på Skyra-undersøkelsen.
-	React.useEffect(() => {
+	React.useLayoutEffect(() => {
 		window?.skyra?.redactSearchParam("bedrift", { path: "/forebygge-fravar" });
+		console.log("Skyramaskering: redactSearchParam called for 'bedrift'");
 	});
 
 	return null;
