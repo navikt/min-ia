@@ -19,6 +19,7 @@ import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
 import { initAnalytics } from "../analytics/analytics";
 import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
+import Skyramaskering from "../utils/Skyramaskering";
 
 interface HomeProps {
   page: PageProps;
@@ -100,6 +101,7 @@ function Sideinnhold({
 
   return (
     <Forside {...forsideProps}>
+      <Skyramaskering />
       {organisasjonerBrukerHarTilgangTil.status === RestStatus.Feil && (
         <Alert variant="error">
           Det har skjedd en feil ved innlasting av dine virksomheter. Vennligst

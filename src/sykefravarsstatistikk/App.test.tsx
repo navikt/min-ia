@@ -11,6 +11,7 @@ import { heiOgHåBarnehage } from "./altinn-mock";
 import * as hooks from "../hooks/useOrgnr";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { mockContainerSize } from "../utils/test-utils";
+import { SykefraværsstatistikkAppContent } from "../pages/sykefravarsstatistikk";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -43,6 +44,15 @@ jest.mock("../Banner/Banner", () => {
   };
 });
 
+const mockredactSearchParam = jest.fn();
+
+Object.defineProperty(window, "skyra", {
+  value: {
+    redactSearchParam: mockredactSearchParam,
+    getUrl: jest.fn(() => "https://arbeidsgiver.nav.no/forebygge-fravar"),
+  },
+});
+
 describe("App", () => {
   const MockObserver = new MockResizeObserver();
 
@@ -52,6 +62,7 @@ describe("App", () => {
     useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
     useOrgnrSpy.mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
     mockContainerSize();
+    jest.clearAllMocks();
   });
 
   afterEach(() => {
@@ -123,5 +134,16 @@ describe("App", () => {
     const results = await axe(container);
 
     expect(results).not.toHaveNoViolations();
+  });
+
+  it("Maskerer bedrift i URL hos Skyra", () => {
+    expect(mockredactSearchParam).not.toHaveBeenCalled();
+    render(<SykefraværsstatistikkAppContent
+      kjørerMockApp={false}
+      grafanaAgentUrl="grafanaAgentUrl"
+      prodUrl="prodUrl"
+    />);
+
+    expect(mockredactSearchParam).toHaveBeenCalledWith("bedrift", { "path": "/forebygge-fravar" });
   });
 });

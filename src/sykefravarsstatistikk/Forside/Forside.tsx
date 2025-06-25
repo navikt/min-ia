@@ -1,31 +1,32 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import styles from "./Forside.module.css";
-import {getBransjeEllerNæringKategori} from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
-import {Alert, BodyShort, Heading, Skeleton} from "@navikt/ds-react";
-import {PeriodeForStatistikk} from "./PeriodeForStatistikk";
-import {PubliseringsdatoOppdateringsinfo} from "./PubliseringsdatoOppdateringsinfo";
+import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
+import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
+import { PeriodeForStatistikk } from "./PeriodeForStatistikk";
+import { PubliseringsdatoOppdateringsinfo } from "./PubliseringsdatoOppdateringsinfo";
 import LastNedKnapp from "./LastNedKnapp";
-import {Statistikkategori} from "../domene/statistikkategori";
-import {useOrgnr} from "../../hooks/useOrgnr";
-import {RestStatus} from "../../integrasjoner/rest-status";
+import { Statistikkategori } from "../domene/statistikkategori";
+import { useOrgnr } from "../../hooks/useOrgnr";
+import { RestStatus } from "../../integrasjoner/rest-status";
 import TestVersjonBanner from "../../komponenter/Banner/TestVersjonBanner";
 
-import {SykefraværAppData} from "../hooks/useSykefraværAppData";
+import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 import Historikk from "../Historikk/Historikk";
-import {Sammenligningspaneler} from "./Sammenligningspaneler/Sammenligningspaneler";
-import Tabell, {hentTabellProps,} from "../Historikk/GrafEllerTabell/Tabell/Tabell";
+import { Sammenligningspaneler } from "./Sammenligningspaneler/Sammenligningspaneler";
+import Tabell, { hentTabellProps, } from "../Historikk/GrafEllerTabell/Tabell/Tabell";
 import useBreadcrumbs from "../../utils/useBreadcrumbs";
-import {Layout} from "../../komponenter/Layout/Layout";
-import {ManglerRettigheterIAltinnSide} from "../FeilSider/ManglerRettigheterIAltinnSide/ManglerRettigheterIAltinnSide";
+import { Layout } from "../../komponenter/Layout/Layout";
+import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIAltinnSide/ManglerRettigheterIAltinnSide";
 import PrintOnlyHref from "./PrintOnlyHref";
 import Head from "next/head";
-import {MerOmSykefraværsstatistikk} from "./MerOmSykefraværsstatistikken/MerOmSykefraværsstatistikk";
+import { MerOmSykefraværsstatistikk } from "./MerOmSykefraværsstatistikken/MerOmSykefraværsstatistikk";
+import Skyramaskering from "../../utils/SkyraMaskering";
 
 export const Forside = ({
-                            kjørerMockApp,
-                            prodUrl,
-                            ...appData
-                        }: SykefraværAppData & {
+    kjørerMockApp,
+    prodUrl,
+    ...appData
+}: SykefraværAppData & {
     kjørerMockApp: boolean;
     prodUrl?: string;
 }) => {
@@ -84,7 +85,7 @@ export const Forside = ({
                     />
                     <div className={styles["forside__innhold"]}>
                         <Heading spacing size="medium" level="2" as="span">
-                            <Skeleton width="65%"/>
+                            <Skeleton width="65%" />
                         </Heading>
                         <Skeleton
                             variant="rectangle"
@@ -94,25 +95,25 @@ export const Forside = ({
                         />
                         <BodyShort as="div">
                             <strong>
-                                <Skeleton width="40%"/>
+                                <Skeleton width="40%" />
                             </strong>
                         </BodyShort>
                         <BodyShort spacing as="div">
                             <strong>
-                                <Skeleton width="30%"/>
+                                <Skeleton width="30%" />
                             </strong>
                         </BodyShort>
-                        <Skeleton width="60%"/>
-                        <Skeleton width="30%"/>
-                        <Skeleton width="45%"/>
-                        <Skeleton width="50%"/>
+                        <Skeleton width="60%" />
+                        <Skeleton width="30%" />
+                        <Skeleton width="45%" />
+                        <Skeleton width="50%" />
                         <Sammenligningspaneler
-                            aggregertStatistikk={{restStatus: RestStatus.IkkeLastet}}
+                            aggregertStatistikk={{ restStatus: RestStatus.IkkeLastet }}
                             orgnr={orgnr}
                         />
                         <Historikk
                             orgnr={orgnr}
-                            restSykefraværsstatistikk={{status: RestStatus.IkkeLastet}}
+                            restSykefraværsstatistikk={{ status: RestStatus.IkkeLastet }}
                         />
                     </div>
                 </div>
@@ -164,7 +165,7 @@ export const Forside = ({
                         </Alert>
                     )}
                     <div className={styles["forside__header_kun_print"]}>
-                        <PrintOnlyHref/>
+                        <PrintOnlyHref />
                         <Heading spacing size="medium" level="2">
                             Sykefraværsstatistikk for {navnPåVirksomhet}
                         </Heading>
@@ -191,16 +192,16 @@ export const Forside = ({
 
                                 </div>
                                 <div className={styles["forside__innhold__header_last_ned_knapp"]}>
-                                    <LastNedKnapp innholdRef={innholdRef}/>
+                                    <LastNedKnapp innholdRef={innholdRef} />
                                 </div>
                             </div>
-                            <MerOmSykefraværsstatistikk harBransje={harBransje} synnligPåStoreFlater={false}/>
+                            <MerOmSykefraværsstatistikk harBransje={harBransje} synnligPåStoreFlater={false} />
                             <Sammenligningspaneler
                                 aggregertStatistikk={appData.aggregertStatistikk}
                                 orgnr={orgnr}
                             />
                         </div>
-                        <MerOmSykefraværsstatistikk harBransje={harBransje} synnligPåStoreFlater={true}/>
+                        <MerOmSykefraværsstatistikk harBransje={harBransje} synnligPåStoreFlater={true} />
 
                     </div>
 
@@ -229,7 +230,7 @@ const WrappedForside = (
         <>
             <Head>
                 <title>Sykefraværsstatistikk</title>
-                <meta property="og:title" content="Page title" key="title"/>
+                <meta property="og:title" content="Page title" key="title" />
             </Head>
             <Layout
                 title="Sykefraværsstatistikk"
@@ -241,6 +242,7 @@ const WrappedForside = (
                         : []
                 }
             >
+                <Skyramaskering />
                 <Forside {...props} />
             </Layout>
         </>

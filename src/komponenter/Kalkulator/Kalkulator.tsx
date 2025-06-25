@@ -5,6 +5,7 @@ import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
 import TestVersjonBanner from "../Banner/TestVersjonBanner";
 import { sendToggleEvent } from "../../analytics/analytics";
+import Skyramaskering from "../../utils/Skyramaskering";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;
@@ -28,6 +29,7 @@ export const Fraværskalulator: FunctionComponent<
         prodUrl={props.prodUrl}
         kjørerMockApp={props.kjørerMockApp}
       />
+      <Skyramaskering />
       <div className={styles.kalkulator}>
         <div>
           <div className={styles.tittel_wrapper}>
