@@ -92,11 +92,21 @@ function Sideinnhold({
   organisasjonerBrukerHarTilgangTil: RestRessurs<AltinnOrganisasjon[]>;
 }) {
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
-    return <Lasteside />;
+    return (
+      <>
+        <Skyramaskering />
+        <Lasteside />
+      </>
+    );
   }
 
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget) {
-    return <Innloggingsside redirectUrl={window.location.href} />;
+    return (
+      <>
+        <Skyramaskering />
+        <Innloggingsside redirectUrl={window.location.href} />
+      </>
+    );
   }
 
   return (
