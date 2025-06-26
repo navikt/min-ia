@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - redesign
+      - umami
     paths-ignore:
       - "**.md"
       - "**/**.md"
