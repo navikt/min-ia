@@ -160,7 +160,7 @@ describe("Forside", () => {
 		const aktivitetAccordion = screen.getByText(accordiontittel);
 		aktivitetAccordion.click();
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledTimes(1);
-		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel);
+		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel, false);
 	});
 
 	it("Kaller sendOppgaveStatusEvent ved statusendring på oppgave", async () => {

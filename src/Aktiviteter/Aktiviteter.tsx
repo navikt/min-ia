@@ -130,7 +130,7 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
           }`}
         onClick={() => {
           if (!åpen) {
-            sendÅpneAktivitetEvent(aktivitet.tittel);
+            sendÅpneAktivitetEvent(aktivitet.tittel, aktivitetStatistikk.ferdige > 0 || aktivitetStatistikk.påbegynte > 0);
           }
 
           setÅpen(!åpen);

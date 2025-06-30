@@ -48,8 +48,8 @@ export function sendOppgaveStatusEvent(status: string, oppgavetittel: string) {
     logAnalyticsEvent("knapp", {status, oppgavetittel});
 }
 
-export function sendÅpneAktivitetEvent(oppgavetittel: string) {
-    logAnalyticsEvent("accordion åpnet", {tekst: oppgavetittel});
+export function sendÅpneAktivitetEvent(oppgavetittel: string, harFremgangIOppgaver: boolean) {
+    logAnalyticsEvent("accordion åpnet", {tekst: oppgavetittel, harFremgangIOppgaver});
 }
 
 export const sendBedriftValgtEvent = () => {
