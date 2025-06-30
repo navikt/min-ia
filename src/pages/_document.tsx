@@ -70,7 +70,7 @@ export default class MyDocument extends Document<Props> {
               <meta name="robots" content="noindex" />
             ) : undefined
           }
-          {umamiWebsiteId && <Script defer strategy="afterInteractive" src="https://cdn.nav.no/team-researchops/sporing/sporing.js" data-host-url="https://umami.nav.no" data-website-id={umamiWebsiteId} />}
+          {umamiWebsiteId && <Script defer strategy="afterInteractive" src="https://cdn.nav.no/team-researchops/sporing/sporing.js" data-host-url="https://umami.nav.no" data-website-id={umamiWebsiteId} data-exclude-search="true" />}
           <Decorator.HeadAssets />
           <link
             rel="icon"
