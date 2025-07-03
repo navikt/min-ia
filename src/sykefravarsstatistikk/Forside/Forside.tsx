@@ -20,7 +20,6 @@ import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIA
 import PrintOnlyHref from "./PrintOnlyHref";
 import Head from "next/head";
 import { MerOmSykefraværsstatistikk } from "./MerOmSykefraværsstatistikken/MerOmSykefraværsstatistikk";
-import Skyramaskering from "../../utils/Skyramaskering";
 
 export const Forside = ({
     kjørerMockApp,
@@ -242,7 +241,6 @@ const WrappedForside = (
                         : []
                 }
             >
-                <Skyramaskering />
                 <Forside {...props} />
             </Layout>
         </>

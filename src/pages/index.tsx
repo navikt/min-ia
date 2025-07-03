@@ -18,7 +18,6 @@ import Lasteside from "../Lasteside";
 import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
 import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
-import Skyramaskering from "../utils/Skyramaskering";
 
 interface HomeProps {
   page: PageProps;
@@ -91,25 +90,18 @@ function Sideinnhold({
 }) {
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
     return (
-      <>
-        <Skyramaskering />
-        <Lasteside />
-      </>
+      <Lasteside />
     );
   }
 
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget) {
     return (
-      <>
-        <Skyramaskering />
-        <Innloggingsside redirectUrl={window.location.href} />
-      </>
+      <Innloggingsside redirectUrl={window.location.href} />
     );
   }
 
   return (
     <Forside {...forsideProps}>
-      <Skyramaskering />
       {organisasjonerBrukerHarTilgangTil.status === RestStatus.Feil && (
         <Alert variant="error">
           Det har skjedd en feil ved innlasting av dine virksomheter. Vennligst

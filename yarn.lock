@@ -1206,15 +1206,6 @@
     "@apollo/client" "^3.10.8"
     graphql "^16.9.0"
 
-"@navikt/bedriftsmeny@^7.0.6":
-  version "7.0.6"
-  resolved "https://npm.pkg.github.com/download/@navikt/bedriftsmeny/7.0.6/1275692324fc722d2cbc965808395b7e331202b2#1275692324fc722d2cbc965808395b7e331202b2"
-  integrity sha512-wEKekSA0cvJptgiG0+q+dwgBXdNDCldK/3RrPm5ipvG87I8rIkZDrh+f3adR1dHF0TDYhj4iv2erjSknxL+eag==
-  dependencies:
-    focus-trap-react "^10.2.2"
-    fuzzysort "^1.1.4"
-    history "^4.10.1"
-
 "@navikt/ds-css@^7.21.1":
   version "7.21.1"
   resolved "https://npm.pkg.github.com/download/@navikt/ds-css/7.21.1/09969c230f742cd8af47f793d638be0000676b3d#09969c230f742cd8af47f793d638be0000676b3d"
@@ -1268,6 +1259,13 @@
     jose "^5.2.3"
     openid-client "^5.6.5"
     prom-client "^15.1.0"
+
+"@navikt/virksomhetsvelger@^1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/virksomhetsvelger/1.0.3/6d9ba7817b02f22e30919aebbae4db80ffb840d5#6d9ba7817b02f22e30919aebbae4db80ffb840d5"
+  integrity sha512-kL11oVgDIUGH+08dDkxvFe15PfXV52KlXvEiP9IX2RLNgwa/eiCs9/ZHqCr5tZTZmLPiAxAe71U3U9wux+VnLA==
+  dependencies:
+    focus-trap-react "11.0.3"
 
 "@next/env@15.3.2":
   version "15.3.2"
@@ -3857,18 +3855,18 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.3.tgz#67c8fad95454a7c7abebf74bb78ee74a44023358"
   integrity sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==
 
-focus-trap-react@^10.2.2:
-  version "10.2.2"
-  resolved "https://registry.npmjs.org/focus-trap-react/-/focus-trap-react-10.2.2.tgz"
-  integrity sha512-ktfVCuRyT2fikb1De8u5bs3afdqFTJu6Hl1iGThwmo++k2+/n78DapitplvHGZ0hkDPlyHvAWGQsR74KF30zxw==
+focus-trap-react@11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-11.0.3.tgz#fe46bbe2a024379b3783cad73187197bafbadb88"
+  integrity sha512-tS1+enWS/gwCHk2WIF3KpM2oz7Y3HsnRImzHZNRgCBLWXzNG4XQVlJgbqdLr4lBKRXGdDBjQYitSh1bf2xe4Ag==
   dependencies:
-    focus-trap "^7.5.3"
+    focus-trap "^7.6.4"
     tabbable "^6.2.0"
 
-focus-trap@^7.5.3:
-  version "7.5.3"
-  resolved "https://registry.npmjs.org/focus-trap/-/focus-trap-7.5.3.tgz"
-  integrity sha512-7UsT/eSJcTPF0aZp73u7hBRTABz26knRRTJfoTGFCQD5mUImLIIOwWWCrtoQdmWa7dykBi6H+Cp5i3S/kvsMeA==
+focus-trap@^7.6.4:
+  version "7.6.5"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-7.6.5.tgz#56f0814286d43c1a2688e9bc4f31f17ae047fb76"
+  integrity sha512-7Ke1jyybbbPZyZXFxEftUtxFGLMpE2n6A+z//m4CRDlj0hW+o3iYSmh8nFlYMurOiJVDmJRilUQtJr08KfIxlg==
   dependencies:
     tabbable "^6.2.0"
 
@@ -3941,11 +3939,6 @@ functions-have-names@^1.2.3:
   version "1.2.3"
   resolved "https://registry.npmjs.org/functions-have-names/-/functions-have-names-1.2.3.tgz"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
-
-fuzzysort@^1.1.4:
-  version "1.9.0"
-  resolved "https://registry.npmjs.org/fuzzysort/-/fuzzysort-1.9.0.tgz"
-  integrity sha512-MOxCT0qLTwLqmEwc7UtU045RKef7mc8Qz8eR4r2bLNEq9dy/c3ZKMEFp6IEst69otkQdFZ4FfgH2dmZD+ddX1g==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
@@ -4189,7 +4182,7 @@ headers-polyfill@^4.0.2:
   resolved "https://registry.npmjs.org/headers-polyfill/-/headers-polyfill-4.0.3.tgz"
   integrity sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==
 
-history@*, history@^4.10.1:
+history@*:
   version "4.10.1"
   resolved "https://registry.npmjs.org/history/-/history-4.10.1.tgz"
   integrity sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==

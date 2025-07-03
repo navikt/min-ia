@@ -3,7 +3,6 @@ import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEven
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
-import Home from "../pages";
 
 jest.mock("../analytics/analytics");
 jest.mock('next/router', () => ({
@@ -64,15 +63,6 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 		],
 	})),
 }));
-
-const mockredactSearchParam = jest.fn();
-
-Object.defineProperty(window, "skyra", {
-	value: {
-		redactSearchParam: mockredactSearchParam,
-		getUrl: jest.fn(() => "https://arbeidsgiver.nav.no/forebygge-fravar"),
-	},
-});
 
 
 describe("Forside", () => {
@@ -208,25 +198,5 @@ describe("Forside", () => {
 		within(parent).getByText("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.").click();
 		expect(sendNavigereEvent).toHaveBeenCalledTimes(1);
 		expect(sendNavigereEvent).toHaveBeenCalledWith("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.", "https://arbeidsgiver.nav.no/sykefravarsstatistikk/");
-	});
-
-	it("Maskerer bedrift i URL hos Skyra", () => {
-		expect(mockredactSearchParam).not.toHaveBeenCalled();
-		render(<Home
-			page={{
-				title: "Forside",
-				description: "Beskrivelse av forsiden",
-			}}
-			forsideProps={{
-				sykefraværsstatistikkUrl: "sykefraværsstatistikkUrl",
-				kontaktOssUrl: "kontaktOssUrl",
-				kjørerMockApp: false,
-			}}
-			minSideArbeidsgiverUrl="minSideArbeidsgiverUrl"
-			kjørerMockApp={false}
-			grafanaAgentUrl="grafanaAgentUrl"
-		/>);
-
-		expect(mockredactSearchParam).toHaveBeenCalledWith("bedrift", { "path": "/forebygge-fravar" });
 	});
 });
