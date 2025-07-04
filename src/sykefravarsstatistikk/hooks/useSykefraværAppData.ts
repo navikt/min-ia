@@ -78,6 +78,8 @@ export interface SerialiserbarAppData {
 }
 
 export function useSykefraværAppData(): SerialiserbarAppData {
+  const organisasjoner = useAltinnOrganisasjoner();
+  console.log(`Antall organisasjoner brukeren har tilgang til: ${organisasjoner.status === RestStatus.Suksess ? organisasjoner.data.length : 0}`);
   const altinnOrganisasjoner = useAltinnOrganisasjoner();
   const altinnOrganisasjonerMedStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikktilgang();
