@@ -7,7 +7,6 @@ import {
 } from "./mockdata";
 import Forside from "./Forside/Forside";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
-import { heiOgHåBarnehage } from "./altinn-mock";
 import * as hooks from "../hooks/useOrgnr";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { mockContainerSize } from "../utils/test-utils";
