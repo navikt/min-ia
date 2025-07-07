@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
+import { useOrgnrContext } from "../utils/OrgnrContext";
 
 export const useOrgnr = (): string | undefined => {
-  const router = useRouter();
-  const orgnr = router?.query.bedrift as string;
+  const {orgnr: orgNr} = useOrgnrContext();
 
-  return erGyldigOrgnr(orgnr) ? orgnr : undefined;
+
+  return erGyldigOrgnr(orgNr || undefined) ? orgNr || undefined : undefined;
 };
 
 export const erGyldigOrgnr = (orgnr?: string) => {

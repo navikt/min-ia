@@ -4,9 +4,9 @@ export const orgnrUtenTilgang = "100100100";
 
 export const fleskOgFisk: AltinnOrganisasjon[] = [
   {
-    Name: "FLESK OG FISK AS",
+    Name: "System feil AS",
     Type: "Enterprise",
-    OrganizationNumber: "111111111",
+    OrganizationNumber: "311111111",
     OrganizationForm: "AS",
     Status: "Active",
     ParentOrganizationNumber: "",
@@ -17,7 +17,7 @@ export const fleskOgFisk: AltinnOrganisasjon[] = [
     OrganizationNumber: "910969439",
     OrganizationForm: "BEDR",
     Status: "Active",
-    ParentOrganizationNumber: "111111111",
+    ParentOrganizationNumber: "311111111",
   },
   {
     Name: "FLESK OG FISK ULLENSAKER",
@@ -25,7 +25,7 @@ export const fleskOgFisk: AltinnOrganisasjon[] = [
     OrganizationNumber: "333333333",
     OrganizationForm: "BEDR",
     Status: "Active",
-    ParentOrganizationNumber: "111111111",
+    ParentOrganizationNumber: "311111111",
   },
   {
     Name: "FLESK OG FISK SIGDAL",
@@ -33,7 +33,7 @@ export const fleskOgFisk: AltinnOrganisasjon[] = [
     OrganizationNumber: "444444444",
     OrganizationForm: "BEDR",
     Status: "Active",
-    ParentOrganizationNumber: "111111111",
+    ParentOrganizationNumber: "311111111",
   },
 ];
 
@@ -225,9 +225,6 @@ export const organisasjonerMock: AltinnOrganisasjon[] = [
   ...forskjelligeBransjerAs,
 ];
 
-export const getOrganisasjonerMock = (): AltinnOrganisasjon[] => {
-  return organisasjonerMock;
-};
 export const getOrganisasjonerBrukerHarIaRettigheterTilMock =
   (): AltinnOrganisasjon[] => {
     return organisasjonerMock.filter(

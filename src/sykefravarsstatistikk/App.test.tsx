@@ -7,11 +7,10 @@ import {
 } from "./mockdata";
 import Forside from "./Forside/Forside";
 import { transformSykefraværAppData } from "./hooks/useSykefraværAppData";
-import { heiOgHåBarnehage } from "./altinn-mock";
 import * as hooks from "../hooks/useOrgnr";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { mockContainerSize } from "../utils/test-utils";
-import { SykefraværsstatistikkAppContent } from "../pages/sykefravarsstatistikk";
+import { altinn3Organisasjoner } from "../local/altinn3OrganisasjonerMockdata";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -44,15 +43,6 @@ jest.mock("../Banner/Banner", () => {
   };
 });
 
-const mockredactSearchParam = jest.fn();
-
-Object.defineProperty(window, "skyra", {
-  value: {
-    redactSearchParam: mockredactSearchParam,
-    getUrl: jest.fn(() => "https://arbeidsgiver.nav.no/forebygge-fravar"),
-  },
-});
-
 describe("App", () => {
   const MockObserver = new MockResizeObserver();
 
@@ -60,7 +50,7 @@ describe("App", () => {
   beforeEach(() => {
     MockObserver.startmock();
     useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
-    useOrgnrSpy.mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+    useOrgnrSpy.mockReturnValue(altinn3Organisasjoner[0].orgnr);
     mockContainerSize();
     jest.clearAllMocks();
   });
@@ -72,7 +62,7 @@ describe("App", () => {
   it("renders without crashing", async () => {
     jest
       .spyOn(hooks, "useOrgnr")
-      .mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+      .mockReturnValue(altinn3Organisasjoner[0].orgnr);
     const { container } = render(
       <Forside
         kjørerMockApp={true}
@@ -86,7 +76,7 @@ describe("App", () => {
   it("renders statistics when user have rights", async () => {
     jest
       .spyOn(hooks, "useOrgnr")
-      .mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+      .mockReturnValue(altinn3Organisasjoner[0].orgnr);
 
     render(
       <Forside
@@ -96,7 +86,7 @@ describe("App", () => {
     );
 
     const forsidensOverskrift = screen.getByRole("heading", {
-      name: "Sykefraværsstatistikk for HEI OG HÅ BARNEHAGE",
+      name: "Sykefraværsstatistikk for System feil AS",
     });
 
     expect(forsidensOverskrift).toBeInTheDocument();
@@ -134,16 +124,5 @@ describe("App", () => {
     const results = await axe(container);
 
     expect(results).not.toHaveNoViolations();
-  });
-
-  it("Maskerer bedrift i URL hos Skyra", () => {
-    expect(mockredactSearchParam).not.toHaveBeenCalled();
-    render(<SykefraværsstatistikkAppContent
-      kjørerMockApp={false}
-      grafanaAgentUrl="grafanaAgentUrl"
-      prodUrl="prodUrl"
-    />);
-
-    expect(mockredactSearchParam).toHaveBeenCalledWith("bedrift", { "path": "/forebygge-fravar" });
   });
 });

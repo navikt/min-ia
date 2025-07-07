@@ -2,7 +2,6 @@ import { RestStatus } from "../integrasjoner/rest-status";
 import { mockdataOrgnr91096939 } from "../local/aggregertStatistikkMockdata";
 import {
   getOrganisasjonerBrukerHarIaRettigheterTilMock,
-  getOrganisasjonerMock,
 } from "./altinn-mock";
 import { Statistikkategori } from "./domene/statistikkategori";
 import {
@@ -11,6 +10,7 @@ import {
   SerialiserbarPubliseringsdatoer,
 } from "./hooks/useSykefraværAppData";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
+import { altinn3Organisasjoner } from "../local/altinn3OrganisasjonerMockdata";
 
 export const siste4KvartalerMock = [
   { årstall: 2021, kvartal: 3 },
@@ -54,7 +54,7 @@ export const mockAllDatahentingStatusOk: SerialiserbarAppData = {
   },
   altinnOrganisasjoner: {
     status: RestStatus.Suksess,
-    data: getOrganisasjonerMock(),
+    data: altinn3Organisasjoner,
   },
   altinnOrganisasjonerMedStatistikktilgang: {
     status: RestStatus.Suksess,

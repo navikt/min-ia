@@ -20,7 +20,6 @@ import { ManglerRettigheterIAltinnSide } from "../FeilSider/ManglerRettigheterIA
 import PrintOnlyHref from "./PrintOnlyHref";
 import Head from "next/head";
 import { MerOmSykefraværsstatistikk } from "./MerOmSykefraværsstatistikken/MerOmSykefraværsstatistikk";
-import Skyramaskering from "../../utils/Skyramaskering";
 
 export const Forside = ({
     kjørerMockApp,
@@ -142,8 +141,8 @@ export const Forside = ({
     const navnPåVirksomhet =
         appData.altinnOrganisasjoner.status === RestStatus.Suksess &&
         appData.altinnOrganisasjoner.data.find(
-            (organisasjon) => organisasjon.OrganizationNumber === orgnr,
-        )?.Name;
+            (organisasjon) => organisasjon.orgnr === orgnr,
+        )?.navn;
     const tabellProps = hentTabellProps(appData.sykefraværshistorikk);
 
     return (
@@ -242,7 +241,6 @@ const WrappedForside = (
                         : []
                 }
             >
-                <Skyramaskering />
                 <Forside {...props} />
             </Layout>
         </>

@@ -12,6 +12,7 @@ import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
 import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
 import { kvartalsvisHistorikkMockdata } from "./kvartalsvisHistorikkMockdata";
 import { aktiviteterMock } from "./aktiviteterMock";
+import {altinn3Organisasjoner} from "./altinn3OrganisasjonerMockdata";
 
 export default async function mockRequest(req: NextRequest) {
   const testMode: string = process.env.TEST_MODE
@@ -20,10 +21,14 @@ export default async function mockRequest(req: NextRequest) {
   const delayInMillis = 500;
 
   if (
-      req.url?.endsWith("/organisasjoner")
+      req.nextUrl.pathname.includes(
+          "/api/authenticated/sykefravarsstatistikk/organisasjoner"
+      ) || req.nextUrl.pathname.includes(
+          "/api/authenticated/sykefravarsstatistikk/v2/organisasjoner"
+      )
   ) {
     console.log(
-        "[DEBUG] GET /api/[...]/organisasjoner"
+        `[DEBUG] GET ${req.nextUrl.pathname}  - w/ params: ${req.nextUrl.searchParams}`
     );
 
     switch (testMode) {
@@ -33,6 +38,27 @@ export default async function mockRequest(req: NextRequest) {
         return new NextResponse(JSON.stringify([]), { status: 401 });
       default:
         return new NextResponse(JSON.stringify(organisasjoner), {
+          status: 200,
+        });
+    }
+  }
+
+  if (
+      req.nextUrl.pathname.includes(
+          "/api/authenticated/organisasjoner"
+      )
+  ) {
+    console.log(
+        `[DEBUG] GET ${req.nextUrl.pathname}  - w/ params: ${req.nextUrl.searchParams}`
+    );
+
+    switch (testMode) {
+      case "GENERELL_FEIL":
+        return new NextResponse(JSON.stringify([]), {status: 500});
+      case "KREVER_INNLOGGING":
+        return new NextResponse(JSON.stringify([]), {status: 401});
+      default:
+        return new NextResponse(JSON.stringify(altinn3Organisasjoner), {
           status: 200,
         });
     }

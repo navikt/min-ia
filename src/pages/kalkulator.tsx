@@ -6,7 +6,6 @@ import {
 } from "../integrasjoner/rest-status";
 import { Fraværskalulator } from "../komponenter/Kalkulator/Kalkulator";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
-import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { hentUtKalkulatorData } from "../komponenter/Kalkulator/datauthenting";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { tomtDataobjekt } from "../integrasjoner/aggregert-statistikk-api";
@@ -16,7 +15,8 @@ import Head from "next/head";
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
-import {useSendIaMetrikkEtterFemSekunder} from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
+import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
+import { useOrganisasjoner } from "../hooks/useOrganisasjoner";
 
 export default function Kalkulator(props: {
   page: PageProps;
@@ -31,7 +31,7 @@ export default function Kalkulator(props: {
   });
   useSendIaMetrikkEtterFemSekunder();
 
-  const organisasjonerRespons = useAltinnOrganisasjoner();
+  const organisasjonerRespons = useOrganisasjoner();
   const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
     ? organisasjonerRespons.data
     : [];
