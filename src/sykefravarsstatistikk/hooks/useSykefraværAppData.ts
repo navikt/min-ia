@@ -4,11 +4,12 @@ import { AggregertStatistikkDto } from "../../integrasjoner/aggregert-statistikk
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
 import {
-    useAltinnOrganisasjoner,
     useAltinnOrganisasjonerMedStatistikktilgang
 } from "../../hooks/useAltinnOrganisasjoner";
 import { useKvartalsvisStatistikk } from "../../hooks/useKvartalsvisStatistikk";
 import { usePubliseringsdato } from "../../hooks/usePubliseringsdato";
+import { useOrganisasjoner } from "../../hooks/useOrganisasjoner";
+import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 export type ÅrstallOgKvartal = {
   årstall: number;
@@ -60,7 +61,7 @@ export interface KvartalsvisSykefraværshistorikk {
 }
 
 export interface SykefraværAppData {
-  altinnOrganisasjoner: RestAltinnOrganisasjoner;
+  altinnOrganisasjoner: RestRessurs<Organisasjon[]>;
   altinnOrganisasjonerMedStatistikktilgang: RestAltinnOrganisasjoner;
   sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
   aggregertStatistikk: RestAggregertStatistikk;
@@ -69,7 +70,7 @@ export interface SykefraværAppData {
 }
 
 export interface SerialiserbarAppData {
-  altinnOrganisasjoner: RestAltinnOrganisasjoner;
+  altinnOrganisasjoner: RestRessurs<Organisasjon[]>;
   altinnOrganisasjonerMedStatistikktilgang: RestAltinnOrganisasjoner;
   sykefraværshistorikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;
   aggregertStatistikk: RestRessurs<AggregertStatistikkDto>;
@@ -78,9 +79,7 @@ export interface SerialiserbarAppData {
 }
 
 export function useSykefraværAppData(): SerialiserbarAppData {
-  const organisasjoner = useAltinnOrganisasjoner();
-  console.log(`Antall organisasjoner brukeren har tilgang til: ${organisasjoner.status === RestStatus.Suksess ? organisasjoner.data.length : 0}`);
-  const altinnOrganisasjoner = useAltinnOrganisasjoner();
+  const altinnOrganisasjoner = useOrganisasjoner();
   const altinnOrganisasjonerMedStatistikktilgang =
     useAltinnOrganisasjonerMedStatistikktilgang();
   const sykefraværshistorikk = useKvartalsvisStatistikk();

@@ -1,7 +1,7 @@
 import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 import { useRestRessursSWR } from "./useRestRessursSWR";
 import { RestRessurs } from "../integrasjoner/rest-status";
-import { Organisasjon } from "../integrasjoner/organisasjoner-api";
+import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 export function useOrganisasjoner(): RestRessurs<Organisasjon[]> {
   const apiPath = `${AUTHENTICATED_BASE_PATH}/organisasjoner`

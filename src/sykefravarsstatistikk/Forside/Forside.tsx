@@ -141,8 +141,8 @@ export const Forside = ({
     const navnPåVirksomhet =
         appData.altinnOrganisasjoner.status === RestStatus.Suksess &&
         appData.altinnOrganisasjoner.data.find(
-            (organisasjon) => organisasjon.OrganizationNumber === orgnr,
-        )?.Name;
+            (organisasjon) => organisasjon.orgnr === orgnr,
+        )?.navn;
     const tabellProps = hentTabellProps(appData.sykefraværshistorikk);
 
     return (
