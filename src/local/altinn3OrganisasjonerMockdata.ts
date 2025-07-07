@@ -201,5 +201,30 @@ export const altinn3Organisasjoner = [
     ],
     navn: "FLESK OG FISK AS [Local server]",
     organisasjonsform: "AS"
-  }
+  },
+  {
+    orgnr: "910969439",
+    altinn3Tilganger: [
+      "nav_forebygge-og-redusere-sykefravar_samarbeid"
+    ],
+    altinn2Tilganger: [
+      "5934:1"
+    ],
+    underenheter: [
+      {
+        orgnr: "910969440",
+        altinn3Tilganger: [
+          "nav_forebygge-og-redusere-sykefravar_samarbeid"
+        ],
+        altinn2Tilganger: [
+          "5934:1"
+        ],
+        underenheter: [],
+        navn: "HEI OG HÅ BARNEHAGE OSLO [Local server]",
+        organisasjonsform: "BEDR"
+      }
+    ],
+    navn: "HEI OG HÅ BARNEHAGE",
+    organisasjonsform: "AS"
+  },
 ];

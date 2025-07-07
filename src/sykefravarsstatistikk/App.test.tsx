@@ -11,6 +11,7 @@ import { heiOgHåBarnehage } from "./altinn-mock";
 import * as hooks from "../hooks/useOrgnr";
 import { MockResizeObserver } from "./jest/MockResizeObserver";
 import { mockContainerSize } from "../utils/test-utils";
+import { altinn3Organisasjoner } from "../local/altinn3OrganisasjonerMockdata";
 
 jest.mock("next/router", () => ({
   useRouter() {
@@ -50,7 +51,7 @@ describe("App", () => {
   beforeEach(() => {
     MockObserver.startmock();
     useOrgnrSpy = jest.spyOn(hooks, "useOrgnr");
-    useOrgnrSpy.mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+    useOrgnrSpy.mockReturnValue(altinn3Organisasjoner[0].orgnr);
     mockContainerSize();
     jest.clearAllMocks();
   });
@@ -62,7 +63,7 @@ describe("App", () => {
   it("renders without crashing", async () => {
     jest
       .spyOn(hooks, "useOrgnr")
-      .mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+      .mockReturnValue(altinn3Organisasjoner[0].orgnr);
     const { container } = render(
       <Forside
         kjørerMockApp={true}
@@ -76,7 +77,7 @@ describe("App", () => {
   it("renders statistics when user have rights", async () => {
     jest
       .spyOn(hooks, "useOrgnr")
-      .mockReturnValue(heiOgHåBarnehage[0].OrganizationNumber);
+      .mockReturnValue(altinn3Organisasjoner[0].orgnr);
 
     render(
       <Forside
@@ -86,7 +87,7 @@ describe("App", () => {
     );
 
     const forsidensOverskrift = screen.getByRole("heading", {
-      name: "Sykefraværsstatistikk for HEI OG HÅ BARNEHAGE",
+      name: "Sykefraværsstatistikk for System feil AS",
     });
 
     expect(forsidensOverskrift).toBeInTheDocument();
