@@ -21,7 +21,7 @@ const Banner: React.FunctionComponent<Props> = ({
   const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
 
-  const { setOrgnr } = useOrgnrContext();
+  const { setOrgnr, orgnr } = useOrgnrContext();
 
   const onOrganisasjonChange = (organisasjon: Organisasjon) => {
     if (bedriftValgtManueltFraLista) {
@@ -41,6 +41,7 @@ const Banner: React.FunctionComponent<Props> = ({
           <SSRSafeVirksomhetsvelger
             organisasjoner={altinnOrganisasjoner}
             onChange={onOrganisasjonChange}
+            initValgtOrgnr={orgnr ?? undefined}
           />
           <SSRSafeNotifikasjonWidget />
         </div>
