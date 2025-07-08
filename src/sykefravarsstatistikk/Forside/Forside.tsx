@@ -8,7 +8,7 @@ import LastNedKnapp from "./LastNedKnapp";
 import { Statistikkategori } from "../domene/statistikkategori";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { RestStatus } from "../../integrasjoner/rest-status";
-import TestVersjonBanner from "../../komponenter/Banner/TestVersjonBanner";
+import TestVersjonBanner from "../../komponenter/TestVersjonBanner/TestVersjonBanner";
 
 import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 import Historikk from "../Historikk/Historikk";

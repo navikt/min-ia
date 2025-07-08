@@ -1,10 +1,10 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
-import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../analytics/analytics";
+import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
 
-jest.mock("../analytics/analytics");
+jest.mock("../utils/analytics/analytics");
 jest.mock('next/router', () => ({
 	useRouter: jest.fn(() => {
 		return {

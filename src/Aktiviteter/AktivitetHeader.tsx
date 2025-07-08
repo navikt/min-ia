@@ -1,4 +1,4 @@
-import { ProgressBar } from "../ProgressBar/ProgressBar";
+import { ProgressBar } from "../komponenter/ProgressBar/ProgressBar";
 import { AktivitetStatistikkType } from "./typer";
 
 import styles from "./Aktiviteter.module.scss";

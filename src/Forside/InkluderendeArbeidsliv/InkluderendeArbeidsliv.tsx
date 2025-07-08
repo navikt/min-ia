@@ -5,7 +5,7 @@ import styles from './inkluderendeArbeidsliv.module.scss';
 import IALogo from './ia_logo.png';
 import { ExternalLink } from '@navikt/ds-icons';
 import { IA_REGJERINGEN_URL } from '../../utils/konstanter';
-import { sendNavigereEvent } from '../../analytics/analytics';
+import { sendNavigereEvent } from '../../utils/analytics/analytics';
 
 export default function InkluderendeArbeidsliv() {
 	return (

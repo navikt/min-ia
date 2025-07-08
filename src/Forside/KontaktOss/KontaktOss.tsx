@@ -3,7 +3,7 @@ import { Bleed, BodyShort, Heading, Link, Page } from "@navikt/ds-react";
 import styles from "./kontaktOss.module.scss"
 import { Chat2Icon, PaperplaneIcon, PersonHeadsetIcon } from "@navikt/aksel-icons";
 import { KONTAKTSKJEMA_URL } from "../../utils/konstanter";
-import { sendNavigereEvent } from "../../analytics/analytics";
+import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
 export interface KontaktOssProps {
     kontaktOssUrl: string

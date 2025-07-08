@@ -9,7 +9,7 @@ import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværssta
 import KontaktOss from "./KontaktOss/KontaktOss";
 import FiaSamarbeidsstatus from "./FiaSamarbeidsstatus/FiaSamarbeidsstatus";
 import { useFiaSamarbeidsstatus } from "./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI";
-import TestVersjonBanner from "../komponenter/Banner/TestVersjonBanner";
+import TestVersjonBanner from "../komponenter/TestVersjonBanner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
 /* import { UXSignalsWidget } from "./UXSignalsWidget"; */
 import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";

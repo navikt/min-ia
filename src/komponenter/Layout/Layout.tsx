@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Banner from "../../Banner/Banner";
+import Banner from "../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";

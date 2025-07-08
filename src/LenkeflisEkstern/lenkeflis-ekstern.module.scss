@@ -1,9 +1,0 @@
-@use "src/styles/screensize";
-
-.linkPanel__description__wrapper {
-  display: none;
-
-  @media (min-width: screensize.$screen-md) {
-    display: unset;
-  }
-}

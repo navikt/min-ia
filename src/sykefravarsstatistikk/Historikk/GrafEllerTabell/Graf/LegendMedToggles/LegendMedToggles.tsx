@@ -6,7 +6,7 @@ import {
   HistorikkLabels,
 } from "../../../../utils/sykefraværshistorikk-utils";
 import { GrafSymbol } from "../GrafSymbol/GrafSymbol";
-import { sendCheckboxFjernet, sendCheckboxLagtTil } from "../../../../../analytics/analytics";
+import { sendCheckboxFjernet, sendCheckboxLagtTil } from "../../../../../utils/analytics/analytics";
 
 interface Props {
   labels: HistorikkLabels;

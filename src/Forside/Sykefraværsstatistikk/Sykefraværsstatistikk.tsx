@@ -7,7 +7,7 @@ import { RestStatus } from "../../integrasjoner/rest-status";
 import { RestAltinnOrganisasjoner } from "../../integrasjoner/altinnorganisasjon-api";
 import { useAltinnOrganisasjonerMedStatistikktilgang } from "../../hooks/useAltinnOrganisasjoner";
 import { InformationSquareIcon, TrendUpIcon } from "@navikt/aksel-icons";
-import { sendNavigereEvent } from "../../analytics/analytics";
+import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
 export interface SykefraværsstatistikkData {
   fraværsprosentNorge?: string;

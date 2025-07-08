@@ -3,7 +3,7 @@ import { useReactToPrint } from "react-to-print";
 import React, { useRef } from "react";
 import { DownloadIcon } from "@navikt/aksel-icons";
 import styles from "./LastNedKnapp.module.css";
-import { sendKnappEvent } from "../../../analytics/analytics";
+import { sendKnappEvent } from "../../../utils/analytics/analytics";
 
 export default function LastNedKnapp({
     innholdRef,

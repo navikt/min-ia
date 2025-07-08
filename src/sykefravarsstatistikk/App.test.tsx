@@ -37,7 +37,7 @@ jest.mock("../hooks/useOrgnr", () => ({
   useOrgnr: jest.fn(),
 }));
 
-jest.mock("../Banner/Banner", () => {
+jest.mock("../komponenter/Banner/Banner", () => {
   return function Dummy() {
     return <div>dummy</div>;
   };

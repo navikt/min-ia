@@ -16,7 +16,7 @@ import {
 import { Suksess } from "../../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../../hooks/useSykefraværAppData";
 
-import { sendKnappEvent } from "../../../analytics/analytics";
+import { sendKnappEvent } from "../../../utils/analytics/analytics";
 
 const defaultLinjer: readonly HistorikkLabel[] = [
   "virksomhet",

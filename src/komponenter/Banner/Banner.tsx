@@ -6,8 +6,8 @@ import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
-import { sendBedriftValgtEvent } from "../analytics/analytics";
-import { useOrgnrContext } from "../utils/OrgnrContext";
+import { sendBedriftValgtEvent } from "../../utils/analytics/analytics";
+import { useOrgnrContext } from "../../utils/OrgnrContext";
 
 interface Props {
   tittelMedUnderTittel: string | ReactElement;

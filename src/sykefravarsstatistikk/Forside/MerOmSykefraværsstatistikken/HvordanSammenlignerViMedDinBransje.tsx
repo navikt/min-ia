@@ -3,7 +3,7 @@ import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import EksternLenke from "../../felleskomponenter/EksternLenke/EksternLenke";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
 
-import { sendPanelEkspanderEvent } from "../../../analytics/analytics";
+import { sendPanelEkspanderEvent } from "../../../utils/analytics/analytics";
 
 interface HvordanSammenlignerViMedDinBransjeProps {
   harBransje: boolean,

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import styles from "./SlikHarViKommetFramTilDittResultat.module.css";
 import { BodyShort, ReadMore } from "@navikt/ds-react";
 
-import { sendPanelEkspanderEvent } from "../../../analytics/analytics";
+import { sendPanelEkspanderEvent } from "../../../utils/analytics/analytics";
 
 export const HvilkenPeriodeErStatistikkenBasertPå: FunctionComponent = () => {
   const panelHeader = "Hvilken periode er statistikken basert på?";

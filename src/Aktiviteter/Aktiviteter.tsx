@@ -36,7 +36,7 @@ import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
-import { sendNavigereEvent, sendÅpneAktivitetEvent } from "../analytics/analytics";
+import { sendNavigereEvent, sendÅpneAktivitetEvent } from "../utils/analytics/analytics";
 
 export default function AktivitetSeksjon(props: {
   sykefraværsstatistikk: AggregertStatistikkDto;
