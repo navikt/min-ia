@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Playground.module.scss";
 import SpørreundersøkelseRad from "../Spørreundersøkelsesresultat/SpørreundersøkelseRad";
-import { dummyBehovsvurderinger } from "./dummyData";
-import Samarbeidsvelger from "../Samarbeidsvelger";
-import { SamarbeidsvelgerProvider } from "../Samarbeidsvelger/SamarbeidsvelgerContext";
+import { dummyBehovsvurderinger } from "../../Samarbeid/dummyData";
+import Samarbeidsvelger from "../../Samarbeid/Samarbeidsvelger";
+import { SamarbeidsvelgerProvider } from "../../Samarbeid/Samarbeidsvelger/SamarbeidsvelgerContext";
 
 export default function Playground() {
 	return (

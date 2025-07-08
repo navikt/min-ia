@@ -1,4 +1,4 @@
-import { Spørreundersøkelse } from "../Spørreundersøkelsesresultat/SpørreundersøkelseRad";
+import { Spørreundersøkelse } from "../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
 
 export const dummyBehovsvurdering: Spørreundersøkelse = {
   id: "d005a876-6fca-4197-a4d2-dc6ce8fec249",
