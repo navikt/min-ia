@@ -1,0 +1,33 @@
+.samarbeidsvelgerBleed {
+	background-color: var(--a-blue-100);
+	padding: 1rem;
+
+	.innhold {
+		max-width: 80rem;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 1rem;
+
+		.velgerWrapper {
+			flex: 1;
+			min-width: 15rem;
+			max-width: 40rem;
+
+			.velger {
+				max-width: 20rem;
+			}
+		}
+		.infoWrapper {
+			flex: 1;
+			min-width: 15rem;
+			max-width: 40rem;
+
+			.infoTittel {
+				color: var(--a-blue-700);
+			}
+		}
+	}
+}
