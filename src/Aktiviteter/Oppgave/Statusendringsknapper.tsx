@@ -9,7 +9,7 @@ import {
 } from "@navikt/aksel-icons";
 import { StatusType } from "../AktivitetData";
 
-import { sendOppgaveStatusEvent } from "../../analytics/analytics";
+import { sendOppgaveStatusEvent } from "../../utils/analytics/analytics";
 
 export function Statusendringsknapper({
   status,

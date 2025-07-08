@@ -16,6 +16,7 @@ const customJestConfig = {
   moduleNameMapper: {
     "^uuid$": "uuid",
     "@navikt/ds-css": "jest-transform-stub",
+    "@navikt/virksomhetsvelger": "jest-transform-stub",
   },
   testEnvironmentOptions: {
     customExportConditions: [""],

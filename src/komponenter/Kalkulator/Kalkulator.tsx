@@ -3,8 +3,8 @@ import styles from "./Kalkulator.module.scss";
 import { KalkulatorMedDagsverk } from "./KalkulatorMedDagsverk";
 import { KalkulatorMedProsent } from "./KalkulatorMedProsent";
 import { Heading, Ingress, Link, ToggleGroup } from "@navikt/ds-react";
-import TestVersjonBanner from "../Banner/TestVersjonBanner";
-import { sendToggleEvent } from "../../analytics/analytics";
+import TestVersjonBanner from "../TestVersjonBanner/TestVersjonBanner";
+import { sendToggleEvent } from "../../utils/analytics/analytics";
 
 export interface KalkulatorData {
   tapteDagsverk?: string;

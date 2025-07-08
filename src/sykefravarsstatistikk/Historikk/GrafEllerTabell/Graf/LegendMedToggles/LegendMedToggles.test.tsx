@@ -23,9 +23,9 @@ jest.mock("../../../../../integrasjoner/ia-tjenestemetrikker-api", () => ({
   sendDigitalIaTjenesteMetrikk: jest.fn(),
 }));
 
-jest.mock("../../../../../analytics/analytics", () => ({
+jest.mock("../../../../../utils/analytics/analytics", () => ({
   __esModule: true,
-  ...jest.requireActual("../../../../../analytics/analytics"),
+  ...jest.requireActual("../../../../../utils/analytics/analytics"),
   sendCheckboxLagtTil: jest.fn(),
   sendCheckboxFjernet: jest.fn(),
 }));

@@ -6,9 +6,9 @@ import {
 import { getGrafanaUrl, getProdUrl, isMockApp } from "../utils/envUtils";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import Sykefraværsstatistikkside from "../sykefravarsstatistikk/Sykefravarsstatistikkside";
-import {useSendIaMetrikkEtterFemSekunder} from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
+import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 
-export function AppContent({
+export function SykefraværsstatistikkAppContent({
   grafanaAgentUrl,
   ...props
 }: {
@@ -41,4 +41,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default AppContent;
+export default SykefraværsstatistikkAppContent;

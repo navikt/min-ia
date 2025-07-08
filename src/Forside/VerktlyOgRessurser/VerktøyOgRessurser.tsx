@@ -4,7 +4,7 @@ import React from "react";
 
 import styles from "./verktøyOgRessurser.module.scss";
 import { ARBEIDSMILJØPORTALEN_URL, IDEBANKEN_URL, SAMTALESTØTTE_URL } from "../../utils/konstanter";
-import { sendNavigereEvent } from "../../analytics/analytics";
+import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
 export default function VerktøyOgRessurser() {
 	return (

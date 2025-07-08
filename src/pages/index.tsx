@@ -1,7 +1,6 @@
 import { PageProps } from "../pageProps";
 import { Forside, ForsideProps } from "../Forside/Forside";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
-import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { RestRessurs, RestStatus } from "../integrasjoner/rest-status";
 import { Layout } from "../komponenter/Layout/Layout";
 import Head from "next/head";
@@ -15,10 +14,10 @@ import {
 import { Alert } from "@navikt/ds-react";
 import { doInitializeFaro } from "../utils/initializeFaro";
 import Lasteside from "../Lasteside";
-import { AltinnOrganisasjon } from "../integrasjoner/altinnorganisasjon-api";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
-import { initAnalytics } from "../analytics/analytics";
 import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
+import { useOrganisasjoner } from "../hooks/useOrganisasjoner";
+import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 interface HomeProps {
   page: PageProps;
@@ -32,10 +31,9 @@ const Home = (props: HomeProps) => {
   React.useEffect(() => {
     if (!props.kjørerMockApp) {
       doInitializeFaro(props.grafanaAgentUrl);
-      initAnalytics()
     }
   });
-  const organisasjonerBrukerHarTilgangTil = useAltinnOrganisasjoner();
+  const organisasjonerBrukerHarTilgangTil = useOrganisasjoner();
   useSendIaMetrikkEtterFemSekunder();
 
   const harIngenOrganisasjoner =
@@ -88,14 +86,18 @@ function Sideinnhold({
   organisasjonerBrukerHarTilgangTil,
 }: {
   forsideProps: ForsideProps;
-  organisasjonerBrukerHarTilgangTil: RestRessurs<AltinnOrganisasjon[]>;
+  organisasjonerBrukerHarTilgangTil: RestRessurs<Organisasjon[]>;
 }) {
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
-    return <Lasteside />;
+    return (
+      <Lasteside />
+    );
   }
 
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget) {
-    return <Innloggingsside redirectUrl={window.location.href} />;
+    return (
+      <Innloggingsside redirectUrl={window.location.href} />
+    );
   }
 
   return (

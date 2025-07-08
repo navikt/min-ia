@@ -1,15 +1,15 @@
 import React, { useRef } from "react";
-import Banner from "../../Banner/Banner";
+import Banner from "../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
-import { AltinnOrganisasjon } from "../../integrasjoner/altinnorganisasjon-api";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
 import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
+import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 export const Layout = (props: {
   title: string;
   description: string;
-  altinnOrganisasjoner: AltinnOrganisasjon[];
+  altinnOrganisasjoner: Organisasjon[];
   kjørerMockApp: boolean;
   children: React.ReactNode;
 }) => {

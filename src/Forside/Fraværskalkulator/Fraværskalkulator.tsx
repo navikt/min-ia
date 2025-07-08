@@ -1,7 +1,7 @@
 import { Calculator } from "@navikt/ds-icons";
 import { BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./fraværskalkulator.module.scss";
-import { sendNavigereEvent } from "../../analytics/analytics";
+import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
 export default function Fraværskalkulator() {
 	return (

@@ -10,7 +10,7 @@ import {
 import GrafEllerTabell from "./GrafEllerTabell/GrafEllerTabell";
 import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 import { KvartalsvisSykefraværshistorikk } from "../hooks/useSykefraværAppData";
-import { sendToogleEvent } from "../../analytics/analytics";
+import { sendToogleEvent } from "../../utils/analytics/analytics";
 
 interface Props {
   restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>;

@@ -53,6 +53,8 @@ spec:
       value: https://www.nav.no/arbeidsgiver/kontaktoss
     - name: GRAFANA_AGENT_COLLECTOR_URL
       value: https://telemetry.nav.no/collect
+    - name: UMAMI_WEBSITE_ID
+      value: 881d4cb8-e2a3-42da-9da6-83b6220c7f7e
   tokenx:
     enabled: true
   idporten:

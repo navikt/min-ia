@@ -1,0 +1,39 @@
+@use "../../styles/screensize" as *;
+
+.banner {
+  background-color: var(--a-bg-default);
+  border-bottom: 1px solid var(--a-gray-300);
+  padding: 1rem;
+
+  @media(min-width: $screen-sm) {
+    padding: 1.25rem 1rem;
+  }
+
+  .bannerContent {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .bannertittel {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      max-width: 28rem;
+      gap: 1.25rem;
+    }
+
+    .virksomhetsvelgerWrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 30rem;
+
+      &>div {
+        position: relative;
+      }
+    }
+  }
+}

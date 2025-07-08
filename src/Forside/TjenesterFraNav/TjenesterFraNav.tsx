@@ -2,7 +2,7 @@ import { Bleed, BodyShort, Button, Heading, Page } from "@navikt/ds-react";
 import styles from "./tjenesterFraNav.module.scss";
 import { ExternalLink } from "@navikt/ds-icons";
 import { KURS_URL, FÅ_HJELP_URL, EKSPERTBISTAND_URL } from "../../utils/konstanter";
-import { sendNavigereEvent } from "../../analytics/analytics";
+import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
 export default function TjenesterFraNav() {
 	return (

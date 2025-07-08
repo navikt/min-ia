@@ -1,12 +1,27 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
-import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../analytics/analytics";
+import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
 
-jest.mock("../analytics/analytics");
+jest.mock("../utils/analytics/analytics");
 jest.mock('next/router', () => ({
-	useRouter: jest.fn(),
+	useRouter: jest.fn(() => {
+		return {
+			route: "/",
+			pathname: "",
+			query: "",
+			asPath: "",
+			push: jest.fn(),
+			events: {
+				on: jest.fn(),
+				off: jest.fn(),
+			},
+			beforePopState: jest.fn(() => null),
+			prefetch: jest.fn(() => null),
+			replace: jest.fn(),
+		};
+	}),
 }));
 
 jest.mock("./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI", () => ({
@@ -135,7 +150,7 @@ describe("Forside", () => {
 		const aktivitetAccordion = screen.getByText(accordiontittel);
 		aktivitetAccordion.click();
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledTimes(1);
-		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel);
+		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel, false);
 	});
 
 	it("Kaller sendOppgaveStatusEvent ved statusendring på oppgave", async () => {

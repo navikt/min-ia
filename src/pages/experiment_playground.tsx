@@ -4,7 +4,6 @@ import {
 	erIkkeInnlogget,
 } from "../integrasjoner/rest-status";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
-import { useAltinnOrganisasjoner } from "../hooks/useAltinnOrganisasjoner";
 import { Innloggingsside } from "../Innlogginsside/Innloggingsside";
 import { Layout } from "../komponenter/Layout/Layout";
 import React from "react";
@@ -14,6 +13,7 @@ import { doInitializeFaro } from "../utils/initializeFaro";
 import useBreadcrumbs from "../utils/useBreadcrumbs";
 import { useSendIaMetrikkEtterFemSekunder } from "../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 import Playground from "../komponenter/Playground";
+import { useOrganisasjoner } from "../hooks/useOrganisasjoner";
 
 export default function ExperimentPlaygroundPage(props: {
 	page: PageProps;
@@ -28,7 +28,7 @@ export default function ExperimentPlaygroundPage(props: {
 	});
 	useSendIaMetrikkEtterFemSekunder();
 
-	const organisasjonerRespons = useAltinnOrganisasjoner();
+	const organisasjonerRespons = useOrganisasjoner();
 	const brukerensOrganisasjoner = erFerdigNedlastet(organisasjonerRespons)
 		? organisasjonerRespons.data
 		: [];
