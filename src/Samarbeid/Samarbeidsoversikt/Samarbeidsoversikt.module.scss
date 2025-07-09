@@ -1,0 +1,15 @@
+.samarbeidslisteSide {
+	.samarbeidslisteTittel {
+		font-weight: var(--a-font-weight-bold);
+		margin-bottom: 4rem;
+		margin-top: 4rem;
+	}
+	.samarbeidsliste {
+		margin-bottom: 2rem;
+		.samarbeidslisteElement {
+			background-color: var(--a-white);
+			border-radius: var(--a-border-radius-xlarge);
+			padding: 2rem 4rem;
+		}
+	}
+}

@@ -1,0 +1,110 @@
+import { BodyShort, Button, Heading, HStack, Page, VStack } from "@navikt/ds-react";
+import { Samarbeid, Samarbeidhendelse } from "../Samarbeidsvelger/samarbeidtyper";
+import { dummySamarbeid } from "../Samarbeidsvelger/dummySamarbeid";
+import styles from './Samarbeidsoversikt.module.scss';
+import { penskrivIAStatus, SamarbeidsStatusBadge } from "../SamarbeidsStatusBadge";
+import Link from "next/link";
+import { ArrowRightIcon, BellDotFillIcon, ChevronDownIcon } from "@navikt/aksel-icons";
+import React from "react";
+
+
+const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
+
+export default function Samarbeidsoversikt() {
+	return (
+		<Page.Block width="xl" className={styles.samarbeidslisteSide}>
+			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
+				IA-samarbeid med Nav Arbeidslivssenter
+			</Heading>
+			<Samarbeidsliste tilgjengeligeSamarbeid={dummySamarbeid} />
+		</Page.Block>
+	);
+}
+
+function Samarbeidsliste({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
+	const [erEkspandert, setErEkspandert] = React.useState(false);
+	if (tilgjengeligeSamarbeid.length === 0) {
+		return (
+			<VStack className={styles.samarbeidsliste} gap="4">
+				<Heading level="3" size="small">Ingen samarbeid tilgjengelig</Heading>
+			</VStack>
+		);
+	}
+	if (tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
+		return (
+			<VStack className={styles.samarbeidsliste} gap="4">
+				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid.slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID)} />
+				<Button
+					variant="tertiary"
+					onClick={() => setErEkspandert(true)}
+					icon={<ChevronDownIcon aria-hidden />}>
+					Se alle ({tilgjengeligeSamarbeid.length})
+				</Button>
+			</VStack>
+		);
+	}
+
+	return (
+		<VStack className={styles.samarbeidsliste} gap="4">
+			<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
+		</VStack>
+	);
+}
+function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
+	return tilgjengeligeSamarbeid.map((samarbeid) => (
+		<SamarbeidslisteElement key={samarbeid.id} samarbeid={samarbeid} />
+	));
+}
+
+function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
+	return (
+		<VStack className={styles.samarbeidslisteElement} gap="2">
+			<HStack justify="space-between" align="center" gap="4">
+				<Heading level="3" size="small">{samarbeid.navn}</Heading>
+				<HStack gap="2" align="stretch" as={BodyShort}>
+					<SamarbeidsStatusBadge status={samarbeid.status} />
+					<Button
+						as={Link}
+						href="/samarbeid/detaljer"
+						icon={<ArrowRightIcon aria-hidden />}
+						iconPosition="right"
+						size="small">
+						Se samarbeid
+					</Button>
+				</HStack>
+			</HStack>
+			<SisteSamarbeidshendelse hendelser={samarbeid.hendelser} />
+		</VStack>
+	);
+}
+
+function SisteSamarbeidshendelse({ hendelser }: { hendelser: Samarbeidhendelse[] }) {
+	if (hendelser.length === 0) {
+		return null;
+	}
+
+	const sisteHendelse = hendelser.reduce((nyeste, nåværende) => {
+		return nåværende.dato > nyeste.dato ? nåværende : nyeste;
+	}, hendelser[0]);
+
+	return (
+		<HStack gap="2" align="center">
+			<BellDotFillIcon fontSize="1.5rem" aria-hidden /> <b>{penskrivSamarbeidshendelse(sisteHendelse)}</b> {sisteHendelse.dato.toLocaleDateString("nb-NO")}
+		</HStack>
+	);
+}
+
+function penskrivSamarbeidshendelse(hendelse: Samarbeidhendelse): string {
+	switch (hendelse.type) {
+		case "SAMARBEID_STATUSENDRING":
+			return `Samarbeid statusendring: ${penskrivIAStatus(hendelse.nyStatus)}`;
+		case "SAMARBEIDSPLAN":
+			return "Samarbeidsplan opprettet";
+		case "BEHOVSVURDERING":
+			return "Behovsvurdering gjennomført";
+		case "EVALUERING":
+			return "Evaluering gjennomført";
+		default:
+			return "Ukjent hendelse";
+	}
+};
