@@ -4,7 +4,7 @@ const dummyHendelser = {
 	samarbeidOpprettet: {
 		type: "SAMARBEID_STATUSENDRING",
 		nyStatus: "AKTIV",
-		dato: new Date("2025-01-01")
+		dato: new Date("2024-12-01")
 	} as Samarbeidhendelse,
 	samarbeidFullført: {
 		type: "SAMARBEID_STATUSENDRING",

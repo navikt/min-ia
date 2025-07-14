@@ -6,6 +6,7 @@ import { penskrivIAStatus, SamarbeidsStatusBadge } from "../SamarbeidsStatusBadg
 import Link from "next/link";
 import { ArrowRightIcon, BellDotFillIcon, ChevronDownIcon } from "@navikt/aksel-icons";
 import React from "react";
+import Samarbeidstidslinje from "./Samarbeidstidslinje";
 
 
 const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
@@ -74,6 +75,7 @@ function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
 				</HStack>
 			</HStack>
 			<SisteSamarbeidshendelse hendelser={samarbeid.hendelser} />
+			<Samarbeidstidslinje hendelser={samarbeid.hendelser} />
 		</VStack>
 	);
 }
