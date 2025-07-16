@@ -1,9 +1,10 @@
-import { BodyShort, Page, Tabs } from "@navikt/ds-react";
+import { Page, Tabs } from "@navikt/ds-react";
 import Samarbeidsvelger from "../Samarbeidsvelger";
 import { SamarbeidsvelgerProvider } from "../Samarbeidsvelger/SamarbeidsvelgerContext";
 import React from "react";
 import KartleggingFane from "./KartleggingFane";
 import Samarbeidsinfo from "../Samarbeidsinfo";
+import PlanFane from "./PlanFane";
 
 export default function Samarbeidsside() {
 	const [valgtFane, setValgtFane] = React.useState("samarbeid");
@@ -24,7 +25,7 @@ export default function Samarbeidsside() {
 						<KartleggingFane />
 					</Tabs.Panel>
 					<Tabs.Panel value="samarbeid">
-						<BodyShort>Innhold for Samarbeid-fanen vil bli implementert her.</BodyShort>
+						<PlanFane />
 					</Tabs.Panel>
 				</Page.Block>
 			</Tabs>
