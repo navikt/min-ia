@@ -55,7 +55,7 @@ export default function SpørreundersøkelseRad({
     return (
         <StyledExpansionCard
             className={styles.spørreundersøkelseRad}
-            aria-label={spørreundersøkelseType}
+            aria-label={`${spørreundersøkelseType} ${spørreundersøkelse.opprettetTidspunkt.toLocaleDateString("no-NO")}`}
             open={erÅpen}
             onToggle={(open: boolean) => {
                 setErÅpen(open);

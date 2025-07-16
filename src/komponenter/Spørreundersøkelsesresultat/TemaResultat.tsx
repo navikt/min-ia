@@ -37,7 +37,7 @@ export const TemaResultat = ({
             <div className={styles.temaContainer}>
                 {spørsmålResultat.map((spørsmål: SpørsmålResultat) => (
                     <div className={styles.temaGrafContainer} key={spørsmål.id}>
-                        {spørsmål.kategori ? <BodyShort className={styles.kategoriTittel} style={{ color: getGraffargeFromTema(navn) }}>
+                        {spørsmål.kategori ? <BodyShort className={styles.kategoriTittel} style={{ color: getGraffargeFromTema(navn, true) }}>
                             {spørsmål.kategori}
                         </BodyShort> : null}
                         <BarChart
