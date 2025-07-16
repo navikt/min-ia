@@ -5,6 +5,7 @@ import React from "react";
 import KartleggingFane from "./KartleggingFane";
 import Samarbeidsinfo from "../Samarbeidsinfo";
 import PlanFane from "./PlanFane";
+import styles from './Samarbeidsside.module.scss';
 
 export default function Samarbeidsside() {
 	const [valgtFane, setValgtFane] = React.useState("samarbeid");
@@ -20,7 +21,7 @@ export default function Samarbeidsside() {
 						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
 					</Page.Block>
 				</Tabs.List>
-				<Page.Block width="xl">
+				<Page.Block width="xl" gutters className={styles.samarbeidssideBlock}>
 					<Tabs.Panel value="kartlegging">
 						<KartleggingFane />
 					</Tabs.Panel>

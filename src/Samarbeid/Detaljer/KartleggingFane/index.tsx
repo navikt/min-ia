@@ -1,8 +1,8 @@
 import { dummyBehovsvurderinger } from "../../dummyData";
 import Kartlegginger from "./Kartlegginger";
 
-export default function BehovsvurderingFane() {
+export default function KartleggingFane() {
 	return (
-		<Kartlegginger behovsvurderinger={dummyBehovsvurderinger} />
+		<Kartlegginger kartlegginger={dummyBehovsvurderinger} />
 	);
 }

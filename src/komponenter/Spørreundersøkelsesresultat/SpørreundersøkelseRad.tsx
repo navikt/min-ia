@@ -1,7 +1,7 @@
 import { ExpansionCard } from "@navikt/ds-react";
 import React from "react";
-import { BehovsvurderingCardHeaderInnhold } from "./BehovsvurderingCardHeaderInnhold";
-import { BehovsvurderingRadInnhold } from "./BehovsvurderingRadInnhold";
+import { CardHeaderInnhold } from "./CardHeaderInnhold";
+import { RadInnhold } from "./RadInnhold";
 
 import styles from "./SpørreundersøkelseRad.module.scss";
 
@@ -51,8 +51,6 @@ export default function SpørreundersøkelseRad({
     const [erÅpen, setErÅpen] = React.useState(defaultOpen);
 
     const spørreundersøkelseType = "Behovsvurdering";
-    const CardHeader = BehovsvurderingCardHeaderInnhold;
-    const CardInnhold = BehovsvurderingRadInnhold;
 
     return (
         <StyledExpansionCard
@@ -63,9 +61,9 @@ export default function SpørreundersøkelseRad({
                 setErÅpen(open);
             }}
         >
-            <CardHeader spørreundersøkelse={spørreundersøkelse} dato={dato} />
+            <CardHeaderInnhold spørreundersøkelse={spørreundersøkelse} dato={dato} />
             {erÅpen && spørreundersøkelse.status === "AVSLUTTET" && (
-                <CardInnhold spørreundersøkelse={spørreundersøkelse} />
+                <RadInnhold spørreundersøkelse={spørreundersøkelse} />
             )}
         </StyledExpansionCard>
     );

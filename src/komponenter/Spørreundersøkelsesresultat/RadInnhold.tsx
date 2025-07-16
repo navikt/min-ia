@@ -2,7 +2,7 @@ import { ExpansionCard } from "@navikt/ds-react";
 import { Spørreundersøkelse } from "./SpørreundersøkelseRad";
 import { TemaResultat } from "./TemaResultat";
 
-export const BehovsvurderingRadInnhold = ({
+export const RadInnhold = ({
     spørreundersøkelse
 }: {
     spørreundersøkelse: Spørreundersøkelse;
