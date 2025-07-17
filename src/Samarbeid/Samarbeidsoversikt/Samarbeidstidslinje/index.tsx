@@ -3,6 +3,7 @@ import React from "react";
 import { Samarbeidhendelse } from "../../Samarbeidsvelger/samarbeidtyper";
 import { penskrivIAStatus } from '../../SamarbeidsStatusBadge';
 import { Detail } from '@navikt/ds-react';
+import { useTekstplasseringer } from './useTekstplasseringer';
 
 export default function Samarbeidstidslinje({ hendelser }: { hendelser: Samarbeidhendelse[] }) {
 	const {
@@ -109,6 +110,9 @@ function Tidslinje({ førsteHendelse, sisteHendelse, planStart, planSlutt, ikkeP
 		}));
 	}, [førsteHendelse, ikkePlanHendelser, sisteHendelse, tidMellomStartOgSlutt]);
 
+	// tekstplasseringer brukes for å hindre overlapping av tekst på tidslinjen
+	const tekstplasseringer = useTekstplasseringer(transformerteHendelser, tidslinjeBredde);
+
 	if (!førsteHendelse || !sisteHendelse || tidMellomStartOgSlutt <= 0) {
 		return null;
 	}
@@ -122,11 +126,9 @@ function Tidslinje({ førsteHendelse, sisteHendelse, planStart, planSlutt, ikkeP
 						key={index}
 						hendelse={hendelse}
 						prosent={prosent}
-						avstandTilForigeHendelse={
-							index > 0 ?
-								(prosent - transformerteHendelser[index - 1].prosent) / 100 * tidslinjeBredde
-								: null
-						}
+						tekstplasseringer={tekstplasseringer}
+						index={index}
+						tidslinjeBredde={tidslinjeBredde}
 					/>
 				))
 			}
@@ -134,48 +136,69 @@ function Tidslinje({ førsteHendelse, sisteHendelse, planStart, planSlutt, ikkeP
 	);
 }
 
-const MIN_AVSTAND_MELLOM_HENDELSER = 200;
-
 function TidslinjeHendelse({
 	hendelse,
 	prosent,
-	avstandTilForigeHendelse
+	tekstplasseringer,
+	index,
+	tidslinjeBredde
 }: {
 	hendelse: Samarbeidhendelse;
 	prosent: number;
-	avstandTilForigeHendelse: number | null;
+	tekstplasseringer: Array<{ start: number; end: number; width: number }>;
+	index: number;
+	tidslinjeBredde: number;
 }) {
-	const avstandDisplayStyle = avstandTilForigeHendelse && avstandTilForigeHendelse < MIN_AVSTAND_MELLOM_HENDELSER ? { display: 'none' } : {};
+	// Hvis hendelsen vil overlappe med forrige hendelse, skjul teksten
+	const avstandDisplayTextStyle = React.useMemo(() => {
+		if (index > 0 && tekstplasseringer[index - 1].end > tekstplasseringer[index].start) {
+			return { display: 'none' };
+		}
+	}, [index, tekstplasseringer]);
+
 	const textStyle = React.useMemo(() => {
 		// Try to center first, but adjust if too close to edges
-		if (prosent < 15) {
+		if (prosent * tidslinjeBredde / 100 < (tekstplasseringer[index].width / 2)) {
 			// Very close to left edge - align text to the left
 			return { left: '0', transform: 'none' };
-		} else if (prosent > 85) {
+		} else if (prosent * tidslinjeBredde / 100 > (tidslinjeBredde - (tekstplasseringer[index].width / 2))) {
 			// Very close to right edge - align text to the right
 			return { right: '0', transform: 'none' };
 		} else {
 			// Center the text on the hendelse item
 			return { left: '50%', transform: 'translateX(-50%)' };
 		}
-	}, [prosent]);
+	}, [prosent, tidslinjeBredde, tekstplasseringer, index]);
 
 	return (
-		<div className={styles.hendelse} style={{ left: `${prosent}%`, ...avstandDisplayStyle }}>
-			<Hendelsebeskrivelse hendelse={hendelse} textStyle={textStyle} />
+		<div className={styles.hendelse} style={{ left: `${prosent}%` }}>
+			<Hendelsebeskrivelse hendelse={hendelse} textStyle={{ ...textStyle, ...avstandDisplayTextStyle }} />
 		</div>
 	);
 }
 
+
 function Hendelsebeskrivelse({ hendelse, textStyle }: { hendelse: Samarbeidhendelse; textStyle: React.CSSProperties }) {
+	const beskrivelse = hendelseBeskrivelseTekst(hendelse);
+	return (
+		<Detail className={styles.beskrivelse} style={textStyle}>
+			<b>{beskrivelse.boldText}</b>: {beskrivelse.normalText}
+		</Detail>
+	);
+}
+
+export function hendelseBeskrivelseTekst(hendelse: Samarbeidhendelse): {
+	boldText: string;
+	normalText: string;
+} {
 	switch (hendelse.type) {
 		case "SAMARBEID_STATUSENDRING":
-			return <Detail className={styles.beskrivelse} style={textStyle}><b>{penskrivIAStatus(hendelse.nyStatus)}</b>: {hendelse.dato.toLocaleDateString("nb-NO")}</Detail>;
+			return { boldText: penskrivIAStatus(hendelse.nyStatus), normalText: hendelse.dato.toLocaleDateString("nb-NO") };
 		case "SAMARBEIDSPLAN":
-			return null;
+			return { boldText: "Samarbeidsplan", normalText: hendelse.dato.toLocaleDateString("nb-NO") };
 		case "BEHOVSVURDERING":
-			return <Detail className={styles.beskrivelse} style={textStyle}><b>Behovsvurdering</b>: {hendelse.dato.toLocaleDateString("nb-NO")}</Detail>;
+			return { boldText: "Behovsvurdering", normalText: hendelse.dato.toLocaleDateString("nb-NO") };
 		case "EVALUERING":
-			return <Detail className={styles.beskrivelse} style={textStyle}><b>Evaluering</b>: {hendelse.dato.toLocaleDateString("nb-NO")}</Detail>;
+			return { boldText: "Evaluering", normalText: hendelse.dato.toLocaleDateString("nb-NO") };
 	}
 }
