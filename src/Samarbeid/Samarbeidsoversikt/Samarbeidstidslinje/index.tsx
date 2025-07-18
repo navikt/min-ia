@@ -2,7 +2,7 @@ import styles from './Samarbeidstidslinje.module.scss';
 import React from "react";
 import { Samarbeidhendelse } from "../../Samarbeidsvelger/samarbeidtyper";
 import { penskrivIAStatus } from '../../SamarbeidsStatusBadge';
-import { Detail } from '@navikt/ds-react';
+import { BodyShort, Detail } from '@navikt/ds-react';
 import { useTekstplasseringer } from './useTekstplasseringer';
 
 export default function Samarbeidstidslinje({ hendelser }: { hendelser: Samarbeidhendelse[] }) {
@@ -119,7 +119,16 @@ function Tidslinje({ førsteHendelse, sisteHendelse, planStart, planSlutt, ikkeP
 
 	return (
 		<div className={styles.tidslinje} ref={tidslinjeRef}>
-			<div className={styles.planlinje} style={{ left: `${planStartProsent}%`, right: `${100 - planSluttProsent}%` }} />
+			{
+				planStart && planSlutt && (
+					<>
+						<BodyShort size="small" className={styles.planbeskrivelse} style={{ left: `${planStartProsent}%` }}>
+							<b>Aktiviteter i samarbeidsplan</b> {planStart.toLocaleDateString("nb-NO")} - {planSlutt.toLocaleDateString("nb-NO")}
+						</BodyShort>
+						<div className={styles.planlinje} style={{ left: `${planStartProsent}%`, right: `${100 - planSluttProsent}%` }} />
+					</>
+				)
+			}
 			{
 				transformerteHendelser.map(({ hendelse, prosent }, index) => (
 					<TidslinjeHendelse
