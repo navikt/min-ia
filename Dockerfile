@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/node:latest
+FROM gcr.io/distroless/nodejs22-debian12:nonroot
 
 ENV PORT=3000 \
     NODE_ENV=production \
