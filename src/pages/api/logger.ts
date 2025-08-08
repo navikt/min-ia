@@ -1,6 +1,6 @@
 import pino, { BaseLogger } from "pino";
 import { NextApiRequest, NextApiResponse } from "next";
-import * as z from "zod/v4";
+import * as z from "zod";
 import { backendLogger } from "../../utils/backendLogger";
 
 type LogLevels = Exclude<keyof BaseLogger, 'string' | 'level'>;
