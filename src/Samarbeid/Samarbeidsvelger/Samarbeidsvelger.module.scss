@@ -1,33 +1,32 @@
 .samarbeidsvelgerBleed {
 	background-color: var(--a-blue-100);
-	padding: 1rem;
+	padding: 1.5rem 1rem 2rem;
 
 	.innhold {
 		max-width: 80rem;
 		margin: 0 auto;
+
+			.menyknapp {
+				width: 100%;
+				max-width: 20rem;
+				background-color: var(--a-white);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: 0.5rem;
+				--a-font-weight-bold: var(--a-font-weight-regular);
+			}
+	}
+}
+
+.samarbeidsvelgermeny {
+	max-width: 100%;
+	width: 20rem;
+
+	.menyItem {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		flex-wrap: wrap;
 		gap: 1rem;
-
-		.velgerWrapper {
-			flex: 1;
-			min-width: 15rem;
-			max-width: 40rem;
-
-			.velger {
-				max-width: 20rem;
-			}
-		}
-		.infoWrapper {
-			flex: 1;
-			min-width: 15rem;
-			max-width: 40rem;
-
-			.infoTittel {
-				color: var(--a-blue-700);
-			}
-		}
 	}
 }
