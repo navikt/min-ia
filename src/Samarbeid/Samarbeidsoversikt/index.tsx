@@ -60,9 +60,9 @@ function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid }: { tilgjengeligeSamar
 function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
 	return (
 		<VStack className={styles.samarbeidslisteElement} gap="2">
-			<HStack justify="space-between" align="center" gap="4">
-				<Heading level="3" size="small">{samarbeid.navn}</Heading>
-				<HStack gap="2" align="stretch" as={BodyShort}>
+			<HStack justify="space-between" align="center" gap="4" className={styles.headingRad}>
+				<Heading level="3" size="medium">{samarbeid.navn}</Heading>
+				<HStack gap="4" align="stretch" as={BodyShort}>
 					<SamarbeidsStatusBadge status={samarbeid.status} />
 					<Button
 						as={Link}

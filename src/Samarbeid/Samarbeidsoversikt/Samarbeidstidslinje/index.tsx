@@ -118,29 +118,31 @@ function Tidslinje({ førsteHendelse, sisteHendelse, planStart, planSlutt, ikkeP
 	}
 
 	return (
-		<div className={styles.tidslinje} ref={tidslinjeRef}>
-			{
-				planStart && planSlutt && (
-					<>
-						<BodyShort size="small" className={styles.planbeskrivelse} style={{ left: `${planStartProsent}%` }}>
-							<b>Aktiviteter i samarbeidsplan</b> {planStart.toLocaleDateString("nb-NO")} - {planSlutt.toLocaleDateString("nb-NO")}
-						</BodyShort>
-						<div className={styles.planlinje} style={{ left: `${planStartProsent}%`, right: `${100 - planSluttProsent}%` }} />
-					</>
-				)
-			}
-			{
-				transformerteHendelser.map(({ hendelse, prosent }, index) => (
-					<TidslinjeHendelse
-						key={index}
-						hendelse={hendelse}
-						prosent={prosent}
-						tekstplasseringer={tekstplasseringer}
-						index={index}
-						tidslinjeBredde={tidslinjeBredde}
-					/>
-				))
-			}
+		<div className={styles.tidslinjeContainer}>
+			<div className={styles.tidslinje} ref={tidslinjeRef}>
+				{
+					planStart && planSlutt && (
+						<>
+							<BodyShort size="small" className={styles.planbeskrivelse} style={{ left: `${planStartProsent}%` }}>
+								<b>Aktiviteter i samarbeidsplan</b> {planStart.toLocaleDateString("nb-NO")} - {planSlutt.toLocaleDateString("nb-NO")}
+							</BodyShort>
+							<div className={styles.planlinje} style={{ left: `${planStartProsent}%`, right: `${100 - planSluttProsent}%` }} />
+						</>
+					)
+				}
+				{
+					transformerteHendelser.map(({ hendelse, prosent }, index) => (
+						<TidslinjeHendelse
+							key={index}
+							hendelse={hendelse}
+							prosent={prosent}
+							tekstplasseringer={tekstplasseringer}
+							index={index}
+							tidslinjeBredde={tidslinjeBredde}
+						/>
+					))
+				}
+			</div>
 		</div>
 	);
 }
