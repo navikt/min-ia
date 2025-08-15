@@ -1,5 +1,5 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
-import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
+import { sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
@@ -22,12 +22,6 @@ jest.mock('next/router', () => ({
 			replace: jest.fn(),
 		};
 	}),
-}));
-
-jest.mock("./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI", () => ({
-	__esModule: true,
-	...jest.requireActual("./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI"),
-	useFiaSamarbeidsstatus: jest.fn(() => ({ status: RestStatus.Suksess, data: { samarbeid: "I_SAMARBEID" } })),
 }));
 
 
@@ -68,16 +62,6 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 describe("Forside", () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
-	});
-	it("Kaller sendVisSamarbeidsstatusEvent", () => {
-		expect(sendVisSamarbeidsstatusEvent).not.toHaveBeenCalled();
-		render(<Forside
-			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
-			kontaktOssUrl="kontaktOssUrl"
-			kjørerMockApp={false}
-		/>);
-		expect(sendVisSamarbeidsstatusEvent).toHaveBeenCalledTimes(1);
-		expect(sendVisSamarbeidsstatusEvent).toHaveBeenCalledWith("I_SAMARBEID");
 	});
 
 	it.each([
