@@ -1,21 +1,44 @@
 import React from "react";
-import { dummySamarbeid } from "./dummySamarbeid";
 import { Samarbeid } from "./samarbeidtyper";
+import { RestStatus } from "../../integrasjoner/rest-status";
+import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 
 export const SamarbeidsvelgerContext = React.createContext<{
 	tilgjengeligeSamarbeid: Samarbeid[];
-	valgtSamarbeid: string;
+	valgtSamarbeid?: string;
 	setValgtSamarbeid: (samarbeidId: string) => void;
 }>({
 	tilgjengeligeSamarbeid: [],
-	valgtSamarbeid: "",
+	valgtSamarbeid: undefined,
 	setValgtSamarbeid: () => { },
 });
 
 
 export const SamarbeidsvelgerProvider = ({ children }: { children: React.ReactNode }) => {
-	const samarbeid = dummySamarbeid;
-	const [valgtSamarbeid, setValgtSamarbeid] = React.useState<string>(samarbeid[0].id || "");
+	const samarbeidsliste = useFiaSamarbeid();
+
+	const samarbeid: Samarbeid[] = React.useMemo(() => {
+		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data) {
+			return [];
+		}
+		return samarbeidsliste?.data?.map((samarbeid) => ({
+			id: samarbeid.id,
+			saksnummer: samarbeid.saksnummer,
+			navn: samarbeid.navn,
+			status: samarbeid.status,
+			opprettet: new Date(samarbeid.opprettet),
+			sistEndret: new Date(samarbeid.sistEndret),
+			hendelser: [] // Placeholder for hendelser, kan utvides senere
+		})) || [];
+	}, [samarbeidsliste]);
+
+	const [valgtSamarbeid, setValgtSamarbeid] = React.useState<string | undefined>(samarbeid[0]?.id);
+
+	React.useEffect(() => {
+		if (samarbeid.length > 0 && !valgtSamarbeid) {
+			setValgtSamarbeid(samarbeid[0].id);
+		}
+	}, [samarbeid, valgtSamarbeid]);
 
 	return (
 		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid, setValgtSamarbeid }}>

@@ -29,7 +29,7 @@ function Samarbeidsdropdown({
 	setValgtSamarbeid,
 }: {
 	tilgjengeligeSamarbeid: Samarbeid[];
-	valgtSamarbeid: string;
+	valgtSamarbeid?: string;
 	setValgtSamarbeid: (value: string) => void;
 }) {
 	const sorterteSamarbeid = React.useMemo(() => tilgjengeligeSamarbeid.sort(
