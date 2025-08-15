@@ -15,6 +15,37 @@ export const fiaSamarbeidMock = () => {
             "status": "AKTIV",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
-        }
+        },
+        {
+            "id": 3,
+            "saksnummer": "123",
+            "navn": "Samarbeid 3",
+            "status": "FULLFØRT",
+            "opprettet": "2025-08-12T13:00:00Z",
+            "sistEndret": "2025-08-12T13:00:00Z",
+        },
+        {
+            "id": 4,
+            "saksnummer": "123",
+            "navn": "Samarbeid 4",
+            "status": "AKTIV",
+            "opprettet": "2025-08-12T13:00:00Z",
+            "sistEndret": "2025-08-12T13:00:00Z",
+        },
+        {
+            "id": 5,
+            "saksnummer": "123",
+            "navn": "Samarbeid 5",
+            "status": "FULLFØRT",
+            "opprettet": "2025-08-12T13:00:00Z",
+            "sistEndret": "2025-08-12T13:00:00Z",
+        },
+        {            "id": 6,
+            "saksnummer": "123",
+            "navn": "Samarbeid 6",
+            "status": "AKTIV",
+            "opprettet": "2025-08-12T13:00:00Z",
+            "sistEndret": "2025-08-12T13:00:00Z",
+        },
     ]
 }
