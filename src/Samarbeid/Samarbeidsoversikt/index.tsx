@@ -2,7 +2,7 @@ import { Alert, BodyShort, Button, Heading, HStack, Page, VStack } from "@navikt
 import styles from './Samarbeidsoversikt.module.scss';
 import { penskrivIAStatus, SamarbeidsStatusBadge } from "../SamarbeidsStatusBadge";
 import Link from "next/link";
-import { ArrowRightIcon, BellDotFillIcon, ChevronDownIcon } from "@navikt/aksel-icons";
+import { ArrowRightIcon, BellDotFillIcon, ChevronDownIcon, ChevronUpIcon } from "@navikt/aksel-icons";
 import React from "react";
 import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 import { RestStatus } from "../../integrasjoner/rest-status";
@@ -53,14 +53,14 @@ function Samarbeidsliste() {
 		);
 	}
 
-	if (samarbeidsliste.data?.length === 0) {
+	if (tilgjengeligeSamarbeid?.length === 0) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
 				<Heading level="3" size="small">Ingen samarbeid tilgjengelig</Heading>
 			</VStack>
 		);
 	}
-	if (samarbeidsliste.data.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
+	if (tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
 				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid.slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID)} />
@@ -77,6 +77,17 @@ function Samarbeidsliste() {
 	return (
 		<VStack className={styles.samarbeidsliste} gap="4">
 			<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
+			{
+				tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && erEkspandert && (
+					<Button
+						variant="tertiary"
+						onClick={() => setErEkspandert(false)}
+						icon={<ChevronUpIcon aria-hidden />}
+					>
+						Vis færre
+					</Button>
+				)
+			}
 		</VStack>
 	);
 }
