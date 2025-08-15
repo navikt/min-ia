@@ -1,13 +1,13 @@
-import { BodyShort, Button, Heading, HStack, Page, VStack } from "@navikt/ds-react";
-import { Samarbeid, Samarbeidhendelse } from "../Samarbeidsvelger/samarbeidtyper";
-import { dummySamarbeid } from "../Samarbeidsvelger/dummySamarbeid";
+import { Alert, BodyShort, Button, Heading, HStack, Page, VStack } from "@navikt/ds-react";
 import styles from './Samarbeidsoversikt.module.scss';
 import { penskrivIAStatus, SamarbeidsStatusBadge } from "../SamarbeidsStatusBadge";
 import Link from "next/link";
 import { ArrowRightIcon, BellDotFillIcon, ChevronDownIcon } from "@navikt/aksel-icons";
 import React from "react";
+import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
+import { RestStatus } from "../../integrasjoner/rest-status";
+import { Samarbeid, Samarbeidhendelse } from "../Samarbeidsvelger/samarbeidtyper";
 import Samarbeidstidslinje from "./Samarbeidstidslinje";
-
 
 const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
 
@@ -17,21 +17,50 @@ export default function Samarbeidsoversikt() {
 			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
 				IA-samarbeid med Nav Arbeidslivssenter
 			</Heading>
-			<Samarbeidsliste tilgjengeligeSamarbeid={dummySamarbeid} />
+			<Samarbeidsliste />
 		</Page.Block>
 	);
 }
 
-function Samarbeidsliste({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
+function Samarbeidsliste() {
 	const [erEkspandert, setErEkspandert] = React.useState(false);
-	if (tilgjengeligeSamarbeid.length === 0) {
+	const samarbeidsliste = useFiaSamarbeid();
+
+	const tilgjengeligeSamarbeid: Samarbeid[] = React.useMemo(() => {
+		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data) {
+			return [];
+		}
+		return samarbeidsliste?.data?.map((samarbeid) => ({
+			id: samarbeid.id,
+			saksnummer: samarbeid.saksnummer,
+			navn: samarbeid.navn,
+			status: samarbeid.status,
+			opprettet: new Date(samarbeid.opprettet),
+			sistEndret: new Date(samarbeid.sistEndret),
+			hendelser: [] // Placeholder for hendelser, kan utvides senere
+		})) || [];
+	}, [samarbeidsliste]);
+
+	if (samarbeidsliste.status === RestStatus.LasterInn || samarbeidsliste.status === RestStatus.IkkeLastet) {
+		return null; // Ikke alle har denne komponenten, så vi kan returnere null for å ikke vise loader for noe de fleste (?) ikke har.
+	}
+
+	if (samarbeidsliste.status === RestStatus.Feil || samarbeidsliste.status === RestStatus.IkkeInnlogget || samarbeidsliste.status === RestStatus.IngenTilgang) {
+		return (
+			<Alert variant="error">
+				Kunne ikke laste samarbeid. Vennligst prøv igjen senere.
+			</Alert>
+		);
+	}
+
+	if (samarbeidsliste.data?.length === 0) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
 				<Heading level="3" size="small">Ingen samarbeid tilgjengelig</Heading>
 			</VStack>
 		);
 	}
-	if (tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
+	if (samarbeidsliste.data.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
 				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid.slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID)} />
@@ -60,7 +89,7 @@ function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid }: { tilgjengeligeSamar
 function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
 	return (
 		<VStack className={styles.samarbeidslisteElement} gap="2">
-			<HStack justify="space-between" align="center" gap="4" className={styles.headingRad}>
+			<HStack justify="space-between" align="center" gap="4">
 				<Heading level="3" size="medium">{samarbeid.navn}</Heading>
 				<HStack gap="4" align="stretch" as={BodyShort}>
 					<SamarbeidsStatusBadge status={samarbeid.status} />
