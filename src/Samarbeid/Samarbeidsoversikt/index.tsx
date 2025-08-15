@@ -12,18 +12,6 @@ import Samarbeidstidslinje from "./Samarbeidstidslinje";
 const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
 
 export default function Samarbeidsoversikt() {
-	return (
-		<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
-			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
-				IA-samarbeid med Nav Arbeidslivssenter
-			</Heading>
-			<Samarbeidsliste />
-		</Page.Block>
-	);
-}
-
-function Samarbeidsliste() {
-	const [erEkspandert, setErEkspandert] = React.useState(false);
 	const samarbeidsliste = useFiaSamarbeid();
 
 	const tilgjengeligeSamarbeid: Samarbeid[] = React.useMemo(() => {
@@ -47,12 +35,26 @@ function Samarbeidsliste() {
 
 	if (samarbeidsliste.status === RestStatus.Feil || samarbeidsliste.status === RestStatus.IkkeInnlogget || samarbeidsliste.status === RestStatus.IngenTilgang) {
 		return (
-			<Alert variant="error">
-				Kunne ikke laste samarbeid. Vennligst prøv igjen senere.
-			</Alert>
+			<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
+				<Alert variant="error">
+					Kunne ikke laste samarbeid. Vennligst prøv igjen senere.
+				</Alert>
+			</Page.Block>
 		);
 	}
 
+	return (
+		<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
+			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
+				IA-samarbeid med Nav Arbeidslivssenter
+			</Heading>
+			<Samarbeidsliste tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
+		</Page.Block>
+	);
+}
+
+function Samarbeidsliste({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
+	const [erEkspandert, setErEkspandert] = React.useState(false);
 	if (tilgjengeligeSamarbeid?.length === 0) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">

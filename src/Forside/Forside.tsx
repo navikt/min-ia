@@ -16,6 +16,7 @@ import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
 import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
 import VerktøyOgRessurser from "./VerktlyOgRessurser/VerktøyOgRessurser";
 import InkluderendeArbeidsliv from "./InkluderendeArbeidsliv/InkluderendeArbeidsliv";
+import Samarbeidsoversikt from "../Samarbeid/Samarbeidsoversikt";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -48,6 +49,7 @@ export const Forside = (props: ForsideProps) => {
                 fiaSamarbeidsstatus.data.samarbeid === "I_SAMARBEID" && (
                     <FiaSamarbeidsstatus status={fiaSamarbeidsstatus.data.samarbeid} />
                 )}
+            <Samarbeidsoversikt />
             {aggregertStatistikk.status === RestStatus.Feil ? (
                 <Page.Block width="xl">
                     <Alert variant={"error"} className={styles.forsideAlert}>

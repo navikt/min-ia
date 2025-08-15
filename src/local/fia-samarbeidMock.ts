@@ -3,7 +3,7 @@ export const fiaSamarbeidMock = () => {
         {
             "id": 1,
             "saksnummer": "123",
-            "navn": "Samarbeid",
+            "navn": "samarbeid med publiserte behovsvurderinger 3",
             "status": "FULLFØRT",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
