@@ -47,5 +47,13 @@ export const fiaSamarbeidMock = () => {
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
         },
+        {
+            "id": 7,
+            "saksnummer": "123",
+            "navn": "samarbeidmedveldiglangtnavnutenmellomrommmmmmmmmmm",
+            "status": "FULLFØRT",
+            "opprettet": "2025-08-12T13:00:00Z",
+            "sistEndret": "2025-08-12T13:00:00Z",
+        },
     ]
 }

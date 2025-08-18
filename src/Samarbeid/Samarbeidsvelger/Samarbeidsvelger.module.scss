@@ -6,16 +6,22 @@
 		max-width: 80rem;
 		margin: 0 auto;
 
-			.menyknapp {
-				width: 100%;
-				max-width: 20rem;
-				background-color: var(--a-white);
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				margin-top: 0.5rem;
-				--a-font-weight-bold: var(--a-font-weight-regular);
+		.menyknapp {
+			width: 100%;
+			max-width: 20rem;
+			background-color: var(--a-white);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 0.5rem;
+			--a-font-weight-bold: var(--a-font-weight-regular);
+
+			:first-child {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
+		}
 	}
 }
 
@@ -28,5 +34,10 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
+		word-break: break-word;
+
+		span {
+			flex-shrink: 0;
+		}
 	}
 }
