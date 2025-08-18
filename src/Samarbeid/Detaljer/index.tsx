@@ -7,11 +7,11 @@ import Samarbeidsinfo from "../Samarbeidsinfo";
 import PlanFane from "./PlanFane";
 import styles from './Samarbeidsside.module.scss';
 
-export default function Samarbeidsside() {
+export default function Samarbeidsside({ samarbeidId, setSamarbeidId }: { samarbeidId?: string, setSamarbeidId: (id: string) => void }) {
 	const [valgtFane, setValgtFane] = React.useState("samarbeid");
 
 	return (
-		<SamarbeidsvelgerProvider>
+		<SamarbeidsvelgerProvider samarbeidId={samarbeidId} setSamarbeidId={setSamarbeidId}>
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
 			<Tabs value={valgtFane} onChange={setValgtFane}>

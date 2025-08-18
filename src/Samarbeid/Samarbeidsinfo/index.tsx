@@ -8,7 +8,13 @@ export default function Samarbeidsinfo() {
 
 	const samarbeid = tilgjengeligeSamarbeid.find((s) => s.id === valgtSamarbeid);
 	if (!samarbeid) {
-		return <div>Ingen samarbeid valgt</div>;
+		return (
+			<Bleed className={styles.samarbeidsinfo}>
+				<Page.Block width="xl">
+					<div>Ingen samarbeid valgt</div>
+				</Page.Block>
+			</Bleed>
+		);
 	}
 
 	return (

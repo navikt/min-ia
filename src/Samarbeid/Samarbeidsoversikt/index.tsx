@@ -108,7 +108,7 @@ function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
 					<SamarbeidsStatusBadge status={samarbeid.status} />
 					<Button
 						as={Link}
-						href="/samarbeid/detaljer"
+						href={`/samarbeid/${samarbeid.id}`}
 						icon={<ArrowRightIcon aria-hidden />}
 						iconPosition="right"
 						size="small">

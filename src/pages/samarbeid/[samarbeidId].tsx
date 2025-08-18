@@ -14,6 +14,7 @@ import useBreadcrumbs from "../../utils/useBreadcrumbs";
 import { useSendIaMetrikkEtterFemSekunder } from "../../hooks/useSendIaTjenesteMetrikkEtterFemSekunder";
 import { useOrganisasjoner } from "../../hooks/useOrganisasjoner";
 import Samarbeidsdetaljeside from "../../Samarbeid/Detaljer";
+import { useRouter } from "next/router";
 
 export default function ExperimentPlaygroundPage(props: {
 	page: PageProps;
@@ -21,6 +22,7 @@ export default function ExperimentPlaygroundPage(props: {
 	grafanaAgentUrl: string;
 	prodUrl?: string;
 }) {
+	const { query: { samarbeidId }, replace } = useRouter();
 	React.useEffect(() => {
 		if (!props.kjørerMockApp) {
 			doInitializeFaro(props.grafanaAgentUrl);
@@ -67,7 +69,7 @@ export default function ExperimentPlaygroundPage(props: {
 				{erIkkeInnlogget(aggregertStatistikkRespons) ? (
 					<Innloggingsside redirectUrl={window.location.href} />
 				) : (
-					<Samarbeidsdetaljeside />
+					<Samarbeidsdetaljeside samarbeidId={typeof samarbeidId === "string" ? samarbeidId : undefined} setSamarbeidId={(nySamarbeidId: string) => replace(`/samarbeid/${nySamarbeidId}`)} />
 				)}
 			</Layout>
 		</>

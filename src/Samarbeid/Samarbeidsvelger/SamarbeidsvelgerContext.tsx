@@ -14,7 +14,7 @@ export const SamarbeidsvelgerContext = React.createContext<{
 });
 
 
-export const SamarbeidsvelgerProvider = ({ children }: { children: React.ReactNode }) => {
+export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId }: { children: React.ReactNode, samarbeidId?: string, setSamarbeidId: (id: string) => void }) => {
 	const samarbeidsliste = useFiaSamarbeid();
 
 	const samarbeid: Samarbeid[] = React.useMemo(() => {
@@ -22,7 +22,7 @@ export const SamarbeidsvelgerProvider = ({ children }: { children: React.ReactNo
 			return [];
 		}
 		return samarbeidsliste?.data?.map((samarbeid) => ({
-			id: samarbeid.id,
+			id: `${samarbeid.id}`,
 			saksnummer: samarbeid.saksnummer,
 			navn: samarbeid.navn,
 			status: samarbeid.status,
@@ -32,16 +32,16 @@ export const SamarbeidsvelgerProvider = ({ children }: { children: React.ReactNo
 		})) || [];
 	}, [samarbeidsliste]);
 
-	const [valgtSamarbeid, setValgtSamarbeid] = React.useState<string | undefined>(samarbeid[0]?.id);
-
 	React.useEffect(() => {
-		if (samarbeid.length > 0 && !valgtSamarbeid) {
-			setValgtSamarbeid(samarbeid[0].id);
+		if (samarbeid.length > 0 && !samarbeidId) {
+			setSamarbeidId(samarbeid[0].id);
 		}
-	}, [samarbeid, valgtSamarbeid]);
+	}, [samarbeid, samarbeidId, setSamarbeidId]);
+
+	console.log('samarbeidId', samarbeidId)
 
 	return (
-		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid, setValgtSamarbeid }}>
+		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid: samarbeidId, setValgtSamarbeid: setSamarbeidId }}>
 			{children}
 		</SamarbeidsvelgerContext.Provider>
 	);
