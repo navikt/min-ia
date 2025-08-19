@@ -43,6 +43,10 @@ export default function Samarbeidsoversikt() {
 		);
 	}
 
+	if (tilgjengeligeSamarbeid.length === 0) {
+		return null; // Ingen samarbeid å vise
+	}
+
 	return (
 		<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
 			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
@@ -55,13 +59,6 @@ export default function Samarbeidsoversikt() {
 
 function Samarbeidsliste({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
 	const [erEkspandert, setErEkspandert] = React.useState(false);
-	if (tilgjengeligeSamarbeid?.length === 0) {
-		return (
-			<VStack className={styles.samarbeidsliste} gap="4">
-				<Heading level="3" size="small">Ingen samarbeid tilgjengelig</Heading>
-			</VStack>
-		);
-	}
 	if (tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
