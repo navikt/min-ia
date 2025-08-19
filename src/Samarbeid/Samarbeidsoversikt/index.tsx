@@ -49,7 +49,7 @@ export default function Samarbeidsoversikt() {
 
 	return (
 		<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
-			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
+			<Heading level="2" size="large" className={styles.samarbeidslisteTittel} spacing>
 				IA-samarbeid med Nav arbeidslivssenter
 			</Heading>
 			<Samarbeidsliste tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
@@ -101,7 +101,7 @@ function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
 		<VStack className={styles.samarbeidslisteElement} gap="2">
 			<HStack justify="space-between" align="center" gap="4">
 				<Heading level="3" size="medium">{samarbeid.navn}</Heading>
-				<HStack gap="4" align="stretch" as={BodyShort}>
+				<HStack gap="6" align="stretch" as={BodyShort}>
 					<SamarbeidsStatusBadge status={samarbeid.status} />
 					<Button
 						as={Link}
