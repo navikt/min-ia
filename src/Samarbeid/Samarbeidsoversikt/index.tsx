@@ -50,7 +50,7 @@ export default function Samarbeidsoversikt() {
 	return (
 		<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
 			<Heading level="2" size="medium" className={styles.samarbeidslisteTittel} spacing>
-				IA-samarbeid med Nav Arbeidslivssenter
+				IA-samarbeid med Nav arbeidslivssenter
 			</Heading>
 			<Samarbeidsliste tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
 		</Page.Block>
