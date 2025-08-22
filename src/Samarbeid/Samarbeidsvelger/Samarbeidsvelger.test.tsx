@@ -8,6 +8,9 @@ import { axe } from "jest-axe";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { penskrivIAStatus } from "../SamarbeidsStatusBadge";
 import { SamarbeidStatus } from "./samarbeidtyper";
+import { sendSamarbeidValgtEvent } from "../../utils/analytics/analytics";
+
+jest.mock("../../utils/analytics/analytics");
 
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
@@ -22,6 +25,10 @@ jest.mock("../fiaSamarbeidAPI", () => ({
 }));
 
 describe("Samarbeidsvelger", () => {
+	beforeEach(() => {
+		jest.clearAllMocks();
+	});
+
 	it("Render uten å krasje", () => {
 		let valgtSamarbeid = `${mockdata[0].id}`;
 
@@ -92,7 +99,35 @@ describe("Samarbeidsvelger", () => {
 			const status = penskrivIAStatus(samarbeid.status as SamarbeidStatus);
 			expect(screen.getByRole("menuitem", { name: `${samarbeid.navn} ${status}` })).toBeInTheDocument();
 		}
+	});
 
+	it("Sender metrikk ved valg av samarbeid", async () => {
+		expect(sendSamarbeidValgtEvent).not.toHaveBeenCalled();
+		let valgtSamarbeid = `${mockdata[0].id}`;
+		const { container } = render(
+			<OrgnrProvider>
+				<SamarbeidsvelgerProvider samarbeidId={valgtSamarbeid} setSamarbeidId={(id: string) => {
+					valgtSamarbeid = id;
+				}}>
+					<Samarbeidsvelger />
+				</SamarbeidsvelgerProvider>
+			</OrgnrProvider>
+		);
+		expect(container).toBeInTheDocument();
+
+		const knapper = container.querySelectorAll("button");
+		expect(knapper.length).toBeGreaterThan(0);
+		expect(knapper[0]).toBeInTheDocument();
+		expect(knapper[0].textContent).toBe(mockdata[0].navn);
+
+		knapper[0].click();
+		const samarbeid2 = await waitFor(() => screen.getByText(mockdata[2].navn));
+		expect(samarbeid2).toBeInTheDocument();
+
+		samarbeid2.click();
+
+		expect(sendSamarbeidValgtEvent).toHaveBeenCalledTimes(1);
+		expect(sendSamarbeidValgtEvent).toHaveBeenCalledWith(mockdata[2].status);
 	});
 
 	it("Ingen UU-feil fra axe", async () => {

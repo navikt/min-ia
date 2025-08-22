@@ -8,6 +8,7 @@ import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { Samarbeid, Samarbeidhendelse } from "../Samarbeidsvelger/samarbeidtyper";
 import Samarbeidstidslinje from "./Samarbeidstidslinje";
+import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
 const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
 
@@ -108,6 +109,7 @@ function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
 						href={`/samarbeid/${samarbeid.id}`}
 						icon={<ArrowRightIcon aria-hidden />}
 						iconPosition="right"
+						onClick={() => sendNavigereEvent("Se samarbeid", "/samarbeid/[SAMARBEID_ID]")}
 						size="small">
 						Se samarbeid
 					</Button>

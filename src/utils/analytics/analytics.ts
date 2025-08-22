@@ -59,3 +59,7 @@ export const sendBedriftValgtEvent = () => {
 export const sendNavigereEvent = (lenketekst: string, destinasjon: string) => {
     logAnalyticsEvent("navigere", {lenketekst, destinasjon});
 };
+
+export const sendSamarbeidValgtEvent = (status: string) => {
+    logAnalyticsEvent("samarbeid valgt", {status});
+}

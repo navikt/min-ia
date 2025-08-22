@@ -2,6 +2,7 @@ import React from "react";
 import { Samarbeid } from "./samarbeidtyper";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
+import { sendSamarbeidValgtEvent } from "../../utils/analytics/analytics";
 
 export const SamarbeidsvelgerContext = React.createContext<{
 	tilgjengeligeSamarbeid: Samarbeid[];
@@ -16,6 +17,21 @@ export const SamarbeidsvelgerContext = React.createContext<{
 
 export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId }: { children: React.ReactNode, samarbeidId?: string, setSamarbeidId: (id: string) => void }) => {
 	const samarbeidsliste = useFiaSamarbeid();
+
+	const setSamarbeidOgSendMetrikker = (id: string) => {
+		setSamarbeidId(id);
+
+		if (samarbeidsliste.status === RestStatus.Suksess && samarbeidsliste.data) {
+			const valgtSamarbeid = samarbeidsliste.data?.find(s => s.id === id);
+
+			if (valgtSamarbeid) {
+				sendSamarbeidValgtEvent(valgtSamarbeid.status);
+			} else {
+				sendSamarbeidValgtEvent("Ukjent");
+			}
+		}
+
+	};
 
 	const samarbeid: Samarbeid[] = React.useMemo(() => {
 		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data) {
@@ -41,7 +57,7 @@ export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId
 	console.log('samarbeidId', samarbeidId)
 
 	return (
-		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid: samarbeidId, setValgtSamarbeid: setSamarbeidId }}>
+		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid: samarbeidId, setValgtSamarbeid: setSamarbeidOgSendMetrikker }}>
 			{children}
 		</SamarbeidsvelgerContext.Provider>
 	);
