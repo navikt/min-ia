@@ -46,10 +46,6 @@ export default function ExperimentPlaygroundPage(props: {
 			url: "/forebygge-fravar",
 		},
 		{
-			title: "Samarbeid",
-			url: "/forebygge-fravar/samarbeid",
-		},
-		{
 			title: "Detaljer",
 			url: "/forebygge-fravar/samarbeid/detaljer",
 		},
