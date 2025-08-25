@@ -15,11 +15,11 @@ const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
 export default function Samarbeidsoversikt() {
 	const samarbeidsliste = useFiaSamarbeid();
 
-	const tilgjengeligeSamarbeid: Samarbeid[] = React.useMemo(() => {
+	const { tilgjengeligeSamarbeid, harInaktive, harAktive }: { tilgjengeligeSamarbeid: Samarbeid[], harInaktive: boolean, harAktive: boolean } = React.useMemo(() => {
 		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data) {
-			return [];
+			return { tilgjengeligeSamarbeid: [], harInaktive: false, harAktive: false };
 		}
-		return samarbeidsliste?.data?.map((samarbeid) => ({
+		const sorterteSamarbeid = (samarbeidsliste?.data?.map((samarbeid) => ({
 			id: samarbeid.id,
 			saksnummer: samarbeid.saksnummer,
 			navn: samarbeid.navn,
@@ -27,7 +27,23 @@ export default function Samarbeidsoversikt() {
 			opprettet: new Date(samarbeid.opprettet),
 			sistEndret: new Date(samarbeid.sistEndret),
 			hendelser: [] // Placeholder for hendelser, kan utvides senere
-		})) || [];
+		})) || []).sort((a, b) => {
+			if (a.status === b.status) {
+				return b.sistEndret.getTime() - a.sistEndret.getTime(); // Nyeste først hvis samme status
+			}
+
+			if (a.status === "AKTIV" || b.status === "AKTIV") {
+				return a.status === "AKTIV" ? -1 : 1; // Aktive først
+			}
+
+			return b.sistEndret.getTime() - a.sistEndret.getTime(); // Deretter nyeste først
+		});
+
+		return ({
+			tilgjengeligeSamarbeid: sorterteSamarbeid,
+			harInaktive: sorterteSamarbeid.some(s => s.status !== "AKTIV"),
+			harAktive: sorterteSamarbeid.some(s => s.status === "AKTIV"),
+		});
 	}, [samarbeidsliste]);
 
 	if (samarbeidsliste.status === RestStatus.LasterInn || samarbeidsliste.status === RestStatus.IkkeLastet) {
@@ -53,17 +69,29 @@ export default function Samarbeidsoversikt() {
 			<Heading level="2" size="large" className={styles.samarbeidslisteTittel} spacing>
 				IA-samarbeid med Nav arbeidslivssenter
 			</Heading>
-			<Samarbeidsliste tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
+			<Samarbeidsliste tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} harInaktive={harInaktive} harAktive={harAktive} />
 		</Page.Block>
 	);
 }
 
-function Samarbeidsliste({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
+function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { tilgjengeligeSamarbeid: Samarbeid[], harInaktive: boolean, harAktive: boolean }) {
 	const [erEkspandert, setErEkspandert] = React.useState(false);
-	if (tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && !erEkspandert) {
+	if (!harAktive && harInaktive) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
-				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid.slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID)} />
+				<SamarbeidslisteElement samarbeid={{
+					hendelser: [],
+					id: tilgjengeligeSamarbeid[0].id,
+					navn: `Avsluttede samarbeid (${tilgjengeligeSamarbeid.length})`,
+					status: "FULLFØRT",
+				}} skjulStatus />
+			</VStack>
+		);
+	}
+	if ((harInaktive || tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID) && !erEkspandert) {
+		return (
+			<VStack className={styles.samarbeidsliste} gap="4">
+				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid.filter(({ status }) => status === "AKTIV").slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID)} />
 				<Button
 					variant="tertiary"
 					onClick={() => setErEkspandert(true)}
@@ -78,7 +106,7 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: S
 		<VStack className={styles.samarbeidsliste} gap="4">
 			<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
 			{
-				tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID && erEkspandert && (
+				(harInaktive || tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID) && erEkspandert && (
 					<Button
 						variant="tertiary"
 						onClick={() => setErEkspandert(false)}
@@ -97,13 +125,13 @@ function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid }: { tilgjengeligeSamar
 	));
 }
 
-function SamarbeidslisteElement({ samarbeid }: { samarbeid: Samarbeid }) {
+function SamarbeidslisteElement({ samarbeid, skjulStatus = false }: { samarbeid: Samarbeid, skjulStatus?: boolean }) {
 	return (
 		<VStack className={styles.samarbeidslisteElement} gap="2">
 			<HStack justify="space-between" align="center" gap="4">
 				<Heading level="3" size="medium">{samarbeid.navn}</Heading>
 				<HStack gap="6" align="stretch" as={BodyShort}>
-					<SamarbeidsStatusBadge status={samarbeid.status} />
+					{!skjulStatus && <SamarbeidsStatusBadge status={samarbeid.status} />}
 					<Button
 						as={Link}
 						href={`/samarbeid/${samarbeid.id}`}
