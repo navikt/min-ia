@@ -132,3 +132,6 @@ dist
 node_modules
 dist-ssr
 *.local
+
+# Ignore vscode project-specific directory
+.vscode/*
