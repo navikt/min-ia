@@ -50,7 +50,11 @@ export default function Samarbeidsoversikt() {
 		return null; // Ikke alle har denne komponenten, så vi kan returnere null for å ikke vise loader for noe de fleste (?) ikke har.
 	}
 
-	if (samarbeidsliste.status === RestStatus.Feil || samarbeidsliste.status === RestStatus.IkkeInnlogget || samarbeidsliste.status === RestStatus.IngenTilgang) {
+	if (samarbeidsliste.status === RestStatus.IngenTilgang) {
+		return null; // Bruker har ikke tilgang til samarbeid, så vi viser ingenting
+	}
+
+	if (samarbeidsliste.status === RestStatus.Feil || samarbeidsliste.status === RestStatus.IkkeInnlogget) {
 		return (
 			<Page.Block width="xl" className={styles.samarbeidslisteSide} gutters>
 				<Alert variant="error">

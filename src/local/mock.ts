@@ -196,6 +196,14 @@ export default async function mockRequest(req: NextRequest) {
             `[DEBUG] GET /api/authenticated/fia-samarbeid?orgnr=${orgnr}`
         );
 
+        if (orgnr === "999999997") {
+          return new NextResponse(JSON.stringify({"message":"mock_feilmelding..."}), { status: 500 });
+        }
+
+        if (orgnr === "999999996") {
+          return new NextResponse(JSON.stringify({"message":"Har ikke tilgang til resurs for orgnummer"}), { status: 403 });
+        }
+
         await new Promise((r) => setTimeout(r, delayInMillis));
         return new NextResponse(JSON.stringify(fiaSamarbeidMock()), {
             status: 200,
