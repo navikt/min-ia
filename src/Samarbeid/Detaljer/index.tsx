@@ -4,11 +4,10 @@ import { SamarbeidsvelgerProvider } from "../Samarbeidsvelger/SamarbeidsvelgerCo
 import React from "react";
 import KartleggingFane from "./KartleggingFane";
 import Samarbeidsinfo from "../Samarbeidsinfo";
-import PlanFane from "./PlanFane";
 import styles from './Samarbeidsside.module.scss';
 
 export default function Samarbeidsside({ samarbeidId, setSamarbeidId }: { samarbeidId?: string, setSamarbeidId: (id: string) => void }) {
-	const [valgtFane, setValgtFane] = React.useState("samarbeid");
+	const [valgtFane, setValgtFane] = React.useState("kartlegging");
 
 	return (
 		<SamarbeidsvelgerProvider samarbeidId={samarbeidId} setSamarbeidId={setSamarbeidId}>
@@ -17,16 +16,12 @@ export default function Samarbeidsside({ samarbeidId, setSamarbeidId }: { samarb
 			<Tabs value={valgtFane} onChange={setValgtFane}>
 				<Tabs.List>
 					<Page.Block width="xl">
-						<Tabs.Tab value="samarbeid" label="Samarbeidsplan" />
 						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
 					</Page.Block>
 				</Tabs.List>
 				<Page.Block width="xl" gutters className={styles.samarbeidssideBlock}>
 					<Tabs.Panel value="kartlegging">
 						<KartleggingFane />
-					</Tabs.Panel>
-					<Tabs.Panel value="samarbeid">
-						<PlanFane />
 					</Tabs.Panel>
 				</Page.Block>
 			</Tabs>
