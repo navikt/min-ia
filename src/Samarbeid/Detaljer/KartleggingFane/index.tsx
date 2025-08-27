@@ -1,8 +1,10 @@
-import { dummyBehovsvurderinger } from "../../dummyData";
+import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/SamarbeidsvelgerContext";
 import Kartlegginger from "./Kartlegginger";
 
 export default function KartleggingFane() {
+	const dokumenter = useDokumenterPåValgtSamarbeid();
+
 	return (
-		<Kartlegginger kartlegginger={dummyBehovsvurderinger} />
+		<Kartlegginger dokumenter={dokumenter} />
 	);
 }

@@ -3,6 +3,12 @@ import { useRestRessursSWR } from "../hooks/useRestRessursSWR";
 import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 import { SamarbeidStatus } from "./Samarbeidsvelger/samarbeidtyper";
 
+
+export interface FiaSamarbeidDokument {
+  dokumentId: string;
+  type: "BEHOVSVURDERING";
+  dato: Date;
+}
 export interface FiaSamarbeidDto {
   id: string;
   saksnummer: string;
@@ -10,6 +16,7 @@ export interface FiaSamarbeidDto {
   status: SamarbeidStatus;
   opprettet: Date;
   sistEndret: Date;
+  dokumenter: FiaSamarbeidDokument[];
 }
 
 export function useFiaSamarbeid() {

@@ -54,8 +54,6 @@ export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId
 		}
 	}, [samarbeid, samarbeidId, setSamarbeidId]);
 
-	console.log('samarbeidId', samarbeidId)
-
 	return (
 		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid: samarbeidId, setValgtSamarbeid: setSamarbeidOgSendMetrikker }}>
 			{children}
@@ -70,3 +68,20 @@ export const useSamarbeidsvelgerContext = () => {
 	}
 	return context;
 };
+
+export function useDokumenterPåSamarbeid(samarbeidId: string | undefined) {
+	const samarbeidsliste = useFiaSamarbeid();
+
+	return React.useMemo(() => {
+		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data || !samarbeidId) {
+			return [];
+		}
+		const valgtSamarbeid = samarbeidsliste.data.find(s => Number(s.id) === Number(samarbeidId));
+		return valgtSamarbeid ? valgtSamarbeid.dokumenter : [];
+	}, [samarbeidsliste, samarbeidId]);
+}
+
+export function useDokumenterPåValgtSamarbeid() {
+	const { valgtSamarbeid } = useSamarbeidsvelgerContext();
+	return useDokumenterPåSamarbeid(valgtSamarbeid);
+}

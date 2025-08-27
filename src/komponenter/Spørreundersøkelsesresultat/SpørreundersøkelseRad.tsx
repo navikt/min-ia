@@ -4,10 +4,9 @@ import { CardHeaderInnhold } from "./CardHeaderInnhold";
 import { RadInnhold } from "./RadInnhold";
 
 import styles from "./SpørreundersøkelseRad.module.scss";
+import { FiaSamarbeidDokument } from "../../Samarbeid/fiaSamarbeidAPI";
 
 const StyledExpansionCard = ExpansionCard;
-
-export type SpørreundersøkelseStatus = "OPPRETTET" | "PÅBEGYNT" | "AVSLUTTET" | "SLETTET";
 
 export type TemaMedSpørsmålOgSvar = {
     id: number;
@@ -17,10 +16,8 @@ export type TemaMedSpørsmålOgSvar = {
 
 export type Spørreundersøkelse = {
     id: string;
-    status: SpørreundersøkelseStatus;
     opprettetTidspunkt: Date;
     spørsmålMedSvarPerTema: TemaMedSpørsmålOgSvar[];
-    gyldigTilTidspunkt: Date;
 };
 
 
@@ -40,11 +37,11 @@ export type SpørsmålResultat = {
 };
 
 export default function SpørreundersøkelseRad({
-    spørreundersøkelse,
+    dokument,
     dato,
     defaultOpen,
 }: {
-    spørreundersøkelse: Spørreundersøkelse;
+    dokument: FiaSamarbeidDokument;
     dato?: string;
     defaultOpen?: boolean;
 }) {
@@ -55,16 +52,14 @@ export default function SpørreundersøkelseRad({
     return (
         <StyledExpansionCard
             className={styles.spørreundersøkelseRad}
-            aria-label={`${spørreundersøkelseType} ${spørreundersøkelse.opprettetTidspunkt.toLocaleDateString("no-NO")}`}
+            aria-label={`${spørreundersøkelseType} ${new Date(dokument.dato).toLocaleDateString("no-NO")}`}
             open={erÅpen}
             onToggle={(open: boolean) => {
                 setErÅpen(open);
             }}
         >
-            <CardHeaderInnhold spørreundersøkelse={spørreundersøkelse} dato={dato} />
-            {erÅpen && spørreundersøkelse.status === "AVSLUTTET" && (
-                <RadInnhold spørreundersøkelse={spørreundersøkelse} />
-            )}
+            <CardHeaderInnhold dato={dato} />
+            {erÅpen ? <RadInnhold dokument={dokument} /> : null}
         </StyledExpansionCard>
     );
 }

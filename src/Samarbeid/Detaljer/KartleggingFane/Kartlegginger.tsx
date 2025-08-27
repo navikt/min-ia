@@ -1,14 +1,14 @@
-import SpørreundersøkelseRad, { Spørreundersøkelse } from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
+import SpørreundersøkelseRad from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
+import { FiaSamarbeidDokument } from "../../fiaSamarbeidAPI";
 
-export default function Kartlegginger({ kartlegginger }: { kartlegginger: Spørreundersøkelse[] }) {
-	return kartlegginger
-		.sort(({ opprettetTidspunkt: opprettetA }, { opprettetTidspunkt: opprettetB }) => opprettetB.valueOf() - opprettetA.valueOf())
-		.map((kartlegging, index) => (
+export default function Kartlegginger({ dokumenter }: { dokumenter: FiaSamarbeidDokument[] }) {
+	return dokumenter
+		.sort(({ dato: opprettetA }, { dato: opprettetB }) => opprettetB.valueOf() - opprettetA.valueOf())
+		.map((dokument) => (
 			<SpørreundersøkelseRad
-				key={kartlegging.id}
-				spørreundersøkelse={kartlegging}
-				dato={kartlegging.opprettetTidspunkt.toLocaleDateString("no-NO")}
-				defaultOpen={index === 0} // Åpne første rad som standard
+				key={dokument.dokumentId}
+				dato={new Date(dokument.dato).toLocaleDateString("no-NO")}
+				dokument={dokument}
 			/>
 		));
 }
