@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
-import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-//import "highcharts/modules/accessibility";
+import * as Highcharts from "highcharts";
+/* import "highcharts/modules/accessibility"; */
 import { useSpørsmålMedSorterteSvaralternativer } from "../sorterSvaralternativer";
 import { SpørsmålResultat } from "../SpørreundersøkelseRad";
+
+let hichartsAccessibility: NodeJS.Require | undefined;
 
 export default function BarChart({
     spørsmål,
@@ -16,6 +19,11 @@ export default function BarChart({
     horizontal?: boolean;
     farge?: string;
 }) {
+    // TODO: Finn en bedre måte å importere accessibility-modulen på
+    // Dynamisk import av accessibility-modulen for å unngå problemer med SSR
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    if (!hichartsAccessibility) hichartsAccessibility = require("highcharts/modules/accessibility");
+
     const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
     const spørsmålMedSorterteAlternativer = useSpørsmålMedSorterteSvaralternativer(spørsmål);
 
