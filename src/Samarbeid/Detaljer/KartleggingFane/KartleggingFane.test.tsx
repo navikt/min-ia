@@ -7,23 +7,19 @@ import { RestStatus } from "../../../integrasjoner/rest-status";
 import { fiaSamarbeidDokumentMock, fiaSamarbeidMock } from "../../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
 import { useFiaDokument } from "../../fiaSamarbeidDokumenterAPI";
+import { TemaMedSpørsmålOgSvar } from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
 
 jest.mock("../../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
 	id: `${samarbeid.id}`,
 }));
-Object.defineProperty(global.CSS, 'supports', {
-	value: () => jest.fn()
-});
 jest.mock("../../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
 		status: RestStatus.Suksess,
 		data: mockdata,
 	})),
 }));
-jest.mock("highcharts-react-official", () => <div>Highcharts</div>);
-jest.mock("highcharts", () => ({}));
 jest.mock("../../Samarbeidsvelger/SamarbeidsvelgerContext", () => ({
 	useDokumenterPåValgtSamarbeid: jest.fn(() => ([
 		{
@@ -44,7 +40,16 @@ jest.mock("../../Samarbeidsvelger/SamarbeidsvelgerContext", () => ({
 }));
 
 jest.mock("../../fiaSamarbeidDokumenterAPI", () => ({
-	useFiaDokument: jest.fn(({ dokumentId }: { dokumentId: string }) => fiaSamarbeidDokumentMock(dokumentId))
+	useFiaDokument: jest.fn(({ dokumentId }: { dokumentId: string }) => {
+		const mocked = fiaSamarbeidDokumentMock(dokumentId);
+		return {
+			data: {
+				...mocked,
+				innhold: JSON.parse(mocked.innhold) // Deep copy to avoid test pollution
+			},
+			status: RestStatus.Suksess
+		};
+	})
 }))
 
 describe("KartleggingFane", () => {
@@ -59,6 +64,38 @@ describe("KartleggingFane", () => {
 		expect(container).toBeInTheDocument();
 		expect(screen.getAllByText("Behovsvurdering")).toHaveLength(2);
 	});
+
+	it("Viser loader når dokument er under henting", async () => {
+		(useFiaDokument as jest.Mock).mockImplementationOnce(() => ({
+			status: RestStatus.LasterInn,
+			data: null
+		}));
+		render(
+			<KartleggingFane />
+		);
+
+		expect(screen.queryByText("Venter…")).not.toBeInTheDocument();
+
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(2);
+		rader[0].click();
+		await waitFor(() => expect(screen.queryByText("Venter…")).toBeInTheDocument());
+	});
+
+	it("Rendrer alle spørsmål", async () => {
+		render(
+			<KartleggingFane />
+		);
+		expect(useFiaDokument).toHaveBeenCalledTimes(0);
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(2);
+		rader[0].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+		for (const spørsmål of JSON.parse(fiaSamarbeidDokumentMock("ba7d8dc5-b363-421b-9773-7e3c2185fa86").innhold).spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar)) {
+			expect(await screen.findAllByText(spørsmål.tekst)).toHaveLength(2);
+		}
+	});
+
 
 	it("kaller useFiaDokuement med riktig dokumentId", async () => {
 		render(
@@ -80,7 +117,8 @@ describe("KartleggingFane", () => {
 		const { container } = render(
 			<KartleggingFane />
 		);
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
+		expect(await axe(container)).toHaveNoViolations();
+
+		// TODO: Ekspander begge radene og sjekk på nytt
 	});
 });

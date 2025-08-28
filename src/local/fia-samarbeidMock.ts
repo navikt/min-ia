@@ -109,8 +109,6 @@ export const fiaSamarbeidMock = () => {
 }
 
 export const fiaSamarbeidDokumentMock = (dokumentId: string) => {
-    console.log('dokumentId', dokumentId);
-
     return dummydokumenter.find(d => d.dokumentId === dokumentId) || dummydokumenter[0];
 };
 
