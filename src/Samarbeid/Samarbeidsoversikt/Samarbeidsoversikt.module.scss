@@ -6,6 +6,10 @@
 	}
 	.samarbeidsliste {
 		margin-bottom: 2rem;
+		&:not(:has(> button:last-child)) {
+			margin-bottom: 4rem;
+		}
+
 		.samarbeidslisteElement {
 			background-color: var(--a-white);
 			border-radius: var(--a-border-radius-xlarge);
