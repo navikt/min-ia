@@ -1,9 +1,9 @@
 import { PageProps } from "../../pageProps";
 import {
 	erFerdigNedlastet,
-	erIkkeInnlogget,
+	RestRessurs,
+	RestStatus,
 } from "../../integrasjoner/rest-status";
-import { useAggregertStatistikk } from "../../hooks/useAggregertStatistikk";
 import { Innloggingsside } from "../../Innlogginsside/Innloggingsside";
 import { Layout } from "../../komponenter/Layout/Layout";
 import React from "react";
@@ -15,6 +15,8 @@ import { useSendIaMetrikkEtterFemSekunder } from "../../hooks/useSendIaTjenesteM
 import { useOrganisasjoner } from "../../hooks/useOrganisasjoner";
 import Samarbeidsdetaljeside from "../../Samarbeid/Detaljer";
 import { useRouter } from "next/router";
+import { Organisasjon } from "@navikt/virksomhetsvelger";
+import Lasteside from "../../Lasteside";
 
 export default function ExperimentPlaygroundPage(props: {
 	page: PageProps;
@@ -35,7 +37,7 @@ export default function ExperimentPlaygroundPage(props: {
 		? organisasjonerRespons.data
 		: [];
 
-	const aggregertStatistikkRespons = useAggregertStatistikk();
+	const organisasjonerBrukerHarTilgangTil = useOrganisasjoner();
 	useBreadcrumbs([
 		{
 			title: "Min side – arbeidsgiver",
@@ -62,13 +64,35 @@ export default function ExperimentPlaygroundPage(props: {
 				altinnOrganisasjoner={brukerensOrganisasjoner}
 				kjørerMockApp={props.kjørerMockApp}
 			>
-				{erIkkeInnlogget(aggregertStatistikkRespons) ? (
-					<Innloggingsside redirectUrl={window.location.href} />
-				) : (
-					<Samarbeidsdetaljeside samarbeidId={typeof samarbeidId === "string" ? samarbeidId : undefined} setSamarbeidId={(nySamarbeidId: string) => replace(`/samarbeid/${nySamarbeidId}`)} />
-				)}
+				<Sideinnhold
+					samarbeidId={typeof samarbeidId === "string" ? samarbeidId : undefined}
+					setSamarbeidId={(nySamarbeidId: string) => replace(`/samarbeid/${nySamarbeidId}`)}
+					organisasjonerBrukerHarTilgangTil={organisasjonerBrukerHarTilgangTil}
+				/>
 			</Layout>
 		</>
+	);
+}
+
+function Sideinnhold({ samarbeidId, setSamarbeidId, organisasjonerBrukerHarTilgangTil }: {
+	samarbeidId: string | undefined;
+	setSamarbeidId: (nySamarbeidId: string) => void;
+	organisasjonerBrukerHarTilgangTil: RestRessurs<Organisasjon[]>;
+}) {
+	if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
+		return (
+			<Lasteside />
+		);
+	}
+
+	if (organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget) {
+		return (
+			<Innloggingsside redirectUrl={window.location.href} />
+		);
+	}
+
+	return (
+		<Samarbeidsdetaljeside samarbeidId={samarbeidId} setSamarbeidId={setSamarbeidId} />
 	);
 }
 
