@@ -7,7 +7,8 @@ import { RestStatus } from "../../../integrasjoner/rest-status";
 import { fiaSamarbeidDokumentMock, fiaSamarbeidMock } from "../../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
 import { useFiaDokument } from "../../fiaSamarbeidDokumenterAPI";
-import { TemaMedSpørsmålOgSvar } from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
+import { SvaralternativResultat, TemaMedSpørsmålOgSvar } from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
+import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/SamarbeidsvelgerContext";
 
 jest.mock("../../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
@@ -93,6 +94,34 @@ describe("KartleggingFane", () => {
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 		for (const spørsmål of JSON.parse(fiaSamarbeidDokumentMock("ba7d8dc5-b363-421b-9773-7e3c2185fa86").innhold).spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar)) {
 			expect(await screen.findAllByText(spørsmål.tekst)).toHaveLength(2);
+		}
+	});
+
+	it("Rendrer tomme grafer når ingen har svart", async () => {
+		(useDokumenterPåValgtSamarbeid as jest.Mock).mockImplementationOnce(() => ([
+			{
+				"dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa87",
+				"type": "BEHOVSVURDERING",
+				"dato": new Date("2023-12-01T12:00:00Z"),
+				"tittel": "Behovsvurdering for samarbeid 1",
+				"status": "FERDIGSTILT"
+			}
+		]));
+		render(
+			<KartleggingFane />
+		);
+		expect(useFiaDokument).toHaveBeenCalledTimes(0);
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(1);
+		rader[0].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+		// Viser "feil" om tomme seksjoner.
+		expect(await screen.findAllByText("For få deltakere til å vise resultater")).toHaveLength(2);
+
+		// Sjekk at tittel på uferdige spørsmål også vises
+		for (const spørsmål of JSON.parse(fiaSamarbeidDokumentMock("ba7d8dc5-b363-421b-9773-7e3c2185fa87").innhold).spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar).filter((s: { svarListe: SvaralternativResultat[] }) => s.svarListe.every((svar: { antallSvar: number }) => svar.antallSvar === 0))) {
+			expect(await screen.findAllByRole("heading", { name: spørsmål.tekst })).toHaveLength(1);
 		}
 	});
 

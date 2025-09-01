@@ -1,10 +1,12 @@
 "use client";
+import styles from './grafer.module.scss';
 import React from "react";
 import HighchartsReact from "highcharts-react-official";
 import * as Highcharts from "highcharts";
 /* import "highcharts/modules/accessibility"; */
 import { useSpørsmålMedSorterteSvaralternativer } from "../sorterSvaralternativer";
 import { SpørsmålResultat } from "../SpørreundersøkelseRad";
+import { Heading } from "@navikt/ds-react";
 
 let hichartsAccessibility: NodeJS.Require | undefined;
 
@@ -37,6 +39,14 @@ export default function BarChart({
             ),
         [spørsmålMedSorterteAlternativer],
     );
+
+    if (spørsmål.svarListe.some((svar) => svar.antallSvar > 0) === false) {
+        return (
+            <Heading level="4" size="small" spacing className={styles.tomGrafTittel}>
+                {spørsmål.tekst}
+            </Heading>
+        );
+    }
 
     return (
         <HighchartsReact

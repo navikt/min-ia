@@ -72,6 +72,15 @@ export function AntallDeltakere({
     antallDeltakere: number;
     navn: string;
 }) {
+    if (antallDeltakere === 0) {
+        return (
+            <HStack className={styles.antallDeltakere} align="center" style={{ color: getGraffargeFromTema(navn, true) }}>
+                <PersonGroupFillIcon fontSize="1.5rem" aria-hidden />
+                For få deltakere til å vise resultater
+            </HStack>
+        );
+    }
+
     return (
         <HStack className={styles.antallDeltakere} align="center" style={{ color: getGraffargeFromTema(navn, true) }}>
             <PersonGroupFillIcon fontSize="1.5rem" aria-hidden />
