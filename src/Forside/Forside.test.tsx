@@ -3,6 +3,8 @@ import { sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } fr
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
+import { fiaSamarbeidMock } from "../local/fia-samarbeidMock";
+import { axe } from "jest-axe";
 
 jest.mock("../utils/analytics/analytics");
 jest.mock('next/router', () => ({
@@ -57,7 +59,17 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 		],
 	})),
 }));
+const samarbeidMockdata = fiaSamarbeidMock().map((samarbeid) => ({
+	...samarbeid,
+	id: `${samarbeid.id}`,
+}));
 
+jest.mock("../Samarbeid/fiaSamarbeidAPI", () => ({
+	useFiaSamarbeid: jest.fn(() => ({
+		status: RestStatus.Suksess,
+		data: samarbeidMockdata,
+	})),
+}));
 
 describe("Forside", () => {
 	beforeEach(() => {
@@ -135,6 +147,26 @@ describe("Forside", () => {
 		aktivitetAccordion.click();
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledTimes(1);
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel, false);
+	});
+
+	it("Viser IA-samarbeid", () => {
+		render(<Forside
+			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
+			kontaktOssUrl="kontaktOssUrl"
+			kjørerMockApp={false}
+		/>);
+
+		expect(screen.getByRole("heading", { name: "IA-samarbeid med Nav arbeidslivssenter" })).toBeInTheDocument();
+		const samarbeidSomVisesOverFold = samarbeidMockdata.filter((s) => s.status === "AKTIV").slice(0, 3);
+
+		expect(samarbeidSomVisesOverFold.length).toBeGreaterThan(0);
+		for (const samarbeid of samarbeidSomVisesOverFold) {
+			const tittel = screen.getByRole("heading", { name: samarbeid.navn });
+			expect(tittel).toBeInTheDocument();
+
+			const lenke = tittel.parentElement?.querySelector("a");
+			expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.id}`);
+		}
 	});
 
 	it("Kaller sendOppgaveStatusEvent ved statusendring på oppgave", async () => {
