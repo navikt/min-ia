@@ -4,7 +4,6 @@ import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { fiaSamarbeidMock } from "../local/fia-samarbeidMock";
-import { axe } from "jest-axe";
 
 jest.mock("../utils/analytics/analytics");
 jest.mock('next/router', () => ({
