@@ -14,7 +14,7 @@ jest.mock("../../utils/analytics/analytics");
 
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
-	id: `${samarbeid.id}`,
+    offentligId: `${samarbeid.offentligId}`,
 }));
 
 jest.mock("../fiaSamarbeidAPI", () => ({
@@ -30,12 +30,13 @@ describe("Samarbeidsvelger", () => {
 	});
 
 	it("Render uten å krasje", () => {
-		let valgtSamarbeid = `${mockdata[0].id}`;
+        let valgtSamarbeid = `${mockdata[0].offentligId}`;
 
 		const { container } = render(
 			<OrgnrProvider>
-				<SamarbeidsvelgerProvider samarbeidId={valgtSamarbeid} setSamarbeidId={(id: string) => {
-					valgtSamarbeid = id;
+                <SamarbeidsvelgerProvider samarbeidOffentligId={valgtSamarbeid}
+                                          setSamarbeidOffentligId={(offentligId: string) => {
+                                              valgtSamarbeid = offentligId;
 				}}>
 					<Samarbeidsvelger />
 				</SamarbeidsvelgerProvider>
@@ -45,12 +46,13 @@ describe("Samarbeidsvelger", () => {
 	});
 
 	it("Endrer verdi ved klikk", async () => {
-		let valgtSamarbeid = mockdata[0].id;
+        let valgtSamarbeid = mockdata[0].offentligId;
 
 		const { container } = render(
 			<OrgnrProvider>
-				<SamarbeidsvelgerProvider samarbeidId={valgtSamarbeid} setSamarbeidId={(id: string) => {
-					valgtSamarbeid = id;
+                <SamarbeidsvelgerProvider samarbeidOffentligId={valgtSamarbeid}
+                                          setSamarbeidOffentligId={(offentligId: string) => {
+                                              valgtSamarbeid = offentligId;
 				}}>
 					<Samarbeidsvelger />
 				</SamarbeidsvelgerProvider>
@@ -70,7 +72,7 @@ describe("Samarbeidsvelger", () => {
 
 		samarbeid2.click();
 
-		expect(valgtSamarbeid).toBe(mockdata[2].id);
+        expect(valgtSamarbeid).toBe(mockdata[2].offentligId);
 		expect(screen.getByText(mockdata[2].navn)).toBeInTheDocument();
 	});
 
@@ -78,8 +80,9 @@ describe("Samarbeidsvelger", () => {
 		let valgtSamarbeid = ``;
 		const { container } = render(
 			<OrgnrProvider>
-				<SamarbeidsvelgerProvider samarbeidId={valgtSamarbeid} setSamarbeidId={(id: string) => {
-					valgtSamarbeid = id;
+                <SamarbeidsvelgerProvider samarbeidOffentligId={valgtSamarbeid}
+                                          setSamarbeidOffentligId={(offentligId: string) => {
+                                              valgtSamarbeid = offentligId;
 				}}>
 					<Samarbeidsvelger />
 				</SamarbeidsvelgerProvider>
@@ -103,11 +106,12 @@ describe("Samarbeidsvelger", () => {
 
 	it("Sender metrikk ved valg av samarbeid", async () => {
 		expect(sendSamarbeidValgtEvent).not.toHaveBeenCalled();
-		let valgtSamarbeid = `${mockdata[0].id}`;
+        let valgtSamarbeid = `${mockdata[0].offentligId}`;
 		const { container } = render(
 			<OrgnrProvider>
-				<SamarbeidsvelgerProvider samarbeidId={valgtSamarbeid} setSamarbeidId={(id: string) => {
-					valgtSamarbeid = id;
+                <SamarbeidsvelgerProvider samarbeidOffentligId={valgtSamarbeid}
+                                          setSamarbeidOffentligId={(offentligId: string) => {
+                                              valgtSamarbeid = offentligId;
 				}}>
 					<Samarbeidsvelger />
 				</SamarbeidsvelgerProvider>
@@ -131,12 +135,13 @@ describe("Samarbeidsvelger", () => {
 	});
 
 	it("Ingen UU-feil fra axe", async () => {
-		let valgtSamarbeid = `${mockdata[0].id}`;
+        let valgtSamarbeid = `${mockdata[0].offentligId}`;
 
 		const { container } = render(
 			<OrgnrProvider>
-				<SamarbeidsvelgerProvider samarbeidId={valgtSamarbeid} setSamarbeidId={(id: string) => {
-					valgtSamarbeid = id;
+                <SamarbeidsvelgerProvider samarbeidOffentligId={valgtSamarbeid}
+                                          setSamarbeidOffentligId={(offentligId: string) => {
+                                              valgtSamarbeid = offentligId;
 				}}>
 					<Samarbeidsvelger />
 				</SamarbeidsvelgerProvider>

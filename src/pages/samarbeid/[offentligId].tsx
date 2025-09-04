@@ -24,7 +24,7 @@ export default function ExperimentPlaygroundPage(props: {
 	grafanaAgentUrl: string;
 	prodUrl?: string;
 }) {
-	const { query: { samarbeidId }, replace } = useRouter();
+    const {query: {offentligId}, replace} = useRouter();
 	React.useEffect(() => {
 		if (!props.kjørerMockApp) {
 			doInitializeFaro(props.grafanaAgentUrl);
@@ -56,7 +56,7 @@ export default function ExperimentPlaygroundPage(props: {
 	return (
 		<>
 			<Head>
-				<title>{props.page.title}</title>
+                <title>{props.page.title}</title>
 			</Head>
 			<Layout
 				title={props.page.title}
@@ -65,8 +65,8 @@ export default function ExperimentPlaygroundPage(props: {
 				kjørerMockApp={props.kjørerMockApp}
 			>
 				<Sideinnhold
-					samarbeidId={typeof samarbeidId === "string" ? samarbeidId : undefined}
-					setSamarbeidId={(nySamarbeidId: string) => replace(`/samarbeid/${nySamarbeidId}`)}
+                    offentligId={typeof offentligId === "string" ? offentligId : undefined}
+                    setOffentligId={(nyOffentligId: string) => replace(`/samarbeid/${nyOffentligId}`)}
 					organisasjonerBrukerHarTilgangTil={organisasjonerBrukerHarTilgangTil}
 				/>
 			</Layout>
@@ -74,9 +74,9 @@ export default function ExperimentPlaygroundPage(props: {
 	);
 }
 
-function Sideinnhold({ samarbeidId, setSamarbeidId, organisasjonerBrukerHarTilgangTil }: {
-	samarbeidId: string | undefined;
-	setSamarbeidId: (nySamarbeidId: string) => void;
+function Sideinnhold({offentligId, setOffentligId, organisasjonerBrukerHarTilgangTil}: {
+    offentligId: string | undefined;
+    setOffentligId: (nyOffentligId: string) => void;
 	organisasjonerBrukerHarTilgangTil: RestRessurs<Organisasjon[]>;
 }) {
 	if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
@@ -92,7 +92,8 @@ function Sideinnhold({ samarbeidId, setSamarbeidId, organisasjonerBrukerHarTilga
 	}
 
 	return (
-		<Samarbeidsdetaljeside samarbeidId={samarbeidId} setSamarbeidId={setSamarbeidId} />
+        <Samarbeidsdetaljeside samarbeidOffentligId={offentligId}
+                               setSamarbeidOffentligId={setOffentligId}/>
 	);
 }
 

@@ -7,7 +7,7 @@ import { sendSamarbeidValgtEvent } from "../../utils/analytics/analytics";
 export const SamarbeidsvelgerContext = React.createContext<{
 	tilgjengeligeSamarbeid: Samarbeid[];
 	valgtSamarbeid?: string;
-	setValgtSamarbeid: (samarbeidId: string) => void;
+    setValgtSamarbeid: (samarbeidOffentligId: string) => void;
 }>({
 	tilgjengeligeSamarbeid: [],
 	valgtSamarbeid: undefined,
@@ -15,14 +15,18 @@ export const SamarbeidsvelgerContext = React.createContext<{
 });
 
 
-export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId }: { children: React.ReactNode, samarbeidId?: string, setSamarbeidId: (id: string) => void }) => {
+export const SamarbeidsvelgerProvider = ({children, samarbeidOffentligId, setSamarbeidOffentligId}: {
+    children: React.ReactNode,
+    samarbeidOffentligId?: string,
+    setSamarbeidOffentligId: (offentligId: string) => void
+}) => {
 	const samarbeidsliste = useFiaSamarbeid();
 
-	const setSamarbeidOgSendMetrikker = (id: string) => {
-		setSamarbeidId(id);
+    const setSamarbeidOgSendMetrikker = (offentligId: string) => {
+        setSamarbeidOffentligId(offentligId);
 
 		if (samarbeidsliste.status === RestStatus.Suksess && samarbeidsliste.data) {
-			const valgtSamarbeid = samarbeidsliste.data?.find(s => s.id === id);
+            const valgtSamarbeid = samarbeidsliste.data?.find(s => s.offentligId === offentligId);
 
 			if (valgtSamarbeid) {
 				sendSamarbeidValgtEvent(valgtSamarbeid.status);
@@ -38,7 +42,7 @@ export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId
 			return [];
 		}
 		return samarbeidsliste?.data?.map((samarbeid) => ({
-			id: `${samarbeid.id}`,
+            offentligId: samarbeid.offentligId,
 			saksnummer: samarbeid.saksnummer,
 			navn: samarbeid.navn,
 			status: samarbeid.status,
@@ -49,13 +53,17 @@ export const SamarbeidsvelgerProvider = ({ children, samarbeidId, setSamarbeidId
 	}, [samarbeidsliste]);
 
 	React.useEffect(() => {
-		if (samarbeid.length > 0 && !samarbeidId) {
-			setSamarbeidId(samarbeid[0].id);
+        if (samarbeid.length > 0 && !samarbeidOffentligId) {
+            setSamarbeidOffentligId(samarbeid[0].offentligId);
 		}
-	}, [samarbeid, samarbeidId, setSamarbeidId]);
+    }, [samarbeid, samarbeidOffentligId, setSamarbeidOffentligId]);
 
 	return (
-		<SamarbeidsvelgerContext.Provider value={{ tilgjengeligeSamarbeid: samarbeid, valgtSamarbeid: samarbeidId, setValgtSamarbeid: setSamarbeidOgSendMetrikker }}>
+        <SamarbeidsvelgerContext.Provider value={{
+            tilgjengeligeSamarbeid: samarbeid,
+            valgtSamarbeid: samarbeidOffentligId,
+            setValgtSamarbeid: setSamarbeidOgSendMetrikker
+        }}>
 			{children}
 		</SamarbeidsvelgerContext.Provider>
 	);
@@ -69,16 +77,16 @@ export const useSamarbeidsvelgerContext = () => {
 	return context;
 };
 
-export function useDokumenterPåSamarbeid(samarbeidId: string | undefined) {
+export function useDokumenterPåSamarbeid(samarbeidOffentligId: string | undefined) {
 	const samarbeidsliste = useFiaSamarbeid();
 
 	return React.useMemo(() => {
-		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data || !samarbeidId) {
+        if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data || !samarbeidOffentligId) {
 			return [];
 		}
-		const valgtSamarbeid = samarbeidsliste.data.find(s => Number(s.id) === Number(samarbeidId));
+        const valgtSamarbeid = samarbeidsliste.data.find(s => s.offentligId === samarbeidOffentligId);
 		return valgtSamarbeid ? valgtSamarbeid.dokumenter : [];
-	}, [samarbeidsliste, samarbeidId]);
+    }, [samarbeidsliste, samarbeidOffentligId]);
 }
 
 export function useDokumenterPåValgtSamarbeid() {

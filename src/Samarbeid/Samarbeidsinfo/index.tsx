@@ -6,7 +6,7 @@ import { SamarbeidsStatusBadge } from "../SamarbeidsStatusBadge";
 export default function Samarbeidsinfo() {
 	const { valgtSamarbeid, tilgjengeligeSamarbeid } = useSamarbeidsvelgerContext();
 
-	const samarbeid = tilgjengeligeSamarbeid.find((s) => s.id === valgtSamarbeid);
+    const samarbeid = tilgjengeligeSamarbeid.find((s) => s.offentligId === valgtSamarbeid);
 	if (!samarbeid) {
 		return (
 			<Bleed className={styles.samarbeidsinfo}>

@@ -24,7 +24,7 @@ export type SamarbeidOpprettetHendelse = SamarbeidhendelseBase & {
 export type Samarbeidhendelse = SarbeidsplanHendelse | SpørreundersøkelseHendelse | SamarbeidOpprettetHendelse;
 
 export type Samarbeid = {
-	id: string;
+    offentligId: string;
 	navn: string;
 	status: SamarbeidStatus;
 	hendelser: Samarbeidhendelse[];

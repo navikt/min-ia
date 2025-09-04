@@ -47,7 +47,7 @@ function Samarbeidsdropdown({
 		}
 	), [tilgjengeligeSamarbeid]);
 
-	const valgtSamarbeidObjekt = tilgjengeligeSamarbeid.find((s) => s.id === valgtSamarbeid);
+    const valgtSamarbeidObjekt = tilgjengeligeSamarbeid.find((s) => s.offentligId === valgtSamarbeid);
 
 	return (
 		<ActionMenu>
@@ -70,9 +70,9 @@ function Samarbeidsdropdown({
 				{
 					sorterteSamarbeid.map((samarbeid) => (
 						<ActionMenu.Item
-							key={samarbeid.id}
+                            key={samarbeid.offentligId}
 							className={styles.menyItem}
-							onSelect={() => setValgtSamarbeid(samarbeid.id)}
+                            onSelect={() => setValgtSamarbeid(samarbeid.offentligId)}
 						>
 							{samarbeid.navn} <SamarbeidsStatusBadge status={samarbeid.status} />
 						</ActionMenu.Item>

@@ -1,7 +1,7 @@
 export const fiaSamarbeidMock = () => {
     return [
         {
-            "id": 1,
+            "offentligId": "6445c735-ea64-4a75-934d-ef560d83d3d7",
             "saksnummer": "123",
             "navn": "samarbeid med publiserte behovsvurderinger 3",
             "status": "FULLFØRT",
@@ -16,7 +16,7 @@ export const fiaSamarbeidMock = () => {
             ]
         },
         {
-            "id": 2,
+            "offentligId": "d623aa2c-709d-4fb2-9954-d19f6d885415",
             "saksnummer": "123",
             "navn": "Samarbeid med halvferdig behovsvurdering",
             "status": "AKTIV",
@@ -31,7 +31,7 @@ export const fiaSamarbeidMock = () => {
             ]
         },
         {
-            "id": 3,
+            "offentligId": "f1e8c8b4-3c4e-4f2e-9f7a-2b6e5d9c8a1b",
             "saksnummer": "123",
             "navn": "Samarbeid 3",
             "status": "FULLFØRT",
@@ -46,7 +46,7 @@ export const fiaSamarbeidMock = () => {
             ]
         },
         {
-            "id": 4,
+            "offentligId": "a9f5c6e2-5b4d-4c3e-8f7a-1e2d3c4b5a6f",
             "saksnummer": "123",
             "navn": "Samarbeid 4",
             "status": "AKTIV",
@@ -61,7 +61,7 @@ export const fiaSamarbeidMock = () => {
             ]
         },
         {
-            "id": 5,
+            "offentligId": "c3b2a1d4-6e5f-4a3b-9c8d-7e6f5a4b3c2d",
             "saksnummer": "123",
             "navn": "Samarbeid 5",
             "status": "FULLFØRT",
@@ -76,7 +76,7 @@ export const fiaSamarbeidMock = () => {
             ]
         },
         {
-            "id": 6,
+            "offentligId": "e7f6d5c4-b3a2-4e1f-8d7c-6b5a4e3d2c1b",
             "saksnummer": "123",
             "navn": "Samarbeid 6",
             "status": "AKTIV",
@@ -91,7 +91,7 @@ export const fiaSamarbeidMock = () => {
             ]
         },
         {
-            "id": 7,
+            "offentligId": "f9e8d7c6-b5a4-3e2d-1c0b-9a8b7c6d5e4f",
             "saksnummer": "123",
             "navn": "samarbeidmedveldiglangtnavnutenmellomrommmmmmmmmmm",
             "status": "AKTIV",

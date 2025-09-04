@@ -60,7 +60,7 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 }));
 const samarbeidMockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
-	id: `${samarbeid.id}`,
+    offentligId: `${samarbeid.offentligId}`,
 }));
 
 jest.mock("../Samarbeid/fiaSamarbeidAPI", () => ({
@@ -164,7 +164,7 @@ describe("Forside", () => {
 			expect(tittel).toBeInTheDocument();
 
 			const lenke = tittel.parentElement?.querySelector("a");
-			expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.id}`);
+            expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
 		}
 	});
 

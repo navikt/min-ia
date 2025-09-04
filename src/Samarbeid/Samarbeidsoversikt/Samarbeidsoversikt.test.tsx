@@ -10,7 +10,7 @@ import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 jest.mock("../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
-	id: `${samarbeid.id}`,
+    offentligId: `${samarbeid.offentligId}`,
 }));
 
 jest.mock("../fiaSamarbeidAPI", () => ({
@@ -65,7 +65,7 @@ describe("Samarbeidsvelger", () => {
 			expect(tittel).toBeInTheDocument();
 
 			const lenke = tittel.parentElement?.querySelector("a");
-			expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.id}`);
+            expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
 		}
 	});
 

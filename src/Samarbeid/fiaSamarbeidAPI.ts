@@ -10,7 +10,7 @@ export interface FiaSamarbeidDokument {
   dato: Date;
 }
 export interface FiaSamarbeidDto {
-  id: string;
+    offentligId: string;
   saksnummer: string;
   navn: string;
   status: SamarbeidStatus;

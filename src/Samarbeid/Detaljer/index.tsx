@@ -6,11 +6,15 @@ import KartleggingFane from "./KartleggingFane";
 import Samarbeidsinfo from "../Samarbeidsinfo";
 import styles from './Samarbeidsside.module.scss';
 
-export default function Samarbeidsside({ samarbeidId, setSamarbeidId }: { samarbeidId?: string, setSamarbeidId: (id: string) => void }) {
+export default function Samarbeidsside({samarbeidOffentligId, setSamarbeidOffentligId}: {
+    samarbeidOffentligId?: string,
+    setSamarbeidOffentligId: (id: string) => void
+}) {
 	const [valgtFane, setValgtFane] = React.useState("kartlegging");
 
 	return (
-		<SamarbeidsvelgerProvider samarbeidId={samarbeidId} setSamarbeidId={setSamarbeidId}>
+        <SamarbeidsvelgerProvider samarbeidOffentligId={samarbeidOffentligId}
+                                  setSamarbeidOffentligId={setSamarbeidOffentligId}>
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
 			<Tabs value={valgtFane} onChange={setValgtFane}>

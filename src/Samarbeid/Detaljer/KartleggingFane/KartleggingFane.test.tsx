@@ -13,7 +13,7 @@ import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/Samarbeid
 jest.mock("../../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
-	id: `${samarbeid.id}`,
+    offentligId: `${samarbeid.offentligId}`,
 }));
 jest.mock("../../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
