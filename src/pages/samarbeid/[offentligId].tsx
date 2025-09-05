@@ -24,7 +24,7 @@ export default function ExperimentPlaygroundPage(props: {
 	grafanaAgentUrl: string;
 	prodUrl?: string;
 }) {
-    const {query: {offentligId}, replace} = useRouter();
+	const { query: { offentligId }, replace } = useRouter();
 	React.useEffect(() => {
 		if (!props.kjørerMockApp) {
 			doInitializeFaro(props.grafanaAgentUrl);
@@ -48,7 +48,7 @@ export default function ExperimentPlaygroundPage(props: {
 			url: "/forebygge-fravar",
 		},
 		{
-			title: "Detaljer",
+			title: "Samarbeidsdetaljer",
 			url: "/forebygge-fravar/samarbeid/detaljer",
 		},
 	]);
@@ -56,7 +56,7 @@ export default function ExperimentPlaygroundPage(props: {
 	return (
 		<>
 			<Head>
-                <title>{props.page.title}</title>
+				<title>{props.page.title}</title>
 			</Head>
 			<Layout
 				title={props.page.title}
@@ -65,8 +65,8 @@ export default function ExperimentPlaygroundPage(props: {
 				kjørerMockApp={props.kjørerMockApp}
 			>
 				<Sideinnhold
-                    offentligId={typeof offentligId === "string" ? offentligId : undefined}
-                    setOffentligId={(nyOffentligId: string) => replace(`/samarbeid/${nyOffentligId}`)}
+					offentligId={typeof offentligId === "string" ? offentligId : undefined}
+					setOffentligId={(nyOffentligId: string) => replace(`/samarbeid/${nyOffentligId}`)}
 					organisasjonerBrukerHarTilgangTil={organisasjonerBrukerHarTilgangTil}
 				/>
 			</Layout>
@@ -74,9 +74,9 @@ export default function ExperimentPlaygroundPage(props: {
 	);
 }
 
-function Sideinnhold({offentligId, setOffentligId, organisasjonerBrukerHarTilgangTil}: {
-    offentligId: string | undefined;
-    setOffentligId: (nyOffentligId: string) => void;
+function Sideinnhold({ offentligId, setOffentligId, organisasjonerBrukerHarTilgangTil }: {
+	offentligId: string | undefined;
+	setOffentligId: (nyOffentligId: string) => void;
 	organisasjonerBrukerHarTilgangTil: RestRessurs<Organisasjon[]>;
 }) {
 	if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
@@ -92,8 +92,8 @@ function Sideinnhold({offentligId, setOffentligId, organisasjonerBrukerHarTilgan
 	}
 
 	return (
-        <Samarbeidsdetaljeside samarbeidOffentligId={offentligId}
-                               setSamarbeidOffentligId={setOffentligId}/>
+		<Samarbeidsdetaljeside samarbeidOffentligId={offentligId}
+			setSamarbeidOffentligId={setOffentligId} />
 	);
 }
 
