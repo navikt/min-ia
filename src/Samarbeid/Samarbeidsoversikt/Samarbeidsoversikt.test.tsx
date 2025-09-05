@@ -10,7 +10,7 @@ import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 jest.mock("../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
-    offentligId: `${samarbeid.offentligId}`,
+	offentligId: `${samarbeid.offentligId}`,
 }));
 
 jest.mock("../fiaSamarbeidAPI", () => ({
@@ -32,14 +32,14 @@ describe("Samarbeidsvelger", () => {
 		expect(container).toBeInTheDocument();
 	});
 
-	it("Får \"se alle\" knapp når flere enn 3 samarbeid", async () => {
+	it("Får \"Vis alle\" knapp når flere enn 3 samarbeid", async () => {
 		const { container } = render(
 			<Samarbeidsoversikt />
 		);
 		expect(container).toBeInTheDocument();
 		expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3);
 
-		const seAlleKnapp = screen.getByRole("button", { name: `Se alle (${mockdata.length})` });
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
 		seAlleKnapp.click();
@@ -54,7 +54,7 @@ describe("Samarbeidsvelger", () => {
 		expect(container).toBeInTheDocument();
 		expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3);
 
-		const seAlleKnapp = screen.getByRole("button", { name: `Se alle (${mockdata.length})` });
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
 		seAlleKnapp.click();
@@ -65,7 +65,7 @@ describe("Samarbeidsvelger", () => {
 			expect(tittel).toBeInTheDocument();
 
 			const lenke = tittel.parentElement?.querySelector("a");
-            expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
+			expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
 		}
 	});
 
@@ -141,7 +141,7 @@ describe("Samarbeidsvelger", () => {
 		expect(await axe(container)).toHaveNoViolations();
 
 		// med ekspandert meny
-		const seAlleKnapp = screen.getByRole("button", { name: `Se alle (${mockdata.length})` });
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		seAlleKnapp.click();
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
 

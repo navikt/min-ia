@@ -20,7 +20,7 @@ export default function Samarbeidsoversikt() {
 			return { tilgjengeligeSamarbeid: [], harInaktive: false, harAktive: false };
 		}
 		const sorterteSamarbeid = (samarbeidsliste?.data?.map((samarbeid) => ({
-            offentligId: samarbeid.offentligId,
+			offentligId: samarbeid.offentligId,
 			saksnummer: samarbeid.saksnummer,
 			navn: samarbeid.navn,
 			status: samarbeid.status,
@@ -85,7 +85,7 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 			<VStack className={styles.samarbeidsliste} gap="4">
 				<SamarbeidslisteElement samarbeid={{
 					hendelser: [],
-                    offentligId: tilgjengeligeSamarbeid[0].offentligId,
+					offentligId: tilgjengeligeSamarbeid[0].offentligId,
 					navn: `Avsluttede samarbeid (${tilgjengeligeSamarbeid.length})`,
 					status: "FULLFØRT",
 				}} skjulStatus />
@@ -100,7 +100,7 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 					variant="tertiary"
 					onClick={() => setErEkspandert(true)}
 					icon={<ChevronDownIcon aria-hidden />}>
-					Se alle ({tilgjengeligeSamarbeid.length})
+					Vis alle ({tilgjengeligeSamarbeid.length})
 				</Button>
 			</VStack>
 		);
@@ -125,7 +125,7 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 }
 function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
 	return tilgjengeligeSamarbeid.map((samarbeid) => (
-        <SamarbeidslisteElement key={samarbeid.offentligId} samarbeid={samarbeid}/>
+		<SamarbeidslisteElement key={samarbeid.offentligId} samarbeid={samarbeid} />
 	));
 }
 
@@ -138,7 +138,7 @@ function SamarbeidslisteElement({ samarbeid, skjulStatus = false }: { samarbeid:
 					{!skjulStatus && <SamarbeidsStatusBadge status={samarbeid.status} />}
 					<Button
 						as={Link}
-                        href={`/samarbeid/${samarbeid.offentligId}`}
+						href={`/samarbeid/${samarbeid.offentligId}`}
 						icon={<ArrowRightIcon aria-hidden />}
 						iconPosition="right"
 						onClick={() => sendNavigereEvent("Se samarbeid", "/samarbeid/[SAMARBEID_ID]")}
