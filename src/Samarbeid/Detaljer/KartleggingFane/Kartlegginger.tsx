@@ -1,5 +1,7 @@
 import SpørreundersøkelseRad from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
+import { nbNoPrintDato } from "../../../utils/dato";
 import { FiaSamarbeidDokument } from "../../fiaSamarbeidAPI";
+
 
 export default function Kartlegginger({ dokumenter }: { dokumenter: FiaSamarbeidDokument[] }) {
 	return dokumenter
@@ -7,7 +9,7 @@ export default function Kartlegginger({ dokumenter }: { dokumenter: FiaSamarbeid
 		.map((dokument) => (
 			<SpørreundersøkelseRad
 				key={dokument.dokumentId}
-				dato={new Date(dokument.dato).toLocaleDateString("no-NO")}
+				dato={nbNoPrintDato(new Date(dokument.dato))}
 				dokument={dokument}
 			/>
 		));
