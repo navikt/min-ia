@@ -84,7 +84,7 @@ export function AntallDeltakere({
     return (
         <HStack className={styles.antallDeltakere} align="center" style={{ color: getGraffargeFromTema(navn, true) }}>
             <PersonGroupFillIcon fontSize="1.5rem" aria-hidden />
-            {antallDeltakere} deltakere
+            {`${antallDeltakere} deltakere`}
         </HStack>
     );
 }
