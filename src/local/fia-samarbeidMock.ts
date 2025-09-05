@@ -3,7 +3,7 @@ export const fiaSamarbeidMock = () => {
         {
             "offentligId": "6445c735-ea64-4a75-934d-ef560d83d3d7",
             "saksnummer": "123",
-            "navn": "samarbeid med publiserte behovsvurderinger 3",
+            "navn": "samarbeid med 2 publiserte behovsvurderinger",
             "status": "FULLFØRT",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
@@ -12,6 +12,11 @@ export const fiaSamarbeidMock = () => {
                     "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa86",
                     "type": "BEHOVSVURDERING",
                     "dato": "2025-08-27T09:39:18.828991"
+                },
+                {
+                    "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa87",
+                    "type": "BEHOVSVURDERING",
+                    "dato": "2025-08-28T09:39:18.828991"
                 }
             ]
         },
