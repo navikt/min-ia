@@ -1,14 +1,11 @@
 "use client";
 import styles from './grafer.module.scss';
 import React from "react";
-import HighchartsReact from "highcharts-react-official";
 import * as Highcharts from "highcharts";
-/* import "highcharts/modules/accessibility"; */
+import HighchartsReact from "highcharts-react-official";
 import { useSpørsmålMedSorterteSvaralternativer } from "../sorterSvaralternativer";
 import { SpørsmålResultat } from "../SpørreundersøkelseRad";
-import { Heading } from "@navikt/ds-react";
-
-let hichartsAccessibility: NodeJS.Require | undefined;
+import { BodyShort, Heading } from "@navikt/ds-react";
 
 export default function BarChart({
     spørsmål,
@@ -21,12 +18,6 @@ export default function BarChart({
     horizontal?: boolean;
     farge?: string;
 }) {
-    // TODO: Finn en bedre måte å importere accessibility-modulen på
-    // Dynamisk import av accessibility-modulen for å unngå problemer med SSR
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    if (!hichartsAccessibility) hichartsAccessibility = require("highcharts/modules/accessibility");
-
-    const chartComponentRef = React.useRef<HighchartsReact.RefObject>(null);
     const spørsmålMedSorterteAlternativer = useSpørsmålMedSorterteSvaralternativer(spørsmål);
 
     const options = React.useMemo(
@@ -42,19 +33,45 @@ export default function BarChart({
 
     if (spørsmål.svarListe.some((svar) => svar.antallSvar > 0) === false) {
         return (
-            <Heading level="4" size="small" spacing className={styles.tomGrafTittel}>
-                {spørsmål.tekst}
-            </Heading>
+            <>
+                <Heading level="4" size="small" spacing className={styles.tomGrafTittel}>
+                    {spørsmål.tekst}
+                </Heading>
+                <BodyShort className={`${styles.tomtSpørsmålBeskrivelse} ${styles.kunForSkjermleser}`}>
+                    For få deltakere til å vise resultater.
+                </BodyShort>
+            </>
         );
     }
 
     return (
-        <HighchartsReact
-            highcharts={Highcharts}
-            options={options}
-            constructorType={"chart"}
-            ref={chartComponentRef}
-        />
+        <>
+            <div aria-hidden>
+                <HighchartsReact
+                    highcharts={Highcharts}
+                    options={options}
+                    constructorType={"chart"}
+                />
+            </div>
+            <UUVennligOpplesningAvBarChart spørsmålMedSorterteAlternativer={spørsmålMedSorterteAlternativer} />
+        </>
+    );
+}
+
+function UUVennligOpplesningAvBarChart({ spørsmålMedSorterteAlternativer }: { spørsmålMedSorterteAlternativer: SpørsmålResultat }) {
+    return (
+        <>
+            <Heading level="4" size="small" spacing className={styles.kunForSkjermleser}>
+                {spørsmålMedSorterteAlternativer.tekst}
+            </Heading>
+            <ul className={styles.kunForSkjermleser}>
+                {spørsmålMedSorterteAlternativer.svarListe.map((svar) => (
+                    <li key={svar.id}>
+                        {svar.tekst}: {svar.antallSvar} svar
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 }
 
