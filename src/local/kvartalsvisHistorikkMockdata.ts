@@ -4,7 +4,7 @@ export const kvartalsvisHistorikkMockdata = [
     label: "Norge",
     kvartalsvisSykefraværsprosent: [
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 2,
         erMaskert: false,
         prosent: 5.5,
@@ -12,7 +12,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5500,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 3,
         erMaskert: false,
         prosent: 6,
@@ -20,7 +20,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 4,
         erMaskert: false,
         prosent: 6.8,
@@ -28,7 +28,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 1,
         erMaskert: false,
         prosent: 6.4,
@@ -36,7 +36,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6400,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 2,
         erMaskert: false,
         prosent: 5.6,
@@ -44,7 +44,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5600,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 3,
         erMaskert: false,
         prosent: 6.1,
@@ -52,7 +52,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6100,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 4,
         erMaskert: false,
         prosent: 7.1,
@@ -60,7 +60,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7100,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 1,
         erMaskert: false,
         prosent: 6.7,
@@ -68,7 +68,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6700,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 2,
         erMaskert: false,
         prosent: 5.8,
@@ -76,7 +76,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5800,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 3,
         erMaskert: false,
         prosent: 6.3,
@@ -84,7 +84,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6300,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 4,
         erMaskert: false,
         prosent: 7.2,
@@ -92,7 +92,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7200,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 1,
         erMaskert: false,
         prosent: 6.7,
@@ -100,7 +100,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6700,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 2,
         erMaskert: false,
         prosent: 5.8,
@@ -108,7 +108,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5800,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 3,
         erMaskert: false,
         prosent: 6.2,
@@ -116,7 +116,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6200,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 4,
         erMaskert: false,
         prosent: 7,
@@ -124,7 +124,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7000,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 1,
         erMaskert: false,
         prosent: 6.5,
@@ -132,7 +132,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6500,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 2,
         erMaskert: false,
         prosent: 5.6,
@@ -140,7 +140,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5600,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 3,
         erMaskert: false,
         prosent: 6.1,
@@ -148,7 +148,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6100,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 4,
         erMaskert: false,
         prosent: 7,
@@ -156,12 +156,20 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7000,
       },
       {
-        årstall: 2020,
+        årstall: 2025,
         kvartal: 1,
         erMaskert: false,
         prosent: 6.4,
         tapteDagsverk: 64,
         muligeDagsverk: 6400,
+      },
+      {
+        årstall: 2025,
+        kvartal: 2,
+        erMaskert: false,
+        prosent: 5.6,
+        tapteDagsverk: 56,
+        muligeDagsverk: 5600,
       },
     ],
   },
@@ -170,7 +178,7 @@ export const kvartalsvisHistorikkMockdata = [
     label: "Statlig forvaltning",
     kvartalsvisSykefraværsprosent: [
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 2,
         erMaskert: false,
         prosent: 4,
@@ -178,7 +186,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 3,
         erMaskert: false,
         prosent: 4.9,
@@ -186,7 +194,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4900,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 4,
         erMaskert: false,
         prosent: 6.8,
@@ -194,7 +202,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 1,
         erMaskert: false,
         prosent: 5.8,
@@ -202,7 +210,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 2,
         erMaskert: false,
         prosent: 4.1,
@@ -210,7 +218,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4100,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 3,
         erMaskert: false,
         prosent: 5,
@@ -218,7 +226,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5000,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 4,
         erMaskert: false,
         prosent: 6.6,
@@ -226,7 +234,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6600,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 1,
         erMaskert: false,
         prosent: 5.7,
@@ -234,7 +242,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5700,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 2,
         erMaskert: false,
         prosent: 4.1,
@@ -242,7 +250,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4100,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 3,
         erMaskert: false,
         prosent: 5.1,
@@ -250,7 +258,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5100,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 4,
         erMaskert: false,
         prosent: 6.7,
@@ -258,7 +266,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6700,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 1,
         erMaskert: false,
         prosent: 5.7,
@@ -266,7 +274,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5700,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 2,
         erMaskert: false,
         prosent: 4.1,
@@ -274,7 +282,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4100,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 3,
         erMaskert: false,
         prosent: 5.1,
@@ -282,7 +290,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5100,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 4,
         erMaskert: false,
         prosent: 6.9,
@@ -290,7 +298,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6900,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 1,
         erMaskert: false,
         prosent: 6.1,
@@ -298,7 +306,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6100,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 2,
         erMaskert: false,
         prosent: 4.2,
@@ -306,7 +314,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4200,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 3,
         erMaskert: false,
         prosent: 5.2,
@@ -314,7 +322,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5200,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 4,
         erMaskert: false,
         prosent: 6.8,
@@ -322,12 +330,20 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6800,
       },
       {
-        årstall: 2020,
+        årstall: 2025,
         kvartal: 1,
         erMaskert: false,
         prosent: 5.9,
         tapteDagsverk: 59,
         muligeDagsverk: 5900,
+      },
+      {
+        årstall: 2025,
+        kvartal: 2,
+        erMaskert: false,
+        prosent: 4.1,
+        tapteDagsverk: 41,
+        muligeDagsverk: 4100,
       },
     ],
   },
@@ -336,7 +352,7 @@ export const kvartalsvisHistorikkMockdata = [
     label: "Dette er en virksomhet",
     kvartalsvisSykefraværsprosent: [
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 2,
         erMaskert: false,
         prosent: 4,
@@ -344,7 +360,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 4000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 3,
         erMaskert: false,
         prosent: 6,
@@ -352,7 +368,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 4,
         erMaskert: false,
         prosent: 8.8,
@@ -360,7 +376,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 1,
         erMaskert: false,
         prosent: 8.7,
@@ -368,7 +384,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8700,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 2,
         erMaskert: false,
         prosent: 7.9,
@@ -376,7 +392,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7900,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 3,
         erMaskert: false,
         prosent: 9.8,
@@ -384,7 +400,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 4,
         erMaskert: false,
         prosent: 12.6,
@@ -392,7 +408,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 12600,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 1,
         erMaskert: false,
         prosent: 12.5,
@@ -400,7 +416,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 12500,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 2,
         erMaskert: false,
         prosent: 11.7,
@@ -408,7 +424,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 11700,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 3,
         erMaskert: false,
         prosent: 13.6,
@@ -416,7 +432,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 13600,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 4,
         erMaskert: false,
         prosent: 16.5,
@@ -424,7 +440,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 16500,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 1,
         erMaskert: false,
         prosent: 16.5,
@@ -432,7 +448,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 16500,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 2,
         erMaskert: false,
         prosent: 15.9,
@@ -440,7 +456,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 15900,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 3,
         erMaskert: false,
         prosent: 18,
@@ -448,7 +464,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 18000,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 4,
         erMaskert: false,
         prosent: 20.6,
@@ -456,7 +472,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 20600,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 1,
         erMaskert: false,
         prosent: 20.5,
@@ -464,7 +480,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 20500,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 2,
         erMaskert: false,
         prosent: 19.6,
@@ -472,7 +488,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 19600,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 3,
         erMaskert: false,
         prosent: 21.5,
@@ -480,7 +496,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 21500,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 4,
         erMaskert: false,
         prosent: 24.1,
@@ -488,12 +504,20 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 24100,
       },
       {
-        årstall: 2020,
+        årstall: 2025,
         kvartal: 1,
         erMaskert: false,
         prosent: 24,
         tapteDagsverk: 240,
         muligeDagsverk: 24000,
+      },
+      {
+        årstall: 2025,
+        kvartal: 2,
+        erMaskert: false,
+        prosent: 19.6,
+        tapteDagsverk: 231,
+        muligeDagsverk: 24100,
       },
     ],
   },
@@ -502,7 +526,7 @@ export const kvartalsvisHistorikkMockdata = [
     label: "Dette er en overordnet virksomhet",
     kvartalsvisSykefraværsprosent: [
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 2,
         erMaskert: false,
         prosent: 3,
@@ -510,7 +534,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 3000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 3,
         erMaskert: false,
         prosent: 5.9,
@@ -518,7 +542,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5900,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 4,
         erMaskert: false,
         prosent: 11.4,
@@ -526,7 +550,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 11400,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 1,
         erMaskert: false,
         prosent: 8.5,
@@ -534,7 +558,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8500,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 2,
         erMaskert: false,
         prosent: 2.8,
@@ -542,7 +566,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 2800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 3,
         erMaskert: false,
         prosent: 5.7,
@@ -550,7 +574,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 5700,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 4,
         erMaskert: false,
         prosent: 11.1,
@@ -558,7 +582,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 11100,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 1,
         erMaskert: false,
         prosent: 8.6,
@@ -566,7 +590,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8600,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 2,
         erMaskert: false,
         prosent: 3,
@@ -574,7 +598,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 3000,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 3,
         erMaskert: false,
         prosent: 6.1,
@@ -582,7 +606,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6100,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 4,
         erMaskert: false,
         prosent: 11,
@@ -590,12 +614,84 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 11000,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 1,
         erMaskert: false,
         prosent: 7.8,
         tapteDagsverk: 78,
         muligeDagsverk: 7800,
+      },
+      {
+        årstall: 2023,
+        kvartal: 2,
+        erMaskert: false,
+        prosent: 3,
+        tapteDagsverk: 30,
+        muligeDagsverk: 3000,
+      },
+      {
+        årstall: 2023,
+        kvartal: 3,
+        erMaskert: false,
+        prosent: 6.1,
+        tapteDagsverk: 61,
+        muligeDagsverk: 6100,
+      },
+      {
+        årstall: 2023,
+        kvartal: 4,
+        erMaskert: false,
+        prosent: 11,
+        tapteDagsverk: 110,
+        muligeDagsverk: 11000,
+      },
+      {
+        årstall: 2024,
+        kvartal: 1,
+        erMaskert: false,
+        prosent: 7.8,
+        tapteDagsverk: 78,
+        muligeDagsverk: 7800,
+      },
+      {
+        årstall: 2024,
+        kvartal: 2,
+        erMaskert: false,
+        prosent: 3,
+        tapteDagsverk: 30,
+        muligeDagsverk: 3000,
+      },
+      {
+        årstall: 2024,
+        kvartal: 3,
+        erMaskert: false,
+        prosent: 6.1,
+        tapteDagsverk: 61,
+        muligeDagsverk: 6100,
+      },
+      {
+        årstall: 2024,
+        kvartal: 4,
+        erMaskert: false,
+        prosent: 11,
+        tapteDagsverk: 110,
+        muligeDagsverk: 11000,
+      },
+      {
+        årstall: 2025,
+        kvartal: 1,
+        erMaskert: false,
+        prosent: 7.8,
+        tapteDagsverk: 78,
+        muligeDagsverk: 7800,
+      },
+      {
+        årstall: 2025,
+        kvartal: 2,
+        erMaskert: false,
+        prosent: 3,
+        tapteDagsverk: 30,
+        muligeDagsverk: 3000,
       },
     ],
   },
@@ -604,7 +700,7 @@ export const kvartalsvisHistorikkMockdata = [
     label: "Dette er en bransje",
     kvartalsvisSykefraværsprosent: [
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 2,
         erMaskert: false,
         prosent: 7,
@@ -612,7 +708,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 3,
         erMaskert: false,
         prosent: 7,
@@ -620,7 +716,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7000,
       },
       {
-        årstall: 2015,
+        årstall: 2020,
         kvartal: 4,
         erMaskert: false,
         prosent: 7.8,
@@ -628,7 +724,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 1,
         erMaskert: false,
         prosent: 7.7,
@@ -636,7 +732,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7700,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 2,
         erMaskert: false,
         prosent: 6.8,
@@ -644,7 +740,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 6800,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 3,
         erMaskert: false,
         prosent: 7.7,
@@ -652,7 +748,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7700,
       },
       {
-        årstall: 2016,
+        årstall: 2021,
         kvartal: 4,
         erMaskert: false,
         prosent: 8.8,
@@ -660,7 +756,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8800,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 1,
         erMaskert: false,
         prosent: 8.6,
@@ -668,7 +764,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8600,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 2,
         erMaskert: false,
         prosent: 7.9,
@@ -676,7 +772,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7900,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 3,
         erMaskert: false,
         prosent: 8.2,
@@ -684,7 +780,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8200,
       },
       {
-        årstall: 2017,
+        årstall: 2022,
         kvartal: 4,
         erMaskert: false,
         prosent: 9.1,
@@ -692,7 +788,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9100,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 1,
         erMaskert: false,
         prosent: 8.2,
@@ -700,7 +796,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8200,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 2,
         erMaskert: false,
         prosent: 7.5,
@@ -708,7 +804,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 7500,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 3,
         erMaskert: false,
         prosent: 8.3,
@@ -716,7 +812,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8300,
       },
       {
-        årstall: 2018,
+        årstall: 2023,
         kvartal: 4,
         erMaskert: false,
         prosent: 9.5,
@@ -724,7 +820,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9500,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 1,
         erMaskert: false,
         prosent: 9.2,
@@ -732,7 +828,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9200,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 2,
         erMaskert: false,
         prosent: 8.7,
@@ -740,7 +836,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 8700,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 3,
         erMaskert: false,
         prosent: 9,
@@ -748,7 +844,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9000,
       },
       {
-        årstall: 2019,
+        årstall: 2024,
         kvartal: 4,
         erMaskert: false,
         prosent: 9.6,
@@ -756,7 +852,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9600,
       },
       {
-        årstall: 2020,
+        årstall: 2025,
         kvartal: 1,
         erMaskert: false,
         prosent: 9.3,
@@ -764,7 +860,7 @@ export const kvartalsvisHistorikkMockdata = [
         muligeDagsverk: 9300,
       },
       {
-        årstall: 2020,
+        årstall: 2025,
         kvartal: 2,
         erMaskert: false,
         prosent: 8.1,

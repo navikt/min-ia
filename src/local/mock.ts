@@ -149,11 +149,11 @@ export default async function mockRequest(req: NextRequest) {
 
     const publiseringsdato = {
       gjeldendePeriode: {
-        årstall: 2022,
+        årstall: 2025,
         kvartal: 2,
       },
-      nestePubliseringsdato: "2022-12-01",
-      sistePubliseringsdato: "2022-09-08",
+      nestePubliseringsdato: "2025-11-27",
+      sistePubliseringsdato: "2025-09-04",
     };
 
     await new Promise((r) => setTimeout(r, delayInMillis));
