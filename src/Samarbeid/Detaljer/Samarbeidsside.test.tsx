@@ -7,10 +7,7 @@ import { axe } from "jest-axe";
 import { penskrivIAStatus } from "../SamarbeidsStatusBadge";
 import { SamarbeidStatus } from "../Samarbeidsvelger/samarbeidtyper";
 
-const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
-	...samarbeid,
-    offentligId: `${samarbeid.offentligId}`,
-}));
+const mockdata = fiaSamarbeidMock();
 
 jest.mock("../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
@@ -26,13 +23,12 @@ describe("Samarbeidsside", () => {
 
 	it("Render uten å krasje", () => {
 		const { container } = render(
-            <Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => {
-            }}/>
+			<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
 		);
 		expect(container).toBeInTheDocument();
 
-		// Sjekk at fanen "Kartlegginger" er tilstede
-		expect(screen.getByRole("tab", { name: "Kartlegginger" })).toBeInTheDocument();
+		// TODO: Sjekk at fanen "Kartlegginger" er tilstede når vi skrur på tabber igjen.
+		// expect(screen.getByRole("tab", { name: "Kartlegginger" })).toBeInTheDocument();
 		// Sjekk at samarbeidsvelgeren er tilstede
 		expect(screen.getByText("Velg samarbeid")).toBeInTheDocument();
 		// Sjekk at samarbeidsinfo er tilstede
@@ -50,8 +46,7 @@ describe("Samarbeidsside", () => {
 		}
 
 		const { container, rerender } = render(
-            <Samarbeidsside samarbeidOffentligId={førsteFullførte.offentligId} setSamarbeidOffentligId={() => {
-            }}/>
+			<Samarbeidsside samarbeidOffentligId={førsteFullførte.offentligId} setSamarbeidOffentligId={() => { }} />
 		);
 		expect(container).toBeInTheDocument();
 
@@ -61,8 +56,7 @@ describe("Samarbeidsside", () => {
 		expect(screen.queryByText(penskrivIAStatus(førsteAktive.status as SamarbeidStatus))).not.toBeInTheDocument();
 
 		rerender(
-            <Samarbeidsside samarbeidOffentligId={førsteAktive.offentligId} setSamarbeidOffentligId={() => {
-            }}/>
+			<Samarbeidsside samarbeidOffentligId={førsteAktive.offentligId} setSamarbeidOffentligId={() => { }} />
 		);
 		expect(container).toBeInTheDocument();
 
@@ -74,8 +68,7 @@ describe("Samarbeidsside", () => {
 
 	it("Ingen UU-feil", async () => {
 		const { container } = render(
-            <Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => {
-            }}/>
+			<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
 		);
 		expect(await axe(container)).toHaveNoViolations();
 	});
