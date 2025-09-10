@@ -13,15 +13,15 @@ import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-ap
 import { altinn3Organisasjoner } from "../local/altinn3OrganisasjonerMockdata";
 
 export const siste4KvartalerMock = [
-  { årstall: 2021, kvartal: 3 },
-  { årstall: 2021, kvartal: 4 },
-  { årstall: 2022, kvartal: 1 },
-  { årstall: 2022, kvartal: 2 },
+  { årstall: 2024, kvartal: 3 },
+  { årstall: 2024, kvartal: 4 },
+  { årstall: 2025, kvartal: 1 },
+  { årstall: 2025, kvartal: 2 },
 ];
 
 export const siste2KvartalerMock = [
-  { årstall: 2022, kvartal: 1 },
-  { årstall: 2022, kvartal: 2 },
+  { årstall: 2025, kvartal: 1 },
+  { årstall: 2025, kvartal: 2 },
 ];
 
 const aggregertStatistikkMock = new Map<
@@ -156,11 +156,11 @@ export const mockAllDatahentingStatusLaster: SerialiserbarAppData = {
 function getMockPubliseringsdatoer(): SerialiserbarPubliseringsdatoer {
   return {
     gjeldendePeriode: {
-      årstall: 2022,
+      årstall: 2025,
       kvartal: 2,
     },
-    nestePubliseringsdato: "2022-12-01",
-    sistePubliseringsdato: "2022-09-08",
+    nestePubliseringsdato: "2025-11-27",
+    sistePubliseringsdato: "2025-09-04",
   };
 }
 export interface Næring {

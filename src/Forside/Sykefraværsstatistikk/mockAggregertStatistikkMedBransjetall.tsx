@@ -14,8 +14,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -25,13 +25,13 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       verdi: "8.8",
       antallPersonerIBeregningen: 145,
       kvartalerIBeregningen: [
-        { årstall: 2021, kvartal: 2 },
-        { årstall: 2021, kvartal: 3 },
+        { årstall: 2024, kvartal: 3 },
+        { årstall: 2024, kvartal: 4 },
         {
-          årstall: 2021,
-          kvartal: 4,
+          årstall: 2025,
+          kvartal: 1,
         },
-        { årstall: 2022, kvartal: 1 },
+        { årstall: 2025, kvartal: 2 },
       ],
     },
     {
@@ -41,8 +41,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -53,8 +53,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -67,8 +67,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -79,8 +79,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -91,8 +91,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -105,8 +105,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -117,8 +117,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -129,8 +129,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -143,8 +143,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -155,8 +155,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -167,8 +167,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -181,8 +181,8 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -193,12 +193,12 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
         {
-          årstall: 2021,
-          kvartal: 1,
+          årstall: 2024,
+          kvartal: 2,
         },
       ],
     },
@@ -209,12 +209,12 @@ export const mockAggregertStatistikkMedBransjetall: AggregertStatistikkDto = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
         {
-          årstall: 2021,
-          kvartal: 1,
+          årstall: 2024,
+          kvartal: 3,
         },
       ],
     },

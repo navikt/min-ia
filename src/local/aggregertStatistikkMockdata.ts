@@ -3,24 +3,24 @@ export const mockdataOrgnr91096939 = {
     {
       statistikkategori: "LAND",
       label: "Norge",
-      verdi: "9.0",
-      antallPersonerIBeregningen: 10,
+      verdi: "5.6",
+      antallPersonerIBeregningen: 3000000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -31,68 +31,68 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
     {
       statistikkategori: "BRANSJE",
       label: "Barnehager",
-      verdi: "19.0",
+      verdi: "11.2",
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
     {
       statistikkategori: "VIRKSOMHET",
       label: "Virksomhet AS",
-      verdi: "14.0",
+      verdi: "21.7",
       antallPersonerIBeregningen: 200,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -105,20 +105,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -129,20 +129,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -153,44 +153,44 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
     {
       statistikkategori: "VIRKSOMHET",
       label: "Virksomhet AS",
-      verdi: "14.0",
+      verdi: "37.7",
       antallPersonerIBeregningen: 200,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -203,20 +203,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -227,20 +227,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -251,44 +251,44 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
     {
       statistikkategori: "VIRKSOMHET",
       label: "Virksomhet AS",
-      verdi: "19.0",
+      verdi: "19.3",
       antallPersonerIBeregningen: 200,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -301,20 +301,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -325,20 +325,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -349,20 +349,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -373,20 +373,20 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 200,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
-        },
-        {
-          årstall: 2022,
-          kvartal: 2,
-        },
-        {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 3,
         },
         {
-          årstall: 2022,
+          årstall: 2024,
           kvartal: 4,
+        },
+        {
+          årstall: 2025,
+          kvartal: 1,
+        },
+        {
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -399,12 +399,12 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 20000,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
         {
-          årstall: 2021,
-          kvartal: 1,
+          årstall: 2024,
+          kvartal: 2,
         },
       ],
     },
@@ -433,8 +433,8 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 200,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -447,8 +447,8 @@ export const mockdataOrgnr91096939 = {
       antallPersonerIBeregningen: 200,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -464,8 +464,8 @@ export const mockdataOrgnr81096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -476,8 +476,8 @@ export const mockdataOrgnr81096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
@@ -490,12 +490,12 @@ export const mockdataOrgnr81096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
         {
-          årstall: 2021,
-          kvartal: 1,
+          årstall: 2024,
+          kvartal: 2,
         },
       ],
     },
@@ -506,12 +506,12 @@ export const mockdataOrgnr81096939 = {
       antallPersonerIBeregningen: 10,
       kvartalerIBeregningen: [
         {
-          årstall: 2022,
-          kvartal: 1,
+          årstall: 2024,
+          kvartal: 2,
         },
         {
-          årstall: 2021,
-          kvartal: 1,
+          årstall: 2025,
+          kvartal: 2,
         },
       ],
     },
