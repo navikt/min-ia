@@ -18,17 +18,23 @@ export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffen
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
 			<Tabs value={valgtFane} onChange={setValgtFane}>
-				<Tabs.List>
+				<Tabs.List aria-hidden /* gjem fra skjermlesere, ettersom vi ikke faktisk har noe tabber her. */>
 					<Page.Block width="xl">
-						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
+						<Tabs.Tab value="kartlegging" label="Kartlegginger" as={UnfocusableTab} />
 					</Page.Block>
 				</Tabs.List>
 				<Page.Block width="xl" gutters className={styles.samarbeidssideBlock}>
-					<Tabs.Panel value="kartlegging">
-						<KartleggingFane />
-					</Tabs.Panel>
+					{/* <Tabs.Panel value="kartlegging"> */}
+					<KartleggingFane />
+					{/* </Tabs.Panel> */}
 				</Page.Block>
 			</Tabs>
 		</SamarbeidsvelgerProvider>
 	);
 }
+
+function UnfocusableTab({ ...props }: React.ComponentProps<typeof Tabs.Tab>) {
+	// Tabindex -1 funker ikke på Tabs.Tab, så vi må lage en wrapper-komponent.
+	// Vi skjuler for skjermlesere da det bare er en fane, og vi har ingen andre faner å bytte til enda.
+	return <span {...props} tabIndex={-1} role={undefined} />;
+};
