@@ -3,15 +3,12 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { fiaSamarbeidMock } from "../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
 import { RestStatus } from "../../integrasjoner/rest-status";
-import Samarbeidsoversikt from ".";
+import Samarbeidsoversikt, { DEFAULT_MAKS_VISIBLE_SAMARBEID } from ".";
 import { sendNavigereEvent } from "../../utils/analytics/analytics";
 import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 
 jest.mock("../../utils/analytics/analytics");
-const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
-	...samarbeid,
-	offentligId: `${samarbeid.offentligId}`,
-}));
+const mockdata = fiaSamarbeidMock();
 
 jest.mock("../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
@@ -113,6 +110,29 @@ describe("Samarbeidsvelger", () => {
 		expect(container).toBeInTheDocument();
 		expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3);
 		expect(screen.getAllByText("Aktiv")).toHaveLength(3);
+	});
+
+	it("Autofokuserer på første etter expand", async () => {
+		const { container } = render(
+			<Samarbeidsoversikt />
+		);
+		expect(container).toBeInTheDocument();
+		expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3);
+
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
+		expect(seAlleKnapp).toBeInTheDocument();
+
+		seAlleKnapp.click();
+
+		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
+
+		const filtrerteSamarbeid = mockdata.filter(({ status }) => status === "AKTIV").slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID);
+
+		const seSamarbeidKnapper = screen.getAllByRole("button", { name: "Se samarbeid" });
+		const samarbeidSomIkkeVarSynlig = seSamarbeidKnapper.filter((knapp) => filtrerteSamarbeid.every(s => `/samarbeid/${s.offentligId}` !== knapp.getAttribute("href")));
+		expect(samarbeidSomIkkeVarSynlig).toHaveLength(mockdata.length - filtrerteSamarbeid.length);
+
+		expect(document.activeElement).toBe(samarbeidSomIkkeVarSynlig[0]);
 	});
 
 	it("Viser samlet rad for inaktive samarbeid når ingen aktive", async () => {

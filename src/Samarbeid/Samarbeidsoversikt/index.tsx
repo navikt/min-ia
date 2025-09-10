@@ -10,7 +10,7 @@ import { Samarbeid, Samarbeidhendelse } from "../Samarbeidsvelger/samarbeidtyper
 import Samarbeidstidslinje from "./Samarbeidstidslinje";
 import { sendNavigereEvent } from "../../utils/analytics/analytics";
 
-const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
+export const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
 
 export default function Samarbeidsoversikt() {
 	const samarbeidsliste = useFiaSamarbeid();
@@ -80,6 +80,11 @@ export default function Samarbeidsoversikt() {
 
 function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { tilgjengeligeSamarbeid: Samarbeid[], harInaktive: boolean, harAktive: boolean }) {
 	const [erEkspandert, setErEkspandert] = React.useState(false);
+	const [harFokusert, setHarFokusert] = React.useState(false);
+
+	const filtrerteSamarbeid = React.useMemo(() => tilgjengeligeSamarbeid.filter(({ status }) => status === "AKTIV").slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID), [tilgjengeligeSamarbeid]);
+	const førsteSamarbeidUnderFold = React.useMemo(() => tilgjengeligeSamarbeid.find(({ offentligId }) => !filtrerteSamarbeid.some(s => s.offentligId === offentligId)), [tilgjengeligeSamarbeid, filtrerteSamarbeid]);
+
 	if (!harAktive && harInaktive) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
@@ -95,10 +100,13 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 	if ((harInaktive || tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID) && !erEkspandert) {
 		return (
 			<VStack className={styles.samarbeidsliste} gap="4">
-				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid.filter(({ status }) => status === "AKTIV").slice(0, DEFAULT_MAKS_VISIBLE_SAMARBEID)} />
+				<Samarbeidslisteinnhold tilgjengeligeSamarbeid={filtrerteSamarbeid} />
 				<Button
 					variant="tertiary"
-					onClick={() => setErEkspandert(true)}
+					onClick={() => {
+						setErEkspandert(true);
+						setHarFokusert(false);
+					}}
 					icon={<ChevronDownIcon aria-hidden />}>
 					Vis alle ({tilgjengeligeSamarbeid.length})
 				</Button>
@@ -108,7 +116,7 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 
 	return (
 		<VStack className={styles.samarbeidsliste} gap="4">
-			<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} />
+			<Samarbeidslisteinnhold tilgjengeligeSamarbeid={tilgjengeligeSamarbeid} førsteSamarbeidUnderFold={førsteSamarbeidUnderFold} harFokusert={harFokusert} setHarFokusert={setHarFokusert} />
 			{
 				(harInaktive || tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID) && erEkspandert && (
 					<Button
@@ -123,13 +131,24 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 		</VStack>
 	);
 }
-function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid }: { tilgjengeligeSamarbeid: Samarbeid[] }) {
+function Samarbeidslisteinnhold({ tilgjengeligeSamarbeid, førsteSamarbeidUnderFold, harFokusert, setHarFokusert }: { tilgjengeligeSamarbeid: Samarbeid[], førsteSamarbeidUnderFold?: Samarbeid, harFokusert?: boolean, setHarFokusert?: (fokusert: boolean) => void }) {
 	return tilgjengeligeSamarbeid.map((samarbeid) => (
-		<SamarbeidslisteElement key={samarbeid.offentligId} samarbeid={samarbeid} />
+		<SamarbeidslisteElement key={samarbeid.offentligId} samarbeid={samarbeid} autoFocus={!harFokusert && samarbeid.offentligId === førsteSamarbeidUnderFold?.offentligId} setHarFokusert={setHarFokusert} />
 	));
 }
 
-function SamarbeidslisteElement({ samarbeid, skjulStatus = false }: { samarbeid: Samarbeid, skjulStatus?: boolean }) {
+function SamarbeidslisteElement({ samarbeid, skjulStatus = false, autoFocus = false, setHarFokusert = () => null }: { samarbeid: Samarbeid, skjulStatus?: boolean, autoFocus?: boolean, setHarFokusert?: (fokusert: boolean) => void }) {
+	const linkRef = React.useRef<HTMLAnchorElement>(null);
+
+	// Autofocus på lenka funka ikke. Skal det gjøras årntli må en gjøra det sjøl.
+	React.useEffect(() => {
+		if (autoFocus && linkRef.current) {
+			console.log('autoFocus', autoFocus);
+			linkRef.current.focus();
+			setHarFokusert(true);
+		}
+	}, [autoFocus, setHarFokusert]);
+
 	return (
 		<VStack className={styles.samarbeidslisteElement} gap="2">
 			<HStack justify="space-between" align="center" gap="4">
@@ -138,6 +157,7 @@ function SamarbeidslisteElement({ samarbeid, skjulStatus = false }: { samarbeid:
 					{!skjulStatus && <SamarbeidsStatusBadge status={samarbeid.status} />}
 					<Button
 						as={Link}
+						ref={linkRef}
 						href={`/samarbeid/${samarbeid.offentligId}`}
 						icon={<ArrowRightIcon aria-hidden />}
 						iconPosition="right"
