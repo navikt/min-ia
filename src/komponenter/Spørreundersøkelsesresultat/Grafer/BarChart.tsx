@@ -37,7 +37,7 @@ export default function BarChart({
                 <Heading level="4" size="small" spacing className={styles.tomGrafTittel}>
                     {spørsmål.tekst}
                 </Heading>
-                <BodyShort className={`${styles.tomtSpørsmålBeskrivelse} ${styles.kunForSkjermleser}`}>
+                <BodyShort className={styles.tomtSpørsmålBeskrivelse}>
                     For få deltakere til å vise resultater.
                 </BodyShort>
             </>

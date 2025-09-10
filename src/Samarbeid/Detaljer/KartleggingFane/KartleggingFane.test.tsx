@@ -11,10 +11,8 @@ import { SvaralternativResultat, TemaMedSpørsmålOgSvar } from "../../../kompon
 import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/SamarbeidsvelgerContext";
 
 jest.mock("../../../utils/analytics/analytics");
-const mockdata = fiaSamarbeidMock().map((samarbeid) => ({
-	...samarbeid,
-    offentligId: `${samarbeid.offentligId}`,
-}));
+const mockdata = fiaSamarbeidMock();
+
 jest.mock("../../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
 		status: RestStatus.Suksess,
@@ -142,12 +140,53 @@ describe("KartleggingFane", () => {
 		expect(useFiaDokument).toHaveBeenNthCalledWith(2, { dokumentId: "c1a2b3d4-e5f6-7890-abcd-ef0123456789" });
 	});
 
+	it("Viser For få deltakere til å vise resultater når ingen har svart på grafer i halvferdige tema", async () => {
+		(useDokumenterPåValgtSamarbeid as jest.Mock).mockImplementationOnce(() => ([
+			{
+				"dokumentId": "ce282c64-7aa8-4577-b161-088c405aa3b5",
+				"type": "BEHOVSVURDERING",
+				"dato": new Date("2023-12-01T12:00:00Z"),
+				"tittel": "Behovsvurdering for samarbeid 1",
+				"status": "FERDIGSTILT"
+			}
+		]));
+		const dokumentinnhold = JSON.parse(fiaSamarbeidDokumentMock("ce282c64-7aa8-4577-b161-088c405aa3b5").innhold);
+		render(
+			<KartleggingFane />
+		);
+		expect(useFiaDokument).toHaveBeenCalledTimes(0);
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(1);
+		rader[0].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+		// Viser "feil" i på tomme grafer.
+		expect(await screen.findAllByText("For få deltakere til å vise resultater.")).toHaveLength(
+			dokumentinnhold.spørsmålMedSvarPerTema
+				.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar)
+				.filter((s: { svarListe: SvaralternativResultat[] }) => s.svarListe.every((svar: { antallSvar: number }) => svar.antallSvar === 0))
+				.length
+		);
+
+		// Sjekk at tittel på uferdige spørsmål også vises
+		for (const spørsmål of dokumentinnhold.spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar).filter((s: { svarListe: SvaralternativResultat[] }) => s.svarListe.every((svar: { antallSvar: number }) => svar.antallSvar === 0))) {
+			expect(await screen.findAllByRole("heading", { name: spørsmål.tekst })).toHaveLength(1);
+		}
+	});
+
 	it("Ingen aksessibilitetsfeil", async () => {
 		const { container } = render(
 			<KartleggingFane />
 		);
 		expect(await axe(container)).toHaveNoViolations();
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(2);
 
-		// TODO: Ekspander begge radene og sjekk på nytt
+		rader[0].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+		expect(useFiaDokument).toHaveBeenNthCalledWith(1, { dokumentId: "ba7d8dc5-b363-421b-9773-7e3c2185fa86" });
+		rader[1].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(2));
+		expect(await axe(container)).toHaveNoViolations();
 	});
 });
