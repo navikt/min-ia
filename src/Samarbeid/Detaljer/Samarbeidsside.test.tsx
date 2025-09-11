@@ -66,6 +66,40 @@ describe("Samarbeidsside", () => {
 		expect(screen.queryByText(penskrivIAStatus(førsteFullførte.status as SamarbeidStatus))).not.toBeInTheDocument();
 	});
 
+	it("Håndterer feil ved lasting av samarbeid", () => {
+		(jest.requireMock("../fiaSamarbeidAPI").useFiaSamarbeid as jest.Mock).mockReturnValue({
+			status: RestStatus.Feil,
+			data: null,
+		});
+		render(
+			<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+		);
+		expect(screen.getByText("Noe gikk galt ved lasting av samarbeid")).toBeInTheDocument();
+	});
+
+	it("Håndterer ingen samarbeid", () => {
+		(jest.requireMock("../fiaSamarbeidAPI").useFiaSamarbeid as jest.Mock).mockReturnValue({
+			status: RestStatus.Suksess,
+			data: [],
+		});
+		render(
+			<Samarbeidsside samarbeidOffentligId={undefined} setSamarbeidOffentligId={() => { }} />
+		);
+		expect(screen.getByText("Denne virksomheten har ingen aktive samarbeid")).toBeInTheDocument();
+	});
+
+	it("Håndterer lasting av samarbeid", () => {
+		(jest.requireMock("../fiaSamarbeidAPI").useFiaSamarbeid as jest.Mock).mockReturnValue({
+			status: RestStatus.LasterInn,
+			data: null,
+		});
+		const { container } = render(
+			<Samarbeidsside samarbeidOffentligId={undefined} setSamarbeidOffentligId={() => { }} />
+		);
+		expect(container).toBeInTheDocument();
+		expect(screen.getByTestId("samarbeidsvelger-skeleton")).toBeInTheDocument();
+	});
+
 	it("Ingen UU-feil", async () => {
 		const { container } = render(
 			<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
