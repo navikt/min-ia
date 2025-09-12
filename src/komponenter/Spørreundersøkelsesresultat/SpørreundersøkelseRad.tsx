@@ -5,6 +5,7 @@ import { RadInnhold } from "./RadInnhold";
 
 import styles from "./SpørreundersøkelseRad.module.scss";
 import { FiaSamarbeidDokument } from "../../Samarbeid/fiaSamarbeidAPI";
+import { sendPanelEkspanderEvent } from "../../utils/analytics/analytics";
 
 const StyledExpansionCard = ExpansionCard;
 
@@ -55,6 +56,9 @@ export default function SpørreundersøkelseRad({
             aria-label={`${spørreundersøkelseType} ${dato}`}
             open={erÅpen}
             onToggle={(open: boolean) => {
+                if (open) {
+                    sendPanelEkspanderEvent(spørreundersøkelseType);
+                }
                 setErÅpen(open);
             }}
         >

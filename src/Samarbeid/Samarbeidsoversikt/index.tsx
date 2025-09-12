@@ -8,7 +8,7 @@ import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { Samarbeid, Samarbeidhendelse } from "../Samarbeidsvelger/samarbeidtyper";
 import Samarbeidstidslinje from "./Samarbeidstidslinje";
-import { sendNavigereEvent } from "../../utils/analytics/analytics";
+import { sendKnappEvent, sendNavigereEvent } from "../../utils/analytics/analytics";
 
 export const DEFAULT_MAKS_VISIBLE_SAMARBEID = 3;
 
@@ -104,6 +104,7 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 				<Button
 					variant="tertiary"
 					onClick={() => {
+						sendKnappEvent("Vis alle ([antall])");
 						setErEkspandert(true);
 						setHarFokusert(false);
 					}}
@@ -121,7 +122,10 @@ function Samarbeidsliste({ tilgjengeligeSamarbeid, harInaktive, harAktive }: { t
 				(harInaktive || tilgjengeligeSamarbeid.length > DEFAULT_MAKS_VISIBLE_SAMARBEID) && erEkspandert && (
 					<Button
 						variant="tertiary"
-						onClick={() => setErEkspandert(false)}
+						onClick={() => {
+							sendKnappEvent("Vis færre");
+							setErEkspandert(false);
+						}}
 						icon={<ChevronUpIcon aria-hidden />}
 					>
 						Vis færre

@@ -9,6 +9,7 @@ import { axe } from "jest-axe";
 import { useFiaDokument } from "../../fiaSamarbeidDokumenterAPI";
 import { SvaralternativResultat, TemaMedSpørsmålOgSvar } from "../../../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
 import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/SamarbeidsvelgerContext";
+import { sendPanelEkspanderEvent } from "../../../utils/analytics/analytics";
 
 jest.mock("../../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock();
@@ -172,6 +173,43 @@ describe("KartleggingFane", () => {
 		for (const spørsmål of dokumentinnhold.spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar).filter((s: { svarListe: SvaralternativResultat[] }) => s.svarListe.every((svar: { antallSvar: number }) => svar.antallSvar === 0))) {
 			expect(await screen.findAllByRole("heading", { name: spørsmål.tekst })).toHaveLength(1);
 		}
+	});
+
+	it("Sender analyttics ved åpning av rad", async () => {
+		render(
+			<KartleggingFane />
+		);
+
+		expect(sendPanelEkspanderEvent).toHaveBeenCalledTimes(0);
+
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(2);
+		rader[0].click();
+
+		await waitFor(() => expect(sendPanelEkspanderEvent).toHaveBeenCalledTimes(1));
+
+		expect(sendPanelEkspanderEvent).toHaveBeenNthCalledWith(1, "Behovsvurdering");
+
+		rader[1].click();
+
+		await waitFor(() => expect(sendPanelEkspanderEvent).toHaveBeenCalledTimes(2));
+		expect(sendPanelEkspanderEvent).toHaveBeenNthCalledWith(2, "Behovsvurdering");
+	});
+
+	it("Viser feil når henting av dokument feiler", async () => {
+		(useFiaDokument as jest.Mock).mockImplementationOnce(() => ({
+			status: RestStatus.Feil,
+			data: null
+		}));
+		render(
+			<KartleggingFane />
+		);
+		expect(useFiaDokument).toHaveBeenCalledTimes(0);
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(2);
+		rader[0].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+		expect(await screen.findByText("Noe gikk galt ved lasting. Vennligst prøv igjen senere.")).toBeInTheDocument();
 	});
 
 	it("Ingen aksessibilitetsfeil", async () => {

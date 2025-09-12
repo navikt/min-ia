@@ -4,7 +4,7 @@ import { fiaSamarbeidMock } from "../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import Samarbeidsoversikt, { DEFAULT_MAKS_VISIBLE_SAMARBEID } from ".";
-import { sendNavigereEvent } from "../../utils/analytics/analytics";
+import { sendNavigereEvent, sendKnappEvent } from "../../utils/analytics/analytics";
 import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 
 jest.mock("../../utils/analytics/analytics");
@@ -84,6 +84,34 @@ describe("Samarbeidsvelger", () => {
 
 		expect(sendNavigereEvent).toHaveBeenCalledWith("Se samarbeid", `/samarbeid/[SAMARBEID_ID]`);
 	});
+
+	it("Sender metrikk på ekspandering og kollapse", async () => {
+		expect(sendKnappEvent).not.toHaveBeenCalled();
+
+		const { container } = render(
+			<Samarbeidsoversikt />
+		);
+		expect(container).toBeInTheDocument();
+		expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3);
+
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
+		expect(seAlleKnapp).toBeInTheDocument();
+
+		seAlleKnapp.click();
+
+		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
+		expect(sendKnappEvent).toHaveBeenCalledWith("Vis alle ([antall])");
+
+		const visFærreKnapp = screen.getByRole("button", { name: "Vis færre" });
+		expect(visFærreKnapp).toBeInTheDocument();
+
+		visFærreKnapp.click();
+
+		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3));
+		expect(sendKnappEvent).toHaveBeenCalledWith("Vis færre");
+	});
+
+
 
 	it("Viser bare aktive samarbeid over fold", async () => {
 		(useFiaSamarbeid as jest.Mock).mockImplementationOnce(() => ({
