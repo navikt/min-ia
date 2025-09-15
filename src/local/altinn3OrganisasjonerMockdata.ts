@@ -2,7 +2,7 @@ export const altinn3Organisasjoner = [
   {
     orgnr: "311111111",
     altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_samarbeid",
+      "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
       "nav_forebygge-og-redusere-sykefravar_sykefravarsstatistikk",
       "nav_permittering-og-nedbemmaning_innsyn-i-alle-innsendte-meldinger",
       "nav_sosialtjenester_digisos-avtale",
@@ -41,7 +41,7 @@ export const altinn3Organisasjoner = [
       {
         orgnr: "999999997",
         altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_samarbeid",
+          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
           "nav_forebygge-og-redusere-sykefravar_sykefravarsstatistikk",
           "nav_permittering-og-nedbemmaning_innsyn-i-alle-innsendte-meldinger",
           "nav_sosialtjenester_digisos-avtale",
@@ -83,7 +83,7 @@ export const altinn3Organisasjoner = [
       {
         orgnr: "999999996",
         altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_samarbeid",
+          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
           "nav_forebygge-og-redusere-sykefravar_sykefravarsstatistikk",
           "nav_permittering-og-nedbemmaning_innsyn-i-alle-innsendte-meldinger",
           "nav_sosialtjenester_digisos-avtale",
@@ -129,7 +129,7 @@ export const altinn3Organisasjoner = [
   {
     orgnr: "211111111",
     altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_samarbeid",
+      "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
       "nav_tiltak_tiltaksrefusjon",
       "nav_foreldrepenger_inntektsmelding",
       "nav_rekruttering_stillingsannonser"
@@ -145,7 +145,7 @@ export const altinn3Organisasjoner = [
       {
         orgnr: "810969439",
         altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_samarbeid",
+          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
           "nav_tiltak_tiltaksrefusjon",
           "nav_foreldrepenger_inntektsmelding",
           "nav_rekruttering_stillingsannonser"
@@ -180,7 +180,7 @@ export const altinn3Organisasjoner = [
   {
     orgnr: "111111111",
     altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_samarbeid"
+      "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
     ],
     altinn2Tilganger: [
       "5934:1"
@@ -189,7 +189,7 @@ export const altinn3Organisasjoner = [
       {
         orgnr: "910969439",
         altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_samarbeid"
+          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
         ],
         altinn2Tilganger: [
           "5934:1"
@@ -205,7 +205,7 @@ export const altinn3Organisasjoner = [
   {
     orgnr: "910969439",
     altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_samarbeid"
+      "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
     ],
     altinn2Tilganger: [
       "5934:1"
@@ -214,7 +214,7 @@ export const altinn3Organisasjoner = [
       {
         orgnr: "910969440",
         altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_samarbeid"
+          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
         ],
         altinn2Tilganger: [
           "5934:1"
