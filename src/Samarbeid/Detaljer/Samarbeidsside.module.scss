@@ -1,0 +1,16 @@
+.samarbeidssideBlock {
+	min-height: 30rem;
+	padding-bottom: 4rem;
+	padding-top: 2rem;
+}
+
+.ingenSamarbeidBleed {
+	background-color: var(--a-blue-100);
+	padding: 2rem 1rem 2rem;
+	margin-bottom: 50vh;
+
+	.innhold {
+		max-width: 80rem;
+		margin: 0 auto;
+	}
+}

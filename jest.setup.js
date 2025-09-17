@@ -11,3 +11,8 @@ import "whatwg-fetch";
 import { toHaveNoViolations } from "jest-axe";
 
 expect.extend(toHaveNoViolations);
+
+// Mock for CSS.supports, brukt av highcharts
+Object.defineProperty(global.CSS, 'supports', {
+	value: () => jest.fn()
+});

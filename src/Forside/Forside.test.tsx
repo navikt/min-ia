@@ -1,8 +1,9 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
-import { sendVisSamarbeidsstatusEvent, sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
+import { sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
 import { Forside } from "./Forside";
 import React from "react";
 import { RestStatus } from "../integrasjoner/rest-status";
+import { fiaSamarbeidMock } from "../local/fia-samarbeidMock";
 
 jest.mock("../utils/analytics/analytics");
 jest.mock('next/router', () => ({
@@ -22,12 +23,6 @@ jest.mock('next/router', () => ({
 			replace: jest.fn(),
 		};
 	}),
-}));
-
-jest.mock("./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI", () => ({
-	__esModule: true,
-	...jest.requireActual("./FiaSamarbeidsstatus/fiaSamarbeidsstatusAPI"),
-	useFiaSamarbeidsstatus: jest.fn(() => ({ status: RestStatus.Suksess, data: { samarbeid: "I_SAMARBEID" } })),
 }));
 
 
@@ -63,21 +58,21 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 		],
 	})),
 }));
+const samarbeidMockdata = fiaSamarbeidMock().map((samarbeid) => ({
+	...samarbeid,
+    offentligId: `${samarbeid.offentligId}`,
+}));
 
+jest.mock("../Samarbeid/fiaSamarbeidAPI", () => ({
+	useFiaSamarbeid: jest.fn(() => ({
+		status: RestStatus.Suksess,
+		data: samarbeidMockdata,
+	})),
+}));
 
 describe("Forside", () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
-	});
-	it("Kaller sendVisSamarbeidsstatusEvent", () => {
-		expect(sendVisSamarbeidsstatusEvent).not.toHaveBeenCalled();
-		render(<Forside
-			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
-			kontaktOssUrl="kontaktOssUrl"
-			kjørerMockApp={false}
-		/>);
-		expect(sendVisSamarbeidsstatusEvent).toHaveBeenCalledTimes(1);
-		expect(sendVisSamarbeidsstatusEvent).toHaveBeenCalledWith("I_SAMARBEID");
 	});
 
 	it.each([
@@ -151,6 +146,26 @@ describe("Forside", () => {
 		aktivitetAccordion.click();
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledTimes(1);
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel, false);
+	});
+
+	it("Viser IA-samarbeid", () => {
+		render(<Forside
+			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
+			kontaktOssUrl="kontaktOssUrl"
+			kjørerMockApp={false}
+		/>);
+
+		expect(screen.getByRole("heading", { name: "IA-samarbeid med Nav arbeidslivssenter" })).toBeInTheDocument();
+		const samarbeidSomVisesOverFold = samarbeidMockdata.filter((s) => s.status === "AKTIV").slice(0, 3);
+
+		expect(samarbeidSomVisesOverFold.length).toBeGreaterThan(0);
+		for (const samarbeid of samarbeidSomVisesOverFold) {
+			const tittel = screen.getByRole("heading", { name: samarbeid.navn });
+			expect(tittel).toBeInTheDocument();
+
+			const lenke = tittel.parentElement?.querySelector("a");
+            expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
+		}
 	});
 
 	it("Kaller sendOppgaveStatusEvent ved statusendring på oppgave", async () => {

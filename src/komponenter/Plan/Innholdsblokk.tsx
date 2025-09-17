@@ -1,0 +1,93 @@
+import React from 'react';
+import { Accordion, BodyLong } from "@navikt/ds-react";
+import styles from './plan.module.scss';
+import { PlanTema } from "./typer";
+
+export default function Innholdsblokk({ tema }: { tema: PlanTema }) {
+	const filtrerteUndertemaer = tema.undertemaer.filter((undertema) => undertema.inkludert)
+		.sort((a, b) => {
+			return a.id - b.id;
+		});
+	return (
+		<Accordion className={styles.styledAccordion}>
+			<div className={styles.labelRad}>
+				<span className={styles.innholdLabel}>Tema</span>
+				<span className={styles.varighetLabel}>Periode</span>
+				<span className={styles.statusLabel}>Status</span>
+			</div>
+			{
+				filtrerteUndertemaer.map((undertema) => (
+					<Innholdsrad
+						key={undertema.id}
+						undertema={undertema}
+					/>
+				))
+			}
+		</Accordion>
+	);
+}
+
+function Innholdsrad({ undertema }: { undertema: PlanTema['undertemaer'][number] }) {
+	return (
+		<Accordion.Item className={styles.styledAccordionItem}>
+			<Accordion.Header className={styles.styledAccordionHeader}>
+				<span className={styles.styledInnholdsTittel}>
+					{undertema.navn}
+				</span>
+				<span>
+					{undertema.startDato && <PrettyInnholdsDato date={undertema.startDato} />}
+					{undertema.startDato && undertema.sluttDato && " - "}
+					{undertema.sluttDato && <PrettyInnholdsDato date={undertema.sluttDato} />}
+				</span>
+				<PrettyPrintUndertemaStatus status={undertema.status} />
+			</Accordion.Header>
+			<Accordion.Content className={styles.styledAccordionContent}>
+				<BodyLong>
+					{undertema.målsetning}
+				</BodyLong>
+			</Accordion.Content>
+		</Accordion.Item>
+	);
+}
+
+export function PrettyPrintUndertemaStatus({ status }: { status: PlanTema['undertemaer'][number]['status'] }) {
+	switch (status) {
+		case "PÅGÅR":
+			return <span>Pågår</span>;
+		case "FULLFØRT":
+			return <span>Fullført</span>;
+		case "AVBRUTT":
+			return <span>Avbrutt</span>;
+		case "PLANLAGT":
+			return <span>Planlagt</span>;
+		default:
+			return <span>Ukjent status</span>;
+	}
+}
+
+
+export function PrettyInnholdsDato({
+	date,
+	visNesteMåned = false,
+}: {
+	date: string;
+	visNesteMåned?: boolean;
+}) {
+	return React.useMemo(() => {
+		const nyDato = new Date(date);
+		if (visNesteMåned) {
+			nyDato.setDate(nyDato.getDate() - 1);
+		}
+
+		return lokalDatoMedKortTekstmåned(nyDato);
+	}, [visNesteMåned, date]);
+}
+
+const dateFormatDatoMedKortTekstmåned = new Intl.DateTimeFormat("nb-NO", {
+	month: "short",
+	day: "numeric",
+	year: "2-digit",
+});
+
+export const lokalDatoMedKortTekstmåned = (input: Date) =>
+	dateFormatDatoMedKortTekstmåned.format(new Date(input));

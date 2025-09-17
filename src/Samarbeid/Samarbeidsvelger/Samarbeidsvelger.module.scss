@@ -1,0 +1,46 @@
+.samarbeidsvelgerBleed {
+	background-color: var(--a-blue-100);
+	padding: 1.5rem 1rem 2rem;
+
+	.innhold {
+		max-width: 80rem;
+		margin: 0 auto;
+
+		.menyknapp {
+			width: 100%;
+			max-width: 20rem;
+			background-color: var(--a-white);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 0.5rem;
+			--a-font-weight-bold: var(--a-font-weight-regular);
+			padding: 0.75rem 1rem;
+
+			:first-child {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+	}
+}
+
+.samarbeidsvelgermeny {
+	max-width: 100%;
+	width: 20rem;
+
+	.menyItem {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		word-break: break-word;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+
+		span {
+			flex-shrink: 0;
+		}
+	}
+}

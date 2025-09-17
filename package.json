@@ -33,6 +33,8 @@
     "@types/node-fetch": "^3.0.3",
     "@types/uuid": "^10.0.0",
     "csp-header": "^6.1.0",
+    "highcharts": "^12.3.0",
+    "highcharts-react-official": "^3.2.2",
     "dotenv": "^17.2.1",
     "html-react-parser": "^5.2.6",
     "msw": "2.10.4",
