@@ -8,7 +8,7 @@ import { sendNavigereEvent, sendKnappEvent } from "../../utils/analytics/analyti
 import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
 
 jest.mock("../../utils/analytics/analytics");
-const mockdata = fiaSamarbeidMock();
+const mockdata = fiaSamarbeidMock(true);
 
 jest.mock("../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
