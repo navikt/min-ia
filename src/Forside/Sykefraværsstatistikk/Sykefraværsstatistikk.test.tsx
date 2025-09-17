@@ -21,7 +21,7 @@ jest.mock("../../hooks/useAltinnOrganisasjoner", () => ({
     status: RestStatus.Suksess,
     data: [
       {
-        Name: "FLESK OG FISK AS [Local server]",
+        Name: "FIKTIVT SYKEHUS [TEST]",
         Type: "Enterprise",
         OrganizationNumber: "999999999",
         OrganizationForm: "AS",
@@ -34,7 +34,7 @@ jest.mock("../../hooks/useAltinnOrganisasjoner", () => ({
     status: RestStatus.Suksess,
     data: [
       {
-        Name: "FLESK OG FISK AS [Local server]",
+        Name: "FIKTIVT SYKEHUS [TEST]",
         Type: "Enterprise",
         OrganizationNumber: "999999999",
         OrganizationForm: "AS",
@@ -188,7 +188,7 @@ describe("Sykefraværsstatistikk", () => {
       status: RestStatus.Suksess,
       data: [
         {
-          Name: "FLESK OG FISK AS [Local server]",
+          Name: "FIKTIVT SYKEHUS [TEST]",
           Type: "Enterprise",
           OrganizationNumber: "123123123",
           OrganizationForm: "AS",
@@ -231,7 +231,7 @@ describe("Sykefraværsstatistikk", () => {
       status: RestStatus.Suksess,
       data: [
         {
-          Name: "FLESK OG FISK AS [Local server]",
+          Name: "FIKTIVT SYKEHUS [TEST]",
           Type: "Enterprise",
           OrganizationNumber: "123123123",
           OrganizationForm: "AS",

@@ -35,7 +35,7 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 		status: RestStatus.Suksess,
 		data: [
 			{
-				Name: "FLESK OG FISK AS [Local server]",
+				Name: "FIKTIVT SYKEHUS [TEST]",
 				Type: "Enterprise",
 				OrganizationNumber: "999999999",
 				OrganizationForm: "AS",
@@ -48,7 +48,7 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 		status: RestStatus.Suksess,
 		data: [
 			{
-				Name: "FLESK OG FISK AS [Local server]",
+				Name: "FIKTIVT SYKEHUS [TEST]",
 				Type: "Enterprise",
 				OrganizationNumber: "999999999",
 				OrganizationForm: "AS",
@@ -60,7 +60,7 @@ jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
 }));
 const samarbeidMockdata = fiaSamarbeidMock().map((samarbeid) => ({
 	...samarbeid,
-    offentligId: `${samarbeid.offentligId}`,
+	offentligId: `${samarbeid.offentligId}`,
 }));
 
 jest.mock("../Samarbeid/fiaSamarbeidAPI", () => ({
@@ -164,7 +164,7 @@ describe("Forside", () => {
 			expect(tittel).toBeInTheDocument();
 
 			const lenke = tittel.parentElement?.querySelector("a");
-            expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
+			expect(lenke).toHaveAttribute("href", `/samarbeid/${samarbeid.offentligId}`);
 		}
 	});
 

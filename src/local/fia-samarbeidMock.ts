@@ -1,29 +1,9 @@
 export const fiaSamarbeidMock = () => {
     return [
         {
-            "offentligId": "6445c735-ea64-4a75-934d-ef560d83d3d7",
-            "saksnummer": "123",
-            "navn": "samarbeid med 2 publiserte behovsvurderinger",
-            "status": "FULLFØRT",
-            "opprettet": "2025-08-12T13:00:00Z",
-            "sistEndret": "2025-08-12T13:00:00Z",
-            "dokumenter": [
-                {
-                    "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa86",
-                    "type": "BEHOVSVURDERING",
-                    "dato": "2025-08-27T09:39:18.828991"
-                },
-                {
-                    "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa87",
-                    "type": "BEHOVSVURDERING",
-                    "dato": "2025-08-28T09:39:18.828991"
-                }
-            ]
-        },
-        {
             "offentligId": "d623aa2c-709d-4fb2-9954-d19f6d885415",
             "saksnummer": "123",
-            "navn": "Samarbeid med halvferdig behovsvurderinger",
+            "navn": "Geriatrisk poliklinikk",
             "status": "AKTIV",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
@@ -43,7 +23,7 @@ export const fiaSamarbeidMock = () => {
         {
             "offentligId": "f1e8c8b4-3c4e-4f2e-9f7a-2b6e5d9c8a1b",
             "saksnummer": "123",
-            "navn": "Samarbeid 3",
+            "navn": "Øre-nese-hals",
             "status": "FULLFØRT",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
@@ -58,7 +38,7 @@ export const fiaSamarbeidMock = () => {
         {
             "offentligId": "a9f5c6e2-5b4d-4c3e-8f7a-1e2d3c4b5a6f",
             "saksnummer": "123",
-            "navn": "Samarbeid 4",
+            "navn": "Anestesiavdelingen",
             "status": "AKTIV",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
@@ -73,38 +53,8 @@ export const fiaSamarbeidMock = () => {
         {
             "offentligId": "c3b2a1d4-6e5f-4a3b-9c8d-7e6f5a4b3c2d",
             "saksnummer": "123",
-            "navn": "Samarbeid 5",
-            "status": "FULLFØRT",
-            "opprettet": "2025-08-12T13:00:00Z",
-            "sistEndret": "2025-08-12T13:00:00Z",
-            "dokumenter": [
-                {
-                    "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa86",
-                    "type": "BEHOVSVURDERING",
-                    "dato": "2025-08-27T09:39:18.828991"
-                }
-            ]
-        },
-        {
-            "offentligId": "e7f6d5c4-b3a2-4e1f-8d7c-6b5a4e3d2c1b",
-            "saksnummer": "123",
-            "navn": "Samarbeid 6",
-            "status": "AKTIV",
-            "opprettet": "2025-08-12T13:00:00Z",
-            "sistEndret": "2025-08-12T13:00:00Z",
-            "dokumenter": [
-                {
-                    "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa86",
-                    "type": "BEHOVSVURDERING",
-                    "dato": "2025-08-27T09:39:18.828991"
-                }
-            ]
-        },
-        {
-            "offentligId": "f9e8d7c6-b5a4-3e2d-1c0b-9a8b7c6d5e4f",
-            "saksnummer": "123",
-            "navn": "samarbeidmedveldiglangtnavnutenmellomrommmmmmmmmmm",
-            "status": "AKTIV",
+            "navn": "Akuttmottaket",
+            "status": "AVBRUTT",
             "opprettet": "2025-08-12T13:00:00Z",
             "sistEndret": "2025-08-12T13:00:00Z",
             "dokumenter": [
@@ -647,7 +597,7 @@ const dummydokumenter = [
     {
         "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa87",
         "type": "BEHOVSVURDERING",
-        "samarbeidNavn": "Samarbeid med halvferdig behovsvurderinger",
+        "samarbeidNavn": "Geriatrisk poliklinikk",
         "innhold": JSON.stringify({
             "id": "1314109f-72e8-40e9-811c-7d20cac9b433",
             "fullførtTidspunkt": "2025-08-27T09:39:18.828991",
@@ -1168,7 +1118,7 @@ const dummydokumenter = [
     {
         "dokumentId": "ce282c64-7aa8-4577-b161-088c405aa3b5",
         "type": "BEHOVSVURDERING",
-        "samarbeidNavn": "Samarbeid med halvferdig behovsvurderinger",
+        "samarbeidNavn": "Geriatrisk poliklinikk",
         "innhold": JSON.stringify({
             "id": "1314109f-72e8-40e9-811c-7d20cac9b433",
             "fullførtTidspunkt": "2025-08-29T09:39:18.828991",

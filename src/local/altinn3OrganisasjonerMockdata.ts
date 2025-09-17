@@ -195,11 +195,11 @@ export const altinn3Organisasjoner = [
           "5934:1"
         ],
         underenheter: [],
-        navn: "FLESK OG FISK OSLO [Local server]",
+        navn: "FIKTIVT SYKEHUS [TEST]",
         organisasjonsform: "BEDR"
       }
     ],
-    navn: "FLESK OG FISK AS [Local server]",
+    navn: "FIKTIVT SYKEHUS [TEST]",
     organisasjonsform: "AS"
   },
   {

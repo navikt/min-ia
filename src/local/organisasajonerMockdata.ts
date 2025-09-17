@@ -1,6 +1,6 @@
 export const organisasjoner = [
   {
-    Name: "FLESK OG FISK AS [Local server]",
+    Name: "FIKTIVT SYKEHUS [TEST]",
     Type: "Enterprise",
     OrganizationNumber: "111111111",
     OrganizationForm: "AS",
@@ -8,7 +8,7 @@ export const organisasjoner = [
     ParentOrganizationNumber: "",
   },
   {
-    Name: "FLESK OG FISK OSLO [Local server]",
+    Name: "FIKTIVT SYKEHUS [TEST]",
     OrganizationNumber: "910969439",
     OrganizationForm: "BEDR",
     ParentOrganizationNumber: "111111111",
@@ -47,13 +47,13 @@ export const organisasjoner = [
 
 export const organisasjonerMedIaRettighet = [
   {
-    Name: "FLESK OG FISK AS [Local server]",
+    Name: "FIKTIVT SYKEHUS [TEST]",
     OrganizationNumber: "111111111",
     OrganizationForm: "AS",
     ParentOrganizationNumber: "",
   },
   {
-    Name: "FLESK OG FISK OSLO [Local server]",
+    Name: "FIKTIVT SYKEHUS [TEST]",
     OrganizationNumber: "910969439",
     OrganizationForm: "BEDR",
     ParentOrganizationNumber: "111111111",
