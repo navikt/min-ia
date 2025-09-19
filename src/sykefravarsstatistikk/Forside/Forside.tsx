@@ -9,7 +9,6 @@ import { Statistikkategori } from "../domene/statistikkategori";
 import { useOrgnr } from "../../hooks/useOrgnr";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import TestVersjonBanner from "../../komponenter/TestVersjonBanner/TestVersjonBanner";
-import InfoBanner from "../../komponenter/InfoBanner/InfoBanner";
 
 import { SykefraværAppData } from "../hooks/useSykefraværAppData";
 import Historikk from "../Historikk/Historikk";
@@ -154,7 +153,6 @@ export const Forside = ({
                     prodUrl={prodUrl}
                     kjørerMockApp={kjørerMockApp}
                 />
-                <InfoBanner/>
                 <div className={styles["forside__innhold"]} ref={innholdRef}>
                     {harFeil && (
                         <Alert
