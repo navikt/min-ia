@@ -7,6 +7,7 @@ import Samarbeidsinfo from "../Samarbeidsinfo";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import styles from './Samarbeidsside.module.scss';
 import samarbeidsvelgerStyles from '../Samarbeidsvelger/Samarbeidsvelger.module.scss';
+import PlanFane from "./PlanFane";
 
 export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffentligId }: {
 	samarbeidOffentligId?: string,
@@ -65,23 +66,21 @@ function Samarbeidssideinnhold() {
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
 			<Tabs value={valgtFane} onChange={setValgtFane}>
-				<Tabs.List aria-hidden /* gjem fra skjermlesere, ettersom vi ikke faktisk har noe tabber her. */>
+				<Tabs.List>
 					<Page.Block width="xl">
-						<Tabs.Tab value="kartlegging" label="Kartlegginger" as={UnfocusableTab} />
+						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
+						<Tabs.Tab value="samarbeidsplan" label="Samarbeidsplan" />
 					</Page.Block>
 				</Tabs.List>
 				<Page.Block width="xl" gutters className={styles.samarbeidssideBlock}>
-					{/* <Tabs.Panel value="kartlegging"> */}
-					<KartleggingFane />
-					{/* </Tabs.Panel> */}
+					<Tabs.Panel value="kartlegging">
+						<KartleggingFane />
+					</Tabs.Panel>
+					<Tabs.Panel value="samarbeidsplan">
+						<PlanFane />
+					</Tabs.Panel>
 				</Page.Block>
 			</Tabs>
 		</>
 	);
 }
-
-function UnfocusableTab({ ...props }: React.ComponentProps<typeof Tabs.Tab>) {
-	// Tabindex -1 funker ikke på Tabs.Tab, så vi må lage en wrapper-komponent.
-	// Vi skjuler for skjermlesere da det bare er en fane, og vi har ingen andre faner å bytte til enda.
-	return <span {...props} tabIndex={-1} role={undefined} />;
-};
