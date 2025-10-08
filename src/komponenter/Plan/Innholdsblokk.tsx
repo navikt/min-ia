@@ -2,6 +2,7 @@ import React from 'react';
 import { Accordion, BodyLong } from "@navikt/ds-react";
 import styles from './plan.module.scss';
 import { PlanTema } from "./typer";
+import { sendPlanUndertemaÅpnet } from '../../utils/analytics/analytics';
 
 export default function Innholdsblokk({ tema }: { tema: PlanTema }) {
 	const filtrerteUndertemaer = React.useMemo(() => tema.undertemaer.filter((undertema) => undertema.inkludert)
@@ -30,7 +31,11 @@ export default function Innholdsblokk({ tema }: { tema: PlanTema }) {
 
 function Innholdsrad({ undertema }: { undertema: PlanTema['undertemaer'][number] }) {
 	return (
-		<Accordion.Item className={styles.styledAccordionItem}>
+		<Accordion.Item className={styles.styledAccordionItem} onOpenChange={(open) => {
+			if (open) {
+				sendPlanUndertemaÅpnet(undertema.navn, undertema.status);
+			}
+		}}>
 			<Accordion.Header className={styles.styledAccordionHeader}>
 				<span className={styles.styledInnholdsTittel} aria-label={`Tema: ${undertema.navn}`}>
 					{undertema.navn}
