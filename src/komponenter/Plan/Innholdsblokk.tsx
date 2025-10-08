@@ -4,13 +4,14 @@ import styles from './plan.module.scss';
 import { PlanTema } from "./typer";
 
 export default function Innholdsblokk({ tema }: { tema: PlanTema }) {
-	const filtrerteUndertemaer = tema.undertemaer.filter((undertema) => undertema.inkludert)
+	const filtrerteUndertemaer = React.useMemo(() => tema.undertemaer.filter((undertema) => undertema.inkludert)
 		.sort((a, b) => {
 			return a.id - b.id;
-		});
+		}), [tema]);
+
 	return (
 		<Accordion className={styles.styledAccordion}>
-			<div className={styles.labelRad}>
+			<div className={styles.labelRad} aria-hidden>
 				<span className={styles.innholdLabel}>Tema</span>
 				<span className={styles.varighetLabel}>Periode</span>
 				<span className={styles.statusLabel}>Status</span>
@@ -31,10 +32,10 @@ function Innholdsrad({ undertema }: { undertema: PlanTema['undertemaer'][number]
 	return (
 		<Accordion.Item className={styles.styledAccordionItem}>
 			<Accordion.Header className={styles.styledAccordionHeader}>
-				<span className={styles.styledInnholdsTittel}>
+				<span className={styles.styledInnholdsTittel} aria-label={`Tema: ${undertema.navn}`}>
 					{undertema.navn}
 				</span>
-				<span>
+				<span aria-label={`fra ${nullSafeLokalDatoMedLangTekstmåned(undertema.startDato)} til ${nullSafeLokalDatoMedLangTekstmåned(undertema.sluttDato)}`}>
 					{undertema.startDato && <PrettyInnholdsDato date={undertema.startDato} />}
 					{undertema.startDato && undertema.sluttDato && " - "}
 					{undertema.sluttDato && <PrettyInnholdsDato date={undertema.sluttDato} />}
@@ -50,7 +51,7 @@ function Innholdsrad({ undertema }: { undertema: PlanTema['undertemaer'][number]
 	);
 }
 
-export function PrettyPrintUndertemaStatus({ status }: { status: PlanTema['undertemaer'][number]['status'] }) {
+function PrettyPrintUndertemaStatus({ status }: { status: PlanTema['undertemaer'][number]['status'] }) {
 	switch (status) {
 		case "PÅGÅR":
 			return <span>Pågår</span>;
@@ -66,7 +67,7 @@ export function PrettyPrintUndertemaStatus({ status }: { status: PlanTema['under
 }
 
 
-export function PrettyInnholdsDato({
+function PrettyInnholdsDato({
 	date,
 	visNesteMåned = false,
 }: {
@@ -89,5 +90,23 @@ const dateFormatDatoMedKortTekstmåned = new Intl.DateTimeFormat("nb-NO", {
 	year: "2-digit",
 });
 
-export const lokalDatoMedKortTekstmåned = (input: Date) =>
-	dateFormatDatoMedKortTekstmåned.format(new Date(input));
+const dateFormatDatoMedLangTekstmåned = new Intl.DateTimeFormat("nb-NO", {
+	month: "long",
+	day: "numeric",
+	year: "numeric",
+});
+
+function lokalDatoMedKortTekstmåned(input: Date) {
+	return dateFormatDatoMedKortTekstmåned.format(new Date(input));
+}
+
+function lokalDatoMedLangTekstmåned(input: Date) {
+	return dateFormatDatoMedLangTekstmåned.format(new Date(input));
+}
+
+function nullSafeLokalDatoMedLangTekstmåned(input: string | null | undefined) {
+	if (!input) {
+		return "ukjent dato";
+	}
+	return lokalDatoMedLangTekstmåned(new Date(input));
+}

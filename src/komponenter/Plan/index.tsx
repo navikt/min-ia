@@ -21,7 +21,7 @@ export default function Plan({ plan }: { plan: PlanType }) {
 							<Heading level="3" size="medium" spacing>{tema.navn}</Heading>
 							<BodyShort>Oppdatert {sisteEndring}</BodyShort>
 						</HStack>
-						<PlanGraf undertemaer={tema.undertemaer} />
+						<PlanGraf undertemaer={tema.undertemaer} aria-hidden />
 						<Innholdsblokk tema={tema} />
 					</div>
 				))

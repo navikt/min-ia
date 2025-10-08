@@ -5,12 +5,12 @@ import { PlanUndertema } from "./typer";
 export type PølsegrafProps = {
 	undertemaer: PlanUndertema[];
 	hidePin?: boolean;
-};
+} & Partial<React.ComponentPropsWithRef<typeof Timeline>>;
 
-export default function PlanGraf(props: PølsegrafProps) {
-	const undertemaer = React.useMemo(
+export default function PlanGraf({ undertemaer, hidePin }: PølsegrafProps) {
+	const filtrerteUndertemaer = React.useMemo(
 		() =>
-			props.undertemaer
+			undertemaer
 				.filter((pølse) => pølse.sluttDato && pølse.startDato)
 				.map((pølse) => {
 					const slutt = new Date(pølse.sluttDato ?? "");
@@ -22,12 +22,12 @@ export default function PlanGraf(props: PølsegrafProps) {
 						slutt,
 					};
 				}),
-		[props.undertemaer],
+		[undertemaer],
 	);
 	const iDag = new Date();
 
 	const { earliestStart, latestSlutt } = React.useMemo(() => {
-		const undertemaStartOgSlutt = undertemaer.reduce(
+		const undertemaStartOgSlutt = filtrerteUndertemaer.reduce(
 			(acc, pølse) => {
 				const start = new Date(pølse.start);
 				const slutt = new Date(pølse.slutt);
@@ -67,21 +67,21 @@ export default function PlanGraf(props: PølsegrafProps) {
 					: dagEtterStart,
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [undertemaer]);
+	}, [filtrerteUndertemaer]);
 
-	if (undertemaer.length === 0) {
+	if (filtrerteUndertemaer.length === 0) {
 		return null;
 	}
 
 	return (
-		<>
+		<span aria-hidden>
 			<Timeline startDate={earliestStart} endDate={latestSlutt}>
-				{props.hidePin ||
+				{hidePin ||
 					iDag < earliestStart ||
 					iDag > latestSlutt ? undefined : (
 					<Timeline.Pin date={new Date()} />
 				)}
-				{undertemaer
+				{filtrerteUndertemaer
 					.sort((a, b) => {
 						return a.id - b.id;
 					})
@@ -101,7 +101,7 @@ export default function PlanGraf(props: PølsegrafProps) {
 						</Timeline.Row>
 					))}
 			</Timeline>
-		</>
+		</span>
 	);
 }
 
