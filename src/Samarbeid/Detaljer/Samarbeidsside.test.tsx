@@ -27,8 +27,9 @@ describe("Samarbeidsside", () => {
 		);
 		expect(container).toBeInTheDocument();
 
-		// TODO: Sjekk at fanen "Kartlegginger" er tilstede når vi skrur på tabber igjen.
-		// expect(screen.getByRole("tab", { name: "Kartlegginger" })).toBeInTheDocument();
+		// Sjekk at fanene er tilstede.
+		expect(screen.getByRole("tab", { name: "Kartlegginger" })).toBeInTheDocument();
+		expect(screen.getByRole("tab", { name: "Samarbeidsplan" })).toBeInTheDocument();
 		// Sjekk at samarbeidsvelgeren er tilstede
 		expect(screen.getByText("Velg samarbeid")).toBeInTheDocument();
 		// Sjekk at samarbeidsinfo er tilstede
