@@ -1,4 +1,5 @@
 import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
+import { PlanTema } from "../../komponenter/Plan/typer";
 
 const track = getAnalyticsInstance("min-ia");
 
@@ -52,6 +53,10 @@ export function sendÅpneAktivitetEvent(oppgavetittel: string, harFremgangIOppga
     logAnalyticsEvent("accordion åpnet", {tekst: oppgavetittel, harFremgangIOppgaver});
 }
 
+export function sendPlanUndertemaÅpnet(temanavn: string, status: PlanTema['undertemaer'][number]['status']) {
+    logAnalyticsEvent("accordion åpnet", {tekst: temanavn, status});
+}
+
 export const sendBedriftValgtEvent = () => {
     logAnalyticsEvent("bedrift valgt");
 };
@@ -62,4 +67,8 @@ export const sendNavigereEvent = (lenketekst: string, destinasjon: string) => {
 
 export const sendSamarbeidValgtEvent = (status: string) => {
     logAnalyticsEvent("samarbeid valgt", {status});
+}
+
+export const sendFaneByttetEvent = (fraFane: string, tilFane: string) => {
+    logAnalyticsEvent("fane byttet", {fraFane, tilFane});
 }

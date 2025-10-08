@@ -8,6 +8,7 @@ import { RestStatus } from "../../integrasjoner/rest-status";
 import styles from './Samarbeidsside.module.scss';
 import samarbeidsvelgerStyles from '../Samarbeidsvelger/Samarbeidsvelger.module.scss';
 import PlanFane from "./PlanFane";
+import { sendFaneByttetEvent } from "../../utils/analytics/analytics";
 
 export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffentligId }: {
 	samarbeidOffentligId?: string,
@@ -24,6 +25,10 @@ export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffen
 
 function Samarbeidssideinnhold() {
 	const [valgtFane, setValgtFane] = React.useState("kartlegging");
+	function setValgtFaneOgLogg(fane: string) {
+		sendFaneByttetEvent(valgtFane, fane);
+		setValgtFane(fane);
+	}
 	const { status, tilgjengeligeSamarbeid } = useSamarbeidsvelgerContext();
 
 	if (status === RestStatus.IkkeLastet || status === RestStatus.LasterInn) {
@@ -65,7 +70,7 @@ function Samarbeidssideinnhold() {
 		<>
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
-			<Tabs value={valgtFane} onChange={setValgtFane}>
+			<Tabs value={valgtFane} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
 					<Page.Block width="xl">
 						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
