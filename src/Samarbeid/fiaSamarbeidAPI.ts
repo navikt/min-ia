@@ -6,7 +6,7 @@ import { SamarbeidStatus } from "./Samarbeidsvelger/samarbeidtyper";
 
 export interface FiaSamarbeidDokument {
   dokumentId: string;
-  type: "BEHOVSVURDERING";
+  type: "BEHOVSVURDERING" | "SAMARBEIDSPLAN";
   dato: Date;
 }
 export interface FiaSamarbeidDto {

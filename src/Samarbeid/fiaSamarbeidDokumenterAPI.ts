@@ -1,6 +1,7 @@
 import { useOrgnr } from "../hooks/useOrgnr";
 import { useRestRessursSWR } from "../hooks/useRestRessursSWR";
 import { RestRessurs, RestStatus } from "../integrasjoner/rest-status";
+import { PlanType } from "../komponenter/Plan/typer";
 import { Spørreundersøkelse } from "../komponenter/Spørreundersøkelsesresultat/SpørreundersøkelseRad";
 import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 
@@ -15,6 +16,11 @@ export type FiaDokument = {
   type: "BEHOVSVURDERING";
   dato: Date;
   innhold: Spørreundersøkelse;
+} | {
+  dokumentId: string;
+  type: "SAMARBEIDSPLAN";
+  dato: Date;
+  innhold: PlanType;
 };
 
 export function useFiaDokument({dokumentId}: {dokumentId: string}): RestRessurs<FiaDokument> {

@@ -137,6 +137,11 @@ export const fiaSamarbeidMock = (test = false) => {
                     "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa87",
                     "type": "BEHOVSVURDERING",
                     "dato": "2025-08-27T09:39:18.828991"
+                },
+                {
+                    "dokumentId": "7b758002-8beb-4943-9500-f694a92e1d9a",
+                    "type": "SAMARBEIDSPLAN",
+                    "dato": "2025-10-10T12:48:33.971950"
                 }
             ]
         },
@@ -1754,6 +1759,150 @@ const dummydokumenter = [
                     "antallDeltakereSomHarSvart": 0
                 }]
             }]
+        })
+    },
+    {
+        "dokumentId": "7b758002-8beb-4943-9500-f694a92e1d9a",
+        "type": "SAMARBEIDSPLAN",
+        "samarbeidNavn": "Avd Fysio",
+        "innhold": JSON.stringify({
+            "id": "77daede3-e842-4afc-ae37-9cbbc074e577",
+            "status": "AKTIV",
+            "temaer": [
+                {
+                    "id": 1183,
+                    "navn": "Partssamarbeid",
+                    "inkludert": true,
+                    "undertemaer": [
+                        {
+                            "id": 4324,
+                            "navn": "Utvikle partssamarbeidet",
+                            "status": "PÅGÅR",
+                            "inkludert": true,
+                            "sluttDato": "2025-11-21",
+                            "startDato": "2025-09-26",
+                            "målsetning": "Styrke og strukturere samarbeidet mellom leder, tillitsvalgt og verneombud, samt øke kunnskap og ferdigheter for å jobbe systematisk og forebyggende med sykefravær og arbeidsmiljø.",
+                            "harAktiviteterISalesforce": false
+                        }
+                    ]
+                },
+                {
+                    "id": 1184,
+                    "navn": "Sykefraværsarbeid",
+                    "inkludert": true,
+                    "undertemaer": [
+                        {
+                            "id": 4327,
+                            "navn": "Tilretteleggings- og medvirkningsplikt",
+                            "status": null,
+                            "inkludert": false,
+                            "sluttDato": null,
+                            "startDato": null,
+                            "målsetning": "Utvikle rutiner og kultur for tilrettelegging og medvirkning, samt kartlegging av tilretteleggingsmuligheter på arbeidsplassen.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4328,
+                            "navn": "Sykefravær - enkeltsaker",
+                            "status": null,
+                            "inkludert": false,
+                            "sluttDato": null,
+                            "startDato": null,
+                            "målsetning": "Øke kompetanse og ferdigheter for hvordan man tar tak i, følger opp og løser enkeltsaker.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4325,
+                            "navn": "Sykefraværsrutiner",
+                            "status": "AVBRUTT",
+                            "inkludert": true,
+                            "sluttDato": "2025-10-26",
+                            "startDato": "2025-09-26",
+                            "målsetning": "Jobbe systematisk og forebyggende med sykefravær, samt forbedre rutiner og oppfølging av ansatte som er sykmeldte eller står i fare for å bli det.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4326,
+                            "navn": "Oppfølgingssamtaler",
+                            "status": "FULLFØRT",
+                            "inkludert": true,
+                            "sluttDato": "2025-10-26",
+                            "startDato": "2025-09-26",
+                            "målsetning": "Øke kompetanse og ferdigheter for hvordan man gjennomfører gode oppfølgingssamtaler, både gjennom teori og praksis.",
+                            "harAktiviteterISalesforce": false
+                        }
+                    ]
+                },
+                {
+                    "id": 1185,
+                    "navn": "Arbeidsmiljø",
+                    "inkludert": true,
+                    "undertemaer": [
+                        {
+                            "id": 4332,
+                            "navn": "Livsfaseorientert personalpolitikk",
+                            "status": "PÅGÅR",
+                            "inkludert": true,
+                            "sluttDato": "2025-12-11",
+                            "startDato": "2025-08-31",
+                            "målsetning": "Utvikle kultur og personalpolitikk som ivaretar medarbeideres ulike behov, krav, begrensninger og muligheter i ulike livsfaser.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4334,
+                            "navn": "HelseIArbeid",
+                            "status": "FULLFØRT",
+                            "inkludert": true,
+                            "sluttDato": "2025-10-26",
+                            "startDato": "2025-09-26",
+                            "målsetning": "Øke kompetansen og få ansatte til å mestre jobb, selv med muskel/skjelett- og psykiske helseplager.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4329,
+                            "navn": "Utvikle arbeidsmiljøet",
+                            "status": null,
+                            "inkludert": false,
+                            "sluttDato": null,
+                            "startDato": null,
+                            "målsetning": "Øke anvendelse og kompetanse innen verktøy og bransjerettet kunnskap for å jobbe målrettet og kunnskapsbasert med eget arbeidsmiljø.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4330,
+                            "navn": "Endring og omstilling",
+                            "status": "PLANLAGT",
+                            "inkludert": true,
+                            "sluttDato": "2025-11-26",
+                            "startDato": "2025-09-17",
+                            "målsetning": "Øke kompetansen for hvordan man ivaretar arbeidsmiljø og forebygger sykefravær under endring og omstilling.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4333,
+                            "navn": "Psykisk helse",
+                            "status": null,
+                            "inkludert": false,
+                            "sluttDato": null,
+                            "startDato": null,
+                            "målsetning": "Gi innsikt i hvordan psykiske utfordringer kan komme til uttrykk i arbeidshverdagen og øke ferdigheter for hvordan man møter medarbeidere med psykiske helseutfordringer.",
+                            "harAktiviteterISalesforce": false
+                        },
+                        {
+                            "id": 4331,
+                            "navn": "Oppfølging av arbeidsmiljøundersøkelser",
+                            "status": "AVBRUTT",
+                            "inkludert": true,
+                            "sluttDato": "2025-11-19",
+                            "startDato": "2025-09-08",
+                            "målsetning": "Øke ferdigheter og gi støtte til hvordan man kan jobbe med forhold på arbeidsplassen som belyses i egne arbeidsmiljøundersøkelser.",
+                            "harAktiviteterISalesforce": false
+                        }
+                    ]
+                }
+            ],
+            "sistEndret": "2025-09-26T10:31:22.170622",
+            "sistPublisert": null
         })
     },
 ]
