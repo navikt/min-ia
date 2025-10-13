@@ -11,17 +11,22 @@ export type FiaDokumentFraServer = {
   dato: Date;
   innhold: string;
 };
-export type FiaDokument = {
+
+export type FiaBehovsvurderingDokument = {
   dokumentId: string;
   type: "BEHOVSVURDERING";
   dato: Date;
   innhold: Spørreundersøkelse;
-} | {
+};
+
+export type FiaSamarbeidsplanDokument = {
   dokumentId: string;
   type: "SAMARBEIDSPLAN";
   dato: Date;
   innhold: PlanType;
 };
+
+export type FiaDokument = FiaBehovsvurderingDokument | FiaSamarbeidsplanDokument;
 
 export function useFiaDokument({dokumentId}: {dokumentId: string}): RestRessurs<FiaDokument> {
   const gyldigOrgnr = useOrgnr();

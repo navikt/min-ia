@@ -5,6 +5,7 @@ import { FiaSamarbeidDokument } from "../../fiaSamarbeidAPI";
 
 export default function Kartlegginger({ dokumenter }: { dokumenter: FiaSamarbeidDokument[] }) {
 	return dokumenter
+		.filter((dokument) => dokument.type === "BEHOVSVURDERING")
 		.sort(({ dato: opprettetA }, { dato: opprettetB }) => opprettetB.valueOf() - opprettetA.valueOf())
 		.map((dokument) => (
 			<SpørreundersøkelseRad
