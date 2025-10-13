@@ -5,8 +5,42 @@ import PlanFane from ".";
 import { queryAllByText, render, screen, waitFor } from "@testing-library/react";
 import { sendPlanUndertemaÅpnet } from "../../../utils/analytics/analytics";
 import { axe } from "jest-axe";
+import { RestStatus } from "../../../integrasjoner/rest-status";
+import { fiaSamarbeidMock, fiaSamarbeidDokumentMock } from "../../../local/fia-samarbeidMock";
 
 jest.mock("../../../utils/analytics/analytics");
+const mockdata = fiaSamarbeidMock();
+
+jest.mock("../../fiaSamarbeidAPI", () => ({
+	useFiaSamarbeid: jest.fn(() => ({
+		status: RestStatus.Suksess,
+		data: mockdata,
+	})),
+}));
+jest.mock("../../Samarbeidsvelger/SamarbeidsvelgerContext", () => ({
+	useDokumenterPåValgtSamarbeid: jest.fn(() => ([
+		{
+			"dokumentId": "7b758002-8beb-4943-9500-f694a92e1d9a",
+			"type": "SAMARBEIDSPLAN",
+			"dato": new Date("2023-10-20T14:45:00Z"),
+			"tittel": "Samarbeidsplan",
+			"status": "AKTIV"
+		}
+	])),
+}));
+
+jest.mock("../../fiaSamarbeidDokumenterAPI", () => ({
+	useFiaDokument: jest.fn(({ dokumentId }: { dokumentId: string }) => {
+		const mocked = fiaSamarbeidDokumentMock(dokumentId);
+		return {
+			data: {
+				...mocked,
+				innhold: JSON.parse(mocked.innhold) // Deep copy to avoid test pollution
+			},
+			status: RestStatus.Suksess
+		};
+	})
+}));
 
 describe("PlanFane", () => {
 	beforeEach(() => {
