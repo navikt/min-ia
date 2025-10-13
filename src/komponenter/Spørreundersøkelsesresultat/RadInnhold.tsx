@@ -1,15 +1,15 @@
 import { Alert, ExpansionCard, Loader } from "@navikt/ds-react";
 import { TemaResultat } from "./TemaResultat";
 import { FiaSamarbeidDokument } from "../../Samarbeid/fiaSamarbeidAPI";
-import { useFiaDokument } from "../../Samarbeid/fiaSamarbeidDokumenterAPI";
-import { RestStatus } from "../../integrasjoner/rest-status";
+import { FiaBehovsvurderingDokument, useFiaDokument } from "../../Samarbeid/fiaSamarbeidDokumenterAPI";
+import { RestRessurs, RestStatus } from "../../integrasjoner/rest-status";
 
 export const RadInnhold = ({
     dokument
 }: {
     dokument: FiaSamarbeidDokument;
 }) => {
-    const fiaDokument = useFiaDokument({ dokumentId: dokument.dokumentId });
+    const fiaDokument = useFiaDokument({ dokumentId: dokument.dokumentId }) as RestRessurs<FiaBehovsvurderingDokument>;
 
     if (fiaDokument.status === RestStatus.Feil || fiaDokument.status === RestStatus.IkkeInnlogget || fiaDokument.status === RestStatus.IngenTilgang) {
         return (
@@ -28,7 +28,6 @@ export const RadInnhold = ({
             </ExpansionCard.Content>
         )
     }
-
 
     return (
         <ExpansionCard.Content>
