@@ -1,7 +1,7 @@
 import React from "react";
 import { PlanType } from "./typer";
 import styles from "./plan.module.scss";
-import { BodyShort, Heading, HStack } from "@navikt/ds-react";
+import { BodyShort, Heading, HStack, Skeleton, VStack } from "@navikt/ds-react";
 import PlanGraf from "./PlanGraf";
 import Innholdsblokk from "./Innholdsblokk";
 
@@ -27,6 +27,28 @@ export default function Plan({ plan }: { plan: PlanType }) {
 				))
 			}
 		</>
+	);
+}
+
+export function PlanSkeleton() {
+	return (
+		<div className={styles.planContainer} style={{ paddingBottom: "1.2rem" }}>
+			<HStack justify="space-between" align="center">
+				<Skeleton width="10rem" height="2rem" />
+				<Skeleton width="10rem" height="2rem" />
+			</HStack>
+			<VStack>
+				<HStack justify="end" align="center">
+					<Skeleton width="calc(100% - 12rem)" height="3rem" />
+				</HStack>
+				<HStack justify="space-between" align="center" style={{ marginTop: "-0.5rem" }}>
+					<Skeleton width="11rem" height="2rem" />
+					<Skeleton width="calc(100% - 12rem)" height="2.5rem" />
+				</HStack>
+				<Skeleton width="100%" height="3rem" style={{ marginTop: "1.5rem" }} />
+				<Skeleton width="100%" height="5rem" style={{ marginTop: "-1rem" }} />
+			</VStack>
+		</div>
 	);
 }
 
