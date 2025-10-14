@@ -6,6 +6,7 @@ import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { penskrivIAStatus } from "../SamarbeidsStatusBadge";
 import { SamarbeidStatus } from "../Samarbeidsvelger/samarbeidtyper";
+import { OrgnrProvider } from "../../utils/OrgnrContext";
 
 const mockdata = fiaSamarbeidMock();
 
@@ -23,7 +24,9 @@ describe("Samarbeidsside", () => {
 
 	it("Render uten å krasje", () => {
 		const { container } = render(
-			<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
 		);
 		expect(container).toBeInTheDocument();
 
@@ -57,7 +60,9 @@ describe("Samarbeidsside", () => {
 		expect(screen.queryByText(penskrivIAStatus(førsteAktive.status as SamarbeidStatus))).not.toBeInTheDocument();
 
 		rerender(
-			<Samarbeidsside samarbeidOffentligId={førsteAktive.offentligId} setSamarbeidOffentligId={() => { }} />
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={førsteAktive.offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
 		);
 		expect(container).toBeInTheDocument();
 
