@@ -1,5 +1,5 @@
 import React from "react";
-import Plan from "../../../komponenter/Plan";
+import Plan, { PlanSkeleton } from "../../../komponenter/Plan";
 import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/SamarbeidsvelgerContext";
 import { FiaSamarbeidDokument } from "../../fiaSamarbeidAPI";
 import { useFiaDokument } from "../../fiaSamarbeidDokumenterAPI";
@@ -21,15 +21,13 @@ export default function PlanFane() {
 function PlanMedDokumenthenting({ planDokument }: { planDokument: FiaSamarbeidDokument }) {
 	const fiaDokument = useFiaDokument({ dokumentId: planDokument.dokumentId });
 	if (fiaDokument.status !== "Suksess") {
-		return <div>Laster plan...</div>;
+		return <PlanSkeleton />;
 	}
 	if (!fiaDokument.data) {
 		return <div>Kunne ikke hente plan</div>;
 	}
 
 	const plan = fiaDokument.data.innhold as PlanType;
-
-	console.log('plan', plan);
 
 	return <Plan plan={plan} />;
 }
