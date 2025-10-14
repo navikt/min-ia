@@ -24,7 +24,7 @@ export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffen
 }
 
 function Samarbeidssideinnhold() {
-	const [valgtFane, setValgtFane] = React.useState("kartlegging");
+	const [valgtFane, setValgtFane] = React.useState("samarbeidsplan");
 	function setValgtFaneOgLogg(fane: string) {
 		sendFaneByttetEvent(valgtFane, fane);
 		setValgtFane(fane);
@@ -73,8 +73,8 @@ function Samarbeidssideinnhold() {
 			<Tabs value={valgtFane} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
 					<Page.Block width="xl">
-						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
 						<Tabs.Tab value="samarbeidsplan" label="Samarbeidsplan" />
+						<Tabs.Tab value="kartlegging" label="Kartlegginger" />
 					</Page.Block>
 				</Tabs.List>
 				<Page.Block width="xl" gutters className={styles.samarbeidssideBlock}>
