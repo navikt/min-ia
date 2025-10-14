@@ -1,9 +1,10 @@
 import React from "react";
 import { PlanType } from "./typer";
 import styles from "./plan.module.scss";
-import { BodyShort, Heading, HStack, Skeleton, VStack } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, HStack, Skeleton, VStack } from "@navikt/ds-react";
 import PlanGraf from "./PlanGraf";
 import Innholdsblokk from "./Innholdsblokk";
+import { InformationSquareIcon } from "@navikt/aksel-icons";
 
 export default function Plan({ plan }: { plan: PlanType }) {
 	const filtrerteTemaer = plan.temaer.filter((tema) => tema.inkludert)
@@ -49,6 +50,23 @@ export function PlanSkeleton() {
 				<Skeleton width="100%" height="5rem" style={{ marginTop: "-1rem" }} />
 			</VStack>
 		</div>
+	);
+}
+
+export function IngenPlanTilgjengelig() {
+	return (
+		<HStack justify="start" align="center" gap="4">
+			<InformationSquareIcon fontSize="1.75rem" />
+			<BodyShort>Samarbeidsplan er ikke publisert</BodyShort>
+		</HStack>
+	);
+}
+
+export function PlanFeil() {
+	return (
+		<Alert variant="error">
+			Det oppstod en feil ved henting av samarbeidsplan. Vennligst prøv igjen senere.
+		</Alert>
 	);
 }
 

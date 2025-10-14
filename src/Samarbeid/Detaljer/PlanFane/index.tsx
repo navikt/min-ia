@@ -1,5 +1,5 @@
 import React from "react";
-import Plan, { PlanSkeleton } from "../../../komponenter/Plan";
+import Plan, { IngenPlanTilgjengelig, PlanFeil, PlanSkeleton } from "../../../komponenter/Plan";
 import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/SamarbeidsvelgerContext";
 import { FiaSamarbeidDokument } from "../../fiaSamarbeidAPI";
 import { useFiaDokument } from "../../fiaSamarbeidDokumenterAPI";
@@ -11,8 +11,7 @@ export default function PlanFane() {
 	const planDokument = dokumenter.find((d) => d.type === "SAMARBEIDSPLAN");
 
 	if (!planDokument) {
-		// TODO: Legg til "ingen plan" komponent
-		return <div>Ingen plan tilgjengelig</div>;
+		return <IngenPlanTilgjengelig />;
 	}
 
 	return <PlanMedDokumenthenting planDokument={planDokument} />;
@@ -24,7 +23,7 @@ function PlanMedDokumenthenting({ planDokument }: { planDokument: FiaSamarbeidDo
 		return <PlanSkeleton />;
 	}
 	if (!fiaDokument.data) {
-		return <div>Kunne ikke hente plan</div>;
+		return <PlanFeil />;
 	}
 
 	const plan = fiaDokument.data.innhold as PlanType;
