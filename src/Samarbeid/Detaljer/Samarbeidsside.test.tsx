@@ -2,24 +2,26 @@ import React from "react";
 import { RestStatus } from "../../integrasjoner/rest-status";
 import { fiaSamarbeidMock } from "../../local/fia-samarbeidMock";
 import Samarbeidsside from ".";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { penskrivIAStatus } from "../SamarbeidsStatusBadge";
 import { SamarbeidStatus } from "../Samarbeidsvelger/samarbeidtyper";
 import { OrgnrProvider } from "../../utils/OrgnrContext";
+import { FiaSamarbeidDto, useFiaSamarbeid } from "../fiaSamarbeidAPI";
+import { sendFaneByttetEvent } from "../../utils/analytics/analytics";
 
 const mockdata = fiaSamarbeidMock();
 
-jest.mock("../fiaSamarbeidAPI", () => ({
-	useFiaSamarbeid: jest.fn(() => ({
-		status: RestStatus.Suksess,
-		data: mockdata,
-	})),
-}));
+jest.mock("../fiaSamarbeidAPI");
+jest.mock("../../utils/analytics/analytics");
 
 describe("Samarbeidsside", () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
+		jest.mocked(useFiaSamarbeid).mockReturnValue({
+			status: RestStatus.Suksess,
+			data: mockdata as unknown as FiaSamarbeidDto[],
+		});
 	});
 
 	it("Render uten å krasje", () => {
@@ -37,6 +39,36 @@ describe("Samarbeidsside", () => {
 		expect(screen.getByText("Velg samarbeid")).toBeInTheDocument();
 		// Sjekk at samarbeidsinfo er tilstede
 		expect(screen.getByRole("heading", { name: mockdata[0].navn })).toBeInTheDocument();
+	});
+
+	it("Defaulter til kartlegginger når det ikke finnes plan", () => {
+		const samarbeidUtenPlan = {
+			...mockdata[0],
+			dokumenter: mockdata[0].dokumenter?.filter(d => d.type !== "SAMARBEIDSPLAN")
+		};
+		jest.mocked(useFiaSamarbeid).mockReturnValue({
+			status: RestStatus.Suksess,
+			data: [samarbeidUtenPlan] as unknown as FiaSamarbeidDto[],
+		});
+		render(
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={samarbeidUtenPlan.offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
+		);
+
+		expect(screen.getByRole("tab", { name: "Kartlegginger" })).toHaveAttribute("aria-selected", "true");
+		expect(screen.getByRole("tab", { name: "Samarbeidsplan" })).toHaveAttribute("aria-selected", "false");
+	});
+
+	it("Defaulter til samarbeidsplan når det finnes plan", () => {
+		render(
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
+		);
+
+		expect(screen.getByRole("tab", { name: "Samarbeidsplan" })).toHaveAttribute("aria-selected", "true");
+		expect(screen.getByRole("tab", { name: "Kartlegginger" })).toHaveAttribute("aria-selected", "false");
 	});
 
 	it("Viser riktig status på samarbeid", () => {
@@ -106,9 +138,46 @@ describe("Samarbeidsside", () => {
 		expect(screen.getByTestId("samarbeidsvelger-skeleton")).toBeInTheDocument();
 	});
 
+	it("Sender metrikk ved bytte av tab", () => {
+		const sfbe = jest.mocked(sendFaneByttetEvent);
+		const { rerender } = render(
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
+		);
+		expect(sfbe).toHaveBeenCalledTimes(0);
+
+		const kartleggingTab = screen.getByRole("tab", { name: "Kartlegginger" });
+		act(() => kartleggingTab.click());
+
+		expect(sfbe).toHaveBeenCalledTimes(1);
+		expect(sfbe).toHaveBeenCalledWith(null, "kartlegging");
+
+		const samarbeidsplanTab = screen.getByRole("tab", { name: "Samarbeidsplan" });
+		act(() => samarbeidsplanTab.click());
+
+		expect(sfbe).toHaveBeenCalledTimes(2);
+		expect(sfbe).toHaveBeenCalledWith("kartlegging", "samarbeidsplan");
+
+		// Bytt til kartlegging igjen
+		act(() => kartleggingTab.click());
+		expect(sfbe).toHaveBeenCalledTimes(3);
+		expect(sfbe).toHaveBeenCalledWith("samarbeidsplan", "kartlegging");
+
+		// Rerender uten å endre fane
+		rerender(
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
+		);
+		expect(sfbe).toHaveBeenCalledTimes(3);
+	});
+
 	it("Ingen UU-feil", async () => {
 		const { container } = render(
-			<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
 		);
 		expect(await axe(container)).toHaveNoViolations();
 	});

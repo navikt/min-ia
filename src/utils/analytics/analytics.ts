@@ -69,6 +69,6 @@ export const sendSamarbeidValgtEvent = (status: string) => {
     logAnalyticsEvent("samarbeid valgt", {status});
 }
 
-export const sendFaneByttetEvent = (fraFane: string, tilFane: string) => {
+export const sendFaneByttetEvent = (fraFane: string | null, tilFane: string) => {
     logAnalyticsEvent("fane byttet", {fraFane, tilFane});
 }

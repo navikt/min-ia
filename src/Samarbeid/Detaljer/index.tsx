@@ -1,6 +1,6 @@
 import { Alert, Bleed, Page, Skeleton, Tabs, HStack } from "@navikt/ds-react";
 import Samarbeidsvelger from "../Samarbeidsvelger";
-import { SamarbeidsvelgerProvider, useSamarbeidsvelgerContext } from "../Samarbeidsvelger/SamarbeidsvelgerContext";
+import { SamarbeidsvelgerProvider, useDokumenterPåValgtSamarbeid, useSamarbeidsvelgerContext } from "../Samarbeidsvelger/SamarbeidsvelgerContext";
 import React from "react";
 import KartleggingFane from "./KartleggingFane";
 import Samarbeidsinfo from "../Samarbeidsinfo";
@@ -24,7 +24,11 @@ export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffen
 }
 
 function Samarbeidssideinnhold() {
-	const [valgtFane, setValgtFane] = React.useState("samarbeidsplan");
+	const [valgtFane, setValgtFane] = React.useState<string | null>(null);
+	const dokumenter = useDokumenterPåValgtSamarbeid();
+	const harPlan = dokumenter.some(d => d.type === "SAMARBEIDSPLAN");
+	const valgtFaneMedDefaultverdi = valgtFane || (harPlan ? "samarbeidsplan" : "kartlegging");
+
 	function setValgtFaneOgLogg(fane: string) {
 		sendFaneByttetEvent(valgtFane, fane);
 		setValgtFane(fane);
@@ -70,7 +74,7 @@ function Samarbeidssideinnhold() {
 		<>
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
-			<Tabs value={valgtFane} onChange={setValgtFaneOgLogg}>
+			<Tabs value={valgtFaneMedDefaultverdi} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
 					<Page.Block width="xl">
 						<Tabs.Tab value="samarbeidsplan" label="Samarbeidsplan" />
