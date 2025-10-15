@@ -79,7 +79,7 @@ export default function PlanGraf({ undertemaer, hidePin }: PølsegrafProps) {
 				{hidePin ||
 					iDag < earliestStart ||
 					iDag > latestSlutt ? undefined : (
-					<Timeline.Pin date={new Date()} />
+					<Timeline.Pin date={new Date()} data-testid="i-dag-pin" />
 				)}
 				{filtrerteUndertemaer
 					.sort((a, b) => {
@@ -97,6 +97,7 @@ export default function PlanGraf({ undertemaer, hidePin }: PølsegrafProps) {
 									undertema.status,
 								)}
 								statusLabel={`${undertema.navn}: ${undertema.status}:`}
+								data-testid="timeline-period"
 							/>
 						</Timeline.Row>
 					))}
