@@ -4,6 +4,7 @@ import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/Samarbeid
 import { FiaSamarbeidDokument } from "../../fiaSamarbeidAPI";
 import { useFiaDokument } from "../../fiaSamarbeidDokumenterAPI";
 import { PlanType } from "../../../komponenter/Plan/typer";
+import { RestStatus } from "../../../integrasjoner/rest-status";
 
 export default function PlanFane() {
 	const dokumenter = useDokumenterPåValgtSamarbeid();
@@ -19,10 +20,11 @@ export default function PlanFane() {
 
 function PlanMedDokumenthenting({ planDokument }: { planDokument: FiaSamarbeidDokument }) {
 	const fiaDokument = useFiaDokument({ dokumentId: planDokument.dokumentId });
-	if (fiaDokument.status !== "Suksess") {
+	if (fiaDokument.status === RestStatus.LasterInn || fiaDokument.status === RestStatus.IkkeLastet) {
 		return <PlanSkeleton />;
 	}
-	if (!fiaDokument.data) {
+
+	if (fiaDokument.status === RestStatus.Feil || fiaDokument.status === RestStatus.IkkeInnlogget || fiaDokument.status === RestStatus.IngenTilgang || !fiaDokument.data) {
 		return <PlanFeil />;
 	}
 

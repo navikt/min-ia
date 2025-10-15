@@ -4,7 +4,6 @@ import styles from "./plan.module.scss";
 import { Alert, BodyShort, Heading, HStack, Skeleton, VStack } from "@navikt/ds-react";
 import PlanGraf from "./PlanGraf";
 import Innholdsblokk from "./Innholdsblokk";
-import { InformationSquareIcon } from "@navikt/aksel-icons";
 
 export default function Plan({ plan }: { plan: PlanType }) {
 	const filtrerteTemaer = plan.temaer.filter((tema) => tema.inkludert)
@@ -33,7 +32,7 @@ export default function Plan({ plan }: { plan: PlanType }) {
 
 export function PlanSkeleton() {
 	return (
-		<div className={styles.planContainer} style={{ paddingBottom: "1.2rem" }}>
+		<div className={styles.planContainer} style={{ paddingBottom: "1.2rem" }} data-testid="plan-skeleton">
 			<HStack justify="space-between" align="center">
 				<Skeleton width="10rem" height="2rem" />
 				<Skeleton width="10rem" height="2rem" />
@@ -44,7 +43,7 @@ export function PlanSkeleton() {
 				</HStack>
 				<HStack justify="space-between" align="center" style={{ marginTop: "-0.5rem" }}>
 					<Skeleton width="11rem" height="2rem" />
-					<Skeleton width="calc(100% - 12rem)" height="2.5rem" />
+					<Skeleton variant="rounded" width="calc(100% - 12rem)" height="2.5rem" />
 				</HStack>
 				<Skeleton width="100%" height="3rem" style={{ marginTop: "1.5rem" }} />
 				<Skeleton width="100%" height="5rem" style={{ marginTop: "-1rem" }} />
@@ -55,16 +54,15 @@ export function PlanSkeleton() {
 
 export function IngenPlanTilgjengelig() {
 	return (
-		<HStack justify="start" align="center" gap="4">
-			<InformationSquareIcon fontSize="1.75rem" />
-			<BodyShort>Samarbeidsplan er ikke publisert</BodyShort>
-		</HStack>
+		<Alert inline variant="info" data-testid="ingen-plan-tilgjengelig">
+			Samarbeidsplan er ikke publisert
+		</Alert>
 	);
 }
 
 export function PlanFeil() {
 	return (
-		<Alert variant="error">
+		<Alert variant="error" data-testid="plan-feil">
 			Det oppstod en feil ved henting av samarbeidsplan. Vennligst prøv igjen senere.
 		</Alert>
 	);
