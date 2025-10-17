@@ -27,21 +27,21 @@ function Samarbeidssideinnhold() {
 	const [valgtFane, setValgtFane] = React.useState<string | null>(null);
 	const dokumenter = useDokumenterPåValgtSamarbeid();
 	const harPlan = dokumenter.some(d => d.type === "SAMARBEIDSPLAN");
+	const { status, tilgjengeligeSamarbeid } = useSamarbeidsvelgerContext();
 
 	React.useEffect(() => {
-		if (valgtFane === null) {
+		if (valgtFane === null && status === RestStatus.Suksess) {
 			sendDefaultTabValgt(harPlan ? "samarbeidsplan" : "kartlegging");
 			setValgtFane(harPlan ? "samarbeidsplan" : "kartlegging");
 		}
-	}, [harPlan, valgtFane]);
+	}, [harPlan, valgtFane, status]);
 
 	function setValgtFaneOgLogg(fane: string) {
 		sendFaneByttetEvent(valgtFane, fane);
 		setValgtFane(fane);
 	}
-	const { status, tilgjengeligeSamarbeid } = useSamarbeidsvelgerContext();
 
-	if (status === RestStatus.IkkeLastet || status === RestStatus.LasterInn || valgtFane === null) {
+	if (status === RestStatus.IkkeLastet || status === RestStatus.LasterInn) {
 		return (
 			<>
 				<Bleed className={samarbeidsvelgerStyles.samarbeidsvelgerBleed} style={{ marginBottom: '1rem' }} data-testid="samarbeidsvelger-skeleton">
@@ -80,7 +80,7 @@ function Samarbeidssideinnhold() {
 		<>
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
-			<Tabs value={valgtFane} onChange={setValgtFaneOgLogg}>
+			<Tabs value={valgtFane || "kartlegging"} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
 					<Page.Block width="xl">
 						<Tabs.Tab value="samarbeidsplan" label="Samarbeidsplan" />

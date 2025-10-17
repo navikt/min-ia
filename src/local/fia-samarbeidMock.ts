@@ -161,6 +161,21 @@ export const fiaSamarbeidMock = (test = false) => {
             ]
         },
         {
+            "offentligId": "f1e8c8b4-3c4e-4f2e-9f7a-2b6e5d9c8a1c",
+            "saksnummer": "123",
+            "navn": "Avdeling Bare Samarbeidsplan (ABS)",
+            "status": "FULLFØRT",
+            "opprettet": "2025-08-12T13:00:00Z",
+            "sistEndret": "2025-08-12T13:00:00Z",
+            "dokumenter": [
+                {
+                    "dokumentId": "7b758002-8beb-4943-9500-f694a92e1d9a",
+                    "type": "SAMARBEIDSPLAN",
+                    "dato": "2025-10-10T12:48:33.971950"
+                }
+            ]
+        },
+        {
             "offentligId": "a9f5c6e2-5b4d-4c3e-8f7a-1e2d3c4b5a6f",
             "saksnummer": "123",
             "navn": "Anestesiavdelingen",
