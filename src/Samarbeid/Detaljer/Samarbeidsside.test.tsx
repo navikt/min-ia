@@ -8,7 +8,7 @@ import { penskrivIAStatus } from "../SamarbeidsStatusBadge";
 import { SamarbeidStatus } from "../Samarbeidsvelger/samarbeidtyper";
 import { OrgnrProvider } from "../../utils/OrgnrContext";
 import { FiaSamarbeidDto, useFiaSamarbeid } from "../fiaSamarbeidAPI";
-import { sendFaneByttetEvent } from "../../utils/analytics/analytics";
+import { sendDefaultTabValgt, sendFaneByttetEvent } from "../../utils/analytics/analytics";
 
 const mockdata = fiaSamarbeidMock();
 
@@ -151,7 +151,7 @@ describe("Samarbeidsside", () => {
 		act(() => kartleggingTab.click());
 
 		expect(sfbe).toHaveBeenCalledTimes(1);
-		expect(sfbe).toHaveBeenCalledWith(null, "kartlegging");
+		expect(sfbe).toHaveBeenCalledWith("samarbeidsplan", "kartlegging");
 
 		const samarbeidsplanTab = screen.getByRole("tab", { name: "Samarbeidsplan" });
 		act(() => samarbeidsplanTab.click());
@@ -171,6 +171,41 @@ describe("Samarbeidsside", () => {
 			</OrgnrProvider>
 		);
 		expect(sfbe).toHaveBeenCalledTimes(3);
+	});
+
+	it("Sender metrikk ved default fanevalg", () => {
+		const sfbe = jest.mocked(sendFaneByttetEvent);
+		const sdte = jest.mocked(sendDefaultTabValgt);
+		render(
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={mockdata[0].offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
+		);
+		expect(sdte).toHaveBeenCalledTimes(1);
+		expect(sdte).toHaveBeenCalledWith("samarbeidsplan");
+		expect(sfbe).toHaveBeenCalledTimes(0);
+	});
+
+	it("Sender metrikk ved default fanevalg når det ikke finnes plan", () => {
+		const sfbe = jest.mocked(sendFaneByttetEvent);
+		const sdte = jest.mocked(sendDefaultTabValgt);
+		const samarbeidUtenPlan = {
+			...mockdata[0],
+			dokumenter: mockdata[0].dokumenter?.filter(d => d.type !== "SAMARBEIDSPLAN")
+		};
+		jest.mocked(useFiaSamarbeid).mockReturnValue({
+			status: RestStatus.Suksess,
+			data: [samarbeidUtenPlan] as unknown as FiaSamarbeidDto[],
+		});
+
+		render(
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={samarbeidUtenPlan.offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
+		);
+		expect(sdte).toHaveBeenCalledTimes(1);
+		expect(sdte).toHaveBeenCalledWith("kartlegging");
+		expect(sfbe).toHaveBeenCalledTimes(0);
 	});
 
 	it("Ingen UU-feil", async () => {

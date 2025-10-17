@@ -72,3 +72,7 @@ export const sendSamarbeidValgtEvent = (status: string) => {
 export const sendFaneByttetEvent = (fraFane: string | null, tilFane: string) => {
     logAnalyticsEvent("fane byttet", {fraFane, tilFane});
 }
+
+export const sendDefaultTabValgt = (tabnavn: string) => {
+    logAnalyticsEvent("default tab valgt", {tabnavn});
+}
