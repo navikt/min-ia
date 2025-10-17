@@ -212,6 +212,22 @@ describe("KartleggingFane", () => {
 		expect(await screen.findByText("Noe gikk galt ved lasting. Vennligst prøv igjen senere.")).toBeInTheDocument();
 	});
 
+	it("Viser melding når ingen kartlegginger er tilgjengelig", () => {
+		(useDokumenterPåValgtSamarbeid as jest.Mock).mockImplementationOnce(() => ([
+			{
+				"dokumentId": "some-id",
+				"type": "SAMARBEIDSPLAN",
+				"dato": new Date("2023-12-01T12:00:00Z"),
+				"tittel": "Samarbeidsplan for samarbeid 1",
+				"status": "FERDIGSTILT"
+			}
+		]));
+		render(
+			<KartleggingFane />
+		);
+		expect(screen.getByText("Ingen kartlegginger er publisert enda")).toBeInTheDocument();
+	});
+
 	it("Ingen aksessibilitetsfeil", async () => {
 		const { container } = render(
 			<KartleggingFane />
