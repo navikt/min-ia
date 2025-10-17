@@ -8,7 +8,7 @@ import { RestStatus } from "../../integrasjoner/rest-status";
 import styles from './Samarbeidsside.module.scss';
 import samarbeidsvelgerStyles from '../Samarbeidsvelger/Samarbeidsvelger.module.scss';
 import PlanFane from "./PlanFane";
-import { sendFaneByttetEvent } from "../../utils/analytics/analytics";
+import { sendDefaultTabValgt, sendFaneByttetEvent } from "../../utils/analytics/analytics";
 
 export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffentligId }: {
 	samarbeidOffentligId?: string,
@@ -18,7 +18,7 @@ export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffen
 	return (
 		<SamarbeidsvelgerProvider samarbeidOffentligId={samarbeidOffentligId}
 			setSamarbeidOffentligId={setSamarbeidOffentligId}>
-			<Samarbeidssideinnhold />
+			<Samarbeidssideinnhold key={samarbeidOffentligId} />
 		</SamarbeidsvelgerProvider>
 	);
 }
@@ -27,7 +27,13 @@ function Samarbeidssideinnhold() {
 	const [valgtFane, setValgtFane] = React.useState<string | null>(null);
 	const dokumenter = useDokumenterPåValgtSamarbeid();
 	const harPlan = dokumenter.some(d => d.type === "SAMARBEIDSPLAN");
-	const valgtFaneMedDefaultverdi = valgtFane || (harPlan ? "samarbeidsplan" : "kartlegging");
+
+	React.useEffect(() => {
+		if (valgtFane === null) {
+			sendDefaultTabValgt(harPlan ? "samarbeidsplan" : "kartlegging");
+			setValgtFane(harPlan ? "samarbeidsplan" : "kartlegging");
+		}
+	}, [harPlan, valgtFane]);
 
 	function setValgtFaneOgLogg(fane: string) {
 		sendFaneByttetEvent(valgtFane, fane);
@@ -35,7 +41,7 @@ function Samarbeidssideinnhold() {
 	}
 	const { status, tilgjengeligeSamarbeid } = useSamarbeidsvelgerContext();
 
-	if (status === RestStatus.IkkeLastet || status === RestStatus.LasterInn) {
+	if (status === RestStatus.IkkeLastet || status === RestStatus.LasterInn || valgtFane === null) {
 		return (
 			<>
 				<Bleed className={samarbeidsvelgerStyles.samarbeidsvelgerBleed} style={{ marginBottom: '1rem' }} data-testid="samarbeidsvelger-skeleton">
@@ -74,7 +80,7 @@ function Samarbeidssideinnhold() {
 		<>
 			<Samarbeidsvelger />
 			<Samarbeidsinfo />
-			<Tabs value={valgtFaneMedDefaultverdi} onChange={setValgtFaneOgLogg}>
+			<Tabs value={valgtFane} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
 					<Page.Block width="xl">
 						<Tabs.Tab value="samarbeidsplan" label="Samarbeidsplan" />
