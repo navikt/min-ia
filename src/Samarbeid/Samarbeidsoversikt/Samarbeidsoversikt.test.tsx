@@ -179,6 +179,88 @@ describe("Samarbeidsvelger", () => {
 		expect(screen.getByText(`Avsluttede samarbeid (${mockdata.length})`)).toBeInTheDocument();
 	});
 
+	it("Sorterer aktive samarbeid først", async () => {
+		(useFiaSamarbeid as jest.Mock).mockImplementationOnce(() => ({
+			status: RestStatus.Suksess,
+			data: [
+				{ ...mockdata[2], status: "AKTIV", sistEndret: "2024-01-01T12:00:00Z", dokumenter: [] },
+				{ ...mockdata[0], status: "FULLFØRT", sistEndret: "2024-02-02T12:00:00Z", dokumenter: [] },
+				{ ...mockdata[1], status: "AKTIV", sistEndret: "2024-03-03T12:00:00Z", dokumenter: [] },
+			]
+		}));
+
+		const { container } = render(
+			<Samarbeidsoversikt />
+		);
+		expect(container).toBeInTheDocument();
+
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (3)` });
+		expect(seAlleKnapp).toBeInTheDocument();
+
+		seAlleKnapp.click();
+		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3));
+		const seSamarbeidKnapper = screen.getAllByRole("button", { name: "Se samarbeid" });
+
+
+		expect(seSamarbeidKnapper[0].getAttribute("href")).toBe(`/samarbeid/${mockdata[1].offentligId}`);
+		expect(seSamarbeidKnapper[1].getAttribute("href")).toBe(`/samarbeid/${mockdata[2].offentligId}`);
+		expect(seSamarbeidKnapper[2].getAttribute("href")).toBe(`/samarbeid/${mockdata[0].offentligId}`);
+	});
+
+	it("Sorterer på dato innenfor samme status", async () => {
+		(useFiaSamarbeid as jest.Mock).mockImplementationOnce(() => ({
+			status: RestStatus.Suksess,
+			data: [
+				{ ...mockdata[0], status: "AKTIV", sistEndret: "2024-01-01T12:00:00Z", dokumenter: [] },
+				{ ...mockdata[1], status: "AKTIV", sistEndret: "2024-03-03T12:00:00Z", dokumenter: [] },
+				{ ...mockdata[2], status: "AKTIV", sistEndret: "2024-02-02T12:00:00Z", dokumenter: [] },
+			]
+		}));
+
+		const { container } = render(
+			<Samarbeidsoversikt />
+		);
+		expect(container).toBeInTheDocument();
+
+		const seSamarbeidKnapper = screen.getAllByRole("button", { name: "Se samarbeid" });
+		expect(seSamarbeidKnapper).toHaveLength(3);
+
+		expect(seSamarbeidKnapper[0].getAttribute("href")).toBe(`/samarbeid/${mockdata[1].offentligId}`);
+		expect(seSamarbeidKnapper[1].getAttribute("href")).toBe(`/samarbeid/${mockdata[2].offentligId}`);
+		expect(seSamarbeidKnapper[2].getAttribute("href")).toBe(`/samarbeid/${mockdata[0].offentligId}`);
+	});
+
+	it("Sorterer basert på dokumentdato når nyere enn sistEndret", async () => {
+		(useFiaSamarbeid as jest.Mock).mockImplementationOnce(() => ({
+			status: RestStatus.Suksess,
+			data: [
+				{ ...mockdata[0], status: "AKTIV", sistEndret: "2024-01-01T12:00:00Z", dokumenter: [{ dato: "2024-05-05T12:00:00Z" }] },
+				{ ...mockdata[1], status: "AKTIV", sistEndret: "2024-02-02T12:00:00Z", dokumenter: [] },
+				{ ...mockdata[2], status: "AKTIV", sistEndret: "2024-03-03T12:00:00Z", dokumenter: [{ dato: "2024-01-01T12:00:00Z" }] },
+				{ ...mockdata[3], status: "AKTIV", sistEndret: "2024-04-04T12:00:00Z", dokumenter: [] },
+			]
+		}));
+
+		const { container } = render(
+			<Samarbeidsoversikt />
+		);
+		expect(container).toBeInTheDocument();
+
+		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (4)` });
+		expect(seAlleKnapp).toBeInTheDocument();
+
+		seAlleKnapp.click();
+		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(4));
+
+		const seSamarbeidKnapper = screen.getAllByRole("button", { name: "Se samarbeid" });
+		expect(seSamarbeidKnapper).toHaveLength(4);
+
+		expect(seSamarbeidKnapper[0].getAttribute("href")).toBe(`/samarbeid/${mockdata[0].offentligId}`); // dokumentdato 2024-05-05
+		expect(seSamarbeidKnapper[1].getAttribute("href")).toBe(`/samarbeid/${mockdata[3].offentligId}`); // sistEndret 2024-04-04
+		expect(seSamarbeidKnapper[2].getAttribute("href")).toBe(`/samarbeid/${mockdata[2].offentligId}`); // sistEndret 2024-03-03
+		expect(seSamarbeidKnapper[3].getAttribute("href")).toBe(`/samarbeid/${mockdata[1].offentligId}`); // sistEndret 2024-02-02
+	});
+
 	it("Ingen UU-feil fra axe", async () => {
 		const { container } = render(
 			<Samarbeidsoversikt />

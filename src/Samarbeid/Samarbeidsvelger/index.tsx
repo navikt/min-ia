@@ -3,8 +3,9 @@ import React from "react";
 import styles from "./Samarbeidsvelger.module.scss";
 import { useSamarbeidsvelgerContext } from "./SamarbeidsvelgerContext";
 import { SamarbeidsStatusBadge } from "../SamarbeidsStatusBadge";
-import { Samarbeid } from "./samarbeidtyper";
 import { ChevronDownIcon } from "@navikt/aksel-icons";
+import { sorterSamarbeidsliste } from "../../utils/samarbeidUtils";
+import { FiaSamarbeidDto } from "../fiaSamarbeidAPI";
 
 
 export default function Samarbeidsvelger() {
@@ -28,26 +29,13 @@ function Samarbeidsdropdown({
 	valgtSamarbeid,
 	setValgtSamarbeid,
 }: {
-	tilgjengeligeSamarbeid: Samarbeid[];
+	tilgjengeligeSamarbeid: FiaSamarbeidDto[];
 	valgtSamarbeid?: string;
 	setValgtSamarbeid: (value: string) => void;
 }) {
-	const sorterteSamarbeid = React.useMemo(() => tilgjengeligeSamarbeid.sort(
-		(a, b) => {
-			if (a.status === b.status) {
-				return a.navn.localeCompare(b.navn);
-			}
-			const statusOrder = {
-				"AKTIV": 1,
-				"FULLFØRT": 2,
-				"SLETTET": 3,
-				"AVBRUTT": 4,
-			};
-			return (statusOrder[a.status] || 5) - (statusOrder[b.status] || 5);
-		}
-	), [tilgjengeligeSamarbeid]);
+	const sorterteSamarbeid = React.useMemo(() => sorterSamarbeidsliste(tilgjengeligeSamarbeid), [tilgjengeligeSamarbeid]);
 
-    const valgtSamarbeidObjekt = tilgjengeligeSamarbeid.find((s) => s.offentligId === valgtSamarbeid);
+	const valgtSamarbeidObjekt = tilgjengeligeSamarbeid.find((s) => s.offentligId === valgtSamarbeid);
 
 	return (
 		<ActionMenu>
@@ -70,9 +58,9 @@ function Samarbeidsdropdown({
 				{
 					sorterteSamarbeid.map((samarbeid) => (
 						<ActionMenu.Item
-                            key={samarbeid.offentligId}
+							key={samarbeid.offentligId}
 							className={styles.menyItem}
-                            onSelect={() => setValgtSamarbeid(samarbeid.offentligId)}
+							onSelect={() => setValgtSamarbeid(samarbeid.offentligId)}
 						>
 							{samarbeid.navn} <SamarbeidsStatusBadge status={samarbeid.status} />
 						</ActionMenu.Item>

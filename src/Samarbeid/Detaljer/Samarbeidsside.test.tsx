@@ -82,7 +82,9 @@ describe("Samarbeidsside", () => {
 		}
 
 		const { container, rerender } = render(
-			<Samarbeidsside samarbeidOffentligId={førsteFullførte.offentligId} setSamarbeidOffentligId={() => { }} />
+			<OrgnrProvider>
+				<Samarbeidsside samarbeidOffentligId={førsteFullførte.offentligId} setSamarbeidOffentligId={() => { }} />
+			</OrgnrProvider>
 		);
 		expect(container).toBeInTheDocument();
 

@@ -1,11 +1,10 @@
 import React from "react";
-import { Samarbeid } from "./samarbeidtyper";
 import { RestStatus } from "../../integrasjoner/rest-status";
-import { useFiaSamarbeid } from "../fiaSamarbeidAPI";
+import { FiaSamarbeidDto, useFiaSamarbeid } from "../fiaSamarbeidAPI";
 import { sendSamarbeidValgtEvent } from "../../utils/analytics/analytics";
 
 export const SamarbeidsvelgerContext = React.createContext<{
-	tilgjengeligeSamarbeid: Samarbeid[];
+	tilgjengeligeSamarbeid: FiaSamarbeidDto[];
 	valgtSamarbeid?: string;
 	setValgtSamarbeid: (samarbeidOffentligId: string) => void;
 	status?: RestStatus;
@@ -39,19 +38,11 @@ export const SamarbeidsvelgerProvider = ({ children, samarbeidOffentligId, setSa
 
 	};
 
-	const samarbeid: Samarbeid[] = React.useMemo(() => {
+	const samarbeid = React.useMemo(() => {
 		if (samarbeidsliste.status !== RestStatus.Suksess || !samarbeidsliste.data) {
 			return [];
 		}
-		return samarbeidsliste?.data?.map((samarbeid) => ({
-			offentligId: samarbeid.offentligId,
-			saksnummer: samarbeid.saksnummer,
-			navn: samarbeid.navn,
-			status: samarbeid.status,
-			opprettet: new Date(samarbeid.opprettet),
-			sistEndret: new Date(samarbeid.sistEndret),
-			hendelser: [] // Placeholder for hendelser, kan utvides senere
-		})) || [];
+		return samarbeidsliste?.data || [];
 	}, [samarbeidsliste]);
 
 	React.useEffect(() => {
