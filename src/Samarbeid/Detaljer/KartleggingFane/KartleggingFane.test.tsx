@@ -282,6 +282,38 @@ describe("KartleggingFane", () => {
 		}
 	});
 
+	it("Sorterer nyeste kartlegginger først", () => {
+		(useDokumenterPåValgtSamarbeid as jest.Mock).mockImplementationOnce(() => ([
+			{
+				"dokumentId": "gammel-kartlegging",
+				"type": "BEHOVSVURDERING",
+				"dato": "2023-01-01T12:00:00.123456",
+				"tittel": "Gammel kartlegging",
+				"status": "FERDIGSTILT"
+			},
+			{
+				"dokumentId": "ny-kartlegging",
+				"type": "BEHOVSVURDERING",
+				"dato": "2023-12-01T12:00:00.123456",
+				"tittel": "Ny kartlegging",
+				"status": "FERDIGSTILT"
+			},
+			{
+				"dokumentId": "ny-kartlegging",
+				"type": "BEHOVSVURDERING",
+				"dato": "2023-06-01T12:00:00.123456",
+				"tittel": "Ny kartlegging",
+				"status": "FERDIGSTILT"
+			}
+		]));
+		render(
+			<KartleggingFane />
+		);
+
+		expect(screen.getByText("01.12.2023").compareDocumentPosition(screen.getByText("01.06.2023"))).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+		expect(screen.getByText("01.06.2023").compareDocumentPosition(screen.getByText("01.01.2023"))).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+	});
+
 	it("Ingen aksessibilitetsfeil", async () => {
 		const { container } = render(
 			<KartleggingFane />

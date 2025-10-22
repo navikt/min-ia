@@ -11,7 +11,7 @@ export default function Kartlegginger({ dokumenter }: { dokumenter: FiaSamarbeid
 	}
 	return dokumenter
 		.filter((dokument) => dokument.type === "BEHOVSVURDERING" || dokument.type === "EVALUERING")
-		.sort(({ dato: opprettetA }, { dato: opprettetB }) => opprettetB.valueOf() - opprettetA.valueOf())
+		.sort(({ dato: opprettetA }, { dato: opprettetB }) => new Date(opprettetB).valueOf() - new Date(opprettetA).valueOf())
 		.map((dokument) => (
 			<SpørreundersøkelseRad
 				key={dokument.dokumentId}
