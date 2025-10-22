@@ -4,9 +4,11 @@ import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 import { SamarbeidStatus } from "./Samarbeidsvelger/samarbeidtyper";
 
 
+export type KartleggingType = "BEHOVSVURDERING" | "EVALUERING";
+export type DokumentType = KartleggingType | "SAMARBEIDSPLAN";
 export interface FiaSamarbeidDokument {
   dokumentId: string;
-  type: "BEHOVSVURDERING" | "SAMARBEIDSPLAN";
+  type: DokumentType;
   dato: Date;
 }
 export interface FiaSamarbeidDto {

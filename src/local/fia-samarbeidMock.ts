@@ -139,6 +139,11 @@ export const fiaSamarbeidMock = (test = false) => {
                     "dato": "2025-08-27T09:39:18.828991"
                 },
                 {
+                    "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa88",
+                    "type": "EVALUERING",
+                    "dato": "2025-08-30T09:39:18.828991"
+                },
+                {
                     "dokumentId": "7b758002-8beb-4943-9500-f694a92e1d9a",
                     "type": "SAMARBEIDSPLAN",
                     "dato": "2025-10-10T12:48:33.971950"
@@ -1920,4 +1925,191 @@ const dummydokumenter = [
             "sistPublisert": null
         })
     },
+    {
+        "dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa88",
+        "type": "EVALUERING",
+        "samarbeidNavn": "Geriatrisk poliklinikk",
+        "innhold": JSON.stringify({
+            "id": "77334a38-3fb5-4f48-9dd2-192fdc01a4ca",
+            "type": "EVALUERING",
+            "spørsmålMedSvarPerTema": [
+                {
+                    "id": 24,
+                    "navn": "Arbeidsmiljø",
+                    "spørsmålMedSvar": [
+                        {
+                            "id": "067570bb-138e-768e-8000-7ed6e09186f9",
+                            "tekst": "Vi får tilbakemeldinger om at ansatte med psykiske plager blir godt ivaretatt",
+                            "flervalg": false,
+                            "antallDeltakereSomHarSvart": 3,
+                            "svarListe": [
+                                {
+                                    "id": "067570bb-13c1-7b10-8000-45b68e99677f",
+                                    "tekst": "Enig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-13ea-7f14-8000-5a13262423e7",
+                                    "tekst": "Litt enig",
+                                    "antallSvar": 1
+                                },
+                                {
+                                    "id": "067570bb-141e-755c-8000-877cc5785120",
+                                    "tekst": "Litt uenig",
+                                    "antallSvar": 2
+                                },
+                                {
+                                    "id": "067570bb-1451-7c19-8000-dcf3f584de15",
+                                    "tekst": "Uenig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-147f-76f4-8000-d39c2dcf40e3",
+                                    "tekst": "Vet ikke",
+                                    "antallSvar": 0
+                                }
+                            ],
+                            "kategori": "Psykisk helse"
+                        },
+                        {
+                            "id": "067570bb-14b2-7dc2-8000-ef13cdf4ec54",
+                            "tekst": "Som leder, tillitsvalgt eller verneombud har jeg opparbeidet meg ferdigheter til å møte og støtte ansatte med psykiske plager",
+                            "flervalg": false,
+                            "antallDeltakereSomHarSvart": 3,
+                            "svarListe": [
+                                {
+                                    "id": "067570bb-14e6-7612-8000-5a01825a4c56",
+                                    "tekst": "Enig",
+                                    "antallSvar": 1
+                                },
+                                {
+                                    "id": "067570bb-1514-7f8b-8000-91b11f873e68",
+                                    "tekst": "Litt enig",
+                                    "antallSvar": 1
+                                },
+                                {
+                                    "id": "067570bb-1548-7754-8000-11a47e6134de",
+                                    "tekst": "Litt uenig",
+                                    "antallSvar": 1
+                                },
+                                {
+                                    "id": "067570bb-1571-7d92-8000-ddcaa48a7633",
+                                    "tekst": "Uenig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-15a5-7082-8000-c584d90f0eaf",
+                                    "tekst": "Vet ikke",
+                                    "antallSvar": 0
+                                }
+                            ],
+                            "kategori": "Psykisk helse"
+                        },
+                        {
+                            "id": "067570bb-15d7-70f7-8000-1f5ce2125cb7",
+                            "tekst": "Vi jobber kontinuerlig for å redusere stigma rundt psykiske plager",
+                            "flervalg": false,
+                            "antallDeltakereSomHarSvart": 3,
+                            "svarListe": [
+                                {
+                                    "id": "067570bb-160b-7524-8000-78c666dde193",
+                                    "tekst": "Enig",
+                                    "antallSvar": 1
+                                },
+                                {
+                                    "id": "067570bb-163f-72f5-8000-3d28a658d204",
+                                    "tekst": "Litt enig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-1672-7580-8000-18e3ffe1d0b3",
+                                    "tekst": "Litt uenig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-16a3-74eb-8000-48ff58423232",
+                                    "tekst": "Uenig",
+                                    "antallSvar": 2
+                                },
+                                {
+                                    "id": "067570bb-16cf-792a-8000-5faa819e95bd",
+                                    "tekst": "Vet ikke",
+                                    "antallSvar": 0
+                                }
+                            ],
+                            "kategori": "Psykisk helse"
+                        },
+                        {
+                            "id": "067570bb-1952-7c16-8000-f1f7987b50e2",
+                            "tekst": "Vi har opparbeidet oss et godt grunnlag for å jobbe videre med arbeidsmiljøet vårt",
+                            "flervalg": false,
+                            "antallDeltakereSomHarSvart": 3,
+                            "svarListe": [
+                                {
+                                    "id": "067570bb-1982-7fb5-8000-45be49d6abba",
+                                    "tekst": "Enig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-19b0-7c13-8000-35648239f9c6",
+                                    "tekst": "Litt enig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-19dd-7ba9-8000-c02fa65d980e",
+                                    "tekst": "Litt uenig",
+                                    "antallSvar": 2
+                                },
+                                {
+                                    "id": "067570bb-1a11-76fc-8000-8745d67a766b",
+                                    "tekst": "Uenig",
+                                    "antallSvar": 1
+                                },
+                                {
+                                    "id": "067570bb-1a3c-7e31-8000-148e573a3af3",
+                                    "tekst": "Vet ikke",
+                                    "antallSvar": 0
+                                }
+                            ],
+                            "kategori": "Veien videre"
+                        },
+                        {
+                            "id": "067570bb-1a70-76e5-8000-09fe2b508350",
+                            "tekst": "Vi har utarbeidet konkrete planer for hvordan vi skal videreutvikle arbeidsmiljøet vårt",
+                            "flervalg": false,
+                            "antallDeltakereSomHarSvart": 3,
+                            "svarListe": [
+                                {
+                                    "id": "067570bb-1aa1-7dfb-8000-8f61acb63390",
+                                    "tekst": "Enig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-1ad4-7aa1-8000-0a158dfed97b",
+                                    "tekst": "Litt enig",
+                                    "antallSvar": 2
+                                },
+                                {
+                                    "id": "067570bb-1b01-7450-8000-189f025d1710",
+                                    "tekst": "Litt uenig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-1b2b-7463-8000-07ebcd4684b9",
+                                    "tekst": "Uenig",
+                                    "antallSvar": 0
+                                },
+                                {
+                                    "id": "067570bb-1b55-795f-8000-80a43421b433",
+                                    "tekst": "Vet ikke",
+                                    "antallSvar": 1
+                                }
+                            ],
+                            "kategori": "Veien videre"
+                        }
+                    ]
+                }
+            ]
+        })
+    }
 ]

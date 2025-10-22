@@ -48,7 +48,7 @@ export default function SpørreundersøkelseRad({
 }) {
     const [erÅpen, setErÅpen] = React.useState(defaultOpen);
 
-    const spørreundersøkelseType = "Behovsvurdering";
+    const spørreundersøkelseType = dokument.type.slice(0, 1).toUpperCase() + dokument.type.slice(1).toLowerCase();
 
     return (
         <StyledExpansionCard
@@ -62,7 +62,7 @@ export default function SpørreundersøkelseRad({
                 setErÅpen(open);
             }}
         >
-            <CardHeaderInnhold dato={dato} />
+            <CardHeaderInnhold dato={dato} typetekst={spørreundersøkelseType} />
             {erÅpen ? <RadInnhold dokument={dokument} /> : null}
         </StyledExpansionCard>
     );

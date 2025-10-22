@@ -14,6 +14,23 @@ import { sendPanelEkspanderEvent } from "../../../utils/analytics/analytics";
 jest.mock("../../../utils/analytics/analytics");
 const mockdata = fiaSamarbeidMock();
 
+const dummyDokumenterPåValgtSamarbeid = [
+	{
+		"dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa86",
+		"type": "BEHOVSVURDERING",
+		"dato": new Date("2023-12-01T12:00:00Z"),
+		"tittel": "Behovsvurdering for samarbeid 1",
+		"status": "FERDIGSTILT"
+	},
+	{
+		"dokumentId": "c1a2b3d4-e5f6-7890-abcd-ef0123456789",
+		"type": "BEHOVSVURDERING",
+		"dato": new Date("2023-11-15T09:30:00Z"),
+		"tittel": "Behovsvurdering for samarbeid 2",
+		"status": "PÅBEGYNT"
+	}
+];
+
 jest.mock("../../fiaSamarbeidAPI", () => ({
 	useFiaSamarbeid: jest.fn(() => ({
 		status: RestStatus.Suksess,
@@ -21,22 +38,7 @@ jest.mock("../../fiaSamarbeidAPI", () => ({
 	})),
 }));
 jest.mock("../../Samarbeidsvelger/SamarbeidsvelgerContext", () => ({
-	useDokumenterPåValgtSamarbeid: jest.fn(() => ([
-		{
-			"dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa86",
-			"type": "BEHOVSVURDERING",
-			"dato": new Date("2023-12-01T12:00:00Z"),
-			"tittel": "Behovsvurdering for samarbeid 1",
-			"status": "FERDIGSTILT"
-		},
-		{
-			"dokumentId": "c1a2b3d4-e5f6-7890-abcd-ef0123456789",
-			"type": "BEHOVSVURDERING",
-			"dato": new Date("2023-11-15T09:30:00Z"),
-			"tittel": "Behovsvurdering for samarbeid 2",
-			"status": "PÅBEGYNT"
-		}
-	])),
+	useDokumenterPåValgtSamarbeid: jest.fn(() => dummyDokumenterPåValgtSamarbeid),
 }));
 
 jest.mock("../../fiaSamarbeidDokumenterAPI", () => ({
@@ -226,6 +228,58 @@ describe("KartleggingFane", () => {
 			<KartleggingFane />
 		);
 		expect(screen.getByText("Ingen kartlegginger er publisert enda")).toBeInTheDocument();
+	});
+
+	it("Rendrer evalueringer når slike finnes", () => {
+		(useDokumenterPåValgtSamarbeid as jest.Mock).mockImplementationOnce(() => ([
+			{
+				"dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa88",
+				"type": "EVALUERING",
+				"dato": new Date("2023-12-01T12:00:00Z"),
+				"tittel": "Evaluering for samarbeid 1",
+				"status": "FERDIGSTILT"
+			},
+			{
+				"dokumentId": "behov-1",
+				"type": "BEHOVSVURDERING",
+				"dato": new Date("2023-11-15T09:30:00Z"),
+				"tittel": "Behovsvurdering for samarbeid 1",
+				"status": "FERDIGSTILT"
+			}
+		]));
+		render(
+			<KartleggingFane />
+		);
+		expect(screen.getByText("Evaluering")).toBeInTheDocument();
+		expect(screen.getByText("Behovsvurdering")).toBeInTheDocument();
+	});
+
+	it("Viser innhold for evalueringer når slike finnes", async () => {
+		(useDokumenterPåValgtSamarbeid as jest.Mock).mockImplementationOnce(() => ([
+			{
+				"dokumentId": "ba7d8dc5-b363-421b-9773-7e3c2185fa88",
+				"type": "EVALUERING",
+				"dato": new Date("2023-12-01T12:00:00Z"),
+				"tittel": "Evaluering for samarbeid 1",
+				"status": "FERDIGSTILT"
+			}
+		]));
+		render(
+			<KartleggingFane />
+		);
+
+		expect(useFiaDokument).toHaveBeenCalledTimes(0);
+		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+		expect(rader).toHaveLength(1);
+		rader[0].click();
+		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+		const forventetSpørsmålssett = JSON.parse(fiaSamarbeidDokumentMock("ba7d8dc5-b363-421b-9773-7e3c2185fa88").innhold).spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar);
+		expect(forventetSpørsmålssett).not.toHaveLength(0);
+
+		for (const spørsmål of forventetSpørsmålssett) {
+			expect(await screen.findAllByText(spørsmål.tekst)).toHaveLength(2);
+		}
 	});
 
 	it("Ingen aksessibilitetsfeil", async () => {
