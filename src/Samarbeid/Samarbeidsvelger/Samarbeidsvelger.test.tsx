@@ -21,6 +21,35 @@ jest.mock("../fiaSamarbeidAPI", () => ({
 		data: mockdata,
 	})),
 }));
+jest.mock("next/router", () => ({
+	useRouter() {
+		return {
+			route: "/",
+			pathname: "",
+			query: {
+				bedrift: "123456789",
+			},
+			asPath: "",
+			replace: jest.fn(),
+		};
+	},
+}));
+jest.mock("next/navigation", () => ({
+	useSearchParams: () => {
+		return {
+			get: (key: string) => {
+				if (key === "bedrift") {
+					return "123456789";
+				}
+				return null;
+			},
+			toString: () => "bedrift=123456789",
+			size: 1,
+			delete: () => { },
+		};
+	},
+}));
+
 
 describe("Samarbeidsvelger", () => {
 	beforeEach(() => {
