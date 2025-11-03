@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - deling-av-samarbeidsplan
+      - orgnr-fra-url
     paths-ignore:
       - "**.md"
       - "**/**.md"
