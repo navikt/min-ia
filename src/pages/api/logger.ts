@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import * as z from "zod/v4";
 import { backendLogger } from "../../utils/backendLogger";
 
-type LogLevels = Exclude<keyof BaseLogger, 'string' | 'level'>;
+type LogLevels = Exclude<keyof BaseLogger, 'string' | 'level' | 'msgPrefix'>;
 type NonEmptyStringArray = [string, ...string[]]
 
 const levels: Record<LogLevels, LogLevels> = {
