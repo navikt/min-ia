@@ -27,7 +27,8 @@ jest.mock('next/router', () => ({
 
 
 jest.mock("../hooks/useOrgnr", () => ({
-	useOrgnr: () => "999999999",
+	useOrgnr: jest.fn(() => "999999999"),
+	erGyldigOrgnr: jest.fn(() => true),
 }));
 
 jest.mock("../hooks/useAltinnOrganisasjoner", () => ({
@@ -169,11 +170,13 @@ describe("Forside", () => {
 	});
 
 	it("Kaller sendOppgaveStatusEvent ved statusendring på oppgave", async () => {
-		render(<Forside
-			sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
-			kontaktOssUrl="kontaktOssUrl"
-			kjørerMockApp={false}
-		/>);
+		render(
+			<Forside
+				sykefraværsstatistikkUrl="sykefraværsstatistikkUrl"
+				kontaktOssUrl="kontaktOssUrl"
+				kjørerMockApp={false}
+			/>
+		);
 
 		expect(sendOppgaveStatusEvent).not.toHaveBeenCalled();
 		const aktivitetAccordion = screen.getByText("Bli gode på å tilrettelegge for ansatte");
