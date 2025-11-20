@@ -9,7 +9,6 @@ import {
 } from "./aggregertStatistikkMockdata";
 import { NextRequest, NextResponse } from "next/server";
 import { notifikasjonerMockdata } from "./notifikasjonerMockdata";
-import { fiaArbeidsgiverMock } from "./fia-arbeidsgiverMock";
 import { kvartalsvisHistorikkMockdata } from "./kvartalsvisHistorikkMockdata";
 import { aktiviteterMock } from "./aktiviteterMock";
 import {altinn3Organisasjoner} from "./altinn3OrganisasjonerMockdata";
@@ -174,18 +173,6 @@ export default async function mockRequest(req: NextRequest) {
   if (req.url?.endsWith("/api/authenticated/notifikasjoner")) {
     console.log("[DEBUG] GET /api/authenticated/notifikasjoner");
     return new NextResponse(JSON.stringify({ data: notifikasjonerMockdata }), {
-      status: 200,
-    });
-  }
-
-  if (req.url?.includes("api/authenticated/fia-samarbeidsstatus?orgnr=")) {
-    const orgnr = req.nextUrl.searchParams.get("orgnr") as string;
-    console.log(
-      `[DEBUG] GET /api/authenticated/fia-samarbeidsstatus?orgnr=${orgnr}`
-    );
-
-    await new Promise((r) => setTimeout(r, delayInMillis));
-    return new NextResponse(JSON.stringify(fiaArbeidsgiverMock(orgnr)), {
       status: 200,
     });
   }
