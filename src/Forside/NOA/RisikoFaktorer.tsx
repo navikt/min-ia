@@ -1,8 +1,11 @@
-import { BodyShort, Heading, HStack, LinkCard, Page, VStack } from "@navikt/ds-react";
+import { BodyShort, Heading, HStack, Page, VStack } from "@navikt/ds-react";
 import styles from "../NOA/risikoFaktorer.module.scss";
 import {
   NOAInfographicFlis
 } from "../../komponenter/Infographic/InfographicFlis/NOAInfographicFlis/NOAInfographicFlis";
+import {
+  NOAInfographicFlisLink
+} from "../../komponenter/Infographic/InfographicFlis/NOAInfographicFlis/NOAInfographicFlisLink";
 import STAMILogo from "./STAMI_logo.png";
 import Image from "next/image";
 
@@ -23,22 +26,11 @@ export const RisikoFaktorer = () => {
             </BodyShort>
           </VStack>
         </HStack>
-        <HStack className={styles.HStackContainer} wrap gap="8">
-          <HStack className={styles.nestedHStack}>
-            <NOAInfographicFlis label="31 %" innhold="opplever høye emosjonelle krav" />
-            <NOAInfographicFlis label="60 %" innhold="utfører arbeid på huk eller knærne" />
-          </HStack>
-          <HStack className={styles.nestedHStack}>
-            <NOAInfographicFlis label="74 %" innhold="har kontakt med kroppsvæsker" />
-            <LinkCard className={styles.linkCard}>
-              <LinkCard.Title>
-                <LinkCard.Anchor style={{ color: "#00459C" }} href="https://noa.stami.no/yrker-og-naeringer/noa/barnehage/">Se hele statistikken</LinkCard.Anchor>
-              </LinkCard.Title>
-              <LinkCard.Description>
-                Les mer om risikofaktorer i bransjen og hva de er knyttet til
-              </LinkCard.Description>
-            </LinkCard>
-          </HStack>
+        <HStack className={styles.HStackContainer} gap="8">
+          <NOAInfographicFlis label="31 %" innhold="opplever høye emosjonelle krav" />
+          <NOAInfographicFlis label="60 %" innhold="utfører arbeid på huk eller knærne" />
+          <NOAInfographicFlis label="74 %" innhold="har kontakt med kroppsvæsker" />
+          <NOAInfographicFlisLink label="Se hele statistikken" innhold="Les mer om risikofaktorer i bransjen og hva de er knyttet til" />
         </HStack>
       </Page.Block>
   );
