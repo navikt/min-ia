@@ -9,7 +9,7 @@ import { Sykefraværsstatistikk } from "./Sykefraværsstatistikk/Sykefraværssta
 import KontaktOss from "./KontaktOss/KontaktOss";
 import TestVersjonBanner from "../komponenter/TestVersjonBanner/TestVersjonBanner";
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
-/* import { UXSignalsWidget } from "./UXSignalsWidget"; */
+import { UXSignalsWidget } from "./UXSignalsWidget";
 import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
 import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
 import VerktøyOgRessurser from "./VerktlyOgRessurser/VerktøyOgRessurser";
@@ -39,7 +39,7 @@ export const Forside = (props: ForsideProps) => {
             />
             <Page.Block width="xl" style={{ position: "relative" }}>
                 {props.children}
-                {/* <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-bcv89ijxbx"} /> */}
+                <UXSignalsWidget eriDev={props.kjørerMockApp} id={"panel-xnxt8og5p1"} />
             </Page.Block>
             <Samarbeidsoversikt />
             {aggregertStatistikk.status === RestStatus.Feil ? (

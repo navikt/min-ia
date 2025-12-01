@@ -9,6 +9,7 @@ export const UXSignalsWidget = ({ eriDev, id }: {
     id: string
 }) => {
     useScript(true);
+
     return (<div
         data-uxsignals-embed={id}
         data-uxsignals-mode={eriDev ? 'demo' : ''}
