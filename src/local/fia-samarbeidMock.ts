@@ -1799,7 +1799,7 @@ const dummydokumenter = [
                             "navn": "Utvikle partssamarbeidet",
                             "status": "PÅGÅR",
                             "inkludert": true,
-                            "sluttDato": "2025-11-21",
+                            "sluttDato": "2028-11-21",
                             "startDato": "2025-09-26",
                             "målsetning": "Styrke og strukturere samarbeidet mellom leder, tillitsvalgt og verneombud, samt øke kunnskap og ferdigheter for å jobbe systematisk og forebyggende med sykefravær og arbeidsmiljø.",
                             "harAktiviteterISalesforce": false
