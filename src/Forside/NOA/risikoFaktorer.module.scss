@@ -1,0 +1,78 @@
+@use "../../styles/screensize";
+
+.risikoFaktorer {
+  background-color: #CCE1FF;
+  display: flex;
+  flex-direction: column;
+  gap: var(--a-spacing-4);
+  padding: 2rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 4rem;
+  position: relative;
+
+  .info-ikon {
+    margin-right: 0.25rem;
+    margin-bottom: -0.5rem;
+  }
+}
+
+.hstack {
+  margin-bottom: 1rem;
+}
+
+
+.STAMI__logo__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  .STAMI__logo {
+    width: 74px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: screensize.$screen-lg) {
+    position: static;
+    order: 10;
+    margin-top: 2rem;
+  }
+}
+
+.HStackContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  @media (min-width: 1080px) {
+    .nestedHStack {
+      display: contents;
+    }
+  }
+}
+
+.nestedHStack {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.linkCard {
+  min-width: 14.375rem;
+  min-height: 12.0625rem;
+  border-radius: 10px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+
+  gap: 1rem;
+  padding: 2rem 1rem 2.5rem !important;
+  box-sizing: border-box;
+
+  background-color: #CCE1FF !important;
+  border: 1px solid var(--Global-Blue-400, #3386E0) !important;
+
+}

@@ -15,6 +15,7 @@ import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
 import VerktøyOgRessurser from "./VerktlyOgRessurser/VerktøyOgRessurser";
 import InkluderendeArbeidsliv from "./InkluderendeArbeidsliv/InkluderendeArbeidsliv";
 import Samarbeidsoversikt from "../Samarbeid/Samarbeidsoversikt";
+import { RisikoFaktorer } from "./NOA/RisikoFaktorer";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -29,6 +30,10 @@ export const Forside = (props: ForsideProps) => {
     const aggregertStatistikkData = erFerdigNedlastet(aggregertStatistikk)
         ? aggregertStatistikk.data
         : tomtDataobjekt;
+
+    const skalViseRisikoFaktorer = aggregertStatistikkData.prosentSiste4KvartalerTotalt.some(
+        (statistikk) => statistikk.statistikkategori === "BRANSJE" && statistikk.label === "Barnehager"
+    );
 
     return (
         <>
@@ -56,6 +61,7 @@ export const Forside = (props: ForsideProps) => {
                 />
             )}
             <Fraværskalkulator />
+            {skalViseRisikoFaktorer && <RisikoFaktorer />}
             <TjenesterFraNav />
             <VerktøyOgRessurser />
             <InkluderendeArbeidsliv />

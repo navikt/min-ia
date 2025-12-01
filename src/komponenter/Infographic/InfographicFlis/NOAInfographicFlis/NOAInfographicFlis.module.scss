@@ -1,0 +1,71 @@
+@use "src/styles/screensize";
+
+.ikonWrapper {
+  margin-right: 1rem;
+}
+
+.NOA_infographicFlis {
+  background-color: var(--a-orange-100);
+  flex-basis: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: var(--a-spacing-2);
+  border-radius: 4px;
+
+  &.fullBredde {
+    flex-basis: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .skeletonWrapper {
+    display: block;
+    line-height: 1.2;
+    padding: 0.5rem;
+    width: 100%;
+
+    .skeleton {
+      width: 100%;
+    }
+  }
+}
+
+.NOA_infographicFlisBox {
+  min-width: 14.375rem;
+  min-height: 12.0625rem;
+  border-radius: 10px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  background: var(--Global-Blue-200, #99C3FF);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1rem 2.5rem;
+  // TODO: Ser bedre ut med "padding: 3rem 2rem 3.5rem;", men her har jeg justert det for å få LinkCard til å se bedre ut
+
+  .label {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 22px;
+  }
+
+  .verdi {
+    &:not(:only-child) {
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 28px;
+      letter-spacing: 0.044px;
+    }
+  }
+}
+
