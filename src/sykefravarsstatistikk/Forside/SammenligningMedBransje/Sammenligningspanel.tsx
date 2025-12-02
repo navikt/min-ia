@@ -114,7 +114,6 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
             </Heading>
             <BodyShort
               className={styles["sammenligningspanel__tittel-forklaring"]}
-              as="div"
             >
               {vurderingstekst}
             </BodyShort>
