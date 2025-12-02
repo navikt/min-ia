@@ -23,7 +23,7 @@ export function InfographicFlis({
     }
     return (
       <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
-        <BodyShort size="small" className={styles.verdi} as="div">
+        <BodyShort size="small" className={styles.verdi}>
           {innhold}
         </BodyShort>
       </Box>
@@ -41,8 +41,8 @@ export function InfographicFlis({
 
   return (
     <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
-      {label && <BodyShort className={styles.label} as="div">{label}:</BodyShort>}
-      <BodyShort size="small" className={styles.verdi} as="div">
+      {label && <BodyShort className={styles.label}>{label}:</BodyShort>}
+      <BodyShort size="small" className={styles.verdi}>
         {innhold}
       </BodyShort>
     </Box>

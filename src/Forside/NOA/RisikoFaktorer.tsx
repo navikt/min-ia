@@ -14,11 +14,11 @@ export const RisikoFaktorer = () => {
   return (
       <Page.Block width="xl" className={styles.risikoFaktorer}>
         <div className={styles.STAMI__logo__container}>
-          <Image src={STAMILogo} alt="Logo for Inkluderende arbeidsliv" className={styles.STAMI__logo} />
+          <Image src={STAMILogo} alt="Logo for STAMI" className={styles.STAMI__logo} />
         </div>
         <HStack className={styles.hstack} justify="space-between" align="start">
           <VStack>
-            <Heading size={"medium"} level={"1"}>
+            <Heading size={"medium"} level={"2"}>
               Risikofaktorer i barnehage og skolefritidsordning:
             </Heading>
             <BodyShort>

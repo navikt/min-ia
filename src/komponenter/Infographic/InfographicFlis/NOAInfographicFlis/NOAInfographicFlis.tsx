@@ -12,8 +12,8 @@ export function NOAInfographicFlis({
 
   return (
     <Box className={styles.NOA_infographicFlisBox}>
-      {label && <BodyShort className={styles.label} as="div">{label}</BodyShort>}
-      <BodyShort size="small" className={styles.verdi} as="div">
+      {label && <BodyShort className={styles.label}>{label}</BodyShort>}
+      <BodyShort size="small" className={styles.verdi}>
         {innhold}
       </BodyShort>
     </Box>
