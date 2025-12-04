@@ -82,8 +82,8 @@ function Samarbeidssideinnhold({ kjørerMockApp }: { kjørerMockApp: boolean }) 
 
 	return (
 		<>
-			<Samarbeidsvelger />
 			<UXSignalsWidget eriDev={kjørerMockApp} id={"panel-xnxt8og5p1"} />
+			<Samarbeidsvelger />
 			<Samarbeidsinfo />
 			<Tabs value={valgtFane || "kartlegging"} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
