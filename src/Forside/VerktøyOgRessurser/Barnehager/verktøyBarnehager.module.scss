@@ -1,0 +1,62 @@
+.verktøyOgRessurser {
+  margin: 4rem auto;
+  padding: 0 1rem;
+
+  .verktøyOgRessurserTittel {
+    margin-bottom: 2rem;
+  }
+  .verktøyStack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem 2rem;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 1000px) and (min-width: 860px) {
+      justify-items: center;
+    }
+
+    @media (max-width: 666px) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .verktøykort {
+      background: var(--surface-action-subtle-hover, #CCE1FF);
+      display: grid;
+      max-width: 25rem;
+      min-width: 15rem;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+
+      border-radius: 0.5rem;
+      padding: 2.5rem 4rem 1.5rem;
+      gap: 1rem;
+      text-align: center;
+
+      .label {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+
+      .verdi {
+        &:not(:only-child) {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 22px;
+          letter-spacing: 0.032px;
+        }
+      }
+
+      .lenke {
+        width: fit-content;
+        justify-self: center;
+        --ac-button-secondary-hover-bg: #99C3FF;
+      }
+    }
+  }
+}
