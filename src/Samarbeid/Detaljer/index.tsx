@@ -19,16 +19,15 @@ export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffen
 
 	return (
 		<>
-			<UXSignalsWidget eriDev={kjørerMockApp} id={"panel-xnxt8og5p1"} />
 			<SamarbeidsvelgerProvider samarbeidOffentligId={samarbeidOffentligId}
 				setSamarbeidOffentligId={setSamarbeidOffentligId}>
-				<Samarbeidssideinnhold key={samarbeidOffentligId} />
+				<Samarbeidssideinnhold key={samarbeidOffentligId} kjørerMockApp={kjørerMockApp} />
 			</SamarbeidsvelgerProvider>
 		</>
 	);
 }
 
-function Samarbeidssideinnhold() {
+function Samarbeidssideinnhold({ kjørerMockApp }: { kjørerMockApp: boolean }) {
 	const [valgtFane, setValgtFane] = React.useState<string | null>(null);
 	const dokumenter = useDokumenterPåValgtSamarbeid();
 	const harPlan = dokumenter.some(d => d.type === "SAMARBEIDSPLAN");
@@ -84,6 +83,7 @@ function Samarbeidssideinnhold() {
 	return (
 		<>
 			<Samarbeidsvelger />
+			<UXSignalsWidget eriDev={kjørerMockApp} id={"panel-xnxt8og5p1"} />
 			<Samarbeidsinfo />
 			<Tabs value={valgtFane || "kartlegging"} onChange={setValgtFaneOgLogg}>
 				<Tabs.List>
