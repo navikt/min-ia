@@ -68,16 +68,18 @@ export default function ExperimentPlaygroundPage(props: {
 					offentligId={typeof offentligId === "string" ? offentligId : undefined}
 					setOffentligId={(nyOffentligId: string) => replace(`/samarbeid/${nyOffentligId}`)}
 					organisasjonerBrukerHarTilgangTil={organisasjonerBrukerHarTilgangTil}
+					kjørerMockApp={props.kjørerMockApp}
 				/>
 			</Layout>
 		</>
 	);
 }
 
-function Sideinnhold({ offentligId, setOffentligId, organisasjonerBrukerHarTilgangTil }: {
+function Sideinnhold({ offentligId, setOffentligId, organisasjonerBrukerHarTilgangTil, kjørerMockApp }: {
 	offentligId: string | undefined;
 	setOffentligId: (nyOffentligId: string) => void;
 	organisasjonerBrukerHarTilgangTil: RestRessurs<Organisasjon[]>;
+	kjørerMockApp: boolean;
 }) {
 	if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
 		return (
@@ -92,8 +94,11 @@ function Sideinnhold({ offentligId, setOffentligId, organisasjonerBrukerHarTilga
 	}
 
 	return (
-		<Samarbeidsdetaljeside samarbeidOffentligId={offentligId}
-			setSamarbeidOffentligId={setOffentligId} />
+		<Samarbeidsdetaljeside
+			samarbeidOffentligId={offentligId}
+			setSamarbeidOffentligId={setOffentligId}
+			kjørerMockApp={kjørerMockApp}
+		/>
 	);
 }
 

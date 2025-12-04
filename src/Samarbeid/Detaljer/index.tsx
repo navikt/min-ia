@@ -9,17 +9,22 @@ import styles from './Samarbeidsside.module.scss';
 import samarbeidsvelgerStyles from '../Samarbeidsvelger/Samarbeidsvelger.module.scss';
 import PlanFane from "./PlanFane";
 import { sendDefaultTabValgt, sendFaneByttetEvent } from "../../utils/analytics/analytics";
+import { UXSignalsWidget } from "../../Forside/UXSignalsWidget";
 
-export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffentligId }: {
+export default function Samarbeidsside({ samarbeidOffentligId, setSamarbeidOffentligId, kjørerMockApp }: {
 	samarbeidOffentligId?: string,
 	setSamarbeidOffentligId: (id: string) => void
+	kjørerMockApp: boolean;
 }) {
 
 	return (
-		<SamarbeidsvelgerProvider samarbeidOffentligId={samarbeidOffentligId}
-			setSamarbeidOffentligId={setSamarbeidOffentligId}>
-			<Samarbeidssideinnhold key={samarbeidOffentligId} />
-		</SamarbeidsvelgerProvider>
+		<>
+			<UXSignalsWidget eriDev={kjørerMockApp} id={"panel-xnxt8og5p1"} />
+			<SamarbeidsvelgerProvider samarbeidOffentligId={samarbeidOffentligId}
+				setSamarbeidOffentligId={setSamarbeidOffentligId}>
+				<Samarbeidssideinnhold key={samarbeidOffentligId} />
+			</SamarbeidsvelgerProvider>
+		</>
 	);
 }
 
