@@ -11,10 +11,11 @@ import TestVersjonBanner from "../komponenter/TestVersjonBanner/TestVersjonBanne
 import Aktiviteter from "../Aktiviteter/Aktiviteter";
 import Fraværskalkulator from "./Fraværskalkulator/Fraværskalkulator";
 import TjenesterFraNav from "./TjenesterFraNav/TjenesterFraNav";
-import VerktøyOgRessurser from "./VerktlyOgRessurser/VerktøyOgRessurser";
+import VerktøyOgRessurser from "./VerktøyOgRessurser/VerktøyOgRessurser";
 import InkluderendeArbeidsliv from "./InkluderendeArbeidsliv/InkluderendeArbeidsliv";
 import Samarbeidsoversikt from "../Samarbeid/Samarbeidsoversikt";
 import { RisikoFaktorer } from "./NOA/RisikoFaktorer";
+import VerktøyBarnehager from "./VerktøyOgRessurser/Barnehager/VerktøyBarnehager";
 
 export interface ForsideProps {
     sykefraværsstatistikkUrl: string;
@@ -30,7 +31,7 @@ export const Forside = (props: ForsideProps) => {
         ? aggregertStatistikk.data
         : tomtDataobjekt;
 
-    const skalViseRisikoFaktorer = aggregertStatistikkData.prosentSiste4KvartalerTotalt.some(
+    const erBransjeBarnehager = aggregertStatistikkData.prosentSiste4KvartalerTotalt.some(
         (statistikk) => statistikk.statistikkategori === "BRANSJE" && statistikk.label === "Barnehager"
     );
 
@@ -59,9 +60,14 @@ export const Forside = (props: ForsideProps) => {
                 />
             )}
             <Fraværskalkulator />
-            {skalViseRisikoFaktorer && <RisikoFaktorer />}
+            {erBransjeBarnehager && (
+                <>
+                    <RisikoFaktorer />
+                    <VerktøyBarnehager />
+                </>
+            )}
             <TjenesterFraNav />
-            <VerktøyOgRessurser />
+            {!erBransjeBarnehager && <VerktøyOgRessurser />}
             <InkluderendeArbeidsliv />
             <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
             <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
