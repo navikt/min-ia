@@ -3,6 +3,7 @@ import React from "react";
 import { useScript } from "./UseScript";
 
 import styles from "./uxSignalsWidget.module.scss";
+import { Page } from "@navikt/ds-react";
 
 export const UXSignalsWidget = ({ eriDev, id }: {
     eriDev: boolean
@@ -10,9 +11,13 @@ export const UXSignalsWidget = ({ eriDev, id }: {
 }) => {
     useScript(true);
 
-    return (<div
-        data-uxsignals-embed={id}
-        data-uxsignals-mode={eriDev ? 'demo' : ''}
-        className={styles.uxSignalWidget}
-    />);
+    return (
+        <Page.Block width="xl" gutters>
+            <div
+                data-uxsignals-embed={id}
+                data-uxsignals-mode={eriDev ? 'demo' : ''}
+                className={styles.uxSignalWidget}
+            />
+        </Page.Block>
+    );
 }
