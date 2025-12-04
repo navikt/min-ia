@@ -14,7 +14,7 @@ spec:
           expr: kube_deployment_status_replicas_available{deployment="min-ia"} == 0
           for: 2m
           annotations:
-            consequence: "Forebygge fravær er utilgjengelig"
+            consequence: "Forebygge fravær frontend (min-ia) er utilgjengelig"
             action: |-
               Sjekk helsa til applikasjonen ved å kjøre
               `kubectl describe pod <podname> -n pia` og 
@@ -26,7 +26,7 @@ spec:
         - alert: ErrorLogRegistrert
           expr: sum(increase(logd_messages_total{log_app="min-ia", log_level="Error"}[10m])) > 0
           annotations:
-            description: "Forebygge fravær frontend har logget en (eller flere) feil."
+            description: "Forebygge fravær frontend (min-ia) har logget en (eller flere) feil."
             action: |-
               Sjekk logs.adeo.no for logger, 
               eller Grafana-dashboardet vårt: https://grafana.nais.io/dashboards/f/cvOhCMUnz/team-ia
