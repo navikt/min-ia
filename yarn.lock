@@ -1517,10 +1517,10 @@
   resolved "https://npm.pkg.github.com/download/@navikt/texas/4.1.1/a4875c9cc658d6cebf4185bb2c89a17c54f15827#a4875c9cc658d6cebf4185bb2c89a17c54f15827"
   integrity sha512-9g48mKgn1iVMgy/7QtHx28rbgEB4V3PvGQ092trIbpTxjsxcyTmwUvejZH8bHac1QCxi61/VN0beySPgE+Q1xQ==
 
-"@navikt/virksomhetsvelger@^1.0.4":
-  version "1.0.4"
-  resolved "https://npm.pkg.github.com/download/@navikt/virksomhetsvelger/1.0.4/7ec5804b1a87160aafcdd6b0d7f63aed3234960d#7ec5804b1a87160aafcdd6b0d7f63aed3234960d"
-  integrity sha512-PPiZau1cvksiM+OvBldFCZWXm/2gFGZsgteV/bPAV2P4rZFq0FDLOD9pPY4nJvtUaUWjCgPD/KfRlkCv72lbcw==
+"@navikt/virksomhetsvelger@^1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@navikt/virksomhetsvelger/1.0.5/54a979cf300c60c805f41e98e57487cf0974776f#54a979cf300c60c805f41e98e57487cf0974776f"
+  integrity sha512-oW0HDU/YwGkt9G0Oaa+ansWeYI32uLkuzq1GJp+nAUDjK/89btUGQdWqYy0h4za7qRUA5l2WWCv4ptLZyAilMQ==
   dependencies:
     focus-trap-react "11.0.3"
 
