@@ -2,7 +2,7 @@ import React from "react";
 
 import KartleggingFane from ".";
 
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { RestStatus } from "../../../integrasjoner/rest-status";
 import { fiaSamarbeidDokumentMock, fiaSamarbeidMock } from "../../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
@@ -80,7 +80,7 @@ describe("KartleggingFane", () => {
 
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(2);
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(screen.queryByText("Venter…")).toBeInTheDocument());
 	});
 
@@ -91,7 +91,7 @@ describe("KartleggingFane", () => {
 		expect(useFiaDokument).toHaveBeenCalledTimes(0);
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(2);
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 		for (const spørsmål of JSON.parse(fiaSamarbeidDokumentMock("ba7d8dc5-b363-421b-9773-7e3c2185fa86").innhold).spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar)) {
 			expect(await screen.findAllByText(spørsmål.tekst)).toHaveLength(2);
@@ -114,7 +114,7 @@ describe("KartleggingFane", () => {
 		expect(useFiaDokument).toHaveBeenCalledTimes(0);
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(1);
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 
 		// Viser "feil" om tomme seksjoner.
@@ -135,10 +135,10 @@ describe("KartleggingFane", () => {
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(2);
 
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 		expect(useFiaDokument).toHaveBeenNthCalledWith(1, { dokumentId: "ba7d8dc5-b363-421b-9773-7e3c2185fa86" });
-		rader[1].click();
+		act(() => rader[1].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(2));
 		expect(useFiaDokument).toHaveBeenNthCalledWith(2, { dokumentId: "c1a2b3d4-e5f6-7890-abcd-ef0123456789" });
 	});
@@ -160,7 +160,7 @@ describe("KartleggingFane", () => {
 		expect(useFiaDokument).toHaveBeenCalledTimes(0);
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(1);
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 
 		// Viser "feil" i på tomme grafer.
@@ -186,13 +186,13 @@ describe("KartleggingFane", () => {
 
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(2);
-		rader[0].click();
+		act(() => rader[0].click());
 
 		await waitFor(() => expect(sendPanelEkspanderEvent).toHaveBeenCalledTimes(1));
 
 		expect(sendPanelEkspanderEvent).toHaveBeenNthCalledWith(1, "Behovsvurdering");
 
-		rader[1].click();
+		act(() => rader[1].click());
 
 		await waitFor(() => expect(sendPanelEkspanderEvent).toHaveBeenCalledTimes(2));
 		expect(sendPanelEkspanderEvent).toHaveBeenNthCalledWith(2, "Behovsvurdering");
@@ -209,7 +209,7 @@ describe("KartleggingFane", () => {
 		expect(useFiaDokument).toHaveBeenCalledTimes(0);
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(2);
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 		expect(await screen.findByText("Noe gikk galt ved lasting. Vennligst prøv igjen senere.")).toBeInTheDocument();
 	});
@@ -271,7 +271,7 @@ describe("KartleggingFane", () => {
 		expect(useFiaDokument).toHaveBeenCalledTimes(0);
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(1);
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 
 		const forventetSpørsmålssett = JSON.parse(fiaSamarbeidDokumentMock("ba7d8dc5-b363-421b-9773-7e3c2185fa88").innhold).spørsmålMedSvarPerTema.flatMap((t: TemaMedSpørsmålOgSvar) => t.spørsmålMedSvar);
@@ -292,7 +292,7 @@ describe("KartleggingFane", () => {
 				"status": "FERDIGSTILT"
 			},
 			{
-				"dokumentId": "ny-kartlegging",
+				"dokumentId": "ny-kartleggingf",
 				"type": "BEHOVSVURDERING",
 				"dato": "2023-12-01T12:00:00.123456",
 				"tittel": "Ny kartlegging",
@@ -322,10 +322,10 @@ describe("KartleggingFane", () => {
 		const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
 		expect(rader).toHaveLength(2);
 
-		rader[0].click();
+		act(() => rader[0].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
 		expect(useFiaDokument).toHaveBeenNthCalledWith(1, { dokumentId: "ba7d8dc5-b363-421b-9773-7e3c2185fa86" });
-		rader[1].click();
+		act(() => rader[1].click());
 		await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(2));
 		expect(await axe(container)).toHaveNoViolations();
 	});

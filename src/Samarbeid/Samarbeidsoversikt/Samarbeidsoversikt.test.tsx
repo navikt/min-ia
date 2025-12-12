@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { fiaSamarbeidMock } from "../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
 import { RestStatus } from "../../integrasjoner/rest-status";
@@ -39,7 +39,7 @@ describe("Samarbeidsvelger", () => {
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
 	});
@@ -54,7 +54,7 @@ describe("Samarbeidsvelger", () => {
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
 
 		for (const samarbeid of mockdata) {
@@ -80,7 +80,7 @@ describe("Samarbeidsvelger", () => {
 
 		expect(lenke).toBeInTheDocument();
 
-		lenke?.click();
+		act(() => lenke?.click());
 
 		expect(sendNavigereEvent).toHaveBeenCalledWith("Se samarbeid", `/samarbeid/[SAMARBEID_ID]`);
 	});
@@ -97,7 +97,7 @@ describe("Samarbeidsvelger", () => {
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
 		expect(sendKnappEvent).toHaveBeenCalledWith("Vis alle ([antall])");
@@ -105,7 +105,7 @@ describe("Samarbeidsvelger", () => {
 		const visFærreKnapp = screen.getByRole("button", { name: "Vis færre" });
 		expect(visFærreKnapp).toBeInTheDocument();
 
-		visFærreKnapp.click();
+		act(() => visFærreKnapp.click());
 
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3));
 		expect(sendKnappEvent).toHaveBeenCalledWith("Vis færre");
@@ -150,7 +150,7 @@ describe("Samarbeidsvelger", () => {
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
 
@@ -197,7 +197,7 @@ describe("Samarbeidsvelger", () => {
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (3)` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(3));
 		const seSamarbeidKnapper = screen.getAllByRole("button", { name: "Se samarbeid" });
 
@@ -249,7 +249,7 @@ describe("Samarbeidsvelger", () => {
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (4)` });
 		expect(seAlleKnapp).toBeInTheDocument();
 
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(4));
 
 		const seSamarbeidKnapper = screen.getAllByRole("button", { name: "Se samarbeid" });
@@ -272,7 +272,7 @@ describe("Samarbeidsvelger", () => {
 
 		// med ekspandert meny
 		const seAlleKnapp = screen.getByRole("button", { name: `Vis alle (${mockdata.length})` });
-		seAlleKnapp.click();
+		act(() => seAlleKnapp.click());
 		await waitFor(() => expect(screen.getAllByRole("button", { name: "Se samarbeid" })).toHaveLength(mockdata.length));
 
 		expect(await axe(container)).toHaveNoViolations();

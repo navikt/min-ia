@@ -2,7 +2,7 @@ import React from "react";
 
 import PlanFane from ".";
 
-import { queryAllByText, render, screen, waitFor, within } from "@testing-library/react";
+import { act, queryAllByText, render, screen, waitFor, within } from "@testing-library/react";
 import { sendPlanUndertemaÅpnet } from "../../../utils/analytics/analytics";
 import { axe } from "jest-axe";
 import { RestStatus } from "../../../integrasjoner/rest-status";
@@ -73,7 +73,7 @@ describe("PlanFane", () => {
 		expect(container).toBeInTheDocument();
 		const rader = await screen.findAllByRole("button", { name: /Utvikle partssamarbeidet/ });
 		expect(rader).toHaveLength(1);
-		rader[0].click();
+		act(() => rader[0].click());
 		expect(sendPlanUndertemaÅpnet).toHaveBeenCalledTimes(1);
 	});
 
@@ -86,7 +86,7 @@ describe("PlanFane", () => {
 		const rader = await screen.findAllByRole("button", { name: /Utvikle partssamarbeidet/ });
 		expect(rader).toHaveLength(1);
 		expect(queryAllByText(container, innholdstekst)[0].parentElement).toHaveClass("navds-accordion__content--closed", { exact: false });
-		rader[0].click();
+		act(() => rader[0].click());
 		waitFor(() => expect(queryAllByText(container, innholdstekst)[0].parentElement).not.toHaveClass("navds-accordion__content--closed", { exact: false }));
 
 		// Sjekk at vi ikke har noen UU-feil
@@ -159,7 +159,7 @@ describe("PlanFane", () => {
 		// Åpne ett undertema og sjekk på nytt
 		const rader = await screen.findAllByRole("button", { name: /Utvikle partssamarbeidet/ });
 		expect(rader).toHaveLength(1);
-		rader[0].click();
+		act(() => rader[0].click());
 		waitFor(() => expect(queryAllByText(container, innholdstekst)[0].parentElement).not.toHaveClass("navds-accordion__content--closed", { exact: false }));
 		expect(await axe(container)).toHaveNoViolations();
 	});

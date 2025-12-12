@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import { sendNavigereEvent, sendÅpneAktivitetEvent, sendOppgaveStatusEvent } from "../utils/analytics/analytics";
 import { Forside } from "./Forside";
 import React from "react";
@@ -126,7 +126,7 @@ describe("Forside", () => {
 		/>);
 		expect(sendNavigereEvent).not.toHaveBeenCalled();
 		const knapp = getKnapp ? await getKnapp() : await screen.findByRole("link", { name: knappetekst });
-		knapp.click();
+		act(() => knapp.click());
 		expect(sendNavigereEvent).toHaveBeenCalledTimes(1);
 		expect(sendNavigereEvent).toHaveBeenCalledWith(knappetekst, knappeurl);
 	});
@@ -144,7 +144,7 @@ describe("Forside", () => {
 
 		expect(sendÅpneAktivitetEvent).not.toHaveBeenCalled();
 		const aktivitetAccordion = screen.getByText(accordiontittel);
-		aktivitetAccordion.click();
+		act(() => aktivitetAccordion.click());
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledTimes(1);
 		expect(sendÅpneAktivitetEvent).toHaveBeenCalledWith(accordiontittel, false);
 	});
@@ -180,13 +180,13 @@ describe("Forside", () => {
 
 		expect(sendOppgaveStatusEvent).not.toHaveBeenCalled();
 		const aktivitetAccordion = screen.getByText("Bli gode på å tilrettelegge for ansatte");
-		aktivitetAccordion.click();
+		act(() => aktivitetAccordion.click());
 		const parent = aktivitetAccordion.closest("div") as HTMLElement;
 
 		const oppgave = within(parent).getByText("Oppgave: Kunnskap om tilrettelegging").parentElement?.parentElement as HTMLElement;
 
 		const startknapp = within(oppgave).getAllByText("Start")[0].closest("button") as HTMLButtonElement;
-		startknapp.click();
+		act(() => startknapp.click());
 		expect(sendOppgaveStatusEvent).toHaveBeenCalledTimes(1);
 		expect(sendOppgaveStatusEvent).toHaveBeenCalledWith("STARTET", "Oppgave: Kunnskap om tilrettelegging");
 		await waitFor(() => {
@@ -194,7 +194,7 @@ describe("Forside", () => {
 		});
 
 		const fullførknapp = within(oppgave).getAllByText("Fullfør")[0].closest("button") as HTMLButtonElement;
-		fullførknapp.click();
+		act(() => fullførknapp.click());
 		expect(sendOppgaveStatusEvent).toHaveBeenCalledTimes(2);
 		expect(sendOppgaveStatusEvent).toHaveBeenCalledWith("FULLFØRT", "Oppgave: Kunnskap om tilrettelegging");
 		await waitFor(() => {
@@ -211,9 +211,9 @@ describe("Forside", () => {
 
 		expect(sendNavigereEvent).not.toHaveBeenCalled();
 		const aktivitetAccordion = screen.getByText("Bruk egen sykefraværstatistikk aktivt");
-		aktivitetAccordion.click();
+		act(() => aktivitetAccordion.click());
 		const parent = aktivitetAccordion.closest("div") as HTMLElement;
-		within(parent).getByText("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.").click();
+		act(() => within(parent).getByText("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.").click());
 		expect(sendNavigereEvent).toHaveBeenCalledTimes(1);
 		expect(sendNavigereEvent).toHaveBeenCalledWith("NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.", "https://arbeidsgiver.nav.no/sykefravarsstatistikk/");
 	});

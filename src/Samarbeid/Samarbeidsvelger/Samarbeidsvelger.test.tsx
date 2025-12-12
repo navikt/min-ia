@@ -1,7 +1,7 @@
 import React from "react";
 import Samarbeidsvelger from ".";
 import { SamarbeidsvelgerProvider } from "./SamarbeidsvelgerContext";
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { OrgnrProvider } from "../../utils/OrgnrContext";
 import { fiaSamarbeidMock } from "../../local/fia-samarbeidMock";
 import { axe } from "jest-axe";
@@ -92,15 +92,17 @@ describe("Samarbeidsvelger", () => {
 		expect(knapper[0]).toBeInTheDocument();
 		expect(knapper[0].textContent).toBe(mockdata[0].navn);
 
-		knapper[0].click();
+		act(() => knapper[0].click());
 		const samarbeid2 = await waitFor(() => screen.getByText(mockdata[2].navn));
 
 		expect(samarbeid2).toBeInTheDocument();
 
-		samarbeid2.click();
+		act(() => samarbeid2.click());
 
 		expect(valgtSamarbeid).toBe(mockdata[2].offentligId);
-		expect(screen.getByText(mockdata[2].navn)).toBeInTheDocument();
+		waitFor(() => {
+			return expect(screen.getByText(mockdata[2].navn)).toBeInTheDocument();
+		});
 	});
 
 	it("Viser riktig status for samarbeid", async () => {
@@ -120,7 +122,7 @@ describe("Samarbeidsvelger", () => {
 
 		const knapper = container.querySelectorAll("button");
 		expect(knapper.length).toBeGreaterThan(0);
-		knapper[0].click();
+		act(() => knapper[0].click());
 
 		const samarbeid1 = await waitFor(() => screen.getByRole("menuitem", { name: `${mockdata[0].navn} ${penskrivIAStatus(mockdata[0].status as SamarbeidStatus)}` }));
 		expect(samarbeid1).toBeInTheDocument();
@@ -151,11 +153,11 @@ describe("Samarbeidsvelger", () => {
 		expect(knapper[0]).toBeInTheDocument();
 		expect(knapper[0].textContent).toBe(mockdata[0].navn);
 
-		knapper[0].click();
+		act(() => knapper[0].click());
 		const samarbeid2 = await waitFor(() => screen.getByText(mockdata[2].navn));
 		expect(samarbeid2).toBeInTheDocument();
 
-		samarbeid2.click();
+		act(() => samarbeid2.click());
 
 		expect(sendSamarbeidValgtEvent).toHaveBeenCalledTimes(1);
 		expect(sendSamarbeidValgtEvent).toHaveBeenCalledWith(mockdata[2].status);
@@ -186,7 +188,7 @@ describe("Samarbeidsvelger", () => {
 		expect(knapper[0]).toBeInTheDocument();
 		expect(knapper[0].textContent).toBe(mockdata[0].navn);
 
-		knapper[0].click();
+		act(() => knapper[0].click());
 		const samarbeidItems = await waitFor(() => screen.getAllByRole("menuitem"));
 
 		expect(samarbeidItems.length).toBe(3);
@@ -221,7 +223,7 @@ describe("Samarbeidsvelger", () => {
 		expect(knapper[0]).toBeInTheDocument();
 		expect(knapper[0].textContent).toBe(mockdata[0].navn);
 
-		knapper[0].click();
+		act(() => knapper[0].click());
 		const samarbeidItems = await waitFor(() => screen.getAllByRole("menuitem"));
 
 		expect(samarbeidItems.length).toBe(3);
@@ -257,7 +259,7 @@ describe("Samarbeidsvelger", () => {
 		expect(knapper[0]).toBeInTheDocument();
 		expect(knapper[0].textContent).toBe(mockdata[0].navn);
 
-		knapper[0].click();
+		act(() => knapper[0].click());
 		const samarbeidItems = await waitFor(() => screen.getAllByRole("menuitem"));
 
 		expect(samarbeidItems.length).toBe(4);
@@ -287,7 +289,7 @@ describe("Samarbeidsvelger", () => {
 
 		const knapper = container.querySelectorAll("button");
 		expect(knapper.length).toBeGreaterThan(0);
-		knapper[0].click();
+		act(() => knapper[0].click());
 
 		const samarbeid1 = await waitFor(() => screen.getByRole("menuitem", { name: `${mockdata[0].navn} ${penskrivIAStatus(mockdata[0].status as SamarbeidStatus)}` }));
 		expect(samarbeid1).toBeInTheDocument();
