@@ -20,10 +20,10 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@apollo/client@3.13.8":
-  version "3.13.8"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.13.8.tgz#ef1d49a5b134c69a55e3f137164a8e323aef4e2a"
-  integrity sha512-YM9lQpm0VfVco4DSyKooHS/fDTiKQcCHfxr7i3iL6a0kP/jNO5+4NFK6vtRDxaYisd5BrwOZHLJpPBnvRVpKPg==
+"@apollo/client@^3.10.8":
+  version "3.11.8"
+  resolved "https://registry.npmjs.org/@apollo/client/-/client-3.11.8.tgz"
+  integrity sha512-CgG1wbtMjsV2pRGe/eYITmV5B8lXUCYljB2gB/6jWTFQcrvirUVvKg7qtFdjYkQSFbIffU1IDyxgeaN81eTjbA==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -34,6 +34,7 @@
     optimism "^0.18.0"
     prop-types "^15.7.2"
     rehackt "^0.1.0"
+    response-iterator "^0.2.6"
     symbol-observable "^4.0.0"
     ts-invariant "^0.10.3"
     tslib "^2.3.0"
@@ -1448,13 +1449,13 @@
   resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.35.2/1e52ed2d63c12681827ca06918824d23b7126ce9#1e52ed2d63c12681827ca06918824d23b7126ce9"
   integrity sha512-0jI+QdY7zjQ9sOlNDnvMu7QFCMSLMZB8GVJnJFJoYDB5k+1zefmYnuOEvq51zHugbnUIyFYglkTXCuZiwX+Waw==
 
-"@navikt/arbeidsgiver-notifikasjon-widget@^8.0.3":
-  version "8.0.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/arbeidsgiver-notifikasjon-widget/8.0.3/2f0e665f8330d05b1a56caf19d853e5123973a1b#2f0e665f8330d05b1a56caf19d853e5123973a1b"
-  integrity sha512-zmT27ZdTXXDTpoxe/6NDeUBhLZRVyWtK0LE5Q4WTRtxa2tRzpYBnyR3phdeATG5RAxwVQRdZ9YJhgivjDDNDrg==
+"@navikt/arbeidsgiver-notifikasjon-widget@^7.2.3":
+  version "7.2.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/arbeidsgiver-notifikasjon-widget/7.2.3/225093fcd1b0543a2c11f53f8a44c2b8a7715de6"
+  integrity sha512-Kb0JbuW9xSipmsiOX2HR/xTcsAX/YKplS6oEEENC2FB02W2bWgedl7BBhtXIV+GeHxa36VtYTnp/riaBLV+t4w==
   dependencies:
-    "@apollo/client" "3.13.8"
-    graphql "16.11.0"
+    "@apollo/client" "^3.10.8"
+    graphql "^16.9.0"
 
 "@navikt/ds-css@^7.35.2":
   version "7.35.2"
@@ -4351,10 +4352,15 @@ graphql-tag@^2.12.6:
   dependencies:
     tslib "^2.1.0"
 
-graphql@16.11.0, graphql@^16.8.1:
-  version "16.11.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.11.0.tgz#96d17f66370678027fdf59b2d4c20b4efaa8a633"
-  integrity sha512-mS1lbMsxgQj6hge1XZ6p7GPhbrtFwUFYi3wRzXAC/FmYnyXMTvvI3td3rjmQ2u8ewXueaSvRPWaEcgVVOT9Jnw==
+graphql@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.npmjs.org/graphql/-/graphql-16.8.1.tgz"
+  integrity sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==
+
+graphql@^16.9.0:
+  version "16.9.0"
+  resolved "https://registry.npmjs.org/graphql/-/graphql-16.9.0.tgz"
+  integrity sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==
 
 has-bigints@^1.0.1:
   version "1.0.2"
@@ -6571,6 +6577,11 @@ resolve@^2.0.0-next.5:
     is-core-module "^2.13.0"
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
+
+response-iterator@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.npmjs.org/response-iterator/-/response-iterator-0.2.6.tgz"
+  integrity sha512-pVzEEzrsg23Sh053rmDUvLSkGXluZio0qu8VT6ukrYuvtjVfCbDZH9d6PGXb8HZfzdNZt8feXv/jvUzlhRgLnw==
 
 rettime@^0.7.0:
   version "0.7.0"

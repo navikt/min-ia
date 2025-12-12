@@ -17,7 +17,7 @@
   "dependencies": {
     "@grafana/faro-web-sdk": "^2.0.2",
     "@navikt/aksel-icons": "^7.35.2",
-    "@navikt/arbeidsgiver-notifikasjon-widget": "^8.0.3",
+    "@navikt/arbeidsgiver-notifikasjon-widget": "^7.2.3",
     "@navikt/ds-css": "^7.35.2",
     "@navikt/ds-icons": "^3.4.3",
     "@navikt/ds-react": "^7.33.4",
