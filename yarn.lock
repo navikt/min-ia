@@ -1444,10 +1444,10 @@
     "@emnapi/runtime" "^1.4.3"
     "@tybys/wasm-util" "^0.10.0"
 
-"@navikt/aksel-icons@^7.33.4":
-  version "7.33.4"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.33.4/7c39a67a20f1e006ea5c14b07093a0162147c38f#7c39a67a20f1e006ea5c14b07093a0162147c38f"
-  integrity sha512-q/mLGfPyeKbyIghanK9l7v9yYriTb6O9cfgtSy5pbjvYRV40eyNRjZlBUh1RHth3ad92vliX+qeW29cHLXLf1g==
+"@navikt/aksel-icons@^7.33.4", "@navikt/aksel-icons@^7.35.2":
+  version "7.35.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.35.2/1e52ed2d63c12681827ca06918824d23b7126ce9#1e52ed2d63c12681827ca06918824d23b7126ce9"
+  integrity sha512-0jI+QdY7zjQ9sOlNDnvMu7QFCMSLMZB8GVJnJFJoYDB5k+1zefmYnuOEvq51zHugbnUIyFYglkTXCuZiwX+Waw==
 
 "@navikt/arbeidsgiver-notifikasjon-widget@^7.2.3":
   version "7.2.3"
