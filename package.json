@@ -31,7 +31,7 @@
     "@types/history": "^5.0.0",
     "@types/node-fetch": "^3.0.3",
     "@types/uuid": "^11.0.0",
-    "csp-header": "^6.2.0",
+    "csp-header": "^6.2.1",
     "highcharts": "^12.4.0",
     "highcharts-react-official": "^3.2.3",
     "dotenv": "^17.2.3",
