@@ -1490,10 +1490,10 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ia-metrikker-client/1.9.4/5587c35968c01ad7449321b7574d07f94f6e79d7"
   integrity sha512-Iem79wQa+XTxAN3lfuyBkfe/nTq6VKGHzNlknPJNmv6Vff/FSiBTRy5o+fdV80i4BLJUALD0dJauLWnwpRt3DA==
 
-"@navikt/nav-dekoratoren-moduler@^3.5.0":
-  version "3.5.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.5.0/6df0830237b010f08b3a2a302013fd0edafe77f7#6df0830237b010f08b3a2a302013fd0edafe77f7"
-  integrity sha512-fi0XWVT97MedJJ5BrOjl0Ymj2QthTdbNNzlXbtM/H5o2/kC1yEbpf5odJOoM557x3Z292xcxeG+ISznLn1dckQ==
+"@navikt/nav-dekoratoren-moduler@^3.6.1":
+  version "3.6.1"
+  resolved "https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.6.1/b0dfb47266ce90ffacd1905cd4feb53d8194dbcb#b0dfb47266ce90ffacd1905cd4feb53d8194dbcb"
+  integrity sha512-vfq24tA2eKEsZ9/qRzobRlrKV5NUbSuI9FA60AUhH+BX+61WE/ZsvHhNbFiO9NlXg/yYLmVZCg1uJB5V4QnU7A==
   dependencies:
     js-cookie "^3.0.5"
 
