@@ -1600,10 +1600,10 @@
   dependencies:
     fast-glob "3.3.1"
 
-"@next/eslint-plugin-next@^15.5.6":
-  version "15.5.6"
-  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-15.5.6.tgz#8d08f11cb98a8401ff64746cb3035948ae1d1f61"
-  integrity sha512-YxDvsT2fwy1j5gMqk3ppXlsgDopHnkM4BoxSVASbvvgh5zgsK8lvWerDzPip8k3WVzsTZ1O7A7si1KNfN4OZfQ==
+"@next/eslint-plugin-next@^16.0.8":
+  version "16.0.10"
+  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-16.0.10.tgz#bfa7cc1a5444b25d436ad94413bcc8b6fa6058fb"
+  integrity sha512-b2NlWN70bbPLmfyoLvvidPKWENBYYIe017ZGUpElvQjDytCWgxPJx7L9juxHt0xHvNVA08ZHJdOyhGzon/KJuw==
   dependencies:
     fast-glob "3.3.1"
 
