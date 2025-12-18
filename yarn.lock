@@ -1508,10 +1508,10 @@
     "@emnapi/runtime" "^1.4.3"
     "@tybys/wasm-util" "^0.10.0"
 
-"@navikt/aksel-icons@^7.35.2":
-  version "7.35.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.35.2/1e52ed2d63c12681827ca06918824d23b7126ce9#1e52ed2d63c12681827ca06918824d23b7126ce9"
-  integrity sha512-0jI+QdY7zjQ9sOlNDnvMu7QFCMSLMZB8GVJnJFJoYDB5k+1zefmYnuOEvq51zHugbnUIyFYglkTXCuZiwX+Waw==
+"@navikt/aksel-icons@^7.35.2", "@navikt/aksel-icons@^7.35.3":
+  version "7.35.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.35.3/9650240ffbf336bf8951dd88fcac4e01cb69f8d6#9650240ffbf336bf8951dd88fcac4e01cb69f8d6"
+  integrity sha512-iUn0K+LYeowLs+pCGfFOdMHzOowWJzM62BcAetg/o7hYPHHklEBfuVlbRw44D1as8qisHhJ89TGCRc2/Qjk3Mg==
 
 "@navikt/arbeidsgiver-notifikasjon-widget@^7.2.3":
   version "7.2.3"
@@ -1531,23 +1531,23 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ds-icons/3.4.3/eaa8fc38f6d184806d3405a5efbc9d137c2b8d27"
   integrity sha512-Ys25tnDUzS+AtagMMW4/154OCZy+pTxCv9uiV4YcZUeXMfjnMiRWx1dueyCODb7FF7Jd6TwELd3G6ieQt/rf+w==
 
-"@navikt/ds-react@^7.35.2":
-  version "7.35.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/7.35.2/3a323724b8457a84af31466446eee6f08dc81dca#3a323724b8457a84af31466446eee6f08dc81dca"
-  integrity sha512-xf/ZWr3kyR3YpE5K8ZsojD9X8LstiHmEOLD/Mr9igbUAimqnSrDa76FkrXYd4EpI70YvGHmArewTe7qG3B9b3g==
+"@navikt/ds-react@^7.35.3":
+  version "7.35.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/7.35.3/a12f3a3a811d69b49da119b5611d91fa823d5391#a12f3a3a811d69b49da119b5611d91fa823d5391"
+  integrity sha512-VjV8+vZmi5d+2lW11u1njdlqAvMrs6FjIwncTB5q1uLrLsg83MlIGwPWE9P2yLWFojH9RUqDoBntEBwTe3p6QQ==
   dependencies:
     "@floating-ui/react" "0.27.8"
     "@floating-ui/react-dom" "^2.1.6"
-    "@navikt/aksel-icons" "^7.35.2"
-    "@navikt/ds-tokens" "^7.35.2"
+    "@navikt/aksel-icons" "^7.35.3"
+    "@navikt/ds-tokens" "^7.35.3"
     clsx "^2.1.0"
     date-fns "^4.0.0"
     react-day-picker "9.7.0"
 
-"@navikt/ds-tokens@^7.35.2":
-  version "7.35.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/7.35.2/4e69069f8fcbaf48cdb380bdaffad92eeaf7e532#4e69069f8fcbaf48cdb380bdaffad92eeaf7e532"
-  integrity sha512-RNrGyyII13paXbzi0BlOqODudJqMylR4LxvbQvTGgpsFLJBMs76eZEwjEKqWahX5PRi0zoplwL3VdppCnzWmyw==
+"@navikt/ds-tokens@^7.35.3":
+  version "7.35.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/7.35.3/97110f86fe796f20259b6c72e03ae3d062223a3b#97110f86fe796f20259b6c72e03ae3d062223a3b"
+  integrity sha512-voZoYB8SvhepHYZpOuWQ/9dVDwUdu8CVxiG2NDpN6D7idnGawxcq/tD6wYw7mrk63WSITjIEiH3v5xYGXcPuJw==
 
 "@navikt/ia-metrikker-client@1.9.4":
   version "1.9.4"
