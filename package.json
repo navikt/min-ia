@@ -16,7 +16,7 @@
   "prettier": {},
   "dependencies": {
     "@grafana/faro-web-sdk": "^2.0.2",
-    "@navikt/aksel-icons": "^7.35.2",
+    "@navikt/aksel-icons": "^7.35.3",
     "@navikt/arbeidsgiver-notifikasjon-widget": "^7.2.3",
     "@navikt/ds-css": "^7.35.3",
     "@navikt/ds-icons": "^3.4.3",
