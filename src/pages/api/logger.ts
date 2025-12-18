@@ -26,20 +26,20 @@ function isValidLoggingLabel(label: unknown): label is LogLevels {
 }
 
 function isNonEmptyStringArray(message: unknown): message is NonEmptyStringArray {
-  try{
+  try {
     z.string().array().min(1).parse(message)
     return true
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return false
   }
 }
 
 function getMessage(message: unknown) {
-  if (!isNonEmptyStringArray(message)){
+  if (!isNonEmptyStringArray(message)) {
     return tekniskeLoggFeil.manglendeEllerMalformetMelding
   }
-  if(isNonEmptyStringArray(message)) {
+  if (isNonEmptyStringArray(message)) {
     return message[0]
   }
   return tekniskeLoggFeil.ikkePredefinertMelding
@@ -66,10 +66,9 @@ const loggingHandler = (req: NextApiRequest, res: NextApiResponse): void => {
     .child({
       x_timestamp: ts,
       x_isFrontend: true,
-      x_userAgent: req.headers['user-agent'],
-      x_request_id: req.headers['x-request-id'] ?? 'not-set',
-    })
-    [label](message);
+      x_userAgent: req.headers["user-agent"],
+      x_request_id: req.headers["x-request-id"] ?? "not-set",
+    })[label](message);
 
   res.status(200).json({ ok: `ok` });
 }

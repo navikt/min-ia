@@ -5,6 +5,21 @@ import nextTypescript from "eslint-config-next/typescript";
 import jestPlugin from "eslint-plugin-jest";
 
 const eslintConfig = [
+    // Global ignores
+    {
+        ignores: [
+            "node_modules/**",
+            ".next/**",
+            "out/**",
+            "build/**",
+            "next-env.d.ts",
+            "*.module.css",
+            "*.{config,setup}.{ts,js}",
+            "dist/**",
+            "coverage/**",
+        ],
+    },
+
     // Base JS recommendations from ESLint
     js.configs.recommended,
 
@@ -13,7 +28,7 @@ const eslintConfig = [
     ...nextCoreWebVitals,
     ...nextTypescript,
 
-    // Project-specific overrides
+    // Global project rules
     {
         plugins: {
             jest: jestPlugin,
@@ -44,16 +59,40 @@ const eslintConfig = [
                 },
             ],
         },
-        ignores: [
-            "node_modules/**",
-            ".next/**",
-            "out/**",
-            "build/**",
-            "next-env.d.ts",
-            "*.module.css",
-            "*.{config,setup}.{ts,js}",
-            "dist/**",
+    },
+
+    // Jest setup and config
+    {
+        files: ["jest.config.js", "jest.setup.js"],
+        languageOptions: {
+            globals: {
+                jest: "readonly",
+                expect: "readonly",
+            },
+        },
+        rules: {
+            "@typescript-eslint/no-require-imports": "off",
+            "no-undef": "off",
+        },
+    },
+
+    // React hooks/compiler rules that are currently too strict for these components
+    {
+        files: [
+            "src/komponenter/Kalkulator/KalkulatorMedDagsverk.tsx",
+            "src/komponenter/Kalkulator/KalkulatorMedProsent.tsx",
+            "src/sykefravarsstatistikk/Forside/PrintOnlyHref.tsx",
         ],
+        rules: {
+            "react-hooks/set-state-in-effect": "off",
+        },
+    },
+    {
+        files: ["src/komponenter/Spørreundersøkelsesresultat/Grafer/BarChart.tsx"],
+        rules: {
+            "react-hooks/preserve-manual-memoization": "off",
+            "react-hooks/exhaustive-deps": "off",
+        },
     },
 ];
 

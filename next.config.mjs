@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 import path from "path";
 import { fileURLToPath } from "url";
-import cspPkg from "./src/csp.js"
+import cspPkg from "./src/csp.js";
 
-const { cspString } = cspPkg
+const { cspString } = cspPkg;
 const __filename = fileURLToPath(import.meta.url);
 
-export default {
+const nextConfig = {
   reactStrictMode: true,
   basePath: "/forebygge-fravar",
   output: "standalone",
@@ -52,3 +52,5 @@ export default {
     ];
   },
 };
+
+export default nextConfig;
