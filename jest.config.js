@@ -11,7 +11,7 @@ const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js", "core-js"],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
-  testEnvironment: "jest-environment-jsdom",
+  testEnvironment: "jsdom",
   moduleNameMapper: {
     "^uuid$": "uuid",
     "@navikt/ds-css": "jest-transform-stub",
