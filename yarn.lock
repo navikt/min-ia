@@ -1508,7 +1508,7 @@
     "@emnapi/runtime" "^1.4.3"
     "@tybys/wasm-util" "^0.10.0"
 
-"@navikt/aksel-icons@^7.35.2", "@navikt/aksel-icons@^7.35.3":
+"@navikt/aksel-icons@^7.35.3":
   version "7.35.3"
   resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.35.3/9650240ffbf336bf8951dd88fcac4e01cb69f8d6#9650240ffbf336bf8951dd88fcac4e01cb69f8d6"
   integrity sha512-iUn0K+LYeowLs+pCGfFOdMHzOowWJzM62BcAetg/o7hYPHHklEBfuVlbRw44D1as8qisHhJ89TGCRc2/Qjk3Mg==
@@ -6504,10 +6504,10 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@19.2.1:
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-19.2.1.tgz#8600fa205e58e2e807f6ef431c9f6492591a2700"
-  integrity sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==
+react@19.2.3:
+  version "19.2.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-19.2.3.tgz#d83e5e8e7a258cf6b4fe28640515f99b87cd19b8"
+  integrity sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==
 
 readdirp@^4.0.1:
   version "4.0.1"
