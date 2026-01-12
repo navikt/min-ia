@@ -7,7 +7,7 @@ import { HistorikkLabel } from "../../../../utils/sykefraværshistorikk-utils";
 
 const grafTooltip = () => (
   <Tooltip
-    formatter={(value: number, name: HistorikkLabel) => [
+    formatter={(value: number | undefined, name: HistorikkLabel | undefined) => [
       <span className={styles["tooltip__item-wrapper"]} key={`tooltip-${name}`}>
         <GrafSymbol linje={name} className={styles["tooltip__ikon"]} />
         <div className={styles["tooltip__item-navn-og-verdi"]}>
