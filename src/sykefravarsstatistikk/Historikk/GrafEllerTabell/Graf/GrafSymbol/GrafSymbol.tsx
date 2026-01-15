@@ -6,8 +6,8 @@ import { getFarge, getSymbol } from "../graf-utils";
 import { HistorikkLabel } from "../../../../utils/sykefraværshistorikk-utils";
 
 interface Props {
-    linje: HistorikkLabel | undefined;
-    className?: string;
+  linje: HistorikkLabel;
+  className?: string;
 }
 
 export const GrafSymbol: FunctionComponent<Props> = ({ linje, className }) => (

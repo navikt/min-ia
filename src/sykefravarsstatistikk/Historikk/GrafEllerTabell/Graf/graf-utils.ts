@@ -54,14 +54,14 @@ export const grafConfig: GrafConfig = {
   },
 };
 
-export const getSymbol = (name: string | undefined): SymbolType =>
-  name && name in grafConfig.symboler ? grafConfig.symboler[name] : "circle";
+export const getSymbol = (name: string): SymbolType =>
+  name in grafConfig.symboler ? grafConfig.symboler[name] : "circle";
 
-export const getFarge = (name: HistorikkLabel | undefined): string =>
-  name && name in grafConfig.farger ? grafConfig.farger[name] : "black";
+export const getFarge = (name: HistorikkLabel): string =>
+  name in grafConfig.farger ? grafConfig.farger[name] : "black";
 
-export const getTooltipsnavn = (name: HistorikkLabel | undefined): string => {
-  return name && name in grafConfig.tooltipsnavn
+export const getTooltipsnavn = (name: HistorikkLabel): string => {
+  return name in grafConfig.tooltipsnavn
     ? grafConfig.tooltipsnavn[name]
     : "Prosent";
 };
