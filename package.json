@@ -42,7 +42,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-to-print": "^3.2.0",
-    "recharts": "^3.6.0",
+    "recharts": "^2.15.4",
     "swr": "^2.3.8",
     "typescript": "^5.9.3",
     "uuid": "^13.0.0",
