@@ -28,8 +28,19 @@ spec:
           annotations:
             description: "Forebygge fravær frontend (min-ia) har logget en (eller flere) feil."
             action: |-
-              Sjekk logs.adeo.no for logger, 
-              eller Grafana-dashboardet vårt: https://grafana.nais.io/dashboards/f/cvOhCMUnz/team-ia
+              Sjekk logs.az.nav.no for logger, 
+              eller Grafana-dashboardet vårt: https://grafana.nav.cloud.nais.io/goto/ghJrEZSDg?orgId=1
           labels:
             namespace: pia
             severity: warning
+
+        - alert: ResponseServerError
+          expr: sum(increase(nginx_ingress_controller_requests{namespace="pia", service=~"min-ia", method=~"GET|POST", status=~"5.."}[5m])) > 0
+          annotations:
+            description: "Forebygge fravær frontend (min-ia) responderer med flere 5xx-feilkoder"
+            action: |-
+              Sjekk logs.az.nav.no for logger, 
+              eller Grafana-dashboardet vårt: https://grafana.nav.cloud.nais.io/goto/ghJrEZSDg?orgId=1
+          labels:
+            namespace: pia
+            severity: critical
