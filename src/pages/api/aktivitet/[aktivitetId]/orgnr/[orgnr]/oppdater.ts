@@ -44,7 +44,7 @@ export default async function handler(
     return res.status(401).json({ error: "authentication failed" });
   }
 
-  const oppdaterUrl = `http://${process.env.FOREBYGGINGSPLAN_API_BASEURL}/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`;
+  const oppdaterUrl = `http://${process.env.FOREBYGGINGSPLAN_API_BASEURL}/aktivitet/${encodeURIComponent(aktivitetId)}/orgnr/${encodeURIComponent(orgnr)}/oppdater`;
   const respons = await fetch(oppdaterUrl, {
     method: "POST",
     headers: {
