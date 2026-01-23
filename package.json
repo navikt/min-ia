@@ -11,6 +11,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "jest --watch",
+    "prettify": "prettier --write .",
     "export": "next export"
   },
   "prettier": {},

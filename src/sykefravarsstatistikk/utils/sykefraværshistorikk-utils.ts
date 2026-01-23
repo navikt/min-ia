@@ -32,7 +32,7 @@ const TOM_PROSENT: Sykefraværsprosent = {
 export const finnProsent = (
   historikkListe: KvartalsvisSykefraværshistorikk[],
   årstallOgKvartal: ÅrstallOgKvartal,
-  type: Statistikkategori
+  type: Statistikkategori,
 ): Sykefraværsprosent => {
   const historikk = historikkListe.find((historikk) => historikk.type === type);
   if (!historikk) {
@@ -41,16 +41,16 @@ export const finnProsent = (
   const prosent = historikk.kvartalsvisSykefraværsprosent.find(
     (prosent) =>
       prosent.årstall === årstallOgKvartal.årstall &&
-      prosent.kvartal === årstallOgKvartal.kvartal
+      prosent.kvartal === årstallOgKvartal.kvartal,
   );
   return prosent || TOM_PROSENT;
 };
 const mapTilKvartalsvisSammenligning = (
   historikkListe: KvartalsvisSykefraværshistorikk[],
-  årstallOgKvartalerSomSkalVises: ÅrstallOgKvartal[]
+  årstallOgKvartalerSomSkalVises: ÅrstallOgKvartal[],
 ): KvartalsvisSammenligning[] => {
   const harBransje = !!historikkListe.find(
-    (historikk) => historikk.type === Statistikkategori.BRANSJE
+    (historikk) => historikk.type === Statistikkategori.BRANSJE,
   );
 
   return årstallOgKvartalerSomSkalVises.map((årstallOgKvartal) => {
@@ -62,7 +62,7 @@ const mapTilKvartalsvisSammenligning = (
       virksomhet: getProsent(Statistikkategori.VIRKSOMHET),
       overordnetEnhet: getProsent(Statistikkategori.OVERORDNET_ENHET),
       næringEllerBransje: getProsent(
-        harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING
+        harBransje ? Statistikkategori.BRANSJE : Statistikkategori.NÆRING,
       ),
       sektor: getProsent(Statistikkategori.SEKTOR),
       land: getProsent(Statistikkategori.LAND),
@@ -70,7 +70,7 @@ const mapTilKvartalsvisSammenligning = (
   });
 };
 export const beregnHvilkeÅrstallOgKvartalerSomSkalVises = (
-  historikkListe: KvartalsvisSykefraværshistorikk[]
+  historikkListe: KvartalsvisSykefraværshistorikk[],
 ): ÅrstallOgKvartal[] => {
   if (historikkListe.length === 0) return [];
 
@@ -119,47 +119,47 @@ export const beregnHvilkeÅrstallOgKvartalerSomSkalVises = (
 };
 
 export const konverterTilKvartalsvisSammenligning = (
-  historikkListe: KvartalsvisSykefraværshistorikk[]
+  historikkListe: KvartalsvisSykefraværshistorikk[],
 ): KvartalsvisSammenligning[] => {
   const årstallOgKvartalerSomSkalVises =
     beregnHvilkeÅrstallOgKvartalerSomSkalVises(historikkListe);
   return mapTilKvartalsvisSammenligning(
     historikkListe,
-    årstallOgKvartalerSomSkalVises
+    årstallOgKvartalerSomSkalVises,
   );
 };
 
 export const historikkHarStatistikkForBransje = (
-    historikkListe: KvartalsvisSykefraværshistorikk[]
+  historikkListe: KvartalsvisSykefraværshistorikk[],
 ): boolean =>
-    !!historikkListe.find(
-        (historikk) =>
-            historikk.type === Statistikkategori.BRANSJE &&
-            historikk.kvartalsvisSykefraværsprosent.length > 0
-    );
+  !!historikkListe.find(
+    (historikk) =>
+      historikk.type === Statistikkategori.BRANSJE &&
+      historikk.kvartalsvisSykefraværsprosent.length > 0,
+  );
 
 export const historikkHarOverordnetEnhet = (
-  historikkListe: KvartalsvisSykefraværshistorikk[]
+  historikkListe: KvartalsvisSykefraværshistorikk[],
 ): boolean =>
   !!historikkListe.find(
     (historikk) =>
       historikk.type === Statistikkategori.OVERORDNET_ENHET &&
-      historikk.kvartalsvisSykefraværsprosent.length > 0
+      historikk.kvartalsvisSykefraværsprosent.length > 0,
   );
 
 const emptyHistorikkLabels = Object.fromEntries(
-  Object.keys(HistorikkLabels).map((key) => [key, "Ingen tilgjengelig data"])
+  Object.keys(HistorikkLabels).map((key) => [key, "Ingen tilgjengelig data"]),
 ) as HistorikkLabels;
 
 export const isHistorikkLabel = (
-  maybeLabel: unknown
+  maybeLabel: unknown,
 ): maybeLabel is HistorikkLabel => {
   if (typeof maybeLabel !== "string") return false;
   return Object.prototype.hasOwnProperty.call(HistorikkLabels, maybeLabel);
 };
 
 const historikkTypeToLabel = (
-  type: Statistikkategori
+  type: Statistikkategori,
 ): HistorikkLabel | undefined => {
   switch (type) {
     case Statistikkategori.VIRKSOMHET:
@@ -178,7 +178,7 @@ const historikkTypeToLabel = (
 };
 
 export const getHistorikkLabels = (
-  historikkListe: KvartalsvisSykefraværshistorikk[]
+  historikkListe: KvartalsvisSykefraværshistorikk[],
 ): HistorikkLabels => {
   const labels: Partial<HistorikkLabels> = {};
   for (const historikk of historikkListe) {
@@ -194,7 +194,7 @@ export const getHistorikkLabels = (
 };
 
 const isSykefraværshistorikkType = (
-  maybeLabel: string
+  maybeLabel: string,
 ): maybeLabel is Statistikkategori => {
   return Object.prototype.hasOwnProperty.call(Statistikkategori, maybeLabel);
 };

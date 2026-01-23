@@ -25,7 +25,7 @@
     }
 
     .verktøykort {
-      background: var(--surface-action-subtle-hover, #CCE1FF);
+      background: var(--surface-action-subtle-hover, #cce1ff);
       display: grid;
       max-width: 25rem;
       min-width: 15rem;
@@ -54,7 +54,7 @@
       .lenke {
         width: fit-content;
         justify-self: center;
-        --ac-button-secondary-hover-bg: #99C3FF;
+        --ac-button-secondary-hover-bg: #99c3ff;
       }
 
       .arbeidsmiljøhjelpenBilde {
@@ -80,15 +80,15 @@
     }
 
     .arbeidsmiljøhjelpenKort {
-      background-color: #F9F5EA;
+      background-color: #f9f5ea;
     }
 
     .enBraDagKort {
-      background-color: #CDEEFB;
+      background-color: #cdeefb;
     }
 
     .idebankenKort {
-      background-color: #D3DDDE;
+      background-color: #d3ddde;
     }
   }
 }

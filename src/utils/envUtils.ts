@@ -44,7 +44,7 @@ export const hentUrlFraMiljøvariabel = (tjeneste: Tjeneste) => {
   }
   if (!url) {
     throw Error(
-      `URL til '${tjeneste}' ble ikke funnet i miljøvariablene. Stopper bygget.`
+      `URL til '${tjeneste}' ble ikke funnet i miljøvariablene. Stopper bygget.`,
     );
   }
   return url;

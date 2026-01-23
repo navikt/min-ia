@@ -25,7 +25,7 @@ describe("DeresSykefraværsstatistikkBransje", () => {
         sykefraværsstatistikk={mockAggregertStatistikkMedBransjetall}
       >
         <DeresSykefraværsstatistikkBransje />
-      </AktivitetProvider>
+      </AktivitetProvider>,
     );
 
     expect(await screen.findByText("Sykefravær i bransje")).toBeInTheDocument();
@@ -41,11 +41,11 @@ describe("DeresSykefraværsstatistikkBransje", () => {
         sykefraværsstatistikk={mockAggregertStatistikkMedBransjetall}
       >
         <DeresSykefraværsstatistikkBransje />
-      </AktivitetProvider>
+      </AktivitetProvider>,
     );
 
     expect(
-      screen.getByText("Deres sykefraværstatistikk sammenlignet med bransjen")
+      screen.getByText("Deres sykefraværstatistikk sammenlignet med bransjen"),
     ).toBeInTheDocument();
     expect(screen.getByText("Sykefravær i bransje")).toBeInTheDocument();
     expect(screen.getByText("5,1%")).toBeInTheDocument();
@@ -68,11 +68,13 @@ describe("DeresSykefraværsstatistikkBransje", () => {
         }}
       >
         <DeresSykefraværsstatistikkBransje />
-      </AktivitetProvider>
+      </AktivitetProvider>,
     );
 
     expect(
-      screen.queryByText("Deres sykefraværstatistikk sammenlignet med bransjen")
+      screen.queryByText(
+        "Deres sykefraværstatistikk sammenlignet med bransjen",
+      ),
     ).not.toBeInTheDocument();
   });
 });

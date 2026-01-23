@@ -2,9 +2,7 @@ import { useDokumenterPåValgtSamarbeid } from "../../Samarbeidsvelger/Samarbeid
 import Kartlegginger from "./Kartlegginger";
 
 export default function KartleggingFane() {
-	const dokumenter = useDokumenterPåValgtSamarbeid();
+  const dokumenter = useDokumenterPåValgtSamarbeid();
 
-	return (
-		<Kartlegginger dokumenter={dokumenter} />
-	);
+  return <Kartlegginger dokumenter={dokumenter} />;
 }

@@ -46,14 +46,14 @@ describe("Tester for graf-og-tabell-utils", () => {
           årstall: sammenligning.årstall,
           kvartal: sammenligning.kvartal,
         };
-      }
+      },
     );
 
     const resultatInneholder = (årstall: number, kvartal: number): boolean => {
       return !!årstallOgKvartalerSomVises.find(
         (årstallOgKvartal) =>
           årstallOgKvartal.årstall === årstall &&
-          årstallOgKvartal.kvartal === kvartal
+          årstallOgKvartal.kvartal === kvartal,
       );
     };
 
@@ -84,14 +84,14 @@ describe("Tester for graf-og-tabell-utils", () => {
           årstall: sammenligning.årstall,
           kvartal: sammenligning.kvartal,
         };
-      }
+      },
     );
 
     const resultatInneholder = (årstall: number, kvartal: number): boolean => {
       return !!årstallOgKvartalerSomVises.find(
         (årstallOgKvartal) =>
           årstallOgKvartal.årstall === årstall &&
-          årstallOgKvartal.kvartal === kvartal
+          årstallOgKvartal.kvartal === kvartal,
       );
     };
 
@@ -115,7 +115,7 @@ describe("Tester for graf-og-tabell-utils", () => {
 
     const resultat = kvartalsvisSammenligning.find(
       (sammenligning) =>
-        sammenligning.årstall === 2000 && sammenligning.kvartal === 1
+        sammenligning.årstall === 2000 && sammenligning.kvartal === 1,
     )?.virksomhet;
 
     expect(resultat?.erMaskert).toBeFalsy();
@@ -156,7 +156,7 @@ describe("Tester for graf-og-tabell-utils", () => {
         lagHistorikkMedÅrstallOgKvartal(Statistikkategori.NÆRING, [
           { årstall: 2000, kvartal: 1 },
         ]),
-      ]).virksomhet
+      ]).virksomhet,
     ).toEqual("Ingen tilgjengelig data");
   });
 
@@ -175,14 +175,14 @@ describe("Tester for graf-og-tabell-utils", () => {
         lagHistorikkMedÅrstallOgKvartal(Statistikkategori.NÆRING, [
           { årstall: 2000, kvartal: 1 },
         ]),
-      ]).overordnetEnhet
+      ]).overordnetEnhet,
     ).toEqual("Ingen tilgjengelig data");
   });
 });
 
 const lagHistorikkMedEttInnslag = (
   type: Statistikkategori,
-  prosent: number
+  prosent: number,
 ): KvartalsvisSykefraværshistorikk => {
   return {
     type,
@@ -202,7 +202,7 @@ const lagHistorikkMedEttInnslag = (
 
 const lagHistorikkMedÅrstallOgKvartal = (
   type: Statistikkategori,
-  årstallOgKvartalListe: ÅrstallOgKvartal[]
+  årstallOgKvartalListe: ÅrstallOgKvartal[],
 ): KvartalsvisSykefraværshistorikk => {
   return {
     type,
@@ -216,7 +216,7 @@ const lagHistorikkMedÅrstallOgKvartal = (
           tapteDagsverk: 5,
           muligeDagsverk: 100,
         };
-      }
+      },
     ),
   };
 };

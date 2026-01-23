@@ -1,49 +1,46 @@
 .progress-bar-container {
-    --progress-bar-height: 1.2rem;
-    --progress-bar-radius: calc(var(--progress-bar-height) / 2);
-    --progress-bar-border-width: 2px;
+  --progress-bar-height: 1.2rem;
+  --progress-bar-radius: calc(var(--progress-bar-height) / 2);
+  --progress-bar-border-width: 2px;
+  height: var(--progress-bar-height);
+  border-radius: var(--progress-bar-radius);
+  border: var(--progress-bar-border-width) solid var(--a-border-default);
+
+  background-color: var(--a-white);
+  position: relative;
+
+  .progress-bar-fill {
+    transition: width 0.2s ease-in-out;
     height: var(--progress-bar-height);
     border-radius: var(--progress-bar-radius);
-    border: var(--progress-bar-border-width) solid var(--a-border-default);
+    border: var(--progress-bar-border-width) solid var(--a-green-500);
+    position: absolute;
+    left: calc(0px - var(--progress-bar-border-width));
+    top: calc(0px - var(--progress-bar-border-width));
+  }
 
-    background-color: var(--a-white);
-    position: relative;
-    
+  &.progress-bar-complete {
+    border-color: var(--a-data-border-5);
+
     .progress-bar-fill {
-        transition: width 0.2s ease-in-out;
-        height: var(--progress-bar-height);
-        border-radius: var(--progress-bar-radius);
-        border: var(--progress-bar-border-width) solid var(--a-green-500);
-        position: absolute;
-        left: calc(0px - var(--progress-bar-border-width));
-        top: calc(0px - var(--progress-bar-border-width));
+      background-color: var(--a-data-surface-5-subtle);
     }
+  }
 
-    &.progress-bar-complete {
-        border-color: var(--a-data-border-5);
+  &.progress-bar-incomplete {
+    border-color: var(--a-border-default);
 
-        .progress-bar-fill {
-            background-color: var(--a-data-surface-5-subtle);
-        }
+    .progress-bar-fill {
+      background-color: var(--a-white);
+      opacity: 0.8;
+      background-size: 10px 10px;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--a-data-surface-5-subtle) 0,
+        var(--a-data-surface-5-subtle) 3px,
+        var(--a-white) 0,
+        var(--a-white) 50%
+      );
     }
-
-    &.progress-bar-incomplete {
-        border-color: var(--a-border-default);
-
-        .progress-bar-fill {
-            background-color: var(--a-white);
-            opacity: 0.8;
-            background-size: 10px 10px;
-            background-image: repeating-linear-gradient(
-                45deg,
-                var(--a-data-surface-5-subtle) 0,
-                var(--a-data-surface-5-subtle) 3px,
-                var(--a-white) 0,
-                var(--a-white) 50%
-            );
-        }
-    }
+  }
 }
-
-
-

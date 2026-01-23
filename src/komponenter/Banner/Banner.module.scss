@@ -5,7 +5,7 @@
   border-bottom: 1px solid var(--a-gray-300);
   padding: 1rem;
 
-  @media(min-width: $screen-sm) {
+  @media (min-width: $screen-sm) {
     padding: 1.25rem 1rem;
   }
 
@@ -31,7 +31,7 @@
       gap: 1rem;
       max-width: 30rem;
 
-      &>div {
+      & > div {
         position: relative;
       }
     }

@@ -3,7 +3,6 @@ import { useRestRessursSWR } from "../hooks/useRestRessursSWR";
 import { AUTHENTICATED_BASE_PATH } from "../utils/konstanter";
 import { SamarbeidStatus } from "./Samarbeidsvelger/samarbeidtyper";
 
-
 export type KartleggingType = "BEHOVSVURDERING" | "EVALUERING";
 export type DokumentType = KartleggingType | "SAMARBEIDSPLAN";
 export interface FiaSamarbeidDokument {
@@ -12,7 +11,7 @@ export interface FiaSamarbeidDokument {
   dato: Date;
 }
 export interface FiaSamarbeidDto {
-    offentligId: string;
+  offentligId: string;
   saksnummer: string;
   navn: string;
   status: SamarbeidStatus;
@@ -30,6 +29,6 @@ export function useFiaSamarbeid() {
 
   return useRestRessursSWR<FiaSamarbeidDto[]>(
     apiPath,
-    `Det oppstod en feil ved kall til ${apiPath}`
+    `Det oppstod en feil ved kall til ${apiPath}`,
   );
 }

@@ -18,9 +18,10 @@ export const HvilkenPeriodeErStatistikkenBasertPå: FunctionComponent = () => {
         className={styles["slik-har-vi-kommet-fram-til-ditt-resultat__innhold"]}
       >
         <BodyShort spacing>
-          Vi regner ut prosenten som et gjennomsnitt av de fire siste kvartalene som er publisert. Hvis vi mangler ett
-          eller flere kvartaler, så bruker vi de som er tilgjengelig. Du får sammenlikning med bransjen når du har tall
-          for fire kvartaler.
+          Vi regner ut prosenten som et gjennomsnitt av de fire siste kvartalene
+          som er publisert. Hvis vi mangler ett eller flere kvartaler, så bruker
+          vi de som er tilgjengelig. Du får sammenlikning med bransjen når du
+          har tall for fire kvartaler.
         </BodyShort>
       </div>
     </ReadMore>

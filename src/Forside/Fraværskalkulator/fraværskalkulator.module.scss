@@ -1,16 +1,16 @@
 .fraværskalkulator_brick {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	border-radius: var(--a-border-radius-xlarge);
-	border: 2px solid var(--a-blue-500);
-	color: var(--a-surface-action-active);
-	margin: 4rem 1rem;
-	padding: 2rem 4rem;
-	gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--a-border-radius-xlarge);
+  border: 2px solid var(--a-blue-500);
+  color: var(--a-surface-action-active);
+  margin: 4rem 1rem;
+  padding: 2rem 4rem;
+  gap: 1rem;
 
-	.fraværskalkulator_lenke {
-		color: var(--a-surface-action-active);
-	}
+  .fraværskalkulator_lenke {
+    color: var(--a-surface-action-active);
+  }
 }

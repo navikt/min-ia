@@ -33,7 +33,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
   >();
 
   const [kostnadDagsverk, setKostnadDagsverk] = useState<string | undefined>(
-    GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
+    GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   );
 
   const [brukerHarEndretInput, setBrukerHarEndretInput] =
@@ -52,7 +52,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
         <Kalkulatorrad
           onChange={(event) => {
             setTotaltAntallDagsverk(
-              validerDesimaltallOgReturnerMatch(event.target.value)
+              validerDesimaltallOgReturnerMatch(event.target.value),
             );
             setBrukerHarEndretInput(true);
           }}
@@ -64,7 +64,7 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
         <Kalkulatorrad
           onChange={(event) => {
             setKostnadDagsverk(
-              validerDesimaltallOgReturnerMatch(event.target.value)
+              validerDesimaltallOgReturnerMatch(event.target.value),
             );
           }}
           value={kostnadDagsverk}
@@ -78,8 +78,8 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
             setNåværendeSykefraværsprosent(
               validerProsenttallOgReturnerMatch(
                 event.target.value,
-                nåværendeSykefraværsprosent
-              )
+                nåværendeSykefraværsprosent,
+              ),
             );
             setBrukerHarEndretInput(true);
           }}
@@ -94,8 +94,8 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
             setØnsketSykefraværsprosent(
               validerProsenttallOgReturnerMatch(
                 event.target.value,
-                ønsketSykefraværsprosent
-              )
+                ønsketSykefraværsprosent,
+              ),
             );
           }}
           value={ønsketSykefraværsprosent}
@@ -107,12 +107,12 @@ export const KalkulatorMedProsent: FunctionComponent<Props> = ({
         nåværendeKostnad={getKostnadForSykefraværsprosent(
           kostnadDagsverk,
           nåværendeSykefraværsprosent,
-          totaltAntallDagsverk
+          totaltAntallDagsverk,
         )}
         ønsketKostnad={getKostnadForSykefraværsprosent(
           kostnadDagsverk,
           ønsketSykefraværsprosent,
-          totaltAntallDagsverk
+          totaltAntallDagsverk,
         )}
         ønsketRedusert={parseFloatMedDefault(ønsketSykefraværsprosent)}
         antallTapteDagsverkEllerProsent={Kalkulatorvariant.Prosent}

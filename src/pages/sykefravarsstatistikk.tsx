@@ -21,7 +21,7 @@ export function SykefraværsstatistikkAppContent({
       doInitializeFaro(grafanaAgentUrl, "sykefraværsstatistikk");
     }
   });
-  useSendIaMetrikkEtterFemSekunder()
+  useSendIaMetrikkEtterFemSekunder();
 
   return (
     <Sykefraværsstatistikkside

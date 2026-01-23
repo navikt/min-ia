@@ -17,7 +17,7 @@ interface Props {
 export const Sammenligningspaneler: FunctionComponent<Props> = ({
   aggregertStatistikk,
 }) => {
-    useSendIaMetrikkEtterFemSekunder();
+  useSendIaMetrikkEtterFemSekunder();
   if (
     aggregertStatistikk.restStatus === RestStatus.IngenTilgang ||
     aggregertStatistikk.restStatus === RestStatus.IkkeInnlogget

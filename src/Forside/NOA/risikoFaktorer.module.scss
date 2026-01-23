@@ -1,7 +1,7 @@
 @use "../../styles/screensize";
 
 .risikoFaktorer {
-  background-color: #CCE1FF;
+  background-color: #cce1ff;
   display: flex;
   flex-direction: column;
   gap: var(--a-spacing-4);
@@ -14,7 +14,6 @@
 .hstack {
   margin-bottom: 1rem;
 }
-
 
 .STAMI__logo__container {
   display: flex;

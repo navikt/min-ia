@@ -19,9 +19,9 @@ export const HvordanHarViKommetFramTilDittResultat: FunctionComponent = () => {
         className={styles["slik-har-vi-kommet-fram-til-ditt-resultat__innhold"]}
       >
         <BodyShort spacing>
-          Resultatene er basert på legemeldt sykefravær og sammenligningen er hentet fra
-          sykefraværsstatistikken som Nav og Statistisk sentralbyrå (SSB)
-          utarbeider.
+          Resultatene er basert på legemeldt sykefravær og sammenligningen er
+          hentet fra sykefraværsstatistikken som Nav og Statistisk sentralbyrå
+          (SSB) utarbeider.
         </BodyShort>
         <BodyShort spacing>
           Les mer om datakilder og utregning på{" "}

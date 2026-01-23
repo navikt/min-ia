@@ -25,4 +25,3 @@ jobs:
           RESOURCE: "\
             .nais/redirect-sykefravarsstatistikk-dev.yaml,\
             .nais/redirect-forebyggingsplan-dev.yaml"
-

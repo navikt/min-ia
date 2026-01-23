@@ -11,7 +11,7 @@ export function parseFloatMedDefault(value: string | undefined): number {
 
 export const getKostnadForAntallDagsverk = (
   kostnadDagsverk: string | undefined,
-  antallTapteDagsverk: string | undefined
+  antallTapteDagsverk: string | undefined,
 ) => {
   const kostnadDagsverkNum = parseFloatMedDefault(kostnadDagsverk);
   const antallTapteDagsverkNum = parseFloatMedDefault(antallTapteDagsverk);
@@ -24,7 +24,7 @@ export const getKostnadForAntallDagsverk = (
 export const getKostnadForSykefraværsprosent = (
   kostnadDagsverk: string | undefined,
   sykefraværsprosent: string | undefined,
-  muligeDagsverk: string | undefined
+  muligeDagsverk: string | undefined,
 ) => {
   const kostnadDagsverkNum = parseFloatMedDefault(kostnadDagsverk);
   const sykefraværsprosentNum = parseFloatMedDefault(sykefraværsprosent);
@@ -41,14 +41,14 @@ export const getKostnadForSykefraværsprosent = (
 };
 
 export function validerDesimaltallOgReturnerMatch(
-  input?: string
+  input?: string,
 ): string | undefined {
   return input?.match(/[0-9]*[,.]?[0-9]{0,2}/)?.at(0);
 }
 
 export function validerProsenttallOgReturnerMatch(
   input?: string,
-  forrigeVerdi?: string
+  forrigeVerdi?: string,
 ): string | undefined {
   const inputSomTall: number = parseFloatMedDefault(input);
 

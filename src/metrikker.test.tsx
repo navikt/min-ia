@@ -32,7 +32,6 @@ describe("Tester at metrikker blir registrert etter ca fem sekunder", () => {
     jest.useRealTimers();
   });
 
-
   it("Forsiden registrerer ia-metrikker", async () => {
     renderHomePage();
 
@@ -43,7 +42,6 @@ describe("Tester at metrikker blir registrert etter ca fem sekunder", () => {
     expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalled();
   });
 
-
   it("Kalkulatoren registrerer ia-metrikker", async () => {
     renderKalkulatorPage();
 
@@ -53,7 +51,6 @@ describe("Tester at metrikker blir registrert etter ca fem sekunder", () => {
 
     expect(sendDigitalIaTjenesteMetrikk).toHaveBeenCalled();
   });
-
 
   it("Sykefraværsstatistikken registrerer ia-metrikker", async () => {
     renderSykefraværsstatistikkPage();

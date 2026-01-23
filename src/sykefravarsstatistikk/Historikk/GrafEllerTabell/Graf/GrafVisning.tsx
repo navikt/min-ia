@@ -56,17 +56,24 @@ const GrafVisning: FunctionComponent<Props> = ({
         sektor: sektor.prosent,
         land: land.prosent,
       };
-    }
+    },
   );
 
-  const siste = kvartalsvisSammenligningData[kvartalsvisSammenligningData.length - 1];
+  const siste =
+    kvartalsvisSammenligningData[kvartalsvisSammenligningData.length - 1];
 
-  const kvartalsvisSammenligningDataMedEtKvartalBuffer = [...kvartalsvisSammenligningData, { årstall: siste.kvartal === 4 ? siste.årstall + 1 : siste.årstall, kvartal: siste.kvartal === 4 ? 1 : siste.kvartal + 1 }];
+  const kvartalsvisSammenligningDataMedEtKvartalBuffer = [
+    ...kvartalsvisSammenligningData,
+    {
+      årstall: siste.kvartal === 4 ? siste.årstall + 1 : siste.årstall,
+      kvartal: siste.kvartal === 4 ? 1 : siste.kvartal + 1,
+    },
+  ];
 
   const punkterPåXAksenSomSkalMarkeres: string[] =
     hentFørsteKvartalFraAlleÅreneIDatagrunnlaget(kvartalsvisSammenligning).map(
       (årstallOgKvartal) =>
-        lagTickString(årstallOgKvartal.årstall, årstallOgKvartal.kvartal)
+        lagTickString(årstallOgKvartal.årstall, årstallOgKvartal.kvartal),
     );
 
   const YAxisPadding = { top: 16 };

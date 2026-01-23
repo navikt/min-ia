@@ -24,12 +24,14 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
           Forebygge fravær
         </Heading>
 
-        <BodyLong spacing>Her finner du legemeldt sykefraværsstatistikk, sammenligning med din bransje og verktøy for å
-          forebygge fravær</BodyLong>
+        <BodyLong spacing>
+          Her finner du legemeldt sykefraværsstatistikk, sammenligning med din
+          bransje og verktøy for å forebygge fravær
+        </BodyLong>
 
         <Button
-            onClick={redirectTilLogin}
-            style={{paddingLeft: 40, paddingRight: 40}}
+          onClick={redirectTilLogin}
+          style={{ paddingLeft: 40, paddingRight: 40 }}
         >
           Logg inn
         </Button>
@@ -42,7 +44,6 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
         >
           Siden krever Altinn-tilganger, les mer om roller og tilganger her
         </Link>
-
       </div>
     </div>
   );

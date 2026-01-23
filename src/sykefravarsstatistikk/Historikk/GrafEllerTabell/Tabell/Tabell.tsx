@@ -24,7 +24,7 @@ const Tabell: FunctionComponent<TabellProps> = ({
   kvartalsvisSammenligning,
   historikkLabels,
   harOverordnetEnhet,
-                                                  harStatistikkForBransje,
+  harStatistikkForBransje,
 }) => {
   const headerOverordnetEnhet = () => {
     if (harOverordnetEnhet) {
@@ -37,7 +37,7 @@ const Tabell: FunctionComponent<TabellProps> = ({
   };
 
   return (
-    <div className={styles['tabell-wrapper']}>
+    <div className={styles["tabell-wrapper"]}>
       <Table size="small" zebraStripes={true}>
         <Table.Header>
           <Table.Row>
@@ -48,7 +48,8 @@ const Tabell: FunctionComponent<TabellProps> = ({
             </Table.HeaderCell>
             {headerOverordnetEnhet()}
             <Table.HeaderCell scope="col" align="right">
-              {harStatistikkForBransje ? "Bransje: " : "Næring: "} {historikkLabels.næringEllerBransje}
+              {harStatistikkForBransje ? "Bransje: " : "Næring: "}{" "}
+              {historikkLabels.næringEllerBransje}
             </Table.HeaderCell>
             <Table.HeaderCell scope="col" align="right">
               Sektor: {historikkLabels.sektor}
@@ -72,15 +73,15 @@ const Tabell: FunctionComponent<TabellProps> = ({
 };
 
 export function hentTabellProps(
-  restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>
+  restSykefraværsstatistikk: RestRessurs<KvartalsvisSykefraværshistorikk[]>,
 ): TabellProps | undefined {
   if (restSykefraværsstatistikk.status === RestStatus.Suksess) {
     const harOverordnetEnhet = historikkHarOverordnetEnhet(
-      restSykefraværsstatistikk.data
+      restSykefraværsstatistikk.data,
     );
     const historikkLabels = getHistorikkLabels(restSykefraværsstatistikk.data);
     const kvartalsvisSammenligning = konverterTilKvartalsvisSammenligning(
-      restSykefraværsstatistikk.data
+      restSykefraværsstatistikk.data,
     );
     const kvartalsvisSammenligningReversed = [
       ...kvartalsvisSammenligning,
@@ -91,8 +92,8 @@ export function hentTabellProps(
       historikkLabels,
       kvartalsvisSammenligning: kvartalsvisSammenligningReversed,
       harStatistikkForBransje: historikkHarStatistikkForBransje(
-          restSykefraværsstatistikk.data
-      )
+        restSykefraværsstatistikk.data,
+      ),
     };
   }
 }

@@ -20,7 +20,7 @@ describe("Tester for kalkulator-utils", () => {
     const kostnadForAntallSykefraværsprosent = getKostnadForSykefraværsprosent(
       "3000",
       "10",
-      "100"
+      "100",
     );
     expect(kostnadForAntallSykefraværsprosent).toBe(30000);
   });
@@ -73,7 +73,7 @@ describe("Tester for kalkulator-utils", () => {
     gyldigeProsenttall.forEach((prosenttall) => {
       const result = validerProsenttallOgReturnerMatch(
         prosenttall,
-        "forrige verdi"
+        "forrige verdi",
       );
       expect(result).toBe(prosenttall);
     });
@@ -84,7 +84,7 @@ describe("Tester for kalkulator-utils", () => {
     ugyldigeProsenttall.forEach((prosenttall) => {
       const result = validerProsenttallOgReturnerMatch(
         prosenttall,
-        "forrige verdi"
+        "forrige verdi",
       );
       expect(result).toBe("forrige verdi");
     });
@@ -99,7 +99,7 @@ describe("Tester for kalkulator-utils", () => {
     prosenttallMedForMangeDesimalerOgForventetMatch.forEach((testCase) => {
       const result = validerProsenttallOgReturnerMatch(
         testCase.input,
-        "forrige verdi"
+        "forrige verdi",
       );
       expect(result).toBe(testCase.forventetMatch);
     });

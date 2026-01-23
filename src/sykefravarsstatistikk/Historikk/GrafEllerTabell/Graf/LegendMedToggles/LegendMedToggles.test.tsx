@@ -53,7 +53,7 @@ describe("LegendMedToggles", () => {
         labels={labels}
         linjerSomKanVises={linjerSomKanVises}
         linjerSomSkalVises={[]}
-        setLinjerSomSkalVises={() => { }}
+        setLinjerSomSkalVises={() => {}}
         harStatistikkForBransje={true}
       />,
     );

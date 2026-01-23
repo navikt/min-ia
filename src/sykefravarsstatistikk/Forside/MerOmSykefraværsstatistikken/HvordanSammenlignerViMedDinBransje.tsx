@@ -6,11 +6,15 @@ import { BodyShort, ReadMore } from "@navikt/ds-react";
 import { sendPanelEkspanderEvent } from "../../../utils/analytics/analytics";
 
 interface HvordanSammenlignerViMedDinBransjeProps {
-  harBransje: boolean,
+  harBransje: boolean;
 }
 
-export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammenlignerViMedDinBransjeProps> = ({ harBransje }: HvordanSammenlignerViMedDinBransjeProps) => {
-  const panelHeader = harBransje ? "Hvordan sammenligner vi med din bransje" : "Hvordan sammenligner vi med din næring";
+export const HvordanSammenlignerViMedDinBransje: FunctionComponent<
+  HvordanSammenlignerViMedDinBransjeProps
+> = ({ harBransje }: HvordanSammenlignerViMedDinBransjeProps) => {
+  const panelHeader = harBransje
+    ? "Hvordan sammenligner vi med din bransje"
+    : "Hvordan sammenligner vi med din næring";
   return (
     <ReadMore
       header={panelHeader}
@@ -26,7 +30,8 @@ export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammen
           Sammenligningen tar ikke hensyn til størrelsen på din virksomhet.
         </BodyShort>
         <BodyShort spacing>
-          Din {harBransje ? "bransje" : "næring"} er hentet fra Brønnøysundregisterne.
+          Din {harBransje ? "bransje" : "næring"} er hentet fra
+          Brønnøysundregisterne.
         </BodyShort>
         <BodyShort spacing>
           <EksternLenke href="https://info.altinn.no/skjemaoversikt/bronnoysundregistrene/samordnet-registermelding---registrering-av-nye-og-endring-av-eksisterende-foretak-og-enheter/">
@@ -34,8 +39,7 @@ export const HvordanSammenlignerViMedDinBransje: FunctionComponent<HvordanSammen
           </EksternLenke>
         </BodyShort>
         <BodyShort spacing>
-          <EksternLenke
-            href="https://www.brreg.no/bedrift/naeringskoder/">
+          <EksternLenke href="https://www.brreg.no/bedrift/naeringskoder/">
             Les mer om næringskoder i Brønnøysundregistrene
           </EksternLenke>
         </BodyShort>

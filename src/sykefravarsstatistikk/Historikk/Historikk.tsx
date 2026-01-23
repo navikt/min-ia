@@ -20,7 +20,7 @@ interface Props {
 const Historikk: FunctionComponent<Props> = (props) => {
   const { restSykefraværsstatistikk } = props;
   const [grafEllerTabell, setGrafEllerTabell] = useState<"graf" | "tabell">(
-    "graf"
+    "graf",
   );
 
   return (

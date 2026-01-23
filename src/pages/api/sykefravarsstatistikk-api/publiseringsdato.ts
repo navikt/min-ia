@@ -3,7 +3,7 @@ import proxyRequestWithTokenExchange from "../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   return await proxyRequestWithTokenExchange(
     req,
@@ -11,7 +11,7 @@ export default async function handler(
     `${process.env.SYKEFRAVARSSTATISTIKK_API_HOSTNAME}`,
     `/sykefravarsstatistikk-api/publiseringsdato`,
     process.env.SYKEFRAVARSSTATISTIKK_API_AUDIENCE,
-      true
+    true,
   );
 }
 

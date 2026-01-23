@@ -19,7 +19,7 @@ import { Page } from "@navikt/ds-react";
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 const getDocumentParameter = (
   initialProps: DocumentInitialProps,
-  name: string
+  name: string,
 ) => {
   return initialProps.head?.find((element) => element?.props?.name === name)
     ?.props?.content;
@@ -31,11 +31,12 @@ interface Props {
   kjørerMockApp: boolean;
 }
 
-const { decoratorEnv, thisPageUrl, umamiWebsiteId } = lesOgValiderMiljøvariablerForDekoratør();
+const { decoratorEnv, thisPageUrl, umamiWebsiteId } =
+  lesOgValiderMiljøvariablerForDekoratør();
 
 export default class MyDocument extends Document<Props> {
   static async getInitialProps(
-    ctx: DocumentContext
+    ctx: DocumentContext,
   ): Promise<DocumentInitialProps & Props> {
     const initialProps = await Document.getInitialProps(ctx);
     const Decorator = await fetchDecoratorReact({
@@ -65,12 +66,17 @@ export default class MyDocument extends Document<Props> {
     return (
       <Html lang={language || "no"}>
         <Head>
-          {
-            kjørerMockApp ? (
-              <meta name="robots" content="noindex" />
-            ) : undefined
-          }
-          {umamiWebsiteId && <Script defer strategy="afterInteractive" src="https://cdn.nav.no/team-researchops/sporing/sporing.js" data-host-url="https://umami.nav.no" data-website-id={umamiWebsiteId} data-exclude-search="true" />}
+          {kjørerMockApp ? <meta name="robots" content="noindex" /> : undefined}
+          {umamiWebsiteId && (
+            <Script
+              defer
+              strategy="afterInteractive"
+              src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+              data-host-url="https://umami.nav.no"
+              data-website-id={umamiWebsiteId}
+              data-exclude-search="true"
+            />
+          )}
           <Decorator.HeadAssets />
           <link
             rel="icon"
@@ -104,7 +110,7 @@ function lesOgValiderMiljøvariablerForDekoratør() {
 
   if (!decoratorEnv || !thisPageUrl) {
     throw Error(
-      "Kunne ikke laste inn miljøvariabler for dekoratøren. Stopper bygget."
+      "Kunne ikke laste inn miljøvariabler for dekoratøren. Stopper bygget.",
     );
   }
   if (decoratorEnv != "prod" && decoratorEnv != "dev") {

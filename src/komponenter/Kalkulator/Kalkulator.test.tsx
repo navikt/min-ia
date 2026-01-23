@@ -28,7 +28,7 @@ describe("Fraværskalulator", () => {
   });
   it("Ingen uu-feil fra axe", async () => {
     const { container: myContainer } = render(
-      <Fraværskalulator {...dummyData} nedlastingPågår={false} />
+      <Fraværskalulator {...dummyData} nedlastingPågår={false} />,
     );
     const results = await axe(myContainer);
     expect(results).toHaveNoViolations();

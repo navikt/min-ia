@@ -5,7 +5,7 @@ import { Table } from "@navikt/ds-react";
 
 const kolonneOverordnetEnhet = (
   overordnetEnhet: Sykefraværsprosent,
-  harOverordnetEnhet: boolean
+  harOverordnetEnhet: boolean,
 ) => {
   if (harOverordnetEnhet) {
     return (

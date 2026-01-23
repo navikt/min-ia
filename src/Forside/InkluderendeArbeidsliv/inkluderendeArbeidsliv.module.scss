@@ -1,30 +1,30 @@
 .inkluderendeArbeidsliv__bleed {
-	background-color: var(--a-surface-alt-1-subtle);
-	padding: 4rem 0;
-	.inkluderendeArbeidsliv {
-		padding: 0 2rem;
-		.inkluderendeArbeidsliv__hs {
-			.inkluderendeArbeidsliv__vs {
-				flex: 1;
-				flex-basis: 250px;
-				max-width: 420px;
+  background-color: var(--a-surface-alt-1-subtle);
+  padding: 4rem 0;
+  .inkluderendeArbeidsliv {
+    padding: 0 2rem;
+    .inkluderendeArbeidsliv__hs {
+      .inkluderendeArbeidsliv__vs {
+        flex: 1;
+        flex-basis: 250px;
+        max-width: 420px;
 
-				.inkluderendeArbeidsliv__listetittel {
-					margin-bottom: -1rem;
-				}
-			}
+        .inkluderendeArbeidsliv__listetittel {
+          margin-bottom: -1rem;
+        }
+      }
 
-			.inkluderendeArbeidsliv__logo__container {
-				flex: 1;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				
-				.inkluderendeArbeidsliv__logo {
-					max-width: 116px;
-					object-fit: contain;
-				}
-			}
-		}
-	}
+      .inkluderendeArbeidsliv__logo__container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .inkluderendeArbeidsliv__logo {
+          max-width: 116px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
 }

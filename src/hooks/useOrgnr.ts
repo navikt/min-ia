@@ -1,8 +1,7 @@
 import { useOrgnrContext } from "../utils/OrgnrContext";
 
 export const useOrgnr = (): string | undefined => {
-  const {orgnr: orgNr} = useOrgnrContext();
-
+  const { orgnr: orgNr } = useOrgnrContext();
 
   return erGyldigOrgnr(orgNr || undefined) ? orgNr || undefined : undefined;
 };

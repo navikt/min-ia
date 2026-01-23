@@ -12,19 +12,19 @@ export default function DeresSykefraværsstatistikkBransje() {
 
   const sykefraværIVirksomhet = finnStatistikkVerdi(
     Statistikkategori.VIRKSOMHET,
-    sykefraværsstatistikk?.prosentSiste4KvartalerTotalt
+    sykefraværsstatistikk?.prosentSiste4KvartalerTotalt,
   );
   const sykefraværIBransje = finnStatistikkVerdi(
     Statistikkategori.BRANSJE,
-    sykefraværsstatistikk?.prosentSiste4KvartalerTotalt
+    sykefraværsstatistikk?.prosentSiste4KvartalerTotalt,
   );
   const trendIVirksomhet = finnStatistikkVerdi(
     Statistikkategori.VIRKSOMHET,
-    sykefraværsstatistikk?.trendTotalt
+    sykefraværsstatistikk?.trendTotalt,
   );
   const trendIBransje = finnStatistikkVerdi(
     Statistikkategori.BRANSJE,
-    sykefraværsstatistikk?.trendTotalt
+    sykefraværsstatistikk?.trendTotalt,
   );
   if (sykefraværsstatistikk && sykefraværIVirksomhet) {
     return (
@@ -48,7 +48,7 @@ export default function DeresSykefraværsstatistikkBransje() {
               sykefravær={sykefraværIBransje}
               tooltip={
                 sykefraværsstatistikk.prosentSiste4KvartalerTotalt?.find(
-                  (s) => s.statistikkategori === "BRANSJE"
+                  (s) => s.statistikkategori === "BRANSJE",
                 )?.label ?? "Din bransje"
               }
             />
@@ -72,7 +72,7 @@ export default function DeresSykefraværsstatistikkBransje() {
 
 const finnStatistikkVerdi = (
   kategori: Statistikkategori,
-  liste?: StatistikkDto[]
+  liste?: StatistikkDto[],
 ): string | undefined => {
   return liste?.find((e) => e.statistikkategori === kategori)?.verdi;
 };

@@ -13,7 +13,7 @@ export type TokenXError = {
 };
 
 export function isInvalidToken(
-  tokenXResult: TokenXResult
+  tokenXResult: TokenXResult,
 ): tokenXResult is TokenXError {
   return typeof tokenXResult !== "string";
 }
@@ -24,7 +24,7 @@ export function isInvalidToken(
  */
 export async function exchangeIdportenSubjectToken(
   request: IncomingMessage,
-  audience: string
+  audience: string,
 ): Promise<TokenXResult> {
   const authHeader = request.headers["authorization"];
 
@@ -48,7 +48,7 @@ export async function exchangeIdportenSubjectToken(
   const validationResult = await validateToken(token);
   if (!validationResult.ok) {
     console.log(
-      `Failed to validate due to: ${validationResult.errorType} ${validationResult.error.message}`
+      `Failed to validate due to: ${validationResult.errorType} ${validationResult.error.message}`,
     );
     return {
       errorType: "IDPORTEN_TOKEN_INVALID",
@@ -62,7 +62,7 @@ export async function exchangeIdportenSubjectToken(
   const grantResult = await requestOboToken(validSubjectToken, audience);
   if (!grantResult.ok) {
     console.error(
-        `TokenX failed: cause:'${grantResult.error.cause}', message:'${grantResult.error.message}'`
+      `TokenX failed: cause:'${grantResult.error.cause}', message:'${grantResult.error.message}'`,
     );
     return {
       errorType: "TOKENX_FAILED",

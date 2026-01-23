@@ -2,10 +2,10 @@ import { Statistikkategori } from "../../domene/statistikkategori";
 import { RestAggregertStatistikk } from "../../hooks/useSykefraværAppData";
 
 export const getBransjeEllerNæringKategori = (
-  aggregertStatistikk: RestAggregertStatistikk
+  aggregertStatistikk: RestAggregertStatistikk,
 ) => {
   const bransjedata = aggregertStatistikk.aggregertData?.get(
-    Statistikkategori.BRANSJE
+    Statistikkategori.BRANSJE,
   )?.prosentSiste4KvartalerTotalt?.verdi;
   if (bransjedata !== undefined) return Statistikkategori.BRANSJE;
   return Statistikkategori.NÆRING;

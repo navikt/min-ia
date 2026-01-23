@@ -4,7 +4,7 @@ import { RestRessurs } from "../integrasjoner/rest-status";
 import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 export function useOrganisasjoner(): RestRessurs<Organisasjon[]> {
-  const apiPath = `${AUTHENTICATED_BASE_PATH}/organisasjoner`
+  const apiPath = `${AUTHENTICATED_BASE_PATH}/organisasjoner`;
 
   return useRestRessursSWR<Organisasjon[]>(
     apiPath,

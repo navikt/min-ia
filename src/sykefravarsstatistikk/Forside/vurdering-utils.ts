@@ -11,7 +11,7 @@ export type SykefraværVurdering =
 
 export const sammenliknSykefravær = (
   statistikk?: Statistikk,
-  bransjeEllerNæring?: Statistikk
+  bransjeEllerNæring?: Statistikk,
 ): SykefraværVurdering => {
   if (statistikk === undefined && bransjeEllerNæring === undefined) {
     console.warn("Virksomhetens og bransjens tall er NaN");

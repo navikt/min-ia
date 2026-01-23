@@ -1,11 +1,11 @@
-'use client';
+"use client";
 import React, { ReactElement, /* useCallback, */ useState } from "react";
 import { Organisasjon, Virksomhetsvelger } from "@navikt/virksomhetsvelger";
 import "@navikt/virksomhetsvelger/dist/assets/style.css";
 import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import '@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css';
+import "@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css";
 import { sendBedriftValgtEvent } from "../../utils/analytics/analytics";
 import { useOrgnrContext } from "../../utils/OrgnrContext";
 
@@ -16,7 +16,7 @@ interface Props {
 
 const Banner: React.FunctionComponent<Props> = ({
   altinnOrganisasjoner,
-  tittelMedUnderTittel
+  tittelMedUnderTittel,
 }) => {
   const [bedriftValgtManueltFraLista, setBedriftValgtManueltFraLista] =
     useState(false);
@@ -34,9 +34,7 @@ const Banner: React.FunctionComponent<Props> = ({
   return (
     <div className={styles.banner}>
       <div className={styles.bannerContent}>
-        <div className={styles.bannertittel}>
-          {tittelMedUnderTittel}
-        </div>
+        <div className={styles.bannertittel}>{tittelMedUnderTittel}</div>
         <div className={styles.virksomhetsvelgerWrapper}>
           <SSRSafeVirksomhetsvelger
             organisasjoner={altinnOrganisasjoner}
@@ -50,16 +48,15 @@ const Banner: React.FunctionComponent<Props> = ({
   );
 };
 
-function SSRSafeVirksomhetsvelger(
-  {
-    organisasjoner,
-    onChange,
-    initValgtOrgnr,
-  }: {
-    organisasjoner: Organisasjon[];
-    onChange: (organisasjon: Organisasjon) => void;
-    initValgtOrgnr?: string;
-  }) {
+function SSRSafeVirksomhetsvelger({
+  organisasjoner,
+  onChange,
+  initValgtOrgnr,
+}: {
+  organisasjoner: Organisasjon[];
+  onChange: (organisasjon: Organisasjon) => void;
+  initValgtOrgnr?: string;
+}) {
   const [kanRendres, setKanRendres] = useState(false);
   React.useEffect(() => {
     if (organisasjoner.length > 0) {
@@ -90,9 +87,7 @@ function SSRSafeNotifikasjonWidget() {
     return null;
   }
 
-  return (
-    <NotifikasjonWidget />
-  );
+  return <NotifikasjonWidget />;
 }
 
 export default Banner;

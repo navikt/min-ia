@@ -1,4 +1,4 @@
-import {mapStatusskodeTilRestStatus, RestStatus} from "./rest-status";
+import { mapStatusskodeTilRestStatus, RestStatus } from "./rest-status";
 
 describe("mapTilRestStatus", () => {
   it("should map 200 to RestStatus.Suksess", () => {

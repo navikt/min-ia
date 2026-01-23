@@ -1,32 +1,32 @@
 .tjenesterFraNav_Bleed {
-    background-color: white;
+  background-color: white;
 
-	.tjenesterFraNav {
-		padding: 4rem 2rem;
+  .tjenesterFraNav {
+    padding: 4rem 2rem;
 
-		.tjenesterFraNavTittel {
-			margin-bottom: 2rem;
-		}
+    .tjenesterFraNavTittel {
+      margin-bottom: 2rem;
+    }
 
-		.tjenesteStack {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-			grid-template-rows: auto;
-			gap: 1rem 2rem;
+    .tjenesteStack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      grid-template-rows: auto;
+      gap: 1rem 2rem;
 
-			.tjeneste {
-				display: grid;
-				max-width: 25rem;
-				min-width: 15rem;
-				grid-row: span 3;
-				grid-template-rows: subgrid;
+      .tjeneste {
+        display: grid;
+        max-width: 25rem;
+        min-width: 15rem;
+        grid-row: span 3;
+        grid-template-rows: subgrid;
 
-				.tjenestelenke {
-					width: fit-content;
+        .tjenestelenke {
+          width: fit-content;
 
-					--ac-button-secondary-hover-bg: var(--a-white);
-				}
-			}
-		}
-	}
+          --ac-button-secondary-hover-bg: var(--a-white);
+        }
+      }
+    }
+  }
 }

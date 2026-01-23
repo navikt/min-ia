@@ -25,7 +25,7 @@ const defaultLinjer: readonly HistorikkLabel[] = [
 ] as const;
 
 function useGrafLinjerSomSkalVises(
-  kvartalsvisSammenligning: KvartalsvisSammenligning[]
+  kvartalsvisSammenligning: KvartalsvisSammenligning[],
 ) {
   const linjerSomKanVises = getLinjerSomHarData(kvartalsvisSammenligning);
   const linjeFilter = listFilterBuilder(linjerSomKanVises);
@@ -44,21 +44,21 @@ export default function GrafEllerTabell({
   grafEllerTabell: string;
 }) {
   const harStatistikkForBransje = historikkHarStatistikkForBransje(
-    restSykefraværsstatistikk.data
+    restSykefraværsstatistikk.data,
   );
 
   const harOverordnetEnhet = historikkHarOverordnetEnhet(
-    restSykefraværsstatistikk.data
+    restSykefraværsstatistikk.data,
   );
   const historikkLabels = getHistorikkLabels(restSykefraværsstatistikk.data);
   const kvartalsvisSammenligning = konverterTilKvartalsvisSammenligning(
-    restSykefraværsstatistikk.data
+    restSykefraværsstatistikk.data,
   );
   const kvartalsvisSammenligningReversed = [
     ...kvartalsvisSammenligning,
   ].reverse();
   const grafLinjerSomSkalVisesResult = useGrafLinjerSomSkalVises(
-    kvartalsvisSammenligning
+    kvartalsvisSammenligning,
   );
 
   return (
@@ -91,7 +91,7 @@ export default function GrafEllerTabell({
 }
 
 const listFilterBuilder = <T, U extends T>(
-  list: U[] | readonly U[]
+  list: U[] | readonly U[],
 ): ((element: T) => element is U) => {
   return (element: T): element is U => list.includes(element as U);
 };

@@ -1,10 +1,10 @@
 .uxSignalWidget {
-	margin: 2rem auto;
-	max-width: 770px;
+  margin: 2rem auto;
+  max-width: 770px;
 }
 
 @media print {
-	.uxSignalWidget {
-		display: none !important;
-	}
+  .uxSignalWidget {
+    display: none !important;
+  }
 }

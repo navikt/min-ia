@@ -9,7 +9,7 @@ describe("StatistikkPanel", () => {
         sykefravær="10"
         tittel="Sykefravær i virksomhet"
         tooltip="Din virksomhet"
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -21,7 +21,7 @@ describe("StatistikkPanel", () => {
         sykefravær="10"
         tittel="Sykefravær i virksomhet"
         tooltip="Din virksomhet"
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -33,7 +33,7 @@ describe("StatistikkPanel", () => {
         sykefravær="10"
         tittel="Sykefravær i virksomhet"
         tooltip="Din virksomhet"
-      />
+      />,
     );
     expect(screen.getByText("uendret trend")).toBeInTheDocument();
   });
@@ -45,7 +45,7 @@ describe("StatistikkPanel", () => {
         tittel="Sykefravær i virksomhet"
         tooltip="Din virksomhet"
         trend="2"
-      />
+      />,
     );
     expect(screen.getByText("stigende trend")).toBeInTheDocument();
   });
@@ -57,7 +57,7 @@ describe("StatistikkPanel", () => {
         tittel="Sykefravær i virksomhet"
         tooltip="Din virksomhet"
         trend="-2"
-      />
+      />,
     );
     expect(screen.getByText("synkende trend")).toBeInTheDocument();
   });

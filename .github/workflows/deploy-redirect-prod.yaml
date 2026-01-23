@@ -5,10 +5,10 @@ on:
     branches:
       - main
     paths:
-      - '.nais/redirect-sykefravarsstatistikk-prod.yaml'
-      - '.github/workflows/deploy-redirect-prod.yaml'
-      - '.nais/redirect-forebyggingsplan-prod.yaml'
-      - '.nais/redirect-samtalestotte-prod.yaml'
+      - ".nais/redirect-sykefravarsstatistikk-prod.yaml"
+      - ".github/workflows/deploy-redirect-prod.yaml"
+      - ".nais/redirect-forebyggingsplan-prod.yaml"
+      - ".nais/redirect-samtalestotte-prod.yaml"
 
 permissions:
   id-token: write

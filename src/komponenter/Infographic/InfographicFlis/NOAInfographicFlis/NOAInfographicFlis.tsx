@@ -9,7 +9,6 @@ export function NOAInfographicFlis({
   label?: ReactNode;
   innhold: ReactNode;
 }) {
-
   return (
     <Box className={styles.NOA_infographicFlisBox}>
       {label && <BodyShort className={styles.label}>{label}</BodyShort>}
@@ -17,5 +16,5 @@ export function NOAInfographicFlis({
         {innhold}
       </BodyShort>
     </Box>
-  )
+  );
 }

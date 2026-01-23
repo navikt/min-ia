@@ -8,18 +8,18 @@
     }
 
     .kontaktOss__stack {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-			grid-template-rows: auto;
-			gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      grid-template-rows: auto;
+      gap: 1rem;
       margin-top: 2rem;
 
       .kontaktOssItem {
-				display: grid;
-				max-width: 25rem;
-				min-width: 15rem;
-				grid-row: span 3;
-				grid-template-rows: subgrid;
+        display: grid;
+        max-width: 25rem;
+        min-width: 15rem;
+        grid-row: span 3;
+        grid-template-rows: subgrid;
         grid-template-columns: 5rem 1fr;
 
         .kontaktOssItem__ikon {
@@ -34,7 +34,7 @@
           margin: 0 1rem;
           grid-row: span 3;
         }
-    
+
         .kontaktOssItem__innhold {
           display: grid;
           grid-template-columns: minmax(fit-content, 1fr);

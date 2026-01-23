@@ -67,7 +67,7 @@ describe("App", () => {
       <Forside
         kjørerMockApp={true}
         {...transformSykefraværAppData(mockAllDatahentingStatusOk)}
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -82,7 +82,7 @@ describe("App", () => {
       <Forside
         kjørerMockApp={true}
         {...transformSykefraværAppData(mockAllDatahentingStatusOk)}
-      />
+      />,
     );
 
     const forsidensOverskrift = screen.getByRole("heading", {
@@ -97,7 +97,7 @@ describe("App", () => {
       <Forside
         kjørerMockApp={true}
         {...transformSykefraværAppData(mockAllDatahentingStatusLaster)}
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -108,7 +108,7 @@ describe("App", () => {
       <Forside
         kjørerMockApp={true}
         {...transformSykefraværAppData(mockAllDatahentingStatusOk)}
-      />
+      />,
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -119,7 +119,7 @@ describe("App", () => {
       <div>
         <h1>ein</h1>
         <h3>drei</h3>
-      </div>
+      </div>,
     );
     const results = await axe(container);
 

@@ -1,8 +1,6 @@
 import { RestStatus } from "../integrasjoner/rest-status";
 import { mockdataOrgnr91096939 } from "../local/aggregertStatistikkMockdata";
-import {
-  getOrganisasjonerBrukerHarIaRettigheterTilMock,
-} from "./altinn-mock";
+import { getOrganisasjonerBrukerHarIaRettigheterTilMock } from "./altinn-mock";
 import { Statistikkategori } from "./domene/statistikkategori";
 import {
   AggregertStatistikk,

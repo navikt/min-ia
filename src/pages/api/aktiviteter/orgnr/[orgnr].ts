@@ -4,7 +4,7 @@ import proxyRequestWithTokenExchange from "../../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const { orgnr } = req.query;
 
@@ -17,9 +17,9 @@ export default async function handler(
   return await proxyRequestWithTokenExchange(
     req,
     res,
-      hostnavn,
-      sti,
+    hostnavn,
+    sti,
     process.env.FOREBYGGINGSPLAN_API_AUDIENCE,
-    false
+    false,
   );
 }

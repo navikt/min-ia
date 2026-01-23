@@ -12,7 +12,7 @@ export const altinn3Organisasjoner = [
       "nav_arbeidsforhold_aa-registeret-sok-tilgang",
       "nav_tiltak_tiltaksrefusjon",
       "nav_foreldrepenger_inntektsmelding",
-      "nav_rekruttering_stillingsannonser"
+      "nav_rekruttering_stillingsannonser",
     ],
     altinn2Tilganger: [
       "5934:1",
@@ -35,7 +35,7 @@ export const altinn3Organisasjoner = [
       "5516:4",
       "5516:5",
       "5516:6",
-      "5902:1"
+      "5902:1",
     ],
     underenheter: [
       {
@@ -51,7 +51,7 @@ export const altinn3Organisasjoner = [
           "nav_arbeidsforhold_aa-registeret-sok-tilgang",
           "nav_tiltak_tiltaksrefusjon",
           "nav_foreldrepenger_inntektsmelding",
-          "nav_rekruttering_stillingsannonser"
+          "nav_rekruttering_stillingsannonser",
         ],
         altinn2Tilganger: [
           "5934:1",
@@ -74,11 +74,11 @@ export const altinn3Organisasjoner = [
           "5516:4",
           "5516:5",
           "5516:6",
-          "5902:1"
+          "5902:1",
         ],
         underenheter: [],
         navn: "Generell feil",
-        organisasjonsform: "BEDR"
+        organisasjonsform: "BEDR",
       },
       {
         orgnr: "999999996",
@@ -93,7 +93,7 @@ export const altinn3Organisasjoner = [
           "nav_arbeidsforhold_aa-registeret-sok-tilgang",
           "nav_tiltak_tiltaksrefusjon",
           "nav_foreldrepenger_inntektsmelding",
-          "nav_rekruttering_stillingsannonser"
+          "nav_rekruttering_stillingsannonser",
         ],
         altinn2Tilganger: [
           "5934:1",
@@ -116,15 +116,15 @@ export const altinn3Organisasjoner = [
           "5516:4",
           "5516:5",
           "5516:6",
-          "5902:1"
+          "5902:1",
         ],
         underenheter: [],
         navn: "Mangler tilgang",
-        organisasjonsform: "BEDR"
-      }
+        organisasjonsform: "BEDR",
+      },
     ],
     navn: "System feil AS",
-    organisasjonsform: "AS"
+    organisasjonsform: "AS",
   },
   {
     orgnr: "211111111",
@@ -132,15 +132,9 @@ export const altinn3Organisasjoner = [
       "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
       "nav_tiltak_tiltaksrefusjon",
       "nav_foreldrepenger_inntektsmelding",
-      "nav_rekruttering_stillingsannonser"
+      "nav_rekruttering_stillingsannonser",
     ],
-    altinn2Tilganger: [
-      "5934:1",
-      "5078:1",
-      "4826:1",
-      "4936:1",
-      "5902:1"
-    ],
+    altinn2Tilganger: ["5934:1", "5078:1", "4826:1", "4936:1", "5902:1"],
     underenheter: [
       {
         orgnr: "810969439",
@@ -148,83 +142,59 @@ export const altinn3Organisasjoner = [
           "nav_forebygge-og-redusere-sykefravar_ia-samarbeid",
           "nav_tiltak_tiltaksrefusjon",
           "nav_foreldrepenger_inntektsmelding",
-          "nav_rekruttering_stillingsannonser"
+          "nav_rekruttering_stillingsannonser",
         ],
-        altinn2Tilganger: [
-          "5934:1",
-          "5078:1",
-          "4826:1",
-          "4936:1",
-          "5902:1"
-        ],
+        altinn2Tilganger: ["5934:1", "5078:1", "4826:1", "4936:1", "5902:1"],
         underenheter: [],
         navn: "Trøndelag Tømmerere avd. OSLO [Local server]",
-        organisasjonsform: "BEDR"
-      }
+        organisasjonsform: "BEDR",
+      },
     ],
     navn: "Trøndelag Tømmerere [Local server]",
-    organisasjonsform: "AS"
+    organisasjonsform: "AS",
   },
   {
     orgnr: "310807176",
     altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_sykefravarsstatistikk"
+      "nav_forebygge-og-redusere-sykefravar_sykefravarsstatistikk",
     ],
-    altinn2Tilganger: [
-      "3403:1"
-    ],
+    altinn2Tilganger: ["3403:1"],
     underenheter: [],
     navn: "UVITENDE SNILL TIGER AS",
-    organisasjonsform: "AS"
+    organisasjonsform: "AS",
   },
   {
     orgnr: "111111111",
-    altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
-    ],
-    altinn2Tilganger: [
-      "5934:1"
-    ],
+    altinn3Tilganger: ["nav_forebygge-og-redusere-sykefravar_ia-samarbeid"],
+    altinn2Tilganger: ["5934:1"],
     underenheter: [
       {
         orgnr: "910969439",
-        altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
-        ],
-        altinn2Tilganger: [
-          "5934:1"
-        ],
+        altinn3Tilganger: ["nav_forebygge-og-redusere-sykefravar_ia-samarbeid"],
+        altinn2Tilganger: ["5934:1"],
         underenheter: [],
         navn: "FIKTIVT SYKEHUS [TEST]",
-        organisasjonsform: "BEDR"
-      }
+        organisasjonsform: "BEDR",
+      },
     ],
     navn: "FIKTIVT SYKEHUS [TEST]",
-    organisasjonsform: "AS"
+    organisasjonsform: "AS",
   },
   {
     orgnr: "910969439",
-    altinn3Tilganger: [
-      "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
-    ],
-    altinn2Tilganger: [
-      "5934:1"
-    ],
+    altinn3Tilganger: ["nav_forebygge-og-redusere-sykefravar_ia-samarbeid"],
+    altinn2Tilganger: ["5934:1"],
     underenheter: [
       {
         orgnr: "910969440",
-        altinn3Tilganger: [
-          "nav_forebygge-og-redusere-sykefravar_ia-samarbeid"
-        ],
-        altinn2Tilganger: [
-          "5934:1"
-        ],
+        altinn3Tilganger: ["nav_forebygge-og-redusere-sykefravar_ia-samarbeid"],
+        altinn2Tilganger: ["5934:1"],
         underenheter: [],
         navn: "HEI OG HÅ BARNEHAGE OSLO [Local server]",
-        organisasjonsform: "BEDR"
-      }
+        organisasjonsform: "BEDR",
+      },
     ],
     navn: "HEI OG HÅ BARNEHAGE",
-    organisasjonsform: "AS"
+    organisasjonsform: "AS",
   },
 ];

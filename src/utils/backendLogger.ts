@@ -26,6 +26,5 @@ export const backendLogger = pino({
 });
 
 export const anonymizeOrgnr = (message: string) => {
-  return message
-      .replace(/\d{9}/g, "*********")
-}
+  return message.replace(/\d{9}/g, "*********");
+};

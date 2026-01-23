@@ -89,15 +89,11 @@ function Sideinnhold({
   organisasjonerBrukerHarTilgangTil: RestRessurs<Organisasjon[]>;
 }) {
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.LasterInn) {
-    return (
-      <Lasteside />
-    );
+    return <Lasteside />;
   }
 
   if (organisasjonerBrukerHarTilgangTil.status === RestStatus.IkkeInnlogget) {
-    return (
-      <Innloggingsside redirectUrl={window.location.href} />
-    );
+    return <Innloggingsside redirectUrl={window.location.href} />;
   }
 
   return (
@@ -122,7 +118,7 @@ export const getServerSideProps = async () => {
 
   const kjørerMockApp = isMockApp();
   const minSideArbeidsgiverUrl = hentUrlFraMiljøvariabel(
-    "Min Side Arbeidsgiver"
+    "Min Side Arbeidsgiver",
   );
 
   const forsideProps: ForsideProps = {

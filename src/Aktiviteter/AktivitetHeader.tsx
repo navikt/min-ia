@@ -14,7 +14,9 @@ export const AktivitetHeader = ({
 }) => {
   return (
     <>
-      <Heading level="3" size="medium">{aktivitet.tittel}</Heading>
+      <Heading level="3" size="medium">
+        {aktivitet.tittel}
+      </Heading>
       <ProgressBar
         max={aktivitetStatistikk.totalt}
         value={aktivitetStatistikk.ferdige}
@@ -28,7 +30,7 @@ export const AktivitetHeader = ({
 };
 
 export function getAktivitetStatusBeskrivelseTekst(
-  aktivitetStatistikk: AktivitetStatistikkType
+  aktivitetStatistikk: AktivitetStatistikkType,
 ) {
   if (aktivitetStatistikk.totalt === aktivitetStatistikk.ferdige) {
     return "Alle oppgaver i denne seksjonen er ferdigstilt.";
@@ -41,7 +43,9 @@ export function getAktivitetStatusBeskrivelseTekst(
     return "Ingen oppgaver i denne seksjonen er påbegynt.";
   }
 
-  return `${aktivitetStatistikk.ferdige} oppgave${aktivitetStatistikk.ferdige === 1 ? "" : "r"
-    } ferdig og ${aktivitetStatistikk.påbegynte} påbegynt av ${aktivitetStatistikk.totalt
-    } tilgjengelige oppgaver.`;
+  return `${aktivitetStatistikk.ferdige} oppgave${
+    aktivitetStatistikk.ferdige === 1 ? "" : "r"
+  } ferdig og ${aktivitetStatistikk.påbegynte} påbegynt av ${
+    aktivitetStatistikk.totalt
+  } tilgjengelige oppgaver.`;
 }

@@ -6,19 +6,27 @@ import styles from "./verktøyBarnehager.module.scss";
 import { IDEBANKEN_URL } from "../../../utils/konstanter";
 import { sendNavigereEvent } from "../../../utils/analytics/analytics";
 
-import Arbeidsmiljøhjelpen from "./Arbeidsmiljohjelpen.png"
-import En_Bra_Dag_På_Jobb from "./En_bra_dag_paa_jobb.png"
-import Idebanken_Barnehage from "./Idebanken_Barnehage.png"
+import Arbeidsmiljøhjelpen from "./Arbeidsmiljohjelpen.png";
+import En_Bra_Dag_På_Jobb from "./En_bra_dag_paa_jobb.png";
+import Idebanken_Barnehage from "./Idebanken_Barnehage.png";
 import Image, { StaticImageData } from "next/image";
 
-const ARBEIDSMILJØHJELPEN_BARNEHAGE_URL = "https://arbeidsmiljohjelpen.arbeidstilsynet.no/bransje/barnehage/";
-const EN_BRA_DAG_PÅ_JOBB_BARNEHAGE_URL = "https://enbradagpajobb.no/bransje/barnehage-2/"
-const IDEBANKEN_BARNEHAGE_URL = IDEBANKEN_URL + "/ia/ia-hjelp/ia-bransjeprogram/barnehage"
+const ARBEIDSMILJØHJELPEN_BARNEHAGE_URL =
+  "https://arbeidsmiljohjelpen.arbeidstilsynet.no/bransje/barnehage/";
+const EN_BRA_DAG_PÅ_JOBB_BARNEHAGE_URL =
+  "https://enbradagpajobb.no/bransje/barnehage-2/";
+const IDEBANKEN_BARNEHAGE_URL =
+  IDEBANKEN_URL + "/ia/ia-hjelp/ia-bransjeprogram/barnehage";
 
 export default function VerktøyBarnehager() {
   return (
-    <Page.Block width="xl"  className={styles.verktøyOgRessurser}>
-      <Heading size="large" level="2" align="center" className={styles.verktøyOgRessurserTittel}>
+    <Page.Block width="xl" className={styles.verktøyOgRessurser}>
+      <Heading
+        size="large"
+        level="2"
+        align="center"
+        className={styles.verktøyOgRessurserTittel}
+      >
         Gode verktøy for å forebygge og redusere sykefravær
       </Heading>
       <div className={styles.verktøyStack}>
@@ -93,7 +101,7 @@ function VerktøykortBarnehager({
       >
         {lenketekst}
       </Button>
-      <Image src={bilde} alt={lenketekst} className={bildeClassName}/>
+      <Image src={bilde} alt={lenketekst} className={bildeClassName} />
     </div>
   );
 }

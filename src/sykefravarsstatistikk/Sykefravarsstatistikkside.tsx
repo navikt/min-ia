@@ -9,7 +9,7 @@ export default function Sykefraværsstatistikkside(
   props: SykefraværAppData & {
     kjørerMockApp: boolean;
     prodUrl?: string;
-  }
+  },
 ) {
   if (props.altinnOrganisasjoner.status === RestStatus.IkkeInnlogget) {
     return <Innloggingsside redirectUrl={window.location.href} />;
@@ -17,7 +17,7 @@ export default function Sykefraværsstatistikkside(
 
   if (
     [RestStatus.IngenTilgang, RestStatus.Feil].includes(
-      props.altinnOrganisasjoner.status
+      props.altinnOrganisasjoner.status,
     )
   ) {
     return <FeilFraAltinnSide />;

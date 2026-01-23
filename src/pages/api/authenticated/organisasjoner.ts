@@ -3,7 +3,7 @@ import proxyRequestWithTokenExchange from "../../../utils/api-proxy";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed" });
@@ -14,7 +14,7 @@ export default async function handler(
     `${process.env.FIA_ARBEIDSGIVER_HOSTNAME}`,
     "/fia-arbeidsgiver/organisasjoner",
     process.env.FIA_ARBEIDSGIVER_AUDIENCE,
-    false
+    false,
   );
 }
 

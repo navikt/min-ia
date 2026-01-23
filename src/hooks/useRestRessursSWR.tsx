@@ -7,7 +7,7 @@ import useSWR from "swr";
 
 export function useRestRessursSWR<T>(
   apiPath: string | null,
-  errorMessage: string
+  errorMessage: string,
 ): RestRessurs<T> {
   const { data, error, isLoading } = useSWR(apiPath, fetcher, {
     revalidateIfStale: false,
@@ -32,6 +32,6 @@ async function fetcher(path: string) {
 
   const restStatus = mapStatusskodeTilRestStatus(response.status);
   return restStatus === RestStatus.Suksess
-      ? { status: restStatus, data: await response.json() }
-      : { status: restStatus };
+    ? { status: restStatus, data: await response.json() }
+    : { status: restStatus };
 }

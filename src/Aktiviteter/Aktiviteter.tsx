@@ -36,7 +36,10 @@ import { useHentAktiviteter } from "../hooks/useHentAktiviteter";
 import { RestStatus } from "../integrasjoner/rest-status";
 import { AggregertStatistikkDto } from "../integrasjoner/aggregert-statistikk-api";
 import DeresSykefraværsstatistikkBransje from "./DeresSykefraværsstatistikkBransje";
-import { sendNavigereEvent, sendÅpneAktivitetEvent } from "../utils/analytics/analytics";
+import {
+  sendNavigereEvent,
+  sendÅpneAktivitetEvent,
+} from "../utils/analytics/analytics";
 
 export default function AktivitetSeksjon(props: {
   sykefraværsstatistikk: AggregertStatistikkDto;
@@ -47,7 +50,7 @@ export default function AktivitetSeksjon(props: {
     <AktivitetProvider
       aktivitetStatuser={
         hentedeAktiviteter.status === RestStatus.Suksess &&
-          Array.isArray(hentedeAktiviteter?.data)
+        Array.isArray(hentedeAktiviteter?.data)
           ? hentedeAktiviteter?.data
           : []
       }
@@ -56,7 +59,11 @@ export default function AktivitetSeksjon(props: {
       <Bleed className={styles["aktiviteter-seksjon"]}>
         <Page.Block width="xl">
           <div className={styles["aktiviteter-seksjon-innhold"]}>
-            <Heading level="2" size="large" className={styles["aktiviteter-header"]}>
+            <Heading
+              level="2"
+              size="large"
+              className={styles["aktiviteter-header"]}
+            >
               Øvelser og verktøy
             </Heading>
             <BodyLong className={styles["aktiviteter-brødtekst"]}>
@@ -107,7 +114,7 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
   const [åpen, setÅpen] = React.useState(false);
   const ider = React.useMemo(
     () => aktivitet.innhold.flatMap(findOppgaveIder),
-    [aktivitet]
+    [aktivitet],
   );
   const statuser = useStatusForAktiviteter(ider);
   const aktivitetStatistikk: AktivitetStatistikkType = React.useMemo(() => {
@@ -126,11 +133,16 @@ function Aktivitet({ aktivitet }: { aktivitet: AktivitetType }) {
   return (
     <Accordion.Item className={styles.aktivitet} open={åpen}>
       <Accordion.Header
-        className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${styles.accordionHeader
-          }`}
+        className={`${getAktivitetHeaderFarge(aktivitetStatistikk)} ${
+          styles.accordionHeader
+        }`}
         onClick={() => {
           if (!åpen) {
-            sendÅpneAktivitetEvent(aktivitet.tittel, aktivitetStatistikk.ferdige > 0 || aktivitetStatistikk.påbegynte > 0);
+            sendÅpneAktivitetEvent(
+              aktivitet.tittel,
+              aktivitetStatistikk.ferdige > 0 ||
+                aktivitetStatistikk.påbegynte > 0,
+            );
           }
 
           setÅpen(!åpen);
@@ -190,7 +202,11 @@ function Tekst({ innhold, spacing = true }: AktivitetTekstType) {
 }
 
 function Undertittel({ innhold }: AktivitetUndertittelType) {
-  return <Heading level="4" size="medium">{innhold}</Heading>;
+  return (
+    <Heading level="4" size="medium">
+      {innhold}
+    </Heading>
+  );
 }
 
 function Punktliste({ innhold }: AktivitetPunktlisteType) {
@@ -229,7 +245,11 @@ function Punkt({ innhold }: AktivitetPunktType) {
 
 function Lenke({ tekst, url }: AktivitetLenkeType) {
   return (
-    <Link href={url} className={styles.lenke} onClick={() => sendNavigereEvent(tekst, url)}>
+    <Link
+      href={url}
+      className={styles.lenke}
+      onClick={() => sendNavigereEvent(tekst, url)}
+    >
       {tekst}
     </Link>
   );
@@ -244,7 +264,7 @@ function Inlinetekst({ innhold, spacing }: AktivitetInlinetekstType) {
           innhold
         ) : (
           <AktivitetInnhold innhold={innhold} key={index} />
-        )
+        ),
       )}
     </Tekstcontainer>
   );
@@ -253,7 +273,9 @@ function Inlinetekst({ innhold, spacing }: AktivitetInlinetekstType) {
 function Infoboks({ tittel, innhold }: AktivitetInfoboksType) {
   return (
     <div className={styles.infoboks}>
-      <Heading level="4" size="medium">{tittel}</Heading>
+      <Heading level="4" size="medium">
+        {tittel}
+      </Heading>
       {innhold.map((innhold, index) => (
         <AktivitetInnhold innhold={innhold} key={index} />
       ))}

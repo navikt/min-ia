@@ -67,7 +67,7 @@ export const getTooltipsnavn = (name: HistorikkLabel): string => {
 };
 
 export const hentFørsteKvartalFraAlleÅreneIDatagrunnlaget = (
-  kvartalsvisSammenligning: KvartalsvisSammenligning[]
+  kvartalsvisSammenligning: KvartalsvisSammenligning[],
 ): ÅrstallOgKvartal[] => {
   return kvartalsvisSammenligning
     .filter((sammenligning) => sammenligning.kvartal === 1)
@@ -80,7 +80,7 @@ export const lagTickString = (årstall: number, kvartal: number) =>
   årstall + ", " + kvartal + ". kvartal";
 
 export const getLinjerSomHarData = (
-  sykefraværshistorikk: KvartalsvisSammenligning[]
+  sykefraværshistorikk: KvartalsvisSammenligning[],
 ): HistorikkLabel[] => {
   const linjer = new Set();
   const keysSize = Object.keys(HistorikkLabels).length;

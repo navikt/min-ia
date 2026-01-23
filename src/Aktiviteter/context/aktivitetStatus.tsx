@@ -35,7 +35,7 @@ export const AktivitetProvider = ({
     const mineLokaleEndringer = [...lokaleEndringer];
     const nyeAktivitetStatuser = aktivitetStatuser.map((aktivitetStatus) => {
       const lokalEndringIndex = mineLokaleEndringer.findIndex(
-        (endring) => endring.aktivitetId === aktivitetStatus.aktivitetId
+        (endring) => endring.aktivitetId === aktivitetStatus.aktivitetId,
       );
       if (lokalEndringIndex > -1) {
         const lokalEndring = mineLokaleEndringer[lokalEndringIndex];
@@ -82,7 +82,7 @@ export const useStatusForAktiviteter = (ider: string[]) => {
 
   return ider.map(
     (id) =>
-      aktivitetStatuser?.find((status) => status.aktivitetId === id)?.status
+      aktivitetStatuser?.find((status) => status.aktivitetId === id)?.status,
   );
 };
 
@@ -94,7 +94,7 @@ export const useSykefraværsstatistikkForAktivitet = () => {
 
 export const useOppdaterStatus = (
   orgnr: string | null | undefined,
-  aktivitetId: string
+  aktivitetId: string,
 ) => {
   const { setLokaleEndringer } = React.useContext(AktivitetContext);
 
@@ -104,7 +104,7 @@ export const useOppdaterStatus = (
         oppdaterStatus(aktivitetId, orgnr, status);
         setLokaleEndringer((tidligereEndringer) => {
           const aktivitetIndex = tidligereEndringer.findIndex(
-            (endring) => endring.aktivitetId === aktivitetId
+            (endring) => endring.aktivitetId === aktivitetId,
           );
 
           if (aktivitetIndex > -1) {
@@ -125,6 +125,6 @@ export const useOppdaterStatus = (
         console.error("Får ikke oppdatert status. Mangler orgnr.");
       }
     },
-    [setLokaleEndringer, orgnr, aktivitetId]
+    [setLokaleEndringer, orgnr, aktivitetId],
   );
 };

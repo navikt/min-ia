@@ -4,7 +4,7 @@ import { iaMetrikkerApiPath } from "@navikt/ia-metrikker-client";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
@@ -18,7 +18,7 @@ export default async function handler(
     `${process.env.IA_TJENESTER_METRIKKER_HOSTNAME}`,
     iaMetrikkerApiPath,
     process.env.IA_TJENESTER_METRIKKER_AUDIENCE,
-    true
+    true,
   );
 }
 

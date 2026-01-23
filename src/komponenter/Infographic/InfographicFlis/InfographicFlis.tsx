@@ -16,13 +16,21 @@ export function InfographicFlis({
   if (utenLabel) {
     if (nedlastingPågår) {
       return (
-        <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+        <Box
+          padding="4"
+          background="surface-success-subtle"
+          className={styles.infographicFlisBox}
+        >
           <Skeleton width="12rem" />
         </Box>
       );
     }
     return (
-      <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+      <Box
+        padding="4"
+        background="surface-success-subtle"
+        className={styles.infographicFlisBox}
+      >
         <BodyShort size="small" className={styles.verdi}>
           {innhold}
         </BodyShort>
@@ -32,7 +40,11 @@ export function InfographicFlis({
 
   if (nedlastingPågår) {
     return (
-      <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+      <Box
+        padding="4"
+        background="surface-success-subtle"
+        className={styles.infographicFlisBox}
+      >
         <Skeleton width="8rem" />
         <Skeleton width="5rem" height="4rem" />
       </Box>
@@ -40,11 +52,15 @@ export function InfographicFlis({
   }
 
   return (
-    <Box padding="4" background="surface-success-subtle" className={styles.infographicFlisBox}>
+    <Box
+      padding="4"
+      background="surface-success-subtle"
+      className={styles.infographicFlisBox}
+    >
       {label && <BodyShort className={styles.label}>{label}:</BodyShort>}
       <BodyShort size="small" className={styles.verdi}>
         {innhold}
       </BodyShort>
     </Box>
-  )
+  );
 }

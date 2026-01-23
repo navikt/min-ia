@@ -6,7 +6,7 @@ import { useOrgnr } from "../../../../hooks/useOrgnr";
 import Image from "next/image";
 
 const beOmTilgangTilSykefraværsstatistikkIAltinnLink = (
-  orgnr: string | undefined
+  orgnr: string | undefined,
 ) =>
   "https://altinn.no/ui/DelegationRequest?offeredBy=" +
   orgnr +

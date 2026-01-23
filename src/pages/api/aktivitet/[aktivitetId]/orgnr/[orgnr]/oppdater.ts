@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { erGyldigOrgnr } from "../../../../../../hooks/useOrgnr";
-import {backendLogger} from "../../../../../../utils/backendLogger";
+import { backendLogger } from "../../../../../../utils/backendLogger";
 import {
   exchangeIdportenSubjectToken,
   isInvalidToken,
@@ -45,17 +45,14 @@ export default async function handler(
   }
 
   const oppdaterUrl = `http://${process.env.FOREBYGGINGSPLAN_API_BASEURL}/aktivitet/${aktivitetId}/orgnr/${orgnr}/oppdater`;
-  const respons = await fetch(
-      oppdaterUrl,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${newAuthToken}`,
-      },
-      body: JSON.stringify({ status, aktivitetstype: "OPPGAVE" }),
+  const respons = await fetch(oppdaterUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${newAuthToken}`,
     },
-  );
+    body: JSON.stringify({ status, aktivitetstype: "OPPGAVE" }),
+  });
 
   backendLogger.info(`Fikk følgende status på /oppdater: '${respons.status}'`);
   return res.status(respons.status).json({ status: respons.status });

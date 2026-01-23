@@ -17,7 +17,13 @@ const TestVersjonBanner = ({
   if (!show) return null;
 
   return (
-    <Alert variant="warning" size="medium" className={styles.alert} onClose={() => setShow(false)} closeButton>
+    <Alert
+      variant="warning"
+      size="medium"
+      className={styles.alert}
+      onClose={() => setShow(false)}
+      closeButton
+    >
       <Heading spacing level="2" size="small">
         Dette er en testversjon
       </Heading>

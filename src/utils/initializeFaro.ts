@@ -6,7 +6,7 @@ import {
 
 export function doInitializeFaro(
   grafanaAgentUrl: string,
-  name = "forebygge-fravær"
+  name = "forebygge-fravær",
 ) {
   if (Object.keys(faro).length === 0 && grafanaAgentUrl?.length > 0) {
     initializeFaro({

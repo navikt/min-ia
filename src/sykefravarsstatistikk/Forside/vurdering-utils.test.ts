@@ -24,16 +24,25 @@ function sykefraværBransje(prosent: string) {
 
 it("sammenliknSykefravær skal gi riktig vurdering", () => {
   expect(
-    sammenliknSykefravær(sykefraværVirksomhet("5.51"), sykefraværBransje("5.0"))
+    sammenliknSykefravær(
+      sykefraværVirksomhet("5.51"),
+      sykefraværBransje("5.0"),
+    ),
   ).toEqual("OVER");
   expect(
-    sammenliknSykefravær(sykefraværVirksomhet("5.50"), sykefraværBransje("5.0"))
+    sammenliknSykefravær(
+      sykefraværVirksomhet("5.50"),
+      sykefraværBransje("5.0"),
+    ),
   ).toEqual("MIDDELS");
   expect(
-    sammenliknSykefravær(sykefraværVirksomhet("4.5"), sykefraværBransje("5.0"))
+    sammenliknSykefravær(sykefraværVirksomhet("4.5"), sykefraværBransje("5.0")),
   ).toEqual("MIDDELS");
   expect(
-    sammenliknSykefravær(sykefraværVirksomhet("4.49"), sykefraværBransje("5.0"))
+    sammenliknSykefravær(
+      sykefraværVirksomhet("4.49"),
+      sykefraværBransje("5.0"),
+    ),
   ).toEqual("UNDER");
 });
 
@@ -43,7 +52,7 @@ it("sammenliknSykefravær skal gi vurdering INGEN_DATA hvis data tilsier det", (
     .mockImplementation(() => {});
 
   expect(sammenliknSykefravær(undefined, undefined)).toEqual(
-    "FEIL_ELLER_INGEN_DATA"
+    "FEIL_ELLER_INGEN_DATA",
   );
 
   consoleWarnMock.mockRestore();
@@ -56,12 +65,12 @@ it("sammenliknSykefravær - skal gi vurdering UFULLSTENDIG_DATA hvis data tilsie
   };
 
   expect(
-    sammenliknSykefravær(bareToKvartaler, sykefraværBransje("10.0"))
+    sammenliknSykefravær(bareToKvartaler, sykefraværBransje("10.0")),
   ).toEqual("UFULLSTENDIG_DATA");
 });
 
 it("sammenliknSykefravær - skal gi vurdering MASKERT hvis data inneholder bransjetall, men ikke virksomhetstall", () => {
   expect(sammenliknSykefravær(undefined, sykefraværBransje("10.0"))).toEqual(
-    "MASKERT"
+    "MASKERT",
   );
 });

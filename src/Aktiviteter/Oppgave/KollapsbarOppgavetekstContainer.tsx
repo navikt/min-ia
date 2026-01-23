@@ -17,11 +17,14 @@ export function KollapsbarOppgavetekstContainer({
   const kollapset = erKollapsetType(status);
   return (
     <div
-      className={
-        `${styles.oppgavetekst} ${kollapset ? styles.kollapsetOppgavetekst : ''}`
-      }
+      className={`${styles.oppgavetekst} ${kollapset ? styles.kollapsetOppgavetekst : ""}`}
     >
-      <div aria-hidden={kollapset ? "true" : "false"} className={styles.oppgavetekstinnhold}>{children}</div>
+      <div
+        aria-hidden={kollapset ? "true" : "false"}
+        className={styles.oppgavetekstinnhold}
+      >
+        {children}
+      </div>
       <div className={styles.oppgavetekstOverlayGradient}>{knapper}</div>
     </div>
   );

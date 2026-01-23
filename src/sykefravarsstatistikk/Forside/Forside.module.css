@@ -1,127 +1,126 @@
 .forside {
-    max-width: 90rem;
-    margin: 0 auto 0;
+  max-width: 90rem;
+  margin: 0 auto 0;
 
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 .forside__wrapper {
-    background-color: var(--a-gray-100);
-    min-height: 50rem;
-    padding: 1.5rem 1rem 5rem;
+  background-color: var(--a-gray-100);
+  min-height: 50rem;
+  padding: 1.5rem 1rem 5rem;
 }
 
 .forside__header_kun_print {
-    display: none;
+  display: none;
 }
 
 .forside__wrapper_to_kolonner {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
 }
 
 .forside__wrapper_venstre_kolonne {
-    display: flex;
-    flex-direction: column;
-    min-height: 20rem;
-
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
 }
 
 .forside__innhold {
-    padding: 2rem 1.5rem;
-    width: 100%;
-    border-radius: 0.25rem;
-    position: relative;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  position: relative;
 }
 
 .forside__innhold__kun-print {
-    display: none;
+  display: none;
 }
 
 .forside__innhold__info-eller-feilmelding {
-    width: 100%;
-    margin-bottom: 1.5rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .forside__innhold__info_om_oppdateringer {
-    width: 100%;
-    margin-bottom: 1.5rem;
-    align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  align-items: center;
 }
 
 .forside__innhold__knapp {
-    display: none;
+  display: none;
 }
 
 .forside__innhold__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    padding: 1.5rem 1rem 1rem;
-    border: 1px solid var(--a-border-default);
-    border-radius: var(--a-border-radius-small);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 1.5rem 1rem 1rem;
+  border: 1px solid var(--a-border-default);
+  border-radius: var(--a-border-radius-small);
 }
 
 .forside__innhold__header_tekst {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .forside__innhold__header_last_ned_knapp {
-    display: flex;
-    padding: 1rem;
+  display: flex;
+  padding: 1rem;
 }
 
 .forside__innhold__href {
-    display: none;
+  display: none;
 }
 
 .forside__wrapper_venstre_kolonne {
-    display: flex;
-    flex-direction: column;
-    min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
 }
 
 @media print, (min-width: 768px) {
-    .forside__innhold__header {
-        display: flex;
-        flex-direction: row;
-    }
+  .forside__innhold__header {
+    display: flex;
+    flex-direction: row;
+  }
 
-    .forside__innhold {
-        padding: 2rem 5rem;
-    }
+  .forside__innhold {
+    padding: 2rem 5rem;
+  }
 
-    .forside__innhold__knapp {
-        display: block;
-        position: absolute;
-        right: 2rem;
-    }
+  .forside__innhold__knapp {
+    display: block;
+    position: absolute;
+    right: 2rem;
+  }
 }
 
 @media print {
-    .forside__header_kun_print {
-        display: block;
-    }
-    .forside__innhold__kun-print {
-        display: block;
-        page-break-before: always;
-    }
-    .forside__innhold__knapp {
-        display: none;
-    }
+  .forside__header_kun_print {
+    display: block;
+  }
+  .forside__innhold__kun-print {
+    display: block;
+    page-break-before: always;
+  }
+  .forside__innhold__knapp {
+    display: none;
+  }
 
-    .forside__innhold__info-eller-feilmelding {
-        display: none;
-    }
+  .forside__innhold__info-eller-feilmelding {
+    display: none;
+  }
 
-    .forside__innhold__href {
-        display: block;
-        padding-bottom: 1rem;
-    }
+  .forside__innhold__href {
+    display: block;
+    padding-bottom: 1rem;
+  }
 }

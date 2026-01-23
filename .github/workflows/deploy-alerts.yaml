@@ -4,8 +4,8 @@ on:
     branches:
       - main
     paths:
-      - '.nais/alerts.yaml'
-      - '.github/workflows/deploy-alerts.yaml'
+      - ".nais/alerts.yaml"
+      - ".github/workflows/deploy-alerts.yaml"
 
 permissions:
   id-token: write

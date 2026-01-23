@@ -28,7 +28,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
   >();
 
   const [kostnadDagsverk, setKostnadDagsverk] = useState<string | undefined>(
-    GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR
+    GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR,
   );
 
   const [
@@ -37,7 +37,10 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
   ] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!brukerHarEndretTapteDagsverkInput && tapteDagsverkFraDb !== undefined) {
+    if (
+      !brukerHarEndretTapteDagsverkInput &&
+      tapteDagsverkFraDb !== undefined
+    ) {
       setNåværendeTapteDagsverk(tapteDagsverkFraDb);
     }
   }, [brukerHarEndretTapteDagsverkInput, tapteDagsverkFraDb]);
@@ -48,7 +51,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
         <Kalkulatorrad
           onChange={(event) => {
             setNåværendeTapteDagsverk(
-              validerDesimaltallOgReturnerMatch(event.target.value)
+              validerDesimaltallOgReturnerMatch(event.target.value),
             );
             setBrukerHarEndretTapteDagsverkInput(true);
           }}
@@ -61,7 +64,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
         <Kalkulatorrad
           onChange={(event) => {
             setKostnadDagsverk(
-              validerDesimaltallOgReturnerMatch(event.target.value)
+              validerDesimaltallOgReturnerMatch(event.target.value),
             );
           }}
           value={kostnadDagsverk?.toString()}
@@ -73,7 +76,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
         <Kalkulatorrad
           onChange={(event) => {
             setØnsketTapteDagsverk(
-              validerDesimaltallOgReturnerMatch(event.target.value)
+              validerDesimaltallOgReturnerMatch(event.target.value),
             );
           }}
           value={ønsketTapteDagsverk?.toString()}
@@ -84,11 +87,11 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
       <Kostnad
         nåværendeKostnad={getKostnadForAntallDagsverk(
           kostnadDagsverk,
-          nåværendeTapteDagsverk
+          nåværendeTapteDagsverk,
         )}
         ønsketKostnad={getKostnadForAntallDagsverk(
           kostnadDagsverk,
-          ønsketTapteDagsverk
+          ønsketTapteDagsverk,
         )}
         ønsketRedusert={parseFloatMedDefault(ønsketTapteDagsverk)}
         antallTapteDagsverkEllerProsent={Kalkulatorvariant.Dagsverk}

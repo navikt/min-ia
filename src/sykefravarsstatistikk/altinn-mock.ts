@@ -228,6 +228,6 @@ export const organisasjonerMock: AltinnOrganisasjon[] = [
 export const getOrganisasjonerBrukerHarIaRettigheterTilMock =
   (): AltinnOrganisasjon[] => {
     return organisasjonerMock.filter(
-      (org) => org.OrganizationNumber !== orgnrUtenTilgang
+      (org) => org.OrganizationNumber !== orgnrUtenTilgang,
     );
   };

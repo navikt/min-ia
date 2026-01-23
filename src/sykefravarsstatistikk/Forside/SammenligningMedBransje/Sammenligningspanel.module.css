@@ -1,94 +1,93 @@
 .sammenligningspanel {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .sammenligningspanel__extra-padding-desktop {
-    padding: 0;
+  padding: 0;
 }
 
 .sammenligningspanel__gradert_intro {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .sammenligningspanel__loading-skeleton {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .sammenligningspanel__feil {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .sammenligningspanel__tittel-wrapper {
-    display: inline-flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .sammenligningspanel__tittel {
-    padding-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .sammenligningspanel__tittel-forklaring {
-    padding-top: 0.25rem;
+  padding-top: 0.25rem;
 }
 
 .sammenligningspanel__forklaring-av-vurdering {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 @media print, (min-width: 768px) {
-    .sammenligningspanel__tittel-wrapper {
-        flex-direction: row;
-    }
+  .sammenligningspanel__tittel-wrapper {
+    flex-direction: row;
+  }
 
-    .sammenligningspanel__extra-padding-desktop {
-        padding: 1rem;
-    }
+  .sammenligningspanel__extra-padding-desktop {
+    padding: 1rem;
+  }
 
-    .sammenligningspanel__tittel-tekst {
-        margin-left: 1.5rem;
-    }
+  .sammenligningspanel__tittel-tekst {
+    margin-left: 1.5rem;
+  }
 
-    .sammenligningspanel__forklaring-av-periode {
-        flex-grow: 2;
-    }
+  .sammenligningspanel__forklaring-av-periode {
+    flex-grow: 2;
+  }
 
-    .ekspanderbartPanel__innhold {
-        padding-bottom: 2rem;
-        padding-right: 2rem;
-        padding-left: 2rem;
-    }
+  .ekspanderbartPanel__innhold {
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
 
-    .sammenligningspanel__kakediagram {
-        margin-right: 1rem;
-        margin-left: 1rem;
-    }
+  .sammenligningspanel__kakediagram {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
 
-    .sammenligningspanel__lukk-knapp {
-        margin-top: 3rem;
-    }
+  .sammenligningspanel__lukk-knapp {
+    margin-top: 3rem;
+  }
 }
 
 .sammenligningspanel__wrapper {
-    max-width: 500px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    margin-top: 2rem;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  margin-top: 2rem;
 }
 
-
 .sammenligningspanel__print-innhold {
-    display: none;
+  display: none;
 }
 
 @media print {
-    .sammenligningspanel__print-innhold {
-        display: block;
-    }
+  .sammenligningspanel__print-innhold {
+    display: block;
+  }
 
-    .sammenligningspanel__innhold {
-        display: none;
-    }
+  .sammenligningspanel__innhold {
+    display: none;
+  }
 }

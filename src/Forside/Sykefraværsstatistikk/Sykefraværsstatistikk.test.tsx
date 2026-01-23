@@ -6,7 +6,10 @@ import {
   tomtDataobjekt,
 } from "../../integrasjoner/aggregert-statistikk-api";
 import { hentUtSykefraværsstatistikkData } from "../../komponenter/Infographic/datauthenting";
-import { leggTilBedriftPåUrl, Sykefraværsstatistikk } from "./Sykefraværsstatistikk";
+import {
+  leggTilBedriftPåUrl,
+  Sykefraværsstatistikk,
+} from "./Sykefraværsstatistikk";
 import { axe } from "jest-axe";
 import { mockAggregertStatistikkMedBransjetall } from "./mockAggregertStatistikkMedBransjetall";
 import { RestStatus } from "../../integrasjoner/rest-status";
@@ -51,10 +54,11 @@ describe("Tester at bedrift legges korrekt til på URL", () => {
   });
 
   it("legger på orgnr dersom orgnummer finnes", () => {
-    expect(leggTilBedriftPåUrl("url", "999999999")).toBe("url?bedrift=999999999");
+    expect(leggTilBedriftPåUrl("url", "999999999")).toBe(
+      "url?bedrift=999999999",
+    );
   });
 });
-
 
 describe("Sykefraværsstatistikk", () => {
   it("viser sykefraværsprosenten for Norge", async () => {
@@ -164,7 +168,9 @@ describe("Sykefraværsstatistikk", () => {
   });
 
   it("Forteller bruker at de ikke har tilgang til noen virksomheter", async () => {
-    (useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock).mockReturnValueOnce({
+    (
+      useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock
+    ).mockReturnValueOnce({
       status: RestStatus.Suksess,
       data: [],
     });
@@ -176,15 +182,29 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    expect(screen.getByText("Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toHaveAttribute(
+    expect(
+      screen.getByText(
+        "Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: /Les mer om tilgang til sykefraværsstatistikk/,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: /Les mer om tilgang til sykefraværsstatistikk/,
+      }),
+    ).toHaveAttribute(
       "href",
       expect.stringContaining("http://url?bedrift=999999999"),
     );
   });
   it("Forteller bruker at de mangler tilgang til sykefraværsstatistikk i virksomheten", async () => {
-    (useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock).mockReturnValueOnce({
+    (
+      useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock
+    ).mockReturnValueOnce({
       status: RestStatus.Suksess,
       data: [
         {
@@ -205,9 +225,21 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    expect(screen.getByText("Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Les mer om tilgang til sykefraværsstatistikk/ })).toHaveAttribute(
+    expect(
+      screen.getByText(
+        "Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: /Les mer om tilgang til sykefraværsstatistikk/,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: /Les mer om tilgang til sykefraværsstatistikk/,
+      }),
+    ).toHaveAttribute(
       "href",
       expect.stringContaining("http://url?bedrift=999999999"),
     );
@@ -223,11 +255,17 @@ describe("Sykefraværsstatistikk", () => {
         sykefraværsstatistikkUrl={"http://url"}
       />,
     );
-    expect(screen.queryByText("Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.")).toBeNull();
+    expect(
+      screen.queryByText(
+        "Du mangler tilgang i Altinn for å kunne se tall for denne virksomheten.",
+      ),
+    ).toBeNull();
   });
 
   test("Viser riktig lenke til sykefravørsstatistikken dersom bruker ikke har tilgang", async () => {
-    (useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock).mockReturnValueOnce({
+    (
+      useAltinnOrganisasjonerMedStatistikktilgang as jest.Mock
+    ).mockReturnValueOnce({
       status: RestStatus.Suksess,
       data: [
         {

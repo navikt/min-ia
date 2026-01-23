@@ -6,7 +6,10 @@ import {
   HistorikkLabels,
 } from "../../../../utils/sykefraværshistorikk-utils";
 import { GrafSymbol } from "../GrafSymbol/GrafSymbol";
-import { sendCheckboxFjernet, sendCheckboxLagtTil } from "../../../../../utils/analytics/analytics";
+import {
+  sendCheckboxFjernet,
+  sendCheckboxLagtTil,
+} from "../../../../../utils/analytics/analytics";
 
 interface Props {
   labels: HistorikkLabels;
@@ -39,13 +42,13 @@ export const LegendMedToggles: FunctionComponent<Props> = ({
         if (value.length > linjerSomSkalVises.length) {
           // Brukeren har lagt til noe
           const verdiLagtTil = value.find(
-            (v) => linjerSomSkalVises.indexOf(v) === -1
+            (v) => linjerSomSkalVises.indexOf(v) === -1,
           );
           sendCheckboxLagtTil(verdiLagtTil);
         } else if (value.length < linjerSomSkalVises.length) {
           // Brukeren har fjernet noe
           const verdiFjernet = linjerSomSkalVises.find(
-            (v) => value.indexOf(v) === -1
+            (v) => value.indexOf(v) === -1,
           );
           sendCheckboxFjernet(verdiFjernet);
         }

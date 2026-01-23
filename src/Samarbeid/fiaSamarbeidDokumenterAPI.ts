@@ -26,9 +26,15 @@ export type FiaSamarbeidsplanDokument = {
   innhold: PlanType;
 };
 
-export type FiaDokument = FiaBehovsvurderingDokument | FiaSamarbeidsplanDokument;
+export type FiaDokument =
+  | FiaBehovsvurderingDokument
+  | FiaSamarbeidsplanDokument;
 
-export function useFiaDokument({dokumentId}: {dokumentId: string}): RestRessurs<FiaDokument> {
+export function useFiaDokument({
+  dokumentId,
+}: {
+  dokumentId: string;
+}): RestRessurs<FiaDokument> {
   const gyldigOrgnr = useOrgnr();
 
   const apiPath = gyldigOrgnr
@@ -37,7 +43,7 @@ export function useFiaDokument({dokumentId}: {dokumentId: string}): RestRessurs<
 
   const res = useRestRessursSWR<FiaDokumentFraServer>(
     apiPath,
-    `Det oppstod en feil ved kall til ${apiPath}`
+    `Det oppstod en feil ved kall til ${apiPath}`,
   );
 
   if (res.status === RestStatus.Suksess && res.data.innhold) {
@@ -45,9 +51,9 @@ export function useFiaDokument({dokumentId}: {dokumentId: string}): RestRessurs<
       ...res,
       data: {
         ...res.data,
-        innhold: JSON.parse(res.data.innhold)
-      }
-    }
+        innhold: JSON.parse(res.data.innhold),
+      },
+    };
   }
 
   return res as RestRessurs<FiaDokument>;

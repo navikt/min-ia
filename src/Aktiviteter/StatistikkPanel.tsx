@@ -20,7 +20,7 @@ export const StatistikkPanel = ({
         <span>{tittel}</span>
         <span className={styles.prosent}>{`${sykefravær.replace(
           ".",
-          ","
+          ",",
         )}%`}</span>
         <span>{trendBeskrivelse(trend)}</span>
       </Box>
