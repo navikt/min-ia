@@ -58,6 +58,7 @@ const eslintConfig = [
           ],
         },
       ],
+      "no-unexpected-multiline": "off",
     },
   },
 
