@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isMockApp } from "./utils/envUtils";
 import mockRequest from "./local/mock";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   if (noCorrelationIdHeaderExist(request)) {
     addCorrelationIdHeader(request);
   }
