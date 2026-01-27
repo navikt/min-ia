@@ -1,11 +1,11 @@
 .expansionHeader {
-  :global .navds-expansioncard__header-content {
+  :global(.navds-expansioncard__header-content) {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
 
-    :global .navds-expansioncard__title {
+    :global(.navds-expansioncard__title) {
       margin-top: 0;
     }
 
