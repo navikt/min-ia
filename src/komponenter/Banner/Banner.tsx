@@ -5,7 +5,7 @@ import "@navikt/virksomhetsvelger/dist/assets/style.css";
 import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
 import { NotifikasjonWidget } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import "@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css";
+//import "@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css";
 import { sendBedriftValgtEvent } from "../../utils/analytics/analytics";
 import { useOrgnrContext } from "../../utils/OrgnrContext";
 
