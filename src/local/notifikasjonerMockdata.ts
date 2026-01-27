@@ -26,4 +26,7 @@ export const notifikasjonerMockdata = {
     ],
     __typename: "NotifikasjonerResultat",
   },
+  notifikasjonerSistLest: {
+    tidspunkt: "2023-01-01T00:00:00Z",
+  },
 };

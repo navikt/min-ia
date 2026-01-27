@@ -3,7 +3,7 @@ import Banner from "../Banner/Banner";
 import { Heading, Ingress } from "@navikt/ds-react";
 import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
 import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
-import "@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css";
+//import "@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css";
 import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 export const Layout = (props: {
