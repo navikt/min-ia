@@ -1549,10 +1549,10 @@
     "@apollo/client" "3.13.8"
     graphql "16.11.0"
 
-"@navikt/ds-css@^7.38.0":
-  version "7.38.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/7.38.0/a150b0a282f19f2ba5c583406635fda7f4e4924a#a150b0a282f19f2ba5c583406635fda7f4e4924a"
-  integrity sha512-51dvtPgFHcfkKpnJ9fcwHJsfiyZuRsWaawSHxxv7jyXQkDTl8YEsZ0a31gAozgp2CW3wHJBDCSehC89Z9X4x8A==
+"@navikt/ds-css@^8.1.0":
+  version "8.1.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/8.1.0/d7a3f7b5e1a04e2f589982b9cd511d592534032b#d7a3f7b5e1a04e2f589982b9cd511d592534032b"
+  integrity sha512-dKQIBRMtjk1+hC4EMkl7W4psguBkz/NLGBa9YN/N6Jb7FbX9AkHbc9XGHKVS/dOc3sRX811M2tXE/k5nncDruA==
 
 "@navikt/ds-icons@^3.4.3":
   version "3.4.3"
