@@ -6,23 +6,85 @@ registries:
     token: ${{secrets.READER_TOKEN}}
 
 updates:
+  # Security updates - immediate (no schedule = daily with immediate security updates)
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "github-actions"
 
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "npm"
+    groups:
+      "@navikt*":
+        patterns:
+          - "@navikt/*"
+      "@testing-library*":
+        patterns:
+          - "@testing-library/*"
+      "react*":
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-to-print"
+      "typescript*":
+        patterns:
+          - "typescript"
+          - "typescript-eslint"
+          - "@types/*"
+      "jest*":
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "@types/jest"
+      "eslint*":
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@eslint/*"
+          - "@next/eslint-plugin-next"
+      "next*":
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      "highcharts*":
+        patterns:
+          - "highcharts"
+          - "highcharts-react-official"
+      "build-tools*":
+        patterns:
+          - "prettier"
+          - "sass"
+          - "core-js"
+          - "whatwg-fetch"
     cooldown:
       default-days: 7
       exclude:
         - "@navikt*"
+      applies-to: version-updates
     registries:
       - npm-github
 
   - package-ecosystem: docker
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "docker"
