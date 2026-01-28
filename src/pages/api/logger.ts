@@ -1,6 +1,5 @@
 import pino, { BaseLogger } from "pino";
 import { NextApiRequest, NextApiResponse } from "next";
-import * as z from "zod/v4";
 import { backendLogger } from "../../utils/backendLogger";
 
 type LogLevels = Exclude<keyof BaseLogger, "string" | "level" | "msgPrefix">;
@@ -29,13 +28,11 @@ function isValidLoggingLabel(label: unknown): label is LogLevels {
 function isNonEmptyStringArray(
   message: unknown,
 ): message is NonEmptyStringArray {
-  try {
-    z.string().array().min(1).parse(message);
-    return true;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (e) {
-    return false;
-  }
+  return (
+    Array.isArray(message) &&
+    message.length > 0 &&
+    message.every((item) => typeof item === "string")
+  );
 }
 
 function getMessage(message: unknown) {
