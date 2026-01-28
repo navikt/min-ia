@@ -1541,6 +1541,11 @@
   resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.38.0/f21368acbac4d1e28604e774d0b95f50404da561#f21368acbac4d1e28604e774d0b95f50404da561"
   integrity sha512-v+Kiss6gp/DXlbskkXrzfWUWvFEK+XQuhfauo0CP41JDyKsx3DSPKeB/pxFocio6MXGUNK/QQzjBfMPJh7ESng==
 
+"@navikt/aksel-icons@^8.1.0":
+  version "8.1.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/8.1.0/d1796650b2b1e3d19a18b45670833fdc6fef3ca3#d1796650b2b1e3d19a18b45670833fdc6fef3ca3"
+  integrity sha512-3rDxnZaFdxVv3/S6GRxgYl3KQpPcaUhS2DD0Kop1HtDT4QiYVIDcVD42y+L/AjuTT7YbGqJUJB1z8ufXlb+AsQ==
+
 "@navikt/arbeidsgiver-notifikasjon-widget@^8.0.4":
   version "8.0.4"
   resolved "https://npm.pkg.github.com/download/@navikt/arbeidsgiver-notifikasjon-widget/8.0.4/eb00c9397968f50be00a79831d33cee1c16a88c9#eb00c9397968f50be00a79831d33cee1c16a88c9"
