@@ -74,7 +74,6 @@ updates:
       default-days: 7
       exclude:
         - "@navikt*"
-      applies-to: version-updates
     registries:
       - npm-github
 
