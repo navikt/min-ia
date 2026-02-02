@@ -77,7 +77,7 @@ export default function PlanGraf({ undertemaer, hidePin }: PølsegrafProps) {
     <span>
       <Timeline startDate={earliestStart} endDate={latestSlutt}>
         {hidePin || iDag < earliestStart || iDag > latestSlutt ? undefined : (
-          <Timeline.Pin date={new Date()} data-testid="i-dag-pin" aria-readonly />
+          <Timeline.Pin date={new Date()} data-testid="i-dag-pin" />
         )}
         {filtrerteUndertemaer
           .sort((a, b) => {
