@@ -46,12 +46,10 @@ function Innholdsrad({
       <Accordion.Header className={styles.styledAccordionHeader}>
         <span
           className={styles.styledInnholdsTittel}
-          aria-label={`Tema: ${undertema.navn}`}
         >
           {undertema.navn}
         </span>
         <span
-          aria-label={`fra ${nullSafeLokalDatoMedLangTekstmåned(undertema.startDato)} til ${nullSafeLokalDatoMedLangTekstmåned(undertema.sluttDato)}`}
         >
           {undertema.startDato && (
             <PrettyInnholdsDato date={undertema.startDato} />
@@ -112,23 +110,8 @@ const dateFormatDatoMedKortTekstmåned = new Intl.DateTimeFormat("nb-NO", {
   year: "2-digit",
 });
 
-const dateFormatDatoMedLangTekstmåned = new Intl.DateTimeFormat("nb-NO", {
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
 
 function lokalDatoMedKortTekstmåned(input: Date) {
   return dateFormatDatoMedKortTekstmåned.format(new Date(input));
 }
 
-function lokalDatoMedLangTekstmåned(input: Date) {
-  return dateFormatDatoMedLangTekstmåned.format(new Date(input));
-}
-
-function nullSafeLokalDatoMedLangTekstmåned(input: string | null | undefined) {
-  if (!input) {
-    return "ukjent dato";
-  }
-  return lokalDatoMedLangTekstmåned(new Date(input));
-}
