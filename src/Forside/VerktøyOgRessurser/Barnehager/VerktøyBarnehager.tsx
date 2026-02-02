@@ -93,7 +93,7 @@ function VerktøykortBarnehager({
         role="link"
         target="_blank"
         className={styles.lenke}
-        variant="secondary"
+        variant="primary"
         size="small"
         icon={<ExternalLink fontSize="1rem" aria-hidden />}
         iconPosition="right"
