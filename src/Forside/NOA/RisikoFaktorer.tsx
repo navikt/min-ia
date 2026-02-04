@@ -18,7 +18,7 @@ export const RisikoFaktorer = () => {
       <HStack className={styles.hstack} justify="space-between" align="start">
         <VStack>
           <Heading size={"medium"} level={"2"}>
-            Risikofaktorer i barnehage og skolefritidsordning:
+            Risikofaktorer i barnehage og skolefritidsordning
           </Heading>
           <BodyShort>
             I barnehager og skolefritidsordninger oppgir 1 av 2 med sykefravær
