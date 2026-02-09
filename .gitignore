@@ -135,3 +135,6 @@ dist-ssr
 
 # Ignore vscode project-specific directory
 .vscode/*
+
+#next env
+next-env.d.ts
