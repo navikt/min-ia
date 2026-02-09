@@ -24,8 +24,8 @@ export const Kalkulatorrad: FunctionComponent<Props> = (props) => {
           props.onChange(event);
           sendInputfeltUtfyltEvent(props.label, props.name);
         }}
-        type={"text"}
-        inputMode={"numeric"}
+        type="number"
+        inputMode={"decimal"}
         label={props.label}
         value={props.value || ""}
         className={styles.input}

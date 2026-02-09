@@ -18,10 +18,10 @@ export const hentUtKalkulatorData = (
   );
   return {
     fraværsprosentVirksomhet: fraværsprosentVirksomhet?.verdi?.replace(
-      ".",
       ",",
+      ".",
     ),
-    tapteDagsverk: tapteDagsverk?.verdi?.replace(".", ","),
-    muligeDagsverk: muligeDagsverk?.verdi?.replace(".", ","),
+    tapteDagsverk: tapteDagsverk?.verdi?.replace(",", "."),
+    muligeDagsverk: muligeDagsverk?.verdi?.replace(",", "."),
   };
 };
