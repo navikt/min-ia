@@ -39,7 +39,7 @@
     "html-react-parser": "^5.2.11",
     "msw": "2.12.7",
     "next": "16.1.5",
-    "pino": "10.2.1",
+    "pino": "10.3.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-to-print": "^3.2.0",
