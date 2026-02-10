@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - next-upgrade
+      - chainguard_node22
     paths-ignore:
       - "**.md"
       - "**/**.md"
