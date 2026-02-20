@@ -1522,10 +1522,10 @@
     "@emnapi/runtime" "^1.4.3"
     "@tybys/wasm-util" "^0.10.0"
 
-"@navikt/aksel-icons@^7.38.0":
-  version "7.38.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.38.0/f21368acbac4d1e28604e774d0b95f50404da561#f21368acbac4d1e28604e774d0b95f50404da561"
-  integrity sha512-v+Kiss6gp/DXlbskkXrzfWUWvFEK+XQuhfauo0CP41JDyKsx3DSPKeB/pxFocio6MXGUNK/QQzjBfMPJh7ESng==
+"@navikt/aksel-icons@^8.5.2":
+  version "8.5.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/8.5.2/20ae4441783ab8766b26beb0aa02e1b9ce9a8425#20ae4441783ab8766b26beb0aa02e1b9ce9a8425"
+  integrity sha512-czUQLDZrzIRHELj3HIRdVuQSXiimPn84UZcLuQQq/J29yx2BPg2CmkbzY5v2hTx0kLawFzWSp4fAWsplOIp5gg==
 
 "@navikt/arbeidsgiver-notifikasjon-widget@^8.0.4":
   version "8.0.4"
@@ -1535,70 +1535,69 @@
     "@apollo/client" "3.13.8"
     graphql "16.11.0"
 
-"@navikt/ds-css@^7.38.0":
-  version "7.38.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/7.38.0/a150b0a282f19f2ba5c583406635fda7f4e4924a#a150b0a282f19f2ba5c583406635fda7f4e4924a"
-  integrity sha512-51dvtPgFHcfkKpnJ9fcwHJsfiyZuRsWaawSHxxv7jyXQkDTl8YEsZ0a31gAozgp2CW3wHJBDCSehC89Z9X4x8A==
+"@navikt/ds-css@^8.5.2":
+  version "8.5.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/8.5.2/221a7b7e362e8fe8fd8a510ab45fb6d8eb7632f4#221a7b7e362e8fe8fd8a510ab45fb6d8eb7632f4"
+  integrity sha512-tfmleREsbZLKtwPZISpjfDqaYsAdwBDyboxIYahz78f7XwiYVs0qW1FgjZ8YUBpeZg5PDmoLsbj9lj4JgiOrTA==
 
 "@navikt/ds-icons@^3.4.3":
   version "3.4.3"
   resolved "https://npm.pkg.github.com/download/@navikt/ds-icons/3.4.3/eaa8fc38f6d184806d3405a5efbc9d137c2b8d27"
   integrity sha512-Ys25tnDUzS+AtagMMW4/154OCZy+pTxCv9uiV4YcZUeXMfjnMiRWx1dueyCODb7FF7Jd6TwELd3G6ieQt/rf+w==
 
-"@navikt/ds-react@^7.38.0":
-  version "7.38.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/7.38.0/cd426d7d27b652e85f9b511b46539b87c74f7e58#cd426d7d27b652e85f9b511b46539b87c74f7e58"
-  integrity sha512-i/7lTbIvQ8ddw6TPXEAkrXmIM70haXyig+upB3M5mR8Vbl+DinJmUISBuzvaafWaj//2A5iWmwM9j577PrOKVw==
+"@navikt/ds-react@^8.5.2":
+  version "8.5.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/8.5.2/30094475f119f2752135b758dc6ce7e37084d0b1#30094475f119f2752135b758dc6ce7e37084d0b1"
+  integrity sha512-ak0mYkUG49yg5sIZRpbT9KOm7SVnpHHANkBBIdRe/8aBh853EarjUxX+ntwK7Eoj+XD1iKx9P+6fI8nI5YN3dw==
   dependencies:
     "@floating-ui/react" "0.27.8"
     "@floating-ui/react-dom" "^2.1.6"
-    "@navikt/aksel-icons" "^7.38.0"
-    "@navikt/ds-tokens" "^7.38.0"
-    clsx "^2.1.0"
+    "@navikt/aksel-icons" "^8.5.2"
+    "@navikt/ds-tokens" "^8.5.2"
     date-fns "^4.0.0"
     react-day-picker "9.7.0"
 
-"@navikt/ds-tokens@^7.38.0":
-  version "7.38.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/7.38.0/d98840acd074278426e3cbe2f767e3841d8b6bd6#d98840acd074278426e3cbe2f767e3841d8b6bd6"
-  integrity sha512-4U3ozOfRap+9PcsQu1G96sZu4tQaYY2/eBil1Viqyqm+VvSNTJ4sEmDM9qUqOysEZl/8PKHHlegy0W9aDo/iag==
+"@navikt/ds-tokens@^8.5.2":
+  version "8.5.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/8.5.2/1339bac9146a8627a4446b54b921914eae1eb75a#1339bac9146a8627a4446b54b921914eae1eb75a"
+  integrity sha512-39QOU6iQgkhyWa8coNyuyvMdmagXR3FI6wG4VbWVcxmOCbBdc+C4/uM7h/7reCbWW0QpTcKN5DPrHHBk4Q00OA==
 
 "@navikt/ia-metrikker-client@1.9.4":
   version "1.9.4"
   resolved "https://npm.pkg.github.com/download/@navikt/ia-metrikker-client/1.9.4/5587c35968c01ad7449321b7574d07f94f6e79d7"
   integrity sha512-Iem79wQa+XTxAN3lfuyBkfe/nTq6VKGHzNlknPJNmv6Vff/FSiBTRy5o+fdV80i4BLJUALD0dJauLWnwpRt3DA==
 
-"@navikt/nav-dekoratoren-moduler@^3.6.1":
-  version "3.6.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.6.1/b0dfb47266ce90ffacd1905cd4feb53d8194dbcb#b0dfb47266ce90ffacd1905cd4feb53d8194dbcb"
-  integrity sha512-vfq24tA2eKEsZ9/qRzobRlrKV5NUbSuI9FA60AUhH+BX+61WE/ZsvHhNbFiO9NlXg/yYLmVZCg1uJB5V4QnU7A==
+"@navikt/nav-dekoratoren-moduler@^3.6.2":
+  version "3.6.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.6.2/70dac085c605d0299f03a122646aecefea764d30#70dac085c605d0299f03a122646aecefea764d30"
+  integrity sha512-863vAyH9VjmRi8q4Aci4RQ3MaOG5faupzOD77IyhhTUmlyIxRw62jngX2j8c7wjavwwalhNnmie226NjYoNxjQ==
   dependencies:
-    js-cookie "^3.0.5"
+    js-cookie "3.0.5"
 
 "@navikt/next-api-proxy@^5.0.2":
   version "5.0.2"
   resolved "https://npm.pkg.github.com/download/@navikt/next-api-proxy/5.0.2/b500c8a7e19829b6c84eaee2afc219f818363a9d#b500c8a7e19829b6c84eaee2afc219f818363a9d"
   integrity sha512-bgwfS9uh5Ptl9tTUJGde5+Wdzfhr20w5+/xid1CLpVRa0DLOb3GTtxe0s7P2R6X/HW8s3QlVaVVc4BBkYJx1fA==
 
-"@navikt/oasis@^4.1.1":
-  version "4.1.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/oasis/4.1.1/970a0555b93c862b7c7b0919349f48fc8e7de53c#970a0555b93c862b7c7b0919349f48fc8e7de53c"
-  integrity sha512-WNAoUvK9z098/4lFzAD/09Q0Oz+Hf2mTTN8iAVi62xUgEXryq3am3t82cVfi3YttDKPrYrsrkEo8bJnte8qxbg==
+"@navikt/oasis@^4.1.4":
+  version "4.1.4"
+  resolved "https://npm.pkg.github.com/download/@navikt/oasis/4.1.4/0d9c93820b9b6d93b1bd9da134feb95461ad8a47#0d9c93820b9b6d93b1bd9da134feb95461ad8a47"
+  integrity sha512-v+LW8V5CTiHkfIXhceQ8RXRtrBktCK8wSFYmiR6hmzl9CJRYRLUpFC7YbLiC7jwHIuLHKUyl+Zawf8zQm6fDeQ==
   dependencies:
-    "@navikt/texas" "^4.1.1"
+    "@navikt/texas" "^4.1.4"
     "@opentelemetry/api" "^1.9.0"
-    jose "^6.1.0"
+    jose "^6.1.3"
     prom-client "^15.1.3"
 
-"@navikt/texas@^4.1.1":
-  version "4.1.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/texas/4.1.1/a4875c9cc658d6cebf4185bb2c89a17c54f15827#a4875c9cc658d6cebf4185bb2c89a17c54f15827"
-  integrity sha512-9g48mKgn1iVMgy/7QtHx28rbgEB4V3PvGQ092trIbpTxjsxcyTmwUvejZH8bHac1QCxi61/VN0beySPgE+Q1xQ==
+"@navikt/texas@^4.1.4":
+  version "4.1.4"
+  resolved "https://npm.pkg.github.com/download/@navikt/texas/4.1.4/1725aca0fa0b803e0048212c3e202d24c10f3c3b#1725aca0fa0b803e0048212c3e202d24c10f3c3b"
+  integrity sha512-WS+agfWCqHyCtIpn/iQHNBRwn1gzCQDe0NY9Tz5ErrBsWHNxtqIV7W2eAmRUa3DLrZGHczoQhup+PYT6UX/SpQ==
 
-"@navikt/virksomhetsvelger@^1.0.6":
-  version "1.0.6"
-  resolved "https://npm.pkg.github.com/download/@navikt/virksomhetsvelger/1.0.6/be14a744ce9343b5f3e0e9211147efaf4d3ee076#be14a744ce9343b5f3e0e9211147efaf4d3ee076"
-  integrity sha512-mRmggcilm7u2JehgA4bIaQnWLSVfsaFlxQktMXIvkI4PxJNYf+sxsH9vyenCNUkPAN3/druXqOUHhSL/qPQ74w==
+"@navikt/virksomhetsvelger@^1.0.9":
+  version "1.0.9"
+  resolved "https://npm.pkg.github.com/download/@navikt/virksomhetsvelger/1.0.9/85907a8d54d30ec530015866c93ffc9bf537c076#85907a8d54d30ec530015866c93ffc9bf537c076"
+  integrity sha512-qhmfXiGdjanbff0PV7U0OW6aBmPqkBwFlleMZxbtavNHSfgOJJJ+FuZvpnWlCRO2nsNtKEFM4FKLtiFL/jkNKA==
   dependencies:
     focus-trap-react "11.0.4"
 
@@ -3023,7 +3022,7 @@ cliui@^8.0.1:
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
 
-clsx@^2.0.0, clsx@^2.1.0:
+clsx@^2.0.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
@@ -5547,12 +5546,12 @@ jest@^30.2.0:
     import-local "^3.2.0"
     jest-cli "30.2.0"
 
-jose@^6.1.0:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-6.1.2.tgz#05f75a3bcdf352d07ebdffcfb11d4e835f6f95c6"
-  integrity sha512-MpcPtHLE5EmztuFIqB0vzHAWJPpmN1E6L4oo+kze56LIs3MyXIj9ZHMDxqOvkP38gBR7K1v3jqd4WU2+nrfONQ==
+jose@^6.1.3:
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-6.1.3.tgz#8453d7be88af7bb7d64a0481d6a35a0145ba3ea5"
+  integrity sha512-0TpaTfihd4QMNwrz/ob2Bp7X04yuxJkjRGi4aKmOqwhov54i6u79oCv7T+C7lo70MKH6BesI3vscD1yb/yzKXQ==
 
-js-cookie@^3.0.5:
+js-cookie@3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.5.tgz#0b7e2fd0c01552c58ba86e0841f94dc2557dcdbc"
   integrity sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==
