@@ -35,7 +35,7 @@
     "csp-header": "^6.3.0",
     "highcharts": "^12.5.0",
     "highcharts-react-official": "^3.2.3",
-    "dotenv": "^17.2.3",
+    "dotenv": "^17.3.1",
     "html-react-parser": "^5.2.11",
     "msw": "2.12.7",
     "next": "16.1.5",
