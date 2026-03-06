@@ -95,6 +95,13 @@ const eslintConfig = [
       "react-hooks/exhaustive-deps": "off",
     },
   },
+  {
+    settings: {
+      react: {
+        version: "19",
+      },
+    },
+  },
 ];
 
 export default eslintConfig;
