@@ -42,7 +42,7 @@
     "pino": "10.3.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-to-print": "^3.2.0",
+    "react-to-print": "^3.3.0",
     "recharts": "^2.15.4",
     "swr": "^2.3.8",
     "typescript": "^5.9.3",
