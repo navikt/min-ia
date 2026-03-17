@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import classNames from "classnames";
 import SymbolSvg from "./SymbolSvg";
 
 import { getFarge, getSymbol } from "../graf-utils";
@@ -15,6 +14,6 @@ export const GrafSymbol: FunctionComponent<Props> = ({ linje, className }) => (
     size={18}
     symbolType={getSymbol(linje)}
     fill={getFarge(linje)}
-    className={classNames(className)}
+    className={className}
   />
 );

@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import { SpeedometerRød } from "./SpeedometerRød";
 import { SpeedometerGul } from "./SpeedometerGul";
 import { SpeedometerGrønn } from "./SpeedometerGrønn";
-import classNames from "classnames";
 import { SpeedometerGrå } from "./SpeedometerGrå";
 import { SykefraværVurdering } from "../vurdering-utils";
 
@@ -22,11 +21,11 @@ export const Speedometer: FunctionComponent<Props> = ({
   const størrelsesfaktor = stor ? 1.2 : 0.7;
 
   return inline ? (
-    <span className={classNames(className, "speedometer")}>
+    <span className={className ? `${className} speedometer` : "speedometer"}>
       <SpeedometerSvg resultat={resultat} størrelsesfaktor={størrelsesfaktor} />
     </span>
   ) : (
-    <div className={classNames(className, "speedometer")}>
+    <div className={className ? `${className} speedometer` : "speedometer"}>
       <SpeedometerSvg resultat={resultat} størrelsesfaktor={størrelsesfaktor} />
     </div>
   );

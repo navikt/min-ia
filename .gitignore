@@ -27,6 +27,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # next.js
 /.next/
 /out/
+next-env.d.ts
 
 # production
 /build

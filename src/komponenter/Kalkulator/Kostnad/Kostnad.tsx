@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import styles from "./Kostnad.module.scss";
-import classNames from "classnames";
 import { Kalkulatorvariant } from "../kalkulator-utils";
 import { SedlerIkon } from "./SedlerIkon";
 import { Heading, Label } from "@navikt/ds-react";
@@ -45,12 +44,12 @@ const Kostnad: FunctionComponent<Props> = (props) => {
         <Label>Totale kostnader per år med nåværende sykefravær</Label>
         <Label>{somKroneverdi(props.nåværendeKostnad)}</Label>
       </div>
-      <div className={classNames(styles.tekst, styles.sisterad)}>
+      <div className={`${styles.tekst} ${styles.sisterad}`}>
         <Label>Totale kostnader per år ved målsatt sykefravær</Label>
         <Label>{somKroneverdi(props.ønsketKostnad)}</Label>
       </div>
 
-      <div className={classNames(styles.tekst, styles.resultatrad)}>
+      <div className={`${styles.tekst} ${styles.resultatrad}`}>
         <Label>
           {beregnKostnad(props) >= 0 ? redusertKostnadTekst : øktKostnadTekst}
         </Label>
