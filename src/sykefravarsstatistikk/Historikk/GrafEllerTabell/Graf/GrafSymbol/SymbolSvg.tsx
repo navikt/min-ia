@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import classNames from "classnames";
 import { Symbols } from "recharts";
 import { SymbolType } from "../graf-utils";
 
@@ -18,7 +17,7 @@ const SymbolSvg: FunctionComponent<Props> = (props) => {
       width={size}
       height={size}
       viewBox={"0 0 " + size + " " + size}
-      className={classNames(className)}
+      className={className}
       aria-hidden={true}
     >
       <Symbols

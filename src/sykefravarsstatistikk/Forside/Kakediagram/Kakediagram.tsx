@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import classNames from "classnames";
 import { KakediagramGrønn } from "./KakediagramGrønn";
 import { KakediagramGrå } from "./KakediagramGrå";
 import { KakediagramGul } from "./KakediagramGul";
@@ -16,7 +15,7 @@ export const Kakediagram: FunctionComponent<Props> = ({
   className,
 }) => {
   return (
-    <span className={classNames(className, "kakediagram")}>
+    <span className={className ? `${className} kakediagram` : "kakediagram"}>
       <KakediagramSvg resultat={resultat} />
     </span>
   );
