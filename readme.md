@@ -7,8 +7,8 @@ Landingsside for selvbetjente IA-tjenester
 # Kjøre lokalt med hot-reload
 
 - Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
-- Installer avhengigheter: `yarn`
-- Kjør opp applikasjon: `yarn dev`
+- Installer avhengigheter: `pnpm install`
+- Kjør opp applikasjon: `pnpm dev`
 - Åpne applikasjonen på `http://localhost:3000/forebygge-fravar` (for Safari browser, legg til `"ws://localhost:3000",` i `connect-src` variabel i `sp.js` fil.
 
 # Kjøre applikasjonen med Docker:
@@ -17,7 +17,7 @@ Landingsside for selvbetjente IA-tjenester
 
 0. Kjør `nais login` for å autentisere deg i Naisdevice. Dette er nødvendig for å kunne laste ned Chainguard image som
    brukes i Dockerfile-en.
-1. Om du ikke har gjort det før: kjør `yarn build`
+1. Om du ikke har gjort det før: kjør `pnpm build`
 2. Autentiser deg i Naisdevice hvis du skal bruke NAVs dekoratør.
 3. Start container runtime (f.eks docker desktop eller colima)
 4. Kjør `docker build . -t min-ia` fra rotmappen
