@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - pnpm-upgrade
+      - upgrade-og-cooldown
     paths-ignore:
       - "**.md"
       - "**/**.md"
