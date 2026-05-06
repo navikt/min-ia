@@ -71,7 +71,7 @@ export const KalkulatorMedDagsverk: FunctionComponent<Props> = ({
           label="Kostnad per dag per ansatt i kroner"
           placeholder="kr"
           name="kostnad-per-dagsverk"
-          hjelpetekst="Beløpet 4200 kr er basert på SINTEF's beregnede sykefraværskostnader, med justering i henhold til lønnsvekst."
+          hjelpetekst={`Beløpet ${GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR} kr er basert på SINTEF's beregnede sykefraværskostnader, med justering i henhold til lønnsvekst.`}
         />
         <Kalkulatorrad
           onChange={(event) => {

@@ -1,4 +1,4 @@
-export const GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR = "4200";
+export const GJENNOMSNITTLIG_DAGLIG_KOSTNAD_SYKEFRAVÆR = "4700"; // Oppdatert mai 2026
 
 export enum Kalkulatorvariant {
   Dagsverk = "antallTapteDagsverk",
