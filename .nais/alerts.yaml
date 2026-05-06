@@ -29,7 +29,7 @@ spec:
             description: "Forebygge fravær frontend (min-ia) har logget en (eller flere) feil."
             action: |-
               Sjekk logs.az.nav.no for logger, 
-              eller Grafana-dashboardet vårt: https://grafana.nav.cloud.nais.io/goto/ghJrEZSDg?orgId=1
+              eller Grafana-dashboardet vårt: https://grafana.nav.cloud.nais.io/goto/bfl7z48ouutq8e?orgId=1
           labels:
             namespace: pia
             severity: warning
@@ -40,7 +40,7 @@ spec:
             description: "Forebygge fravær frontend (min-ia) responderer med flere 5xx-feilkoder"
             action: |-
               Sjekk logs.az.nav.no for logger, 
-              eller Grafana-dashboardet vårt: https://grafana.nav.cloud.nais.io/goto/ghJrEZSDg?orgId=1
+              eller Grafana-dashboardet vårt: https://grafana.nav.cloud.nais.io/goto/bfl7z48ouutq8e?orgId=1
           labels:
             namespace: pia
             severity: critical
