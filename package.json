@@ -2,6 +2,7 @@
   "name": "min-ia",
   "version": "0.0.0",
   "license": "MIT",
+  "packageManager": "pnpm@10.33.1",
   "scripts": {
     "dev": "pnpm lint && next dev",
     "start": "next start",
