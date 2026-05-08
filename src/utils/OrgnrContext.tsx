@@ -38,7 +38,7 @@ export const OrgnrProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </OrgnrContext.Provider>
   );
-}
+};
 
 export const useOrgnrContext = () => {
   const context = React.useContext(OrgnrContext);
