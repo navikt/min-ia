@@ -2,19 +2,22 @@ import React, { ReactNode } from "react";
 import styles from "./NOAInfographicFlisLink.module.scss";
 import { BodyShort, Box } from "@navikt/ds-react";
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
+import { sendNavigereEvent } from "../../../../utils/analytics/analytics";
 
 export function NOAInfographicFlisLink({
   label,
   innhold,
 }: {
-  label?: ReactNode;
+  label: string;
   innhold: ReactNode;
 }) {
+  const lenke = "https://noa.stami.no/yrker-og-naeringer/noa/barnehage/";
   return (
     <Box
       as={"a"}
-      href="https://noa.stami.no/yrker-og-naeringer/noa/barnehage/"
+      href={lenke}
       className={styles.NOA_infographicFlisLinkBox}
+      onClick={() => sendNavigereEvent(label, lenke)}
     >
       <ExternalLinkIcon
         aria-hidden

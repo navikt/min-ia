@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - upgrade-og-cooldown
+      - tekstlig-visning
     paths-ignore:
       - "**.md"
       - "**/**.md"
