@@ -1,14 +1,25 @@
-import { BodyShort, Heading, HeadingProps, HStack } from "@navikt/ds-react";
+import React from "react";
+import {
+  BodyShort,
+  Heading,
+  HeadingProps,
+  HStack,
+  ToggleGroup,
+} from "@navikt/ds-react";
 import BarChart from "./Grafer/BarChart";
 import { PersonGroupFillIcon } from "@navikt/aksel-icons";
 import { SpørsmålResultat } from "./SpørreundersøkelseRad";
 import styles from "./TemaResultat.module.scss";
+import TekstligResultatvisning from "./TekstligResultatvisning";
 
 interface Props {
   navn: string;
   spørsmålResultat: SpørsmålResultat[];
   erIEksportMode?: boolean;
   headingSize?: HeadingProps["size"];
+  brukTekstvisning: boolean;
+  setBrukTekstvisning: React.Dispatch<React.SetStateAction<boolean>>;
+  index: number;
 }
 
 export const TemaResultat = ({
@@ -16,6 +27,9 @@ export const TemaResultat = ({
   spørsmålResultat,
   erIEksportMode = false,
   headingSize = "medium",
+  brukTekstvisning,
+  setBrukTekstvisning,
+  index,
 }: Props) => {
   return (
     <>
@@ -28,6 +42,20 @@ export const TemaResultat = ({
         <Heading level="3" size={headingSize}>
           {navn}
         </Heading>
+        {index === 0 && (
+          <ToggleGroup
+            className={styles.grafTabellBryter}
+            size="small"
+            value={brukTekstvisning ? "tabell" : "graf"}
+            aria-label="Hvis du bruker skjermleser, bør du velge tabell"
+            onChange={(value) => {
+              setBrukTekstvisning(value === "tabell");
+            }}
+          >
+            <ToggleGroup.Item value="graf">Graf</ToggleGroup.Item>
+            <ToggleGroup.Item value="tabell">Tabell</ToggleGroup.Item>
+          </ToggleGroup>
+        )}
         <AntallDeltakere
           antallDeltakere={Math.min(
             ...spørsmålResultat.map(
@@ -50,12 +78,19 @@ export const TemaResultat = ({
                 {spørsmål.kategori}
               </BodyShort>
             ) : null}
-            <BarChart
-              horizontal={spørsmål.flervalg}
-              spørsmål={spørsmål}
-              erIEksportMode={erIEksportMode}
-              farge={getGraffargeFromTema(navn)}
-            />
+            {brukTekstvisning && !erIEksportMode ? (
+              <TekstligResultatvisning
+                spørsmål={spørsmål}
+                farge={getGraffargeFromTema(navn)}
+              />
+            ) : (
+              <BarChart
+                horizontal={spørsmål.flervalg}
+                spørsmål={spørsmål}
+                erIEksportMode={erIEksportMode}
+                farge={getGraffargeFromTema(navn)}
+              />
+            )}
           </div>
         ))}
       </div>

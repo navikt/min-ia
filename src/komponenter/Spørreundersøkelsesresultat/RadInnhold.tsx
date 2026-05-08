@@ -1,3 +1,4 @@
+import React from "react";
 import { Alert, ExpansionCard, Loader } from "@navikt/ds-react";
 import { TemaResultat } from "./TemaResultat";
 import { FiaSamarbeidDokument } from "../../Samarbeid/fiaSamarbeidAPI";
@@ -12,6 +13,7 @@ export const RadInnhold = ({
 }: {
   dokument: FiaSamarbeidDokument;
 }) => {
+  const [brukTekstvisning, setBrukTekstvisning] = React.useState(false);
   const fiaDokument = useFiaDokument({
     dokumentId: dokument.dokumentId,
   }) as RestRessurs<FiaBehovsvurderingDokument>;
@@ -43,11 +45,14 @@ export const RadInnhold = ({
 
   return (
     <ExpansionCard.Content>
-      {fiaDokument.data.innhold.spørsmålMedSvarPerTema.map((tema) => (
+      {fiaDokument.data.innhold.spørsmålMedSvarPerTema.map((tema, index) => (
         <TemaResultat
           navn={tema.navn}
           spørsmålResultat={tema.spørsmålMedSvar}
           key={tema.id}
+          brukTekstvisning={brukTekstvisning}
+          setBrukTekstvisning={setBrukTekstvisning}
+          index={index}
         />
       ))}
     </ExpansionCard.Content>
