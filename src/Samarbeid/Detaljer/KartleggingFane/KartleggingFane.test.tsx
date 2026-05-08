@@ -377,4 +377,69 @@ describe("KartleggingFane", () => {
     await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(2));
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("Viser Graf/Tabell-bryter når rad er åpnet", async () => {
+    render(<KartleggingFane />);
+    const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+    act(() => rader[0].click());
+    await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+    expect(await screen.findByText("Graf")).toBeInTheDocument();
+    expect(screen.getByText("Tabell")).toBeInTheDocument();
+  });
+
+  it("Viser Graf/Tabell-bryter kun én gang selv om det er flere temaer", async () => {
+    render(<KartleggingFane />);
+    const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+    act(() => rader[0].click());
+    await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+    await screen.findByText("Graf");
+    expect(screen.getAllByText("Graf")).toHaveLength(1);
+    expect(screen.getAllByText("Tabell")).toHaveLength(1);
+  });
+
+  it("Bytter til tabellvisning når Tabell velges", async () => {
+    render(<KartleggingFane />);
+    const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+    act(() => rader[0].click());
+    await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+    expect(
+      screen.queryByRole("columnheader", { name: "Svar" }),
+    ).not.toBeInTheDocument();
+
+    const tabellKnapp = await screen.findByText("Tabell");
+    act(() => tabellKnapp.click());
+
+    expect(
+      (await screen.findAllByRole("columnheader", { name: "Svar" })).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("columnheader", { name: "Antall svar" }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("columnheader", { name: "Prosent" }).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("Bytter tilbake til grafvisning når Graf velges", async () => {
+    render(<KartleggingFane />);
+    const rader = await screen.findAllByRole("button", { name: /Vis mer/ });
+    act(() => rader[0].click());
+    await waitFor(() => expect(useFiaDokument).toHaveBeenCalledTimes(1));
+
+    const tabellKnapp = await screen.findByText("Tabell");
+    act(() => tabellKnapp.click());
+    await screen.findAllByRole("columnheader", { name: "Svar" });
+
+    const grafKnapp = screen.getByText("Graf");
+    act(() => grafKnapp.click());
+
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("columnheader", { name: "Svar" }),
+      ).not.toBeInTheDocument(),
+    );
+  });
 });
