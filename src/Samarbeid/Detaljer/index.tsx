@@ -43,21 +43,32 @@ export default function Samarbeidsside({
 }
 
 function Samarbeidssideinnhold({ kjørerMockApp }: { kjørerMockApp: boolean }) {
-  const [valgtFane, setValgtFane] = React.useState<string | null>(null);
+  const harLoggetDefaultFane = React.useRef(false);
   const dokumenter = useDokumenterPåValgtSamarbeid();
   const harPlan = dokumenter.some((d) => d.type === "SAMARBEIDSPLAN");
-  const { status, tilgjengeligeSamarbeid } = useSamarbeidsvelgerContext();
+  const { status, tilgjengeligeSamarbeid, valgtSamarbeid } =
+    useSamarbeidsvelgerContext();
+  const [manueltValgtFane, setManueltValgtFane] = React.useState<string | null>(
+    null,
+  );
+
+  const defaultFane = harPlan ? "samarbeidsplan" : "kartlegging";
+  const valgtFane = manueltValgtFane ?? defaultFane;
 
   React.useEffect(() => {
-    if (valgtFane === null && status === RestStatus.Suksess) {
-      sendDefaultTabValgt(harPlan ? "samarbeidsplan" : "kartlegging");
-      setValgtFane(harPlan ? "samarbeidsplan" : "kartlegging");
+    if (
+      status === RestStatus.Suksess &&
+      valgtSamarbeid &&
+      !harLoggetDefaultFane.current
+    ) {
+      sendDefaultTabValgt(defaultFane);
+      harLoggetDefaultFane.current = true;
     }
-  }, [harPlan, valgtFane, status]);
+  }, [defaultFane, status, valgtSamarbeid]);
 
   function setValgtFaneOgLogg(fane: string) {
     sendFaneByttetEvent(valgtFane, fane);
-    setValgtFane(fane);
+    setManueltValgtFane(fane);
   }
 
   if (status === RestStatus.IkkeLastet || status === RestStatus.LasterInn) {

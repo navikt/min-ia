@@ -11,35 +11,34 @@ export const OrgnrContext = React.createContext<{
 export const OrgnrProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [orgnr, setOrgnr] = React.useState<string | null>(null);
+  // brukervalgt orgnr (hook som Virksomhetsvelgeren setter når brukeren velger en bedrift)
+  const [valgtOrgnr, setValgtOrgnr] = React.useState<string | null>(null);
+  // Orgnr hentet fra URL
+  const orgnrFraUrl = searchParams.get("bedrift");
+  // Bruk Orgnr som er valgt av brukeren i virksomhetsvelgeren, eller fallback til orgnr i URL hvis det finnes
+  const orgnr = valgtOrgnr ?? orgnrFraUrl;
 
   React.useEffect(() => {
     if (typeof router.query.bedrift === "string") {
       const nextSearchParams = new URLSearchParams(searchParams.toString());
+      nextSearchParams.delete("bedrift");
 
-      if (nextSearchParams.size > 1) {
-        nextSearchParams.delete("bedrift");
-        setOrgnr(router.query.bedrift);
-        router.replace(router.pathname, `?${nextSearchParams.toString()}`, {
-          shallow: true,
-          scroll: false,
-        });
-      } else {
-        setOrgnr(router.query.bedrift);
-        router.replace(router.pathname, undefined, {
-          shallow: true,
-          scroll: false,
-        });
-      }
+      router.replace(
+        router.pathname,
+        nextSearchParams.size > 0
+          ? `?${nextSearchParams.toString()}`
+          : undefined,
+        { shallow: true, scroll: false },
+      );
     }
-  }, [router.query.bedrift, router, searchParams]);
+  }, [router, router.query.bedrift, searchParams]);
 
   return (
-    <OrgnrContext.Provider value={{ orgnr, setOrgnr }}>
+    <OrgnrContext.Provider value={{ orgnr, setOrgnr: setValgtOrgnr }}>
       {children}
     </OrgnrContext.Provider>
   );
-};
+}
 
 export const useOrgnrContext = () => {
   const context = React.useContext(OrgnrContext);
