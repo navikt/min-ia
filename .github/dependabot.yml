@@ -8,6 +8,8 @@ registries:
 updates:
   # Security updates - immediate (no schedule = daily with immediate security updates)
   - package-ecosystem: github-actions
+    cooldown:
+      default-days: 7
     directory: "/"
     schedule:
       interval: weekly
