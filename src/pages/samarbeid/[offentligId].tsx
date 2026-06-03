@@ -47,7 +47,7 @@ export default function ExperimentPlaygroundPage(props: {
       url: "/min-side-arbeidsgiver",
     },
     {
-      title: "Forebygge fravær",
+      title: "Forebygge og redusere fravær",
       url: "/forebygge-fravar",
     },
     {

@@ -41,7 +41,7 @@ export const Forside = (props: ForsideProps) => {
   return (
     <>
       <TestVersjonBanner
-        sidenavn="siden for å forebygge fravær"
+        sidenavn="siden for å forebygge og redusere fravær"
         prodUrl={props.prodUrl}
         kjørerMockApp={props.kjørerMockApp}
       />

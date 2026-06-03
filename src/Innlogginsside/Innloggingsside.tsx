@@ -21,12 +21,12 @@ export const Innloggingsside: FunctionComponent<InnloggingssideProps> = ({
           <InnloggingssideIkon height={80} width={80} />
         </div>
         <Heading level="1" size="xlarge">
-          Forebygge fravær
+          Forebygge og redusere fravær
         </Heading>
 
         <BodyLong spacing>
           Her finner du legemeldt sykefraværsstatistikk, sammenligning med din
-          bransje og verktøy for å forebygge fravær
+          bransje og verktøy for å forebygge og redusere fravær
         </BodyLong>
 
         <Button

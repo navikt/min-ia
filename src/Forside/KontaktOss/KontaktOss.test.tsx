@@ -19,7 +19,7 @@ describe("KontaktOss", () => {
       screen.getByRole("heading", { name: "Arbeidsgivertelefonen", level: 3 }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Forebygge fravær", level: 3 }),
+      screen.getByRole("heading", { name: "Forebygge og redusere fravær", level: 3 }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Andre alternativer", level: 3 }),

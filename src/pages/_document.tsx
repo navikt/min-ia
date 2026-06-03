@@ -48,7 +48,7 @@ export default class MyDocument extends Document<Props> {
         redirectToUrl: thisPageUrl,
         breadcrumbs: [
           {
-            title: "Forebygge fravær",
+            title: "Forebygge og redusere fravær",
             url: thisPageUrl ?? "",
           },
         ],
