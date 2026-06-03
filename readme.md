@@ -1,4 +1,4 @@
-# Forebygge fravær
+# Forebygge og redusere fravær
 
 Landingsside for selvbetjente IA-tjenester
 
