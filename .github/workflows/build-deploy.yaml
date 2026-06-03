@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - upgrade-og-cooldown
+      - forebygge-og-redusere-fravar
     paths-ignore:
       - "**.md"
       - "**/**.md"
