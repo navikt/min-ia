@@ -1,7 +1,8 @@
 overrides:
-  js-cookie: "3.0.7"
   '@types/react': "19.2.15"
   '@types/react-dom': "19.2.3"
+  js-cookie: "3.0.7"
+  postcss: "8.5.10"
 
 allowBuilds:
   '@parcel/watcher': true
