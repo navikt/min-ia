@@ -46,7 +46,7 @@ const Home = (props: HomeProps) => {
       url: "/min-side-arbeidsgiver",
     },
     {
-      title: "Forebygge fravær",
+      title: "Forebygge og redusere fravær",
       url: "/forebygge-fravar",
     },
   ]);
@@ -111,9 +111,9 @@ function Sideinnhold({
 // NextJS kaller denne ved Server Side Rendering (SSR)
 export const getServerSideProps = async () => {
   const page: PageProps = {
-    title: "Forebygge fravær",
+    title: "Forebygge og redusere fravær",
     description:
-      "Her får du informasjon om hvordan du kan forebygge fravær på arbeidsplassen",
+      "Her får du informasjon om hvordan du kan forebygge og redusere fravær på arbeidsplassen",
   };
 
   const kjørerMockApp = isMockApp();

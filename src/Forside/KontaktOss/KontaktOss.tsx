@@ -33,7 +33,7 @@ export default function KontaktOss(props: KontaktOssProps) {
             lenketekst="55 55 33 36"
           />
           <KontaktOssItem
-            tittel="Forebygge fravær"
+            tittel="Forebygge og redusere fravær"
             brødtekst="Send inn kontaktskjema hvis du ønsker hjelp til å forebygge og redusere sykefravær."
             ikon={<PaperplaneIcon aria-hidden />}
             lenke={KONTAKTSKJEMA_URL}
