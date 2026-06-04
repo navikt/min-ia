@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - forebygge-og-redusere-fravar
+      - upgrade-avhengigheter-3-06-2026
     paths-ignore:
       - "**.md"
       - "**/**.md"
