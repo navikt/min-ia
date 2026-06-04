@@ -31,7 +31,7 @@ interface Props {
   kjørerMockApp: boolean;
 }
 
-const { decoratorEnv, thisPageUrl, umamiWebsiteId } =
+const { decoratorEnv, thisPageUrl, umamiWebsiteId, umamiUrl } =
   lesOgValiderMiljøvariablerForDekoratør();
 
 export default class MyDocument extends Document<Props> {
@@ -67,12 +67,12 @@ export default class MyDocument extends Document<Props> {
       <Html lang={language || "no"}>
         <Head>
           {kjørerMockApp ? <meta name="robots" content="noindex" /> : undefined}
-          {umamiWebsiteId && (
+          {umamiWebsiteId && umamiUrl && (
             <Script
               defer
               strategy="afterInteractive"
               src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-              data-host-url="https://umami.nav.no"
+              data-host-url={umamiUrl}
               data-website-id={umamiWebsiteId}
               data-exclude-search="true"
             />
@@ -107,6 +107,7 @@ function lesOgValiderMiljøvariablerForDekoratør() {
   const decoratorEnv = process.env.DECORATOR_ENV as "prod" | "dev";
   const thisPageUrl = process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL;
   const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
+  const umamiUrl = process.env.UMAMI_URL;
 
   if (!decoratorEnv || !thisPageUrl) {
     throw Error(
@@ -116,5 +117,5 @@ function lesOgValiderMiljøvariablerForDekoratør() {
   if (decoratorEnv != "prod" && decoratorEnv != "dev") {
     throw Error("Dekoratør-miljø kan kun være 'prod' eller 'dev'");
   }
-  return { decoratorEnv, thisPageUrl, umamiWebsiteId };
+  return { decoratorEnv, thisPageUrl, umamiWebsiteId, umamiUrl };
 }

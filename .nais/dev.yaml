@@ -55,6 +55,8 @@ spec:
       value: https://telemetry.ekstern.dev.nav.no/collect
     - name: UMAMI_WEBSITE_ID
       value: 2f12e744-9e79-4e18-9989-2733602cf761
+    - name: UMAMI_URL
+      value: https://reops-event-proxy.ekstern.dev.nav.no
   tokenx:
     enabled: true
   idporten:

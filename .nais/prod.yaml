@@ -55,6 +55,8 @@ spec:
       value: https://telemetry.nav.no/collect
     - name: UMAMI_WEBSITE_ID
       value: 881d4cb8-e2a3-42da-9da6-83b6220c7f7e
+    - name: UMAMI_URL
+      value: https://umami.nav.no
   tokenx:
     enabled: true
   idporten:
