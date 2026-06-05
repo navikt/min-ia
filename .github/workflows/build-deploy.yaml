@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - forbedre-logs-cache
+      - upgrade-node-22-slim-image
     paths-ignore:
       - "**.md"
       - "**/**.md"
