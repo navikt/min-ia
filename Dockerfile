@@ -3,8 +3,6 @@ FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-slim@sha25
 ENV PORT=3000 \
     NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1
-# Set cache directory to writable location
-ENV NEXT_CACHE_DIR=/tmp/.next/cache
 
 COPY --chown=node:node .next/standalone ./
 COPY --chown=node:node .next/static ./.next/static
