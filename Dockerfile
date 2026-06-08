@@ -6,6 +6,8 @@ ENV PORT=3000 \
 
 COPY --chown=node:node .next/standalone ./
 COPY --chown=node:node .next/static ./.next/static
+RUN mkdir -p .next/cache
+RUN chown -R nextjs:nodejs .next/cache
 
 EXPOSE 3000
 
