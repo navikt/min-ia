@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - upgrade-node-22-slim-image
+      - next-cache-fix
     paths-ignore:
       - "**.md"
       - "**/**.md"
