@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - next-cache-fix
+      - fjerne-gamle-redirects-i-dev
     paths-ignore:
       - "**.md"
       - "**/**.md"
