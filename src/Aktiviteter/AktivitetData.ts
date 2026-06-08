@@ -562,7 +562,7 @@ export const aktiviteter: AktivitetType[] = [
             type: "lenke",
             tekst:
               "NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.",
-            url: "https://arbeidsgiver.nav.no/sykefravarsstatistikk/",
+            url: "https://arbeidsgiver.nav.no/forebygge-fravar/sykefravarsstatistikk",
           },
           {
             type: "tekst",
@@ -591,7 +591,7 @@ export const aktiviteter: AktivitetType[] = [
           {
             type: "lenke",
             tekst: "Se ditt og bransjens langtidsfravær",
-            url: "https://arbeidsgiver.nav.no/sykefravarsstatistikk/",
+            url: "https://arbeidsgiver.nav.no/forebygge-fravar/sykefravarsstatistikk",
           },
         ],
       },
