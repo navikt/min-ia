@@ -287,7 +287,7 @@ describe("Forside", () => {
     expect(sendNavigereEvent).toHaveBeenCalledTimes(1);
     expect(sendNavigereEvent).toHaveBeenCalledWith(
       "NAV har oversikt over ditt og bransjens legemeldte korttidsfravær.",
-      "https://arbeidsgiver.nav.no/sykefravarsstatistikk/",
+      "https://arbeidsgiver.nav.no/forebygge-fravar/sykefravarsstatistikk",
     );
   });
 });
