@@ -43,14 +43,14 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
         <div>
           <Ingress as="span">Din virksomhet:</Ingress>
           <Prosent prosent={virksomhetStatistikk?.verdi} />
-          <Label>{`${virksomhetStatistikk?.kvartalerIBeregningen.length} av 4 kvartaler`}</Label>
+          <Label>{virksomhetStatistikk?.kvartalerIBeregningen ? `${virksomhetStatistikk?.kvartalerIBeregningen.length} av 4 kvartaler` : 'Ingen statistikk tilgjengelig'}</Label>
         </div>
         <div>
           <Ingress as="span">
             {harBransje ? "Din bransje: " : "Din Næring: "}
           </Ingress>
           <Prosent prosent={bransjeEllerNæringStatistikk?.verdi} />
-          <Label>4 av 4 kvartaler</Label>
+          <Label>{bransjeEllerNæringStatistikk ? '4 av 4 kvartaler' : 'Ingen statistikk tilgjengelig'}</Label>
         </div>
       </div>
       {sammenligningsType === SammenligningsType.GRADERT && (
