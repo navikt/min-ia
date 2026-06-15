@@ -4,8 +4,9 @@ import { NOAInfographicFlis } from "../../komponenter/Infographic/InfographicFli
 import { NOAInfographicFlisLink } from "../../komponenter/Infographic/InfographicFlis/NOAInfographicFlis/NOAInfographicFlisLink";
 import STAMILogo from "./STAMI_logo.png";
 import Image from "next/image";
+import { NoaInfo } from "./data";
 
-export const RisikoFaktorer = () => {
+export const RisikoFaktorer = ({ noaInfo }: { noaInfo: NoaInfo }) => {
   return (
     <Page.Block width="xl" className={styles.risikoFaktorer}>
       <div className={styles.STAMI__logo__container}>
@@ -18,30 +19,23 @@ export const RisikoFaktorer = () => {
       <HStack className={styles.hstack} justify="space-between" align="start">
         <VStack>
           <Heading size={"medium"} level={"2"}>
-            Risikofaktorer i barnehage og skolefritidsordning
+            {noaInfo.tittel}
           </Heading>
-          <BodyShort>
-            I barnehager og skolefritidsordninger oppgir 1 av 2 med sykefravær
-            at fraværet er relatert til jobben
-          </BodyShort>
+          <BodyShort>{noaInfo.ingress}</BodyShort>
         </VStack>
       </HStack>
       <HStack className={styles.HStackContainer} gap="8">
-        <NOAInfographicFlis
-          label="31 %"
-          innhold="opplever høye emosjonelle krav"
-        />
-        <NOAInfographicFlis
-          label="60 %"
-          innhold="utfører arbeid på huk eller knærne"
-        />
-        <NOAInfographicFlis
-          label="74 %"
-          innhold="har kontakt med kroppsvæsker"
-        />
+        {noaInfo.risikofaktorer.map(({ risiko, andel }) => (
+          <NOAInfographicFlis
+            key={risiko}
+            label={`${andel} %`}
+            innhold={risiko}
+          />
+        ))}
         <NOAInfographicFlisLink
           label="Se hele statistikken"
           innhold="Les mer om risikofaktorer i bransjen og hva de er knyttet til"
+          lenke={noaInfo.lenke}
         />
       </HStack>
     </Page.Block>

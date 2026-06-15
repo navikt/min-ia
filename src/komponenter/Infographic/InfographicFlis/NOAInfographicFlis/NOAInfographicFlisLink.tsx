@@ -7,11 +7,12 @@ import { sendNavigereEvent } from "../../../../utils/analytics/analytics";
 export function NOAInfographicFlisLink({
   label,
   innhold,
+  lenke,
 }: {
   label: string;
   innhold: ReactNode;
+  lenke: string;
 }) {
-  const lenke = "https://noa.stami.no/yrker-og-naeringer/noa/barnehage/";
   return (
     <Box
       as={"a"}

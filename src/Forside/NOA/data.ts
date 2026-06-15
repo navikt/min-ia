@@ -1,9 +1,9 @@
-type Risikofaktor = {
+export type Risikofaktor = {
     risiko: string;
     andel: number;
 }
 
-type NoaInfo = {
+export type NoaInfo = {
     tittel: string;
     lenke: string;
     noaBransje: string;
@@ -21,15 +21,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "I barnehager og skolefritidsordninger oppgir 1 av 2 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Opplever høye emosjonelle krav",
+                risiko: "opplever høye emosjonelle krav",
                 andel: 31,
             },
             {
-                risiko: "Utfører arbeid på huk eller knærne",
+                risiko: "utfører arbeid på huk eller knærne",
                 andel: 60,
             },
             {
-                risiko: "Har kontakt med kroppsvæsker",
+                risiko: "har kontakt med kroppsvæsker",
                 andel: 74,
             }
         ],
@@ -42,15 +42,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "I næringsmiddelindustrien oppgir 1 av 2 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Er utsatt for sterk støy",
+                risiko: "er utsatt for sterk støy",
                 andel: 27,
             },
             {
-                risiko: "Har ensformig arbeid",
+                risiko: "har ensformig arbeid",
                 andel: 48,
             },
             {
-                risiko: "Løfter tungt",
+                risiko: "løfter tungt",
                 andel: 29,
             }
         ],
@@ -63,15 +63,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "På sykehus oppgir 1 av 3 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Opplever høye jobbkrav og lav jobbkontroll",
+                risiko: "opplever høye jobbkrav og lav jobbkontroll",
                 andel: 35,
             },
             {
-                risiko: "Utfører vått arbeid",
+                risiko: "utfører vått arbeid",
                 andel: 51,
             },
             {
-                risiko: "Er utsatt for uønsket seksuell oppmerksomhet",
+                risiko: "er utsatt for uønsket seksuell oppmerksomhet",
                 andel: 11,
             }
         ],
@@ -84,15 +84,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "På sykehjem og omsorgsinstitusjoner oppgir 1 av 3 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Er utsatt for vold",
+                risiko: "er utsatt for vold",
                 andel: 34,
             },
             {
-                risiko: "Er utsatt for uønsket seksuell oppmerksomhet",
+                risiko: "er utsatt for uønsket seksuell oppmerksomhet",
                 andel: 18,
             },
             {
-                risiko: "Er utsatt for hudirriterende stoffer",
+                risiko: "er utsatt for hudirriterende stoffer",
                 andel: 73,
             },
         ],
@@ -105,15 +105,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "Innen passasjertransport på vei og bane oppgir 2 av 5 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Opplever lav jobbkontroll",
+                risiko: "opplever lav jobbkontroll",
                 andel: 57,
             },
             {
-                risiko: "Er utsatt for mobbing",
+                risiko: "er utsatt for mobbing",
                 andel: 10,
             },
             {
-                risiko: "Er utsatt for helkroppsvibrasjoner",
+                risiko: "er utsatt for helkroppsvibrasjoner",
                 andel: 16,
             },
         ],
@@ -126,15 +126,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "I byggevirksomheter oppgir 1 av 2 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Er utsatt for vibrasjoner",
+                risiko: "er utsatt for vibrasjoner",
                 andel: 33,
             },
             {
-                risiko: "Jobber med hender over skulderhøyde",
+                risiko: "jobber med hender over skulderhøyde",
                 andel: 48,
             },
             {
-                risiko: "Er utsatt for sterk støy",
+                risiko: "er utsatt for sterk støy",
                 andel: 18,
             },
         ],
@@ -147,15 +147,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "I anleggsvirksomheter oppgir 2 av 5 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Er utsatt for støv, røyk, gass eller damp",
+                risiko: "er utsatt for støv, røyk, gass eller damp",
                 andel: 56,
             },
             {
-                risiko: "Er utsatt for vibrasjoner",
+                risiko: "er utsatt for vibrasjoner",
                 andel: 41,
             },
             {
-                risiko: "Er utsatt for sterk støy",
+                risiko: "er utsatt for sterk støy",
                 andel: 20,
             }
         ],
@@ -168,15 +168,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "I hjemmetjenesten oppgir 2 av 5 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Løfter i ubekvemme stillinger",
+                risiko: "løfter i ubekvemme stillinger",
                 andel: 34,
             },
             {
-                risiko: "Opplever høye emosjonelle krav",
+                risiko: "opplever høye emosjonelle krav",
                 andel: 38,
             },
             {
-                risiko: "Er utsatt for vold",
+                risiko: "er utsatt for vold",
                 andel: 12,
             },
         ]
@@ -189,15 +189,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "Innen butikkhandel oppgir 2 av 5 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Jobber stående",
+                risiko: "jobber stående",
                 andel: 73,
             },
             {
-                risiko: "Jobber med hender over skulderhøyde",
+                risiko: "jobber med hender over skulderhøyde",
                 andel: 29,
             },
             {
-                risiko: "Opplever konflikter med kunder",
+                risiko: "opplever konflikter med kunder",
                 andel: 27,
             },
         ]
@@ -210,15 +210,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "I barnevern og sosialtjenester oppgir 1 av 3 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Opplever høye emosjonelle krav",
+                risiko: "opplever høye emosjonelle krav",
                 andel: 42
             },
             {
-                risiko: "Er utsatt for hets eller trusler",
+                risiko: "er utsatt for hets eller trusler",
                 andel: 23,
             },
             {
-                risiko: "Opplever høy grad av rollekonflikt",
+                risiko: "opplever høy grad av rollekonflikt",
                 andel: 16,
             },
         ]
@@ -231,15 +231,15 @@ export const bransjeTilNoa: Record<string, NoaInfo> = {
         ingress: "Innen undervisning oppgir 1 av 3 med sykefravær at fraværet er relatert til jobben.",
         risikofaktorer: [
             {
-                risiko: "Er utsatt for vold",
+                risiko: "er utsatt for vold",
                 andel: 13,
             },
             {
-                risiko: "Opplever høye emosjonelle krav",
+                risiko: "opplever høye emosjonelle krav",
                 andel: 32
             },
             {
-                risiko: "Opplever høy grad av rollekonflikt",
+                risiko: "opplever høy grad av rollekonflikt",
                 andel: 18,
             },
         ]
