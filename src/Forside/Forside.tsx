@@ -65,11 +65,21 @@ export const Forside = (props: ForsideProps) => {
       {!!noaInfo && (
         <>
           <RisikoFaktorer noaInfo={noaInfo} />
-          <VerktøyBarnehager />
+          {
+            // TODO: Bruk dette for alle bransjer. Kan gjøres når vi har lenker og bilder for alle bransjer
+            noaInfo.noaBransje === "Barnehage og skolefritidsordning" && (
+              <VerktøyBarnehager />
+            )
+          }
         </>
       )}
       <TjenesterFraNav />
-      {!noaInfo && <VerktøyOgRessurser />}
+      {
+        // TODO: Bruk dette kun hvis noaBransje ikke finnes. Kan gjøres når vi har lenker og bilder for alle bransje
+        noaInfo?.noaBransje !== "Barnehage og skolefritidsordning" && (
+          <VerktøyOgRessurser />
+        )
+      }
       <InkluderendeArbeidsliv />
       <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
       <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
