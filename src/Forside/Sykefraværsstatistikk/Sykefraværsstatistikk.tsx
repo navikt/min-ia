@@ -92,18 +92,18 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
             <InfographicFlis
               nedlastingPågår={props.nedlastingPågår}
               label="I din virksomhet"
-              innhold={`${props.fraværsprosentVirksomhet}%`}
+              innhold={`${props.fraværsprosentVirksomhet ?? '--'}%`}
             />
           )}
           <InfographicFlis
             nedlastingPågår={props.nedlastingPågår}
             label="I din bransje"
-            innhold={`${props.fraværsprosentBransjeEllerNæring}%`}
+            innhold={`${props.fraværsprosentBransjeEllerNæring ?? '--'}%`}
           />
           <InfographicFlis
             nedlastingPågår={props.nedlastingPågår}
             label="I Norge"
-            innhold={`${props.fraværsprosentNorge}%`}
+            innhold={`${props.fraværsprosentNorge ?? '--'}%`}
           />
           <InfographicFlis
             nedlastingPågår={props.nedlastingPågår}

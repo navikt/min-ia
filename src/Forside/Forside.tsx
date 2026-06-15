@@ -1,5 +1,5 @@
 import styles from "./forside.module.scss";
-import React from "react";
+import React, { useMemo } from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
@@ -16,6 +16,7 @@ import InkluderendeArbeidsliv from "./InkluderendeArbeidsliv/InkluderendeArbeids
 import Samarbeidsoversikt from "../Samarbeid/Samarbeidsoversikt";
 import { RisikoFaktorer } from "./NOA/RisikoFaktorer";
 import VerktøyBarnehager from "./VerktøyOgRessurser/Barnehager/VerktøyBarnehager";
+import { bransjeTilNoa } from "./NOA/data";
 
 export interface ForsideProps {
   sykefraværsstatistikkUrl: string;
@@ -31,12 +32,10 @@ export const Forside = (props: ForsideProps) => {
     ? aggregertStatistikk.data
     : tomtDataobjekt;
 
-  const erBransjeBarnehager =
-    aggregertStatistikkData.prosentSiste4KvartalerTotalt.some(
-      (statistikk) =>
-        statistikk.statistikkategori === "BRANSJE" &&
-        statistikk.label === "Barnehager",
-    );
+  const noaInfo = useMemo(() => {
+    const bransje = aggregertStatistikkData.prosentSiste4KvartalerTotalt?.find((statistikk) => statistikk.statistikkategori === 'BRANSJE')?.label.toLowerCase()
+    return bransje ? bransjeTilNoa[bransje] : undefined
+  }, [aggregertStatistikkData])
 
   return (
     <>
@@ -63,14 +62,14 @@ export const Forside = (props: ForsideProps) => {
         />
       )}
       <Fraværskalkulator />
-      {erBransjeBarnehager && (
+      {!!noaInfo && (
         <>
-          <RisikoFaktorer />
+          <RisikoFaktorer noaInfo={noaInfo} />
           <VerktøyBarnehager />
         </>
       )}
       <TjenesterFraNav />
-      {!erBransjeBarnehager && <VerktøyOgRessurser />}
+      {!noaInfo && <VerktøyOgRessurser />}
       <InkluderendeArbeidsliv />
       <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
       <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
