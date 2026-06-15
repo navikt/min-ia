@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - fallback-manglende-statistikk
+      - noa
     paths-ignore:
       - "**.md"
       - "**/**.md"
