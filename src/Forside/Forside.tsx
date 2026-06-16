@@ -1,5 +1,5 @@
 import styles from "./forside.module.scss";
-import React, { useMemo } from "react";
+import React  from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
@@ -32,7 +32,7 @@ export const Forside = (props: ForsideProps) => {
     ? aggregertStatistikk.data
     : tomtDataobjekt;
 
-  const noaInfo = useMemo(() => {
+  const noaInfo = React.useMemo(() => {
     const bransje = aggregertStatistikkData.prosentSiste4KvartalerTotalt?.find((statistikk) => statistikk.statistikkategori === 'BRANSJE')?.label.toLowerCase()
     return bransje ? bransjeTilNoa[bransje] : undefined
   }, [aggregertStatistikkData])
