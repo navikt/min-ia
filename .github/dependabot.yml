@@ -22,6 +22,8 @@ updates:
 
   - package-ecosystem: npm
     directory: "/"
+    registries:
+      - npm-github
     schedule:
       interval: weekly
       day: "monday"
