@@ -33,9 +33,10 @@ updates:
       - "dependencies"
       - "npm"
     groups:
-      "@navikt*":
+      "aksel":
         patterns:
-          - "@navikt/*"
+          - "@navikt/ds-*"
+          - "@navikt/aksel-*"
       "@testing-library*":
         patterns:
           - "@testing-library/*"
