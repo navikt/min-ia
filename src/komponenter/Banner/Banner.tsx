@@ -3,7 +3,6 @@ import React, { ReactElement, /* useCallback, */ useState } from "react";
 import dynamic from "next/dynamic";
 import { Organisasjon } from "@navikt/virksomhetsvelger";
 import "@navikt/virksomhetsvelger/dist/assets/style.css";
-import "@navikt/ds-css";
 import styles from "./Banner.module.scss";
 import { sendBedriftValgtEvent } from "../../utils/analytics/analytics";
 import { useOrgnrContext } from "../../utils/OrgnrContext";
