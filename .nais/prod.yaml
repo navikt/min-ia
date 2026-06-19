@@ -83,6 +83,11 @@ spec:
       memory: 1024Mi
   ingresses:
     - https://arbeidsgiver.nav.no/forebygge-fravar
+  redirects:
+    - from: https://arbeidsgiver.nav.no/samtalestotte
+      to: https://www.nav.no/arbeidsgiver/samtalestotte-arbeidsgiver
+    - from: https://arbeidsgiver.nav.no/sykefravarsstatistikk
+      to: https://arbeidsgiver.nav.no/forebygge-fravar/sykefravarsstatistikk
   prometheus:
     enabled: true
     path: /forebygge-fravar/internal/metrics
