@@ -11,12 +11,12 @@
   align-items: center;
 }
 .infographicFlis {
-  background-color: var(--a-orange-100);
+  background-color: var(--ax-warning-200);
   flex-basis: 50%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: var(--a-spacing-2);
+  padding: var(--ax-space-8);
   border-radius: 4px;
 
   &.fullBredde {

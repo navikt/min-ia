@@ -8,8 +8,8 @@
   background: white;
   padding: 1.5rem 1rem 1rem;
   margin-top: 2rem;
-  border: 1px solid var(--a-border-default);
-  border-radius: var(--a-border-radius-small);
+  border: 1px solid var(--ax-border-neutral);
+  border-radius: var(--ax-radius-2);
 }
 
 @media print {
@@ -34,8 +34,8 @@
     background: white;
     padding: 1.5rem 1rem 1rem;
     margin-left: 2rem;
-    border: 1px solid var(--a-border-default);
-    border-radius: var(--a-border-radius-small);
+    border: 1px solid var(--ax-border-neutral);
+    border-radius: var(--ax-radius-2);
   }
 
   .mer_om_statistikk {

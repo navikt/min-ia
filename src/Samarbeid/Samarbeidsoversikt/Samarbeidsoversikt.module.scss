@@ -1,7 +1,7 @@
 .samarbeidslisteSide {
   .samarbeidslisteTittel {
-    font-weight: var(--a-font-weight-bold);
-    --a-spacing-4: 2rem;
+    font-weight: var(--ax-font-weight-bold);
+    //--a-spacing-4: 2rem;
     margin-top: 4rem;
   }
   .samarbeidsliste {
@@ -11,8 +11,8 @@
     }
 
     .samarbeidslisteElement {
-      background-color: var(--a-white);
-      border-radius: var(--a-border-radius-xlarge);
+      background-color: white;
+      border-radius: var(--ax-radius-12);
       padding: 2rem 3rem;
     }
   }

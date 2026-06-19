@@ -1,5 +1,5 @@
 .samarbeidsvelgerBleed {
-  background-color: var(--a-blue-100);
+  background-color: var(--ax-accent-200);
   padding: 1.5rem 1rem 2rem;
 
   .innhold {
@@ -14,7 +14,7 @@
       align-items: center;
       justify-content: space-between;
       margin-top: 0.5rem;
-      --a-font-weight-bold: var(--a-font-weight-regular);
+      //--a-font-weight-bold: var(--ax-font-weight-regular);
       padding: 0.75rem 1rem;
 
       :first-child {

@@ -91,7 +91,7 @@ export default class MyDocument extends Document<Props> {
             href={favicon_16x16_data}
           />
         </Head>
-        <Page as="body" style={{ backgroundColor: "var(--a-bg-subtle)" }}>
+        <Page as="body" style={{ backgroundColor: "var(--ax-bg-neutral-soft)" }}>
           <Decorator.Header />
           <Main />
           <Decorator.Footer />

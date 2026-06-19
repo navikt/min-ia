@@ -4,42 +4,42 @@
   --progress-bar-border-width: 2px;
   height: var(--progress-bar-height);
   border-radius: var(--progress-bar-radius);
-  border: var(--progress-bar-border-width) solid var(--a-border-default);
+  border: var(--progress-bar-border-width) solid var(--ax-border-neutral);
 
-  background-color: var(--a-white);
+  background-color: white;
   position: relative;
 
   .progress-bar-fill {
     transition: width 0.2s ease-in-out;
     height: var(--progress-bar-height);
     border-radius: var(--progress-bar-radius);
-    border: var(--progress-bar-border-width) solid var(--a-green-500);
+    border: var(--progress-bar-border-width) solid var(--ax-success-600);
     position: absolute;
     left: calc(0px - var(--progress-bar-border-width));
     top: calc(0px - var(--progress-bar-border-width));
   }
 
   &.progress-bar-complete {
-    border-color: var(--a-data-border-5);
+    border-color: var(--ax-border-success);
 
     .progress-bar-fill {
-      background-color: var(--a-data-surface-5-subtle);
+      background-color: var(--ax-success-300);
     }
   }
 
   &.progress-bar-incomplete {
-    border-color: var(--a-border-default);
+    border-color: var(--ax-border-neutral);
 
     .progress-bar-fill {
-      background-color: var(--a-white);
+      background-color: white;
       opacity: 0.8;
       background-size: 10px 10px;
       background-image: repeating-linear-gradient(
         45deg,
-        var(--a-data-surface-5-subtle) 0,
-        var(--a-data-surface-5-subtle) 3px,
-        var(--a-white) 0,
-        var(--a-white) 50%
+        var(--ax-success-300) 0,
+        var(--ax-success-300) 3px,
+        white 0,
+        white 50%
       );
     }
   }
