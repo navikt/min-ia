@@ -21,11 +21,11 @@ import { UXSignalsWidget } from "../../Forside/UXSignalsWidget";
 export default function Samarbeidsside({
   samarbeidOffentligId,
   setSamarbeidOffentligId,
-  kjørerMockApp,
+  kjørerMockApp = false,
 }: {
   samarbeidOffentligId?: string;
   setSamarbeidOffentligId: (id: string) => void;
-  kjørerMockApp: boolean;
+  kjørerMockApp?: boolean;
 }) {
   return (
     <>
@@ -95,7 +95,7 @@ function Samarbeidssideinnhold({ kjørerMockApp }: { kjørerMockApp: boolean }) 
           style={{ marginBottom: "5rem" }}
         >
           <HStack
-            gap="2"
+            gap="space-8"
             style={{ marginBottom: "2rem" }}
             align="center"
             justify="start"
@@ -128,9 +128,9 @@ function Samarbeidssideinnhold({ kjørerMockApp }: { kjørerMockApp: boolean }) 
 
   return (
     <>
-      {!kjørerMockApp &&
+      {!kjørerMockApp && (
         <UXSignalsWidget eriDev={kjørerMockApp} id={"panel-xnxt8og5p1"} />
-      }
+      )}
       <Samarbeidsvelger />
       <Samarbeidsinfo />
       <Tabs value={valgtFane || "kartlegging"} onChange={setValgtFaneOgLogg}>

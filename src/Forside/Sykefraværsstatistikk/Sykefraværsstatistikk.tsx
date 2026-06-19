@@ -87,23 +87,23 @@ export const Sykefraværsstatistikk = (props: SykefraværsstatistikkProps) => {
             organisasjonerHvorBrukerHarStatistikktilgang
           }
         />
-        <HStack justify="space-between" wrap gap="8">
+        <HStack justify="space-between" wrap gap="space-32">
           {!brukerManglerTilgangTilOrg && (
             <InfographicFlis
               nedlastingPågår={props.nedlastingPågår}
               label="I din virksomhet"
-              innhold={`${props.fraværsprosentVirksomhet ?? '--'}%`}
+              innhold={`${props.fraværsprosentVirksomhet ?? "--"}%`}
             />
           )}
           <InfographicFlis
             nedlastingPågår={props.nedlastingPågår}
             label="I din bransje"
-            innhold={`${props.fraværsprosentBransjeEllerNæring ?? '--'}%`}
+            innhold={`${props.fraværsprosentBransjeEllerNæring ?? "--"}%`}
           />
           <InfographicFlis
             nedlastingPågår={props.nedlastingPågår}
             label="I Norge"
-            innhold={`${props.fraværsprosentNorge ?? '--'}%`}
+            innhold={`${props.fraværsprosentNorge ?? "--"}%`}
           />
           <InfographicFlis
             nedlastingPågår={props.nedlastingPågår}
