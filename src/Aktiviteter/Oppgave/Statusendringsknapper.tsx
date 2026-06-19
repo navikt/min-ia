@@ -51,14 +51,14 @@ export function Statusendringsknapper({
             Fullfør
           </Button>
           <Button
-            variant="secondary-neutral"
+            data-color="neutral"
+            variant="secondary"
             className={`${styles.statusknapp} ${styles.halvknapp}`}
             onClick={() => {
               setNyStatus("AVBRUTT");
               sendOppgaveStatusEvent("AVBRUTT", oppgavetittel);
             }}
-            icon={<XMarkIcon title="Avbryt" />}
-          >
+            icon={<XMarkIcon title="Avbryt" />}>
             Avbryt
           </Button>
         </>
@@ -66,16 +66,15 @@ export function Statusendringsknapper({
     case "FULLFØRT":
       return (
         <Button
-          variant="secondary-neutral"
+          data-color="neutral"
+          variant="secondary"
           className={`${styles.statusknapp} ${styles.helknapp}`}
           onClick={() => {
             setNyStatus("AVBRUTT");
             sendOppgaveStatusEvent("AVBRUTT", oppgavetittel);
           }}
-          icon={<ArrowCirclepathIcon title="Tilbakestill" />}
-        >
-          Tilbakestill
-        </Button>
+          icon={<ArrowCirclepathIcon title="Tilbakestill" />}>Tilbakestill
+                  </Button>
       );
     default:
       return null;

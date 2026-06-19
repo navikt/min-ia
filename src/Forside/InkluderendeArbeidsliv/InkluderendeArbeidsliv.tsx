@@ -43,7 +43,7 @@ export default function InkluderendeArbeidsliv() {
                 </List></Box>
             </span>
             <Link
-              variant="neutral"
+              data-color="neutral"
               href={IA_REGJERINGEN_URL}
               target="_blank"
               onClick={() =>
