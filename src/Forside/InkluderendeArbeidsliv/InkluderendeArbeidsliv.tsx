@@ -7,6 +7,7 @@ import {
   List,
   Page,
   VStack,
+  Box
 } from "@navikt/ds-react";
 import Image from "next/image";
 
@@ -36,10 +37,10 @@ export default function InkluderendeArbeidsliv() {
               >
                 Navs innsatsområder i avtalen:
               </BodyShort>
-              <List as="ul">
-                <List.Item>Få tilskudd til ekspertbistand</List.Item>
-                <List.Item>Få hjelp til å redusere sykefraværet</List.Item>
-              </List>
+              <Box marginBlock="space-16" asChild><List data-aksel-migrated-v8 as="ul">
+                  <List.Item>Få tilskudd til ekspertbistand</List.Item>
+                  <List.Item>Få hjelp til å redusere sykefraværet</List.Item>
+                </List></Box>
             </span>
             <Link
               variant="neutral"
