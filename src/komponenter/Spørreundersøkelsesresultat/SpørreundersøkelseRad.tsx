@@ -7,8 +7,6 @@ import styles from "./SpørreundersøkelseRad.module.scss";
 import { FiaSamarbeidDokument } from "../../Samarbeid/fiaSamarbeidAPI";
 import { sendPanelEkspanderEvent } from "../../utils/analytics/analytics";
 
-const StyledExpansionCard = ExpansionCard;
-
 export type TemaMedSpørsmålOgSvar = {
   id: number;
   navn: string;
@@ -52,7 +50,7 @@ export default function SpørreundersøkelseRad({
     dokument.type.slice(1).toLowerCase();
 
   return (
-    <StyledExpansionCard
+    <ExpansionCard
       className={styles.spørreundersøkelseRad}
       aria-label={`${spørreundersøkelseType} ${dato}`}
       open={erÅpen}
@@ -65,6 +63,6 @@ export default function SpørreundersøkelseRad({
     >
       <CardHeaderInnhold dato={dato} typetekst={spørreundersøkelseType} />
       {erÅpen ? <RadInnhold dokument={dokument} /> : null}
-    </StyledExpansionCard>
+    </ExpansionCard>
   );
 }
