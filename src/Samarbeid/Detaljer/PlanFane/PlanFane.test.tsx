@@ -105,13 +105,14 @@ describe("PlanFane", () => {
     });
     expect(rader).toHaveLength(1);
     expect(
-      queryAllByText(container, innholdstekst)[0].parentElement,
-    ).toHaveClass("navds-accordion__content--closed", { exact: false });
+      queryAllByText(container, innholdstekst)[0].parentElement?.parentElement,
+    ).toHaveClass("aksel-accordion__content--closed", { exact: false });
     act(() => rader[0].click());
     waitFor(() =>
       expect(
-        queryAllByText(container, innholdstekst)[0].parentElement,
-      ).not.toHaveClass("navds-accordion__content--closed", { exact: false }),
+        queryAllByText(container, innholdstekst)[0].parentElement
+          ?.parentElement,
+      ).not.toHaveClass("aksel-accordion__content--closed", { exact: false }),
     );
 
     // Sjekk at vi ikke har noen UU-feil
