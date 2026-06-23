@@ -1,4 +1,17 @@
-export type SamarbeidStatus = "AKTIV" | "FULLFØRT" | "SLETTET" | "AVBRUTT";
+export type SamarbeidStatus =
+  | "AKTIV"
+  | "NY"
+  | "IKKE_AKTIV"
+  | "VURDERES"
+  | "KONTAKTES"
+  | "KARTLEGGES"
+  | "VI_BISTÅR"
+  | "IKKE_AKTUELL"
+  | "FULLFØRT"
+  | "SLETTET"
+  | "AVBRUTT"
+  | "VURDERT"
+  | "AVSLUTTET";
 
 type SamarbeidhendelseBase = {
   dato: Date;
