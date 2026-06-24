@@ -3,6 +3,7 @@ import styles from "./Historikk.module.css";
 import {
   Alert,
   BodyShort,
+  Box,
   Heading,
   Skeleton,
   ToggleGroup,
@@ -24,7 +25,13 @@ const Historikk: FunctionComponent<Props> = (props) => {
   );
 
   return (
-    <div className={styles["historikk__wrapper"]}>
+    <Box
+      style={{ backgroundColor: "white" }}
+      padding="space-16"
+      borderWidth="1"
+      borderRadius="8"
+      className={styles["historikk__wrapper"]}
+    >
       <div className={styles["historikk"]}>
         <div className={styles["historikk__overdel-wrapper"]}>
           <div className={styles["historikk__tekst-wrapper"]}>
@@ -58,7 +65,7 @@ const Historikk: FunctionComponent<Props> = (props) => {
           />
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 

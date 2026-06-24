@@ -7,8 +7,8 @@ import {
   sammenliknSykefraværstekst,
 } from "../vurderingstekster";
 import { Kakediagram } from "../Kakediagram/Kakediagram";
-import { sammenliknSykefravær } from "../vurdering-utils";
-import { BodyShort, Heading, Ingress, Label, Panel } from "@navikt/ds-react";
+import { sammenliknSykefravær, SykefraværVurdering } from "../vurdering-utils";
+import { BodyShort, Heading, Ingress, Label, Box } from "@navikt/ds-react";
 import { Prosent } from "../Prosent";
 import { parseVerdi } from "../../utils/app-utils";
 import { Statistikk } from "../../hooks/useSykefraværAppData";
@@ -32,25 +32,115 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
     bransjeEllerNæringStatistikk,
   );
 
-  const antallKvartalerVirksomhet =
-    virksomhetStatistikk?.kvartalerIBeregningen.length || 0;
   const harBransje: boolean =
     bransjeEllerNæringStatistikk?.statistikkategori ===
     Statistikkategori.BRANSJE;
-  const innhold = (
+  const vurderingstekst = sammenliknSykefraværstekst(
+    harBransje,
+    sykefraværVurdering,
+    sammenligningsType,
+  );
+
+  const getPaneltittel = (): ReactElement | string => {
+    switch (sammenligningsType) {
+      case SammenligningsType.TOTALT:
+        return "Legemeldt sykefravær";
+      case SammenligningsType.KORTTID:
+        return "Legemeldt korttidsfravær fra 1. til 16. dag";
+      case SammenligningsType.LANGTID:
+        return "Legemeldt langtidsfravær fra 17. dag";
+      case SammenligningsType.GRADERT:
+        return "Gradert sykmelding";
+    }
+  };
+
+  return (
+    <Box
+      style={{ backgroundColor: "white" }}
+      padding="space-16"
+      borderWidth="1"
+      borderRadius="8"
+      className={styles["sammenligningspanel"]}
+    >
+      <div className={styles["sammenligningspanel__extra-padding-desktop"]}>
+        <div className={styles["sammenligningspanel__tittel-wrapper"]}>
+          {SammenligningsType.GRADERT === sammenligningsType ? (
+            <Kakediagram resultat={sykefraværVurdering} />
+          ) : (
+            <Speedometer resultat={sykefraværVurdering} inline />
+          )}
+          <div className={styles["sammenligningspanel__tittel-tekst"]}>
+            <Heading level="2" size="medium">
+              {getPaneltittel()}
+            </Heading>
+            <BodyShort
+              className={styles["sammenligningspanel__tittel-forklaring"]}
+            >
+              {vurderingstekst}
+            </BodyShort>
+          </div>
+        </div>
+        <div className={styles["sammenligningspanel__innhold"]}>
+          <Sammenlikningsinnhold
+            sammenligningsType={sammenligningsType}
+            virksomhetStatistikk={virksomhetStatistikk}
+            bransjeEllerNæringStatistikk={bransjeEllerNæringStatistikk}
+            harBransje={harBransje}
+            sykefraværVurdering={sykefraværVurdering}
+          />
+        </div>
+        <div className={styles["sammenligningspanel__print-innhold"]}>
+          <Sammenlikningsinnhold
+            sammenligningsType={sammenligningsType}
+            virksomhetStatistikk={virksomhetStatistikk}
+            bransjeEllerNæringStatistikk={bransjeEllerNæringStatistikk}
+            harBransje={harBransje}
+            sykefraværVurdering={sykefraværVurdering}
+          />
+        </div>
+      </div>
+    </Box>
+  );
+};
+
+function Sammenlikningsinnhold({
+  sammenligningsType,
+  virksomhetStatistikk,
+  bransjeEllerNæringStatistikk,
+  harBransje,
+  sykefraværVurdering,
+}: {
+  sammenligningsType: SammenligningsType;
+  virksomhetStatistikk?: Statistikk;
+  bransjeEllerNæringStatistikk?: Statistikk;
+  harBransje: boolean;
+  sykefraværVurdering: SykefraværVurdering;
+}) {
+  const antallKvartalerVirksomhet =
+    virksomhetStatistikk?.kvartalerIBeregningen.length || 0;
+
+  return (
     <>
       <div className={styles["sammenligningspanel__wrapper"]}>
         <div>
           <Ingress as="span">Din virksomhet:</Ingress>
           <Prosent prosent={virksomhetStatistikk?.verdi} />
-          <Label>{virksomhetStatistikk?.kvartalerIBeregningen ? `${virksomhetStatistikk?.kvartalerIBeregningen.length} av 4 kvartaler` : 'Ingen statistikk tilgjengelig'}</Label>
+          <Label>
+            {virksomhetStatistikk?.kvartalerIBeregningen
+              ? `${virksomhetStatistikk?.kvartalerIBeregningen.length} av 4 kvartaler`
+              : "Ingen statistikk tilgjengelig"}
+          </Label>
         </div>
         <div>
           <Ingress as="span">
             {harBransje ? "Din bransje: " : "Din Næring: "}
           </Ingress>
           <Prosent prosent={bransjeEllerNæringStatistikk?.verdi} />
-          <Label>{bransjeEllerNæringStatistikk ? '4 av 4 kvartaler' : 'Ingen statistikk tilgjengelig'}</Label>
+          <Label>
+            {bransjeEllerNæringStatistikk
+              ? "4 av 4 kvartaler"
+              : "Ingen statistikk tilgjengelig"}
+          </Label>
         </div>
       </div>
       {sammenligningsType === SammenligningsType.GRADERT && (
@@ -87,50 +177,4 @@ export const Sammenligningspanel: FunctionComponent<Props> = ({
         )}
     </>
   );
-  const vurderingstekst = sammenliknSykefraværstekst(
-    harBransje,
-    sykefraværVurdering,
-    sammenligningsType,
-  );
-
-  const getPaneltittel = (): ReactElement | string => {
-    switch (sammenligningsType) {
-      case SammenligningsType.TOTALT:
-        return "Legemeldt sykefravær";
-      case SammenligningsType.KORTTID:
-        return "Legemeldt korttidsfravær fra 1. til 16. dag";
-      case SammenligningsType.LANGTID:
-        return "Legemeldt langtidsfravær fra 17. dag";
-      case SammenligningsType.GRADERT:
-        return "Gradert sykmelding";
-    }
-  };
-
-  return (
-    <Panel border className={styles["sammenligningspanel"]}>
-      <div className={styles["sammenligningspanel__extra-padding-desktop"]}>
-        <div className={styles["sammenligningspanel__tittel-wrapper"]}>
-          {SammenligningsType.GRADERT === sammenligningsType ? (
-            <Kakediagram resultat={sykefraværVurdering} />
-          ) : (
-            <Speedometer resultat={sykefraværVurdering} inline />
-          )}
-          <div className={styles["sammenligningspanel__tittel-tekst"]}>
-            <Heading level="2" size="medium">
-              {getPaneltittel()}
-            </Heading>
-            <BodyShort
-              className={styles["sammenligningspanel__tittel-forklaring"]}
-            >
-              {vurderingstekst}
-            </BodyShort>
-          </div>
-        </div>
-        <div className={styles["sammenligningspanel__innhold"]}>{innhold}</div>
-        <div className={styles["sammenligningspanel__print-innhold"]}>
-          {innhold}
-        </div>
-      </div>
-    </Panel>
-  );
-};
+}

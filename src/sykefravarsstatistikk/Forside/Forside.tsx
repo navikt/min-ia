@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styles from "./Forside.module.css";
 import { getBransjeEllerNæringKategori } from "./Sammenligningspaneler/GetBransjeEllerNæringKategori";
-import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
+import { Alert, BodyShort, Box, Heading, Skeleton } from "@navikt/ds-react";
 import { PeriodeForStatistikk } from "./PeriodeForStatistikk";
 import { PubliseringsdatoOppdateringsinfo } from "./PubliseringsdatoOppdateringsinfo";
 import LastNedKnapp from "./LastNedKnapp";
@@ -176,7 +176,13 @@ export const Forside = ({
           </div>
           <div className={styles["forside__wrapper_to_kolonner"]}>
             <div className={styles["forside__wrapper_venstre_kolonne"]}>
-              <div className={styles["forside__innhold__header"]}>
+              <Box
+                style={{ backgroundColor: "white" }}
+                padding="space-16"
+                borderWidth="1"
+                borderRadius="8"
+                className={styles["forside__innhold__header"]}
+              >
                 <div className={styles["forside__innhold__header_tekst"]}>
                   <PeriodeForStatistikk
                     restPubliseringsdatoer={appData.publiseringsdatoer}
@@ -194,7 +200,7 @@ export const Forside = ({
                 >
                   <LastNedKnapp innholdRef={innholdRef} />
                 </div>
-              </div>
+              </Box>
               <MerOmSykefraværsstatistikk
                 harBransje={harBransje}
                 synnligPåStoreFlater={false}
