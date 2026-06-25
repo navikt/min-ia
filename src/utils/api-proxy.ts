@@ -25,12 +25,23 @@ export default async function proxyRequestWithTokenExchange(
     return res.status(401).json({ error: "authentication failed" });
   }
 
-  await proxyApiRouteRequest({
-    req,
-    res,
-    hostname: hostname,
-    path: path,
-    bearerToken: newAuthToken,
-    https: useHttps,
-  });
+  try {
+    await proxyApiRouteRequest({
+      req,
+      res,
+      hostname: hostname,
+      path: path,
+      bearerToken: newAuthToken,
+      https: useHttps,
+    });
+    
+    backendLogger.info(
+      `Proxy request succeeded. Hostname: ${hostname}, Path: ${path}, Status: ${res.statusCode}`,
+    );
+  } catch (error) {
+    backendLogger.error(
+      `Proxy request failed. Hostname: ${hostname}, Path: ${path}, Error: ${error instanceof Error ? error.message : String(error)}`,
+    );
+    throw error;
+  }
 }
