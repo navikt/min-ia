@@ -7,6 +7,7 @@ interface Metrikk {
 }
 
 const METRIKKER_URL = AUTHENTICATED_BASE_PATH + "/metrikker";
+const ORGNR_PATTERN = /\d{9}/g;
 
 export const sendDigitalIaTjenesteMetrikk = async (orgnr?: string) => {
   if (!orgnr) {
@@ -19,7 +20,7 @@ export const sendDigitalIaTjenesteMetrikk = async (orgnr?: string) => {
     kilde: "FOREBYGGE_FRAVÆR",
   };
 
-  return await fetch(METRIKKER_URL, {
+  const response = await fetch(METRIKKER_URL, {
     method: "POST",
     credentials: "include",
     body: JSON.stringify(metrikk),
@@ -28,4 +29,14 @@ export const sendDigitalIaTjenesteMetrikk = async (orgnr?: string) => {
       "Content-Type": "application/json",
     },
   });
+
+  const responseBody = await response
+    .clone()
+    .text()
+    .then((body) => body.replace(ORGNR_PATTERN, "*********"));
+  console.log(
+    `Metrikker request return code: ${response.status}, body: ${responseBody}`,
+  );
+
+  return response;
 };

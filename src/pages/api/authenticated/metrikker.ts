@@ -1,7 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import proxyRequestWithTokenExchange from "../../../utils/api-proxy";
 import { iaMetrikkerApiPath } from "@navikt/ia-metrikker-client";
-import { anonymizeOrgnr, backendLogger } from "../../../utils/backendLogger";
+import { backendLogger } from "../../../utils/backendLogger";
+
+function anonymizeOrgnr(value: string): string {
+  return value.replace(/\d{9}/g, "*********");
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,14 +23,18 @@ export default async function handler(
 
   res.write = ((chunk: unknown, ...args: unknown[]) => {
     if (chunk) {
-      responseChunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk)));
+      responseChunks.push(
+        Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk)),
+      );
     }
     return originalWrite(chunk as never, ...(args as never[]));
   }) as typeof res.write;
 
   res.end = ((chunk: unknown, ...args: unknown[]) => {
     if (chunk) {
-      responseChunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk)));
+      responseChunks.push(
+        Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk)),
+      );
     }
     return originalEnd(chunk as never, ...(args as never[]));
   }) as typeof res.end;
