@@ -38,13 +38,13 @@ export default async function proxyRequestWithTokenExchange(
       bearerToken: newAuthToken,
       https: useHttps,
     });
-    
+
     backendLogger.info(
-      `Proxy request succeeded. Hostname: ${hostname}, Path: ${anonymizeOrgnr(path)}, Status: ${res.statusCode}`,
+      `Proxy request succeeded. Method: ${req.method}, Hostname: ${hostname}, Path: ${anonymizeOrgnr(path)}, Status: ${res.statusCode}`,
     );
   } catch (error) {
     backendLogger.error(
-      `Proxy request failed. Hostname: ${hostname}, Path: ${anonymizeOrgnr(path)}, Error: ${error instanceof Error ? error.message : String(error)}`,
+      `Proxy request failed. Method: ${req.method}, Hostname: ${hostname}, Path: ${anonymizeOrgnr(path)}, Error: ${error instanceof Error ? error.message : String(error)}`,
     );
     throw error;
   }
