@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - legg-til-logg-for-kall-til-ia-tjenester-metrikker
+      - verktøy-bhg-fix
     paths-ignore:
       - "**.md"
       - "**/**.md"
