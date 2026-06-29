@@ -1,4 +1,11 @@
-import { BodyShort, Button, Heading, Page } from "@navikt/ds-react";
+import {
+  BodyShort,
+  Button,
+  Heading,
+  Page,
+  HStack,
+  VStack,
+} from "@navikt/ds-react";
 import { ExternalLink } from "@navikt/ds-icons";
 import React, { ReactNode } from "react";
 
@@ -29,14 +36,13 @@ export default function VerktøyBarnehager() {
       >
         Gode verktøy for å forebygge og redusere sykefravær
       </Heading>
-      <div className={styles.verktøyStack}>
+      <HStack gap="4" wrap align="stretch" justify="center">
         <VerktøykortBarnehager
           tittel="Arbeidsmiljøhjelpen"
           innhold="Diskuter typiske utfordringer i bransjen og lag en handlingsplan for å utvikle arbeidsmiljøet"
           lenke={ARBEIDSMILJØHJELPEN_BARNEHAGE_URL}
           lenketekst="Arbeidsmiljøhjelpen"
           bilde={Arbeidsmiljøhjelpen}
-          bildeClassName={styles.arbeidsmiljøhjelpenBilde}
           kortClassName={styles.arbeidsmiljøhjelpenKort}
         />
         <VerktøykortBarnehager
@@ -45,7 +51,6 @@ export default function VerktøyBarnehager() {
           lenke={EN_BRA_DAG_PÅ_JOBB_BARNEHAGE_URL}
           lenketekst="En bra dag på jobb"
           bilde={En_Bra_Dag_På_Jobb}
-          bildeClassName={styles.enBraDagBilde}
           kortClassName={styles.enBraDagKort}
         />
         <VerktøykortBarnehager
@@ -54,10 +59,9 @@ export default function VerktøyBarnehager() {
           lenke={IDEBANKEN_BARNEHAGE_URL}
           lenketekst="Idébanken"
           bilde={Idebanken_Barnehage}
-          bildeClassName={styles.idebankenBilde}
           kortClassName={styles.idebankenKort}
         />
-      </div>
+      </HStack>
     </Page.Block>
   );
 }
@@ -68,7 +72,6 @@ function VerktøykortBarnehager({
   lenke,
   lenketekst,
   bilde,
-  bildeClassName,
   kortClassName,
 }: {
   tittel: ReactNode;
@@ -76,32 +79,40 @@ function VerktøykortBarnehager({
   lenke: string;
   lenketekst: string;
   bilde: StaticImageData;
-  bildeClassName: string;
   kortClassName: string;
 }) {
   return (
-    <div className={`${styles.verktøykort} ${kortClassName}`}>
-      <Heading size="small" level="3">
-        {tittel}
-      </Heading>
-      <BodyShort size="small" className={styles.verdi}>
-        {innhold}
-      </BodyShort>
-      <Button
-        as="a"
-        href={lenke}
-        role="link"
-        target="_blank"
-        className={styles.lenke}
-        variant="primary"
-        size="small"
-        icon={<ExternalLink fontSize="1rem" aria-hidden />}
-        iconPosition="right"
-        onClick={() => sendNavigereEvent(lenketekst, lenke)}
-      >
-        {lenketekst}
-      </Button>
-      <Image src={bilde} alt="" className={bildeClassName} aria-hidden />
-    </div>
+    <VStack
+      className={`${styles.verktøykort} ${kortClassName}`}
+      gap="2"
+      align="center"
+      justify="space-between"
+    >
+      <VStack gap="1" align="center" justify="start">
+        <Heading size="small" level="3">
+          {tittel}
+        </Heading>
+        <BodyShort size="small" className={styles.verdi}>
+          {innhold}
+        </BodyShort>
+      </VStack>
+      <VStack gap="4" align="center" justify="start">
+        <Button
+          as="a"
+          href={lenke}
+          role="link"
+          target="_blank"
+          className={styles.lenke}
+          variant="primary"
+          size="small"
+          icon={<ExternalLink fontSize="1rem" aria-hidden />}
+          iconPosition="right"
+          onClick={() => sendNavigereEvent(lenketekst, lenke)}
+        >
+          {lenketekst}
+        </Button>
+        <Image src={bilde} alt="" className={styles.bilde} aria-hidden />
+      </VStack>
+    </VStack>
   );
 }
