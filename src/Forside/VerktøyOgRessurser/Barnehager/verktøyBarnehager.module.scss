@@ -5,88 +5,40 @@
   .verktøyOgRessurserTittel {
     margin-bottom: 2rem;
   }
-  .verktøyStack {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 1rem 2rem;
 
-    @media (max-width: 71.5rem) {
-      grid-template-columns: repeat(2, 1fr);
+  .verktøykort {
+    width: min-content;
+    max-width: 25rem;
+    flex-grow: 1;
 
-      @media (min-width: 53.75rem) {
-        justify-items: center;
-      }
+    border-radius: 0.5rem;
+    padding: 2.5rem 1rem 1.5rem;
+    text-align: center;
+
+    .verdi {
+      width: 15rem;
+      line-height: 22px;
     }
 
-    @media (max-width: 47.625rem) {
-      grid-template-columns: 1fr;
-      justify-items: center;
+    .lenke {
+      width: fit-content;
+      justify-self: center;
     }
 
-    .verktøykort {
-      background: var(--surface-action-subtle-hover, #cce1ff);
-      display: grid;
-      max-width: 25rem;
-      min-width: 15rem;
-      grid-row: span 4;
-      grid-template-rows: subgrid;
-
-      border-radius: 0.5rem;
-      padding: 2.5rem 5.5rem 1.5rem;
-      gap: 1rem;
-      text-align: center;
-
-      .label {
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 22px;
-      }
-
-      .verdi {
-        &:not(:only-child) {
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 22px;
-        }
-      }
-
-      .lenke {
-        width: fit-content;
-        justify-self: center;
-      }
-
-      .arbeidsmiljøhjelpenBilde {
-        width: 173px;
-        height: auto;
-        justify-self: center;
-        align-self: center;
-      }
-
-      .enBraDagBilde {
-        width: 172px;
-        height: auto;
-        justify-self: center;
-        align-self: center;
-      }
-
-      .idebankenBilde {
-        width: 153px;
-        height: auto;
-        justify-self: center;
-        align-self: center;
-      }
+    .bilde {
+      height: 100px;
+      width: auto;
     }
 
-    .arbeidsmiljøhjelpenKort {
+    &.arbeidsmiljøhjelpenKort {
       background-color: #f9f5ea;
     }
 
-    .enBraDagKort {
+    &.enBraDagKort {
       background-color: #cdeefb;
     }
 
-    .idebankenKort {
+    &.idebankenKort {
       background-color: #d3ddde;
     }
   }
