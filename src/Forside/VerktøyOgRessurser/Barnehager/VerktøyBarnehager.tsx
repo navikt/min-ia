@@ -101,7 +101,7 @@ function VerktøykortBarnehager({
       >
         {lenketekst}
       </Button>
-      <Image src={bilde} alt={lenketekst} className={bildeClassName} />
+      <Image src={bilde} alt="" className={bildeClassName} aria-hidden />
     </div>
   );
 }
