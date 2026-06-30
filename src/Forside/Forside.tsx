@@ -1,5 +1,5 @@
 import styles from "./forside.module.scss";
-import React  from "react";
+import React from "react";
 import { useAggregertStatistikk } from "../hooks/useAggregertStatistikk";
 import { erFerdigNedlastet, RestStatus } from "../integrasjoner/rest-status";
 import { hentUtSykefraværsstatistikkData } from "../komponenter/Infographic/datauthenting";
@@ -15,8 +15,9 @@ import VerktøyOgRessurser from "./VerktøyOgRessurser/VerktøyOgRessurser";
 import InkluderendeArbeidsliv from "./InkluderendeArbeidsliv/InkluderendeArbeidsliv";
 import Samarbeidsoversikt from "../Samarbeid/Samarbeidsoversikt";
 import { RisikoFaktorer } from "./NOA/RisikoFaktorer";
-import VerktøyBarnehager from "./VerktøyOgRessurser/Barnehager/VerktøyBarnehager";
 import { bransjeTilNoa } from "./NOA/data";
+import VerktøyBransje from "./VerktøyOgRessurser/BransjeSpesifikk/VerktøyBransje";
+import { bransjeTilVerktøy } from "./VerktøyOgRessurser/BransjeSpesifikk/data";
 
 export interface ForsideProps {
   sykefraværsstatistikkUrl: string;
@@ -33,9 +34,18 @@ export const Forside = (props: ForsideProps) => {
     : tomtDataobjekt;
 
   const noaInfo = React.useMemo(() => {
-    const bransje = aggregertStatistikkData.prosentSiste4KvartalerTotalt?.find((statistikk) => statistikk.statistikkategori === 'BRANSJE')?.label.toLowerCase()
-    return bransje ? bransjeTilNoa[bransje] : undefined
-  }, [aggregertStatistikkData])
+    const bransje = aggregertStatistikkData.prosentSiste4KvartalerTotalt
+      ?.find((statistikk) => statistikk.statistikkategori === "BRANSJE")
+      ?.label.toLowerCase();
+    return bransje ? bransjeTilNoa[bransje] : undefined;
+  }, [aggregertStatistikkData]);
+
+  const bransjeVerktøy = React.useMemo(() => {
+    const bransje = aggregertStatistikkData.prosentSiste4KvartalerTotalt
+      ?.find((statistikk) => statistikk.statistikkategori === "BRANSJE")
+      ?.label.toLowerCase();
+    return bransje ? bransjeTilVerktøy[bransje] : undefined;
+  }, [aggregertStatistikkData]);
 
   return (
     <>
@@ -62,24 +72,10 @@ export const Forside = (props: ForsideProps) => {
         />
       )}
       <Fraværskalkulator />
-      {!!noaInfo && (
-        <>
-          <RisikoFaktorer noaInfo={noaInfo} />
-          {
-            // TODO: Bruk dette for alle bransjer. Kan gjøres når vi har lenker og bilder for alle bransjer
-            noaInfo.noaBransje === "Barnehage og skolefritidsordning" && (
-              <VerktøyBarnehager />
-            )
-          }
-        </>
-      )}
+      {noaInfo && <RisikoFaktorer noaInfo={noaInfo} />}
+      {bransjeVerktøy && <VerktøyBransje verktøy={bransjeVerktøy} />}
       <TjenesterFraNav />
-      {
-        // TODO: Bruk dette kun hvis noaBransje ikke finnes. Kan gjøres når vi har lenker og bilder for alle bransje
-        noaInfo?.noaBransje !== "Barnehage og skolefritidsordning" && (
-          <VerktøyOgRessurser />
-        )
-      }
+      {!bransjeVerktøy && <VerktøyOgRessurser />}
       <InkluderendeArbeidsliv />
       <Aktiviteter sykefraværsstatistikk={aggregertStatistikkData} />
       <KontaktOss kontaktOssUrl={props.kontaktOssUrl} />
