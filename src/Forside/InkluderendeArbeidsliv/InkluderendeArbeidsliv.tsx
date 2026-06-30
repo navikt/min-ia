@@ -7,6 +7,7 @@ import {
   List,
   Page,
   VStack,
+  Box,
 } from "@navikt/ds-react";
 import Image from "next/image";
 
@@ -20,8 +21,12 @@ export default function InkluderendeArbeidsliv() {
   return (
     <Bleed className={styles.inkluderendeArbeidsliv__bleed}>
       <Page.Block width="xl" className={styles.inkluderendeArbeidsliv}>
-        <HStack gap="2" wrap className={styles.inkluderendeArbeidsliv__hs}>
-          <VStack gap="4" className={styles.inkluderendeArbeidsliv__vs}>
+        <HStack
+          gap="space-8"
+          wrap
+          className={styles.inkluderendeArbeidsliv__hs}
+        >
+          <VStack gap="space-16" className={styles.inkluderendeArbeidsliv__vs}>
             <Heading size="large" level="2">
               Inkluderende arbeidsliv
             </Heading>
@@ -36,13 +41,15 @@ export default function InkluderendeArbeidsliv() {
               >
                 Navs innsatsområder i avtalen:
               </BodyShort>
-              <List as="ul">
-                <List.Item>Få tilskudd til ekspertbistand</List.Item>
-                <List.Item>Få hjelp til å redusere sykefraværet</List.Item>
-              </List>
+              <Box marginBlock="space-16" asChild>
+                <List data-aksel-migrated-v8 as="ul">
+                  <List.Item>Få tilskudd til ekspertbistand</List.Item>
+                  <List.Item>Få hjelp til å redusere sykefraværet</List.Item>
+                </List>
+              </Box>
             </span>
             <Link
-              variant="neutral"
+              data-color="neutral"
               href={IA_REGJERINGEN_URL}
               target="_blank"
               onClick={() =>

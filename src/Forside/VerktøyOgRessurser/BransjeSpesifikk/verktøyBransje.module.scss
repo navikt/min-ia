@@ -35,11 +35,11 @@
     }
 
     &.enBraDagKort {
-      background-color: #cdeefb;
+      background-color: var(--ax-bg-accent-moderate);
     }
 
     &.idebankenKort {
-      background-color: #fef2f7;
+      background-color: var(--ax-bg-brand-magenta-moderate);
     }
   }
 }

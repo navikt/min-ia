@@ -47,13 +47,13 @@ function Samarbeidsdropdown({
       <Label htmlFor="samarbeidsvelger">Velg samarbeid</Label>
       <ActionMenu.Trigger>
         <Button
+          data-color="neutral"
           id="samarbeidsvelger"
-          variant="secondary-neutral"
+          variant="secondary"
           icon={<ChevronDownIcon aria-hidden />}
           iconPosition="right"
           size="small"
-          className={styles.menyknapp}
-        >
+          className={styles.menyknapp}>
           {valgtSamarbeidObjekt ? valgtSamarbeidObjekt.navn : "Velg samarbeid"}
         </Button>
       </ActionMenu.Trigger>

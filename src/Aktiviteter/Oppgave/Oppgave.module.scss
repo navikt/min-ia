@@ -1,7 +1,7 @@
 /* Gjør at oppgave får samme padding over og under
  * ved å fjerne margin på siste element i oppgaveblokka */
 .oppgaveblokk {
-  --oppgaveblokk-farge: var(--a-blue-100);
+  --oppgaveblokk-farge: white;
   --oppgaveblokk-padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   padding: var(--oppgaveblokk-padding);
   margin-bottom: 1rem;
   background-color: var(--oppgaveblokk-farge);
-  border-radius: var(--a-border-radius-medium);
+  border-radius: var(--ax-radius-4);
 
   .oppgaveinnhold {
     > :last-child {
@@ -63,7 +63,7 @@
       justify-content: center;
       align-items: flex-end;
       margin-top: 1rem;
-      border-top: thin solid var(--a-gray-400);
+      border-top: thin solid var(--ax-neutral-500);
       padding-top: calc(var(--oppgaveblokk-padding) / 2);
     }
     .oppgavetekst {
@@ -73,9 +73,7 @@
     .statusknapp {
       pointer-events: all;
       background-color: var(--oppgaveblokk-farge);
-      --a-surface-neutral-subtle-hover: var(--a-blue-100);
-      --a-text-action: var(--a-blue-600);
-      --__ac-button-secondary-border: var(--a-blue-600);
+      --__ac-button-secondary-border: var(--ax-accent-700);
     }
     .helknapp {
       width: 15.5rem;

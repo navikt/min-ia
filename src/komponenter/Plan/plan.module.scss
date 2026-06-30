@@ -4,10 +4,10 @@
   flex-direction: column;
   gap: 3rem;
   margin: 1rem 0 2rem;
-  background-color: var(--a-white);
+  background-color: white;
   padding: 2rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--a-border-default);
+  border: 1px solid var(--ax-border-neutral);
 }
 
 .styledAccordion {
@@ -25,13 +25,13 @@
       display: grid;
       grid-template-columns: subgrid;
 
-      :global(.navds-accordion__header-content) {
+      :global(.aksel-heading) {
         grid-column: 2/5;
         display: grid;
         grid-template-columns: subgrid;
 
         :not(:first-child) {
-          font-weight: var(--a-font-weight-regular);
+          font-weight: var(--ax-font-weight-regular);
         }
       }
 

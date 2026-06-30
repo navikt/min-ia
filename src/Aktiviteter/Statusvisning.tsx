@@ -7,15 +7,13 @@ export function Statusvisning({ status }: { status?: StatusType }) {
   switch (status) {
     case "STARTET":
       return (
-        <Tag className={styles.oppgavestatus} variant="warning">
-          Under arbeid
-        </Tag>
+        <Tag data-color="warning" className={styles.oppgavestatus} variant="outline">Under arbeid
+                  </Tag>
       );
     case "FULLFØRT":
       return (
-        <Tag className={styles.oppgavestatus} variant="success">
-          Fullført
-        </Tag>
+        <Tag data-color="success" className={styles.oppgavestatus} variant="outline">Fullført
+                  </Tag>
       );
     case "AVBRUTT":
     case null:

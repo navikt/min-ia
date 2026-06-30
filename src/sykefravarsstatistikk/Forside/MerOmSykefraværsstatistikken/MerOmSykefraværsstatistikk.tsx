@@ -1,5 +1,5 @@
 import styles from "./MerOmSykefraværsstatistikk.module.css";
-import { Heading } from "@navikt/ds-react";
+import { Box, Heading } from "@navikt/ds-react";
 import { HvordanHarViKommetFramTilDittResultat } from "./HvordanHarViKommetFramTilDittResultat";
 import { HvilkenStatistikkVisesIkkeHer } from "./HvilkenStatistikkVisesIkkeHer";
 import { HvilkenPeriodeErStatistikkenBasertPå } from "./HvilkenPeriodeErStatistikkenBasertPå";
@@ -19,7 +19,13 @@ export const MerOmSykefraværsstatistikk = ({
     ? "mer_om_statistikk__store_flater"
     : "mer_om_statistikk";
   return (
-    <div className={styles[classNames]}>
+    <Box
+      style={{ backgroundColor: "white" }}
+      padding="space-16"
+      borderWidth="1"
+      borderRadius="8"
+      className={styles[classNames]}
+    >
       <Heading spacing size="small" level="2">
         Mer om sykefraværsstatistikken
       </Heading>
@@ -27,6 +33,6 @@ export const MerOmSykefraværsstatistikk = ({
       <HvilkenStatistikkVisesIkkeHer />
       <HvilkenPeriodeErStatistikkenBasertPå />
       <HvordanSammenlignerViMedDinBransje harBransje={harBransje} />
-    </div>
+    </Box>
   );
 };

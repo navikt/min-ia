@@ -17,8 +17,8 @@ export function InfographicFlis({
     if (nedlastingPågår) {
       return (
         <Box
-          padding="4"
-          background="surface-success-subtle"
+          padding="space-16"
+          background="success-soft"
           className={styles.infographicFlisBox}
         >
           <Skeleton width="12rem" />
@@ -27,8 +27,8 @@ export function InfographicFlis({
     }
     return (
       <Box
-        padding="4"
-        background="surface-success-subtle"
+        padding="space-16"
+        background="success-soft"
         className={styles.infographicFlisBox}
       >
         <BodyShort size="small" className={styles.verdi}>
@@ -41,8 +41,8 @@ export function InfographicFlis({
   if (nedlastingPågår) {
     return (
       <Box
-        padding="4"
-        background="surface-success-subtle"
+        padding="space-16"
+        background="success-soft"
         className={styles.infographicFlisBox}
       >
         <Skeleton width="8rem" />
@@ -53,8 +53,8 @@ export function InfographicFlis({
 
   return (
     <Box
-      padding="4"
-      background="surface-success-subtle"
+      padding="space-16"
+      background="success-soft"
       className={styles.infographicFlisBox}
     >
       {label && <BodyShort className={styles.label}>{label}:</BodyShort>}

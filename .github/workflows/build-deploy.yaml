@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - bransje-verktøy
+      - aksel-v8
     paths-ignore:
       - "**.md"
       - "**/**.md"

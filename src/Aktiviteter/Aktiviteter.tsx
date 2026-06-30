@@ -23,6 +23,7 @@ import {
   Link,
   List,
   Page,
+  Box
 } from "@navikt/ds-react";
 import { AktivitetHeader } from "./AktivitetHeader";
 import { AktivitetStatistikkType } from "./typer";
@@ -211,21 +212,21 @@ function Undertittel({ innhold }: AktivitetUndertittelType) {
 
 function Punktliste({ innhold }: AktivitetPunktlisteType) {
   return (
-    <List as="ul">
-      {innhold.map((punkt, index) => (
-        <Punkt {...punkt} key={index} />
-      ))}
-    </List>
+    <Box marginBlock="space-16" asChild><List data-aksel-migrated-v8 as="ul">
+        {innhold.map((punkt, index) => (
+          <Punkt {...punkt} key={index} />
+        ))}
+      </List></Box>
   );
 }
 
 function Numrertliste({ innhold }: AktivitetNumrertlisteType) {
   return (
-    <List as="ol" className={styles.numrertliste}>
-      {innhold.map((punkt, index) => (
-        <Punkt {...punkt} key={index} />
-      ))}
-    </List>
+    <div className={styles.numrertliste}><Box marginBlock="space-16" asChild><List data-aksel-migrated-v8 as="ol">
+          {innhold.map((punkt, index) => (
+            <Punkt {...punkt} key={index} />
+          ))}
+        </List></Box></div>
   );
 }
 

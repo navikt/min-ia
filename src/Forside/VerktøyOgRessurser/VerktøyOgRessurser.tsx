@@ -28,7 +28,7 @@ export default function VerktøyOgRessurser() {
       >
         Gode verktøy og ressurser
       </Heading>
-      <VStack gap="4" className={styles.verktøyStack}>
+      <VStack gap="space-16" className={styles.verktøyStack}>
         <Verktøykort
           lenke={ARBEIDSMILJØPORTALEN_URL}
           lenketekst="Arbeidsmiljøportalen"

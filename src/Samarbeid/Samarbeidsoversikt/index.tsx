@@ -136,7 +136,7 @@ function Samarbeidsliste({
 
   if (!harAktive && harInaktive) {
     return (
-      <VStack className={styles.samarbeidsliste} gap="4">
+      <VStack className={styles.samarbeidsliste} gap="space-16">
         <SamarbeidslisteElement
           samarbeid={{
             offentligId: tilgjengeligeSamarbeid[0].offentligId,
@@ -158,7 +158,7 @@ function Samarbeidsliste({
     !erEkspandert
   ) {
     return (
-      <VStack className={styles.samarbeidsliste} gap="4">
+      <VStack className={styles.samarbeidsliste} gap="space-16">
         <Samarbeidslisteinnhold tilgjengeligeSamarbeid={filtrerteSamarbeid} />
         <Button
           variant="tertiary"
@@ -176,7 +176,7 @@ function Samarbeidsliste({
   }
 
   return (
-    <VStack className={styles.samarbeidsliste} gap="4">
+    <VStack className={styles.samarbeidsliste} gap="space-16">
       <Samarbeidslisteinnhold
         tilgjengeligeSamarbeid={tilgjengeligeSamarbeid}
         førsteSamarbeidUnderFold={førsteSamarbeidUnderFold}
@@ -247,12 +247,12 @@ function SamarbeidslisteElement({
   }, [autoFocus, setHarFokusert]);
 
   return (
-    <VStack className={styles.samarbeidslisteElement} gap="2">
-      <HStack justify="space-between" align="center" gap="4">
+    <VStack className={styles.samarbeidslisteElement} gap="space-8">
+      <HStack justify="space-between" align="center" gap="space-16">
         <Heading level="3" size="medium">
           {samarbeid.navn}
         </Heading>
-        <HStack gap="6" align="stretch" as={BodyShort}>
+        <HStack gap="space-24" align="stretch" as={BodyShort}>
           {!skjulStatus && <SamarbeidsStatusBadge status={samarbeid.status} />}
           <Button
             as={Link}

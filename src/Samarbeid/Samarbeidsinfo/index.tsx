@@ -23,7 +23,7 @@ export default function Samarbeidsinfo() {
   return (
     <Bleed className={styles.samarbeidsinfo}>
       <Page.Block width="xl">
-        <HStack justify="start" align="center" gap="4">
+        <HStack justify="start" align="center" gap="space-16">
           <Heading level="2" size="medium">
             {samarbeid.navn}
           </Heading>

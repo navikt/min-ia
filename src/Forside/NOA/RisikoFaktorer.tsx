@@ -24,7 +24,7 @@ export const RisikoFaktorer = ({ noaInfo }: { noaInfo: NoaInfo }) => {
           <BodyShort>{noaInfo.ingress}</BodyShort>
         </VStack>
       </HStack>
-      <HStack className={styles.HStackContainer} gap="8">
+      <HStack className={styles.HStackContainer} gap="space-32">
         {noaInfo.risikofaktorer.map(({ risiko, andel }) => (
           <NOAInfographicFlis
             key={risiko}

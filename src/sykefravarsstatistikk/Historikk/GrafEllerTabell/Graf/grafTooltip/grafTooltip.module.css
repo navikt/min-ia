@@ -6,7 +6,7 @@
 
 .tooltip__item-navn-og-verdi {
   font-size: 1rem;
-  color: var(--a-gray-900);
+  color: var(--ax-neutral-1000);
   align-content: center;
   display: flex;
   width: 100%;
@@ -16,12 +16,12 @@
 
 .tooltip__item-navn {
   font-weight: bold;
-  color: var(--a-gray-900);
+  color: var(--ax-neutral-1000);
   margin-right: 0.75rem;
 }
 
 .tooltip__item-verdi {
-  color: var(--a-gray-900);
+  color: var(--ax-neutral-1000);
   align-content: space-around;
 }
 
