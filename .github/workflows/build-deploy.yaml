@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - verktøy-bhg-fix
+      - bransje-verktøy
     paths-ignore:
       - "**.md"
       - "**/**.md"
