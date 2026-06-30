@@ -31,7 +31,7 @@
     "@navikt/nav-dekoratoren-moduler": "^3.6.1",
     "@navikt/next-api-proxy": "^5.0.2",
     "@navikt/oasis": "^4.1.1",
-    "@navikt/virksomhetsvelger": "^1.0.6",
+    "@navikt/virksomhetsvelger": "^2.0.4",
     "@testing-library/dom": "^10.4.1",
     "csp-header": "^6.3.0",
     "dotenv": "^17.3.1",
