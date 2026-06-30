@@ -22,7 +22,7 @@ importers:
         version: 8.13.0
       '@navikt/arbeidsgiver-notifikasjon-widget':
         specifier: ^8.0.4
-        version: 8.0.5(@navikt/aksel-icons@8.13.0)(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)
+        version: 8.0.5(@navikt/aksel-icons@8.13.0)(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@4.2.2(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)
       '@navikt/ds-css':
         specifier: ^8.13.0
         version: 8.13.0
@@ -36,8 +36,8 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
       '@navikt/nav-dekoratoren-moduler':
-        specifier: ^3.6.1
-        version: 3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)
+        specifier: ^4.2.2
+        version: 4.2.2(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)
       '@navikt/next-api-proxy':
         specifier: ^5.0.2
         version: 5.0.2(next@16.2.9(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(sass@1.100.0))
@@ -864,6 +864,10 @@ packages:
   '@navikt/aksel-icons@8.13.0':
     resolution: {integrity: sha512-z2r80EAuKX6W1XUSaBjAvQCAyyjir41XCmXPlmnvvNqOINfV8RFf2LYUx2+FwCqVfuPOdh7sdPLUtzwMl7QNmQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.13.0/155c31917736d4283d4637a221133f3d032f6f95}
 
+  '@navikt/analytics-types@0.0.9':
+    resolution: {integrity: sha512-bopCvqEogyFcmrJiBxK/Mr25d6yPKF7GR36MGrJqiHCPJYf1rDu6lK4cpooTG4Q//D/1xTkHRom8ZH5BI6dTew==, tarball: https://npm.pkg.github.com/download/@navikt/analytics-types/0.0.9/5919241a6dbb782eb101fff3234ce5c36d16e942}
+    engines: {node: '>=20.0.0', npm: '>=9.0.0'}
+
   '@navikt/arbeidsgiver-notifikasjon-widget@8.0.5':
     resolution: {integrity: sha512-Yn/POoULEU+Sdl3veb2iP+nCysAYhhP1Ubo3H/wLIC3iNm33CGEYJ4Q6G4olcuzAv9S1Umk3Knms76fLxaDPxw==, tarball: https://npm.pkg.github.com/download/@navikt/arbeidsgiver-notifikasjon-widget/8.0.5/3c31b445ed8b79b55fb154be5dd28f56604c8ad5}
     peerDependencies:
@@ -896,8 +900,8 @@ packages:
   '@navikt/ia-metrikker-client@1.9.4':
     resolution: {integrity: sha512-Iem79wQa+XTxAN3lfuyBkfe/nTq6VKGHzNlknPJNmv6Vff/FSiBTRy5o+fdV80i4BLJUALD0dJauLWnwpRt3DA==, tarball: https://npm.pkg.github.com/download/@navikt/ia-metrikker-client/1.9.4/5587c35968c01ad7449321b7574d07f94f6e79d7}
 
-  '@navikt/nav-dekoratoren-moduler@3.7.1':
-    resolution: {integrity: sha512-MQLxR4uoADCd6i0hFnWHN/XLPevEfxkBK9yEgbtcY0v2gsj69nALH/7DvTKqSxqRovxOHibVa7mZKZEBAMRBvg==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.7.1/09490a131cedd7779e35d413d20c36bd01ef57a0}
+  '@navikt/nav-dekoratoren-moduler@4.2.2':
+    resolution: {integrity: sha512-1V/fOlgTNzTWRzIgtJwymamj6NgppZdcRTiy9OXO57PwEA6lCoWX9qXh82Zgxl0pOYQQ7QOUH9DOfKov18h3wQ==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.2.2/9982b2b38e397df0e9b0cd886beb3d16d0b97a61}
     engines: {node: 24.x}
     peerDependencies:
       html-react-parser: '>=5.x'
@@ -4703,13 +4707,15 @@ snapshots:
 
   '@navikt/aksel-icons@8.13.0': {}
 
-  '@navikt/arbeidsgiver-notifikasjon-widget@8.0.5(@navikt/aksel-icons@8.13.0)(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)':
+  '@navikt/analytics-types@0.0.9': {}
+
+  '@navikt/arbeidsgiver-notifikasjon-widget@8.0.5(@navikt/aksel-icons@8.13.0)(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@4.2.2(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)':
     dependencies:
       '@apollo/client': 4.1.6(graphql@16.13.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)
       '@navikt/aksel-icons': 8.13.0
       '@navikt/ds-css': 8.13.0
       '@navikt/ds-react': 8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@navikt/nav-dekoratoren-moduler': 3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)
+      '@navikt/nav-dekoratoren-moduler': 4.2.2(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)
       graphql: 16.13.1
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
@@ -4741,8 +4747,9 @@ snapshots:
 
   '@navikt/ia-metrikker-client@1.9.4': {}
 
-  '@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)':
+  '@navikt/nav-dekoratoren-moduler@4.2.2(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)':
     dependencies:
+      '@navikt/analytics-types': 0.0.9
       csp-header: 6.3.1
       html-react-parser: 5.2.17(@types/react@19.2.15)(react@19.2.7)
       js-cookie: 3.0.7
