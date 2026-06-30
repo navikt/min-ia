@@ -36,7 +36,7 @@ export default function VerktøyBarnehager() {
       >
         Gode verktøy for å forebygge og redusere sykefravær
       </Heading>
-      <HStack gap="4" wrap align="stretch" justify="center">
+      <HStack gap="space-16" wrap align="stretch" justify="center">
         <VerktøykortBarnehager
           tittel="Arbeidsmiljøhjelpen"
           innhold="Diskuter typiske utfordringer i bransjen og lag en handlingsplan for å utvikle arbeidsmiljøet"
@@ -84,11 +84,11 @@ function VerktøykortBarnehager({
   return (
     <VStack
       className={`${styles.verktøykort} ${kortClassName}`}
-      gap="2"
+      gap="space-8"
       align="center"
       justify="space-between"
     >
-      <VStack gap="1" align="center" justify="start">
+      <VStack gap="space-4" align="center" justify="start">
         <Heading size="small" level="3">
           {tittel}
         </Heading>
@@ -96,7 +96,7 @@ function VerktøykortBarnehager({
           {innhold}
         </BodyShort>
       </VStack>
-      <VStack gap="4" align="center" justify="start">
+      <VStack gap="space-16" align="center" justify="start">
         <Button
           as="a"
           href={lenke}
