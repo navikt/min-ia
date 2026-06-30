@@ -1,15 +1,9 @@
 import { Tag, TagProps } from "@navikt/ds-react";
-import { SamarbeidStatus } from "../Samarbeidsvelger/samarbeidtyper";
-
-import styles from "./Samarbeidsstatusbadge.module.scss";
+import { SamarbeidStatus } from "./Samarbeidsvelger/samarbeidtyper";
 
 export function SamarbeidsStatusBadge({ status }: { status: SamarbeidStatus }) {
   return (
-    <Tag
-      className={styles.samarbeidsstatusbadge}
-      {...hentVariantForIAStatus(status)}
-      size="small"
-    >
+    <Tag {...hentVariantForIAStatus(status)} size="small">
       {penskrivIAStatus(status)}
     </Tag>
   );
