@@ -3,6 +3,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { proxyApiRouteRequest } from "@navikt/next-api-proxy";
 import { exchangeIdportenSubjectToken, isInvalidToken } from "./tokenx-utils";
 
+function anonymizeOrgnr(path: string): string {
+  return path.replace(/\d{9}/g, "*********");
+}
+
 export default async function proxyRequestWithTokenExchange(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -25,12 +29,23 @@ export default async function proxyRequestWithTokenExchange(
     return res.status(401).json({ error: "authentication failed" });
   }
 
-  await proxyApiRouteRequest({
-    req,
-    res,
-    hostname: hostname,
-    path: path,
-    bearerToken: newAuthToken,
-    https: useHttps,
-  });
+  try {
+    await proxyApiRouteRequest({
+      req,
+      res,
+      hostname: hostname,
+      path: path,
+      bearerToken: newAuthToken,
+      https: useHttps,
+    });
+    
+    backendLogger.info(
+      `Proxy request succeeded. Hostname: ${hostname}, Path: ${anonymizeOrgnr(path)}, Status: ${res.statusCode}`,
+    );
+  } catch (error) {
+    backendLogger.error(
+      `Proxy request failed. Hostname: ${hostname}, Path: ${anonymizeOrgnr(path)}, Error: ${error instanceof Error ? error.message : String(error)}`,
+    );
+    throw error;
+  }
 }
