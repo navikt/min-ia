@@ -1,7 +1,7 @@
 /* Gjør at oppgave får samme padding over og under
  * ved å fjerne margin på siste element i oppgaveblokka */
 .oppgaveblokk {
-  --oppgaveblokk-farge: var(--ax-accent-200);
+  --oppgaveblokk-farge: white;
   --oppgaveblokk-padding: 1rem;
   display: flex;
   flex-direction: column;
