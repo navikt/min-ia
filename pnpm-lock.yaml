@@ -18,20 +18,20 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
       '@navikt/aksel-icons':
-        specifier: ^8.13.0
-        version: 8.13.0
+        specifier: ^8.14.0
+        version: 8.14.0
       '@navikt/arbeidsgiver-notifikasjon-widget':
         specifier: ^8.0.4
-        version: 8.0.5(@navikt/aksel-icons@8.13.0)(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)
+        version: 8.0.5(@navikt/aksel-icons@8.14.0)(@navikt/ds-css@8.14.0)(@navikt/ds-react@8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)
       '@navikt/ds-css':
-        specifier: ^8.13.0
-        version: 8.13.0
+        specifier: ^8.14.0
+        version: 8.14.0
       '@navikt/ds-icons':
         specifier: ^3.4.3
         version: 3.4.3(@types/react@19.2.15)(react@19.2.7)
       '@navikt/ds-react':
-        specifier: ^8.13.0
-        version: 8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: ^8.14.0
+        version: 8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@navikt/ia-metrikker-client':
         specifier: 1.9.4
         version: 1.9.4
@@ -46,7 +46,7 @@ importers:
         version: 4.1.4
       '@navikt/virksomhetsvelger':
         specifier: ^2.0.4
-        version: 2.0.4(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        version: 2.0.4(@navikt/ds-css@8.14.0)(@navikt/ds-react@8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
@@ -861,8 +861,8 @@ packages:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
 
-  '@navikt/aksel-icons@8.13.0':
-    resolution: {integrity: sha512-z2r80EAuKX6W1XUSaBjAvQCAyyjir41XCmXPlmnvvNqOINfV8RFf2LYUx2+FwCqVfuPOdh7sdPLUtzwMl7QNmQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.13.0/155c31917736d4283d4637a221133f3d032f6f95}
+  '@navikt/aksel-icons@8.14.0':
+    resolution: {integrity: sha512-jFBjGMgA2WuAxB4nBzDcF8vf5pkT+OZiCsCZH5D84G/Fk8Os6iUuj1Is0XpMqObNTjI11s+PtQt9Lp/85qB5vw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.14.0/1932d98875d11b80f9c2e443f8db04855cd8ac27}
 
   '@navikt/arbeidsgiver-notifikasjon-widget@8.0.5':
     resolution: {integrity: sha512-Yn/POoULEU+Sdl3veb2iP+nCysAYhhP1Ubo3H/wLIC3iNm33CGEYJ4Q6G4olcuzAv9S1Umk3Knms76fLxaDPxw==, tarball: https://npm.pkg.github.com/download/@navikt/arbeidsgiver-notifikasjon-widget/8.0.5/3c31b445ed8b79b55fb154be5dd28f56604c8ad5}
@@ -874,8 +874,8 @@ packages:
       react: 18 || 19
       react-dom: 18 || 19
 
-  '@navikt/ds-css@8.13.0':
-    resolution: {integrity: sha512-EAUiycmU4tCWYJ8eSO6G9m3slAYOXANX/dYluDlHxsBptEGUTyj8RRvrWhUVxqbrZJaZWCzLy05bpDIQlv425g==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.13.0/6bd01f71ef525d0c170d5dd690e078d763eea421}
+  '@navikt/ds-css@8.14.0':
+    resolution: {integrity: sha512-KQDrW8P798nN3R6NoUHKpSbGxfQBK3Dpr63C8WAV0uiWl3CdNTirNfFQUtYI5Lccss4CEMhciDJjv28ZomrefQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.14.0/fb120945cda0247ea4c56535066d21c5c818bfdb}
 
   '@navikt/ds-icons@3.4.3':
     resolution: {integrity: sha512-Ys25tnDUzS+AtagMMW4/154OCZy+pTxCv9uiV4YcZUeXMfjnMiRWx1dueyCODb7FF7Jd6TwELd3G6ieQt/rf+w==, tarball: https://npm.pkg.github.com/download/@navikt/ds-icons/3.4.3/eaa8fc38f6d184806d3405a5efbc9d137c2b8d27}
@@ -883,15 +883,15 @@ packages:
       '@types/react': 19.2.15
       react: ^17.0.0 || ^18.0.0
 
-  '@navikt/ds-react@8.13.0':
-    resolution: {integrity: sha512-U0ooqlmgjHTJNdOKFwGzO20VfxpNfLLwRwniyFFYV2IUeiUG1KvI92g0K3qdwrIkh3b89Epir75fT+s5rhhgNA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.13.0/4c072e71aff60aa41563b67b81cd7bb17b6727bb}
+  '@navikt/ds-react@8.14.0':
+    resolution: {integrity: sha512-5aBBf2lhOqb5AV6S7udx7O6vB6PlhDx5vBj37zC12a90HrCIhK8Bu36e2R/1TyM9J93blwEzcOTNVaxU3zUbEA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.14.0/ba6fdf912f3dc28b111a9a97290bd44ed16849c2}
     peerDependencies:
       '@types/react': 19.2.15
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
 
-  '@navikt/ds-tokens@8.13.0':
-    resolution: {integrity: sha512-rtdyubAcoP4f8onbtghjjCyL5UlOLvz9eK53bR7CJbUUTEGovebgoUwB6S10LFGj3BktFe7m91Vu6vtsCpmEZw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.13.0/63a58bf567e0a95c1ced6a3d7356de06c19a2457}
+  '@navikt/ds-tokens@8.14.0':
+    resolution: {integrity: sha512-OsGQ2wVfQSD5SPIBu4/4eRoOFohTGgtf2jGy5sn7l493d/ZdWCCndaL4Ww01FWDNLH6FG1ZUSCc85MhLdGOX1w==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.14.0/0ffa6e54267bba9400b9f4cb306961244e2b6694}
 
   '@navikt/ia-metrikker-client@1.9.4':
     resolution: {integrity: sha512-Iem79wQa+XTxAN3lfuyBkfe/nTq6VKGHzNlknPJNmv6Vff/FSiBTRy5o+fdV80i4BLJUALD0dJauLWnwpRt3DA==, tarball: https://npm.pkg.github.com/download/@navikt/ia-metrikker-client/1.9.4/5587c35968c01ad7449321b7574d07f94f6e79d7}
@@ -3682,6 +3682,9 @@ packages:
   tabbable@6.4.0:
     resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
 
+  tabbable@6.5.0:
+    resolution: {integrity: sha512-wieBHXygIm7OyQOu5hQlkk62/WyCFYGlWg7L6/ZCUZwx0o398Zkn4pVmMyfYhfMG8kGrj/Krt8eIk6UKC6VzwA==}
+
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
     engines: {node: '>=20'}
@@ -4282,7 +4285,7 @@ snapshots:
       '@floating-ui/utils': 0.2.11
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
-      tabbable: 6.4.0
+      tabbable: 6.5.0
 
   '@floating-ui/utils@0.2.11': {}
 
@@ -4713,14 +4716,14 @@ snapshots:
       '@tybys/wasm-util': 0.10.2
     optional: true
 
-  '@navikt/aksel-icons@8.13.0': {}
+  '@navikt/aksel-icons@8.14.0': {}
 
-  '@navikt/arbeidsgiver-notifikasjon-widget@8.0.5(@navikt/aksel-icons@8.13.0)(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)':
+  '@navikt/arbeidsgiver-notifikasjon-widget@8.0.5(@navikt/aksel-icons@8.14.0)(@navikt/ds-css@8.14.0)(@navikt/ds-react@8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@navikt/nav-dekoratoren-moduler@3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)':
     dependencies:
       '@apollo/client': 4.1.6(graphql@16.13.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rxjs@7.8.2)
-      '@navikt/aksel-icons': 8.13.0
-      '@navikt/ds-css': 8.13.0
-      '@navikt/ds-react': 8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@navikt/aksel-icons': 8.14.0
+      '@navikt/ds-css': 8.14.0
+      '@navikt/ds-react': 8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@navikt/nav-dekoratoren-moduler': 3.7.1(html-react-parser@5.2.17(@types/react@19.2.15)(react@19.2.7))(react@19.2.7)
       graphql: 16.13.1
       react: 19.2.7
@@ -4730,26 +4733,26 @@ snapshots:
       - rxjs
       - subscriptions-transport-ws
 
-  '@navikt/ds-css@8.13.0': {}
+  '@navikt/ds-css@8.14.0': {}
 
   '@navikt/ds-icons@3.4.3(@types/react@19.2.15)(react@19.2.7)':
     dependencies:
       '@types/react': 19.2.15
       react: 19.2.7
 
-  '@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@navikt/ds-react@8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
       '@floating-ui/react': 0.27.19(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@floating-ui/react-dom': 2.1.8(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@navikt/aksel-icons': 8.13.0
-      '@navikt/ds-tokens': 8.13.0
+      '@navikt/aksel-icons': 8.14.0
+      '@navikt/ds-tokens': 8.14.0
       '@types/react': 19.2.15
       date-fns: 4.4.0
       react: 19.2.7
       react-day-picker: 9.14.0(react@19.2.7)
       react-dom: 19.2.7(react@19.2.7)
 
-  '@navikt/ds-tokens@8.13.0': {}
+  '@navikt/ds-tokens@8.14.0': {}
 
   '@navikt/ia-metrikker-client@1.9.4': {}
 
@@ -4773,10 +4776,10 @@ snapshots:
 
   '@navikt/texas@4.1.4': {}
 
-  '@navikt/virksomhetsvelger@2.0.4(@navikt/ds-css@8.13.0)(@navikt/ds-react@8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+  '@navikt/virksomhetsvelger@2.0.4(@navikt/ds-css@8.14.0)(@navikt/ds-react@8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
     dependencies:
-      '@navikt/ds-css': 8.13.0
-      '@navikt/ds-react': 8.13.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@navikt/ds-css': 8.14.0
+      '@navikt/ds-react': 8.14.0(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       focus-trap-react: 11.0.4(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
@@ -7924,6 +7927,8 @@ snapshots:
       '@pkgr/core': 0.2.9
 
   tabbable@6.4.0: {}
+
+  tabbable@6.5.0: {}
 
   tagged-tag@1.0.0: {}
 
