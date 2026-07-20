@@ -35,7 +35,7 @@
     "@testing-library/dom": "^10.4.1",
     "csp-header": "^6.3.0",
     "dotenv": "^17.3.1",
-    "highcharts": "^12.5.0",
+    "highcharts": "^13.0.0",
     "highcharts-react-official": "^3.2.3",
     "html-react-parser": "^5.2.11",
     "msw": "2.14.6",
