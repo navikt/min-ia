@@ -1,4 +1,5 @@
 overrides:
+  '@opentelemetry/core@<2.8.0': ^2.8.0
   '@types/react': "19.2.15"
   '@types/react-dom': "19.2.3"
   js-cookie: "3.0.7"
