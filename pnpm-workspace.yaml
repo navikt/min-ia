@@ -2,7 +2,7 @@ overrides:
   '@types/react': "19.2.15"
   '@types/react-dom': "19.2.3"
   js-cookie: "3.0.7"
-  postcss: "8.5.10"
+  postcss: "8.5.23"
   ws@>=8.0.0 <8.20.1: ^8.20.1
   ws@>=8.0.0 <8.21.0: ^8.21.0
 
