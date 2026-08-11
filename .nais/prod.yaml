@@ -56,7 +56,7 @@ spec:
     - name: UMAMI_WEBSITE_ID
       value: 881d4cb8-e2a3-42da-9da6-83b6220c7f7e
     - name: UMAMI_URL
-      value: https://umami.nav.no
+      value: https://cdn.nav.no/team-researchops/sporing/sporing.js
   tokenx:
     enabled: true
   idporten:

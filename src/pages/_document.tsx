@@ -71,8 +71,7 @@ export default class MyDocument extends Document<Props> {
             <Script
               defer
               strategy="afterInteractive"
-              src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-              data-host-url={umamiUrl}
+              src={umamiUrl}
               data-website-id={umamiWebsiteId}
               data-exclude-search="true"
             />
@@ -91,7 +90,10 @@ export default class MyDocument extends Document<Props> {
             href={favicon_16x16_data}
           />
         </Head>
-        <Page as="body" style={{ backgroundColor: "var(--ax-bg-neutral-soft)" }}>
+        <Page
+          as="body"
+          style={{ backgroundColor: "var(--ax-bg-neutral-soft)" }}
+        >
           <Decorator.Header />
           <Main />
           <Decorator.Footer />
