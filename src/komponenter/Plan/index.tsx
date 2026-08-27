@@ -18,7 +18,7 @@ export default function Plan({ plan }: { plan: PlanType }) {
     .sort((a, b) => {
       return a.id - b.id;
     });
-  const sisteEndring = useSisteEndring(plan);
+  const sisteEndring = useSisteEndring({...plan});
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function Plan({ plan }: { plan: PlanType }) {
             <Heading level="3" size="medium" spacing>
               {tema.navn}
             </Heading>
-            <BodyShort>Oppdatert {sisteEndring}</BodyShort>
+            {!!sisteEndring && <BodyShort>Oppdatert {sisteEndring}</BodyShort>}
           </HStack>
           <PlanGraf undertemaer={tema.undertemaer} aria-hidden />
           <Innholdsblokk tema={tema} />
@@ -95,7 +95,7 @@ function useSisteEndring(plan: PlanType) {
     const sistePublisert = new Date(plan.sistPublisert);
 
     return (
-      sisteEndring > sistePublisert ? sisteEndring : sistePublisert
+      !plan.sistPublisert || sisteEndring > sistePublisert ? sisteEndring : sistePublisert
     ).toLocaleDateString("nb-NO", {
       day: "2-digit",
       month: "2-digit",
