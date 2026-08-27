@@ -10,7 +10,6 @@ const nextConfig = {
   reactStrictMode: true,
   basePath: "/forebygge-fravar",
   output: "standalone",
-  transpilePackages: ["@navikt/arbeidsgiver-notifikasjon-widget"],
   i18n: {
     locales: ["no"],
     defaultLocale: "no",
