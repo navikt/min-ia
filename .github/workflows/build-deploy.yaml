@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - aksel-v8
+      - fiks-invalid-date
     paths-ignore:
       - "**.md"
       - "**/**.md"
