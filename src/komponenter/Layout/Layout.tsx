@@ -1,9 +1,6 @@
 import React, { useRef } from "react";
 import Banner from "../Banner/Banner";
 import { Heading } from "@navikt/ds-react";
-import { NotifikasjonWidgetProvider } from "@navikt/arbeidsgiver-notifikasjon-widget";
-import { AUTHENTICATED_BASE_PATH } from "../../utils/konstanter";
-//import "@navikt/arbeidsgiver-notifikasjon-widget/lib/esm/index.css";
 import { Organisasjon } from "@navikt/virksomhetsvelger";
 
 export const Layout = (props: {
@@ -17,10 +14,6 @@ export const Layout = (props: {
 
   return (
     <main id="maincontent" role="main" tabIndex={-1}>
-      <NotifikasjonWidgetProvider
-        apiUrl={`${AUTHENTICATED_BASE_PATH}/notifikasjoner`}
-        miljo={props.kjørerMockApp ? "local" : "prod"}
-      >
         <Banner
           tittelMedUnderTittel={
             <div>
@@ -32,7 +25,6 @@ export const Layout = (props: {
           }
           altinnOrganisasjoner={props.altinnOrganisasjoner}
         />
-      </NotifikasjonWidgetProvider>
       <div ref={layoutContentRef}>{props.children}</div>
     </main>
   );

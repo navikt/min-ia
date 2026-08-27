@@ -12,14 +12,6 @@ const VirksomhetsvelgerNoSSR = dynamic(
   { ssr: false },
 );
 
-const NotifikasjonWidgetNoSSR = dynamic(
-  () =>
-    import("@navikt/arbeidsgiver-notifikasjon-widget").then(
-      (m) => m.NotifikasjonWidget,
-    ),
-  { ssr: false },
-);
-
 interface Props {
   tittelMedUnderTittel: string | ReactElement;
   altinnOrganisasjoner: Organisasjon[];
@@ -54,7 +46,6 @@ const Banner: React.FunctionComponent<Props> = ({
               initValgtOrgnr={orgnr ?? undefined}
             />
           )}
-          <NotifikasjonWidgetNoSSR />
         </div>
       </div>
     </div>
