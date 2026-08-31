@@ -59,11 +59,11 @@ importers:
         specifier: ^17.3.1
         version: 17.4.2
       highcharts:
-        specifier: ^12.5.0
-        version: 12.6.0
+        specifier: ^13.0.1
+        version: 13.0.1
       highcharts-react-official:
         specifier: ^3.2.3
-        version: 3.2.3(highcharts@12.6.0)(react@19.2.8)
+        version: 3.2.3(highcharts@13.0.1)(react@19.2.8)
       html-react-parser:
         specifier: ^5.2.11
         version: 5.2.17(@types/react@19.2.15)(react@19.2.8)
@@ -2490,8 +2490,8 @@ packages:
       highcharts: '>=6.0.0'
       react: '>=16.8.0'
 
-  highcharts@12.6.0:
-    resolution: {integrity: sha512-zWwoXECOakJT2huBMqIZOjDNLLgyZFCcfZqTj2g6cvYOGxjF3nvooC+rIaF5aKiharluyGKNflfRNrzOAIjdRg==}
+  highcharts@13.0.1:
+    resolution: {integrity: sha512-S7gdm59otSPkhP5mGAca+ah3Di23Xzohno4QPJ9zITzdi43qiY36J+0ZBqizV8ucGR5tXgCdQg7D7tFaMn7NTQ==}
     peerDependencies:
       jspdf: ^4.1.0
       svg2pdf.js: ^2.7.0
@@ -6394,12 +6394,12 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  highcharts-react-official@3.2.3(highcharts@12.6.0)(react@19.2.8):
+  highcharts-react-official@3.2.3(highcharts@13.0.1)(react@19.2.8):
     dependencies:
-      highcharts: 12.6.0
+      highcharts: 13.0.1
       react: 19.2.8
 
-  highcharts@12.6.0: {}
+  highcharts@13.0.1: {}
 
   html-dom-parser@5.1.8:
     dependencies:
