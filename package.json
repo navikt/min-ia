@@ -72,7 +72,7 @@
     "jest-transform-stub": "^2.0.0",
     "prettier": "^3.9.6",
     "sass": "^1.102.0",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.65.0",
     "whatwg-fetch": "^3.6.20"
   }
