@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - fiks-invalid-date
+      - patch-critical-saarbarheter-next-og-sharp
     paths-ignore:
       - "**.md"
       - "**/**.md"
