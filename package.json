@@ -8,16 +8,16 @@
     "pnpm": ">=11"
   },
   "scripts": {
-    "dev": "pnpm lint && next dev --webpack",
+    "dev": "pnpm lint && next dev",
     "start": "next start",
-    "build": "next build --webpack",
+    "build": "next build",
     "tsc": "tsc",
     "lint": "eslint .",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "jest --watch",
     "prettify": "prettier --write .",
-    "export": "next export --webpack"
+    "export": "next export"
   },
   "prettier": {},
   "dependencies": {
