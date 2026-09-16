@@ -8,7 +8,7 @@
     "pnpm": ">=11"
   },
   "scripts": {
-    "dev": "pnpm lint && next dev",
+    "dev": "pnpm lint && next dev --webpack",
     "start": "next start",
     "build": "next build --webpack",
     "tsc": "tsc",
@@ -17,7 +17,7 @@
     "coverage": "jest --coverage",
     "watch": "jest --watch",
     "prettify": "prettier --write .",
-    "export": "next export"
+    "export": "next export --webpack"
   },
   "prettier": {},
   "dependencies": {
