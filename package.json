@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "pnpm lint && next dev",
     "start": "next start",
-    "build": "next build --webpack",
+    "build": "next build",
     "tsc": "tsc",
     "lint": "eslint .",
     "test": "jest",
