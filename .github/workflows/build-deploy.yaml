@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - bygg-med-webpack-v2
+      - dependabot/docker/cgr-nav/pull-through/nav.no/node-23-slim
     paths-ignore:
       - "**.md"
       - "**/**.md"
