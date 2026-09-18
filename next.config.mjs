@@ -17,6 +17,7 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.dirname(__filename)],
   },
+  agentRules: false,
   async headers() {
     return [
       {
