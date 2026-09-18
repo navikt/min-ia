@@ -10,8 +10,7 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import Script from "next/script";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { favicon_16x16_data, favicon_32x32_data } from "../utils/favicons";
 import { isMockApp } from "../utils/envUtils";
 import { Page } from "@navikt/ds-react";
@@ -31,8 +30,7 @@ interface Props {
   kjørerMockApp: boolean;
 }
 
-const { decoratorEnv, thisPageUrl, umamiWebsiteId, umamiUrl } =
-  lesOgValiderMiljøvariablerForDekoratør();
+const { decoratorEnv, thisPageUrl } = lesOgValiderMiljøvariablerForDekoratør();
 
 export default class MyDocument extends Document<Props> {
   static async getInitialProps(
@@ -67,15 +65,6 @@ export default class MyDocument extends Document<Props> {
       <Html lang={language || "no"}>
         <Head>
           {kjørerMockApp ? <meta name="robots" content="noindex" /> : undefined}
-          {umamiWebsiteId && umamiUrl && (
-            <Script
-              defer
-              strategy="afterInteractive"
-              src={umamiUrl}
-              data-website-id={umamiWebsiteId}
-              data-exclude-search="true"
-            />
-          )}
           <Decorator.HeadAssets />
           <link
             rel="icon"
@@ -108,8 +97,6 @@ export default class MyDocument extends Document<Props> {
 function lesOgValiderMiljøvariablerForDekoratør() {
   const decoratorEnv = process.env.DECORATOR_ENV as "prod" | "dev";
   const thisPageUrl = process.env.DECORATOR_BREADCRUMB_THIS_PAGE_URL;
-  const umamiWebsiteId = process.env.UMAMI_WEBSITE_ID;
-  const umamiUrl = process.env.UMAMI_URL;
 
   if (!decoratorEnv || !thisPageUrl) {
     throw Error(
@@ -119,5 +106,5 @@ function lesOgValiderMiljøvariablerForDekoratør() {
   if (decoratorEnv != "prod" && decoratorEnv != "dev") {
     throw Error("Dekoratør-miljø kan kun være 'prod' eller 'dev'");
   }
-  return { decoratorEnv, thisPageUrl, umamiWebsiteId, umamiUrl };
+  return { decoratorEnv, thisPageUrl };
 }
