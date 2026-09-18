@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - dependabot/docker/cgr-nav/pull-through/nav.no/node-23-slim
+      - fjern-duplikat-sporing
     paths-ignore:
       - "**.md"
       - "**/**.md"
