@@ -13,6 +13,7 @@ const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testEnvironment: "jsdom",
   moduleNameMapper: {
+    "^@highcharts/react$": "<rootDir>/__mocks__/highchartsReactMock.js",
     "^uuid$": "uuid",
     "@navikt/ds-css": "jest-transform-stub",
     "@navikt/virksomhetsvelger": "jest-transform-stub",
