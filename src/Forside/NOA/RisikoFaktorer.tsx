@@ -36,6 +36,7 @@ export const RisikoFaktorer = ({ noaInfo }: { noaInfo: NoaInfo }) => {
           label="Se hele statistikken"
           innhold="Les mer om risikofaktorer i bransjen og hva de er knyttet til"
           lenke={noaInfo.lenke}
+          bransje={noaInfo.noaBransje}
         />
       </HStack>
     </Page.Block>
