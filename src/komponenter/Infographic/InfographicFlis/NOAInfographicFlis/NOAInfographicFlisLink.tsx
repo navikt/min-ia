@@ -2,23 +2,25 @@ import React, { ReactNode } from "react";
 import styles from "./NOAInfographicFlisLink.module.scss";
 import { BodyShort, Box } from "@navikt/ds-react";
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
-import { sendNavigereEvent } from "../../../../utils/analytics/analytics";
+import { sendNavigereRisikofaktorEvent } from "../../../../utils/analytics/analytics";
 
 export function NOAInfographicFlisLink({
   label,
   innhold,
   lenke,
+  bransje,
 }: {
   label: string;
   innhold: ReactNode;
   lenke: string;
+  bransje: string;
 }) {
   return (
     <Box
       as={"a"}
       href={lenke}
       className={styles.NOA_infographicFlisLinkBox}
-      onClick={() => sendNavigereEvent(label, lenke)}
+      onClick={() => sendNavigereRisikofaktorEvent(label, lenke, bransje)}
     >
       <ExternalLinkIcon
         aria-hidden

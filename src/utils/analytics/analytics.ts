@@ -77,6 +77,10 @@ export const sendNavigereEvent = (lenketekst: string, destinasjon: string) => {
   logAnalyticsEvent("navigere", { lenketekst, destinasjon });
 };
 
+export const sendNavigereRisikofaktorEvent = (lenketekst: string, destinasjon: string, bransje: string) => {
+  logAnalyticsEvent("navigere", { lenketekst, destinasjon, bransje });
+};
+
 export const sendSamarbeidValgtEvent = (status: string) => {
   logAnalyticsEvent("samarbeid valgt", { status });
 };
