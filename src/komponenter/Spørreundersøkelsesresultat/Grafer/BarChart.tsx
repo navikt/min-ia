@@ -1,8 +1,7 @@
 "use client";
 import styles from "./grafer.module.scss";
 import React from "react";
-import * as Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
+import { Chart, type ChartOptions } from "@highcharts/react";
 import { useSpørsmålMedSorterteSvaralternativer } from "../sorterSvaralternativer";
 import { SpørsmålResultat } from "../SpørreundersøkelseRad";
 import { BodyShort, Heading } from "@navikt/ds-react";
@@ -53,11 +52,7 @@ export default function BarChart({
   return (
     <>
       <div aria-hidden>
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={options}
-          constructorType={"chart"}
-        />
+        <Chart options={options} chartConstructor={"chart"} />
       </div>
       <UUVennligOpplesningAvBarChart
         spørsmålMedSorterteAlternativer={spørsmålMedSorterteAlternativer}
@@ -97,8 +92,11 @@ function genererChartOptionsFraSpørsmålOgSvar(
   erIEksportMode: boolean,
   horizontal: boolean,
   farge: string,
-): Highcharts.Options {
+): ChartOptions {
   return {
+    palette: {
+      colorScheme: "light",
+    },
     chart: {
       type: horizontal ? "bar" : "column",
     },
