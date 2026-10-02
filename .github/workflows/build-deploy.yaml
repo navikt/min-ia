@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - fjern-duplikat-sporing
+      - risikofaktormetrikk
     paths-ignore:
       - "**.md"
       - "**/**.md"
