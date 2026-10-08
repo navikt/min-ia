@@ -58,6 +58,7 @@ function Tjeneste({
       <BodyShort>{tekst}</BodyShort>
       <Button
         as="a"
+        aria-label={`Les mer om ${tittel.toLowerCase()}`}
         role="link"
         href={lenke}
         className={styles.tjenestelenke}
