@@ -201,7 +201,7 @@ importers:
         version: 3.7.3(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@navikt/next-api-proxy':
         specifier: 5.0.5
-        version: 5.0.5(next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.105.2))
+        version: 5.0.5(next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.106.1))
       '@navikt/oasis':
         specifier: ^4.1.1
         version: 4.2.2
@@ -228,7 +228,7 @@ importers:
         version: 2.14.6(@types/node@26.6.5)(@typescript/typescript6@6.0.2)
       next:
         specifier: 16.4.2
-        version: 16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.105.2)
+        version: 16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.106.1)
       pino:
         specifier: 10.3.1
         version: 10.3.1
@@ -288,8 +288,8 @@ importers:
         specifier: npm:typescript@^7.0.2
         version: typescript@7.0.2
       core-js:
-        specifier: ^3.50.0
-        version: 3.50.0
+        specifier: ^3.51.0
+        version: 3.51.0
       eslint:
         specifier: ^10.13.0
         version: 10.13.0
@@ -321,8 +321,8 @@ importers:
         specifier: ^3.9.10
         version: 3.9.10
       sass:
-        specifier: ^1.105.2
-        version: 1.105.2
+        specifier: ^1.106.1
+        version: 1.106.1
       typescript:
         specifier: npm:@typescript/typescript6@6.0.2
         version: '@typescript/typescript6@6.0.2'
@@ -2034,8 +2034,8 @@ packages:
     resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
     engines: {node: '>=18'}
 
-  core-js@3.50.0:
-    resolution: {integrity: sha512-BRWgOLKkFeCgRudR6zrs8p9XJZcE14grzKMMssoYrk6krtuEZ7MTKPIY5RzOnqsEKIR9kst7wNzphttraT+Yqw==}
+  core-js@3.51.0:
+    resolution: {integrity: sha512-7bDKx/5jm5MxzsXxc93g6Z2+4ZsuT/MddrfRmTDJNAkWsYWHU8EVNEsBiIEWnMAMCHMmRfUEjkuo3jeNBOIHRw==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -3598,8 +3598,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  sass@1.105.2:
-    resolution: {integrity: sha512-KxW6ZKZiBKWK3ziQ4YZ3cpqo8/1TlHXE8t9nBNvGDZFoBFbk2MD7RacxYFs8zy8hzeFwpFYkVyAhboi47uYPEQ==}
+  sass@1.106.1:
+    resolution: {integrity: sha512-kD+Gi66vycZcbJt+42NC4z4PXNMcCajVrJPhqoKKXy5cOBMmJQt052CxIBcRjwYXeImHYOpu/ydWWGZQIenl7A==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -4874,9 +4874,9 @@ snapshots:
       js-cookie: 3.0.7
       react: 19.3.1
 
-  '@navikt/next-api-proxy@5.0.5(next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.105.2))':
+  '@navikt/next-api-proxy@5.0.5(next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.106.1))':
     dependencies:
-      next: 16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.105.2)
+      next: 16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.106.1)
 
   '@navikt/oasis@4.2.2':
     dependencies:
@@ -5762,7 +5762,7 @@ snapshots:
 
   cookie@1.1.1: {}
 
-  core-js@3.50.0: {}
+  core-js@3.51.0: {}
 
   cross-spawn@7.0.6:
     dependencies:
@@ -7287,7 +7287,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.105.2):
+  next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.106.1):
     dependencies:
       '@next/env': 16.4.2
       '@swc/helpers': 0.5.23
@@ -7307,7 +7307,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 16.4.2
       '@next/swc-win32-x64-msvc': 16.4.2
       '@opentelemetry/api': 1.9.1
-      sass: 1.105.2
+      sass: 1.106.1
       sharp: 0.35.4(@types/node@26.6.5)
     transitivePeerDependencies:
       - '@babel/core'
@@ -7680,7 +7680,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass@1.105.2:
+  sass@1.106.1:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.9
