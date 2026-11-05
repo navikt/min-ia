@@ -1,1 +1,10 @@
 @use "@navikt/ds-css";
+
+
+div:has(> .next-error-h1) {
+  color: var(--ax-text-neutral);
+
+  > .next-error-h1 {
+    border-right-color: var(--ax-border-neutral);
+  }
+}
