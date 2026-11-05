@@ -64,7 +64,7 @@ jobs:
 
   deployAppToEksternDev:
     name: Deploy to dev-gcp (ekstern)
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/stylefeilmelding'
     needs: docker-build-push
     runs-on: ubuntu-latest
     timeout-minutes: 10
